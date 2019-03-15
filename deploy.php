@@ -7,19 +7,21 @@ require 'recipe/zend_framework.php';
 set('application', 'Gastro24');
 
 // Project repository
-set('repository', 'https://github.com/gastro24/gastro24.git');
-
-// [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', false); 
+set('repository', 'git@gitlab.cross-solution.de:YAWIK/Gastro24.git');
 
 // Shared files/dirs between deploys 
-add('shared_files', []);
+add('shared_files', ['test/sandbox/public/.htaccess']);
 add('shared_dirs', [
-   'shared',
+    'test/sandbox/var/log',
+    'test/sandbox/var/cache',
+    'test/sandbox/config/autoload',
 ]);
 
 // Writable dirs by web server 
-add('writable_dirs', []);
+add('writable_dirs', [
+    'test/sandbox/var/cache',
+    'test/sandbox/var/log',
+]);
 
 set('default_stage', 'prod');
 
@@ -31,17 +33,6 @@ host('php7.gastrojob24.ch')
     ->multiplexing(false) 
     ->set('deploy_path', '/var/www/production');    
     
-// Tasks
-task('pwd', function () {
-    $result = run('pwd');
-    writeln("Current dir: $result");
-});
-
-before('deploy:symlink', 'deploy:build');
-
-task('deploy:build', function () {
-    run('cd {{release_path}}/test/sandbox && rm -R config var && ln -s ../../../../shared/shared/var/ && ln -s ../../../../shared/shared/config/ && cd public && ln -s ../../../../../shared/test/sandbox/public/.htaccess');
-});
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
