@@ -14,6 +14,7 @@ return [
         'Applications',
         'Cv',
         'Orders',
+        'JobsByMail',
         'Gastro24'
     ],
 ];
