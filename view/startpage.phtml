@@ -12,6 +12,8 @@
 $options = $this->services('Core/Options');
 $languages = $options->getSupportedLanguages();
 $lang = $this->params('lang');
+if (count($jobs)): // We only want to render something, if there are items.
+?><div class="hidden" id="update-job-count"><?=$this->jobs->getTotalItemCount()?></div>
 
 
 // See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
