@@ -13,7 +13,13 @@ $options = $this->services('Core/Options');
 $languages = $options->getSupportedLanguages();
 $lang = $this->params('lang');
 if (count($jobs)): // We only want to render something, if there are items.
-?><div class="hidden" id="update-job-count"><?=$this->jobs->getTotalItemCount()?></div>
+?><div class="hidden" id="update-job-count"><?=$this->jobs->getTotalItemCount()?></div><?php
+$hasFacets = $jobs instanceof \Solr\FacetsProviderInterface;
+
+$queryGet = $this->params()->fromQuery();
+unset($queryGet['clear']);
+$query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
+
 
 
 // See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
