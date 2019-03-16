@@ -8,14 +8,11 @@
  * @license   Gastrojobs
  */
  
-if (count($jobs)): // We only want to render something, if there are items.
-?><div class="hidden" id="update-job-count"><?=$this->jobs->getTotalItemCount()?></div><?php
-$hasFacets = $jobs instanceof \Solr\FacetsProviderInterface;
-
 $queryGet = $this->params()->fromQuery();
 unset($queryGet['clear']);
 $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $wordpress = $this->proxy('wordpress');
+
 
 
 
