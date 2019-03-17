@@ -171,7 +171,10 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                    <p> 
                    
                    <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
-                        <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                        <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                        #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                        
+                        class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
 
                    
                    
