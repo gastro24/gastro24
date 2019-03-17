@@ -147,7 +147,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                     <?php
 
                     if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
-                       if (\Organizations\Entity\Organization::PROFILE_DISABLED !== $org->getProfileSetting()) {
+                       if (\Organizations\Entity\Organization::PROFILE_DISABLED !== $org->getProfileSetting() && $this->isIntern) {
                             
                               echo sprintf('<a href="%s?clear=1">%s</a>',
                                 $this->orgProfileUrl($org),
