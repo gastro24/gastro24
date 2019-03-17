@@ -169,6 +169,12 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                     ?>, <?=preg_replace('~\(.*?\)$~', '', (string) $job->getLocation())?>
                     </p>
                    <p> 
+                   
+                   <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                        <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+
+                   
+                   
                         <?php
                         if ($job->getDatePublishStart()): echo $this->dateFormat($job->getDatePublishStart(), 'short', 'none');
                         elseif ($job->getDateCreated()): echo $this->dateFormat($job->getDateCreated(), 'short', 'none');
