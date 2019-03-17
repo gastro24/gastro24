@@ -166,14 +166,14 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                     } else if ($job->getCompany()) {
                         echo $job->getCompany();
                     }
-                    ?>
+                    ?>, <?=preg_replace('~\(.*?\)$~', '', (string) $job->getLocation())?>
                     </p>
-                   <p> Publiziert:
+                   <p> 
                         <?php
                         if ($job->getDatePublishStart()): echo $this->dateFormat($job->getDatePublishStart(), 'short', 'none');
                         elseif ($job->getDateCreated()): echo $this->dateFormat($job->getDateCreated(), 'short', 'none');
                         endif?>
-                    <br /><?=preg_replace('~\(.*?\)$~', '', (string) $job->getLocation())?> </p>
+                     </p>
                    
                 </div>
             </div>
