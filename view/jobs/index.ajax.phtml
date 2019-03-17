@@ -143,6 +143,16 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                             <?=strip_tags($job->getTitle())?>
                         </a>
                     </h4>
+                    
+                    <?php if (!$this->isIntern && !$this->isEmbeddable): ?>
+                    
+                    redirect....
+                      
+                    
+                    <?php endif ?>
+                    
+                    
+                    
                     <p>
                     <?php
 
