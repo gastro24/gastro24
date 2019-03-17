@@ -147,8 +147,9 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                     <?php
 
                     if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
-                       if (\Organizations\Entity\Organization::PROFILE_DISABLED !== $org->getProfileSetting() && $this->isEmbeddable) {
-                            
+                        
+                    /**
+                      * if (\Organizations\Entity\Organization::PROFILE_DISABLED !== $org->getProfileSetting()) {
                               echo sprintf('<a href="%s?clear=1">%s</a>',
                                 $this->orgProfileUrl($org),
                                 $org->getOrganizationName()->getName());
@@ -157,6 +158,11 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                            echo $org->getOrganizationName()->getName();
                             
                         }
+                        
+                      */
+                      echo $org->getOrganizationName()->getName();
+                           
+                           
                     } else if ($job->getCompany()) {
                         echo $job->getCompany();
                     }
