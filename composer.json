@@ -24,11 +24,11 @@
     "minimum-stability": "dev",
     "require": {
         "yawik/core": "^0.32",
-        "yawik/orders": "dev-develop@dev",
-        "yawik/jobs-by-mail": "dev-develop@dev",
-        "yawik/solr": "dev-develop@dev",
-        "yawik/simple-import": "dev-develop@dev",
-        "yawik/company-registration": "*",
+        "yawik/orders": "^0.3",
+        "yawik/jobs-by-mail": "^0.2",
+        "yawik/solr": "^0.6",
+        "yawik/simple-import": "^0.1",
+        "yawik/company-registration": "^0.8",
         "yawik/organizations": "^0.32",
         "yawik/composer-plugin": "^0.32@dev"
     },

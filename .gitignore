@@ -12,3 +12,5 @@ public/templates/default/job.css
 public/templates/modern/job.css
 
 test/sandbox/.env
+
+composer.lock
