@@ -28,6 +28,7 @@
         "yawik/jobs-by-mail": "dev-develop@dev",
         "yawik/solr": "dev-develop@dev",
         "yawik/simple-import": "dev-develop@dev",
+        "yawik/company-registration": "*",
         "yawik/organizations": "^0.32",
         "yawik/composer-plugin": "^0.32@dev"
     },
