@@ -36,22 +36,13 @@ return [
                 ]
             ],
 
-//           'jobboard' => [
-//              'label' => 'Jobs',
-//               'text_domain' => 'do-not-translate',
-//               'active_on' => ['lang/jobboard', 'lang/landingPage'],
-//               'query' => [ 'clear' => 1 ],
-//           ],
-         'kontakt' => [
-               'label' => 'Kontakt',
-               'route' => 'lang/wordpress',
-               'resource' => 'resource/kontakt',
-              'params' => [
-                   'type' => 'page',
-                   'id' => 'kontakt',
-               ]
-           ],
-            'post-a-job' => [
+          'jobboard' => [
+             'label' => 'Jobs',
+               'text_domain' => 'do-not-translate',
+              'active_on' => ['lang/jobboard', 'lang/landingPage'],
+              'query' => [ 'clear' => 1 ],
+          ],
+           'post-a-job' => [
                 'label' => 'Stelle inserieren',
                 'route' => 'lang/wordpress',
                 'resource' => 'resource/stellenanzeigen-schalten',
@@ -62,8 +53,6 @@ return [
                 'order' => 960,
                 'class' => 'inverted'
             ],
-            
-      
           'ratgeber' => [
                 'label' => 'Ratgeber & Hilfe',
                'route' => 'lang/wordpress',
