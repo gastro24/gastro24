@@ -42,7 +42,15 @@ return [
 //               'active_on' => ['lang/jobboard', 'lang/landingPage'],
 //               'query' => [ 'clear' => 1 ],
 //           ],
-          
+         'kontakt' => [
+               'label' => 'Kontakt',
+               'route' => 'lang/wordpress',
+               'resource' => 'resource/kontakt',
+              'params' => [
+                   'type' => 'page',
+                   'id' => 'kontakt',
+               ]
+           ],
             'post-a-job' => [
                 'label' => 'Stelle inserieren',
                 'route' => 'lang/wordpress',
@@ -55,17 +63,7 @@ return [
                 'class' => 'inverted'
             ],
             
-             'kontakt' => [
-               'label' => 'Kontakt',
-               'route' => 'lang/wordpress',
-               'resource' => 'resource/kontakt',
-              'params' => [
-                   'type' => 'page',
-                   'id' => 'kontakt',
-               ]
-           ],
-            
-
+      
           'ratgeber' => [
                 'label' => 'Ratgeber & Hilfe',
                'route' => 'lang/wordpress',
