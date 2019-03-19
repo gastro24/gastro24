@@ -53,6 +53,18 @@ return [
                 'order' => 960,
                 'class' => 'inverted'
             ],
+            
+             'kontakt' => [
+               'label' => 'Kontakt',
+               'route' => 'lang/wordpress',
+               'resource' => 'resource/kontakt',
+              'params' => [
+                   'type' => 'page',
+                   'id' => 'kontakt',
+               ],
+               'order' => 1001,
+           ],
+            
 
 //            'ratgeber' => [
 //                'label' => 'Ratgeber',
