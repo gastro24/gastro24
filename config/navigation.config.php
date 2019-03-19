@@ -63,7 +63,7 @@ return [
                    'type' => 'page',
                    'id' => 'kontakt',
                ],
-               'order' => 1001,
+               'order' => 900,
            ],
             
 
