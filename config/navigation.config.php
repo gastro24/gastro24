@@ -43,7 +43,7 @@ return [
                 'query' => [ 'clear' => 1 ],
             ],
             'post-a-job' => [
-                'label' => 'Inserieren',
+                'label' => 'Stelle inserieren',
                 'route' => 'lang/wordpress',
                 'resource' => 'resource/stellenanzeigen-schalten',
                 'params' => [
