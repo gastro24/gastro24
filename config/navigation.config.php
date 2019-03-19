@@ -62,8 +62,7 @@ return [
               'params' => [
                    'type' => 'page',
                    'id' => 'kontakt',
-               ],
-               'order' => 900,
+               ]
            ],
             
 
