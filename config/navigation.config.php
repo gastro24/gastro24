@@ -36,12 +36,13 @@ return [
                 ]
             ],
 
-            'jobboard' => [
-                'label' => 'Jobs',
-                'text_domain' => 'do-not-translate',
-                'active_on' => ['lang/jobboard', 'lang/landingPage'],
-                'query' => [ 'clear' => 1 ],
-            ],
+//           'jobboard' => [
+//              'label' => 'Jobs',
+//               'text_domain' => 'do-not-translate',
+//               'active_on' => ['lang/jobboard', 'lang/landingPage'],
+//               'query' => [ 'clear' => 1 ],
+//           ],
+          
             'post-a-job' => [
                 'label' => 'Stelle inserieren',
                 'route' => 'lang/wordpress',
@@ -66,16 +67,16 @@ return [
            ],
             
 
-//            'ratgeber' => [
-//                'label' => 'Ratgeber',
-//                'route' => 'lang/wordpress',
-//                'resource' => 'resource/ratgeber',
-//                'params' => [
-//                    'type' => 'page',
-//                    'id' => 'ratgeber',
-//                ],
-//                'order' => 1000,
-//            ],
+          'ratgeber' => [
+                'label' => 'Ratgeber & Hilfe',
+               'route' => 'lang/wordpress',
+                'resource' => 'resource/ratgeber',
+                'params' => [
+                   'type' => 'page',
+                   'id' => 'ratgeber',
+               ],
+                'order' => 1000,
+           ],
 
             'resume-recruiter' => [
                 'visible' => false,
