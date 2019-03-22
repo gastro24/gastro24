@@ -43,7 +43,7 @@ return [
               'query' => [ 'clear' => 1 ],
           ],
            'post-a-job' => [
-                'label' => 'Stelle inserieren',
+                'label' => 'Stelle inserieren ab CHF 0.-',
                 'route' => 'lang/wordpress',
                 'resource' => 'resource/stellenanzeigen-schalten',
                 'params' => [
