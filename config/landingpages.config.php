@@ -71,14 +71,14 @@ $options = [
 	'hilfskoch' => [
           'id' => 169,
 		  'query' => [ 'q' => 'Hilfskoch'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => '',
           'panel' => '',
           'text' => 'Hilfskoch / Hilfsköchin'
      ],
 	'alleinkoch' => [
           'id' => 171,
 		  'query' => [ 'q' => 'Alleinkoch'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => '',
           'panel' => '',
           'text' => 'Alleinkoch / Alleinköchin'
      ],
