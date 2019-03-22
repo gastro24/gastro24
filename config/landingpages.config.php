@@ -27,6 +27,7 @@
   *  q:     Search term for the freetext field.
   *  region_MultiString: Region-Facets.
   *  organizationTag:    Company-Facets.
+  * if panel is empty, the link is not shown on homepage. But he is still avalaible.
   */
 
 
@@ -71,14 +72,14 @@ $options = [
           'id' => 169,
 		  'query' => [ 'q' => 'Hilfskoch'],
           'tab' => 'Jobs nach Berufsfeld',
-          'panel' => 'Küchen Jobs',
+          'panel' => '',
           'text' => 'Hilfskoch / Hilfsköchin'
      ],
 	'alleinkoch' => [
           'id' => 171,
 		  'query' => [ 'q' => 'Alleinkoch'],
           'tab' => 'Jobs nach Berufsfeld',
-          'panel' => 'Küchen Jobs',
+          'panel' => '',
           'text' => 'Alleinkoch / Alleinköchin'
      ],
 
