@@ -232,7 +232,7 @@ $this->headTitle($this->translate('Home'));
         foreach ($queries->getTabs() as $tab => $sections):
             $tabSlug = strtolower(str_replace(' ', '', $tab));
             $tabs[$tabSlug] = $tab;
-            $sectionHtml .= '<h2 style="color: #22436c;" class="h3">' . $tab . '</h2><div class="row">';
+            $sectionHtml .= '<h2 style="color: #22436c;dislay:flex;min-width:190px" class="h3">' . $tab . '</h2><div class="row">';
             $active='';
             foreach ($sections as $section => $links):
                     if ($tab == 'Jobs nach Region') {
