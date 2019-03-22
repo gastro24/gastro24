@@ -241,7 +241,8 @@ $this->headTitle($this->translate('Home'));
                     $sectionHtml .= '<div class="col-md-4"><h3>'. $section .'</h3><ul>';
                 }
                 foreach ($links as $spec):
-                    $sectionHtml .= '<li><a href="' .
+                    $sectionHtml .= '<li><a title="' .
+                                    $spec[1] .'" href="' .
                                     $this->url('lang/landingPage', ['q' => $spec[0], 'format' => 'html' ], true) . '">' .
                                     $spec[1] .'</a></li>';
                 endforeach;
