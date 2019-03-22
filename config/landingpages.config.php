@@ -36,35 +36,35 @@ $options = [
        'diaetkoch' => [
           'id' => 159,
 		  'query' => [ 'q' => 'Diätkoch'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Küchen Jobs',
           'text' => 'Diätkoch / Diätköchin'
      ],
 	'kuechenchef' => [
           'id' => 161,
 		  'query' => [ 'q' => 'Küchenchef'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Küchen Jobs',
           'text' => 'Küchenchef/-in'
      ],
 	'sous-chef' => [
           'id' => 163,
 		  'query' => [ 'q' => '"Sous Chef"'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Küchen Jobs',
           'text' => 'Sous Chef'
      ],
 	'jungkoch' => [
           'id' => 165,
 		  'query' => [ 'q' => 'Jungkoch'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Küchen Jobs',
           'text' => 'Jungkoch / Jungköchin'
      ],
 	'koch' => [
           'id' => 167,
 		  'query' => [ 'q' => 'Koch'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Küchen Jobs',
           'text' => 'Koch / Köchin'
      ],
@@ -82,167 +82,167 @@ $options = [
 	'konditor-confiseur' => [
           'id' => 175,
 		  'query' => [ 'q' => 'Konditor Confiseur'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Konditor / Confiseur'
      ],
 	'baecker' => [
           'id' => 177,
 		  'query' => [ 'q' => 'Bäcker'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Bäcker/-in'
      ],	
 	 'metzger' => [
           'id' => 179,
 		  'query' => [ 'q' => 'Metzger'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Metzger/-in'
      ],	
 	 'ernaehrungsberater' => [
           'id' => 181,
 		  'query' => [ 'q' => 'Ernährungsberater'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Ernährungsberater/-in'
      ],	
 	 'lebesmitteltechnologe' => [
           'id' => 183,
 		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Lebensmitteltechnologe / Lebensmitteltechnologin'
      ],	
 	 'lebensmittelinspektor' => [
           'id' => 185,
 		  'query' => [ 'q' => 'Lebensmittelinspektor'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Lebensmittelinspektor/-in'
      ],
 	 'restaurationsfachmann' => [
           'id' => 189,
 		  'query' => [ 'q' => 'Restaurationsfachmann Restaurationsfachfrau'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Restaurationsfachmann /-frau'
      ], 
 	 'servicemitarbeiter' => [
           'id' => 191,
 		  'query' => [ 'q' => 'Servicemitarbeiter'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Servicemitarbeiter/-in'
      ],
 	  'chef-de-rang' => [
           'id' => 193,
 		  'query' => [ 'q' => '"Chef de Rang"'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Chef de Rang'
      ],
 	 'barkeeper' => [
           'id' => 195,
 		  'query' => [ 'q' => 'Barkeeper'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Barkeeper'
      ],
 	  'barista' => [
           'id' => 197,
 		  'query' => [ 'q' => 'Barista'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Barista'
      ],
 	  'restaurant-manager' => [
           'id' => 199,
 		  'query' => [ 'q' => '"Restaurant Manager"'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Restaurant Manager/-in'
      ],
 	  'sommelier' => [
           'id' => 201,
 		  'query' => [ 'q' => 'Sommelier'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Sommelier / Sommelière'
      ], 
 	 'hotelfachmann' => [
           'id' => 205,
 		  'query' => [ 'q' => 'Hotelfachmann Hotelfachfrau'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Hotel Jobs',
           'text' => 'Hotelfachmann / Hotelfachfrau'
      ],
 	  'wellness-spa-beauty' => [
           'id' => 209,
 		  'query' => [ 'q' => 'Wellness Spa Beauty'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Hotel Jobs',
           'text' => 'Wellness / Spa & Beauty'
      ],
 	  'hoteldirektion' => [
           'id' => 211,
 		  'query' => [ 'q' => 'Hoteldirektion Hotelleitung'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Hotel Jobs',
           'text' => 'Hoteldirektion / Hotelleitung'
      ],
 	  'concierge-room-service' => [
           'id' => 213,
 		  'query' => [ 'q' => 'Concierge "Room Service"'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Hotel Jobs',
           'text' => 'Concierge / Room Service'
      ],
 	  'housekeeping-zimmermaedchen' => [
           'id' => 215,
 		  'query' => [ 'q' => 'Housekeeping Zimmermädchen'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Hotel Jobs',
           'text' => 'Housekeeping / Zimmermädchen'
      ],
 	  'hauswirtschaft' => [
           'id' => 217,
 		  'query' => [ 'q' => 'Hauswirtschaft Wäscherei'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Hotel Jobs',
           'text' => 'Hauswirtschaft / Wäscherei'
      ],
 	  'rezeption-hotelempfang' => [
           'id' => 219,
 		  'query' => [ 'q' => 'Rezeption Hotelempfang'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Hotel Jobs',
           'text' => 'Rezeption / Hotelempfang'
      ],	 
 	 'marketing-sales' => [
           'id' => 223,
 		  'query' => [ 'q' => 'Marketing Sales'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Marketing / Sales'
      ],
 	  'administration-back-office' => [
           'id' => 225,
 		  'query' => [ 'q' => 'Administration Office'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Administration / Back Office'
      ],
 	  'reisefuehrer-tourguide' => [
           'id' => 227,
 		  'query' => [ 'q' => 'Reiseführer Tourguide'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Reiseführer / Tour Guide'
      ],
 	  'kreuzfahrt' => [
           'id' => 229,
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
 		  'query' => [ 'q' => 'Kreuzfahrt'],
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Kreuzfahrt'
@@ -250,49 +250,49 @@ $options = [
 	  'animation-entertainment' => [
           'id' => 231,
 		  'query' => [ 'q' => 'Animation Entertainment'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Animation / Entertainment'
      ],
 	  'casino' => [
           'id' => 233,
 		  'query' => [ 'q' => 'Casino'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Casino'
      ],
 	  'fitness' => [
           'id' => 235,
 		  'query' => [ 'q' => 'Fitness'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Fitness'
      ],
 	  'studenten' => [
           'id' => 239,
 		  'query' => [ 'q' => 'Studenten'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Aushilfe & Saison Jobs',
           'text' => 'Studenten'
      ],
 	  'hilfskraefte' => [
           'id' => 241,
 		  'query' => [ 'q' => 'Hilfskräfte'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Aushilfe & Saison Jobs',
           'text' => 'Hilfskräfte'
      ],
 	  'teilzeit' => [
           'id' => 243,
 		  'query' => [ 'q' => 'Teilzeit'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Aushilfe & Saison Jobs',
           'text' => 'Teilzeit'
      ],
 	  'saison' => [
           'id' => 245,
 		  'query' => [ 'q' => 'Saison'],
-          'tab' => 'Jobs nach Berufsfeld',
+          'tab' => 'Berufe von A - Z',
           'panel' => 'Aushilfe & Saison Jobs',
           'text' => 'Saison'
      ],
