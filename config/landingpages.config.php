@@ -35,49 +35,49 @@ $options = [
        'diaetkoch' => [
           'id' => 159,
 		  'query' => [ 'q' => 'Diätkoch'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Küchen Jobs',
           'text' => 'Diätkoch / Diätköchin'
      ],
 	'kuechenchef' => [
           'id' => 161,
 		  'query' => [ 'q' => 'Küchenchef'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Küchen Jobs',
           'text' => 'Küchenchef/-in'
      ],
 	'sous-chef' => [
           'id' => 163,
 		  'query' => [ 'q' => '"Sous Chef"'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Küchen Jobs',
           'text' => 'Sous Chef'
      ],
 	'jungkoch' => [
           'id' => 165,
 		  'query' => [ 'q' => 'Jungkoch'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Küchen Jobs',
           'text' => 'Jungkoch / Jungköchin'
      ],
 	'koch' => [
           'id' => 167,
 		  'query' => [ 'q' => 'Koch'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Küchen Jobs',
           'text' => 'Koch / Köchin'
      ],
 	'hilfskoch' => [
           'id' => 169,
 		  'query' => [ 'q' => 'Hilfskoch'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Küchen Jobs',
           'text' => 'Hilfskoch / Hilfsköchin'
      ],
 	'alleinkoch' => [
           'id' => 171,
 		  'query' => [ 'q' => 'Alleinkoch'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Küchen Jobs',
           'text' => 'Alleinkoch / Alleinköchin'
      ],
@@ -85,167 +85,167 @@ $options = [
 	'konditor-confiseur' => [
           'id' => 175,
 		  'query' => [ 'q' => 'Konditor Confiseur'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Konditor / Confiseur'
      ],
 	'baecker' => [
           'id' => 177,
 		  'query' => [ 'q' => 'Bäcker'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Bäcker/-in'
      ],	
 	 'metzger' => [
           'id' => 179,
 		  'query' => [ 'q' => 'Metzger'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Metzger/-in'
      ],	
 	 'ernaehrungsberater' => [
           'id' => 181,
 		  'query' => [ 'q' => 'Ernährungsberater'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Ernährungsberater/-in'
      ],	
 	 'lebesmitteltechnologe' => [
           'id' => 183,
 		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Lebensmitteltechnologe / Lebensmitteltechnologin'
      ],	
 	 'lebensmittelinspektor' => [
           'id' => 185,
 		  'query' => [ 'q' => 'Lebensmittelinspektor'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Lebensmittel Jobs',
           'text' => 'Lebensmittelinspektor/-in'
      ],
 	 'restaurationsfachmann' => [
           'id' => 189,
 		  'query' => [ 'q' => 'Restaurationsfachmann Restaurationsfachfrau'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Restaurationsfachmann /-frau'
      ], 
 	 'servicemitarbeiter' => [
           'id' => 191,
 		  'query' => [ 'q' => 'Servicemitarbeiter'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Servicemitarbeiter/-in'
      ],
 	  'chef-de-rang' => [
           'id' => 193,
 		  'query' => [ 'q' => '"Chef de Rang"'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Chef de Rang'
      ],
 	 'barkeeper' => [
           'id' => 195,
 		  'query' => [ 'q' => 'Barkeeper'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Barkeeper'
      ],
 	  'barista' => [
           'id' => 197,
 		  'query' => [ 'q' => 'Barista'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Barista'
      ],
 	  'restaurant-manager' => [
           'id' => 199,
 		  'query' => [ 'q' => '"Restaurant Manager"'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Restaurant Manager/-in'
      ],
 	  'sommelier' => [
           'id' => 201,
 		  'query' => [ 'q' => 'Sommelier'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Service & Restaurant Jobs',
           'text' => 'Sommelier / Sommelière'
      ], 
 	 'hotelfachmann' => [
           'id' => 205,
 		  'query' => [ 'q' => 'Hotelfachmann Hotelfachfrau'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Hotel Jobs',
           'text' => 'Hotelfachmann / Hotelfachfrau'
      ],
 	  'wellness-spa-beauty' => [
           'id' => 209,
 		  'query' => [ 'q' => 'Wellness Spa Beauty'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Hotel Jobs',
           'text' => 'Wellness / Spa & Beauty'
      ],
 	  'hoteldirektion' => [
           'id' => 211,
 		  'query' => [ 'q' => 'Hoteldirektion Hotelleitung'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Hotel Jobs',
           'text' => 'Hoteldirektion / Hotelleitung'
      ],
 	  'concierge-room-service' => [
           'id' => 213,
 		  'query' => [ 'q' => 'Concierge "Room Service"'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Hotel Jobs',
           'text' => 'Concierge / Room Service'
      ],
 	  'housekeeping-zimmermaedchen' => [
           'id' => 215,
 		  'query' => [ 'q' => 'Housekeeping Zimmermädchen'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Hotel Jobs',
           'text' => 'Housekeeping / Zimmermädchen'
      ],
 	  'hauswirtschaft' => [
           'id' => 217,
 		  'query' => [ 'q' => 'Hauswirtschaft Wäscherei'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Hotel Jobs',
           'text' => 'Hauswirtschaft / Wäscherei'
      ],
 	  'rezeption-hotelempfang' => [
           'id' => 219,
 		  'query' => [ 'q' => 'Rezeption Hotelempfang'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Hotel Jobs',
           'text' => 'Rezeption / Hotelempfang'
      ],	 
 	 'marketing-sales' => [
           'id' => 223,
 		  'query' => [ 'q' => 'Marketing Sales'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Marketing / Sales'
      ],
 	  'administration-back-office' => [
           'id' => 225,
 		  'query' => [ 'q' => 'Administration Office'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Administration / Back Office'
      ],
 	  'reisefuehrer-tourguide' => [
           'id' => 227,
 		  'query' => [ 'q' => 'Reiseführer Tourguide'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Reiseführer / Tour Guide'
      ],
 	  'kreuzfahrt' => [
           'id' => 229,
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
 		  'query' => [ 'q' => 'Kreuzfahrt'],
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Kreuzfahrt'
@@ -253,49 +253,49 @@ $options = [
 	  'animation-entertainment' => [
           'id' => 231,
 		  'query' => [ 'q' => 'Animation Entertainment'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Animation / Entertainment'
      ],
 	  'casino' => [
           'id' => 233,
 		  'query' => [ 'q' => 'Casino'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Casino'
      ],
 	  'fitness' => [
           'id' => 235,
 		  'query' => [ 'q' => 'Fitness'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Tourismus & Administration Jobs',
           'text' => 'Fitness'
      ],
 	  'studenten' => [
           'id' => 239,
 		  'query' => [ 'q' => 'Studenten'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Aushilfe & Saison Jobs',
           'text' => 'Studenten'
      ],
 	  'hilfskraefte' => [
           'id' => 241,
 		  'query' => [ 'q' => 'Hilfskräfte'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Aushilfe & Saison Jobs',
           'text' => 'Hilfskräfte'
      ],
 	  'teilzeit' => [
           'id' => 243,
 		  'query' => [ 'q' => 'Teilzeit'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Aushilfe & Saison Jobs',
           'text' => 'Teilzeit'
      ],
 	  'saison' => [
           'id' => 245,
 		  'query' => [ 'q' => 'Saison'],
-          'tab' => 'Gastro Jobs nach Berufsfeld',
+          'tab' => 'Jobs nach Berufsfeld',
           'panel' => 'Aushilfe & Saison Jobs',
           'text' => 'Saison'
      ],
@@ -303,98 +303,98 @@ $options = [
         'text' => 'Appenzell Ausserrhoden',
         'id' => 316,
         'query' => [ 'region_MultiString' => ['Appenzell Ausserrhoden' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	 'region-appenzell-innerrhoden' => [
         'text' => 'Appenzell Innerrhoden',
         'id' => 318,
         'query' => [ 'region_MultiString' => ['Appenzell Innerrhoden' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 		'region-glarus' => [
         'text' => 'Glarus',
         'id' => 320,
         'query' => [ 'region_MultiString' => ['Glarus' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 		'region-liechtenstein' => [
         'text' => 'Liechtenstein',
         'id' => 322,
         'query' => [ 'region_MultiString' => ['Liechtenstein' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 		'region-schaffhausen' => [
         'text' => 'Schaffhausen',
         'id' => 325,
         'query' => [ 'region_MultiString' => ['Schaffhausen' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 		'region-st-gallen' => [
         'text' => 'St. Gallen',
         'id' => 327,
         'query' => [ 'region_MultiString' => ['St. Gallen' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	   'region-thurgau' => [
         'text' => 'Thurgau',
         'id' => 329,
         'query' => [ 'region_MultiString' => ['Thurgau' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	   'region-graubuenden' => [
         'text' => 'Graubünden',
         'id' => 331,
         'query' => [ 'region_MultiString' => ['Graubünden' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	   'region-aargau' => [
         'text' => 'Aargau',
         'id' => 333,
         'query' => [ 'region_MultiString' => ['Aargau' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	   'region-basel-landschaft' => [
         'text' => 'Basel-Landschaft',
         'id' => 335,
         'query' => [ 'region_MultiString' => ['Basel-Landschaft' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	   'region-basel-stadt' => [
         'text' => 'Basel-Stadt',
         'id' => 337,
         'query' => [ 'region_MultiString' => ['Basel-Stadt' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	   'region-bern' => [
         'text' => 'Bern',
         'id' => 339,
         'query' => [ 'region_MultiString' => ['Bern' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	   'region-jura' => [
         'text' => 'Jura',
         'id' => 341,
         'query' => [ 'region_MultiString' => ['Jura' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	   'region-solothurn' => [
         'text' => 'Solothurn',
         'id' => 343,
         'query' => [ 'region_MultiString' => ['Solothurn' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	 
@@ -402,91 +402,91 @@ $options = [
         'text' => 'Freiburg',
         'id' => 346,
         'query' => [ 'region_MultiString' => ['Freiburg' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	  'region-genf' => [
         'text' => 'Genf',
         'id' => 348,
         'query' => [ 'region_MultiString' => ['Genf' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	  'region-neuenburg' => [
         'text' => 'Neuenburg',
         'id' => 350,
         'query' => [ 'region_MultiString' => ['Neuenburg' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	  'region-waadt' => [
         'text' => 'Waadt',
         'id' => 352,
         'query' => [ 'region_MultiString' => ['Waadt' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	  'region-wallis' => [
         'text' => 'Wallis',
         'id' => 354,
         'query' => [ 'region_MultiString' => ['Wallis' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	  'region-luzern' => [
         'text' => 'Luzern',
         'id' => 356,
         'query' => [ 'region_MultiString' => ['Luzern' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	 'region-nidwalden' => [
         'text' => 'Nidwalden',
         'id' => 358,
         'query' => [ 'region_MultiString' => ['Nidwalden' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 		'region-obwalden' => [
         'text' => 'Obwalden',
         'id' => 360,
         'query' => [ 'region_MultiString' => ['Obwalden' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	'region-schwyz' => [
         'text' => 'Schwyz',
         'id' => 362,
         'query' => [ 'region_MultiString' => ['Schwyz' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	 'region-uri' => [
         'text' => 'Uri',
         'id' => 364,
         'query' => [ 'region_MultiString' => ['Uri' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	 'region-zug' => [
         'text' => 'Zug',
         'id' => 366,
         'query' => [ 'region_MultiString' => ['Zug' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	'region-zurich' => [
         'text' => 'Zürich',
         'id' => 368,
         'query' => [ 'region_MultiString' => ['Zürich' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	'region-tessin' => [
         'text' => 'Tessin',
         'id' => 370,
         'query' => [ 'region_MultiString' => ['Tessin' => 1]],
-        'tab' => 'Gastro Jobs nach Region',
+        'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
 	'koch-in-zuerich' => [
