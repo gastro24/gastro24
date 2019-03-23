@@ -242,11 +242,11 @@ $this->headTitle($this->translate('Home'));
         foreach ($queries->getTabs() as $tab => $sections):
             $tabSlug = strtolower(str_replace(' ', '', $tab));
             $tabs[$tabSlug] = $tab;
-            $sectionHtml .= '<h2 style="color: #22436c;dislay:flex;min-width:190px" class="h3">' . $tab . '</h2><div class="row">';
+            $sectionHtml .= '  <div style="display:flex"><h2 style="color: #22436c;dislay:flex;min-width:190px;margin-top:0" class="h3">' . $tab . '</h2><div class="row">';
             $active='';
             foreach ($sections as $section => $links):
                     if ($tab == 'Jobs nach Region') {
-                    $sectionHtml .= '<div class=""><ul>';
+                    $sectionHtml .= '<div class=""><ul class="homepage-links">';
                 }else {
                     $sectionHtml .= '<div class="col-md-4"><h3>'. $section .'</h3><ul>';
                 }
@@ -258,7 +258,7 @@ $this->headTitle($this->translate('Home'));
                 endforeach;
                 $sectionHtml .= '</ul></div>';
             endforeach;
-            $sectionHtml .= '</div>';
+            $sectionHtml .= '</div></div>';
         endforeach;
 
         ?>
