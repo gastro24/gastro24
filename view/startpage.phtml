@@ -244,11 +244,11 @@ $this->headTitle($this->translate('Home'));
         foreach ($queries->getTabs() as $tab => $sections):
             $tabSlug = strtolower(str_replace(' ', '', $tab));
             $tabs[$tabSlug] = $tab;
-            $sectionHtml .= '  <div style="display:flex"><h2 style="color: #22436c;dislay:flex;min-width:190px;margin-top:0" class="h3">' . $tab . '</h2><div class="row">';
+            $sectionHtml .= '  <div style="display:flex;margin-bottom:40px""><h2 style="color: #22436c;dislay:flex;min-width:190px;margin-top:0" class="h3">' . $tab . '</h2>';
             $active='';
             foreach ($sections as $section => $links):
                     if ($tab == 'Jobs nach Region') {
-                    $sectionHtml .= '<div class=""><ul class="homepage-links">';
+                    $sectionHtml .= '<div><ul class="homepage-links">';
                 }else {
                     $sectionHtml .= '<div class="col-md-4_x"><h3>'. $section .'</h3><ul>';
                 }
@@ -260,14 +260,14 @@ $this->headTitle($this->translate('Home'));
                 endforeach;
                 $sectionHtml .= '</ul></div>';
             endforeach;
-            $sectionHtml .= '</div></div>';
+            $sectionHtml .= '</div>';
         endforeach;
 
         ?>
 
             <?=$sectionHtml?>
 
-     <div style="display:flex">
+     <div style="display:flex; margin-bottom:40px">
        <h2 style="color: #22436c;display:flex; min-width:190px; margin-top:0" class="h3">Top-Arbeitgeber</h2>
          <ul class="homepage-links">
              <li><a href="/de/profile-zfv-Die-Gastronomiegruppe-5aa7e1d77bb2b57b5d3c03e4?clear=1">ZFV</a></li>
