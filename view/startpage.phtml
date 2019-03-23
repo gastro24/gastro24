@@ -225,7 +225,8 @@ $this->headTitle($this->translate('Home'));
 
     <div class="container">
         
-       <div style="display:flex" 
+       <div style="display:flex" >
+      
         <h2 style="color: #22436c;dislay:flex;min-width:190px;margin-top:0" class="h3">Berufsfeld</h2>
          
                <ul class="homepage-links">
@@ -260,9 +261,9 @@ $this->headTitle($this->translate('Home'));
                                     $this->url('lang/landingPage', ['q' => $spec[0], 'format' => 'html' ], true) . '">' .
                                     $spec[1] .'</a></li>';
                 endforeach;
-                $sectionHtml .= '</ul></div>';
+                $sectionHtml .= '</ul>';
             endforeach;
-            $sectionHtml .= '</div>';
+            $sectionHtml .= '</div></div>';
         endforeach;
 
         ?>
