@@ -129,7 +129,17 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
  
 
 </style>
+<script>
     
+    var i = 0;
+    $(".region").children().each(function(i, k) {
+       if(++i > 4) $(k).addClass("hide");
+    });
+    
+    
+    
+    
+</script>  
     
 
 </head>
@@ -234,7 +244,7 @@ $this->headTitle($this->translate('Home'));
                    $sectionHtml .= '<ul class="homepage-links">';
                 }else {
                    // $sectionHtml .= '<div class="col-md-4_x"><h3>'. $section .'</h3><ul class="homepage-links">';
-                   $sectionHtml .= '<ul class="homepage-links">';
+                   $sectionHtml .= '<ul class="homepage-links region">';
                 }
                 foreach ($links as $spec):
                     $sectionHtml .= '<li><a title="' .
