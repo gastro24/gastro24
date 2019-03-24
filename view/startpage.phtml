@@ -176,14 +176,14 @@ $( document ).ready(function() {
    
 
     var i = 0;
-    $(".region > li ").each(function(i, k) {
+    $(".regionlist > li ").each(function(i, k) {
        if(++i > 5) $(k).addClass("hide");
 	   
     });
 	
 	$(".separator2").click(function() {
-          $('.region > li').removeClass("hide");
-		  $('.region > li.separator2').addClass("hide");
+          $('.regionlist > li').removeClass("hide");
+		  $('.regionlist > li.separator2').addClass("hide");
 		 
       });
     
@@ -293,7 +293,7 @@ $this->headTitle($this->translate('Home'));
             $active='';
             foreach ($sections as $section => $links):
                     if ($tab == 'Jobs nach Region') {
-                   $sectionHtml .= '<ul class="homepage-links region">';
+                   $sectionHtml .= '<ul class="homepage-links regionlist">';
                 }else {
                    // $sectionHtml .= '<div class="col-md-4_x"><h3>'. $section .'</h3><ul class="homepage-links">';
                    $sectionHtml .= '<ul class="homepage-links berufe">';
