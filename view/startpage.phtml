@@ -125,20 +125,43 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
      font-size: 12px;
      border: 1px solid transparent;
      border-radius: 4px;
+     text-decoration:none;
 }
 .hide {
-    display:none;
+    display:none!important;
 }
-
+.separator::before {
+    content: "Alle Berufe anzeigen";
+     margin: 0 4px 4px;
+     background-color: #F3F5F6;
+     color: #6D7985;
+     padding: 4px 6px;
+     font-size: 12px;
+     border: 1px solid transparent;
+     border-radius: 4px;
+	 cursor:pointer
+}
 </style>
 <script>
-(function($) {   
+$( document ).ready(function() {
+   
+   $('.berufe > li:nth-child(4)').after("<li class='separator' />");
+   
+
     var i = 0;
     $(".berufe > li ").each(function(i, k) {
-       if(++i > 4) $(k).addClass("hide");
+       if(++i > 5) $(k).addClass("hide");
+	   
     });
+	
+	$(".separator").click(function() {
+          $('.berufe > li').removeClass("hide");
+		  $('.berufe > li.separator').addClass("hide");
+		 
+      });
+	
     
-})(jQuery); 
+});
     
     
 </script>  
