@@ -132,13 +132,13 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 
 </style>
 <script>
-    
+(function($) {   
     var i = 0;
     $(".berufe > li ").each(function(i, k) {
        if(++i > 4) $(k).addClass("hide");
     });
     
-    
+})(jQuery); 
     
     
 </script>  
