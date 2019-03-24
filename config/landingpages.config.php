@@ -37,35 +37,35 @@ $options = [
           'id' => 159,
 		  'query' => [ 'q' => 'Diätkoch'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Küchen Jobs',
+          'panel' => '',
           'text' => 'Diätkoch / Diätköchin'
      ],
 	'kuechenchef' => [
           'id' => 161,
 		  'query' => [ 'q' => 'Küchenchef'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Küchen Jobs',
+          'panel' => '',
           'text' => 'Küchenchef/-in'
      ],
 	'sous-chef' => [
           'id' => 163,
 		  'query' => [ 'q' => '"Sous Chef"'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Küchen Jobs',
+          'panel' => '',
           'text' => 'Sous Chef'
      ],
 	'jungkoch' => [
           'id' => 165,
 		  'query' => [ 'q' => 'Jungkoch'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Küchen Jobs',
+          'panel' => '',
           'text' => 'Jungkoch / Jungköchin'
      ],
 	'koch' => [
           'id' => 167,
 		  'query' => [ 'q' => 'Koch'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Küchen Jobs',
+          'panel' => '',
           'text' => 'Koch / Köchin'
      ],
 	'hilfskoch' => [
@@ -83,42 +83,42 @@ $options = [
           'id' => 175,
 		  'query' => [ 'q' => 'Konditor Confiseur'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Lebensmittel Jobs',
+          'panel' => '',
           'text' => 'Konditor / Confiseur'
      ],
 	'baecker' => [
           'id' => 177,
 		  'query' => [ 'q' => 'Bäcker'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Lebensmittel Jobs',
+          'panel' => '',
           'text' => 'Bäcker/-in'
      ],	
 	 'metzger' => [
           'id' => 179,
 		  'query' => [ 'q' => 'Metzger'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Lebensmittel Jobs',
+          'panel' => '',
           'text' => 'Metzger/-in'
      ],	
 	 'ernaehrungsberater' => [
           'id' => 181,
 		  'query' => [ 'q' => 'Ernährungsberater'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Lebensmittel Jobs',
+          'panel' => '',
           'text' => 'Ernährungsberater/-in'
      ],	
 	 'lebesmitteltechnologe' => [
           'id' => 183,
 		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Lebensmittel Jobs',
+          'panel' => '',
           'text' => 'Lebensmitteltechnologe / Lebensmitteltechnologin'
      ],	
 	 'lebensmittelinspektor' => [
           'id' => 185,
 		  'query' => [ 'q' => 'Lebensmittelinspektor'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Lebensmittel Jobs',
+          'panel' => '',
           'text' => 'Lebensmittelinspektor/-in'
      ],
 	 'restaurationsfachmann' => [
