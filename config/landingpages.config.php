@@ -125,175 +125,175 @@ $options = [
           'id' => 189,
 		  'query' => [ 'q' => 'Restaurationsfachmann Restaurationsfachfrau'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Service & Restaurant Jobs',
+          'panel' => '',
           'text' => 'Restaurationsfachmann /-frau'
      ], 
 	 'servicemitarbeiter' => [
           'id' => 191,
 		  'query' => [ 'q' => 'Servicemitarbeiter'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Service & Restaurant Jobs',
+          'panel' => '',
           'text' => 'Servicemitarbeiter/-in'
      ],
 	  'chef-de-rang' => [
           'id' => 193,
 		  'query' => [ 'q' => '"Chef de Rang"'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Service & Restaurant Jobs',
+          'panel' => '',
           'text' => 'Chef de Rang'
      ],
 	 'barkeeper' => [
           'id' => 195,
 		  'query' => [ 'q' => 'Barkeeper'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Service & Restaurant Jobs',
+          'panel' => '',
           'text' => 'Barkeeper'
      ],
 	  'barista' => [
           'id' => 197,
 		  'query' => [ 'q' => 'Barista'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Service & Restaurant Jobs',
+          'panel' => '',
           'text' => 'Barista'
      ],
 	  'restaurant-manager' => [
           'id' => 199,
 		  'query' => [ 'q' => '"Restaurant Manager"'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Service & Restaurant Jobs',
+          'panel' => '',
           'text' => 'Restaurant Manager/-in'
      ],
 	  'sommelier' => [
           'id' => 201,
 		  'query' => [ 'q' => 'Sommelier'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Service & Restaurant Jobs',
+          'panel' => '',
           'text' => 'Sommelier / Sommelière'
      ], 
 	 'hotelfachmann' => [
           'id' => 205,
 		  'query' => [ 'q' => 'Hotelfachmann Hotelfachfrau'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Hotel Jobs',
+          'panel' => '',
           'text' => 'Hotelfachmann / Hotelfachfrau'
      ],
 	  'wellness-spa-beauty' => [
           'id' => 209,
 		  'query' => [ 'q' => 'Wellness Spa Beauty'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Hotel Jobs',
+          'panel' => '',
           'text' => 'Wellness / Spa & Beauty'
      ],
 	  'hoteldirektion' => [
           'id' => 211,
 		  'query' => [ 'q' => 'Hoteldirektion Hotelleitung'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Hotel Jobs',
+          'panel' => '',
           'text' => 'Hoteldirektion / Hotelleitung'
      ],
 	  'concierge-room-service' => [
           'id' => 213,
 		  'query' => [ 'q' => 'Concierge "Room Service"'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Hotel Jobs',
+          'panel' => '',
           'text' => 'Concierge / Room Service'
      ],
 	  'housekeeping-zimmermaedchen' => [
           'id' => 215,
 		  'query' => [ 'q' => 'Housekeeping Zimmermädchen'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Hotel Jobs',
+          'panel' => '',
           'text' => 'Housekeeping / Zimmermädchen'
      ],
 	  'hauswirtschaft' => [
           'id' => 217,
 		  'query' => [ 'q' => 'Hauswirtschaft Wäscherei'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Hotel Jobs',
+          'panel' => '',
           'text' => 'Hauswirtschaft / Wäscherei'
      ],
 	  'rezeption-hotelempfang' => [
           'id' => 219,
 		  'query' => [ 'q' => 'Rezeption Hotelempfang'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Hotel Jobs',
+          'panel' => '',
           'text' => 'Rezeption / Hotelempfang'
      ],	 
 	 'marketing-sales' => [
           'id' => 223,
 		  'query' => [ 'q' => 'Marketing Sales'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Tourismus & Administration Jobs',
+          'panel' => '',
           'text' => 'Marketing / Sales'
      ],
 	  'administration-back-office' => [
           'id' => 225,
 		  'query' => [ 'q' => 'Administration Office'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Tourismus & Administration Jobs',
+          'panel' => '',
           'text' => 'Administration / Back Office'
      ],
 	  'reisefuehrer-tourguide' => [
           'id' => 227,
 		  'query' => [ 'q' => 'Reiseführer Tourguide'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Tourismus & Administration Jobs',
+          'panel' => '',
           'text' => 'Reiseführer / Tour Guide'
      ],
 	  'kreuzfahrt' => [
           'id' => 229,
           'tab' => 'Berufe von A - Z',
 		  'query' => [ 'q' => 'Kreuzfahrt'],
-          'panel' => 'Tourismus & Administration Jobs',
+          'panel' => '',
           'text' => 'Kreuzfahrt'
      ],
 	  'animation-entertainment' => [
           'id' => 231,
 		  'query' => [ 'q' => 'Animation Entertainment'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Tourismus & Administration Jobs',
+          'panel' => '',
           'text' => 'Animation / Entertainment'
      ],
 	  'casino' => [
           'id' => 233,
 		  'query' => [ 'q' => 'Casino'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Tourismus & Administration Jobs',
+          'panel' => '',
           'text' => 'Casino'
      ],
 	  'fitness' => [
           'id' => 235,
 		  'query' => [ 'q' => 'Fitness'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Tourismus & Administration Jobs',
+          'panel' => '',
           'text' => 'Fitness'
      ],
 	  'studenten' => [
           'id' => 239,
 		  'query' => [ 'q' => 'Studenten'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Aushilfe & Saison Jobs',
+          'panel' => '',
           'text' => 'Studenten'
      ],
 	  'hilfskraefte' => [
           'id' => 241,
 		  'query' => [ 'q' => 'Hilfskräfte'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Aushilfe & Saison Jobs',
+          'panel' => '',
           'text' => 'Hilfskräfte'
      ],
 	  'teilzeit' => [
           'id' => 243,
 		  'query' => [ 'q' => 'Teilzeit'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Aushilfe & Saison Jobs',
+          'panel' => '',
           'text' => 'Teilzeit'
      ],
 	  'saison' => [
           'id' => 245,
 		  'query' => [ 'q' => 'Saison'],
           'tab' => 'Berufe von A - Z',
-          'panel' => 'Aushilfe & Saison Jobs',
+          'panel' => '',
           'text' => 'Saison'
      ],
 	 'region-appenzell-ausserrhoden' => [
