@@ -131,7 +131,7 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
     display:none!important;
 }
 .separator::before {
-    content: "Alle Berufe anzeigen";
+    content: "Alle Berufe anzeigen ...";
      margin: 0 4px 4px;
      background-color: #F3F5F6;
      color: #6D7985;
@@ -141,6 +141,18 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
      border-radius: 4px;
 	 cursor:pointer
 }
+.separator2::before {
+    content: "Alle Region anzeigen ... ";
+     margin: 0 4px 4px;
+     background-color: #F3F5F6;
+     color: #6D7985;
+     padding: 4px 6px;
+     font-size: 12px;
+     border: 1px solid transparent;
+     border-radius: 4px;
+	 cursor:pointer
+}
+
 </style>
 <script>
 $( document ).ready(function() {
@@ -160,6 +172,21 @@ $( document ).ready(function() {
 		 
       });
 	
+  $('.region > li:nth-child(4)').after("<li class='separator2' />");
+   
+
+    var i = 0;
+    $(".region > li ").each(function(i, k) {
+       if(++i > 5) $(k).addClass("hide");
+	   
+    });
+	
+	$(".separator2").click(function() {
+          $('.region > li').removeClass("hide");
+		  $('.region > li.separator2').addClass("hide");
+		 
+      });
+    
     
 });
     
