@@ -37,13 +37,14 @@ return [
             ],
 
           'jobboard' => [
+               'visible' => false,
              'label' => 'Jobs',
                'text_domain' => 'do-not-translate',
               'active_on' => ['lang/jobboard', 'lang/landingPage'],
               'query' => [ 'clear' => 1 ],
           ],
            'post-a-job' => [
-                'label' => 'Stelle inserieren ab CHF 0.-',
+                'label' => 'Stelle inserieren',
                 'route' => 'lang/wordpress',
                 'resource' => 'resource/stellenanzeigen-schalten',
                 'params' => [
@@ -112,7 +113,7 @@ return [
         'rules' => [
             'guest' => [
                 'allow' => [
-                   // 'resource/stellenanzeigen-schalten',
+                    'resource/stellenanzeigen-schalten',
                     'resource/ratgeber',
                     'resource/contact',
                     'route/lang/organizations-profiles',
