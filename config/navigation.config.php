@@ -54,12 +54,23 @@ return [
                 'class' => 'inverted'
             ],
           'ratgeber' => [
-                'label' => 'Ratgeber & Hilfe',
+                'label' => 'Ratgeber',
                'route' => 'lang/wordpress',
                 'resource' => 'resource/ratgeber',
                 'params' => [
                    'type' => 'page',
                    'id' => 'ratgeber',
+               ],
+                'order' => 1000,
+           ],
+         
+             'contact' => [
+                'label' => 'Kontakt',
+               'route' => 'lang/wordpress',
+                'resource' => 'resource/contact',
+                'params' => [
+                   'type' => 'page',
+                   'id' => 'contact',
                ],
                 'order' => 1000,
            ],
