@@ -72,7 +72,7 @@ return [
                    'type' => 'page',
                    'id' => 'contact',
                ],
-                'order' => 1000,
+                'order' => 950,
            ],
 
             'resume-recruiter' => [
