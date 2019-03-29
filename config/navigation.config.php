@@ -114,6 +114,7 @@ return [
                 'allow' => [
                     'resource/stellenanzeigen-schalten',
                     'resource/ratgeber',
+                    'resource/contact',
                     'route/lang/organizations-profiles',
                 ]
             ],
