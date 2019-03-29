@@ -112,7 +112,7 @@ return [
         'rules' => [
             'guest' => [
                 'allow' => [
-                    'resource/stellenanzeigen-schalten',
+                   // 'resource/stellenanzeigen-schalten',
                     'resource/ratgeber',
                     'resource/contact',
                     'route/lang/organizations-profiles',
