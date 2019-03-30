@@ -34,8 +34,9 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 
     <div class="col-md-4">
         <div style="margin-bottom:15px">
-             <h1 style="display:inline;color:#22436c" class="h2">
-                <?=$this->jobs->getTotalItemCount()?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'passende Jobs' : 'Leider keine passenden Jobs'); ?> gefunden
+             <strong class="h2" style="color:#22436c"><?=$this->jobs->getTotalItemCount()?> Treffer für</strong>
+            <h1 style="display:inline;color:#22436c" class="h2">
+                <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Ihre Job-Suche' : 'Leider keine passenden Jobs gefunden'); ?>
             </h1>
                          <?php $parts=preg_split('~<!--more-->~' , $description);?>
            <?php if (isset($parts[2]) && "" != trim($parts[2])): ?>
