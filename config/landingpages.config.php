@@ -42,17 +42,37 @@ $options = [
           'text' => 'Alleinkoch'
      ],
     
-    
-    
-    
-    
-       'diaetkoch' => [
+    'baecker' => [
+          'id' => 177,
+		  'query' => [ 'q' => 'Bäcker'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Bäcker'
+     ],
+      'chef-de-rang' => [
+          'id' => 193,
+		  'query' => [ 'q' => '"Chef de Rang"'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Chef de Rang'
+     ],
+     'diaetkoch' => [
           'id' => 159,
 		  'query' => [ 'q' => 'Diätkoch'],
           'tab' => 'Berufe von A - Z',
           'panel' => '',
-          'text' => 'Diätkoch / Diätköchin'
+          'text' => 'Diätkoch'
      ],
+     'entremetier' => [
+          'id' => 936,
+		  'query' => [ 'q' => 'Entremetier'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Entremetier'
+     ],
+     
+     
+     
      
      
 	 'region-appenzell-ausserrhoden' => [
