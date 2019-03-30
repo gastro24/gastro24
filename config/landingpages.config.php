@@ -37,6 +37,8 @@ $options = [
     'alleinkoch' => [
           'id' => 171,
 		  'query' => [ 'q' => 'Alleinkoch'],
+		   'tab' => 'Berufe von A - Z',
+          'panel' => '',
           'text' => 'Alleinkoch'
      ],
     
