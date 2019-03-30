@@ -34,6 +34,11 @@
 
 $options = [
     
+    'alleinkoch' => [
+          'id' => 171,
+		  'query' => [ 'q' => 'Alleinkoch'],
+          'text' => 'Alleinkoch'
+     ],
     
     
     
