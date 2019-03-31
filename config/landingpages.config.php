@@ -77,6 +77,20 @@ $options = [
           'panel' => '',
           'text' => 'Filialleiter'
      ],
+      'garde-manger' => [
+          'id' => 213,
+		  'query' => [ 'q' => 'Garde Manger'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Garde Manger'
+     ],
+      'hotelfachmann' => [
+          'id' => 205,
+		  'query' => [ 'q' => 'Hotelfachmann "Hotelfachfrau"'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Hotelfachmann'
+     ],
      
      
      
