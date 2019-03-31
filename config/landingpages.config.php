@@ -70,6 +70,15 @@ $options = [
           'panel' => '',
           'text' => 'Entremetier'
      ],
+      'filialleiter' => [
+          'id' => 235,
+		  'query' => [ 'q' => 'Filialleiter'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Filialleiter'
+     ],
+     
+     
      
      
      
