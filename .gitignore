@@ -2,6 +2,7 @@
 build.properties
 view/.*
 public/Gastro24.css
+build/*
 
 vendor/
 node_modules/
@@ -12,5 +13,6 @@ public/templates/default/job.css
 public/templates/modern/job.css
 
 test/sandbox/.env
+test/sandbox/config/autoload/yawik.config.global.php
 
 composer.lock
