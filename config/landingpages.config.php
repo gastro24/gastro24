@@ -91,12 +91,69 @@ $options = [
           'panel' => '',
           'text' => 'Hotelfachmann'
      ],
-     
-     
-     
-     
-     
-     
+     'jungkoch' => [
+          'id' => 165,
+		  'query' => [ 'q' => 'Jungkoch'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Jungkoch'
+     ],
+     'koch' => [
+          'id' => 167,
+		  'query' => [ 'q' => 'Koch'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Koch'
+     ],
+     'lebesmitteltechnologe' => [
+          'id' => 183,
+		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Lebensmitteltechnologe'
+     ],	
+      'metzger' => [
+          'id' => 179,
+		  'query' => [ 'q' => 'Metzger'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Metzger'
+     ],	
+     'office' => [
+          'id' => 225,
+		  'query' => [ 'q' => 'Office'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Office Mitarbeiter'
+     ],
+     'patissier' => [
+          'id' => 217,
+		  'query' => [ 'q' => 'Patissier'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Patissier'
+     ],
+     'restauration' => [
+          'id' => 189,
+		  'query' => [ 'q' => 'Restaurationsfachmann "Restaurationsfachfrau"'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Restaurationsfachmann'
+     ], 
+      'servicemitarbeiterin' => [
+          'id' => 191,
+		  'query' => [ 'q' => 'Servicemitarbeiterin'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Servicemitarbeiterin'
+     ],
+      'zimmermaedchen' => [
+          'id' => 215,
+		  'query' => [ 'q' => 'Zimmermädchen'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Zimmermädchen'
+     ],
      
 	 'region-appenzell-ausserrhoden' => [
         'text' => 'Jobs in Appenzell Ausserrhoden',
