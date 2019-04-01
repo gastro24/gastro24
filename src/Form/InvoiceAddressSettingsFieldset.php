@@ -31,14 +31,13 @@ class InvoiceAddressSettingsFieldset extends SettingsFieldset
         'city' => /*@translate*/ 'City',
         'region' => /*@translate*/ 'Region',
         'country' => /*@translate*/ 'Country',
+        'houseNumber' => /*@translate*/ 'house number',
         //'vatId' => /*@translate*/ 'Value added tax ID',
         'email' =>  [/*@translate*/ 'Email Address', -30]
     ];
 
     public function init()
     {
-        $this->setLabel(/*@translate*/ 'Invoice Address');
-
         $this->add(
             [
                 'name'       => 'gender',
