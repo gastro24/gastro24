@@ -135,9 +135,13 @@ $description = $wordpress->call('value', ['content.rendered'], '');
     <?php foreach ($jobs as $job): /* @var \Jobs\Entity\Job $job */ ?>
     <?php
 
-    $org = $job->getOrganization();
-    $jobHasExternLink = !empty($job->getLink());
-    $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true ]);
+        $org = $job->getOrganization();
+        $hasJobTemplate = $this->gastroJobTemplate($org);
+        $isIntern = (!$job->getLink() || $hasJobTemplate);
+        $isEmbeddable = $this->gastroIsEmbeddable($job->getLink());
+        $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+
+        $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true ]);
 
     ?>
     <div class="col-md-12 col-sm-6 col-xs-12">
