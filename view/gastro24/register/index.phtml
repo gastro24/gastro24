@@ -1,0 +1,33 @@
+<?php
+
+$this->headTitle($this->translate("Register"));
+$this->headScript()->appendFile($this->basePath('modules/Gastro24/registration.js'))
+
+?>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <?php echo $this->translate("I'm not yet a customer"); ?>
+                </div>
+                <div class="panel-body">
+                    <?php echo $this->form($this->form);?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <?php echo $this->translate("I am already a customer"); ?>
+                </div>
+                <div class="panel-body">
+                    <?php echo $this->form($this->formLogin);?>
+                </div>
+                <div class="panel-footer">
+                    <a href="<?php echo  $this->url('lang/forgot-password'); ?>" title="<?php echo  $this->translate('I forgot my password'); ?>" class="small">
+                        <?php echo  $this->translate('I forgot my password'); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>

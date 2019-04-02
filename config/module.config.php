@@ -1,8 +1,11 @@
 <?php
 namespace Gastro24;
 
+use Gastro24\Filter\OrganizationJobsListQuery;
 use Gastro24\Form\JobDetailsHydrator;
 use Gastro24\Form\JobDetailsHydratorFactory;
+use Gastro24\Form\JobPreviewFieldsetDelegator;
+use Gastro24\Form\OrdersSettingsFieldset;
 use Gastro24\Options\Landingpages;
 use Jobs\Listener\Events\JobEvent;
 use SimpleImport\Entity\Crawler;
@@ -77,11 +80,18 @@ return [
     ],
 
     'controllers' => [
+//        'invokables' => [
+//            'Auth\Controller\Register' => \Gastro24\Controller\RegisterController::class
+//        ],
         'factories' => [
             Controller\WordpressPageController::class => Factory\Controller\WordpressPageControllerFactory::class,
             Controller\RedirectExternalJobs::class => Controller\RedirectExternalJobsFactory::class,
             Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
+            Controller\RegisterController::class => Factory\Controller\RegisterControllerFactory::class,
         ],
+        'aliases' => [
+            'Auth\Controller\Register' => \Gastro24\Controller\RegisterController::class
+        ]
     ],
 
     'controller_plugins' => [
@@ -125,6 +135,9 @@ return [
     ],
 
     'view_helpers' => [
+        'invokables' => [
+            'formcheckbox' => \Gastro24\Factory\View\Helper\FormCheckbox::class,
+        ],
         'factories' => [
             WordpressApi\View\Helper\WordpressContent::class => WordpressApi\Factory\View\Helper\WordpressContentFactory::class,
             View\Helper\LandingpagesList::class => Factory\View\Helper\LandingpagesListFactory::class,
@@ -227,7 +240,12 @@ return [
              'organizations/profile/detail.ajax' => __DIR__ . '/../view/organizations/profile-detail.ajax.phtml',
              'organizations/profile/disabled' => __DIR__ . '/../view/organizations/profile-disabled.phtml',
              'organizations/mail/invite-employee.phtml' => __DIR__ . '/../view/mail/invite-employee.phtml',
+             'settings/index/index' => __DIR__ . '/../view/settings/index.phtml',
          ],
+
+        'template_path_stack' => array(
+            'Registration' => __DIR__ . '/../view',
+        ),
     ],
 
     'translator'   => [
@@ -254,12 +272,15 @@ return [
             Form\CreateSingleJobForm::class => InvokableFactory::class,
             Form\UserProductInfo::class => InvokableFactory::class,
             Form\InvoiceAddressSettingsFieldset::class => \Settings\Form\Factory\SettingsFieldsetFactory::class,
+            Form\OrdersSettingsFieldset::class => \Settings\Form\Factory\SettingsFieldsetFactory::class,
             Form\JobDetails::class => Form\JobDetailsFactory::class,
             Form\JobDetailsForm::class => InvokableFactory::class,
-            'Gastro24/JobPdfUpload' => Form\JobPdfFactory::class
+            'Gastro24/JobPdfUpload' => Form\JobPdfFactory::class,
+            'Auth\Form\Register' => \Gastro24\Factory\Form\RegisterFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
+            'Orders/SettingsFieldset' => Form\OrdersSettingsFieldset::class,
         ]
     ],
 
