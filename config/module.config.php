@@ -69,6 +69,8 @@ return [
             Listener\JobDetailFileUpload::class => Listener\JobDetailFileUploadFactory::class,
             Listener\DeleteTemplateImage::class => Listener\DeleteTemplateImageFactory::class,
             Listener\AutoApproveChangedJobs::class => Listener\AutoApproveChangedJobsFactory::class,
+            'Gastro24\Validator\IframeEmbeddableUri' => InvokableFactory::class,
+            'Gastro24\Options\CompanyTemplatesMap' => InvokableFactory::class,
         ],
         'aliases' => [
             'Orders\Form\Listener\InjectInvoiceAddressInJobContainer' => Listener\VoidListener::class,
@@ -144,6 +146,8 @@ return [
             View\Helper\JobboardApplyUrl::class => Factory\View\Helper\JobboardApplyUrlFactory::class,
             View\Helper\LogoUri::class => View\Helper\LogoUriFactory::class,
             View\Helper\OrgProfileUrl::class => InvokableFactory::class,
+            View\Helper\IsEmbeddable::class => View\Helper\IsEmbeddableFactory::class,
+            View\Helper\JobTemplate::class => View\Helper\JobTemplateFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -151,6 +155,8 @@ return [
             'gastroApplyUrl' => View\Helper\JobboardApplyUrl::class,
             'gastroLogoUri' => View\Helper\LogoUri::class,
             'orgProfileUrl' => View\Helper\OrgProfileUrl::class,
+            'gastroIsEmbeddable' => View\Helper\IsEmbeddable::class,
+            'gastroJobTemplate' => View\Helper\JobTemplate::class,
         ],
         'delegators' => [
             'jobUrl' => [
