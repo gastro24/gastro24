@@ -334,8 +334,8 @@ return [
                             'view-extern' => [
                                 'type' => 'regex',
                                 'options' => [
-                                    'regex' => '-(?<id>[a-f0-9]+)\.html',
-                                    'spec' => '-%id%.html',
+                                    'regex' => '-(?<title>.*?)-(?<id>[a-f0-9]+)\.html',
+                                    'spec' => '-%title%-%id%.html',
                                     'route' => null,
                                     'defaults' => [
                                         'controller' => Controller\RedirectExternalJobs::class,

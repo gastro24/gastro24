@@ -37,6 +37,7 @@ class JobUrlDelegator extends AbstractHelper
     public function __invoke(Job $jobEntity, $options = [], $urlParams = [])
     {
         if (!isset($urlParams['id'])) {
+            $urlParams['title'] = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '-', $jobEntity->getTitle()));
             $urlParams['id'] = $jobEntity->getId();
         }
 
