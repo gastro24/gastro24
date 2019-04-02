@@ -1,0 +1,20 @@
+<?php 
+
+    $this->headTitle($this->translate('Settings'));
+    
+    $this->headScript()->appendFile($this->basePath('modules/Settings/js/index.index.js'))
+
+?>
+
+<h1><?php echo $this->translate('Rechnungsanschrift')?></h1>
+<p><?php echo $this->translate('Hier können Sie Ihre Rechnungsanschrift bearbeiten, sofern diese von den Daten abweichen, die Sie
+        bei der Registratur hinterlegt haben.')?></p>
+<div id="settings-form-response"></div>
+<?php 
+
+$this->form->setIsDescriptionsEnabled(false);
+
+echo $this->form($this->form, Core\Form\View\Helper\Form::LAYOUT_HORIZONTAL)
+
+?>
+
