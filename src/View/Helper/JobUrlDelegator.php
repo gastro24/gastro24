@@ -37,7 +37,7 @@ class JobUrlDelegator extends AbstractHelper
     public function __invoke(Job $jobEntity, $options = [], $urlParams = [])
     {
         if (!isset($urlParams['id'])) {
-            $urlParams['title'] = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '-', $jobEntity->getTitle()));
+            $urlParams['title'] = $this->formatTitle($jobEntity->getTitle());
             $urlParams['id'] = $jobEntity->getId();
         }
 
@@ -70,6 +70,16 @@ class JobUrlDelegator extends AbstractHelper
         }
 
         return $link;
+    }
+
+    private function formatTitle($title)
+    {
+        $search = array("Ä", "Ö", "Ü", "ä", "ö", "ü", "ß", "´");
+        $replace = array("Ae", "Oe", "Ue", "ae", "oe", "ue", "ss", "");
+        $title = str_replace($search, $replace, $title);
+        $title = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '-', $title));
+
+        return $title;
     }
 
 
