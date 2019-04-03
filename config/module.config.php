@@ -82,18 +82,12 @@ return [
     ],
 
     'controllers' => [
-//        'invokables' => [
-//            'Auth\Controller\Register' => \Gastro24\Controller\RegisterController::class
-//        ],
         'factories' => [
             Controller\WordpressPageController::class => Factory\Controller\WordpressPageControllerFactory::class,
             Controller\RedirectExternalJobs::class => Controller\RedirectExternalJobsFactory::class,
             Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
-            Controller\RegisterController::class => Factory\Controller\RegisterControllerFactory::class,
+            'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
         ],
-        'aliases' => [
-            'Auth\Controller\Register' => \Gastro24\Controller\RegisterController::class
-        ]
     ],
 
     'controller_plugins' => [

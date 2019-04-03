@@ -6,6 +6,7 @@ use Auth\Entity\User;
 use Auth\Entity\UserInterface;
 use Auth\Service\Exception\UserAlreadyExistsException;
 use Core\Entity\PermissionsInterface;
+use Organizations\Entity\OrganizationReference;
 use Zend\Stdlib\AbstractOptions;
 use Zend\View\Model\ViewModel;
 
@@ -127,6 +128,11 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
                                 $permissions = $organization->getPermissions();
                                 $permissions->grant($user, PermissionsInterface::PERMISSION_ALL);
                                 $repositories->persist($organization);
+
+                                // needed otherwise company is empty in UserRegisteredListener
+                                $reference = new OrganizationReference($user->getId(), $repositories->get('Organizations\Entity\Organization'));
+                                $user->setOrganization($reference);
+                                $repositories->store($user);
                             }
                         }
 
