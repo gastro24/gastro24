@@ -112,7 +112,7 @@ class UserRegisteredListener
 
         $settings->setGender($info->getGender());
         $settings->setName($info->getDisplayName(false));
-        //$settings->setCompany($org->getOrganizationName()->getName());
+        $settings->setCompany($org->getOrganizationName()->getName());
         $settings->setStreet($info->getStreet());
         $settings->setHouseNumber($info->getHouseNumber());
         $settings->setZipCode($info->getPostalCode());
