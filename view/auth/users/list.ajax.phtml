@@ -60,13 +60,13 @@
         <?php foreach($users as $user): /* @var Auth\Entity\User $user */?>
             <tr>
                 <td>
-                    <?php $user->getInfo()->getDisplayName() ?>
+                    <?php echo $user->getInfo()->getDisplayName() ?>
                 </td>
                 <td>
                     <?php echo $user->getRole() ?>
                 </td>
                 <td>
-                    <?php $user->getLogin() ?>
+                    <?php echo $user->getLogin() ?>
                 </td>
             </tr>
 

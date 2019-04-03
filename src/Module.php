@@ -205,6 +205,7 @@ class Module implements AssetProviderInterface
                 $controller = $e->getTarget();
                 if ( (\Auth\Controller\RegisterController::class == get_class($controller)
                       || \CompanyRegistration\Controller\RegistrationController::class == get_class($controller)
+                      || \Gastro24\Controller\RegisterController::class == get_class($controller)
                      )
                     && (($pt = $e->getRequest()->getQuery('pt')) || ($pt = $e->getRequest()->getPost('pt')))
                 ) {
