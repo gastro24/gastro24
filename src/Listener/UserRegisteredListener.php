@@ -108,10 +108,11 @@ class UserRegisteredListener
         $settings = $this->user->getSettings('Orders');
         $settings->enableWriteAccess(true);
         $settings = $settings->getInvoiceAddress();
+        $org = $this->user->getOrganization()->getOrganization();
 
         $settings->setGender($info->getGender());
         $settings->setName($info->getDisplayName(false));
-        $settings->setCompany($this->user->getOrganization()->getOrganization()->getOrganizationName()->getName());
+        //$settings->setCompany($org->getOrganizationName()->getName());
         $settings->setStreet($info->getStreet());
         $settings->setHouseNumber($info->getHouseNumber());
         $settings->setZipCode($info->getPostalCode());

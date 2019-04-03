@@ -62,8 +62,6 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
 
         if ($request->isPost()) {
             $form->setData($request->getPost()->toArray() ?: array());
-//            var_dump($form->isValid());
-//            die;
             if ($form->isValid()) {
                 try {
                     $mailer = $this->getPluginManager()->get('Mailer');
@@ -144,9 +142,6 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
                             if ($invoiceAddressData->has('houseNumber')) {
                                 $invoiceAddress->setHouseNumber($invoiceAddressData->get('houseNumber')->getValue());
                             }
-//                            if ($invoiceAddress->has('phone')) {
-//                                $user->getInfo()->setPhone($register->get('phone')->getValue());
-//                            }
                             if ($invoiceAddressData->has('postalCode')) {
                                 $invoiceAddress->setZipCode($invoiceAddressData->get('postalCode')->getValue());
                             }
@@ -161,16 +156,6 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
                             }
 
                             $repositories->store($user);
-
-//                            $settings = $this->user->getSettings('Orders');
-//                            $settings->enableWriteAccess(true);
-//                            $settings = $settings->getInvoiceAddress();
-//
-//
-//                            $orderSettings->setName($info->getDisplayName(false));
-//                            $orderSettings->setCompany($this->user->getOrganization()->getOrganization()->getOrganizationName()->getName());
-//                            $orderSettings->setCountry($info->getCountry());
-//                            $orderSettings->setEmail($info->getEmail());
                         }
 
                         $viewModel->setTemplate('registration\completed');
