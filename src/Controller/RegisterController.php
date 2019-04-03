@@ -145,11 +145,14 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
                             $orderSettings->enableWriteAccess(true);
                             $invoiceAddress = $orderSettings->getInvoiceAddress();
 
+                            if ($invoiceAddressData->has('company')) {
+                                $invoiceAddress->setCompany($invoiceAddressData->get('company')->getValue());
+                            }
                             if ($invoiceAddressData->has('houseNumber')) {
                                 $invoiceAddress->setHouseNumber($invoiceAddressData->get('houseNumber')->getValue());
                             }
-                            if ($invoiceAddressData->has('postalCode')) {
-                                $invoiceAddress->setZipCode($invoiceAddressData->get('postalCode')->getValue());
+                            if ($invoiceAddressData->has('zipCode')) {
+                                $invoiceAddress->setZipCode($invoiceAddressData->get('zipCode')->getValue());
                             }
                             if ($invoiceAddressData->has('city')) {
                                 $invoiceAddress->setCity($invoiceAddressData->get('city')->getValue());
@@ -160,6 +163,41 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
                             if ($invoiceAddressData->has('gender')) {
                                 $invoiceAddress->setGender($invoiceAddressData->get('gender')->getValue());
                             }
+                            if ($invoiceAddressData->has('region')) {
+                                $invoiceAddress->setRegion($invoiceAddressData->get('region')->getValue());
+                            }
+                            if ($invoiceAddressData->has('country')) {
+                                $invoiceAddress->setCountry($invoiceAddressData->get('country')->getValue());
+                            }
+                            if ($invoiceAddressData->has('email')) {
+                                $invoiceAddress->setEmail($invoiceAddressData->get('email')->getValue());
+                            }
+                            if ($invoiceAddressData->has('name')) {
+                                $invoiceAddress->setName($invoiceAddressData->get('name')->getValue());
+                            }
+
+                            $repositories->store($user);
+                            $repositories->flush();
+                        }
+                        // create invoice address from info
+                        else {
+                            /* @var \Orders\Entity\InvoiceAddressSettings $settings */
+                            $info = $user->getInfo();
+                            $settings = $user->getSettings('Orders');
+                            $settings->enableWriteAccess(true);
+                            $settings = $settings->getInvoiceAddress();
+                            $org = $user->getOrganization()->getOrganization();
+
+                            $settings->setGender($info->getGender());
+                            $settings->setName($info->getDisplayName(false));
+
+                            $settings->setStreet($info->getStreet());
+                            $settings->setHouseNumber($info->getHouseNumber());
+                            $settings->setZipCode($info->getPostalCode());
+                            $settings->setCity($info->getCity());
+                            $settings->setCountry($info->getCountry());
+                            $settings->setEmail($info->getEmail());
+                            $settings->setCompany($org->getOrganizationName()->getName());
 
                             $repositories->store($user);
                         }
