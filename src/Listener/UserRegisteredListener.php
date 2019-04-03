@@ -64,9 +64,6 @@ class UserRegisteredListener
         $this->router      = $router;
         $this->response    = $response;
         $this->authService = $authService;
-
-        // run before Core\Repository\DoctrineMongoODM\PersistenceListener
-        $eventManager->attach(MvcEvent::EVENT_FINISH, [$this, 'onMvcFinish'], 200);
     }
 
     public function __invoke(AuthEvent $event)
@@ -97,36 +94,4 @@ class UserRegisteredListener
         $this->user = $user;
     }
 
-    public function onMvcFinish(MvcEvent $event)
-    {
-        if (!$this->user) {
-            return;
-        }
-
-        /* @var \Orders\Entity\InvoiceAddressSettings $settings */
-        $info = $this->user->getInfo();
-        $settings = $this->user->getSettings('Orders');
-        $settings->enableWriteAccess(true);
-        $settings = $settings->getInvoiceAddress();
-        $org = $this->user->getOrganization()->getOrganization();
-
-        $settings->setGender($info->getGender());
-        $settings->setName($info->getDisplayName(false));
-
-        $settings->setStreet($info->getStreet());
-        $settings->setHouseNumber($info->getHouseNumber());
-        $settings->setZipCode($info->getPostalCode());
-        $settings->setCity($info->getCity());
-        $settings->setCountry($info->getCountry());
-        $settings->setEmail($info->getEmail());
-
-        if ($org) {
-            $settings->setCompany($org->getOrganizationName()->getName());
-        }
-
-        $repos = $event->getApplication()->getServiceManager()->get('repositories');
-        $repos->store($this->user);
-        $repos->flush();
-
-    }
 }
