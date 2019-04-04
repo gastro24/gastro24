@@ -46,12 +46,10 @@ $description = $wordpress->call('value', ['content.rendered'], '');
             <h1 style="display:inline;color:#22436c" class="h2">
               <?=$this->jobs->getTotalItemCount()?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs' : 'Leider keine passenden Jobs'); ?> gefunden
             </h1>
-                         <?php $parts=preg_split('~<!--more-->~' , $description);?>
-           <?php if (isset($parts[2]) && "" != trim($parts[2])): ?>
-            <p><?= $parts[2] ?></p> 
+            
          
                
-            <?php endif ?>
+            
             
             <?php $parts=preg_split('~<!--more-->~' , $description);?>
             <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
@@ -59,6 +57,23 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                  <?php if (51 == $query): echo $this->landingpages(); endif; ?>
 
             <?php endif ?>
+            
+            
+            
+            
+            <?php $parts=preg_split('~<!--more-->~' , $description);?>
+           <?php if (isset($parts[2]) && "" != trim($parts[2])): ?>
+            <p><?= $parts[2] ?></p>
+            
+            <?php endif ?>
+            
+                <?php $parts=preg_split('~<!--more-->~' , $description);?>
+           <?php if (isset($parts[3]) && "" != trim($parts[3])): ?>
+            <p><?= $parts[3] ?></p>
+            
+            <?php endif ?>
+            
+            
             
 	  </div>
 	<?php if ($hasFacets):
