@@ -53,6 +53,13 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                
             <?php endif ?>
             
+            <?php $parts=preg_split('~<!--more-->~' , $description);?>
+            <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
+             <?= $parts[1] ?>
+                 <?php if (51 == $query): echo $this->landingpages(); endif; ?>
+
+            <?php endif ?>
+            
 	  </div>
 	<?php if ($hasFacets):
     if ($this->params()->fromRoute('isLandingPage')):?>
