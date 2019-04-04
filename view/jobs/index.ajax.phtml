@@ -44,7 +44,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
         <div style="margin-bottom:15px">
      
             <h1 style="display:inline;color:#22436c" class="h2">
-              <?=$this->jobs->getTotalItemCount()?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs' : 'Leider keine passenden Jobs'); ?> gefunden
+              <?=$this->jobs->getTotalItemCount()?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs gefunden' : 'Leider keine passenden Jobs gefunden'); ?>
             </h1>
             
          
