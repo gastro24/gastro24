@@ -112,46 +112,6 @@ $this->headScript()->captureStart();
 </nav>
 
 
-		 <?php $parts=preg_split('~<!--more-->~' , $description);?>
-
-
-
-
-
-   <style>
-
-
-
-    #similar a {
-    text-decoration: underline;
-    color: #3a434f;
-    margin-left: 8px;
-}
-
-
-
-   </style>
-
-   <div id="similar">
-       <div class="row">
-         <div class="col-md-9">
-           <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
-             <?= $parts[1] ?>
-                 <?php if (51 == $query): echo $this->landingpages(); endif; ?>
-
-            <?php endif ?>
-         </div>
-          <div class="col-md-3">
-
-
-        <div class="clearfix"></div>
-      </div>
-   </div>
-  <hr />
-</div>
-
-
-
 <?php if (!count($this->jobs)):?>
     <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
     <script type="text/javascript">
