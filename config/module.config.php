@@ -268,6 +268,7 @@ return [
         'invokables' => [
             'Jobs/Description' => 'Gastro24\Form\JobsDescription',
             'Jobs/PreviewFieldset' => Form\JobPreviewFieldsetDelegator::class,
+            'Jobs/JobboardSearch' => \Gastro24\Form\JobboardSearch::class,
         ],
         'factories' => [
             Form\CreateSingleJobForm::class => InvokableFactory::class,
@@ -278,7 +279,7 @@ return [
             Form\JobDetailsForm::class => InvokableFactory::class,
             'Gastro24/JobPdfUpload' => Form\JobPdfFactory::class,
             'Auth\Form\Register' => \Gastro24\Factory\Form\RegisterFactory::class,
-//            'Jobs/JobboardSearch' => \Gastro24\Factory\Form\JobboardSearchFactory::class,
+            'Jobs/JobboardSearch' => 'Jobs\Factory\Form\JobboardSearchFactory',
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,

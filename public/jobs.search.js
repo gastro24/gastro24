@@ -14,7 +14,7 @@
     var matched, browser;
 
     /* workaround for $.browser error with deprecated jquery version */
-    jQuery.uaMatch = function( ua ) {
+    $.uaMatch = function( ua ) {
         ua = ua.toLowerCase();
 
         var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
@@ -30,7 +30,7 @@
         };
     };
 
-    matched = jQuery.uaMatch( navigator.userAgent );
+    matched = $.uaMatch( navigator.userAgent );
     browser = {};
 
     if ( matched.browser ) {
@@ -45,38 +45,37 @@
         browser.safari = true;
     }
 
+    $.browser = browser;
 
     $(function() {
-        //var URL_PREFIX = "http://localhost:8983/solr/YawikJobs/suggest?suggest=true&suggest.build=true&wt=json&suggest.q=";
-        var URL_PREFIX = "/job/suggest?q=";
         $("#jobs-list-filter input[name=q]").autocomplete({
             source : function(request, response) {
-                var URL = URL_PREFIX + $("#jobs-list-filter input[name=q]").val();
+                var searchTerm = $("#jobs-list-filter input[name=q]").val();
+                var URL = $("#jobs-list-filter input[name=q]").attr('data-url');
                 $.ajax({
-                    url : URL,
+                    url : URL + searchTerm,
                     success : function(data) {
-                        // var dataObject = JSON.parse(data);
-                        // var parentNodeInfix = dataObject.suggest.infixSuggester;
-                        // var parentNodeFuzzy = dataObject.suggest.fuzzySuggester;
-                        // var suggestionsNode = null;
-                        // for (var key in parentNodeInfix) {
-                        //     suggestionsNode = parentNodeInfix[key].suggestions;
-                        //     if(suggestionsNode!=null)
-                        //         break;
-                        // }
-                        // var autocomplete_data = [];
-                        // $.each(suggestionsNode, function (i, val) {
-                        //     autocomplete_data.push({
-                        //         "value": val.term,
-                        //         "id": val.term,
-                        //         "label": val.term
-                        //     });
-                        // });
+                        var dataObject = JSON.parse(data);
+                        var parentNodeInfix = dataObject.suggest.infixSuggester;
+                        var suggestionsNode = null;
+                        for (var key in parentNodeInfix) {
+                            suggestionsNode = parentNodeInfix[key].suggestions;
+                            if(suggestionsNode!=null)
+                                break;
+                        }
+                        var autocomplete_data = [];
+                        $.each(suggestionsNode, function (i, val) {
+                            autocomplete_data.push({
+                                "value": val.term,
+                                "id": val.term,
+                                "label": val.term
+                            });
+                        });
 
-                        response( data );
+                        response( autocomplete_data );
                     },
                     error : function(error) {
-                        console.log('error');
+                        console.log('Error while fetching solr suggestions');
                     }
                 });
             },
@@ -95,5 +94,5 @@
         };
     });
 
-})(jQuery, window); 
+})(jQuery, window);
  

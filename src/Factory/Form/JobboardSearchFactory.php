@@ -11,7 +11,7 @@ use \Jobs\Factory\Form\JobboardSearchFactory as BaseFactory;
  */
 class JobboardSearchFactory extends BaseFactory
 {
-//    const OPTIONS_NAME = 'Jobs/JobboardSearchOptions';
+    const OPTIONS_NAME = 'Jobs/JobboardSearchOptions';
 
     const CLASS_NAME = JobboardSearch::class;
 }

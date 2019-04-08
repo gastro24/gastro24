@@ -12,8 +12,6 @@ use \Jobs\Form\JobboardSearch as BaseJobboardSearchForm;
  */
 class JobboardSearch extends BaseJobboardSearchForm
 {
-    use CustomizableFieldsetTrait;
-
     public function init()
     {
         $this->setAttribute('id', 'jobs-list-filter');
@@ -21,14 +19,31 @@ class JobboardSearch extends BaseJobboardSearchForm
 
         $this->setName($this->getOption('name') ?: 'searchform');
 
-        $this->addTextElement(
-            $this->getOption('text_name') ?: 'q',
-            $this->getOption('text_label') ?: /*@translate*/ 'Search',
-            $this->getOption('text_placeholder') ?: /*@translate*/ 'Beruf, Begriff oder Arbeitsort',
-            $this->getOption('text_span') ?: 12,
-            50,
-            true
+
+        $name = $this->getOption('text_name') ?: 'q';
+        $label = $this->getOption('text_label') ?: /*@translate*/ 'Search';
+        $placeholder = $this->getOption('text_placeholder') ?: /*@translate*/ 'Job, Keyword or Location';
+        $span = $this->getOption('text_span') ?: 12;
+        $priority = 50;
+        $this->add(
+            [
+                'type' => 'Text',
+                'options' => [
+                    'label' => $label,
+                    'span' => $span,
+                ],
+                'attributes' => [
+                    'placeholder' => $placeholder,
+                    'class' => 'form-control',
+                    'data-url' => 'http://localhost:8983/solr/YawikJobs/suggest?suggest=true&suggest.build=true&wt=json&suggest.q='
+                ],
+            ],
+            [
+                'name' => $name,
+                'priority' => $priority,
+            ]
         );
+        $this->setOption('button_element', $name);
 
         $this->addButton(/*@translate*/ 'Search', -1000, 'submit');
         $this->addButton(/*@translate*/ 'Clear', -1001, 'reset');
