@@ -86,6 +86,7 @@ return [
             Controller\WordpressPageController::class => Factory\Controller\WordpressPageControllerFactory::class,
             Controller\RedirectExternalJobs::class => Controller\RedirectExternalJobsFactory::class,
             Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
+            Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
         ],
     ],
@@ -277,6 +278,7 @@ return [
             Form\JobDetailsForm::class => InvokableFactory::class,
             'Gastro24/JobPdfUpload' => Form\JobPdfFactory::class,
             'Auth\Form\Register' => \Gastro24\Factory\Form\RegisterFactory::class,
+//            'Jobs/JobboardSearch' => \Gastro24\Factory\Form\JobboardSearchFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
@@ -348,6 +350,16 @@ return [
                                     'may_terminate' => true,
                                 ],
                             ],
+                            'suggest-job' => [
+                                'type' => 'Literal',
+                                'options' => [
+                                    'route' => '/suggest',
+                                    'defaults' => [
+                                        'controller' => Controller\SuggestJobs::class,
+                                        'action' => 'index'
+                                    ]
+                                ],
+                            ]
                         ],
                     ],
                     'jobboard' => [
