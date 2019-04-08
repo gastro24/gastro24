@@ -79,130 +79,176 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
         })(window,document,'script','dataLayer','GTM-MCDJ26Q');</script>
     <!-- End Google Tag Manager -->
     
-    <style>
-     @media (max-width: 768px){
-         
-         .navbar-nav {
-    margin: 0;
-    width: 100%;
+<style>
+@media (max-width: 768px) {
+	.navbar-nav {
+		margin: 0;
+		width: 100%;
+	}
+	.navbar-nav>li>a:hover {
+		color: #fff;
+	}
+	#main-navigation a:hover,
+	#main-navigation .dropdown-menu>li>a:hover {
+		color: #fff!important;
+	}
+	#main-navigation ul li a.inverted:hover {
+		color: #000!important;
+	}
+	.navbar-collapse {
+		box-shadow: none!important;
+	}
+	#main-navigation .dropdown-menu>li>a {
+		color: #000!important;
+	}
+	.navbar-nav .open .dropdown-menu>li>a,
+	.navbar-nav .open .dropdown-menu .dropdown-header {
+		padding: 8px 15px 8px 45px!important;
+	}
+	.nav>li {
+		border-bottom: 1px solid #ddd;
+	}
 }
-        .navbar-nav>li>a:hover {
-            color: #fff;
-           }
-           
-           #main-navigation a:hover, #main-navigation .dropdown-menu>li>a:hover {
-             color: #fff!important;
-        }
-        
-         #main-navigation ul li a.inverted:hover {
-             
-             color: #000!important;
-         }
-     
-        .navbar-collapse {
-  
-          box-shadow: none!important;
-        }
-        
-   
-#main-navigation .dropdown-menu>li>a {
-    color: #000!important;
+
+#yk-login .nav .active a,
+#wizardcontainer-jobs-form-categoriescontainer .nav .active a,
+#wizardcontainer-jobs-form-job .nav .active a {
+	color: #fff;
 }
-        .navbar-nav .open .dropdown-menu>li>a, .navbar-nav .open .dropdown-menu .dropdown-header {
-    padding: 8px 15px 8px 45px!important;
+
+#jobsbymail-subscribe-form .row {
+	margin-bottom: 10px;
 }
-.nav>li {
-   
-    border-bottom: 1px solid #ddd;
+
+iframe {
+	border: 0
 }
-        }
-        #yk-login .nav .active a, #wizardcontainer-jobs-form-categoriescontainer .nav .active a, #wizardcontainer-jobs-form-job .nav .active a {color: #fff;}
-        #jobsbymail-subscribe-form .row {margin-bottom:10px;}
-        iframe {border:0}
-        #form-jobs-form-preview  .panel-body {padding: 0!important;}
-        #main-navigation ul li a.inverted {background-color:#fff;color:#243b84;}
-        #main-navigation ul li a.inverted:hover {color:#fff;}
-            .navbar-toggle {
-             border-color: #242424!important;
-            background-color: #243b84!important;
-            }
-            
-            .navbar-toggle .icon-bar {
-                background-color: #ffffff;
-          }
-          
-   sup {
-       
-       background: rgb(217, 83, 79);
-    color: #fff;
-    padding: 5px 15px;
-    border-radius: 8px;
-    
-   }
-          /**
- * Less For FAQs Styles
- */
+
+#form-jobs-form-preview .panel-body {
+	padding: 0!important;
+}
+
+#main-navigation ul li a.inverted {
+	background-color: #fff;
+	color: #243b84;
+}
+
+#main-navigation ul li a.inverted:hover {
+	color: #fff;
+}
+
+.navbar-toggle {
+	border-color: #242424!important;
+	background-color: #243b84!important;
+}
+
+.navbar-toggle .icon-bar {
+	background-color: #ffffff;
+}
+
+sup {
+	background: rgb(217, 83, 79);
+	color: #fff;
+	padding: 5px 15px;
+	border-radius: 8px;
+}
+
+
 .qe-faq-content {
-  padding-top: 1px;
+	padding-top: 1px;
 }
+
 .qe-faq-content i.fa {
-  margin-right: 0.3em;
+	margin-right: 0.3em;
 }
+
 .qe-faq-content .qe-faq-top {
-  display: inline-block;
-  margin-bottom: 1em;
+	display: inline-block;
+	margin-bottom: 1em;
 }
+
 .qe-faq-toggle {
-  margin-bottom: 2px;
-  transition: all 0.5s;
+	margin-bottom: 2px;
+	transition: all 0.5s;
 }
+
 .qe-faq-toggle .qe-toggle-title {
-  background-color: #fafafa;
-  border: 1px solid #ddd;
-  margin: 0;
-  height: auto;
-  cursor: pointer;
-  transition: all 0.2s;
-  padding: 1em;
+	background-color: #fafafa;
+	border: 1px solid #ddd;
+	margin: 0;
+	height: auto;
+	cursor: pointer;
+	transition: all 0.2s;
+	padding: 1em;
 }
+
 .qe-faq-toggle .qe-toggle-title i.fa {
-  margin-right: 0.5em;
+	margin-right: 0.5em;
 }
+
 .qe-faq-toggle.active .qe-toggle-title,
 .qe-faq-toggle .qe-toggle-title:hover {
-  background-color: #eaeaea;
+	background-color: #eaeaea;
 }
+
 .qe-faq-toggle .qe-toggle-content {
-  padding: 1.5em 1.5em 0.3em;
-  margin: 0;
-  border: 1px solid #ddd;
-  display: none;
-  background-color:#fff;
+	padding: 1.5em 1.5em 0.3em;
+	margin: 0;
+	border: 1px solid #ddd;
+	display: none;
+	background-color: #fff;
 }
+
 .qe-faqs-filters-container {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1em 0;
+	list-style: none;
+	padding: 0;
+	margin: 0 0 1em 0;
 }
+
 .qe-faqs-filters-container li {
-  display: inline;
-  padding: 0;
-  margin: 0;
+	display: inline;
+	padding: 0;
+	margin: 0;
 }
+
 .qe-faqs-filters-container li a {
-  display: inline-block;
-  border-bottom: 1px solid;
-  padding: 5px 10px;
-  margin: 0 10px 0 0;
+	display: inline-block;
+	border-bottom: 1px solid;
+	padding: 5px 10px;
+	margin: 0 10px 0 0;
 }
+
 .qe-faqs-filters-container li a:hover {
-  border-bottom: 2px solid;
+	border-bottom: 2px solid;
 }
+
 .qe-faqs-filters-container li.active a {
-  border-bottom: 2px solid;
-  font-weight: bold;
+	border-bottom: 2px solid;
+	font-weight: bold;
 }
-    </style>
+
+#content .navbar {
+	position: static!important;
+}
+
+#jobs-list-filter-wrapper .search-form-container {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin-top: -15px;
+}
+main#content {
+    
+  background-color:#fff;
+  margin-bottom:0;
+  padding-bottom:50px;
+  min-height:65vh;
+  padding-top:15px;
+  position:relative;  
+    
+}
+
+</style>
     <script>
         
         
@@ -288,28 +334,12 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
         </div>
     </header>
     <?php endif ?>
- <style>
-     
-     #content .navbar {
-         
-         position:static!important;
-         
-     }
-     
-     #jobs-list-filter-wrapper .search-form-container {
-         
-         position:absolute;
-         left:0;
-         right:0;
-         margin-top:-15px;
-     }
- </style>   
-    
-<main id="content" style="background-color:#fff;margin-bottom:0;padding-bottom:50px;min-height:65vh;padding-top:15px;position:relative;">
-<div class="container">
-        <?php echo $notifications?>
-         <?php echo $this->content;?>
-</div>
+
+<main id="content">
+   <div class="container">
+    <?php echo $notifications?>
+     <?php echo $this->content;?>
+  </div>
 </main>
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
