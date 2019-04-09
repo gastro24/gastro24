@@ -74,18 +74,33 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
         
            $this->add([
             'type' => 'Zend\Form\Element\Select',
-            'name' => 'meinAuswahlFeld',
+            'name' => 'crawler',
             'options' => [
-                'label' => 'Name',
+                'label' => 'Job-Crawler',
                 'value_options' => [
                         ''       => '',
-                        'feld1'   => 'Wert1',
-                        'feld2' => 'Wert2',
+                        'feld1'   => 'Job-Crawler «Basic»',
+                        'feld2' => 'Job-Crawler «Full»',
                 ],
-                'description' => 'Geben Sie Ihren Namen ein.',
+                'description' => 'Bitte wählen Sie einen Job-Crawler aus',
             ],
         ]);
-
+        
+            $this->add([
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'laufzeit',
+            'options' => [
+                'label' => 'Laufzeit (Mindestlaufzeit 3 Monate)',
+                'value_options' => [
+                        ''       => '',
+                        'feld1'   => '3 Monate',
+                        'feld2' => '6 Monate',
+                        'feld3' => '12 Monate',
+        
+                ],
+                'description' => 'Bitte wählen Sie eine Laufzeit aus',
+            ],
+        ]);
 
         $this->add([
             'type' => 'textarea',
