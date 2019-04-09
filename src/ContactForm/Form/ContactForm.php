@@ -92,7 +92,6 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
             'options' => [
                 'label' => 'Laufzeit',
                 'value_options' => [
-                        ''       => '',
                         'feld1'   => '3 Monate',
                         'feld2' => '6 Monate',
                         'feld3' => '12 Monate',
