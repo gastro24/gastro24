@@ -62,7 +62,7 @@ return [
                    'type' => 'page',
                    'id' => 'ratgeber',
                ],
-                'order' => 1000,
+                'order' => 940,
            ],
          
              'contact' => [
