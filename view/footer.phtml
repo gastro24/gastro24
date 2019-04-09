@@ -42,7 +42,7 @@
                         <?php if (!$this->auth()->isLoggedIn()):?>
                         <li><a title="Login für Arbeitgeber" href="<?=$this->url('lang/auth', [], true)?>?ref=<?= urlencode($this->url('lang/dashboard', [], true)) ?>">Einloggen</a></li>
                         <?php endif ?>
-                        <?php if (!$this->auth()->isLoggedIn()):?> <li><a title="Preise & Leistungen" href="/de/wp/page/stellenanzeigen-schalten">Leistungen & Preise</a></li>   <?php endif ?>
+                        <?php if (!$this->auth()->isLoggedIn()):?> <li><a title="Stellenanzeigen schalten" href="/de/wp/page/stellenanzeigen-schalten">Stellenanzeigen schalten</a></li>   <?php endif ?>
                     </ul>
                 </nav>
             </div>
