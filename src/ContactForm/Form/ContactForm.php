@@ -58,14 +58,14 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
             'type' => 'email',
             'name' => 'email',
             'options' => [
-                'label' => 'E-Mail',
+                'label' => 'E-Mail Adresse',
                 'description' => 'Geben Sie Ihre E-Mail-Addresse ein.',
             ],
         ]);
 
         $this->add([
             'type' => 'text',
-            'name' => 'website',
+            'name' => 'Wo befinden sich die Jobs?',
             'options' => [
                 'label' => 'Name',
                 'description' => 'Geben Sie die Website ein.',
