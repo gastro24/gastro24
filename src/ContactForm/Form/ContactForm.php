@@ -65,9 +65,9 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
 
         $this->add([
             'type' => 'text',
-            'name' => 'Wo befinden sich die Jobs?',
+            'name' => 'website',
             'options' => [
-                'label' => 'Name',
+                'label' => 'Wo befinden sich die Jobs?',
                 'description' => 'Geben Sie die Website ein.',
             ],
         ]);
