@@ -90,7 +90,7 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
             'type' => 'Zend\Form\Element\Select',
             'name' => 'laufzeit',
             'options' => [
-                'label' => 'Laufzeit (Mindestlaufzeit 3 Monate)',
+                'label' => 'Laufzeit',
                 'value_options' => [
                         ''       => '',
                         'feld1'   => '3 Monate',
