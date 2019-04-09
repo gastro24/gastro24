@@ -71,6 +71,21 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
                 'description' => 'Geben Sie die Website ein.',
             ],
         ]);
+        
+           $this->add([
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'meinAuswahlFeld',
+            'options' => [
+                'label' => 'Name',
+                'value_options' => [
+                        ''       => '',
+                        'feld1'   => 'Wert1',
+                        'feld2' => 'Wert2',
+                ],
+                'description' => 'Geben Sie Ihren Namen ein.',
+            ],
+        ]);
+
 
         $this->add([
             'type' => 'textarea',
