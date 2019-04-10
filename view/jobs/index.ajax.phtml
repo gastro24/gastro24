@@ -56,11 +56,17 @@ $description = $wordpress->call('value', ['content.rendered'], '');
               <li itemprop="itemListElement" itemscope
                   itemtype="http://schema.org/ListItem">
               
-                 <?php if ($this->params()->fromRoute('isLandingPage')):?>
-                    <a itemprop="item" href="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>">
+              
+           <?php if ($this->params()->fromRoute('isLandingPage')) { ?>
+                 
+                <a itemprop="item" href="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>">
                   <span itemprop="name"> <?= $searchTerm ?></span></a>
-                 <?php endif;?>
-               
+                
+                     <?php } else { ?>
+                       <span itemprop="name"> <?= $searchTerm ?></span>
+       
+              <?php }; ?>      
+
                 <meta itemprop="position" content="2" />
               </li>
           </ol>
