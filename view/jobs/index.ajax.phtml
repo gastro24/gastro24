@@ -230,45 +230,45 @@ $description = $wordpress->call('value', ['content.rendered'], '');
         <!-- end pagination -->
 
         <!-- similar jobs -->
-        <h2>Ähnliche Jobs</h2>
-        <ul class="list-unstyled row locations-drilldown-links">
-            <li class="col-xs-12 col-md-6">
-                <a href=" title="See results for London Accountancy jobs">Koch Jobs in Zürich</a>
-            </li>
-            <li class="col-xs-12 col-md-6">
-                <a href="" title="See results for London Accountancy jobs">Koch Jobs in St. Gallen</a>
-            </li>
-        </ul>
+        <?php $parts=preg_split('~<!--more-->~' , $description);?>
+            <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
+                <?= $parts[1] ?>
+                <?php if (51 == $query): echo $this->landingpages(); endif; ?>
+            <?php endif ?>
+    
         <!-- end similar jobs -->
     </div>
         <?=$hasFacets ? '</div>' : '' ?>
 <?php endif ?>
 </div>
 
-<?php if ($searchTerm): ?>
+// <?php if ($searchTerm): ?>
 <div class="row job-overview-description-container">
     <div class="clearfix">
         <div class="col-md-12 content">
-            <h2>Was macht eigentlich ein <?=$searchTerm ?>?</h2>
-            <?php $parts=preg_split('~<!--more-->~' , $description);?>
-            <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
-                <p><?= $parts[1] ?></p>
-                <?php if (51 == $query): echo $this->landingpages(); endif; ?>
-            <?php endif ?>
+             <!-- title searchterm -->
+            
 
             <?php $parts=preg_split('~<!--more-->~' , $description);?>
             <?php if (isset($parts[2]) && "" != trim($parts[2])): ?>
-                <p><?= $parts[2] ?></p>
+                <?= $parts[2] ?>
             <?php endif ?>
 
+            <!-- end title searchterm -->
+            <!-- additional infos -->
+            
+            
             <?php $parts=preg_split('~<!--more-->~' , $description);?>
             <?php if (isset($parts[3]) && "" != trim($parts[3])): ?>
-                <p><?= $parts[3] ?></p>
+                <?= $parts[3] ?>
             <?php endif ?>
+            
+             <!-- end additional infos -->
+            
         </div>
     </div>
 </div>
-<?php endif ?>
+//<?php endif ?>
 
 
 
