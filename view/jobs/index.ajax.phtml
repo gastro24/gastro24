@@ -14,8 +14,7 @@ $queryGet = $this->params()->fromQuery();
 unset($queryGet['clear']);
 $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $wordpress = $this->proxy('wordpress');
-//$searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
-$searchTerm = null;
+$searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
 $this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
@@ -246,7 +245,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 <?php endif ?>
 </div>
 
-<? if ($searchTerm): ?>
+<?php if ($searchTerm): ?>
 <div class="job-overview-description-container">
     <div class="clearfix">
         <div class="col-md-12 content">
