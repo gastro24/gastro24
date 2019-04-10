@@ -46,7 +46,23 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 </h1>
 <div class="job-overview breadcrumb">
     <?php if ($searchTerm) { ?>
-        <a href="/">Gastrojobs</a> > <?= $searchTerm ?>
+       <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemprop="itemListElement" itemscope
+                  itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="/">
+                <span itemprop="name">Gastrojobs</span></a>
+                <meta itemprop="position" content="1" />
+              </li>
+              <li itemprop="itemListElement" itemscope
+                  itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>">
+                <span itemprop="name"> <?= $searchTerm ?></span></a>
+                <meta itemprop="position" content="2" />
+              </li>
+          </ol>
+    
+    
+      
     <?php } else { ?>
        
        
