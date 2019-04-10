@@ -21,7 +21,7 @@ if ($this->pageCount):
 
     ?>
     <div class="row yk-pagination">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <!-- First page link -->
             <ul class="pagination">
                 <?php if (isset($this->previous)): ?>
@@ -90,10 +90,6 @@ if ($this->pageCount):
                                 class="yk-icon yk-icon-pagination-end"></i></a></li>
                 <?php endif; ?>
             </ul>
-        </div>
-        <div class="col-md-3 text-right">
-            <?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?>
-            von <?php echo $this->totalItemCount; ?>
         </div>
     </div>
 <?php endif; ?>
