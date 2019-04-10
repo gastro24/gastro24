@@ -41,6 +41,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
     }
 </script>
 
+<div class="col-md-12">
 <h1 class="h2 job-overview-title">
     <?=$this->jobs->getTotalItemCount()?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs gefunden' : 'Leider keine passenden Jobs gefunden'); ?>
 </h1>
@@ -243,6 +244,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
     </div>
         <?=$hasFacets ? '</div>' : '' ?>
 <?php endif ?>
+</div>
 </div>
 
 <?php if ($searchTerm): ?>
