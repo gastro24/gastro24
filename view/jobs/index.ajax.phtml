@@ -15,6 +15,7 @@ unset($queryGet['clear']);
 $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $wordpress = $this->proxy('wordpress');
 $searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
+$hasRegion= isset($queryGet['region_MultiString']);
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
 $this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
@@ -276,7 +277,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 <?php
     $hasPartTwo = (isset($parts[2]) && "" != trim($parts[2]));
 ?>
-<?php if (($searchTerm && $hasPartTwo)): ?>
+<?php if (($searchTerm && $hasPartTwo) || ($hasRegion && $hasPartTwo)): ?>
 <div class="col-md-12 job-overview-description-container">
     <div class="col-md-12 content">
         <div class="content__inner">
