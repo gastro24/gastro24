@@ -44,10 +44,10 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 <h1 class="h2 job-overview-title">
     <?=$this->jobs->getTotalItemCount()?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs gefunden' : 'Leider keine passenden Jobs gefunden'); ?>
 </h1>
-<div class="job-overview breadcrumb">
+<div class="job-overview">
     <?php if ($searchTerm) { ?>
     <nav aria-label="breadcrumb">
-       <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+       <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList" style="background-color:#ececec; margin-bottom:0px;border-radius:0">
               <li class="breadcrumb-item" itemprop="itemListElement" itemscope
                   itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
