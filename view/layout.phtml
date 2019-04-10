@@ -12,6 +12,9 @@
 $options = $this->services('Core/Options');
 $lang = $this->params('lang');
 
+$routeParams = $this->params()->fromRoute();
+$routeClass = strtolower(str_replace('/', '-', $routeParams['controller'] . '-' . $routeParams['action']));
+
 // See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
 
 $notifications = $this->partial('core/notifications');
@@ -335,7 +338,7 @@ main#content {
     </header>
     <?php endif ?>
 
-<main id="content">
+<main id="content" class="<?= $routeClass ?>">
    <div class="container">
     <?php echo $notifications?>
      <?php echo $this->content;?>

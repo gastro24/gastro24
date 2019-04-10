@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="de">
+   <head>
+      <link rel="apple-touch-icon" sizes="57x57" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192"  href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/favicon-16x16.png">
+      <link rel="manifest" href="http://php7.gastrojob24.ch/modules/Gastro24/favicons/manifest.json">
+      <meta name="msapplication-TileColor" content="#2e5b93">
+      <meta name="msapplication-TileImage" content="/modules/Gastro24/favicons/ms-icon-144x144.png">
+      <meta name="theme-color" content="#2e5b93">
+      <title>Chef de Rang Jobs, Stellenangebote Stv. Restaurantleitung | Gastrojob24</title>
+      <meta charset="utf-8">
+      <meta name="robots" content="index,follow">
+      <meta name="description" content="Stellvertretung&#x20;Restaurantleiter&#x20;Jobs.&#x20;Bei&#x20;uns&#x20;finden&#x20;Sie&#x20;Riesenauswahl&#x20;an&#x20;passenden&#x20;Chef&#x20;de&#x20;Rang&#x20;Stellen&#x20;in&#x20;der&#x20;Schweiz.&#x20;Alle&#x20;Chef&#x20;de&#x20;Rang&#x20;Jobs&#x20;bei&#x20;Gastrojob24&#x21;">
+      <meta name="keywords" content="">
+      <meta name="viewport" content="width&#x3D;device-width,&#x20;initial-scale&#x3D;1.0">
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/dist/js/core.js"></script>
+      <script type="text/javascript">
+         //<!--
+         var lang="de";var basePath="";
+         //-->
+      </script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/modules/Core/js/core.pagination-container.js"></script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/modules/Core/js/core.forms.js"></script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/modules/Gastro24/jquery.matchHeight.js"></script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/modules/Gastro24/jobs.js"></script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/dist/js/bootstrap-dialog.min.js"></script>
+      <script type="text/javascript">
+         //<!--
+         
+         
+         
+         (function($) {
+         
+         $(function() {
+             var $tabbar = $('#search-tabs');
+         
+             $('#jobs-list-container').on('yk-paginator-container:loaded.gastro24 g24-jobs:init', function(ev) {
+                 $tabbar.show();
+                 var html = $('#jobs-list-container').find('.pagination-content').html();
+         
+                 if ('' === html.trim()) { $tabbar.hide(); }
+         
+                 $('#jobs-list-container ul.pagination a, link[rel="prev"], link[rel="next"]').each(function() {
+                     var $a = $(this), href = $a.attr('href');
+                     console.debug($a, href);
+                     if (href) {
+                         href = href.replace(/__region_MultiString/, 'r')
+                                    .replace(/__city_MultiString/, 'l')
+                                    .replace(/__organizationTag/, 'c')
+                                    .replace(/__profession_MultiString/, 'p')
+                                    .replace(/__industry_MultiString/, 'i')
+                                    .replace(/__employmentType_MultiString/, 't');
+                         $a.attr('href', href);
+                     }
+                 });
+         
+         
+             }).trigger('g24-jobs:init');
+         
+             var $jobCount = $('#job-count');
+         
+             $('#jobs-list-container').on('yk-paginator-container:loaded.gastro24-job-count', function(ev) {
+                 var count = $('#update-job-count').text();
+                 $jobCount.text(count);
+             });
+         
+             $('#jobs-list-filter').on('reset.gastro24', function(ev) { $(ev.target).find('input.facet-param').remove(); });
+         
+         });
+         })(jQuery);
+         
+         //-->
+      </script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/modules/Gastro24/jobs.facets.js"></script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/modules/Core/js/core.searchform.js"></script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/modules/Geo/js/geoselect.js"></script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/modules/Core/js/core.spinnerbutton.js"></script>
+      <script type="text/javascript">
+         //<!--
+             (function(){
+             var $form,
+                 $modal,
+                 init = function () {
+                     $form = $('#jobsbymail-subscribe-form');
+                     $modal = $('#job-by-mail-subscribe-modal');
+                     $form.on('yk:forms:success', function(event, data) {
+                         if ('valid' in data.data && data.data.valid) {
+                             $modal.find('.modal-body').html(data.data.content);
+                             $modal.find('.modal-footer .btn-primary').remove();
+                         }
+                     });
+                 };
+             
+             $(function () {
+                 init();
+                 
+                 $('#jobs-list-container').on('yk-paginator-container:loaded', function() {
+                     init();
+                     $form.form().find('select').each($.fn.form.initSelect);
+                     $form.find('select.geoselect').geoSelect();
+                 });
+             });
+         })();
+         
+         //-->
+      </script>
+      <script type="text/javascript">
+         //<!--
+         ;(function($) { $(function() { $("#jobs-list-filter").find("button[type='reset']").text("X"); }); })(jQuery);
+         //-->
+      </script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/modules/Gastro24/index.js"></script>
+      <script type="text/javascript" src="http://php7.gastrojob24.ch/dist/locales/de.js"></script>
+      <script type="text/javascript">
+         //<!--
+         var lang="de";var basePath="";
+         //-->
+      </script>    
+      <link href="http://php7.gastrojob24.ch/dist/css/core.min.css" media="screen" rel="stylesheet" type="text/css">
+      <link href="http://php7.gastrojob24.ch/modules/Gastro24/Gastro24.css" media="screen" rel="stylesheet" type="text/css">
+      <link href="http://php7.gastrojob24.ch/de/jobs?q=%22Chef%20de%20Rang%22&page=2" rel="next">
+      <link href="http://php7.gastrojob24.ch/modules/Gastro24/jssocials-1.4.0/dist/jssocials.css" media="screen" rel="stylesheet" type="text/css">
+      <link href="http://php7.gastrojob24.ch/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css" media="screen" rel="stylesheet" type="text/css">
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+         })(window,document,'script','dataLayer','GTM-MCDJ26Q');
+      </script>
+      <!-- End Google Tag Manager -->
+      <style>
+         @media (max-width: 768px){
+         .navbar-nav {
+         margin: 0;
+         width: 100%;
+         }
+         .navbar-nav>li>a:hover {
+         color: #fff;
+         }
+         #main-navigation a:hover, #main-navigation .dropdown-menu>li>a:hover {
+         color: #fff!important;
+         }
+         #main-navigation ul li a.inverted:hover {
+         color: #000!important;
+         }
+         .navbar-collapse {
+         box-shadow: none!important;
+         }
+         #main-navigation .dropdown-menu>li>a {
+         color: #000!important;
+         }
+         .navbar-nav .open .dropdown-menu>li>a, .navbar-nav .open .dropdown-menu .dropdown-header {
+         padding: 8px 15px 8px 45px!important;
+         }
+         .nav>li {
+         border-bottom: 1px solid #ddd;
+         }
+         }
+         #yk-login .nav .active a, #wizardcontainer-jobs-form-categoriescontainer .nav .active a, #wizardcontainer-jobs-form-job .nav .active a {color: #fff;}
+         #jobsbymail-subscribe-form .row {margin-bottom:10px;}
+         iframe {border:0}
+         #form-jobs-form-preview  .panel-body {padding: 0!important;}
+         #main-navigation ul li a.inverted {background-color:#fff;color:#243b84;}
+         #main-navigation ul li a.inverted:hover {color:#fff;}
+         .navbar-toggle {
+         border-color: #242424!important;
+         background-color: #243b84!important;
+         }
+         .navbar-toggle .icon-bar {
+         background-color: #ffffff;
+         }
+         sup {
+         background: rgb(217, 83, 79);
+         color: #fff;
+         padding: 5px 15px;
+         border-radius: 8px;
+         }
+         /**
+         * Less For FAQs Styles
+         */
+         .qe-faq-content {
+         padding-top: 1px;
+         }
+         .qe-faq-content i.fa {
+         margin-right: 0.3em;
+         }
+         .qe-faq-content .qe-faq-top {
+         display: inline-block;
+         margin-bottom: 1em;
+         }
+         .qe-faq-toggle {
+         margin-bottom: 2px;
+         transition: all 0.5s;
+         }
+         .qe-faq-toggle .qe-toggle-title {
+         background-color: #fafafa;
+         border: 1px solid #ddd;
+         margin: 0;
+         height: auto;
+         cursor: pointer;
+         transition: all 0.2s;
+         padding: 1em;
+         }
+         .qe-faq-toggle .qe-toggle-title i.fa {
+         margin-right: 0.5em;
+         }
+         .qe-faq-toggle.active .qe-toggle-title,
+         .qe-faq-toggle .qe-toggle-title:hover {
+         background-color: #eaeaea;
+         }
+         .qe-faq-toggle .qe-toggle-content {
+         padding: 1.5em 1.5em 0.3em;
+         margin: 0;
+         border: 1px solid #ddd;
+         display: none;
+         background-color:#fff;
+         }
+         .qe-faqs-filters-container {
+         list-style: none;
+         padding: 0;
+         margin: 0 0 1em 0;
+         }
+         .qe-faqs-filters-container li {
+         display: inline;
+         padding: 0;
+         margin: 0;
+         }
+         .qe-faqs-filters-container li a {
+         display: inline-block;
+         border-bottom: 1px solid;
+         padding: 5px 10px;
+         margin: 0 10px 0 0;
+         }
+         .qe-faqs-filters-container li a:hover {
+         border-bottom: 2px solid;
+         }
+         .qe-faqs-filters-container li.active a {
+         border-bottom: 2px solid;
+         font-weight: bold;
+         } 
+		 #content .navbar {
+         position:static!important;
+         }
+         #jobs-list-filter-wrapper .search-form-container {
+         position:absolute;
+         left:0;
+         right:0;
+         margin-top:-15px;
+         }
+		 @media (min-width: 992px) {
+              .collapse.dont-collapse-sm {
+                  display: block;
+                   height: auto !important;
+                    visibility: visible;
+                      }
+           }
+      </style>
+      <script>
+         (function( $ ) {
+         'use strict';
+         
+         /**
+         * FAQs Toggles
+         */
+         $(function() {
+         $('.qe-toggle-title').click(function () {
+             var parent_toggle = $(this).closest('.qe-faq-toggle');
+             if ( parent_toggle.hasClass( 'active' ) ) {
+                 $(this).find('i.fa').removeClass( 'fa-minus-circle' ).addClass( 'fa-plus-circle' );
+                 parent_toggle.removeClass( 'active' ).find( '.qe-toggle-content' ).slideUp( 'fast' );
+             } else {
+                 $(this).find('i.fa').removeClass( 'fa-plus-circle' ).addClass( 'fa-minus-circle' );
+                 parent_toggle.addClass( 'active' ).find( '.qe-toggle-content' ).slideDown( 'fast' );
+             }
+         });
+         });
+         
+         /**
+         * FAQs Filter
+         */
+         $(function() {
+         $('.qe-faqs-filter').click( function ( event ) {
+             event.preventDefault();
+             $(this).parents('li').addClass('active').siblings().removeClass('active');
+             var filterSelector = $(this).attr( 'data-filter' );
+             var allFAQs = $( '.qe-faq-toggle' );
+             if ( filterSelector == '*' ) {
+                 allFAQs.show();
+             } else {
+                 allFAQs.not( filterSelector ).hide().end().filter( filterSelector ).show();
+             }
+         });
+         });
+         
+         })( jQuery );
+      </script>
+   </head>
+   <body>
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCDJ26Q"
+         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+      <header id="header" role="banner">
+         <div class="container navbar">
+            <div class="row">
+               <div class="navbar-header">      
+                  <button class="navbar-toggle collapsed" data-target="#main-navigation" data-toggle="collapse" type="button">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand menu-logo" href="http://php7.gastrojob24.ch/de">
+                  <img src="http://php7.gastrojob24.ch/modules/Gastro24/gastrojob24_blue.svg" alt="Gastrojob24 Schweiz" class="menu-logo">
+                  </a>
+               </div>
+               <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation">
+                  <ul id="yk-login-info" style="margin-left:-15px;" class="nav navbar-nav  navbar-collapse collapse navbar-right">
+                     <li class="dropdown">
+                        <a href="http://php7.gastrojob24.ch/de/login?ref=%252Fde%252Fdashboard">
+                           <!-- <span class="yk-icon yk-icon-login fa-fw"></span>--> Einloggen            
+                        </a>
+                     </li>
+                  </ul>
+                  <div id="su-select-dialog" class="modal fade">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title">Wählen Sie den Benutzer, dessen Identität Sie übernehmen wollen.:
+                                 <button type="button" class="close pull-right" data-dismiss="modal">
+                                 <span>&times;</span>
+                                 </button>
+                              </h5>
+                           </div>
+                           <div class="modal-body">
+                              <form id="su-form" action="/de/user/switch" method="get" class="form-horizontal"><select id="su-user-list" name="id" class="form-control"></select></form>
+                              <script type="text/javascript">
+                                 $('#su-form').submit(function(e) {
+                                    var $form = $(e.target);
+                                     $.get($form.attr('action'), $form.serialize(), function() { window.location.reload(); });
+                                     return false;
+                                 });
+                                 
+                                 $('#su-user-list').select2({
+                                     theme: "bootstrap",
+                                     width: '100%',
+                                     minimumInputLength: 0,
+                                     ajax: {
+                                         url: basePath + '/' + lang + '/user/switch',
+                                         dataType: 'json',
+                                         delay: 200,
+                                         data: function(params) {
+                                             return { "do": "list", q: params.term, page: params.page };
+                                         },
+                                         processResults: function(data, params) {
+                                             params.page = params.page || 1;
+                                             return {
+                                                 results: data.items,
+                                                 pagination: {
+                                                     more: params.page * 20 < data.total
+                                                 }
+                                             };
+                                         }
+                                     },
+                                     templateResult: function(data) {
+                                         if (data.loading) { return data.text; }
+                                         return data.name + (data.email ? ' <' + data.email + '>' : '') + (data.login ? ' [' + data.login + ']' : '');
+                                     },
+                                     templateSelection: function(data) {
+                                         if (!data.id) { return data.text; }
+                                         return data.login;
+                                     },
+                                     escapeMarkup: function (m) { return m; }
+                                 });
+                                 
+                              </script>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-primary" onclick="$('#su-form').submit()">Benutzer wechseln</button>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <ul class="nav navbar-nav navbar-default pull-right">
+                     <li>
+                        <a href="http://php7.gastrojob24.ch/de/wp/page/contact">Kontakt</a>
+                     </li>
+                     <li>
+                        <a class="inverted" href="http://php7.gastrojob24.ch/de/wp/page/stellenanzeigen-schalten">Stelle inserieren</a>
+                     </li>
+                     <li>
+                        <a href="http://php7.gastrojob24.ch/de/wp/page/ratgeber">Ratgeber</a>
+                     </li>
+                  </ul>
+               </nav>
+               <!-- /main-navigation -->
+            </div>
+         </div>
+         <div id="formular">
+         </div>
+      </header>
+      <main id="content" style="background-color:#fff;margin-bottom:0;padding-bottom:50px;min-height:65vh;padding-top:15px;position:relative;">
+         <!-- Beginn Container -->
+         <div class="container">
+            <nav class="navbar yk-toolbar" id="jobs-list-filter-wrapper">
+               <div class="search-form-container ">
+                  <div class="container ">
+                     <form class="form-inline&#x20;search-form" data-handle-by="native" method="get" id="jobs-list-filter" name="searchform" action="/de/jobs">
+                        <div class="row" style="padding: 0 15px;">
+                           <div class="input-group col-md-12">
+                              <input type="text" placeholder="Suchanfrage" class="form-control" name="q" value="&quot;Chef&#x20;de&#x20;Rang&quot;">
+                              <div class="input-group-btn search-form-buttons" style="width: 1px;"><button type="submit" class="btn&#x20;btn-primary">Suche</button><button type="reset" class="btn&#x20;btn-default">Filter löschen</button></div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </nav>
+            <h1 style="    color: #22436c;
+               margin-bottom: 15px;
+               font-weight: 300;
+               font-size: 30px;" class="h2">64 Chef de Rang Jobs            </h1>
+            <div style="background-color:#ececec; padding:10px;">
+               <a style="text-decoration:underline" href="">Gastrojobs</a> > Chef de Rang
+            </div>
+            <div style="background-color:#f6f6f6; padding:10px;margin-bottom:20px">
+               <div class="yk-notifications"></div>
+               <div class="row">
+                  <div class="tab-content">
+                     <div id="jobs-list-container" class="pagination-container"
+                        data-message="&lt;strong&gt;Es&#x20;tut&#x20;uns&#x20;leid.&lt;/strong&gt;,&#x20;es&#x20;gibt&#x20;zur&#x20;Zeit&#x20;keine&#x20;Stellenanzeigen,&#x20;die&#x20;Ihrem&#x20;Suchkriterium&#x20;entsprechen."
+                        data-uri="/de/jobs?q=%22Chef%20de%20Rang%22">
+                        <div class="col-md-12">
+                           <div class="pagination-message alert alert-warning" style="display:none">
+                              <strong>Es tut uns leid.</strong>, es gibt zur Zeit keine Stellenanzeigen, die Ihrem Suchkriterium entsprechen.                
+                           </div>
+                        </div>
+                        <div class="hidden" id="update-job-count">64</div>
+                                     <script>
+                           function highlight() {
+                               document.getElementById("job-external-link").style.color = "#5bc0de";
+                           }
+                           
+                           function removeHighlight() {
+                               document.getElementById("job-external-link").style.color = "#243b84";
+                           }
+                        </script>
+                        <div class="col-md-4">
+                           <span class="facets-url" data-url="/de/jobs/chef-de-rang.html"></span>
+                           <div id="form-jobsbymail-subscribe-form" class="form-container">
+                              <div class="form-content">
+                                 <button type="button" class="pull-right hidden visible-sm visible-xs btn btn-secondary" aria-expanded="false" data-toggle="collapse" data-target=".panel-group">Filter anzeigen
+                                 </button>
+                                 <p>
+                                    <button class="btn btn-info" data-title="Jobs per E-Mail" data-toggle="modal" data-target="#job-by-mail-subscribe-modal" title="Jobs per E-Mail">
+                                       <i class="yk-icon yk-icon-envelope"></i>
+                                       <!--   Jobs per E-Mail-->
+                                       Jobsuche abonnieren
+                                    </button>
+                                 </p>
+                                 <div id="job-by-mail-subscribe-modal" class="modal fade" role="dialog" aria-labelledby="job-by-mail-subscribe-label" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                       <div class="modal-content">
+                                          <div class="modal-header">
+                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                             <h3 id="job-by-mail-subscribe-label">Job-Mail kostenlos abonnieren und immer automatisch informiert werden</h3>
+                                          </div>
+                                          <form action="/de/jobsbymail/subscribe" id="jobsbymail-subscribe-form" name="searchform" method="POST" class="&#x20;form-horizontal">
+                                             <div class="modal-body">
+                                                <div class="controls controls-row row">
+                                                   <div class="col-md-3 yk-label"><label for="q">Suche</label></div>
+                                                   <div class="col-md-9" id="q-span">
+                                                      <input type="text" placeholder="Suchanfrage" class="form-control&#x20;form-control&#x20;" name="q" id="q" value="&quot;Chef&#x20;de&#x20;Rang&quot;">
+                                                      <div id="q-errors" class="errors"></div>
+                                                   </div>
+                                                </div>
+                                                <div class="controls controls-row row">
+                                                   <div class="col-md-3 yk-label"><label for="l">Ort</label></div>
+                                                   <div class="col-md-9" id="l-span">
+                                                      <select data-placeholder="Ort" data-autoinit="" data-clear-on-reset="1" class="geoselect&#x20;form-control&#x20;" name="l" data-width="100&#x25;" id="l"></select>
+                                                      <div id="l-errors" class="errors"></div>
+                                                   </div>
+                                                </div>
+                                                <div class="controls controls-row row">
+                                                   <div class="col-md-3 yk-label"><label for="d">Umkreis</label></div>
+                                                   <div class="col-md-9" id="d-span">
+                                                      <select name="d" data-searchbox="-1" data-allowclear="false" data-placeholder="Umkreis" data-width="100&#x25;" id="d" class="&#x20;form-control&#x20;">
+                                                         <option value="5">5 km</option>
+                                                         <option value="10" selected="selected">10 km</option>
+                                                         <option value="20">20 km</option>
+                                                         <option value="50">50 km</option>
+                                                         <option value="100">100 km</option>
+                                                      </select>
+                                                      <div id="d-errors" class="errors"></div>
+                                                   </div>
+                                                </div>
+                                                <div class="controls controls-row row">
+                                                   <div class="col-md-3 yk-label"><label for="email">E-Mail</label></div>
+                                                   <div class="col-md-9" id="email-span">
+                                                      <input type="email" name="email" required="required" placeholder="Bitte&#x20;geben&#x20;Sie&#x20;Ihre&#x20;E-Mail&#x20;Adresse&#x20;ein" id="email" class="&#x20;form-control&#x20;" value="">
+                                                      <div id="email-errors" class="errors"></div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                             <div class="modal-footer">
+                                                <button class="btn btn-default" type="button" data-dismiss="modal" aria-hidden="true">Schliessen</button>
+                                                <button class="btn btn-primary" type="submit">Abonnieren</button>
+                                             </div>
+                                          </form>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="panel-group collapse dont-collapse-sm">
+                              <div id="facets-box-region_MultiString" class="panel panel-default">
+                                 <div class="panel-heading">
+                                    <a class=" " style="display:block;width: 100%;text-decoration:none;" data-toggle="collapse" data-parent="#facets-box-region_MultiString" href="#facets-box-region_MultiString-content">
+                                    Region                        <span class="small"></span>
+                                    </a>
+                                 </div>
+                                 <div id="facets-box-region_MultiString-content" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Z&#xFC;rich]"
+                                             class="facet-checkbox">
+                                          Zürich (19)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Sankt&#x20;Gallen]"
+                                             class="facet-checkbox">
+                                          Sankt Gallen (12)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Aargau]"
+                                             class="facet-checkbox">
+                                          Aargau (10)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Bern]"
+                                             class="facet-checkbox">
+                                          Bern (5)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Basel-Stadt]"
+                                             class="facet-checkbox">
+                                          Basel-Stadt (3)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Luzern]"
+                                             class="facet-checkbox">
+                                          Luzern (3)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Thurgau]"
+                                             class="facet-checkbox">
+                                          Thurgau (3)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Appenzell&#x20;Innerrhoden]"
+                                             class="facet-checkbox">
+                                          Appenzell Innerrhoden (2)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Solothurn]"
+                                             class="facet-checkbox">
+                                          Solothurn (2)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="region_MultiString[Appenzell&#x20;Ausserrhoden]"
+                                             class="facet-checkbox">
+                                          Appenzell Ausserrhoden (1)
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- facets-collaps-* -->
+                              </div>
+                              <div id="facets-box-city_MultiString" class="panel panel-default">
+                                 <div class="panel-heading">
+                                    <a class="collapsed" style="display:block;width: 100%;text-decoration:none;" data-toggle="collapse" data-parent="#facets-box-city_MultiString" href="#facets-box-city_MultiString-content">
+                                    Stadt                        <span class="small"></span>
+                                    </a>
+                                 </div>
+                                 <div id="facets-box-city_MultiString-content" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[Z&#xFC;rich]"
+                                             class="facet-checkbox">
+                                          Zürich (11)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[St.&#x20;Gallen]"
+                                             class="facet-checkbox">
+                                          St. Gallen (8)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[Bern]"
+                                             class="facet-checkbox">
+                                          Bern (5)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[Aarau]"
+                                             class="facet-checkbox">
+                                          Aarau (4)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[Baden]"
+                                             class="facet-checkbox">
+                                          Baden (3)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[Basel]"
+                                             class="facet-checkbox">
+                                          Basel (3)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[Luzern]"
+                                             class="facet-checkbox">
+                                          Luzern (3)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[Appenzell]"
+                                             class="facet-checkbox">
+                                          Appenzell (2)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[Dachsen]"
+                                             class="facet-checkbox">
+                                          Dachsen (2)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="city_MultiString[Frauenfeld]"
+                                             class="facet-checkbox">
+                                          Frauenfeld (2)
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- facets-collaps-* -->
+                              </div>
+                              <div id="facets-box-organizationTag" class="panel panel-default">
+                                 <div class="panel-heading">
+                                    <a class="collapsed" style="display:block;width: 100%;text-decoration:none;" data-toggle="collapse" data-parent="#facets-box-organizationTag" href="#facets-box-organizationTag-content">
+                                    Firma                        <span class="small"></span>
+                                    </a>
+                                 </div>
+                                 <div id="facets-box-organizationTag-content" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="organizationTag[ADECCO]"
+                                             class="facet-checkbox">
+                                          ADECCO (52)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="organizationTag[B&#xDC;RGENSTOCK&#x20;HOTELS&#x20;&amp;&#x20;RESORT]"
+                                             class="facet-checkbox">
+                                          BÜRGENSTOCK HOTELS & RESORT (3)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="organizationTag[Schloss&#x20;Laufen]"
+                                             class="facet-checkbox">
+                                          Schloss Laufen (2)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="organizationTag[zfv&#x20;Die&#x20;Gastronomiegruppe]"
+                                             class="facet-checkbox">
+                                          zfv Die Gastronomiegruppe (2)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="organizationTag[Brasserie&#x20;Louis]"
+                                             class="facet-checkbox">
+                                          Brasserie Louis (1)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="organizationTag[GLOBUS]"
+                                             class="facet-checkbox">
+                                          GLOBUS (1)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="organizationTag[Genossenschaft&#x20;Migros&#x20;Z&#xFC;rich]"
+                                             class="facet-checkbox">
+                                          Genossenschaft Migros Zürich (1)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="organizationTag[Randstad&#x20;&#x28;Schweiz&#x29;&#x20;AG]"
+                                             class="facet-checkbox">
+                                          Randstad (Schweiz) AG (1)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="organizationTag[Restaurant&#x20;Metropol]"
+                                             class="facet-checkbox">
+                                          Restaurant Metropol (1)
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- facets-collaps-* -->
+                              </div>
+                              <div id="facets-box-industry_MultiString" class="panel panel-default">
+                                 <div class="panel-heading">
+                                    <a class="collapsed" style="display:block;width: 100%;text-decoration:none;" data-toggle="collapse" data-parent="#facets-box-industry_MultiString" href="#facets-box-industry_MultiString-content">
+                                    Branche                        <span class="small"></span>
+                                    </a>
+                                 </div>
+                                 <div id="facets-box-industry_MultiString-content" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="industry_MultiString[Gastgewerbe]"
+                                             class="facet-checkbox">
+                                          Gastgewerbe (50)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="industry_MultiString[Tourismus]"
+                                             class="facet-checkbox">
+                                          Tourismus (50)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="industry_MultiString[Banken]"
+                                             class="facet-checkbox">
+                                          Banken (2)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="industry_MultiString[Finanzinstitute]"
+                                             class="facet-checkbox">
+                                          Finanzinstitute (2)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="industry_MultiString[Hotellerie&#x20;&amp;&#x20;Gastronomie]"
+                                             class="facet-checkbox">
+                                          Hotellerie & Gastronomie (1)
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- facets-collaps-* -->
+                              </div>
+                              <div id="facets-box-employmentType_MultiString" class="panel panel-default">
+                                 <div class="panel-heading">
+                                    <a class="collapsed" style="display:block;width: 100%;text-decoration:none;" data-toggle="collapse" data-parent="#facets-box-employmentType_MultiString" href="#facets-box-employmentType_MultiString-content">
+                                    Art der Anstellung                        <span class="small"></span>
+                                    </a>
+                                 </div>
+                                 <div id="facets-box-employmentType_MultiString-content" class="panel-collapse collapse ">
+                                    <div class="panel-body">
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="employmentType_MultiString[Festanstellung]"
+                                             class="facet-checkbox">
+                                          Festanstellung (53)
+                                          </label>
+                                       </div>
+                                       <div>
+                                          <label>
+                                          <input type="checkbox" name="employmentType_MultiString[Service]"
+                                             class="facet-checkbox">
+                                          Service (1)
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- facets-collaps-* -->
+                              </div>
+                              <div class="panel panel-default">
+                                 <div class="panel-body">
+                                    <button id="facets-apply" class="btn btn-primary">Filter anwenden</button>
+                                    <button id="facets-reset" class="btn btn-default pull-right">Löschen</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-8">
+                           <div class="row">
+                              <div class="row-eq-height">
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang 100%"
+                                                   href="http://php7.gastrojob24.ch/de/job-chef-de-rang-100--5ca4dd80b6428bba348b45e4.html">
+                                                Chef de Rang 100%                        </a>
+                                             </h4>
+                                             <p>
+                                                Migros, 4001 Basel                    
+                                             </p>
+                                             <p> 
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Vollzeit">Vollzeit</span>
+                                                02.04.19
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang Sommersaison"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-sommersaison-gossau-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-gossau?ID=e0966bce-b908-4313-bddf-f301c6ae3655">
+                                                Chef de Rang Sommersaison                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Gossau, St. Gallen                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                01.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang Sommersaison" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-sommersaison-gossau-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-gossau?ID=e0966bce-b908-4313-bddf-f301c6ae3655">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-region-winterthur-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-region-winterthur?ID=1995b942-c5ad-454d-b944-0fab55f299e8">
+                                                Chef de Rang                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Region Winterthur, Zürich                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                31.03.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-region-winterthur-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-region-winterthur?ID=1995b942-c5ad-454d-b944-0fab55f299e8">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-kreuzlingen-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-kreuzlingen?ID=0618d0d0-47cf-45b5-92df-6454c2e2a2bc">
+                                                Chef de Rang                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Kreuzlingen, Thurgau                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                31.03.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-kreuzlingen-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-kreuzlingen?ID=0618d0d0-47cf-45b5-92df-6454c2e2a2bc">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-rorschach-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-rorschach?ID=3cd1464f-7c63-47e3-85dc-89088462a61e">
+                                                Chef de Rang                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Rorschach, St. Gallen                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                31.03.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-rorschach-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-rorschach?ID=3cd1464f-7c63-47e3-85dc-89088462a61e">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang"
+                                                   href="http://php7.gastrojob24.ch/de/job-chef-de-rang-5c9efcd4b6428ba0268b45df.html">
+                                                Chef de Rang                        </a>
+                                             </h4>
+                                             <p>
+                                                Randstad (Schweiz) AG, Zürich                    
+                                             </p>
+                                             <p> 
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                28.03.19
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang (w / m)"
+                                                   href="http://php7.gastrojob24.ch/de/job-chef-de-rang--w---m--5ca23a35b6428b8b5d8b4570.html">
+                                                Chef de Rang (w / m)                        </a>
+                                             </h4>
+                                             <p>
+                                                zfv Die Gastronomiegruppe, Gastronomie im Verkehrshaus Luzern
+                                                Lidostrasse 5, 6006 Luzern                    
+                                             </p>
+                                             <p> 
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Vollzeit">Vollzeit</span>
+                                                01.04.19
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang mit Berufsbildnerkurs"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-mit-berufsbildnerkurs-st-gallen-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-st-gallen?ID=830b5e8b-0583-4763-913f-36fdd9884fe6">
+                                                Chef de Rang mit Berufsbildnerkurs                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, St. Gallen, St. Gallen                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                31.03.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang mit Berufsbildnerkurs" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-mit-berufsbildnerkurs-st-gallen-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-st-gallen?ID=830b5e8b-0583-4763-913f-36fdd9884fe6">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang (m/w)"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-mw-aarau-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-aarau?ID=7088f23e-0470-46ab-8013-9f241ba3ce8a">
+                                                Chef de Rang (m/w)                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Aarau, Aargau                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                31.03.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang (m/w)" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-mw-aarau-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-aarau?ID=7088f23e-0470-46ab-8013-9f241ba3ce8a">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="flexiblen Chef de Rang (m/) für die Sommersaison"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/flexiblen-chef-de-rang-m-fur-die-sommersaison-baden-festanstellung-gastronomie-hotellerie-tourismus-banken-finanzinstitute-baden?ID=abb8ee10-44fe-4f55-97dc-04846cadc685">
+                                                flexiblen Chef de Rang (m/) für die Sommersaison                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Baden, Aargau                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                03.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="flexiblen Chef de Rang (m/) für die Sommersaison" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/flexiblen-chef-de-rang-m-fur-die-sommersaison-baden-festanstellung-gastronomie-hotellerie-tourismus-banken-finanzinstitute-baden?ID=abb8ee10-44fe-4f55-97dc-04846cadc685">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang (m/w) mit Ambitionen"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-mw-mit-ambitionen-zurich-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-zurich?ID=5c32210b-ba4d-4f0e-97d4-649a462376e3">
+                                                Chef de Rang (m/w) mit Ambitionen                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Zürich, Zürich                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                02.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang (m/w) mit Ambitionen" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-mw-mit-ambitionen-zurich-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-zurich?ID=5c32210b-ba4d-4f0e-97d4-649a462376e3">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang mit meist Schichtarbeit"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-mit-meist-schichtarbeit-st-gallen-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-st-gallen?ID=78e40426-79cd-45c9-96ba-7bd225068336">
+                                                Chef de Rang mit meist Schichtarbeit                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, St. Gallen, St. Gallen                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                02.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang mit meist Schichtarbeit" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-mit-meist-schichtarbeit-st-gallen-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-st-gallen?ID=78e40426-79cd-45c9-96ba-7bd225068336">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang in den klassischen Service"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-in-den-klassischen-service-frauenfeld-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-frauenfeld?ID=7e858fcf-e241-4aad-8f5a-9e0e2f90f560">
+                                                Chef de Rang in den klassischen Service                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Frauenfeld, Thurgau                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                02.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang in den klassischen Service" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-in-den-klassischen-service-frauenfeld-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-frauenfeld?ID=7e858fcf-e241-4aad-8f5a-9e0e2f90f560">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang mit meistens Schichtarbeit"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-mit-meistens-schichtarbeit-frauenfeld-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-frauenfeld?ID=3174df6b-c47a-4c42-b5aa-1baca2dd1a3a">
+                                                Chef de Rang mit meistens Schichtarbeit                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Frauenfeld, Thurgau                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                02.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang mit meistens Schichtarbeit" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-mit-meistens-schichtarbeit-frauenfeld-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-frauenfeld?ID=3174df6b-c47a-4c42-b5aa-1baca2dd1a3a">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang (w/m) mit Entwicklungsmöglichkeiten"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-wm-mit-entwicklungsmoglichkeiten-zurich-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-zurich?ID=9978d9fd-96d5-4b39-beea-cbce0d568fed">
+                                                Chef de Rang (w/m) mit Entwicklungsmöglichkeiten                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Zürich, Zürich                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                02.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang (w/m) mit Entwicklungsmöglichkeiten" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-wm-mit-entwicklungsmoglichkeiten-zurich-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-zurich?ID=9978d9fd-96d5-4b39-beea-cbce0d568fed">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang in den gepflegten Service"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-in-den-gepflegten-service-appenzell-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-appenzell?ID=f85779d1-3d4b-49cb-b5c7-4e2cf2db97a8">
+                                                Chef de Rang in den gepflegten Service                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Appenzell, Appenzell Innerrhoden                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                02.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang in den gepflegten Service" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-in-den-gepflegten-service-appenzell-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-appenzell?ID=f85779d1-3d4b-49cb-b5c7-4e2cf2db97a8">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang in die Sterne Gastronomie"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-in-die-sterne-gastronomie-rorschach-festanstellung-gastronomie-hotellerie-tourismus-banken-finanzinstitute-rorschach?ID=2df56b69-ec34-4567-b14d-ee6f14bd13f6">
+                                                Chef de Rang in die Sterne Gastronomie                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Rorschach, St. Gallen                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                01.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang in die Sterne Gastronomie" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-in-die-sterne-gastronomie-rorschach-festanstellung-gastronomie-hotellerie-tourismus-banken-finanzinstitute-rorschach?ID=2df56b69-ec34-4567-b14d-ee6f14bd13f6">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="featured-image-box">
+                                       <div class="content-area">
+                                          <div class="top-cnt">
+                                             <h4>
+                                                <a style="color:#243b84" title="Chef de Rang meistens in Schichtarbeit"
+                                                   rel="nofollow" target="_blank"
+                                                   href="https://www.adecco.ch/de-ch/job/chef-de-rang-meistens-in-schichtarbeit-appenzell-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-appenzell?ID=5b94fbd6-01d4-4649-b343-1571890e75c4">
+                                                Chef de Rang meistens in Schichtarbeit                        </a>
+                                             </h4>
+                                             <p>
+                                                Adecco, Appenzell, Appenzell Innerrhoden                    
+                                             </p>
+                                             <p> 
+                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                                   border: 1px solid #243b84;border-radius: 4px;
+                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
+                                                   #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
+                                                   class="yk-contract yk-Festanstellung">Festanstellung</span>
+                                                01.04.19
+                                                <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                                   onmouseover="highlight()" onmouseout="removeHighlight()"
+                                                   title="Chef de Rang meistens in Schichtarbeit" rel="nofollow" target="_blank" href="https://www.adecco.ch/de-ch/job/chef-de-rang-meistens-in-schichtarbeit-appenzell-festanstellung-gastronomie-hotellerie-tourismus-tourismus-gastgewerbe-appenzell?ID=5b94fbd6-01d4-4649-b343-1571890e75c4">
+                                                <i class="fa fa-external-link"></i>
+                                                </a>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="" style="    background-color: #e0e0e0;
+                              float: left;
+                              width: 100%;
+                              margin: 10px 0 10px 0;">
+                              <div class="col-md-9">
+                                 <!-- First page link -->
+                                 <ul class="pagination">
+                                    <li class="disabled"><a title="Anfang"><i
+                                       class="yk-icon yk-icon-pagination-start"></i></a></li>
+                                    <!-- Previous page link -->
+                                    <li class="disabled"><a title="Zurück"><i class="fa fa-angle-left"></i></a></li>
+                                    <!-- Numbered page links -->
+                                    <li class="disabled">
+                                       <a>1</a>
+                                    </li>
+                                    <li>
+                                       <a href="http://php7.gastrojob24.ch/de/jobs?q=%22Chef%20de%20Rang%22&page=2">
+                                       2                            </a>
+                                    </li>
+                                    <li>
+                                       <a href="http://php7.gastrojob24.ch/de/jobs?q=%22Chef%20de%20Rang%22&page=3">
+                                       3                            </a>
+                                    </li>
+                                    <li>
+                                       <a href="http://php7.gastrojob24.ch/de/jobs?q=%22Chef%20de%20Rang%22&page=4">
+                                       4                            </a>
+                                    </li>
+                                    <!-- Next page link -->
+                                    <li><a title="Weiter" href="http://php7.gastrojob24.ch/de/jobs?q=%22Chef%20de%20Rang%22&page=2"><i class="fa fa-angle-right"></i>
+                                       </a>
+                                    </li>
+                                    <!-- Last page link -->
+                                    <li><a title="Ende" href="http://php7.gastrojob24.ch/de/jobs?q=%22Chef%20de%20Rang%22&page=4">
+                                       <i class="yk-icon yk-icon-pagination-end"></i>
+                                       </a>
+                                    </li>
+                                 </ul>
+                              </div>
+                              <div class="col-md-3 text-right">
+                                 1 - 18            von 64        
+                              </div>
+                           </div>
+                           <h2>Ähnliche Jobs</h2>
+                           <ul class="list-unstyled row locations-drilldown-links">
+                              <li class="col-xs-12 col-md-6">
+                                 <a href=" title="See results for London Accountancy jobs">Koch Jobs in Zürich</a>
+                              </li>
+                               <li class="col-xs-12 col-md-6">
+                                 <a href="" title="See results for London Accountancy jobs">Koch Jobs in St. Gallen</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Ende GREY DIV --->
+            <div style="background-color:#f6f6f6; padding:10px;margin-bottom:20px">
+               <div class="clearfix">
+                  <div class="col-md-12" style="background-color:#fff; padding:20px">
+                     <h2>Was macht eigentlich ein Koch?</H2>
+                     <P>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</P>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Ende Container --->
+         <div class="modal fade" id="job-apply-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" style="width: 90%; height: 90%" role="document">
+               <div class="modal-content" style="height: 100%">
+                  <div class="modal-body" style="height: calc(100% - 65px)">
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+      <footer id="footer">
+         <div class="container">
+         <div class="row">
+            <div class="col-xs-6 col-md-2">
+               <h5>Über Gastrojob24</h5>
+               <nav>
+                  <ul class="list-unstyled">
+                     <li><a title="" href="http://php7.gastrojob24.ch/de/wp/page/ueber-uns">Über uns</a></li>
+                     <li><a title="" href="http://php7.gastrojob24.ch/de/wp/page/jobs">Arbeiten bei uns</a></li>
+                     <li><a title="Jobs" href="http://php7.gastrojob24.ch/de/jobs?clear=1">Alle Jobs</a></li>
+                  </ul>
+               </nav>
+            </div>
+            <div class="col-xs-6 col-md-2">
+               <h5>Social Media</h5>
+               <nav>
+                  <ul class="list-unstyled">
+                     <li><a title="Gastrojob24.ch bei Facebook" href="https://www.facebook.com/gastrojob24.ch/" target="_blank">Facebook</a></li>
+                     <li><a title="Gastrojob24.ch bei Twitter" href="https://twitter.com/Gastrojob24_CH" target="_blank">Twitter</a></li>
+                  </ul>
+               </nav>
+            </div>
+            <div class="col-xs-6 col-md-2">
+               <h5>Für Arbeitgeber</h5>
+               <nav>
+                  <ul class="list-unstyled">
+                     <li><a title="Häufige Fragen & Antworten" href="http://php7.gastrojob24.ch/de/wp/page/faq">Hilfe</a></li>
+                     <li><a title="Login für Arbeitgeber" href="http://php7.gastrojob24.ch/de/login?ref=%2Fde%2Fdashboard">Einloggen</a></li>
+                     <li><a title="Preise & Leistungen" href="http://php7.gastrojob24.ch/de/wp/page/stellenanzeigen-schalten">Leistungen & Preise</a></li>
+                  </ul>
+               </nav>
+            </div>
+            <!--<div class="col-md-offset-3 col-md-3">
+               </div>-->
+         </div>
+         <hr style="border-top: 1px solid #b6bed6">
+         <div class="row">
+            <div class="col-md-12 text-center">
+               <nav>
+                  <ul class="list-inline">
+                     <li><a title="Impressum" href="http://php7.gastrojob24.ch/de/wp/page/impressum">Impressum</a></li>
+                     <li><a title="AGB" href="http://php7.gastrojob24.ch/de/wp/page/agb">AGB</a></li>
+                  </ul>
+               </nav>
+               <p>Copyright &copy; Gastrojob24 2008 - 2019</p>
+            </div>
+         </div>
+      </footer>
+   </body>
+</html>
