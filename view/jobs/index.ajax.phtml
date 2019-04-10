@@ -14,7 +14,8 @@ $queryGet = $this->params()->fromQuery();
 unset($queryGet['clear']);
 $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $wordpress = $this->proxy('wordpress');
-$searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
+//$searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
+$searchTerm = null;
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
 $this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
