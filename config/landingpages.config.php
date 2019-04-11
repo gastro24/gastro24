@@ -166,7 +166,7 @@ $options = [
      'sous-chef' => [
           'id' => 163,
 		  'query' => [ 'q' => '"Sous Chef"'],
-          'tab' => 'Berufe von A - Z',
+          'tab' => '',
           'panel' => '',
           'text' => 'Sous Chef'
      ],
