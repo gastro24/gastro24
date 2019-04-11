@@ -164,17 +164,37 @@ $options = [
      
      'sous-chef' => [
           'id' => 163,
-		  'query' => [ 'q' => '"Sous Chef"'],
+		  'query' => [ 'q' => 'Sous Chef'],
           'panel' => '',
           'text' => 'Sous Chef'
      ],
      
        'systemgastronomiefachmann' => [
           'id' => 1045,
-		  'query' => [ 'q' => '"Systemgastronomiefachmann"'],
+		  'query' => [ 'q' => 'Systemgastronomiefachmann'],
           'panel' => '',
           'text' => 'Systemgastronomie'
      ],
+       'chef-de-partie' => [
+          'id' => 1052,
+		  'query' => [ 'q' => 'Chef de Partie'],
+          'panel' => '',
+          'text' => 'Chef de Partie'
+     ],
+      'garde-manger' => [
+          'id' => 1050,
+		  'query' => [ 'q' => 'Garde Manger'],
+          'panel' => '',
+          'text' => 'Garde Manger'
+     ],
+     
+      'tournant' => [
+          'id' => 1048,
+		  'query' => [ 'q' => 'Tournant'],
+          'panel' => '',
+          'text' => 'Tournant'
+     ],
+     
      
 	 'region-appenzell-ausserrhoden' => [
         'text' => 'Jobs Appenzell Ausserrhoden',
