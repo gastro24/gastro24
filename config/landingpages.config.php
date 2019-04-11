@@ -158,7 +158,7 @@ $options = [
      'kuechenchef' => [
           'id' => 161,
 		  'query' => [ 'q' => 'Küchenchef'],
-          'tab' => '',
+      
           'panel' => '',
           'text' => 'Küchenchef'
      ],
@@ -166,7 +166,7 @@ $options = [
      'sous-chef' => [
           'id' => 163,
 		  'query' => [ 'q' => '"Sous Chef"'],
-          'tab' => '',
+        
           'panel' => '',
           'text' => 'Sous Chef'
      ],
