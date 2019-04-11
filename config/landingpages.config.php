@@ -155,6 +155,22 @@ $options = [
           'text' => 'Zimmermädchen'
      ],
      
+     'kuechenchef' => [
+          'id' => 161,
+		  'query' => [ 'q' => 'Küchenchef'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Küchenchef'
+     ],
+     
+     'sous-chef' => [
+          'id' => 163,
+		  'query' => [ 'q' => '"Sous Chef"'],
+          'tab' => 'Berufe von A - Z',
+          'panel' => '',
+          'text' => 'Sous Chef'
+     ],
+     
 	 'region-appenzell-ausserrhoden' => [
         'text' => 'Jobs Appenzell Ausserrhoden',
         'id' => 316,
