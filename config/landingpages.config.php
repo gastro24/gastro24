@@ -158,7 +158,6 @@ $options = [
      'kuechenchef' => [
           'id' => 161,
 		  'query' => [ 'q' => 'Küchenchef'],
-      
           'panel' => '',
           'text' => 'Küchenchef'
      ],
@@ -166,9 +165,15 @@ $options = [
      'sous-chef' => [
           'id' => 163,
 		  'query' => [ 'q' => '"Sous Chef"'],
-        
           'panel' => '',
           'text' => 'Sous Chef'
+     ],
+     
+       'systemgastronomiefachmann' => [
+          'id' => 1045,
+		  'query' => [ 'q' => '"Systemgastronomiefachmann"'],
+          'panel' => '',
+          'text' => 'Systemgastronomie'
      ],
      
 	 'region-appenzell-ausserrhoden' => [
