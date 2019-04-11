@@ -238,7 +238,7 @@ $options = [
 		'region-st-gallen' => [
         'text' => 'Jobs St. Gallen',
         'id' => 327,
-        'query' => [ 'region_MultiString' => ['"St. Gallen"' => 1]],
+        'query' => [ 'region_MultiString' => ['"St Gallen"' => 1]],
         'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],
