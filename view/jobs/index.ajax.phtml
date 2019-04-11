@@ -176,7 +176,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                     <div class="content-area">
                         <div class="top-cnt">
 
-                            <h4>
+                            <h2 class="h4">
                                 <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
                                     <?php if($jobHasExternLink) { ?>
                                         rel="nofollow" target="_blank"
@@ -184,7 +184,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                                    href="<?=$href?>">
                                     <?=strip_tags($job->getTitle())?>
                                 </a>
-                            </h4>
+                            </h2>
 
                             <p>
                             <?php
@@ -262,6 +262,10 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 
         <!-- similar jobs -->
         <style>
+        
+        .similiar-jobs-landingpages ul {
+            padding-left: 0;
+            }
         .similiar-jobs-landingpages {
                 padding-left: 0;
                 list-style-type: none;
@@ -272,7 +276,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
         }
             
             .similiar-jobs-landingpages li a {
-            margin: 0px 5px 0px 5px;
+            margin: 0px 5px 5px 0px;
             background-color: #dcdfe2;
             color: #566578;
             padding: 3px 12px;
