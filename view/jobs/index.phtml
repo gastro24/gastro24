@@ -79,6 +79,11 @@ $this->headScript()->captureStart();
         $('#jobs-list-filter').on('reset.gastro24', function(ev) { $(ev.target).find('input.facet-param').remove(); });
 
     });
+    
+    if ($(".pagination li.disabled").length == $(".pagination li.disabled").length) {
+        alert(1)
+     }
+    
 })(jQuery);
 <?php $this->headScript()->captureEnd();?>
 
