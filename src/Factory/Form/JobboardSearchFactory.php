@@ -4,7 +4,6 @@ namespace Gastro24\Factory\Form;
 use Gastro24\Form\JobboardSearch;
 use Interop\Container\ContainerInterface;
 use \Jobs\Factory\Form\JobboardSearchFactory as BaseFactory;
-use Solr\Options\ModuleOptions;
 
 /**
  * Class JobboardSearchFactory
@@ -19,10 +18,11 @@ class JobboardSearchFactory extends BaseFactory
 
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
+        $instance = parent::__invoke($container, $requestedName, $options);
         $moduleOptions      = $container->get('Solr/Options/Module');
         $solrConnectionString = 'http://' . $moduleOptions->getHostname() . ':' . $moduleOptions->getPort() . $moduleOptions->getJobsPath();
-        $controller = new JobboardSearch($solrConnectionString);
+        $instance->setSolrConnectionString($solrConnectionString);
 
-        return $controller;
+        return $instance;
     }
 }

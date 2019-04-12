@@ -2,10 +2,8 @@
 
 namespace Gastro24\Form;
 
-use Core\Form\CustomizableFieldsetTrait;
 use Jobs\Entity\Location;
 use \Jobs\Form\JobboardSearch as BaseJobboardSearchForm;
-use Zend\Stdlib\PriorityList;
 
 /**
  * JobboardSearch.php
@@ -16,12 +14,6 @@ class JobboardSearch extends BaseJobboardSearchForm
 {
     /** @var string */
     private $solrConnectionString;
-
-    public function __construct($solrConnectionString, $name = null, $options = [])
-    {
-        parent::__construct($name, $options);
-        $this->solrConnectionString = $solrConnectionString;
-    }
 
     public function init()
     {
@@ -102,5 +94,21 @@ class JobboardSearch extends BaseJobboardSearchForm
             )
         );
         $this->setButtonElement('d');
+    }
+
+    /**
+     * @return string
+     */
+    public function getSolrConnectionString()
+    {
+        return $this->solrConnectionString;
+    }
+
+    /**
+     * @param string $solrConnectionString
+     */
+    public function setSolrConnectionString($solrConnectionString)
+    {
+        $this->solrConnectionString = $solrConnectionString;
     }
 }

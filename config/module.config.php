@@ -266,7 +266,6 @@ return [
         'invokables' => [
             'Jobs/Description' => 'Gastro24\Form\JobsDescription',
             'Jobs/PreviewFieldset' => Form\JobPreviewFieldsetDelegator::class,
-//            'Jobs/JobboardSearch' => \Gastro24\Form\JobboardSearch::class,
         ],
         'factories' => [
             Form\CreateSingleJobForm::class => InvokableFactory::class,
