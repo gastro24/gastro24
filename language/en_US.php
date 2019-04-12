@@ -18,24 +18,16 @@
 
 return [
 
-    'Täglich ähnliche Jobs in Ihrem Postfach'
-    =>
-    'Similar jobs in your inbox daily',
+    'Täglich ähnliche Jobs in Ihrem Postfach' => 'Similar jobs in your inbox daily',
 
-    '%s%d%s Jobs gefunden'
-    =>
-    'Found %s%d%s jobs',
+    '%s%d%s Jobs gefunden' => 'Found %s%d%s jobs',
 
-    'Insgesamt %s%d%s freie Stellen gefunden'
-    =>
-    'a total of %s%d%s jobs found',
+    'Insgesamt %s%d%s freie Stellen gefunden' => 'a total of %s%d%s jobs found',
 
-    'Aktuelle Stellenanzeigen'
-    =>
-    'Latest Jobs',
+    'Aktuelle Stellenanzeigen' => 'Latest Jobs',
 
-    'Es sind nur Ziffern, "/" und "+" erlaubt'
-    =>
-    'Please enter only numbers, "/" and "+"',
+    'Es sind nur Ziffern, "/" und "+" erlaubt' => 'Please enter only numbers, "/" and "+"',
+
+    'Beruf, Begriff oder Arbeitsort' => 'Job, Keyword or Location',
 
 ];

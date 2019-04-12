@@ -35,10 +35,13 @@ $this->configHeadScript()->prependScript('var lang="' . $lang . '";'
                                          . 'var basePath="' . $this->basePath() . '";');
 
 $this->headLink()->prependStylesheet($this->basePath('modules/Gastro24/Gastro24.css'));
+$this->headLink()->prependStylesheet($this->basePath('modules/Gastro24/jquery-ui-1-12.css'));
 $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
 $this->configHeadScript()->prependFile($this->basepath('dist/js/core.js'));
 $this->configHeadScript()->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
-                         ->appendFile($this->basePath('modules/Gastro24/index.js'));
+                         ->appendFile($this->basePath('modules/Gastro24/index.js'))
+                         ->appendFile($this->basePath('modules/Gastro24/jobs.search.js'))
+                         ->appendFile($this->basePath('modules/Gastro24/jquery-ui-1-12.js'));
 
 $langScript = 'dist/locales/' . $lang . '.js';
 $this->configHeadScript()->appendFile($this->basePath($langScript));
@@ -84,7 +87,6 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-MCDJ26Q');</script>
     <!-- End Google Tag Manager -->
-    
 <style>
         
   @media (max-width: 768px){
@@ -179,7 +181,6 @@ margin: 15px 0 35px 0;
     text-decoration:underline;
 }
 
-
 </style>
 <script>
 $( document ).ready(function() {
@@ -209,15 +210,10 @@ $( document ).ready(function() {
     });
 	
 	$(".separator2").click(function() {
-          $('.regionlist > li').removeClass("hide");
-		  $('.regionlist > li.separator2').addClass("hide");
-		 
-      });
-    
-    
+        $('.regionlist > li').removeClass("hide");
+        $('.regionlist > li.separator2').addClass("hide");
+    });
 });
-    
-    
 </script>  
     
 
