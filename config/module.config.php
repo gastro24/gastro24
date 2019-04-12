@@ -86,6 +86,7 @@ return [
             Controller\RedirectExternalJobs::class => Controller\RedirectExternalJobsFactory::class,
             Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
+            Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
         ],
     ],
 
@@ -346,6 +347,16 @@ return [
                                         'action' => 'index',
                                     ],
                                     'may_terminate' => true,
+                                ],
+                            ],
+                            'suggest-job' => [
+                                'type' => 'Literal',
+                                'options' => [
+                                    'route' => '/suggest',
+                                    'defaults' => [
+                                        'controller' => Controller\SuggestJobs::class,
+                                        'action' => 'index'
+                                    ]
                                 ],
                             ]
                         ],

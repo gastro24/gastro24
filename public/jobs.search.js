@@ -51,28 +51,28 @@
         $("#jobs-list-filter input[name=q]").autocomplete({
             source : function(request, response) {
                 var searchTerm = $("#jobs-list-filter input[name=q]").val();
-                var URL = $("#jobs-list-filter input[name=q]").attr('data-url');
+                //var URL = $("#jobs-list-filter input[name=q]").attr('data-url');
                 $.ajax({
-                    url : URL + searchTerm,
+                    url : 'job/suggest?q=' + searchTerm,
                     success : function(data) {
-                        var dataObject = JSON.parse(data);
-                        var parentNodeInfix = dataObject.suggest.infixSuggester;
-                        var suggestionsNode = null;
-                        for (var key in parentNodeInfix) {
-                            suggestionsNode = parentNodeInfix[key].suggestions;
-                            if(suggestionsNode!=null)
-                                break;
-                        }
-                        var autocomplete_data = [];
-                        $.each(suggestionsNode, function (i, val) {
-                            autocomplete_data.push({
-                                "value": val.term,
-                                "id": val.term,
-                                "label": val.term
-                            });
-                        });
+                        // var dataObject = JSON.parse(data);
+                        // var parentNodeInfix = dataObject.suggest.infixSuggester;
+                        // var suggestionsNode = null;
+                        // for (var key in parentNodeInfix) {
+                        //     suggestionsNode = parentNodeInfix[key].suggestions;
+                        //     if(suggestionsNode!=null)
+                        //         break;
+                        // }
+                        // var autocomplete_data = [];
+                        // $.each(suggestionsNode, function (i, val) {
+                        //     autocomplete_data.push({
+                        //         "value": val.term,
+                        //         "id": val.term,
+                        //         "label": val.term
+                        //     });
+                        // });
 
-                        response( autocomplete_data );
+                        response( data );
                     },
                     error : function(error) {
                         console.log('Error while fetching solr suggestions');
