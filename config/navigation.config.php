@@ -62,7 +62,7 @@ return [
                    'type' => 'page',
                    'id' => 'ratgeber',
                ],
-                'order' => 1000,
+                'order' => 940,
            ],
          
              'contact' => [
@@ -115,7 +115,7 @@ return [
                 'allow' => [
                     'resource/stellenanzeigen-schalten',
                     'resource/ratgeber',
-                    'resource/contact',
+                    //'resource/contact',
                     'route/lang/organizations-profiles',
                 ]
             ],

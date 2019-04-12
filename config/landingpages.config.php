@@ -33,7 +33,11 @@
 
 
 $options = [
-    
+    'hilfskoch' => [
+          'id' => 169,
+		  'query' => [ 'q' => 'Hilfskoch'],
+          'text' => 'Hilfskoch'
+     ],
     'alleinkoch' => [
           'id' => 171,
 		  'query' => [ 'q' => 'Alleinkoch'],
@@ -155,6 +159,47 @@ $options = [
           'text' => 'Zimmermädchen'
      ],
      
+     'kuechenchef' => [
+          'id' => 161,
+		  'query' => [ 'q' => 'Küchenchef'],
+          'panel' => '',
+          'text' => 'Küchenchef'
+     ],
+     
+     'sous-chef' => [
+          'id' => 163,
+		  'query' => [ 'q' => 'Sous Chef'],
+          'panel' => '',
+          'text' => 'Sous Chef'
+     ],
+     
+       'systemgastronomiefachmann' => [
+          'id' => 1045,
+		  'query' => [ 'q' => 'Systemgastronomiefachmann'],
+          'panel' => '',
+          'text' => 'Systemgastronomie'
+     ],
+       'chef-de-partie' => [
+          'id' => 1052,
+		  'query' => [ 'q' => 'Chef de Partie'],
+          'panel' => '',
+          'text' => 'Chef de Partie'
+     ],
+      'garde-manger' => [
+          'id' => 1050,
+		  'query' => [ 'q' => 'Garde Manger'],
+          'panel' => '',
+          'text' => 'Garde Manger'
+     ],
+     
+      'tournant' => [
+          'id' => 1048,
+		  'query' => [ 'q' => 'Tournant'],
+          'panel' => '',
+          'text' => 'Tournant'
+     ],
+     
+     
 	 'region-appenzell-ausserrhoden' => [
         'text' => 'Jobs Appenzell Ausserrhoden',
         'id' => 316,
@@ -193,7 +238,7 @@ $options = [
 		'region-st-gallen' => [
         'text' => 'Jobs St. Gallen',
         'id' => 327,
-        'query' => [ 'region_MultiString' => ['St. Gallen' => 1]],
+        'query' => [ 'region_MultiString' => ['Sankt Gallen' => 1]],
         'tab' => 'Jobs nach Region',
         'panel' => 'Schweiz',
     ],

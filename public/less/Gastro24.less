@@ -4,6 +4,8 @@
 @g24-light-blue: #5bc0de;
 @g24-grey:  #242424;
 @g24-white: #ffffff;
+@g24-dark-blue: #22436c;
+@g24-light-grey: #f6f6f6;
 
 @fa-font-path: '/dist/fonts';
 
@@ -270,6 +272,63 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
         }
     }
 
+/* BEGIN JOB OVERVIEW */
+h1.job-overview-title {
+    color: @g24-dark-blue;
+    margin-bottom: 15px;
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.job-overview.breadcrumb {
+    background-color: #ececec;
+    margin-bottom: 0;
+    padding: 10px 10px 10px 15px;
+
+    a {
+        text-decoration: underline;
+    }
+}
+
+.job-results-container {
+    background-color: @g24-light-grey;
+    margin-bottom: 20px;
+    padding: 10px 0;
+
+    &.row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+.job-overview-results {
+    .yk-pagination {
+        background-color: #e0e0e0;
+        float: left;
+        text-align:center;
+        margin: 10px 0 10px 0;
+        width: 100%;
+
+        .pagination {
+            margin: 20px 0;
+        }
+    }
+}
+.job-overview-description-container {
+    margin-bottom: 20px;
+
+    .content {
+        background-color: @g24-light-grey;
+        padding: 10px;
+
+        &__inner {
+            background-color:#fff;
+            padding: 20px;
+        }
+    }
+}
+/* END JOB OVERVIEW */
+
+
     .carousel-indicators { bottom: -10px; }
 
     .scroll-arrow {
@@ -348,7 +407,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 
     h2 {
-        color: #22436c;
+        color: @g24-dark-blue;
         margin-bottom: 30px;
         font-weight: 300;
     }
@@ -358,7 +417,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 
     h3 {
-        color: #22436c;
+        color: @g24-dark-blue;
         font-weight: bold;
         margin-top: 24px;
         margin-bottom: 12px;
@@ -366,7 +425,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 
     .h6 {
-        color: #22436c;
+        color: @g24-dark-blue;
         font-weight: bold;
         margin-top: 24px;
         margin-bottom: 12px;
@@ -379,6 +438,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 
     main {
+        /** different layouts for views **/
+        &#content {
+            &.jobs-jobboard-index {
+                background-color: #fff;
+                margin-bottom: 0;
+                min-height: 65vh;
+                padding-bottom: 50px;
+                padding-top: 15px;
+                position: relative;
+            }
+        }
 
         ul {
             padding-left: 15px;
@@ -465,6 +535,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-left:5px;
     }
     @media(min-width: @screen-sm) {
+  
         #main-navigation {
             font-weight: 600;
 
@@ -509,6 +580,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
     // Menü auf Handy
     @media(max-width: @screen-sm) {
+        
+              
+         #rpt_pricr {
+        
+            .col-md-3 {
+            width: 100%!important;
+           
+            }
+			
+       	}
         #main-navigation {
             height: inherit;
             ul li a.inverted {
@@ -562,11 +643,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
     // Preistabellen
     #rpt_pricr {
+              
+        
         
         .col-md-3 {
-            width: 33.33333333%!important;
+            width: 33.33333333%;
             text-align:center
             }
+			
         
         .panel-primary {
             border-color: #f1f1f1;

@@ -15,7 +15,7 @@ class JobTemplateFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $templatesMap = $container->get( 'Gastro24\Options\CompanyTemplatesMap' );
+        $templatesMap = $container->get(CompanyTemplatesMap::class);
         $service = new JobTemplate($templatesMap);
 
         return $service;

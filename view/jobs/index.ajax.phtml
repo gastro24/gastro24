@@ -14,6 +14,8 @@ $queryGet = $this->params()->fromQuery();
 unset($queryGet['clear']);
 $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $wordpress = $this->proxy('wordpress');
+$searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
+$hasRegion= isset($queryGet['region_MultiString']);
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
 $this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
@@ -29,6 +31,14 @@ $description = $wordpress->call('value', ['content.rendered'], '');
       visibility: visible;
     }
   }
+ .yk-pagination ul>li>a, .yk-pagination ul>li>span {
+    padding: 10px 15px;
+    margin: 0 5px;
+    font-size: 16px;
+    line-height: 24px;
+     
+ } 
+
 </style>
 <script>
     function highlight() {
@@ -40,54 +50,61 @@ $description = $wordpress->call('value', ['content.rendered'], '');
     }
 </script>
 
+<div class="col-md-12">
+    <h1 class="h2 job-overview-title">
+        <?=$this->jobs->getTotalItemCount()?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs gefunden' : 'Leider keine passenden Jobs gefunden'); ?>
+    </h1>
+    <div class="job-overview">
+        <?php if ($searchTerm) { ?>
+        <nav aria-label="breadcrumb">
+           <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList" style="background-color:#ececec; margin-bottom:0px;border-radius:0">
+                  <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                      itemtype="http://schema.org/ListItem">
+                    <a style="text-decoration:underline" itemprop="item" href="/">
+                    <span itemprop="name">Gastrojobs</span></a>
+                    <meta itemprop="position" content="1" />
+                  </li>
+                  <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
+                      itemtype="http://schema.org/ListItem" aria-current="page">
+
+
+               <?php if ($this->params()->fromRoute('isLandingPage')) { ?>
+
+                    <a style="text-decoration:none" itemprop="item" href="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>">
+                      <span itemprop="name"> <?= $searchTerm ?></span></a>
+
+                         <?php } else { ?>
+                           <span style="text-transform:capitalize" itemprop="name"> <?= $searchTerm ?></span>
+
+                  <?php }; ?>
+
+                    <meta itemprop="position" content="2" />
+                  </li>
+              </ol>
+        </nav
+
+
+        <?php } else { ?>
+
+               <!-- tbd. searchstrings region -->
+
+        <?php }; ?>
+    </div>
+
+<div class="row job-results-container">
+
+    <!-- filter -->
     <div class="col-md-4">
-        <div style="margin-bottom:15px">
-     
-            <h1 style="display:inline;color:#22436c" class="h2">
-              <?=$this->jobs->getTotalItemCount()?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs gefunden' : 'Leider keine passenden Jobs gefunden'); ?>
-            </h1>
-            
-         
-               
-            
-            
-            <?php $parts=preg_split('~<!--more-->~' , $description);?>
-            <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
-            <p><?= $parts[1] ?></p> 
-            
-            <?php if (51 == $query): echo $this->landingpages(); endif; ?>
+        <?php if ($hasFacets):
+            if ($this->params()->fromRoute('isLandingPage')):?>
+                <span class="facets-url" data-url="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>"></span>
+            <?php endif;
+            $facets = $jobs->getFacets();
+        ?>
 
-            <?php endif ?>
-            
-            
-            
-            
-            <?php $parts=preg_split('~<!--more-->~' , $description);?>
-           <?php if (isset($parts[2]) && "" != trim($parts[2])): ?>
-            <p><?= $parts[2] ?></p>
-            
-            <?php endif ?>
-            
-                <?php $parts=preg_split('~<!--more-->~' , $description);?>
-           <?php if (isset($parts[3]) && "" != trim($parts[3])): ?>
-            <p><?= $parts[3] ?></p>
-            
-            <?php endif ?>
-            
-            
-            
-	  </div>
-	<?php if ($hasFacets):
-    if ($this->params()->fromRoute('isLandingPage')):?>
-        <span class="facets-url" data-url="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>"></span>
-    <?php endif;
-    $facets = $jobs->getFacets();
-    ?>
-    
+        <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
 
-    <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-
-    <div class="panel-group collapse dont-collapse-sm">
+        <div class="panel-group collapse dont-collapse-sm">
 	
         <?php $facetsHtml = ''; $isFirstFacet = true; $atLeastOneTotalActive = false; foreach ($facets as $facetName => $facetValues):?>
             <?php if(count($facetValues)>0): $atLeastOneActive = false; $facetsList = []; ob_start();?>
@@ -144,118 +161,193 @@ $description = $wordpress->call('value', ['content.rendered'], '');
     </div>
 
 
-    <div class="col-md-8">
+    <!-- result list -->
+    <div class="col-md-8 job-overview-results">
         <div class="row">
-    
-        
-     
-            
       <?php endif;?>
 
+            <div class="row-eq-height">
+                <?php foreach ($jobs as $job): /* @var \Jobs\Entity\Job $job */ ?>
+            <?php
+
+                $org = $job->getOrganization();
+                $hasJobTemplate = $this->gastroJobTemplate($org);
+                $isIntern = (!$job->getLink() || $hasJobTemplate);
+                $isEmbeddable = $this->gastroIsEmbeddable($job->getLink());
+                $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+
+                $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true ]);
+
+            ?>
+            <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="featured-image-box">
+                    <div class="content-area">
+                        <div class="top-cnt">
+
+                            <h2 class="h4">
+                                <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
+                                    <?php if($jobHasExternLink) { ?>
+                                        rel="nofollow" target="_blank"
+                                    <?php } ?>
+                                   href="<?=$href?>">
+                                    <?=strip_tags($job->getTitle())?>
+                                </a>
+                            </h2>
+
+                            <p>
+                            <?php
+
+                            if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
+
+                            /**
+                              * if (\Organizations\Entity\Organization::PROFILE_DISABLED !== $org->getProfileSetting()) {
+                                      echo sprintf('<a href="%s?clear=1">%s</a>',
+                                        $this->orgProfileUrl($org),
+                                        $org->getOrganizationName()->getName());
+
+                                } else {
+                                   echo $org->getOrganizationName()->getName();
+
+                                }
+
+                              */
+                              echo $org->getOrganizationName()->getName();
 
 
-    <div class="row-eq-height">
-    <?php foreach ($jobs as $job): /* @var \Jobs\Entity\Job $job */ ?>
-    <?php
+                            } else if ($job->getCompany()) {
+                                echo $job->getCompany();
+                            }
+                            ?>, <?=preg_replace('~\(.*?\)$~', '', (string) $job->getLocation())?>
+                            </p>
+                           <p>
 
-        $org = $job->getOrganization();
-        $hasJobTemplate = $this->gastroJobTemplate($org);
-        $isIntern = (!$job->getLink() || $hasJobTemplate);
-        $isEmbeddable = $this->gastroIsEmbeddable($job->getLink());
-        $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+                               <?php if ($jobHasExternLink) { ?>
+                                   <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                   border: 1px solid #243b84;border-radius: 4px;
+                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                               <?php } ?>
+                               <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
 
-        $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true ]);
+                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color:
+                                #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
 
-    ?>
-    <div class="col-md-12 col-sm-6 col-xs-12">
-        <div class="featured-image-box">
-            <div class="content-area">
-                <div class="top-cnt">
-        
-                    <h4>
-                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
-                            <?php if($jobHasExternLink) { ?>
-                                rel="nofollow" target="_blank"
-                            <?php } ?>
-                           href="<?=$href?>">
-                            <?=strip_tags($job->getTitle())?>
-                        </a>
-                    </h4>
-             
-                    <p>
-                    <?php
+                                class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
 
-                    if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
-                        
-                    /**
-                      * if (\Organizations\Entity\Organization::PROFILE_DISABLED !== $org->getProfileSetting()) {
-                              echo sprintf('<a href="%s?clear=1">%s</a>',
-                                $this->orgProfileUrl($org),
-                                $org->getOrganizationName()->getName());
-                           
-                        } else {
-                           echo $org->getOrganizationName()->getName();
-                            
-                        }
-                        
-                      */
-                      echo $org->getOrganizationName()->getName();
-                           
-                           
-                    } else if ($job->getCompany()) {
-                        echo $job->getCompany();
-                    }
-                    ?>, <?=preg_replace('~\(.*?\)$~', '', (string) $job->getLocation())?>
-                    </p>
-                   <p> 
 
-                       <?php if ($jobHasExternLink) { ?>
-                           <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
-                           border: 1px solid #243b84;border-radius: 4px;
-                           background-color: #fff;padding: 1px 6px;">Sponsored</span>
-                       <?php } ?>
-                       <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
 
-                        <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color: 
-                        #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;"
-                        
-                        class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                                <?php
+                                    if ($job->getDatePublishStart()): echo $this->dateFormat($job->getDatePublishStart(), 'short', 'none');
+                                    elseif ($job->getDateCreated()): echo $this->dateFormat($job->getDateCreated(), 'short', 'none');
+                                endif?>
 
-                   
-                   
-                        <?php
-                            if ($job->getDatePublishStart()): echo $this->dateFormat($job->getDatePublishStart(), 'short', 'none');
-                            elseif ($job->getDateCreated()): echo $this->dateFormat($job->getDateCreated(), 'short', 'none');
-                        endif?>
+                               <?php if ($jobHasExternLink) { ?>
+                                    <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
+                                       onmouseover="highlight()" onmouseout="removeHighlight()"
+                                    title="<?=strip_tags($job->getTitle())?>" rel="nofollow" target="_blank" href="<?=$href?>">
+                                        <i class="fa fa-external-link"></i>
+                                    </a>
+                               <?php } ?>
+                             </p>
 
-                       <?php if ($jobHasExternLink) { ?>
-                            <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
-                               onmouseover="highlight()" onmouseout="removeHighlight()"
-                            title="<?=strip_tags($job->getTitle())?>" rel="nofollow" target="_blank" href="<?=$href?>">
-                                <i class="fa fa-external-link"></i>
-                            </a>
-                       <?php } ?>
-                     </p>
-                   
+                        </div>
+                    </div>
                 </div>
+
+             </div>
+            <?php endforeach?>
             </div>
-        </div>
- 
-     </div>
-    <?php endforeach?>
-
-    </div>
 
         </div>
+
+        <!-- pagination -->
         <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control',
                                      [
                                          'lang' => $this->params('lang'),
                                          'route' => 'lang/jobboard'
                                      ]);
         ?>
+        <!-- end pagination -->
 
+        <!-- similar jobs -->
+        <style>
+        .similiar-jobs-landingpages {
+            
+            float:left;
+            line-height:22px;
+        }
+        
+          .similiar-jobs-landingpages h2 {
+            
+            margin-bottom:15px;
+        }
+         .similiar-jobs-landingpages ol {
+            list-style-type:square;
+            }
+              .similiar-jobs-landingpages ol li {
+           margin-bottom:5px;
+            }
+        .similiar-jobs-landingpages ul {
+            padding-left: 0;
+            }
+        .similiar-jobs-landingpages {
+                padding-left: 0;
+                list-style-type: none;
+       }
+        .similiar-jobs-landingpages ul li {
+         display: inline-block;
+          margin: 0;
+        }
+            
+            .similiar-jobs-landingpages li a {
+            margin: 0px 5px 5px 0px;
+            background-color: #dcdfe2;
+            color: #566578;
+            padding: 3px 12px;
+            line-height: 24px;
+            display: block;
+            font-size: 14px;
+            text-decoration: none;
+         }
+            
+        </style>
+        
+        
+        <div class="similiar-jobs-landingpages">
+        <?php $parts=preg_split('~<!--more-->~' , $description);?>
+            <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
+                <?= $parts[1] ?>
+                <?php if (51 == $query): echo $this->landingpages(); endif; ?>
+            <?php endif ?>
+          </div>
+        <!-- end similar jobs -->
     </div>
         <?=$hasFacets ? '</div>' : '' ?>
+<?php endif ?>
+</div>
+</div>
+
+<?php
+    $hasPartTwo = (isset($parts[2]) && "" != trim($parts[2]));
+?>
+<?php if (($searchTerm && $hasPartTwo) || ($hasRegion && $hasPartTwo)): ?>
+<div class="col-md-12 job-overview-description-container">
+    <div class="col-md-12 content">
+        <div class="content__inner">
+             <!-- title searchterm -->
+            <?php $parts=preg_split('~<!--more-->~' , $description);?>
+            <?php if ($hasPartTwo): ?>
+                <?= $parts[2] ?>
+            <?php endif ?>
+            <!-- end title searchterm -->
+            <!-- additional infos -->
+            <?php $parts=preg_split('~<!--more-->~' , $description);?>
+            <?php if (isset($parts[3]) && "" != trim($parts[3])): ?>
+                <?= $parts[3] ?>
+            <?php endif ?>
+             <!-- end additional infos -->
+        </div>
+    </div>
+</div>
 <?php endif ?>
 
 

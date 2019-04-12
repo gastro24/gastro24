@@ -70,7 +70,6 @@ return [
             Listener\DeleteTemplateImage::class => Listener\DeleteTemplateImageFactory::class,
             Listener\AutoApproveChangedJobs::class => Listener\AutoApproveChangedJobsFactory::class,
             'Gastro24\Validator\IframeEmbeddableUri' => InvokableFactory::class,
-            'Gastro24\Options\CompanyTemplatesMap' => InvokableFactory::class,
         ],
         'aliases' => [
             'Orders\Form\Listener\InjectInvoiceAddressInJobContainer' => Listener\VoidListener::class,

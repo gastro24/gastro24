@@ -17,9 +17,8 @@
                 <nav>
                     <ul class="list-unstyled">
                         <li><a title="" href="/de/wp/page/ueber-uns">Über uns</a></li>
-                        <li><a title="" href="/de/wp/page/jobs">Arbeiten bei uns</a></li>
-                        <li><a title="Jobs" href="/de/jobs?clear=1">Alle Jobs</a></li>
-                        
+                         <li><a title="Impressum" href="/de/wp/page/impressum">Impressum</a></li>
+                        <li><a title="AGB" href="/de/wp/page/agb">AGB</a></li>
                     </ul>
                 </nav>
             </div>
@@ -37,11 +36,13 @@
                 <h5>Für Arbeitgeber</h5>
                 <nav>
                     <ul class="list-unstyled">
+                        
+                         <li><a title="Kontakt" href="/de/wp/page/contact">Kontakt</a></li>
                          <li><a title="Häufige Fragen & Antworten" href="/de/wp/page/faq">Hilfe</a></li>
                         <?php if (!$this->auth()->isLoggedIn()):?>
                         <li><a title="Login für Arbeitgeber" href="<?=$this->url('lang/auth', [], true)?>?ref=<?= urlencode($this->url('lang/dashboard', [], true)) ?>">Einloggen</a></li>
                         <?php endif ?>
-                        <?php if (!$this->auth()->isLoggedIn()):?> <li><a title="Preise & Leistungen" href="/de/wp/page/stellenanzeigen-schalten">Leistungen & Preise</a></li>   <?php endif ?>
+                        <?php if (!$this->auth()->isLoggedIn()):?> <li><a title="Inserieren" href="/de/wp/page/stellenanzeigen-schalten">Inserieren</a></li>   <?php endif ?>
                     </ul>
                 </nav>
             </div>
@@ -53,13 +54,7 @@
         <hr style="border-top: 1px solid #b6bed6">
         <div class="row">
             <div class="col-md-12 text-center">
-                <nav>
-                    <ul class="list-inline">
-                        <li><a title="Impressum" href="/de/wp/page/impressum">Impressum</a></li>
-                        <li><a title="AGB" href="/de/wp/page/agb">AGB</a></li>
-                    </ul>
-                </nav>
-                <p>Copyright &copy; Gastrojob24 2008 - <?=date('Y')?></p>
+               <p>Copyright &copy; Gastrojob24 2008 - <?=date('Y')?></p>
             </div>
         </div>
 </footer>

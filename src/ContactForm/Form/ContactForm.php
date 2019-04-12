@@ -58,7 +58,7 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
             'type' => 'email',
             'name' => 'email',
             'options' => [
-                'label' => 'E-Mail',
+                'label' => 'E-Mail Adresse',
                 'description' => 'Geben Sie Ihre E-Mail-Addresse ein.',
             ],
         ]);
@@ -67,8 +67,37 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
             'type' => 'text',
             'name' => 'website',
             'options' => [
-                'label' => 'Name',
+                'label' => 'Wo befinden sich die Jobs?',
                 'description' => 'Geben Sie die Website ein.',
+            ],
+        ]);
+        
+           $this->add([
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'crawler',
+            'options' => [
+                'label' => 'Job-Crawler',
+                'value_options' => [
+                        ''       => '',
+                        'feld1'   => 'Job-Crawler «Basic»',
+                        'feld2' => 'Job-Crawler «Full»',
+                ],
+                'description' => 'Bitte wählen Sie einen Job-Crawler aus',
+            ],
+        ]);
+        
+            $this->add([
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'laufzeit',
+            'options' => [
+                'label' => 'Laufzeit',
+                'value_options' => [
+                        'feld1'   => '3 Monate',
+                        'feld2' => '6 Monate',
+                        'feld3' => '12 Monate',
+        
+                ],
+                'description' => 'Bitte wählen Sie eine Laufzeit aus',
             ],
         ]);
 
