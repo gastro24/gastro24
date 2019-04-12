@@ -36,7 +36,7 @@ class JobboardSearch extends BaseJobboardSearchForm
                 'attributes' => [
                     'placeholder' => $placeholder,
                     'class' => 'form-control',
-                    'data-url' => $this->solrConnectionString . '/suggest?suggest=true&suggest.build=true&wt=json&suggest.q='
+                    //'data-url' => $this->solrConnectionString . '/suggest?suggest=true&suggest.build=true&wt=json&suggest.q='
                 ],
             ],
             [
