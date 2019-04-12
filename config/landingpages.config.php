@@ -36,14 +36,14 @@ $options = [
     'hilfskoch' => [
           'id' => 169,
 		  'query' => [ 'q' => 'Hilfskoch'],
-          'text' => 'Hilfskoch'
+          'text' => 'Hilfskoch Jobs'
      ],
     'alleinkoch' => [
           'id' => 171,
 		  'query' => [ 'q' => 'Alleinkoch'],
 		   'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Alleinkoch'
+          'text' => 'Alleinkoch Jobs'
      ],
     
     'baecker' => [
@@ -51,152 +51,152 @@ $options = [
 		  'query' => [ 'q' => 'Bäcker'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Bäcker'
+          'text' => 'Bäcker Jobs'
      ],
       'chef-de-rang' => [
           'id' => 193,
 		  'query' => [ 'q' => '"Chef de Rang"'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Chef de Rang'
+          'text' => 'Chef de Rang Jobs'
      ],
      'diaetkoch' => [
           'id' => 159,
 		  'query' => [ 'q' => 'Diätkoch'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Diätkoch'
+          'text' => 'Diätkoch Jobs'
      ],
      'entremetier' => [
           'id' => 936,
 		  'query' => [ 'q' => 'Entremetier'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Entremetier'
+          'text' => 'Entremetier Jobs'
      ],
       'filialleiter' => [
           'id' => 235,
 		  'query' => [ 'q' => 'Filialleiter'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Filialleiter'
+          'text' => 'Filialleiter Jobs'
      ],
       'garde-manger' => [
           'id' => 213,
 		  'query' => [ 'q' => 'Garde Manger'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Garde Manger'
+          'text' => 'Garde Manger Jobs'
      ],
       'hotelfachmann' => [
           'id' => 205,
 		  'query' => [ 'q' => 'Hotelfachmann "Hotelfachfrau"'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Hotelfachmann'
+          'text' => 'Hotelfachmann Jobs'
      ],
      'jungkoch' => [
           'id' => 165,
 		  'query' => [ 'q' => 'Jungkoch'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Jungkoch'
+          'text' => 'Jungkoch Jobs'
      ],
      'koch' => [
           'id' => 167,
 		  'query' => [ 'q' => 'Koch'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Koch'
+          'text' => 'Koch Jobs'
      ],
      'lebesmitteltechnologe' => [
           'id' => 183,
 		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Lebensmitteltechnologe'
+          'text' => 'Lebensmitteltechnologe Jobs'
      ],	
       'metzger' => [
           'id' => 179,
 		  'query' => [ 'q' => 'Metzger'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Metzger'
+          'text' => 'Metzger Jobs'
      ],	
      'office' => [
           'id' => 225,
 		  'query' => [ 'q' => 'Office'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Office Mitarbeiter'
+          'text' => 'Office Mitarbeiter Jobs'
      ],
      'patissier' => [
           'id' => 217,
 		  'query' => [ 'q' => 'Patissier'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Patissier'
+          'text' => 'Patissier Jobs'
      ],
      'restauration' => [
           'id' => 189,
 		  'query' => [ 'q' => 'Restaurationsfachmann "Restaurationsfachfrau"'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Restaurationsfachmann'
+          'text' => 'Restaurationsfachmann Jobs'
      ], 
       'servicemitarbeiterin' => [
           'id' => 191,
 		  'query' => [ 'q' => 'Servicemitarbeiterin'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Servicemitarbeiterin'
+          'text' => 'Servicemitarbeiterin Jobs'
      ],
       'zimmermaedchen' => [
           'id' => 215,
 		  'query' => [ 'q' => 'Zimmermädchen'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Zimmermädchen'
+          'text' => 'Zimmermädchen Jobs'
      ],
      
      'kuechenchef' => [
           'id' => 161,
 		  'query' => [ 'q' => 'Küchenchef'],
           'panel' => '',
-          'text' => 'Küchenchef'
+          'text' => 'Küchenchef Jobs'
      ],
      
      'sous-chef' => [
           'id' => 163,
 		  'query' => [ 'q' => 'Sous Chef'],
           'panel' => '',
-          'text' => 'Sous Chef'
+          'text' => 'Sous Chef Jobs'
      ],
      
        'systemgastronomiefachmann' => [
           'id' => 1045,
 		  'query' => [ 'q' => 'Systemgastronomiefachmann'],
           'panel' => '',
-          'text' => 'Systemgastronomie'
+          'text' => 'Systemgastronomie Jobs'
      ],
        'chef-de-partie' => [
           'id' => 1052,
 		  'query' => [ 'q' => 'Chef de Partie'],
           'panel' => '',
-          'text' => 'Chef de Partie'
+          'text' => 'Chef de Partie Jobs'
      ],
       'garde-manger' => [
           'id' => 1050,
 		  'query' => [ 'q' => 'Garde Manger'],
           'panel' => '',
-          'text' => 'Garde Manger'
+          'text' => 'Garde Manger Jobs'
      ],
      
       'tournant' => [
           'id' => 1048,
 		  'query' => [ 'q' => 'Tournant'],
           'panel' => '',
-          'text' => 'Tournant'
+          'text' => 'Tournant Jobs'
      ],
      
      
