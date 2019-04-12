@@ -5,6 +5,8 @@ namespace Gastro24\Form;
 use Core\Form\CustomizableFieldsetTrait;
 use Jobs\Entity\Location;
 use \Jobs\Form\JobboardSearch as BaseJobboardSearchForm;
+use Zend\Stdlib\PriorityList;
+
 /**
  * JobboardSearch.php
  *
@@ -12,13 +14,20 @@ use \Jobs\Form\JobboardSearch as BaseJobboardSearchForm;
  */
 class JobboardSearch extends BaseJobboardSearchForm
 {
+    /** @var string */
+    private $solrConnectionString;
+
+    public function __construct($solrConnectionString, $name = null, $options = [])
+    {
+        parent::__construct($name, $options);
+        $this->solrConnectionString = $solrConnectionString;
+    }
+
     public function init()
     {
         $this->setAttribute('id', 'jobs-list-filter');
         $this->setOption('text_span', 5);
-
         $this->setName($this->getOption('name') ?: 'searchform');
-
 
         $name = $this->getOption('text_name') ?: 'q';
         $label = $this->getOption('text_label') ?: /*@translate*/ 'Search';
@@ -35,7 +44,7 @@ class JobboardSearch extends BaseJobboardSearchForm
                 'attributes' => [
                     'placeholder' => $placeholder,
                     'class' => 'form-control',
-                    'data-url' => 'http://localhost:8983/solr/YawikJobs/suggest?suggest=true&suggest.build=true&wt=json&suggest.q='
+                    'data-url' => $this->solrConnectionString . '/suggest?suggest=true&suggest.build=true&wt=json&suggest.q='
                 ],
             ],
             [

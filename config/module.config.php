@@ -85,7 +85,6 @@ return [
             Controller\WordpressPageController::class => Factory\Controller\WordpressPageControllerFactory::class,
             Controller\RedirectExternalJobs::class => Controller\RedirectExternalJobsFactory::class,
             Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
-            Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
         ],
     ],
@@ -267,7 +266,7 @@ return [
         'invokables' => [
             'Jobs/Description' => 'Gastro24\Form\JobsDescription',
             'Jobs/PreviewFieldset' => Form\JobPreviewFieldsetDelegator::class,
-            'Jobs/JobboardSearch' => \Gastro24\Form\JobboardSearch::class,
+//            'Jobs/JobboardSearch' => \Gastro24\Form\JobboardSearch::class,
         ],
         'factories' => [
             Form\CreateSingleJobForm::class => InvokableFactory::class,
@@ -278,7 +277,7 @@ return [
             Form\JobDetailsForm::class => InvokableFactory::class,
             'Gastro24/JobPdfUpload' => Form\JobPdfFactory::class,
             'Auth\Form\Register' => \Gastro24\Factory\Form\RegisterFactory::class,
-            'Jobs/JobboardSearch' => 'Jobs\Factory\Form\JobboardSearchFactory',
+            'Jobs/JobboardSearch' => \Gastro24\Factory\Form\JobboardSearchFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
@@ -348,16 +347,6 @@ return [
                                         'action' => 'index',
                                     ],
                                     'may_terminate' => true,
-                                ],
-                            ],
-                            'suggest-job' => [
-                                'type' => 'Literal',
-                                'options' => [
-                                    'route' => '/suggest',
-                                    'defaults' => [
-                                        'controller' => Controller\SuggestJobs::class,
-                                        'action' => 'index'
-                                    ]
                                 ],
                             ]
                         ],
