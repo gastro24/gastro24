@@ -55,7 +55,7 @@ class SuggestJobs extends AbstractActionController
         $results = [];
         foreach ($data->suggest->infixSuggester as $term => $suggest) {
             foreach ($suggest->suggestions as $suggestionObject) {
-                $results[] = [
+                $results[$suggestionObject->term] = [
                     'value' => $suggestionObject->term,
                     'id' => $suggestionObject->term,
                     'label' => $suggestionObject->term
