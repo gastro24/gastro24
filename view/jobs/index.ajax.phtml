@@ -184,15 +184,18 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                     <div class="content-area">
                         <div class="top-cnt">
 
-                            <h2 style="margin-top:0px;margin-bottom:10px">
-                                <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
-                                    <?php if($jobHasExternLink) { ?>
-                                        rel="nofollow" target="_blank"
-                                    <?php } ?>
-                                   href="<?=$href?>">
-                                    <?=strip_tags($job->getTitle())?>
-                                </a>
-                            </h2>
+                            <h4>
+                                <?php if($jobHasExternLink) { ?>
+                                    <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="nofollow" target="_blank"
+                                       href="<?=$href?>"><?=strip_tags($job->getTitle())?>
+                                    </a>
+                                <?php }
+                                else { ?>
+                                    <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
+                                       href="<?=$href?>" onclick="stopEvent(e);location.href='http://www.google.com/';parentNode.submit();"><?=strip_tags($job->getTitle())?>
+                                    </a>
+                                <?php } ?>
+                            </h4>
 
                             <p>
                             <?php

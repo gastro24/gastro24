@@ -121,6 +121,64 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
      border-radius:0
 }
 
+/* BEGIN JOB DETAIL PAGE */
+.job-navigation {
+    margin-bottom: 1rem;
+    a {
+        position: relative;
+
+        i {
+            font-size: 1rem;
+            left: 1rem;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+
+            &.right-align {
+                left: unset;
+                right: 1rem;
+            }
+        }
+    }
+
+    span {
+        display: flex;
+        flex-direction: row;
+
+        &.reverse {
+            flex-direction: row-reverse;
+        }
+
+        a {
+            width: 50%;
+
+            &:first-child {
+                margin-right: .5rem;
+            }
+        }
+    }
+}
+@media(max-width: @screen-sm) {
+    .job-navigation {
+        span {
+            flex-direction: column;
+
+            a {
+                margin: .5rem 0;
+                width: 100%;
+
+                &:first-child {
+                    margin-bottom: 0;
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+/* END JOB DETAIL PAGE */
+
 #jobs-list-filter-wrapper {
     padding: 0;
 

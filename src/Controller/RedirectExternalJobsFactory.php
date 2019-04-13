@@ -25,10 +25,12 @@ class RedirectExternalJobsFactory implements FactoryInterface
     
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
+        $manager = $container->get('Solr/Manager');
+        $solrClient = $manager->getClient($manager->getOptions()->getJobsPath());
         $validators = $container->get('ValidatorManager');
         $validator  = $validators->get(\Gastro24\Validator\IframeEmbeddableUri::class);
         $templatesMap = $container->get(CompanyTemplatesMap::class);
-        $service    = new RedirectExternalJobs($validator, $templatesMap);
+        $service    = new RedirectExternalJobs($validator, $templatesMap, $solrClient);
         
         return $service;    
     }
