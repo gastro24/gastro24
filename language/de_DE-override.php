@@ -24,5 +24,8 @@ return [
     'This profile is disabled.' => 'Dieses Firmen-Profil ist deaktiviert.',
     '%1$s - %2$s of %3$s' => '%1$s - %2$s von %3$s',
     'Job, Keyword or Location' => 'Beruf, Begriff oder Arbeitsort',
+    'Back to search' => 'Zurück zur Suche',
+    'Previous Job' => 'Voriger Job',
+    'Next Job' => 'Nächster Job',
 
 ];

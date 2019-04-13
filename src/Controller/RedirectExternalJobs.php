@@ -21,7 +21,7 @@ use Zend\View\Model\ViewModel;
  * ${CARET}
  * 
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
- * @todo write test 
+ * @todo write test
  */
 class RedirectExternalJobs extends AbstractActionController
 {
@@ -40,14 +40,23 @@ class RedirectExternalJobs extends AbstractActionController
      */
     private $templatesMap;
 
-    public function __construct(\Gastro24\Validator\IframeEmbeddableUri $validator, CompanyTemplatesMap $templatesMap)
+    private $solrClient;
+
+    public function __construct(
+        \Gastro24\Validator\IframeEmbeddableUri $validator,
+        CompanyTemplatesMap $templatesMap,
+        $solrClient
+    )
     {
         $this->validator = $validator;
         $this->templatesMap = $templatesMap;
+        $this->solrClient = $solrClient;
     }
 
     public function indexAction()
     {
+        /* @var \Zend\Http\Request $request */
+        $request = $this->getRequest();
         /* @var Response $response */
         $response = $this->getResponse();
 
@@ -63,11 +72,68 @@ class RedirectExternalJobs extends AbstractActionController
             ];
         }
 
+        // get prev and next job
+        $jobsArray = [];
+        $currentJobMark = false; //benchmark if looped over current job
+        $page = 1;
+        $result = $this->pagination([
+            'params' => ['Jobs_Board', [
+                'q',
+                'l',
+                'd' => 10]
+            ],
+            'paginator' => [
+                'as' => 'jobs',
+                'Jobs/Board',
+                'params' => [
+                    'count' => 4,
+                    'page' => $page,
+                ]
+            ]
+        ]);
+        $paginator = $result['jobs'];
+        $counter = 0;
+        $max = $paginator->getTotalItemCount();
+        $prevJob = null;
+        $nextJob = null;
+
+        while ($counter < $max) {
+            foreach ($paginator as $loopJob) {
+                // add job - only internal
+                $loopJobTemplate = $this->templatesMap->getTemplate($loopJob->getOrganization());
+                $isIntern = (!$loopJob->getLink() || $loopJobTemplate);
+                $isEmbeddable = $this->validator->isValid($loopJob->getLink());
+                $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+                $counter++;
+
+                if (!$jobHasExternLink) {
+                    $jobsArray[] = $loopJob;
+                }
+                else {
+                    continue;
+                }
+
+                if ($currentJobMark) {
+                    $nextJob = $loopJob;
+                    // quit loop
+                    $counter = $max;
+                    break;
+                }
+
+                if ($loopJob->getId() == $job->getId()) {
+                    $currentJobMark = true;
+                    $prevJob = (count($jobsArray) > 1) ? $jobsArray[count($jobsArray) - 2] : null;
+                }
+            }
+
+            $page++;
+            $paginator->setCurrentPageNumber($page);
+        }
+
         $appModel = $this->getEvent()->getViewModel();
         $model = new ViewModel(['job' => $job]);
         $jobTemplate = $this->templatesMap->getTemplate($job->getOrganization());
         if (!$job->getLink() || $jobTemplate) {
-
             $appTemplate = $appModel->getTemplate();
             $internModel = $this->forward()->dispatch('Jobs/Template', ['internal' => true, 'id' => $job->getId(), 'action' => 'view']);
             $internModel->setTemplate($jobTemplate ?: 'gastro24/jobs/view-intern');
@@ -90,6 +156,10 @@ class RedirectExternalJobs extends AbstractActionController
             ]);
 
         }
+        $model->setVariables([
+            'prevJob' => $prevJob,
+            'nextJob' => $nextJob,
+        ]);
         $model->setTemplate('gastro24/jobs/view-extern');
 
         if ($this->params()->fromRoute('isPreview')) {
