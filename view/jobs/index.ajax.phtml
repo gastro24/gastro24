@@ -184,7 +184,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                     <div class="content-area">
                         <div class="top-cnt">
 
-                            <h4>
+                            <h2 style="margin-top: 0;margin-bottom: 10px; font-size: 18px;">
                                 <?php if($jobHasExternLink) { ?>
                                     <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="nofollow" target="_blank"
                                        href="<?=$href?>"><?=strip_tags($job->getTitle())?>
@@ -195,7 +195,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                                        href="<?=$href?>" onclick="stopEvent(e);location.href='http://www.google.com/';parentNode.submit();"><?=strip_tags($job->getTitle())?>
                                     </a>
                                 <?php } ?>
-                            </h4>
+                            </h2>
 
                             <p>
                             <?php
@@ -225,9 +225,9 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                            <p>
 
                                <?php if ($jobHasExternLink) { ?>
-                                   <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                 <!--  <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
                                    border: 1px solid #243b84;border-radius: 4px;
-                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
+                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>-->
                                <?php } ?>
                                <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
 
