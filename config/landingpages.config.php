@@ -109,7 +109,7 @@ $options = [
           'panel' => '',
           'text' => 'Koch Jobs'
      ],
-     'lebesmitteltechnologe' => [
+     'lebensmitteltechnologe' => [
           'id' => 183,
 		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
           'tab' => 'Jobs von A - Z',
