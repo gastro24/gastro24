@@ -38,6 +38,11 @@ $description = $wordpress->call('value', ['content.rendered'], '');
     line-height: 24px;
      
  } 
+ 
+ .active-searchterm:fist-letter {
+     
+     text-transform:capitalize
+ }
 
 </style>
 <script>
@@ -74,7 +79,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                       <span itemprop="name"> <?= $searchTerm ?></span></a>
 
                          <?php } else { ?>
-                           <span style="text-transform:capitalize" itemprop="name"> <?= $searchTerm ?></span>
+                           <span class="active-searchterm" itemprop="name"> <?= $searchTerm ?></span>
 
                   <?php }; ?>
 
