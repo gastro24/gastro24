@@ -107,10 +107,10 @@ $lang = isset($this->lang)?$this->lang:$this->params('lang'); ?>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><?=$this->translate('Select the user to switch to')?>:
+                <strong class="modal-title"><?=$this->translate('Select the user to switch to')?>:
                 <button type="button" class="close pull-right" data-dismiss="modal">
                     <span>&times;</span>
-                </button></h5>
+                </button></strong>
             </div>
             <div class="modal-body">
                 <form id="su-form" action="<?=$this->url('lang/user-switch', [], [], true)?>" method="get" class="form-horizontal"><select id="su-user-list" name="id" class="form-control"></select></form>
