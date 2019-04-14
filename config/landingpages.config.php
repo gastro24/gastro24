@@ -185,12 +185,7 @@ $options = [
           'panel' => '',
           'text' => 'Chef de Partie Jobs'
      ],
-      'garde-manger' => [
-          'id' => 1050,
-		  'query' => [ 'q' => 'Garde Manger'],
-          'panel' => '',
-          'text' => 'Garde Manger Jobs'
-     ],
+    
      
       'tournant' => [
           'id' => 1048,
@@ -198,6 +193,94 @@ $options = [
           'panel' => '',
           'text' => 'Tournant Jobs'
      ],
+     
+      'kellner' => [
+          'id' => 1096,
+		  'query' => [ 'q' => 'Kellner'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Kellner Jobs'
+     ],
+	 'pizzaiolo' => [
+          'id' => 1098,
+		  'query' => [ 'q' => 'Pizzaiolo'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Pizzaiolo Jobs'
+     ],
+	 'rezeptionistin' => [
+          'id' => 219,
+		  'query' => [ 'q' => 'Rezeptionistin'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Rezeptionistin Jobs'
+     ],	 
+	  'konditor-confiseur' => [
+          'id' => 175,
+		  'query' => [ 'q' => 'Konditor OR Confiseur'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Konditor Confiseur Jobs'
+     ],
+	   'restaurantmanager' => [
+          'id' => 199,
+		  'query' => [ 'q' => 'Restaurant Manager'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Restaurant Manager Jobs'
+     ],
+	 'ernaehrungsberater' => [
+          'id' => 181,
+		  'query' => [ 'q' => 'Ernährungsberater'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Ernährungsberater Jobs'
+     ],	
+	 'barkeeper' => [
+          'id' => 195,
+		  'query' => [ 'q' => 'Barkeeper'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Barkeeper Jobs'
+     ],
+	  'barista' => [
+          'id' => 197,
+		  'query' => [ 'q' => 'Barista'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Barista Jobs'
+     ], 
+	  'sommelier' => [
+          'id' => 201,
+		  'query' => [ 'q' => 'Sommelier'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Sommelier Jobs'
+     ],
+	 
+	  'animation' => [
+          'id' => 231,
+		  'query' => [ 'q' => 'Animateur'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Animateur Jobs'
+     ],
+	
+	  'teilzeitverkaeuferin' => [
+          'id' => 243,
+		  'query' => [ 'q' => 'Teilzeitverkäuferin'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Teilzeitverkäuferin Jobs'
+     ],
+	 'kosmetikerin' => [
+          'id' => 209,
+		  'query' => [ 'q' => 'Kosmetikerin'],
+          'tab' => '',
+          'panel' => '',
+          'text' => 'Kosmetikerin Jobs'
+     ],
+     
      
      
 	 'region-appenzell-ausserrhoden' => [
