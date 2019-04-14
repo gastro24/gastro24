@@ -42,7 +42,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
  .active-searchterm:first-letter {
      
      text-transform:capitalize;
-     display:inline-block;
+     
  }
 
 </style>
@@ -80,7 +80,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
                       <span itemprop="name"> <?= $searchTerm ?></span></a>
 
                          <?php } else { ?>
-                           <span class="active-searchterm" itemprop="name"> <?= $searchTerm ?></span>
+                           <span style="display:inline-block" class="active-searchterm" itemprop="name"> <?= $searchTerm ?></span>
 
                   <?php }; ?>
 
