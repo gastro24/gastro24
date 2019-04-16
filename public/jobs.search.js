@@ -53,7 +53,7 @@
                 var searchTerm = $("#jobs-list-filter input[name=q]").val();
                 //var URL = $("#jobs-list-filter input[name=q]").attr('data-url');
                 $.ajax({
-                    url : 'job/suggest?q=' + searchTerm,
+                    url : '/job/suggest?q=' + searchTerm,
                     success : function(data) {
                         // var dataObject = JSON.parse(data);
                         // var parentNodeInfix = dataObject.suggest.infixSuggester;

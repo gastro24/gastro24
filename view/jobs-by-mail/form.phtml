@@ -11,8 +11,8 @@ $modalId = 'job-by-mail-subscribe-modal';
 <p>
     <button class="btn btn-info" data-title="<?=$this->translate('Jobs By Mail')?>" data-toggle="modal" data-target="#<?=$modalId?>" title="<?=$this->translate('Jobs By Mail')?>">
         <i class="yk-icon yk-icon-envelope"></i>
-  <!--   <?php echo $this->translate("Jobs By Mail");?>-->
-    Jobsuche abonnieren
+
+          Diese Suche mit Job-Mail abonnieren
       
     </button>
 </p>
@@ -22,7 +22,7 @@ $modalId = 'job-by-mail-subscribe-modal';
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="job-by-mail-subscribe-label"><?=$this->translate('Get the right Job via e-mail')?></h3>
+                <strong id="job-by-mail-subscribe-label"><?=$this->translate('Get the right Job via e-mail')?></strong>
             </div>
             <?=$this->form()->openTag($form)?>
                 <div class="modal-body">
