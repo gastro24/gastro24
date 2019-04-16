@@ -21,8 +21,11 @@ $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, '
 $this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
 $description = $wordpress->call('value', ['content.rendered'], '');
 
-$container = new \Zend\Session\Container('gastro24_jobboardcontainer');
-$container->searchQuery = $queryGet['q'];
+if ($this->params()->fromRoute('isLandingPage')) {
+    $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
+    $container->landingPageSearchQuery = $queryGet['q'];
+}
+
 
 ?>
 <style>
