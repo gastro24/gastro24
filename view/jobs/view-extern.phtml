@@ -19,7 +19,7 @@ elseif(!$this->isIntern && !$this->isEmbeddable):
 endif;
 
 $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
-$lastSearchQuery = $container->searchQuery;
+$lastSearchQuery = $container->landingPageSearchQuery;
 
 if (!$lastSearchQuery) {
     $lastSearchQueryUrl = '/de/jobs?clear=1';
