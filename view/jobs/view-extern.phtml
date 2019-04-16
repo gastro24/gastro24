@@ -23,6 +23,7 @@ $lastSearchQuery = $container->searchQuery;
 
 if (!$lastSearchQuery) {
     $lastSearchQueryUrl = '/de/jobs?clear=1';
+    $backTitle = $this->translate('Back to search');
 }
 else {
     // TODO: move to helper or plugin
@@ -30,10 +31,12 @@ else {
     $search = array("Ä", "Ö", "Ü", "ä", "ö", "ü", "ß", "´");
     $replace = array("Ae", "Oe", "Ue", "ae", "oe", "ue", "ss", "");
     $lastSearchQuery = trim($lastSearchQuery, '"');
+    $originalSearchQuery = $lastSearchQuery;
     $lastSearchQuery = str_replace($search, $replace, $lastSearchQuery);
     $lastSearchQuery = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '-', $lastSearchQuery));
 
     $lastSearchQueryUrl = $this->url('lang/landingPage', ['q' => $lastSearchQuery, 'format' => 'html' ], true);
+    $backTitle = $this->translate($originalSearchQuery . ' Jobs');
 }
  
 //$this->headTitle($this->job->getTitle());
@@ -65,18 +68,17 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
 $orgName = $this->jobOrganizationName($this->job);
 ?>
 <div class="row job-navigation">
-    <div class="col-md-2">
-        <a title="Back to search"
+    <div class="col-md-3">
+        <a title="<?= $backTitle ?>"
            href="<?= $lastSearchQueryUrl ?>"
            class="btn btn-default btn-block company-jobs-btn">
-            <i class="fa fa-chevron-left"></i><?= $this->translate('Back to search') ?>
+            <i class="fa fa-chevron-left"></i> <?= $backTitle ?>
         </a>
     </div>
-    <div class="col-md-4 col-md-offset-3">
+    <div class="col-md-4 col-md-offset-2">
         <span <?php if(!$this->prevJob || !$this->nextJob) echo 'class="reverse"' ?>>
             <?php if($this->prevJob) : ?>
-            <?php $prevJobCity = explode(', ', $this->prevJob->getLocation())[1]; ?>
-            <a title="<?= $this->prevJob->getTitle() . ',' . $prevJobCity ?>"
+            <a title="<?= $this->prevJob->getTitle() ?>"
                href="<?= $this->jobUrl($this->prevJob, ['linkOnly' => true ]) ?>"
                class="btn btn-default">
                 <i class="fa fa-chevron-left"></i><?= $this->translate('Previous Job') ?>
@@ -84,8 +86,7 @@ $orgName = $this->jobOrganizationName($this->job);
             <?php endif; ?>
 
             <?php if($this->nextJob) : ?>
-            <?php $nextJobCity = explode(', ', $this->nextJob->getLocation())[1]; ?>
-            <a title="<?= $this->nextJob->getTitle() . ',' . $nextJobCity ?>"
+            <a title="<?= $this->nextJob->getTitle() ?>"
                href="<?= $this->jobUrl($this->nextJob, ['linkOnly' => true ]) ?>"
                class="btn btn-default">
                 <?= $this->translate('Next Job') ?><i class="fa fa-chevron-right right-align"></i>
