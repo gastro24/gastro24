@@ -83,6 +83,10 @@ $activeFacets = $facets->getActiveValues();
                 <div class="top-cnt">
                
 
+                    <?php
+                        $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
+                        $container->fromCompanyProfile = true;
+                    ?>
         
                     <h4><?=$this->jobUrl($job, [ 'target' => '_new' ]) ?> </h4>
                   <!--  <p>
