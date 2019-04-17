@@ -24,6 +24,7 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $container->landingPageSearchQuery = ($this->params()->fromRoute('isLandingPage')) ? $queryGet['q'] : null;
 $container->fromCompanyProfile = false;
+$container->searchTerm = $searchTerm;
 
 
 ?>
