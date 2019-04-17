@@ -22,7 +22,7 @@ $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $lastSearchQuery = $container->landingPageSearchQuery;
 
 if (!$lastSearchQuery) {
-    $lastSearchQueryUrl = '/de/jobs?clear=1';
+    $lastSearchQueryUrl = ($container->fromCompanyProfile) ? '/de/jobs?clear=1' : $this->url('lang/jobboard', [], true);
     $backTitle = $this->translate('Back to search');
 }
 else {
