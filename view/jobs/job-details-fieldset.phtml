@@ -27,38 +27,41 @@ $modeLabels = $mode->getOption('labels');
     <?php else: ?>
     <div class="col-md-12">
         <div class="panel panel-default">
-            
-           
-                
+
              <?php $template = $fieldset->getObject()->getAttachedEntity('gastro24-template');
                 if ($template && ($image = $template->getImage())):?>
                  
                     <img style="width:100%" src="<?=$this->basePath($image->getUri());?>">
                 <?php endif ?>
            
-
-             <div class="panel-heading">
-                <h3 class="panel-title">Stellenbeschreibung</h3>
+            <div class="panel-heading">
+                <h3 class="panel-title">Einleitung zu Ihrer Stellenanzeige</h3>
             </div>
-             <div class="panel-body">
-                <?=$fieldset->get('position')->getValue()?>
-               
+            <div class="panel-body">
+                <?=$fieldset->get('introduction')->getValue()?>
             </div>
-            
-            
-            
         </div>
     </div>
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Anforderungen</h3>
-                </div>
-                <div class="panel-body">
-                    <?=$fieldset->get('requirements')->getValue()?>
-                </div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tätigkeit</h3>
+            </div>
+            <div class="panel-body">
+                <?=$fieldset->get('position')->getValue()?>
             </div>
         </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Anforderungen</h3>
+            </div>
+            <div class="panel-body">
+                <?=$fieldset->get('requirements')->getValue()?>
+            </div>
+        </div>
+    </div>
 
     <?php endif ?>
 </div>
@@ -98,29 +101,34 @@ $modeLabels = $mode->getOption('labels');
     echo $input;
 
 ?>
+
+        <!-- Logo and banner fields -->
+        <?=$this->formRow($fieldset->get('logo'));?>
+        <small>Hier kommt der Info Text</small>
+        <?php $input = $this->formRow($fieldset->get('image'));
+        if ($value = $fieldset->get('image')->getValue()) {
+            $input = str_replace(
+                '<div class="col-md-9" id="details-image-span">',
+                '<div class="col-md-9" id="details-image-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
+                    <a href="/' . $value . '?do=delete" class="file-delete btn btn-default btn-xs">
+            <span class="yk-icon yk-icon-minus"></span>
+        </a>
+        <input type="hidden" value="' . basename(dirname($value)) . '" name="details[image_id]"></div>',
+                $input
+            );
+            $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
+
+        }
+        echo $input;
+        ?>
+
+
         <div class="csj-html-wrapper">
-            <?=$this->formRow($fieldset->get('logo'));
-            ?>
-<?=$this->formRow($fieldset->get('description'))?>
-
-            <?php $input = $this->formRow($fieldset->get('image'));
-            if ($value = $fieldset->get('image')->getValue()) {
-                $input = str_replace(
-                    '<div class="col-md-9" id="details-image-span">',
-                    '<div class="col-md-9" id="details-image-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
-                <a href="/' . $value . '?do=delete" class="file-delete btn btn-default btn-xs">
-        <span class="yk-icon yk-icon-minus"></span>
-    </a>
-    <input type="hidden" value="' . basename(dirname($value)) . '" name="details[image_id]"></div>',
-                    $input
-                );
-                $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
-
-            }
-            echo $input;?>
-
-        <?=$this->formRow($fieldset->get('position')); ?>
+            <?=$this->formRow($fieldset->get('introduction')); ?>
+            <?=$this->formRow($fieldset->get('position')); ?>
             <?=$this->formRow($fieldset->get('requirements')); ?>
+            <?=$this->formRow($fieldset->get('benefits')); ?>
+            <?=$this->formRow($fieldset->get('description'))?>
         </div>
     </div>
 </fieldset>
