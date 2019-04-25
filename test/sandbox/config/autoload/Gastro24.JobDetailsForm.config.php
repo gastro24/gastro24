@@ -20,17 +20,22 @@ $labels = [
     /* Datei-Auswahlfeld für das Unternehmenslogo (nur bei Einzelinserat) */
     'logo' => 'Unternehmenslogo (max. 350x150)',
 
+    /* Text-Area für die Einleitung */
+    'introduction' => 'Einleitung zu Ihrer Stellenanzeige',
+
     /* Text-Area für die Unternehmensbeschreibung (nur bei Einzelinserat) */
     'description' => 'Unternehmensbeschreibung',
 
     /* Datei-Auswahlfeld für das Bannerbild */
-    'image' => 'Bannerbild (max. 600x400)',
+    'image' => 'Bannerbild (ideal 1200px * 300px)',
 
     /* Text-Area für die Stellenbeschreibung */
     'position' => 'Stellenbeschreibung',
 
     /* Text-Area für die Anforderungen */
     'requirements' => 'Anforderungen',
+
+    'benefits' => 'Wir bieten (zusätzliche Information)',
 ];
 
 /*
