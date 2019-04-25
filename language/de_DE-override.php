@@ -27,5 +27,7 @@ return [
     'Back to search' => 'Zurück zur Suche',
     'Previous Job' => 'Voriger Job',
     'Next Job' => 'Nächster Job',
+    'Your company logo will be used as default.' => 'Als Standard wird Ihr Unternehmenslogo genutzt.',
+    'Your company description will be used as default.' => 'Als Standard wird Ihre Unternehmensbeschreibung genutzt.',
 
 ];

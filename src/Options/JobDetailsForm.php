@@ -34,7 +34,7 @@ class JobDetailsForm extends AbstractOptions
         'position' => 'Tätigkeit',
         'requirements' => 'Anforderungen',
         'benefits' => 'Wir bieten (zusätzliche Information)',
-        'description' => 'Unternehmensbeschreibung',
+        'description' => 'Beschreibung des Unternehmens',
     ];
 
     private $imageSize = [
