@@ -1,4 +1,5 @@
 @import "../../../modules/Core/less/yawik.less";
+@import "_jobs.less";
 
 @g24-blue: #243b84;
 @g24-light-blue: #5bc0de;
@@ -6,6 +7,7 @@
 @g24-white: #ffffff;
 @g24-dark-blue: #22436c;
 @g24-light-grey: #f6f6f6;
+@g24-red: #d9534f;
 
 @fa-font-path: '/dist/fonts';
 
@@ -78,6 +80,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   -ms-hyphens: auto;
   hyphens: auto;
 }
+input[type="file"] {
+    display: block;
+    height: auto;
+}
+
 .featured-image-box {
     border: 1px solid #ccc;
     background-color:#fff;
@@ -120,64 +127,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .input-group .form-control  {
      border-radius:0
 }
-
-/* BEGIN JOB DETAIL PAGE */
-.job-navigation {
-    margin-bottom: 1rem;
-    a {
-        position: relative;
-
-        i {
-            font-size: 1rem;
-            left: 1rem;
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-
-            &.right-align {
-                left: unset;
-                right: 1rem;
-            }
-        }
-    }
-
-    span {
-        display: flex;
-        flex-direction: row;
-
-        &.reverse {
-            flex-direction: row-reverse;
-        }
-
-        a {
-            width: 50%;
-
-            &:first-child {
-                margin-right: .5rem;
-            }
-        }
-    }
-}
-@media(max-width: @screen-sm) {
-    .job-navigation {
-        span {
-            flex-direction: column;
-
-            a {
-                margin: .5rem 0;
-                width: 100%;
-
-                &:first-child {
-                    margin-bottom: 0;
-                    margin-right: 0;
-                }
-            }
-        }
-    }
-}
-/* END JOB DETAIL PAGE */
 
 #jobs-list-filter-wrapper {
     padding: 0;
@@ -372,6 +321,24 @@ h1.job-overview-title {
 }
 .job-overview-description-container {
     margin-bottom: 20px;
+
+    .content {
+        background-color: @g24-light-grey;
+        padding: 10px;
+
+        &__inner {
+            background-color:#fff;
+            padding: 20px;
+        }
+    }
+}
+
+.grey-description-container {
+    margin-bottom: 20px;
+
+    .headline {
+        margin-bottom: 5px;
+    }
 
     .content {
         background-color: @g24-light-grey;
