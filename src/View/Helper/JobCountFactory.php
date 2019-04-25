@@ -15,8 +15,9 @@ class JobCountFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $paginators = $container->get('Core/PaginatorService');
-        $paginator  = $paginators->get('Jobs/Board', ['Jobs_Board', [
+        $paginator  = $paginators->get('Solr/Jobs/Board', ['Jobs_Board', [
             'q',
+            'page' => 1,
             'l',
             'd' => 10]
         ]);
