@@ -104,8 +104,9 @@ $modeLabels = $mode->getOption('labels');
 
         <!-- Logo and banner fields -->
         <?=$this->formRow($fieldset->get('logo'));?>
-        <small>Hier kommt der Info Text</small>
-        <?php $input = $this->formRow($fieldset->get('image'));
+
+        <?php
+            $input = $this->formRow($fieldset->get('image'));
         if ($value = $fieldset->get('image')->getValue()) {
             $input = str_replace(
                 '<div class="col-md-9" id="details-image-span">',

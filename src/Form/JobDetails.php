@@ -103,6 +103,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             'name' => 'logo',
             'options' => [
                 'label' => $this->gastroOptions->getLabel('logo'),
+                'description' => /* @translate */ 'Your company logo will be used as default.'
             ],
         ]);
 
@@ -182,7 +183,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             'type' => 'TextEditor',
             'name' => 'description',
             'options' => [
-                'description' => 'Geben Sie die Beschreibung Ihres Unternehmens ein.',
+                'description' => /* @translate */ 'Your company description will be used as default.',
                 'label' => $this->gastroOptions->getLabel('description'),
                 'rowClass' => 'csj-html-input',
                 'no-submit' => true,
