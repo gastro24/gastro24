@@ -37,7 +37,7 @@ class CreateJobOrderFactory implements FactoryInterface
         $providerOptions = $container->get('Jobs/Options/Provider');
         $priceFilter     = $container->get('FilterManager')->get('Jobs/ChannelPrices');
         $repositories    = $container->get('repositories');
-        $repository      = $repositories->get('Orders');
+        $repository      = $repositories->get('Gastro24/Order');
         $invoice         = $container->get('Orders/Entity/JobInvoiceAddress');
         $listener        = new CreateJobOrder($options, $providerOptions, $priceFilter, $repository, $invoice);
 

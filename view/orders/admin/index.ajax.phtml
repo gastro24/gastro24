@@ -98,14 +98,16 @@ use Orders\Entity\ProductInterface; ?>
 
             <td class="text-nowrap text-right">
                 <div class="btn-group btn-toolbar">
-                    <a data-title="title"
-                       data-toggle="modal"
-                       class="btn btn-default btn-xs"
-                       data-target="#job-application-history"
-                       href="#"
-                       title="<?php echo $this->translate('Status history')?>">
-                        <i class="yk-icon yk-icon-history"></i>
+                    <?php
+                        $additionalOrderData = $this->hydrator->extract($order);
+                    ?>
+                    <?php if (!$additionalOrderData['automaticJobActivation']) : ?>
+                    <a class="btn btn-default btn-xs"
+                       href="<?= $this->url('lang/order-job-activation', ['id' => $order->getId()]) ?>"
+                       title="<?php echo $this->translate('Sofortige Jobfreischaltung')?>">
+                        <i class="yk-icon fa-check"></i>
                     </a>
+                    <?php endif; ?>
                 </div>
             </td>
         </tr>

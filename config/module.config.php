@@ -1,6 +1,7 @@
 <?php
 namespace Gastro24;
 
+use Gastro24\Controller\ListController;
 use Gastro24\Filter\OrganizationJobsListQuery;
 use Gastro24\Form\JobDetailsHydrator;
 use Gastro24\Form\JobDetailsHydratorFactory;
@@ -40,7 +41,7 @@ return [
         'eventmanager' => [
             'odm_default' => [
                 'subscribers' => [
-                    Repository\Events\InjectJobSnapshotHydratorSubscriber::class,
+                    Repository\Events\InjectJobSnapshotHydratorSubscriber::class
                 ],
             ],
         ],
@@ -87,6 +88,8 @@ return [
             Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
             Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
+            Controller\OrdersController::class => Factory\Controller\OrdersControllerFactory::class,
+            Controller\ListController::class => Factory\Controller\ListControllerFactory::class,
         ],
     ],
 
@@ -121,6 +124,7 @@ return [
     'hydrators' => [
         'factories' => [
             JobDetailsHydrator::class => JobDetailsHydratorFactory::class,
+            \Gastro24\Entity\Hydrator\OrderHydrator::class => \Gastro24\Entity\Hydrator\OrderHydratorFactory::class,
         ],
     ],
 
@@ -230,6 +234,7 @@ return [
              'gastro24/form/create-single-job' => __DIR__ . '/../view/jobs/create-single-job-form.phtml',
              'gastro24/form/job-details-fieldset' => __DIR__ . '/../view/jobs/job-details-fieldset.phtml',
              'gastro24/dashboard' => __DIR__ . '/../view/gastro24/dashboard.phtml',
+             'gastro24/list/index' => __DIR__ . '/../view/orders/admin/index.ajax.phtml',
              'layout/application-form' => __DIR__ . '/../view/layout-application-form.phtml',
              'contactform.view' => __DIR__ . '/../view/contactform.phtml',
              'gastro24/jobs/user-product-info' => __DIR__ . '/../view/jobs/user-product-info.phtml',
@@ -285,6 +290,12 @@ return [
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
             'Orders/SettingsFieldset' => Form\OrdersSettingsFieldset::class,
+        ]
+    ],
+
+    'paginator_manager' => [
+        'factories' => [
+            'Gastro24/Orders' => \Gastro24\Factory\Paginator\OrdersPaginatorFactory::class
         ]
     ],
 
@@ -370,8 +381,6 @@ return [
                         ]
                     ],
                     'organizations-profiles' => [
-
-
                                 'type' => 'Regex',
                                 'options' => [
                                     'regex' => '/profile-(?<name>.*?)-(?<id>[a-f0-9]+)$',
@@ -385,9 +394,33 @@ return [
                                         'controller' => 'Organizations/Profile'
                                     ],
                                 ],
+                    ],
 
+                    'order-job-activation' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/orders/:id/jobactivation',
+                            'defaults' => [
+                                'controller' => Controller\OrdersController::class,
+                                'action' => 'jobactivation',
+                            ],
+                            'constraints' => [
+                                'id' => '\w+',
+                            ]
+                        ],
+                    ],
 
-                    ]
+                    'orders-list' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => '/orders',
+                            'defaults' => [
+                                'controller' => Controller\ListController::class,
+                                'action' => 'index'
+                            ],
+                        ],
+                        'may_terminate' => true,
+                    ],
                 ],
             ],
         ],
