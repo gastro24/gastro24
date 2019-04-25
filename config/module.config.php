@@ -142,6 +142,7 @@ return [
             View\Helper\OrgProfileUrl::class => InvokableFactory::class,
             View\Helper\IsEmbeddable::class => View\Helper\IsEmbeddableFactory::class,
             View\Helper\JobTemplate::class => View\Helper\JobTemplateFactory::class,
+            View\Helper\JobCount::class => View\Helper\JobCountFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -151,6 +152,7 @@ return [
             'orgProfileUrl' => View\Helper\OrgProfileUrl::class,
             'gastroIsEmbeddable' => View\Helper\IsEmbeddable::class,
             'gastroJobTemplate' => View\Helper\JobTemplate::class,
+            'gastroJobCount' => View\Helper\JobCount::class,
         ],
         'delegators' => [
             'jobUrl' => [
