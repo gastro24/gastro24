@@ -1,0 +1,27 @@
+<?php
+$user = $this->auth()->getUser();
+?>
+
+<?php if (!$this->hasAutomaticJobActivation($user)) : ?>
+    <div class="alert alert-info">
+        <?= $this->translate('Ihr Stellenanzeigen werden nach Zahlungseingang sofort veröffentlicht.') ?>
+    </div>
+<?php endif; ?>
+
+<?php $this->headTitle($this->translate('Dashboard'));?>
+
+<h1><?php echo $this->translate('Dashboard'); ?></h1>
+
+<div class="row">
+    <?php foreach ($this->viewModel()->getCurrent()->getChildren() as $model):
+        if (0 !== strpos($model->captureTo(), 'dashboard_')) { continue; }
+
+        ?>
+
+        <?php echo $this->{$model->captureTo()};?>
+
+    <?php endforeach ?>
+
+</div>
+
+

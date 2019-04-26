@@ -96,7 +96,7 @@ use Orders\Entity\ProductInterface; ?>
             </td>
             <td class="text-right"><strong><?php echo $this->currencyFormat($order->getPrice(), $order->getCurrency()) ?></strong></td>
 
-            <td class="text-nowrap text-right">
+            <td class="not-clickable text-nowrap text-right">
                 <div class="btn-group btn-toolbar">
                     <?php
                         $additionalOrderData = $this->hydrator->extract($order);
