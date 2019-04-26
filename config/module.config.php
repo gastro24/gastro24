@@ -70,6 +70,7 @@ return [
             Listener\JobDetailFileUpload::class => Listener\JobDetailFileUploadFactory::class,
             Listener\DeleteTemplateImage::class => Listener\DeleteTemplateImageFactory::class,
             Listener\AutoApproveChangedJobs::class => Listener\AutoApproveChangedJobsFactory::class,
+            Listener\AutomaticJobApproval::class => Listener\AutomaticJobApprovalFactory::class,
             'Gastro24\Validator\IframeEmbeddableUri' => InvokableFactory::class,
         ],
         'aliases' => [
@@ -147,6 +148,7 @@ return [
             View\Helper\IsEmbeddable::class => View\Helper\IsEmbeddableFactory::class,
             View\Helper\JobTemplate::class => View\Helper\JobTemplateFactory::class,
             View\Helper\JobCount::class => View\Helper\JobCountFactory::class,
+            View\Helper\HasAutomaticJobActivation::class => View\Helper\HasAutomaticJobActivationFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -157,6 +159,7 @@ return [
             'gastroIsEmbeddable' => View\Helper\IsEmbeddable::class,
             'gastroJobTemplate' => View\Helper\JobTemplate::class,
             'gastroJobCount' => View\Helper\JobCount::class,
+            'hasAutomaticJobActivation' => View\Helper\HasAutomaticJobActivation::class,
         ],
         'delegators' => [
             'jobUrl' => [
@@ -290,12 +293,6 @@ return [
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
             'Orders/SettingsFieldset' => Form\OrdersSettingsFieldset::class,
-        ]
-    ],
-
-    'paginator_manager' => [
-        'factories' => [
-            'Gastro24/Orders' => \Gastro24\Factory\Paginator\OrdersPaginatorFactory::class
         ]
     ],
 
@@ -485,6 +482,7 @@ return [
             Listener\IncreaseJobCount::class => [ JobEvent::EVENT_JOB_CREATED, true ],
             Listener\SingleJobAcceptedListener::class => [ JobEvent::EVENT_JOB_ACCEPTED, true ],
             Listener\AutoApproveChangedJobs::class => [JobEvent::EVENT_STATUS_CHANGED, true],
+            Listener\AutomaticJobApproval::class => [JobEvent::EVENT_JOB_CREATED, true],
         ]],
 
         'Core/Ajax/Events' => [ 'listeners' => [

@@ -49,3 +49,8 @@ $name    = str_replace('Gastro24\Entity\Product\\', '', get_class($product));
     </table>
 </div>
 
+<?php if (!$this->hasAutomaticJobActivation($user)) : ?>
+<div class="alert alert-info">
+    <?= $this->translate('Ihr Stellenanzeigen werden nach Zahlungseingang sofort veröffentlicht.') ?>
+</div>
+<?php endif; ?>

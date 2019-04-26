@@ -91,11 +91,6 @@ class CreateJobOrder
             $products->add($product);
         }
 
-        $jobActivation = new JobActivation();
-        $jobActivation->setAutomaticJobActivation(false);
-        $this->orderRepository->getDocumentManager()->persist($jobActivation);
-        $this->orderRepository->getDocumentManager()->flush($jobActivation);
-
         $data = [
             'type' => OrderInterface::TYPE_JOB,
             'taxRate' => $this->options->getTaxRate(),
@@ -104,15 +99,10 @@ class CreateJobOrder
             'currency' => $this->options->getCurrency(),
             'currencySymbol' => $this->options->getCurrencySymbol(),
             'entity' => $snapshot,
-            'products' => $products,
-            'jobActivation' => $jobActivation
+            'products' => $products
         ];
 
         $order = $this->orderRepository->create($data);
         $this->orderRepository->store($order);
-
-        $jobActivation->setOrderId($order->getId());
-        $this->orderRepository->getDocumentManager()->persist($jobActivation);
-        $this->orderRepository->getDocumentManager()->flush($jobActivation);
     }
 }

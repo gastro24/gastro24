@@ -2,9 +2,7 @@
 
 namespace Gastro24\Factory\Controller;
 
-use CompanyRegistration\Options\RegisterControllerOptions;
 use Gastro24\Controller\OrdersController;
-use Gastro24\Controller\RegisterController;
 use Gastro24\Entity\JobActivation;
 use Interop\Container\ContainerInterface;
 
@@ -17,8 +15,12 @@ class OrdersControllerFactory
 {
     public function __invoke( ContainerInterface $container, $requestedName, array $options = null )
     {
-        $jobActivationRepository  = $container->get('repositories')->get(JobActivation::class);
+        $repositories = $container->get('repositories');
+        $jobActivationRepository  = $repositories->get(JobActivation::class);
+        $orderRepository = $repositories->get('Orders');
+        $snaphotsRepository = $repositories->get('Jobs/JobSnapshot');
+        $jobsRepository = $repositories->get('Jobs');
 
-        return new OrdersController($jobActivationRepository);
+        return new OrdersController($jobActivationRepository, $orderRepository, $snaphotsRepository, $jobsRepository);
     }
 }

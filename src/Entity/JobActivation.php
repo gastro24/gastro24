@@ -34,6 +34,12 @@ class JobActivation implements EntityInterface, IdentifiableEntityInterface
     protected $orderId;
 
     /**
+     * @ODM\Field(type="string")
+     * @var string
+     */
+    protected $userId;
+
+    /**
      * @return bool
      */
     public function isAutomaticJobActivation()
@@ -62,10 +68,32 @@ class JobActivation implements EntityInterface, IdentifiableEntityInterface
 
     /**
      * @param string $orderId
+     * @return JobActivation
      */
     public function setOrderId($orderId)
     {
         $this->orderId = $orderId;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param string $userId
+     * @return JobActivation
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
     }
 
 

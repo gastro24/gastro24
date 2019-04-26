@@ -25,7 +25,7 @@ class ListController extends BaseController
     {
         $results = $this->pagination([
             'form' => ['Core/Search', 'as' => 'form'],
-            'paginator' => ['Gastro24/Orders', [ 'sort' => 'date'], 'as' => 'orders']
+            'paginator' => ['Orders', [ 'sort' => 'date'], 'as' => 'orders']
         ]);
 
         $results['hydrator'] = new OrderHydrator($this->jobActivationRepository);

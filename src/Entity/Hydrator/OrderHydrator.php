@@ -29,8 +29,17 @@ class OrderHydrator extends EntityHydrator
             'automaticJobActivation' => false
         ];
 
+        $jobEntity = $object->getEntity()->getEntity();
+        if (!$jobEntity) {
+            return $data;
+        }
+
+        $user = $jobEntity->getUser();
+        if (!$user) {
+            return $data;
+        }
         /** @var \Gastro24\Entity\JobActivation $jobActivation */
-        $jobActivation = $this->jobActivationRepository->findOneByOrderId($object->getId());
+        $jobActivation = $this->jobActivationRepository->findOneByUserId($user->getId());
 
         if ($jobActivation) {
             $data['automaticJobActivation'] = $jobActivation->isAutomaticJobActivation();

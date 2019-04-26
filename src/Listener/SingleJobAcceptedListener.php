@@ -20,8 +20,6 @@ use Jobs\Listener\Events\JobEvent;
  */
 class SingleJobAcceptedListener 
 {
-
-
     private $orders;
     private $mailer;
 
