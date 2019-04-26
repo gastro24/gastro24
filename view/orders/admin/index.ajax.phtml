@@ -101,7 +101,7 @@ use Orders\Entity\ProductInterface; ?>
                     <?php
                         $additionalOrderData = $this->hydrator->extract($order);
                     ?>
-                    <?php if (!$additionalOrderData['automaticJobActivation']) : ?>
+                    <?php if (!$additionalOrderData['automaticJobActivation'] && !$additionalOrderData['singleJob']) : ?>
                     <a class="btn btn-default btn-xs"
                        href="<?= $this->url('lang/order-job-activation', ['id' => $order->getId()]) ?>"
                        title="<?php echo $this->translate('Sofortige Jobfreischaltung')?>">

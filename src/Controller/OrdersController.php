@@ -2,6 +2,7 @@
 
 namespace Gastro24\Controller;
 
+use Auth\Entity\User;
 use Gastro24\Entity\JobActivation;
 use Jobs\Entity\JobSnapshot;
 use Jobs\Entity\JobSnapshotStatus;
@@ -39,6 +40,7 @@ class OrdersController extends AbstractActionController
             return $this->redirect()->toRoute('lang/orders-list');
         }
 
+        /** @var User $user */
         $user = $jobEntity->getUser();
         if (!$user) {
             return $this->redirect()->toRoute('lang/orders-list');
@@ -61,7 +63,8 @@ class OrdersController extends AbstractActionController
         $jobs = $this->jobsRepository->findBy(['user' => $user]);
         $this->activateJobs($jobs);
 
-        $this->notification()->success(/*@translate*/ 'Automatische Jobfreischaltung wurde aktiviert');
+        $this->notification()->success(sprintf(/*@translate*/ 'Automatische Jobfreischaltung wurde für "%s" aktiviert',
+            $user->getInfo()->getDisplayName()));
 
         return $this->redirect()->toRoute('lang/orders-list');
     }

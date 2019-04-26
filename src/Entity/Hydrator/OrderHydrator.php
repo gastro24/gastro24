@@ -26,7 +26,8 @@ class OrderHydrator extends EntityHydrator
     public function extract($object)
     {
         $data = [
-            'automaticJobActivation' => false
+            'automaticJobActivation' => false,
+            'singleJob' => false
         ];
 
         $jobEntity = $object->getEntity()->getEntity();
@@ -36,6 +37,7 @@ class OrderHydrator extends EntityHydrator
 
         $user = $jobEntity->getUser();
         if (!$user) {
+            $data['singleJob'] = true;
             return $data;
         }
         /** @var \Gastro24\Entity\JobActivation $jobActivation */
