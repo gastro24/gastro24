@@ -12,6 +12,7 @@ namespace Gastro24\Listener;
 
 use Core\Entity\Collection\ArrayCollection;
 use Core\Entity\Hydrator\EntityHydrator;
+use Gastro24\Entity\JobActivation;
 use Gastro24\Entity\UserProduct;
 use Jobs\Listener\Events\JobEvent;
 use Orders\Entity\Order;
@@ -70,8 +71,6 @@ class CreateJobOrder
     public function __invoke(JobEvent $event)
     {
         $job = $event->getJobEntity();
-
-
         $invoiceAddress = $this->invoiceAddress;
         $snapshotBuilder = new Builder();
         $snapshot = $snapshotBuilder->build($job);
@@ -100,7 +99,7 @@ class CreateJobOrder
             'currency' => $this->options->getCurrency(),
             'currencySymbol' => $this->options->getCurrencySymbol(),
             'entity' => $snapshot,
-            'products' => $products,
+            'products' => $products
         ];
 
         $order = $this->orderRepository->create($data);

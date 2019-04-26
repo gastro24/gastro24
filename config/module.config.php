@@ -1,6 +1,7 @@
 <?php
 namespace Gastro24;
 
+use Gastro24\Controller\ListController;
 use Gastro24\Filter\OrganizationJobsListQuery;
 use Gastro24\Form\JobDetailsHydrator;
 use Gastro24\Form\JobDetailsHydratorFactory;
@@ -40,7 +41,7 @@ return [
         'eventmanager' => [
             'odm_default' => [
                 'subscribers' => [
-                    Repository\Events\InjectJobSnapshotHydratorSubscriber::class,
+                    Repository\Events\InjectJobSnapshotHydratorSubscriber::class
                 ],
             ],
         ],
@@ -69,6 +70,7 @@ return [
             Listener\JobDetailFileUpload::class => Listener\JobDetailFileUploadFactory::class,
             Listener\DeleteTemplateImage::class => Listener\DeleteTemplateImageFactory::class,
             Listener\AutoApproveChangedJobs::class => Listener\AutoApproveChangedJobsFactory::class,
+            Listener\AutomaticJobApproval::class => Listener\AutomaticJobApprovalFactory::class,
             'Gastro24\Validator\IframeEmbeddableUri' => InvokableFactory::class,
         ],
         'aliases' => [
@@ -87,6 +89,8 @@ return [
             Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
             Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
+            Controller\OrdersController::class => Factory\Controller\OrdersControllerFactory::class,
+            Controller\ListController::class => Factory\Controller\ListControllerFactory::class,
         ],
     ],
 
@@ -121,6 +125,7 @@ return [
     'hydrators' => [
         'factories' => [
             JobDetailsHydrator::class => JobDetailsHydratorFactory::class,
+            \Gastro24\Entity\Hydrator\OrderHydrator::class => \Gastro24\Entity\Hydrator\OrderHydratorFactory::class,
         ],
     ],
 
@@ -143,6 +148,7 @@ return [
             View\Helper\IsEmbeddable::class => View\Helper\IsEmbeddableFactory::class,
             View\Helper\JobTemplate::class => View\Helper\JobTemplateFactory::class,
             View\Helper\JobCount::class => View\Helper\JobCountFactory::class,
+            View\Helper\HasAutomaticJobActivation::class => View\Helper\HasAutomaticJobActivationFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -153,6 +159,7 @@ return [
             'gastroIsEmbeddable' => View\Helper\IsEmbeddable::class,
             'gastroJobTemplate' => View\Helper\JobTemplate::class,
             'gastroJobCount' => View\Helper\JobCount::class,
+            'hasAutomaticJobActivation' => View\Helper\HasAutomaticJobActivation::class,
         ],
         'delegators' => [
             'jobUrl' => [
@@ -230,6 +237,7 @@ return [
              'gastro24/form/create-single-job' => __DIR__ . '/../view/jobs/create-single-job-form.phtml',
              'gastro24/form/job-details-fieldset' => __DIR__ . '/../view/jobs/job-details-fieldset.phtml',
              'gastro24/dashboard' => __DIR__ . '/../view/gastro24/dashboard.phtml',
+             'gastro24/list/index' => __DIR__ . '/../view/orders/admin/index.ajax.phtml',
              'layout/application-form' => __DIR__ . '/../view/layout-application-form.phtml',
              'contactform.view' => __DIR__ . '/../view/contactform.phtml',
              'gastro24/jobs/user-product-info' => __DIR__ . '/../view/jobs/user-product-info.phtml',
@@ -238,6 +246,7 @@ return [
              'auth/password/index' => __DIR__ . '/../view/auth/password/index.phtml',
              'auth/forgot-password/index' => __DIR__ . '/../view/auth/forgot-password/index.phtml',
              'content/applications-privacy-policy' => __DIR__ . '/../view/application-disclaimer.phtml',
+             'orders/list/index.ajax' => __DIR__ . '/../view/orders/admin/index.ajax.phtml',
              'organizations/profile/detail' => __DIR__ . '/../view/organizations/profile-detail.phtml',
              'organizations/profile/detail.ajax' => __DIR__ . '/../view/organizations/profile-detail.ajax.phtml',
              'organizations/profile/disabled' => __DIR__ . '/../view/organizations/profile-disabled.phtml',
@@ -369,8 +378,6 @@ return [
                         ]
                     ],
                     'organizations-profiles' => [
-
-
                                 'type' => 'Regex',
                                 'options' => [
                                     'regex' => '/profile-(?<name>.*?)-(?<id>[a-f0-9]+)$',
@@ -384,9 +391,33 @@ return [
                                         'controller' => 'Organizations/Profile'
                                     ],
                                 ],
+                    ],
 
+                    'order-job-activation' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/orders/:id/jobactivation',
+                            'defaults' => [
+                                'controller' => Controller\OrdersController::class,
+                                'action' => 'jobactivation',
+                            ],
+                            'constraints' => [
+                                'id' => '\w+',
+                            ]
+                        ],
+                    ],
 
-                    ]
+                    'orders-list' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => '/orders',
+                            'defaults' => [
+                                'controller' => Controller\ListController::class,
+                                'action' => 'index'
+                            ],
+                        ],
+                        'may_terminate' => true,
+                    ],
                 ],
             ],
         ],
@@ -451,6 +482,7 @@ return [
             Listener\IncreaseJobCount::class => [ JobEvent::EVENT_JOB_CREATED, true ],
             Listener\SingleJobAcceptedListener::class => [ JobEvent::EVENT_JOB_ACCEPTED, true ],
             Listener\AutoApproveChangedJobs::class => [JobEvent::EVENT_STATUS_CHANGED, true],
+            Listener\AutomaticJobApproval::class => [JobEvent::EVENT_JOB_CREATED, true],
         ]],
 
         'Core/Ajax/Events' => [ 'listeners' => [
