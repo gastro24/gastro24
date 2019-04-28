@@ -42,10 +42,11 @@ if ($job->getDatePublishStart()) {
     $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
         $this->translate('vor ' . $dayDiff->d . ' Tagen');
 }
-
-$serverUrl = new \Zend\View\Helper\ServerUrl();
-$imageServerUrl = $serverUrl($this->basePath($image->getUri()));
-
+$imageServerUrl = null;
+if ($hasBanner) {
+    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+}
 
 ?>
 <?=$this->jsonLd($this->job)?>
@@ -53,9 +54,7 @@ $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
   <div class="panel panel-default panel__job-detail">
     <!-- Bannerbild -->
     <?php if ($hasBanner):?>
-      <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)">
-<!--          <img src="--><?//=$this->basePath($image->getUri())?><!--">-->
-      </div>
+      <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
     <?php endif ?>
     <!-- End Bannerbild -->
 
