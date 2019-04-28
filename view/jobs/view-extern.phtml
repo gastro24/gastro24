@@ -11,6 +11,11 @@
  *             $isVisited   bool            Has the user already visited this job in the current session
  */
 
+$routeParams = $this->params()->fromRoute();
+$preview = false;
+if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
+    $preview = true;
+}
 if ($this->isIntern):
          $this->headMeta()->setName('robots', 'index,follow');
 //  elseif(!$this->isIntern):
@@ -69,6 +74,7 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
 $orgName = $this->jobOrganizationName($this->job);
 ?>
 <!-- prev / next navigation -->
+<?php if (!$preview) : ?>
 <div class="row job-navigation">
     <div class="col-md-3">
         <a title="<?= $backTitle ?>"
@@ -97,6 +103,7 @@ $orgName = $this->jobOrganizationName($this->job);
         </span>
     </div>
 </div>
+<?php endif; ?>
 <!-- end prev / next navigation -->
 
 

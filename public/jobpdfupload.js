@@ -99,7 +99,8 @@
             }
 
             $('#previewJob').attr('src', iframeUrl);
-        }).find('#details-description-span, #details-logo-span').parent().hide()
+        });
+        //.find('#details-description-span, #details-logo-span').parent().hide()
 
 
 
