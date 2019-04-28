@@ -30,9 +30,9 @@ $replaceImage = function($str) use ($template, $basePathHelper)
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 $orgName = $this->jobOrganizationName($this->job);
 $hasBanner = $template && ($image = $template->getImage());
-$today = new DateTime();
 
 // get date difference
+$today = new DateTime();
 if ($job->getDatePublishStart()) {
     $dayDiff = $today->diff($job->getDatePublishStart());
     $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDatePublishStart(), 'medium', 'none') :
