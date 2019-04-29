@@ -7,11 +7,13 @@
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
 
+// check for preview
 $routeParams = $this->params()->fromRoute();
 $preview = false;
 if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     $preview = true;
 }
+
 $template = $this->job->getAttachedEntity('gastro24-template');
 $basePathHelper = $this->plugin('basePath');
 $replaceImage = function($str) use ($template, $basePathHelper)
@@ -29,7 +31,14 @@ $replaceImage = function($str) use ($template, $basePathHelper)
 
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 $orgName = $this->jobOrganizationName($this->job);
+
+// check for banner
 $hasBanner = $template && ($image = $template->getImage());
+$imageServerUrl = null;
+if ($hasBanner) {
+    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+}
 
 // get date difference
 $today = new DateTime();
@@ -42,11 +51,8 @@ if ($job->getDatePublishStart()) {
     $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
         $this->translate('vor ' . $dayDiff->d . ' Tagen');
 }
-$imageServerUrl = null;
-if ($hasBanner) {
-    $serverUrl = new \Zend\View\Helper\ServerUrl();
-    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
-}
+
+
 
 ?>
 <?=$this->jsonLd($this->job)?>

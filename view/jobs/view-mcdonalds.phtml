@@ -7,6 +7,12 @@
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
 
+// check for preview
+$routeParams = $this->params()->fromRoute();
+$preview = false;
+if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
+    $preview = true;
+}
 
 $template = $this->job->getAttachedEntity('gastro24-template');
 $basePathHelper = $this->plugin('basePath');
@@ -23,10 +29,27 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     return str_replace('#image#', $imageHtml, $str);
 };
 
+$defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 $orgName = $this->jobOrganizationName($this->job);
 
+// check for banner
+$hasBanner = $template && ($image = $template->getImage());
+$imageServerUrl = null;
+if ($hasBanner) {
+    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+}
 
-
+$today = new DateTime();
+if ($job->getDatePublishStart()) {
+    $dayDiff = $today->diff($job->getDatePublishStart());
+    $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDatePublishStart(), 'medium', 'none') :
+        $this->translate('vor ' . $dayDiff->d . ' Tagen');
+}elseif($job->getDateCreated()) {
+    $dayDiff = $today->diff($job->getDateCreated());
+    $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
+        $this->translate('vor ' . $dayDiff->d . ' Tagen');
+}
 
 ?>
 <?=$this->jsonLd($this->job)?>
@@ -54,96 +77,199 @@ $orgName = $this->jobOrganizationName($this->job);
     display: inline;
   }
   </style>
-  <div class="panel panel-default">
+
+<div class="panel panel-default panel__job-detail">
+    <!-- Bannerbild -->
+    <?php if ($hasBanner):?>
+        <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
+    <?php endif ?>
+    <!-- End Bannerbild -->
+
     <div class="panel-body">
-
-     <?php /* Bannerbild */ ?>
-
-        <?php if ($template && ($image = $template->getImage())):?>
-        
-                <div class="row text-center">
-                    <img style="width:100%; margin-bottom:15px;margin-top:-15px" src="<?=$this->basePath($image->getUri())?>">
+        <!-- company logo and job title-->
+        <div class="teaser__job-detail <?php if (!$hasBanner) echo 'no-banner'; ?>">
+            <div itemprop="logo">
+                <div class="wrapper__logo">
+                    <img src="<?= $template && ($logo = $template->getLogo())
+                        ? $this->basePath($logo->getUri())
+                        : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
                 </div>
-            
-        <?php endif ?>
+            </div>
+            <h1><?=$this->job->getTitle()?></h1>
+        </div>
+        <!-- end company logo and job title-->
 
-        <?php /* Stellenbeschreibung */ ?>
-
-        <div class="row">
-
-            <?php if ($this->html): ?>
-                 <div class="col-md-12 position">
-                   <?=$this->html?>
-                 </div>
-            <?php else: ?>
-              <div class="col-md-12 position">
-                <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
-              </div>
-
-              <?php  /* Anforderungen */ ?>
-              <div class="col-md-12 position">
-                <?php if($this->benefits): ?>
-                  <div><b><?=$this->labelRequirements?></b></div>
-                <?php endif;?>
-                <?=$this->requirements;?>
-              </div>
-
-              <?php if ($this->qualifications): ?>
-                <div class="col-md-12 position">
-                  <div><b><?=$this->labelQualifications?></b></div>
-                  <?=$this->qualifications;?>
-                </div>
-              <?php endif;?>
-
-              <?php if ($this->benefits): ?>
-                <div class="col-md-12 position">
-                  <div><b><?=$this->labelBenefits?></b></div>
-                  <?=$this->benefits;?>
-                </div>
-              <?php endif;?>
-            <?php endif; ?>
-
-
-
+        <div class="job-short-info">
+            <ul>
+                <li class="location">
+                    <!-- location -->
+                    <?php
+                    $location = $job->getLocations()->current();
+                    echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    ?>
+                    <!-- end location -->
+                </li>
+                <li class="company">
+                    <!-- company name -->
+                    <?php if ($org = $this->job->getOrganization()): ?>
+                        <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
+                    <?php endif ?>
+                    <!-- end company name -->
+                </li>
+                <li class="type">
+                    <!-- type of contract -->
+                    <?php
+                    $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                    <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                    <!-- end type of contract -->
+                </li>
+                <li class="date">
+                    <!-- published date -->
+                    <span><?= $publishDate ?></span>
+                    <!-- end published date -->
+                </li>
+            </ul>
         </div>
 
+        <hr class="job-details-devider"/>
 
-        <?php /* Unternehmensbeschreibung */ ?>
-        <hr />
-        <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : $this->descriptionEditable ?></p>
-            <div itemscope itemtype="http://schema.org/Organization">
-                <strong itemprop="name">
-                    <?= $this->organizationName?>
-                </strong><br/>
-                <?php if ($this->street || $this->postalCode || $this->city || $this->phone):?>
-                <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                    <?php if ($this->street): ?><span itemprop="streetAddress"><?=$this->street?></span><br><?php endif ?>
-                    <?php if ($this->postalCode): ?><span itemprop="postalCode"><?=$this->postalCode?></span><?php endif ?>
-                    <?php if ($this->city): ?><span itemprop="addressLocality"><?=$this->city?></span><br /><?php endif ?>
-                    <?php if ($this->phone): ?>Telefon: <span itemprop="telephone"><?=$this->phone?></span><br /><?php endif ?>
-                    <?php if ($this->fax): ?>Fax: <?=$this->fax?></span><br /><?php endif ?>
-                </address>
-                <?php endif?>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+
+                <!-- apply button -->
+                <?php if($preview): ?>
+                    <div class="button-job-apply text-center">
+                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                    </div>
+                <?php else: ?>
+                    <div class="button-job-apply text-center">
+                        <?=$this->gastroApplyUrl($job);?>
+                    </div>
+                <?php endif; ?>
+                <!-- end apply button -->
+
+                <!-- job content -->
+                <?php if ($this->html): ?>
+                    <div class="position">
+                        <?=$this->html?>
+                    </div>
+                <?php else: ?>
+                    <!-- introduction -->
+                    <div class="introduction">
+                        <?= $this->job->getTemplateValues()->getIntroduction();?>
+                    </div>
+
+                    <!-- position -->
+                    <div class="position">
+                        <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
+                    </div>
+
+                    <!-- requirements -->
+                    <div class="position">
+                        <?php if($this->benefits): ?>
+                            <div><b><?=$this->labelRequirements?></b></div>
+                        <?php endif;?>
+                        <?=$this->requirements;?>
+                    </div>
+
+                    <!-- qualifications -->
+                    <?php if ($this->qualifications): ?>
+                        <div class="position">
+                            <div><b>Qualifikation</b></div>
+                            <?=$this->qualifications;?>
+                        </div>
+                    <?php endif;?>
+
+                    <!-- benefits -->
+                    <?php if ($this->benefits): ?>
+                        <div class="position">
+                            <div><b><?=$this->labelBenefits?></b></div>
+                            <?=$this->benefits;?>
+                        </div>
+                    <?php endif;?>
+                <?php endif; ?>
+                <!-- end job content -->
+
+                <!-- company description -->
+                <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : $this->descriptionEditable ?></p>
+                <div itemscope itemtype="http://schema.org/Organization">
+                    <strong itemprop="name">
+                        <?= $this->organizationName?>
+                    </strong><br/>
+                    <?php if ($this->street || $this->postalCode || $this->city || $this->phone):?>
+                        <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <?php if ($this->street): ?><span itemprop="streetAddress"><?=$this->street?></span><br><?php endif ?>
+                            <?php if ($this->postalCode): ?><span itemprop="postalCode"><?=$this->postalCode?></span><?php endif ?>
+                            <?php if ($this->city): ?><span itemprop="addressLocality"><?=$this->city?></span><br /><?php endif ?>
+                            <?php if ($this->phone): ?>Telefon: <span itemprop="telephone"><?=$this->phone?></span><br /><?php endif ?>
+                            <?php if ($this->fax): ?>Fax: <?=$this->fax?></span><br /><?php endif ?>
+                        </address>
+                    <?php endif?>
+                </div>
+                <!-- end company description -->
+
+                <!-- apply button -->
+                <?php if($preview): ?>
+                    <div class="button-job-apply text-center">
+                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                    </div>
+                <?php else: ?>
+                    <div class="button-job-apply text-center">
+                        <?=$this->gastroApplyUrl($job);?>
+                    </div>
+                <?php endif; ?>
+                <!-- end apply button -->
             </div>
+        </div>
 
-   </div>
+        <hr class="job-details-devider"/>
+
+        <!-- share buttons -->
+        <div>Diesen Job teilen: </div>
+        <div id="share" class="pull-left round-shares"></div>
+        <div class="clearfix"></div>
+        <!-- end share buttons -->
+
+        <?php if (!$preview): ?>
+            <!-- recommended jobs -->
+            <div class="grey-description-container">
+                <div class="content">
+                    <div class="headline">Empfohlene Jobs</div>
+                    <div class="content__inner">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                        justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                        sanctus est Lorem ipsum dolor sit amet.
+                    </div>
+                </div>
+            </div>
+            <!-- end recommended jobs -->
+
+            <!-- recommended jobs by cities -->
+            <div class="grey-description-container">
+                <div class="content">
+                    <div class="headline">Jobs nach Städten</div>
+                    <div class="content__inner">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                        justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                        sanctus est Lorem ipsum dolor sit amet.
+                    </div>
+                </div>
+            </div>
+            <!-- end recommended jobs by cities -->
+        <?php endif; ?>
+
+    </div>
 </div>
 
-  <div class="panel panel-default"> 
-      <div class="panel-body"> 
-         <div id="share" class="pull-left round-shares"></div>
-           <div class="pull-right" style="margin-top:7px">
-           <?=$this->gastroApplyUrl($job);?> 
-           
-    </div>
-       </div>
-   </div>
-
-
-  
-    
-    
-     <style>
+<style>
        
        
 .jssocials-share-whatsapp .jssocials-share-link,
@@ -171,57 +297,5 @@ $orgName = $this->jobOrganizationName($this->job);
                     shares: ["email", "twitter", "facebook", "whatsapp"]
                 });
             </script>
-    
-    
-  </div>
-
-<!-- ENDE COL MD 9-->
-
-<div class="col-md-3">
-  <div class="panel panel-default">
-    <div class="panel-body">
-        
-   <?php /* Firmenlogo */ ?>
-
-                <div itemprop="logo" style="text-align:center; margin-bottom:15px">
-                    <div  style=" 
-                      margin: 0 auto;
-                      width: 115px;
-                      height: 115px;   
-                      transition: border .2s ease-in-out;
-                      position: relative;
-                      display: block;
-                      padding: 4px;
-                      line-height: 1.5;
-                      background-color: #fff;
-                      border: 1px solid #ddd;
-                      border-radius: 3px;
-                    overflow: hidden;">
-                         <img style="
-                         margin-bottom: auto;
-                         text-align: center;
-                         width: 65%;
-                         position: absolute;
-                         top: 5%;
-                         bottom: 5%;
-                         left: 5%;
-                         right: 5%;
-                         margin: auto;" src="<?= $template && ($logo = $template->getLogo())
-                        ? $this->basePath($logo->getUri())
-                        : $this->uriLogo?>" alt="<?= $this->organizationName?>">
-                   </div>
-                    
-              
-                
-                <h2 class="text-center"><?= $orgName ?></h2>
-
-
-                    <?php if ($org = $this->job->getOrganization()): ?>
-                        <div style="margin-bottom:5px" class=""><a title="Aktuelle Jobs bei <?= $this->organizationName?>" href="<?= $this->orgProfileUrl($org)?>?clear=1" class="btn btn-default btn-block company-jobs-btn"><strong>Firmenprofil</strong></a></div>
-                    <?php endif ?>
-
-       </div>
-    </div>
-</div>
 
 
