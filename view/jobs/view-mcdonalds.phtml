@@ -29,8 +29,13 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     return str_replace('#image#', $imageHtml, $str);
 };
 
-$defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 $orgName = $this->jobOrganizationName($this->job);
+
+$logoUrl = $this->uriLogo;
+if ($template && ($logo = $template->getLogo())) {
+    $logoUrl = $this->basePath($logo->getUri());
+}
+
 
 // check for banner
 $hasBanner = $template && ($image = $template->getImage());
@@ -77,7 +82,6 @@ if ($job->getDatePublishStart()) {
     display: inline;
   }
   </style>
-
 <div class="panel panel-default panel__job-detail">
     <!-- Bannerbild -->
     <?php if ($hasBanner):?>
@@ -90,9 +94,7 @@ if ($job->getDatePublishStart()) {
         <div class="teaser__job-detail <?php if (!$hasBanner) echo 'no-banner'; ?>">
             <div itemprop="logo">
                 <div class="wrapper__logo">
-                    <img src="<?= $template && ($logo = $template->getLogo())
-                        ? $this->basePath($logo->getUri())
-                        : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
+                    <img src="<?= $logoUrl ?>" alt="<?= $this->organizationName?>">
                 </div>
             </div>
             <h1><?=$this->job->getTitle()?></h1>
