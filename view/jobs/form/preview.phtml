@@ -7,6 +7,8 @@
  * @copyright  2013 - 2016 Cross Solution <http://cross-solution.de>
  */
 
+$this->headScript()->appendFile($this->basePath('/dist/js/iframeResizer.js'));
+
 $job = $this->element->getObject(); /* @var \Jobs\Entity\JobInterface $job */
 
 if ($job instanceOf \Jobs\Entity\JobSnapshot) {
@@ -57,11 +59,22 @@ if ($hasBanner) {
     #form-jobs-form-preview .panel__job-detail .panel-body{
         padding: 0 2rem!important;
     }
+    iframe {
+        background-color:#fff;
+        height:1800px;
+        overflow:auto;
+        width: 1px;
+        min-width: 100%;
+    }
 </style>
 <h3><?=$this->translate("Preview of your job posting"); ?></h3>
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default panel__job-detail">
+        <?php if(!$job->getLink()) : ?>
+            <iframe id="previewJob" src="<?= $viewLink ?>"></iframe>
+        <!-- job with link -- needs template wrapper -->
+        <?php else: ?>
+            <div class="panel panel-default panel__job-detail">
             <!-- Bannerbild -->
             <?php if ($hasBanner):?>
                 <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
@@ -122,7 +135,7 @@ if ($hasBanner) {
                 </div>
                 <!-- end apply button -->
 
-                <iframe id="previewJob" style="width:100%; height:800px;" src="<?= $viewLink ?>"></iframe>
+                <iframe id="previewJob" src="<?= $viewLink ?>"></iframe>
 
                 <!-- apply button - no action because of preview -->
                 <div class="button-job-apply text-center">
@@ -139,6 +152,7 @@ if ($hasBanner) {
                 <!-- end share buttons -->
             </div>
         </div>
+        <?php endif; ?>
     </div>
     <div class="col-md-4">
         <div class="alert alert-info">
@@ -164,21 +178,6 @@ if ($hasBanner) {
     </div>
 </div>
 
-<style>
-    .jssocials-share-whatsapp .jssocials-share-link,
-    .jssocials-share-facebook .jssocials-share-link,
-    .jssocials-share-email .jssocials-share-link,
-    .jssocials-share-twitter .jssocials-share-link
-    {
-        background: #ccc;
-    }
-
-    .jssocials-shares a {
-        color:#fff!important;
-    }
-</style>
-
-
 <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
 <script>
     $("#share").jsSocials({
@@ -187,6 +186,12 @@ if ($hasBanner) {
         shares: ["email", "twitter", "facebook", "whatsapp"]
     });
 </script>
+
+<!-- iframe resizer -->
+<script>
+    iFrameResize({ log: true }, '#previewJob')
+</script>
+<!-- end iframe resizer -->
 
 <div id="product-list-wrapper">
     <?php if ($job->getPortals()): ?>
