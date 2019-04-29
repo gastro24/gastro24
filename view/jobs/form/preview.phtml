@@ -1,0 +1,191 @@
+<?php
+/**
+ * YAWIK
+ *
+ * @filesource
+ * @license MIT
+ * @copyright  2013 - 2016 Cross Solution <http://cross-solution.de>
+ */
+
+$job = $this->element->getObject(); /* @var \Jobs\Entity\JobInterface $job */
+
+if ($job instanceOf \Jobs\Entity\JobSnapshot) {
+    $query = ['snapshot' => $job->getSnapshotId()];
+} else {
+    $query = ['id' => $job->getId()];
+}
+
+$viewLink = $this->jobUrl($job, ['linkOnly' => true, 'preview' => true ]);
+
+$query['page'] = 0;
+$multipostLink = $this->url(
+    'lang/jobs/manage',
+    array(),
+    array(
+        'query' => $query,
+    )
+);
+$options = $this->services('Core/Options');
+$defaultCurrencyCode = $options->defaultCurrencyCode;
+$defaultTaxRate = $options->defaultTaxRate;
+
+$template = $job->getAttachedEntity('gastro24-template');
+
+// get date difference
+$today = new DateTime();
+if ($job->getDatePublishStart()) {
+    $dayDiff = $today->diff($job->getDatePublishStart());
+    $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDatePublishStart(), 'medium', 'none') :
+        $this->translate('vor ' . $dayDiff->d . ' Tagen');
+}elseif($job->getDateCreated()) {
+    $dayDiff = $today->diff($job->getDateCreated());
+    $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
+        $this->translate('vor ' . $dayDiff->d . ' Tagen');
+}
+$orgName = $this->jobOrganizationName($job);
+$defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
+$imageServerUrl = null;
+if ($hasBanner) {
+    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+}
+?>
+<style>
+    #form-jobs-form-preview .panel__job-detail .panel-body{
+        padding: 0 2rem!important;
+    }
+</style>
+<h3><?=$this->translate("Preview of your job posting"); ?></h3>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default panel__job-detail">
+            <!-- Bannerbild -->
+            <?php if ($hasBanner):?>
+                <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
+            <?php endif ?>
+            <!-- End Bannerbild -->
+
+            <div class="panel-body">
+                <!-- company logo and job title-->
+                <div class="teaser__job-detail <?php if (!$hasBanner) echo 'no-banner'; ?>">
+                    <div itemprop="logo">
+                        <div class="wrapper__logo">
+                            <img src="<?= $template && ($logo = $template->getLogo())
+                                ? $this->basePath($logo->getUri())
+                                : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
+                        </div>
+                    </div>
+                    <h1><?=$job->getTitle()?></h1>
+                </div>
+                <!-- end company logo and job title-->
+
+                <div class="job-short-info">
+                    <ul>
+                        <li class="location">
+                            <!-- location -->
+                            <?php
+                            $location = $job->getLocations()->current();
+                            echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                            ?>
+                            <!-- end location -->
+                        </li>
+                        <li class="company">
+                            <!-- company name -->
+                            <?php if ($org = $job->getOrganization()): ?>
+                                <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
+                            <?php endif ?>
+                            <!-- end company name -->
+                        </li>
+                        <li class="type">
+                            <!-- type of contract -->
+                            <?php
+                            $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                            <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                            <!-- end type of contract -->
+                        </li>
+                        <li class="date">
+                            <!-- published date -->
+                            <span><?= $publishDate ?></span>
+                            <!-- end published date -->
+                        </li>
+                    </ul>
+                </div>
+
+                <hr class="job-details-devider"/>
+
+                <iframe id="previewJob" style="width:100%; height:800px;" src="<?= $viewLink ?>"></iframe>
+
+                <hr class="job-details-devider"/>
+
+                <!-- share buttons -->
+                <div>Diesen Job teilen: </div>
+                <div id="share" class="pull-left round-shares"></div>
+                <div class="clearfix"></div>
+                <!-- end share buttons -->
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="alert alert-info">
+            <script type="text/javascript">
+                function printIframe(id)
+                {
+                    var iframe = document.frames ? document.frames[id] : document.getElementById(id);
+                    var ifWin = iframe.contentWindow || iframe;
+                    iframe.focus();
+                    ifWin.yawikPrintJob();
+                    return false;
+                }
+            </script>
+            <?php echo sprintf($this->translate('Please check the preview of your job position. Click %s to open the preview in a new window'),
+                '<a target="_blank" href="'.$viewLink.'">'.$this->translate("here").'</a>'); ?><br/>
+            <a target="_blank" href="<?=$viewLink?>" class="btn btn-info" role="button"><i class="fa fa-external-link"></i>
+                <?=$this->translate('Open new Window')?>
+            </a>
+            <a href="#" onclick="javascript:printIframe('previewJob');return false;" class="btn btn-info" role="button"><i class="fa fa-print"></i>
+                <?=$this->translate('Print')?>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .jssocials-share-whatsapp .jssocials-share-link,
+    .jssocials-share-facebook .jssocials-share-link,
+    .jssocials-share-email .jssocials-share-link,
+    .jssocials-share-twitter .jssocials-share-link
+    {
+        background: #ccc;
+    }
+
+    .jssocials-shares a {
+        color:#fff!important;
+    }
+</style>
+
+
+<script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
+<script>
+    $("#share").jsSocials({
+        showLabel: false,
+        showCount: true,
+        shares: ["email", "twitter", "facebook", "whatsapp"]
+    });
+</script>
+
+<div id="product-list-wrapper">
+    <?php if ($job->getPortals()): ?>
+        <?= $this->partial('jobs/partials/channel-list', [
+            'portals'             => $job->getPortals(),
+            'channels'            => $this->services('Jobs/Options/Provider'),
+            'defaultCurrencyCode' => $defaultCurrencyCode,
+            'defaultTaxRate'      => $defaultTaxRate,
+            'jobId'               => $job->getId(),
+        ]);
+        ?>
+
+    <?php endif; // $this->job->portals ?>
+</div>
+
+<?= $this->formCollection($this->element); ?>

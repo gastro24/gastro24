@@ -7,7 +7,11 @@
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
 
-
+$routeParams = $this->params()->fromRoute();
+$preview = false;
+if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
+    $preview = true;
+}
 $template = $this->job->getAttachedEntity('gastro24-template');
 $basePathHelper = $this->plugin('basePath');
 $replaceImage = function($str) use ($template, $basePathHelper)
@@ -23,11 +27,12 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     return str_replace('#image#', $imageHtml, $str);
 };
 
+$defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 $orgName = $this->jobOrganizationName($this->job);
 $hasBanner = $template && ($image = $template->getImage());
-$today = new DateTime();
 
 // get date difference
+$today = new DateTime();
 if ($job->getDatePublishStart()) {
     $dayDiff = $today->diff($job->getDatePublishStart());
     $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDatePublishStart(), 'medium', 'none') :
@@ -37,6 +42,11 @@ if ($job->getDatePublishStart()) {
     $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
         $this->translate('vor ' . $dayDiff->d . ' Tagen');
 }
+$imageServerUrl = null;
+if ($hasBanner) {
+    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+}
 
 ?>
 <?=$this->jsonLd($this->job)?>
@@ -44,9 +54,7 @@ if ($job->getDatePublishStart()) {
   <div class="panel panel-default panel__job-detail">
     <!-- Bannerbild -->
     <?php if ($hasBanner):?>
-      <div class="banner">
-          <img src="<?=$this->basePath($image->getUri())?>">
-      </div>
+      <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
     <?php endif ?>
     <!-- End Bannerbild -->
 
@@ -58,7 +66,7 @@ if ($job->getDatePublishStart()) {
                 <div class="wrapper__logo">
                     <img src="<?= $template && ($logo = $template->getLogo())
                         ? $this->basePath($logo->getUri())
-                        : $this->uriLogo?>" alt="<?= $this->organizationName?>">
+                        : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
                 </div>
             </div>
             <h1><?=$this->job->getTitle()?></h1>
@@ -99,80 +107,94 @@ if ($job->getDatePublishStart()) {
 
         <hr class="job-details-devider"/>
 
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 
-        <!-- apply button -->
-        <div class="button-job-apply text-center">
-            <?=$this->gastroApplyUrl($job);?>
-        </div>
-        <!-- end apply button -->
-
-        <!-- job content -->
-        <?php if ($this->html): ?>
-            <div class="position">
-                <?=$this->html?>
-            </div>
-        <?php else: ?>
-            <!-- introduction -->
-            <div class="introduction">
-                <?= $this->job->getTemplateValues()->getIntroduction();?>
-            </div>
-
-            <!-- position -->
-            <div class="position">
-                <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
-            </div>
-
-            <!-- requirements -->
-            <div class="position">
-                <?php if($this->benefits): ?>
-                    <div><b><?=$this->labelRequirements?></b></div>
-                <?php endif;?>
-                <?=$this->requirements;?>
-            </div>
-
-            <!-- qualifications -->
-            <?php if ($this->qualifications): ?>
-                <div class="position">
-                    <div><b>Qualifikation</b></div>
-                    <?=$this->qualifications;?>
+                <!-- apply button -->
+                <?php if($preview): ?>
+                    <div class="button-job-apply text-center">
+                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                    </div>
+                <?php else: ?>
+                <div class="button-job-apply text-center">
+                    <?=$this->gastroApplyUrl($job);?>
                 </div>
-            <?php endif;?>
+                <?php endif; ?>
+                <!-- end apply button -->
 
-            <!-- benefits -->
-            <?php if ($this->benefits): ?>
-                <div class="position">
-                    <div><b><?=$this->labelBenefits?></b></div>
-                    <?=$this->benefits;?>
+                <!-- job content -->
+                <?php if ($this->html): ?>
+                    <div class="position">
+                        <?=$this->html?>
+                    </div>
+                <?php else: ?>
+                    <!-- introduction -->
+                    <div class="introduction">
+                        <?= $this->job->getTemplateValues()->getIntroduction();?>
+                    </div>
+
+                    <!-- position -->
+                    <div class="position">
+                        <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
+                    </div>
+
+                    <!-- requirements -->
+                    <div class="position">
+                        <?php if($this->benefits): ?>
+                            <div><b><?=$this->labelRequirements?></b></div>
+                        <?php endif;?>
+                        <?=$this->requirements;?>
+                    </div>
+
+                    <!-- qualifications -->
+                    <?php if ($this->qualifications): ?>
+                        <div class="position">
+                            <div><b>Qualifikation</b></div>
+                            <?=$this->qualifications;?>
+                        </div>
+                    <?php endif;?>
+
+                    <!-- benefits -->
+                    <?php if ($this->benefits): ?>
+                        <div class="position">
+                            <div><b><?=$this->labelBenefits?></b></div>
+                            <?=$this->benefits;?>
+                        </div>
+                    <?php endif;?>
+                <?php endif; ?>
+                <!-- end job content -->
+
+                <!-- company description -->
+                <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : $this->descriptionEditable ?></p>
+                <div itemscope itemtype="http://schema.org/Organization">
+                    <strong itemprop="name">
+                        <?= $this->organizationName?>
+                    </strong><br/>
+                    <?php if ($this->street || $this->postalCode || $this->city || $this->phone):?>
+                    <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <?php if ($this->street): ?><span itemprop="streetAddress"><?=$this->street?></span><br><?php endif ?>
+                        <?php if ($this->postalCode): ?><span itemprop="postalCode"><?=$this->postalCode?></span><?php endif ?>
+                        <?php if ($this->city): ?><span itemprop="addressLocality"><?=$this->city?></span><br /><?php endif ?>
+                        <?php if ($this->phone): ?>Telefon: <span itemprop="telephone"><?=$this->phone?></span><br /><?php endif ?>
+                        <?php if ($this->fax): ?>Fax: <?=$this->fax?></span><br /><?php endif ?>
+                    </address>
+                    <?php endif?>
                 </div>
-            <?php endif;?>
-        <?php endif; ?>
-        <!-- end job content -->
+                <!-- end company description -->
 
-        <hr />
-
-        <!-- company description -->
-        <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : $this->descriptionEditable ?></p>
-        <div itemscope itemtype="http://schema.org/Organization">
-            <strong itemprop="name">
-                <?= $this->organizationName?>
-            </strong><br/>
-            <?php if ($this->street || $this->postalCode || $this->city || $this->phone):?>
-            <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                <?php if ($this->street): ?><span itemprop="streetAddress"><?=$this->street?></span><br><?php endif ?>
-                <?php if ($this->postalCode): ?><span itemprop="postalCode"><?=$this->postalCode?></span><?php endif ?>
-                <?php if ($this->city): ?><span itemprop="addressLocality"><?=$this->city?></span><br /><?php endif ?>
-                <?php if ($this->phone): ?>Telefon: <span itemprop="telephone"><?=$this->phone?></span><br /><?php endif ?>
-                <?php if ($this->fax): ?>Fax: <?=$this->fax?></span><br /><?php endif ?>
-            </address>
-            <?php endif?>
+                <!-- apply button -->
+                <?php if($preview): ?>
+                    <div class="button-job-apply text-center">
+                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                    </div>
+                <?php else: ?>
+                    <div class="button-job-apply text-center">
+                        <?=$this->gastroApplyUrl($job);?>
+                    </div>
+                <?php endif; ?>
+                <!-- end apply button -->
+            </div>
         </div>
-        <!-- end company description -->
-
-        <!-- apply button -->
-        <div class="button-job-apply text-center">
-            <?=$this->gastroApplyUrl($job);?>
-        </div>
-        <!-- end apply button -->
 
         <hr class="job-details-devider"/>
 
@@ -182,6 +204,7 @@ if ($job->getDatePublishStart()) {
         <div class="clearfix"></div>
         <!-- end share buttons -->
 
+        <?php if (!$preview): ?>
         <!-- recommended jobs -->
         <div class="grey-description-container">
             <div class="content">
@@ -215,43 +238,35 @@ if ($job->getDatePublishStart()) {
             </div>
         </div>
         <!-- end recommended jobs by cities -->
+        <?php endif; ?>
 
    </div>
 </div>
-
-  
-    
-    
      <style>
-       
-       
-.jssocials-share-whatsapp .jssocials-share-link,
-.jssocials-share-facebook .jssocials-share-link,
-.jssocials-share-email .jssocials-share-link,
-.jssocials-share-twitter .jssocials-share-link
-    {
-    background: #ccc;
-}
+         .jssocials-share-whatsapp .jssocials-share-link,
+         .jssocials-share-facebook .jssocials-share-link,
+         .jssocials-share-email .jssocials-share-link,
+         .jssocials-share-twitter .jssocials-share-link
+         {
+             background: #ccc;
+         }
 
-.jssocials-shares a {
-    
-    color:#fff!important;
-}
-
-
+         .jssocials-shares a {
+             color:#fff!important;
+         }
     </style>
-    
 
-            <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
-            <script>
-                $("#share").jsSocials({
-                    showLabel: false,
-                    showCount: true,
-                    shares: ["email", "twitter", "facebook", "whatsapp"]
-                });
-            </script>
-    
-    
-  </div>
+
+    <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
+    <script>
+        $("#share").jsSocials({
+            showLabel: false,
+            showCount: true,
+            shares: ["email", "twitter", "facebook", "whatsapp"]
+        });
+    </script>
+
+
+</div>
 
 

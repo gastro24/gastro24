@@ -193,6 +193,7 @@ return [
              'jobs/jobboard/index.ajax.phtml' => __DIR__ . '/../view/jobs/index.ajax.phtml',
              'jobs/jobboard/index' => __DIR__ . '/../view/jobs/index.phtml',
              'jobs/manage/approval' => __DIR__ . '/../view/jobs/approval.phtml',
+             'jobs/form/preview' => __DIR__ . '/../view/jobs/form/preview.phtml',
              'main-navigation' => __DIR__ . '/../view/main-navigation.phtml',
              'auth/index/login-info' => __DIR__ . '/../view/login-info.phtml',
              'gastro24/wordpress-page/index' => __DIR__ . '/../view/gastro24/wordpress-page/index.phtml',

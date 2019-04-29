@@ -10,9 +10,12 @@
 /** */
 namespace Gastro24\Listener;
 
+use Core\Entity\Permissions;
 use Core\Listener\Events\AjaxEvent;
 use Doctrine\ODM\MongoDB\DocumentRepository;
+use Gastro24\Entity\TemplateImage;
 use Gastro24\Form\JobDetailsForm;
+use Jobs\Entity\Job;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -27,11 +30,13 @@ class JobDetailFileUpload
     private $form;
 
     private $repository;
+    private $jobRepository;
 
-    public function __construct(JobDetailsForm $form, DocumentRepository $repository)
+    public function __construct(JobDetailsForm $form, DocumentRepository $repository, $jobRepository)
     {
         $this->form = $form;
         $this->repository = $repository;
+        $this->jobRepository = $jobRepository;
     }
 
     public function __invoke(AjaxEvent $event)
@@ -90,7 +95,14 @@ class JobDetailFileUpload
 
         if ($this->form->isValid()) {
             $values = $this->form->getData();
+            /** @var TemplateImage $file */
             $file = $values['details'][$name]['entity'];
+
+            // grant change permission for file
+            /** @var Job $job */
+            $job = $this->jobRepository->findOneById($data['job']);
+            $filePermissions = $file->getPermissions();
+            $filePermissions->grant($job->getUser(), Permissions::PERMISSION_CHANGE);
 
             return [
                 'valid' => true,
