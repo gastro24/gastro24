@@ -58,8 +58,12 @@ if ($job->getDatePublishStart()) {
         $this->translate('vor ' . $dayDiff->d . ' Tagen');
 }
 
+// get logo url
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
-
+$logoUrl = $this->gastroLogoUri($this->job);
+if (!$logoUrl) {
+    $logoUrl = $defaultLogoUrl;
+}
 //$this->headTitle($this->job->getTitle());
 
 $this->headTitle($this->job->getTitle()." von ".$this->jobOrganizationName($this->job));
@@ -309,9 +313,7 @@ setTimeout(setIframeSrc, 5);
         <div class="teaser__job-detail <?php if (!$hasBanner) echo 'no-banner'; ?>">
             <div itemprop="logo">
                 <div class="wrapper__logo">
-                    <img src="<?= $template && ($logo = $template->getLogo())
-                    ? $this->basePath($logo->getUri())
-                    : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
+                    <img src="<?= $logoUrl ?>" alt="<?= $orgName?>">
                 </div>
             </div>
             <h1><?=$job->getTitle()?></h1>
