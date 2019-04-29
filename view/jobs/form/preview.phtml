@@ -61,7 +61,11 @@ if ($hasBanner) {
 <h3><?=$this->translate("Preview of your job posting"); ?></h3>
 <div class="row">
     <div class="col-md-8">
-        <div class="panel panel-default panel__job-detail">
+        <?php if(!$job->getLink()) : ?>
+            <iframe id="previewJob" style="width:100%; height:800px;" src="<?= $viewLink ?>"></iframe>
+        <!-- job with link -- needs template wrapper -->
+        <?php else: ?>
+            <div class="panel panel-default panel__job-detail">
             <!-- Bannerbild -->
             <?php if ($hasBanner):?>
                 <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
@@ -139,6 +143,7 @@ if ($hasBanner) {
                 <!-- end share buttons -->
             </div>
         </div>
+        <?php endif; ?>
     </div>
     <div class="col-md-4">
         <div class="alert alert-info">
@@ -163,21 +168,6 @@ if ($hasBanner) {
         </div>
     </div>
 </div>
-
-<style>
-    .jssocials-share-whatsapp .jssocials-share-link,
-    .jssocials-share-facebook .jssocials-share-link,
-    .jssocials-share-email .jssocials-share-link,
-    .jssocials-share-twitter .jssocials-share-link
-    {
-        background: #ccc;
-    }
-
-    .jssocials-shares a {
-        color:#fff!important;
-    }
-</style>
-
 
 <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
 <script>
