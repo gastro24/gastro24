@@ -61,6 +61,12 @@ if ($hasBanner) {
 <h3><?=$this->translate("Preview of your job posting"); ?></h3>
 <div class="row">
     <div class="col-md-8">
+
+        <?php if (!$job->getLink()): ?>
+            <iframe id="previewJob" style="width:100%; height:800px;" src="<?= $viewLink ?>"></iframe>
+        <!-- preview of embedded job -->
+        <? else : ?>
+
         <div class="panel panel-default panel__job-detail">
             <!-- Bannerbild -->
             <?php if ($hasBanner):?>
@@ -138,8 +144,9 @@ if ($hasBanner) {
                 <div class="clearfix"></div>
                 <!-- end share buttons -->
             </div>
-
         </div>
+
+        <? endif; ?>
     </div>
     <div class="col-md-4">
         <div class="alert alert-info">
