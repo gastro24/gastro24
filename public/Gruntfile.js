@@ -32,7 +32,11 @@ module.exports = function(grunt) {
                         nodeModulesPath + "/blueimp-file-upload/js/jquery.fileupload.js",
                       ],
                     dest: targetDir+"/dist/js/blueimp-file-upload.js"
-                  }
+                },
+                {
+                    src: nodeModulesPath + "/iframe-resizer/js/iframeResizer.js",
+                    dest: targetDir+"/dist/js/iframeResizer.js"
+                }
               ]
           },
       },

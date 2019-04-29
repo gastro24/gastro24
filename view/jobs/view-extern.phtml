@@ -88,8 +88,10 @@ $this->headScript()->captureStart();?>
 })(jQuery, window);
 <?php $this->headScript()->captureEnd();
 endif;
+
 $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
-    ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));;
+    ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'))
+    ->appendFile($this->basePath('/dist/js/iframeResizer.js'));
 $orgName = $this->jobOrganizationName($this->job);
 ?>
 
@@ -131,10 +133,10 @@ $orgName = $this->jobOrganizationName($this->job);
  <div class="col-md-12">
     <?php if (!$this->isIntern && $this->isVisited && !$this->isEmbeddable): ?>
          <div class="panel panel-default">
-                 <div class="panel-body">
-                        <p> Sie haben sich diese Stellenanzeige bereits angesehen.</p>
-                        <p><a style="text-decoration:underline" href="<?=$this->job->getLink()?>">&raquo; Direkt zum Inserat</a></p>
-                 </div>
+             <div class="panel-body">
+                <p> Sie haben sich diese Stellenanzeige bereits angesehen.</p>
+                <p><a style="text-decoration:underline" href="<?=$this->job->getLink()?>">&raquo; Direkt zum Inserat</a></p>
+             </div>
          </div>
  <?php elseif (!$this->isIntern && !$this->isEmbeddable): ?>
                     
@@ -185,13 +187,13 @@ $orgName = $this->jobOrganizationName($this->job);
 </style>
 <div class="panel panel-default">
     <div class="panel-body">               
-            <div class="spinner">    
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-             </div>
-             <br /><br />
-             <p style="text-align:center;">Sie werden in Kürze automatisch auf das Job-Inserat von <?=$orgName?> weitergeleitet...</p>
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+         </div>
+         <br /><br />
+         <p style="text-align:center;">Sie werden in Kürze automatisch auf das Job-Inserat von <?=$orgName?> weitergeleitet...</p>
     </div>
 </div>
 <?php endif ?>
@@ -199,258 +201,261 @@ $orgName = $this->jobOrganizationName($this->job);
 <!-- not intern and embedded -->
 <?php if (!$this->isIntern && $this->isEmbeddable):?>
 
-<style>
-#preload {
-    background-color:#fff;
-    padding:100px 0;
-}
-.frame-content {
-    width: 100%;
-}
-    
-.frame-content iframe {
-        
- background-color:#fff;
-  width:100%;
-  height:1800px;
- overflow:auto;
-  
+    <style>
+    #preload {
+        background-color:#fff;
+        padding:100px 0;
     }
-    
-   .spinner {
-  margin: 0 auto;
-  width: 70px;
-  text-align: center;
-}
+    .frame-content {
+        width: 100%;
+    }
+    .frame-content iframe {
 
-.spinner > div {
-  width: 18px;
-  height: 18px;
-  background-color: #333;
+        background-color:#fff;
+        width:100%;
+        height:1800px;
+        overflow:auto;
+    }
+    iframe {
+        width: 1px;
+        min-width: 100%;
+    }
+       .spinner {
+      margin: 0 auto;
+      width: 70px;
+      text-align: center;
+    }
 
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-}
+    .spinner > div {
+      width: 18px;
+      height: 18px;
+      background-color: #333;
 
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
+      border-radius: 100%;
+      display: inline-block;
+      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
 
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
+    .spinner .bounce1 {
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+    }
 
-@-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0) }
-  40% { -webkit-transform: scale(1.0) }
-}
+    .spinner .bounce2 {
+      -webkit-animation-delay: -0.16s;
+      animation-delay: -0.16s;
+    }
 
-@keyframes sk-bouncedelay {
-  0%, 80%, 100% { 
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  } 40% { 
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
-  }
-}
+    @-webkit-keyframes sk-bouncedelay {
+      0%, 80%, 100% { -webkit-transform: scale(0) }
+      40% { -webkit-transform: scale(1.0) }
+    }
 
-</style>
+    @keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      } 40% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+      }
+    }
+
+    </style>
 
 
-<script type="text/javascript">
-$(function(){
-    var d=15,
-        a=$("#preload").removeClass("hidden"),
-        e=$(".frame-content iframe").addClass("hidden"),
-        c=$(window),
-        g=$("header"),
-        f=$("footer"),
-        b=$(".box.intro"),
-        iFrameID = $(".iframe1");
+    <script type="text/javascript">
+    $(function(){
+        var d=15,
+            a=$("#preload").removeClass("hidden"),
+            e=$(".frame-content iframe").addClass("hidden"),
+            c=$(window),
+            g=$("header"),
+            f=$("footer"),
+            b=$(".box.intro");
 
-    setTimeout(function(){
-        a.addClass("hidden");
-        e.removeClass("hidden");
-    },3000);
+        setTimeout(function(){
+            a.addClass("hidden");
+            e.removeClass("hidden");
+        },3000);
 
-    c.resize(function(){
-        e.height(c.height()-g.outerHeight(true)-f.outerHeight(true)-b.outerHeight(true)-d)
-    }).resize()});
-</script>
-<!--PRELOAD<script>
-function setIframeSrc() {
-  var s = "<?=$this->job->getLink()?>";
-  var iframe1 = document.getElementById('iframe1');
-  if ( -1 == navigator.userAgent.indexOf("MSIE") ) {
-    iframe1.src = s;
-  }
-  else {
-    iframe1.location = s;
-  }
-}
-setTimeout(setIframeSrc, 5);
-</script>-->
-<div class="panel panel-default hidden-sm hidden-md hidden-lg text-center">
-    <div class="panel-body">
-          <a href="<?=$this->job->getLink()?>">&raquo; Direkt zum Inserat</a>
+        c.resize(function(){
+            e.height(c.height()-g.outerHeight(true)-f.outerHeight(true)-b.outerHeight(true)-d)
+        }).resize()});
+    </script>
+    <!--PRELOAD<script>
+    function setIframeSrc() {
+      var s = "<?=$this->job->getLink()?>";
+      var iframe1 = document.getElementById('iframe1');
+      if ( -1 == navigator.userAgent.indexOf("MSIE") ) {
+        iframe1.src = s;
+      }
+      else {
+        iframe1.location = s;
+      }
+    }
+    setTimeout(setIframeSrc, 5);
+    </script>-->
+    <div class="panel panel-default hidden-sm hidden-md hidden-lg text-center">
+        <div class="panel-body">
+              <a href="<?=$this->job->getLink()?>">&raquo; Direkt zum Inserat</a>
+        </div>
     </div>
-</div>
 
-<div class="panel panel-default panel__job-detail">
-     <!-- Bannerbild -->
-     <?php if ($hasBanner):?>
-         <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-     <?php endif ?>
-     <!-- End Bannerbild -->
+    <div class="panel panel-default panel__job-detail">
+         <!-- Bannerbild -->
+         <?php if ($hasBanner):?>
+             <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
+         <?php endif ?>
+         <!-- End Bannerbild -->
 
-    <div class="panel-body">
-        <!-- company logo and job title-->
-        <div class="teaser__job-detail <?php if (!$hasBanner) echo 'no-banner'; ?>">
-            <div itemprop="logo">
-                <div class="wrapper__logo">
-                    <img src="<?= $logoUrl ?>" alt="<?= $orgName?>">
-                </div>
-            </div>
-            <h1><?=$job->getTitle()?></h1>
-        </div>
-        <!-- end company logo and job title-->
-
-        <div class="job-short-info">
-            <ul>
-                <li class="location">
-                    <!-- location -->
-                    <?php
-                    $location = $job->getLocations()->current();
-                    echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                    ?>
-                    <!-- end location -->
-                </li>
-                <li class="company">
-                    <!-- company name -->
-                    <?php if ($org = $job->getOrganization()): ?>
-                        <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
-                    <?php endif ?>
-                    <!-- end company name -->
-                </li>
-                <li class="type">
-                    <!-- type of contract -->
-                    <?php
-                    $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
-                    <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
-                    <!-- end type of contract -->
-                </li>
-                <li class="date">
-                    <!-- published date -->
-                    <span><?= $publishDate ?></span>
-                    <!-- end published date -->
-                </li>
-            </ul>
-        </div>
-
-        <hr class="job-details-devider"/>
-
-        <!-- apply button -->
-        <?php if($preview): ?>
-            <div class="button-job-apply text-center">
-                <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-            </div>
-        <?php else: ?>
-            <div class="button-job-apply text-center">
-                <?=$this->gastroApplyUrl($job);?>
-            </div>
-        <?php endif; ?>
-        <!-- end apply button -->
-
-        <div class="embed-container">
-            <div class="hidden-xs frame-content">
-                <div id="preload" class="loading hidden text-center">
-                    <div class="spinner">
-                        <div class="bounce1"></div>
-                        <div class="bounce2"></div>
-                        <div class="bounce3"></div>
-                    </div>
-                    <p>Das Inserat wird geladen, bitte haben Sie einem Moment Geduld</p>
-                </div>
-                <iframe id="iframe1" class="iframe1" title="<?=$this->job->getTitle()?>" frameborder="0" allowfullscreen src="<?=$link?>"></iframe>
-            </div>
-        </div>
-
-        <!-- apply button -->
-        <?php if($preview): ?>
-            <div class="button-job-apply text-center">
-                <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-            </div>
-        <?php else: ?>
-            <div class="button-job-apply text-center">
-                <?=$this->gastroApplyUrl($job);?>
-            </div>
-        <?php endif; ?>
-        <!-- end apply button -->
-
-        <hr class="job-details-devider"/>
-
-        <!-- share buttons -->
-        <div>Diesen Job teilen: </div>
-        <div id="share" class="pull-left round-shares"></div>
-        <div class="clearfix"></div>
-        <!-- end share buttons -->
-
-        <?php if (!$preview): ?>
-            <!-- recommended jobs -->
-            <div class="grey-description-container">
-                <div class="content">
-                    <div class="headline">Empfohlene Jobs</div>
-                    <div class="content__inner">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                        justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                        sanctus est Lorem ipsum dolor sit amet.
+        <div class="panel-body">
+            <!-- company logo and job title-->
+            <div class="teaser__job-detail <?php if (!$hasBanner) echo 'no-banner'; ?>">
+                <div itemprop="logo">
+                    <div class="wrapper__logo">
+                        <img src="<?= $logoUrl ?>" alt="<?= $orgName?>">
                     </div>
                 </div>
+                <h1><?=$job->getTitle()?></h1>
             </div>
-            <!-- end recommended jobs -->
+            <!-- end company logo and job title-->
 
-            <!-- recommended jobs by cities -->
-            <div class="grey-description-container">
-                <div class="content">
-                    <div class="headline">Jobs nach Städten</div>
-                    <div class="content__inner">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                        justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                        sanctus est Lorem ipsum dolor sit amet.
+            <div class="job-short-info">
+                <ul>
+                    <li class="location">
+                        <!-- location -->
+                        <?php
+                        $location = $job->getLocations()->current();
+                        echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                        ?>
+                        <!-- end location -->
+                    </li>
+                    <li class="company">
+                        <!-- company name -->
+                        <?php if ($org = $job->getOrganization()): ?>
+                            <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
+                        <?php endif ?>
+                        <!-- end company name -->
+                    </li>
+                    <li class="type">
+                        <!-- type of contract -->
+                        <?php
+                        $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                        <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                        <!-- end type of contract -->
+                    </li>
+                    <li class="date">
+                        <!-- published date -->
+                        <span><?= $publishDate ?></span>
+                        <!-- end published date -->
+                    </li>
+                </ul>
+            </div>
+
+            <hr class="job-details-devider"/>
+
+            <!-- apply button -->
+            <?php if($preview): ?>
+                <div class="button-job-apply text-center">
+                    <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                </div>
+            <?php else: ?>
+                <div class="button-job-apply text-center">
+                    <?=$this->gastroApplyUrl($job);?>
+                </div>
+            <?php endif; ?>
+            <!-- end apply button -->
+
+            <div class="embed-container">
+                <div class="hidden-xs frame-content">
+                    <div id="preload" class="loading hidden text-center">
+                        <div class="spinner">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div>
+                        <p>Das Inserat wird geladen, bitte haben Sie einem Moment Geduld</p>
                     </div>
+                    <iframe id="iframe1" src="<?=$link?>"></iframe>
                 </div>
             </div>
-            <!-- end recommended jobs by cities -->
-        <?php endif; ?>
+
+            <!-- apply button -->
+            <?php if($preview): ?>
+                <div class="button-job-apply text-center">
+                    <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                </div>
+            <?php else: ?>
+                <div class="button-job-apply text-center">
+                    <?=$this->gastroApplyUrl($job);?>
+                </div>
+            <?php endif; ?>
+            <!-- end apply button -->
+
+            <hr class="job-details-devider"/>
+
+            <!-- share buttons -->
+            <div>Diesen Job teilen: </div>
+            <div id="share" class="pull-left round-shares"></div>
+            <div class="clearfix"></div>
+            <!-- end share buttons -->
+
+            <?php if (!$preview): ?>
+                <!-- recommended jobs -->
+                <div class="grey-description-container">
+                    <div class="content">
+                        <div class="headline">Empfohlene Jobs</div>
+                        <div class="content__inner">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                            labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                            justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                            sanctus est Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                </div>
+                <!-- end recommended jobs -->
+
+                <!-- recommended jobs by cities -->
+                <div class="grey-description-container">
+                    <div class="content">
+                        <div class="headline">Jobs nach Städten</div>
+                        <div class="content__inner">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                            labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                            justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                            sanctus est Lorem ipsum dolor sit amet.
+                        </div>
+                    </div>
+                </div>
+                <!-- end recommended jobs by cities -->
+            <?php endif; ?>
+        </div>
     </div>
-</div>
 
-     <!-- socials -->
-<script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
-<script>
+    <!-- socials -->
+    <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
+    <script>
     $("#share").jsSocials({
         showLabel: false,
         showCount: true,
         shares: ["email", "twitter", "facebook", "whatsapp"]
     });
-</script>
+    </script>
+    <!-- end socials -->
 
-     <!-- end socials -->
-
-
+     <!-- iframe resizer -->
+    <script>
+        iFrameResize({ log: true }, '#iframe1')
+    </script>
+     <!-- end iframe resizer -->
 
       </div>
 </div>
