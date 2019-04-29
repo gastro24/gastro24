@@ -25,44 +25,63 @@ $modeLabels = $mode->getOption('labels');
         <div class="col-md-12">
             <a href="<?=$fieldset->getObject()->getLink() ?>">PDF-Datei</a> ausgewählt.</div>
     <?php else: ?>
-    <div class="col-md-12">
-        <div class="panel panel-default">
+        <div class="col-md-12">
+            <div class="panel panel-default">
 
-             <?php $template = $fieldset->getObject()->getAttachedEntity('gastro24-template');
-                if ($template && ($image = $template->getImage())):?>
-                 
-                    <img style="width:100%" src="<?=$this->basePath($image->getUri());?>">
-                <?php endif ?>
-           
-            <div class="panel-heading">
-                <h3 class="panel-title">Einleitung zu Ihrer Stellenanzeige</h3>
-            </div>
-            <div class="panel-body">
-                <?=$fieldset->get('introduction')->getValue()?>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Tätigkeit</h3>
-            </div>
-            <div class="panel-body">
-                <?=$fieldset->get('position')->getValue()?>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Anforderungen</h3>
-            </div>
-            <div class="panel-body">
-                <?=$fieldset->get('requirements')->getValue()?>
-            </div>
-        </div>
-    </div>
+                 <?php $template = $fieldset->getObject()->getAttachedEntity('gastro24-template');
+                    if ($template && ($image = $template->getImage())):?>
 
+                        <img style="width:100%" src="<?=$this->basePath($image->getUri());?>">
+                    <?php endif ?>
+
+                <div class="panel-heading">
+                    <h3 class="panel-title">Einleitung zu Ihrer Stellenanzeige</h3>
+                </div>
+                <div class="panel-body">
+                    <?=$fieldset->get('introduction')->getValue()?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Tätigkeit</h3>
+                </div>
+                <div class="panel-body">
+                    <?=$fieldset->get('position')->getValue()?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Anforderungen</h3>
+                </div>
+                <div class="panel-body">
+                    <?=$fieldset->get('requirements')->getValue()?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Wir bieten (zusätzliche Information)</h3>
+                </div>
+                <div class="panel-body">
+                    <?=$fieldset->get('benefits')->getValue()?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Beschreibung des Unternehmens</h3>
+                </div>
+                <div class="panel-body">
+                    <?=$fieldset->get('description')->getValue()?>
+                </div>
+            </div>
+        </div>
     <?php endif ?>
 </div>
 <?php else: ?>
@@ -112,9 +131,9 @@ $modeLabels = $mode->getOption('labels');
                 '<div class="col-md-9" id="details-image-span">',
                 '<div class="col-md-9" id="details-image-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
                     <a href="/' . $value . '?do=delete" class="file-delete btn btn-default btn-xs">
-            <span class="yk-icon yk-icon-minus"></span>
-        </a>
-        <input type="hidden" value="' . basename(dirname($value)) . '" name="details[image_id]"></div>',
+                        <span class="yk-icon yk-icon-minus"></span>
+                    </a>
+                    <input type="hidden" value="' . basename(dirname($value)) . '" name="details[image_id]"></div>',
                 $input
             );
             $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
