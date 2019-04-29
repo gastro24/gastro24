@@ -45,6 +45,9 @@ if ($job->getDatePublishStart()) {
 $orgName = $this->jobOrganizationName($job);
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 $imageServerUrl = null;
+
+
+$hasBanner = $template && ($image = $template->getImage());
 if ($hasBanner) {
     $serverUrl = new \Zend\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
