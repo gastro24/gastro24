@@ -76,7 +76,7 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
         $this->add([
             'type' => 'Orders/InvoiceAddressFieldset',
             'options' => [
-                'label' => 'Rechnungsanschrift',
+                'label' => /*@translate */ 'Kontaktadresse',
             ],
         ]);
 
@@ -87,6 +87,8 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
                 'save_label' => 'Weiter zur Vorschau',
             ]
         ]);
+
+        $this->get('invoiceAddress')->remove('vatId');
 
     }
 

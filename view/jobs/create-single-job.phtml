@@ -24,7 +24,7 @@ $image = isset($this->details['image']['entity']) ? $this->details['image']['ent
     }
 </style>
 <?php if (!$this->isProcessed):?>
-   <h1>Einzelinserat</h1>
+   <h1><?= $this->translate('Einzelinserat'); ?></h1>
    <hr />
  <?php endif?>
 <?php if ($this->isProcessed):?>
@@ -153,7 +153,7 @@ $image = isset($this->details['image']['entity']) ? $this->details['image']['ent
     <!--                    <div class="clearfix"></div>-->
                         <!-- end share buttons -->
 
-                        <h3>Rechnungsanschrift (kostenlos bis Mitte 2019)</h3>
+                        <h3><?= $this->translate('Kontaktadresse (kostenlos bis Mitte 2019)') ?></h3>
                         <address>
                             <?=$this->invoiceAddress['company']?><br>
                             <?=$this->invoiceAddress['name']?> ( <?=$this->link($this->invoiceAddress['email']) ?> )<br>
