@@ -13,6 +13,12 @@ $this->headTitle('Kostenlos Einzelinserat aufgeben');
 $publishDate = $this->dateFormat(new DateTime(), 'medium', 'none');
 $image = isset($this->details['image']['entity']) ? $this->details['image']['entity'] : null;
 
+$imageServerUrl = null;
+if ($image) {
+    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+}
+
 ?>
 <style>
     iframe {
@@ -35,9 +41,7 @@ $image = isset($this->details['image']['entity']) ? $this->details['image']['ent
                 <div class="panel panel-default panel__job-detail">
                     <!-- Bannerbild -->
                     <?php if ($image):?>
-                        <div class="banner">
-                            <img src="<?=$this->basePath($image->getUri())?>">
-                        </div>
+                        <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
                     <?php endif ?>
                     <!-- End Bannerbild -->
 
