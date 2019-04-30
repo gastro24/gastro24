@@ -1,7 +1,6 @@
 <?php
 namespace Gastro24;
 
-use Gastro24\Controller\ListController;
 use Gastro24\Filter\OrganizationJobsListQuery;
 use Gastro24\Form\JobDetailsHydrator;
 use Gastro24\Form\JobDetailsHydratorFactory;
@@ -90,7 +89,6 @@ return [
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
             Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
             Controller\OrdersController::class => Factory\Controller\OrdersControllerFactory::class,
-            Controller\ListController::class => Factory\Controller\ListControllerFactory::class,
         ],
     ],
 
@@ -248,7 +246,8 @@ return [
              'auth/password/index' => __DIR__ . '/../view/auth/password/index.phtml',
              'auth/forgot-password/index' => __DIR__ . '/../view/auth/forgot-password/index.phtml',
              'content/applications-privacy-policy' => __DIR__ . '/../view/application-disclaimer.phtml',
-             'orders/list/index.ajax' => __DIR__ . '/../view/orders/list/index.ajax.phtml',
+             'orders/list/index' => __DIR__ . '/../view/gastro24/orders/index.phtml',
+             'orders/list/index.ajax' => __DIR__ . '/../view/gastro24/orders/index.ajax.phtml',
              'organizations/profile/detail' => __DIR__ . '/../view/organizations/profile-detail.phtml',
              'organizations/profile/detail.ajax' => __DIR__ . '/../view/organizations/profile-detail.ajax.phtml',
              'organizations/profile/disabled' => __DIR__ . '/../view/organizations/profile-disabled.phtml',
@@ -414,7 +413,7 @@ return [
                         'options' => [
                             'route' => '/orders',
                             'defaults' => [
-                                'controller' => Controller\ListController::class,
+                                'controller' => Controller\OrdersController::class,
                                 'action' => 'index'
                             ],
                         ],
