@@ -12,22 +12,22 @@ $labels = [
     ],
 
     /* Label des URL-Eingabefeldes */
-    'uri' => 'Online-Inserat',
+    'uri' => 'Link zum Stelleninserat',
 
     /* Datei-Asuwahlfeld für PDF-Upload */
-    'pdf' => 'PDF-Datei',
+    'pdf' => 'PDF-Datei hochladen',
 
     /* Datei-Auswahlfeld für das Unternehmenslogo (nur bei Einzelinserat) */
     'logo' => 'Unternehmenslogo (max. 350x150)',
 
     /* Text-Area für die Unternehmensbeschreibung (nur bei Einzelinserat) */
-    'description' => 'Unternehmensbeschreibung',
+    'description' => 'Beschreibung des Unternehmens',
 
     /* Datei-Auswahlfeld für das Bannerbild */
-    'image' => 'Bannerbild (max. 600x400)',
+    'image' => 'Bannerbild (ideal 1200px * 300px)',
 
     /* Text-Area für die Stellenbeschreibung */
-    'position' => 'Stellenbeschreibung',
+    'position' => 'Tätigkeit',
 
     /* Text-Area für die Anforderungen */
     'requirements' => 'Anforderungen',
