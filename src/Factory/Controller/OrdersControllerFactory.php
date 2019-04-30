@@ -20,7 +20,16 @@ class OrdersControllerFactory
         $orderRepository = $repositories->get('Orders');
         $snaphotsRepository = $repositories->get('Jobs/JobSnapshot');
         $jobsRepository = $repositories->get('Jobs');
+        $jobEvents = $container->get('Jobs/Events');
+        $jobEvent = $container->get('Jobs/Event');
 
-        return new OrdersController($jobActivationRepository, $orderRepository, $snaphotsRepository, $jobsRepository);
+        return new OrdersController(
+            $jobActivationRepository,
+            $orderRepository,
+            $snaphotsRepository,
+            $jobsRepository,
+            $jobEvents,
+            $jobEvent
+        );
     }
 }
