@@ -18,6 +18,8 @@ if ($image) {
     $serverUrl = new \Zend\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
 }
+$logo = isset($this->details['logo']['entity']) ? $this->details['logo']['entity'] : null;
+$logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
 ?>
 <style>
@@ -50,9 +52,7 @@ if ($image) {
                         <div class="teaser__job-detail <?php if (!$image) echo 'no-banner'; ?>">
                             <div itemprop="logo">
                                 <div class="wrapper__logo">
-                                    <img src="<?= $image
-                                        ? $this->basePath($image->getUri())
-                                        : $this->uriLogo?>" alt="<?= $this->organizationName?>">
+                                    <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
                                 </div>
                             </div>
                             <h1><?=$this->title?></h1>
@@ -157,7 +157,7 @@ if ($image) {
     <!--                    <div class="clearfix"></div>-->
                         <!-- end share buttons -->
 
-                        <h3><?= $this->translate('Kontaktadresse (kostenlos bis Mitte 2019)') ?></h3>
+                        <h3><?= $this->translate('Kontaktadresse') ?></h3>
                         <address>
                             <?=$this->invoiceAddress['company']?><br>
                             <?=$this->invoiceAddress['name']?> ( <?=$this->link($this->invoiceAddress['email']) ?> )<br>
