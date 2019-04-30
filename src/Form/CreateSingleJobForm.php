@@ -89,14 +89,13 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
         ]);
 
 
-        $modeElement = $this->get('details')->get('mode');
-        $labels = $modeElement->getOption('labels');
-        $modeElement->setOptions([
-            'value_options' => [
-                'html' => 'html'
-            ],
-            'labels' => ['html' => $labels['html']],
-        ])->setAttributes(['value' => 'html']);
+        $detailsFieldset = $this->get('details');
+        $detailsFieldset->remove('mode');
+        $detailsFieldset->add([
+            'type' => 'hidden',
+            'name' => 'mode',
+            'attributes' => [ 'value' => 'html' ],
+        ]);
         $this->get('invoiceAddress')->remove('vatId');
 
     }
