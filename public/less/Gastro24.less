@@ -1,5 +1,7 @@
 @import "../../../modules/Core/less/yawik.less";
+@import "_forms.less";
 @import "_jobs.less";
+@import "_socials.less";
 
 @g24-blue: #243b84;
 @g24-light-blue: #5bc0de;
@@ -218,18 +220,6 @@ input[type="file"] {
     background-image: linear-gradient( #121212, rgba(0, 0, 0, 0.001));
 }
 
-#form-registration {
-    #registration-registration-register {
-        #register-differentInvoiceAddress-span span{
-            font-weight: bold;
-            padding-left: 1rem;
-        }
-    }
-    #registration-registration-registerAddressFieldset {
-        display: none;
-    }
-}
-
 #form-orders-settings {
     margin-bottom: 20px;
     background-color: #fff;
@@ -246,37 +236,26 @@ input[type="file"] {
     }
 }
 
-#form-jobsbymail-subscribe-form {
-    button.btn-info {
-        background-color: @btn-danger-bg;
-        border-color: @btn-danger-border;
-        color: @btn-danger-color;
+#footer {
+    background-color: #243b84;
+    padding: 25px 0;
+    font-size: 15px;
+    line-height: 24px;
+    color: #b6bed6;
+
+    nav ul li a {
+        text-decoration: underline;
     }
-    button.btn-info :hover {
-        background-color: darken(@btn-danger-bg,10%);
+    a {
+        color: #b6bed6;
+    }
+    h5 {
+        color: #fff;
+    }
+    hr {
+        border-top: 1px solid @g24-blue;
     }
 }
-
-    #footer {
-        background-color: #243b84;
-        padding: 25px 0;
-        font-size: 15px;
-        line-height: 24px;
-        color: #b6bed6;
-
-        nav ul li a {
-            text-decoration: underline;
-        }
-        a {
-            color: #b6bed6;
-        }
-        h5 {
-            color: #fff;
-        }
-        hr {
-            border-top: 1px solid @g24-blue;
-        }
-    }
 
 /* BEGIN JOB OVERVIEW */
 h1.job-overview-title {

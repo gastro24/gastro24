@@ -31,9 +31,7 @@ class JobDetailsForm extends SummaryForm implements HeadscriptProviderInterface
     public function getHeadscripts()
     {
         return [
-            'modules/Gastro24/assets/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
-            'modules/Gastro24/assets/blueimp-file-upload/js/jquery.iframe-transport.js',
-            'modules/Gastro24/assets/blueimp-file-upload/js/jquery.fileupload.js',
+            'dist/js/blueimp-file-upload.js',
             'modules/Gastro24/jobpdfupload.js'
         ];
     }
