@@ -93,6 +93,8 @@ if ($job->getDatePublishStart()) {
                     <!-- company name -->
                     <?php if ($org = $this->job->getOrganization()): ?>
                         <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
+                    <?php else: ?>
+                        <strong><?= $orgName ?></strong>
                     <?php endif ?>
                     <!-- end company name -->
                 </li>
