@@ -91,7 +91,8 @@ endif;
 
 $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'))
-    ->appendFile($this->basePath('/dist/js/iframeResizer.js'));
+    ->appendFile($this->basePath('/dist/js/iframeResizer.js'))
+    ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'));
 $orgName = $this->jobOrganizationName($this->job);
 ?>
 
@@ -212,9 +213,9 @@ $orgName = $this->jobOrganizationName($this->job);
     .frame-content iframe {
 
         background-color:#fff;
-        width:100%;
-        height:1800px;
-        overflow:auto;
+        /*width:100%;*/
+        /*height:1800px;*/
+        /*overflow:auto;*/
     }
     iframe {
         width: 1px;
@@ -287,12 +288,12 @@ $orgName = $this->jobOrganizationName($this->job);
     <!--PRELOAD<script>
     function setIframeSrc() {
       var s = "<?=$this->job->getLink()?>";
-      var iframe1 = document.getElementById('iframe1');
+      var iframe4 = document.getElementById('iframe4');
       if ( -1 == navigator.userAgent.indexOf("MSIE") ) {
-        iframe1.src = s;
+        iframe4.src = s;
       }
       else {
-        iframe1.location = s;
+        iframe4.location = s;
       }
     }
     setTimeout(setIframeSrc, 5);
@@ -378,7 +379,7 @@ $orgName = $this->jobOrganizationName($this->job);
                         </div>
                         <p>Das Inserat wird geladen, bitte haben Sie einem Moment Geduld</p>
                     </div>
-                    <iframe id="iframe1" src="<?=$link?>"></iframe>
+                    <iframe style="height:1800px" id="iframe4" src="<?=$link?>"></iframe>
                 </div>
             </div>
 
@@ -453,7 +454,7 @@ $orgName = $this->jobOrganizationName($this->job);
 
      <!-- iframe resizer -->
     <script>
-        iFrameResize({ log: true }, '#iframe1')
+        iFrameResize({ log: false }, '#iframe4')
     </script>
      <!-- end iframe resizer -->
 

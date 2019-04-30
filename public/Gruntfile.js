@@ -36,6 +36,10 @@ module.exports = function(grunt) {
                 {
                     src: nodeModulesPath + "/iframe-resizer/js/iframeResizer.js",
                     dest: targetDir+"/dist/js/iframeResizer.js"
+                },
+                {
+                    src: nodeModulesPath + "/iframe-resizer/js/iframeResizer.contentWindow.min.js",
+                    dest: targetDir+"/dist/js/iframeResizer.contentWindow.min.js"
                 }
               ]
           },
