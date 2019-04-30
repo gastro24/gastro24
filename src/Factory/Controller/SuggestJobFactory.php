@@ -10,9 +10,7 @@
 /** */
 namespace Gastro24\Factory\Controller;
 
-use Gastro24\Controller\CreateSingleJob;
 use Gastro24\Controller\SuggestJobs;
-use Gastro24\Form\CreateSingleJobForm;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Solr\Options\ModuleOptions;
