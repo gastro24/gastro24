@@ -100,7 +100,14 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'));
+
+// organisation values
+$org = $job->getOrganization();
+$orgIsDisabled = false;
 $orgName = $this->jobOrganizationName($this->job);
+if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
+    $orgIsDisabled = true;
+}
 ?>
 
 <!-- prev / next navigation -->
@@ -340,8 +347,10 @@ $orgName = $this->jobOrganizationName($this->job);
                     </li>
                     <li class="company">
                         <!-- company name -->
-                        <?php if ($org = $job->getOrganization()): ?>
+                        <?php if ($org && !$orgIsDisabled): ?>
                             <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
+                        <?php else: ?>
+                            <strong><?= $orgName ?></strong>
                         <?php endif ?>
                         <!-- end company name -->
                     </li>
