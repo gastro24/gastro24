@@ -32,11 +32,10 @@ $replaceImage = function($str) use ($template, $basePathHelper)
 };
 
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
-$orgName = $this->jobOrganizationName($this->job);
 
 // check for banner
 $hasBanner = $template && ($image = $template->getImage());
-$imageServerUrl = null;
+$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 if ($hasBanner) {
     $serverUrl = new \Zend\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
@@ -54,22 +53,25 @@ if ($job->getDatePublishStart()) {
         $this->translate('vor ' . $dayDiff->d . ' Tagen');
 }
 
-
-
+// organisation values
+$org = $this->job->getOrganization();
+$orgIsDisabled = false;
+$orgName = $this->jobOrganizationName($this->job);
+if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
+    $orgIsDisabled = true;
+}
 ?>
 <?=$this->jsonLd($this->job)?>
 
   <div class="panel panel-default panel__job-detail">
     <!-- Bannerbild -->
-    <?php if ($hasBanner):?>
-      <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-    <?php endif ?>
+    <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
     <!-- End Bannerbild -->
 
 
     <div class="panel-body">
         <!-- company logo and job title-->
-        <div class="teaser__job-detail <?php if (!$hasBanner) echo 'no-banner'; ?>">
+        <div class="teaser__job-detail">
             <div itemprop="logo">
                 <div class="wrapper__logo">
                     <img src="<?= $template && ($logo = $template->getLogo())
@@ -93,7 +95,7 @@ if ($job->getDatePublishStart()) {
                 </li>
                 <li class="company">
                     <!-- company name -->
-                    <?php if ($org = $this->job->getOrganization()): ?>
+                    <?php if ($org && !$orgIsDisabled): ?>
                         <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
                     <?php else: ?>
                         <strong><?= $orgName ?></strong>

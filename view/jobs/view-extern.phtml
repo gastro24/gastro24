@@ -46,6 +46,13 @@ else {
     $backTitle = $this->translate($originalSearchQuery . ' Jobs');
 }
 
+// banner image
+if (!$this->isIntern && $this->isEmbeddable) {
+    if (!$hasBanner) {
+        $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_blue.svg');
+    }
+}
+
 // get date difference
 $today = new DateTime();
 if ($job->getDatePublishStart()) {
@@ -93,7 +100,14 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'));
+
+// organisation values
+$org = $job->getOrganization();
+$orgIsDisabled = false;
 $orgName = $this->jobOrganizationName($this->job);
+if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
+    $orgIsDisabled = true;
+}
 ?>
 
 <!-- prev / next navigation -->
@@ -139,65 +153,65 @@ $orgName = $this->jobOrganizationName($this->job);
                 <p><a style="text-decoration:underline" href="<?=$this->job->getLink()?>">&raquo; Direkt zum Inserat</a></p>
              </div>
          </div>
- <?php elseif (!$this->isIntern && !$this->isEmbeddable): ?>
+    <?php elseif (!$this->isIntern && !$this->isEmbeddable): ?>
                     
-<style>
-                        
- .spinner {
-  margin: 0 auto;
-  width: 70px;
-  text-align: center;
-}
+        <style>
 
-.spinner > div {
-  width: 18px;
-  height: 18px;
-  background-color: #333;
+     .spinner {
+      margin: 0 auto;
+      width: 70px;
+      text-align: center;
+    }
 
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-}
+    .spinner > div {
+      width: 18px;
+      height: 18px;
+      background-color: #333;
 
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
+      border-radius: 100%;
+      display: inline-block;
+      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
 
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
+    .spinner .bounce1 {
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+    }
 
-@-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0) }
-  40% { -webkit-transform: scale(1.0) }
-}
+    .spinner .bounce2 {
+      -webkit-animation-delay: -0.16s;
+      animation-delay: -0.16s;
+    }
 
-@keyframes sk-bouncedelay {
-  0%, 80%, 100% { 
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  } 40% { 
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
-  }
-}
+    @-webkit-keyframes sk-bouncedelay {
+      0%, 80%, 100% { -webkit-transform: scale(0) }
+      40% { -webkit-transform: scale(1.0) }
+    }
 
-</style>
-<div class="panel panel-default">
-    <div class="panel-body">               
-        <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-         </div>
-         <br /><br />
-         <p style="text-align:center;">Sie werden in Kürze automatisch auf das Job-Inserat von <?=$orgName?> weitergeleitet...</p>
+    @keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      } 40% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+      }
+    }
+
+    </style>
+        <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+             </div>
+             <br /><br />
+             <p style="text-align:center;">Sie werden in Kürze automatisch auf das Job-Inserat von <?=$orgName?> weitergeleitet...</p>
+        </div>
     </div>
-</div>
-<?php endif ?>
+    <?php endif ?>
 
 <!-- not intern and embedded -->
 <?php if (!$this->isIntern && $this->isEmbeddable):?>
@@ -306,14 +320,12 @@ $orgName = $this->jobOrganizationName($this->job);
 
     <div class="panel panel-default panel__job-detail">
          <!-- Bannerbild -->
-         <?php if ($hasBanner):?>
-             <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-         <?php endif ?>
+         <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
          <!-- End Bannerbild -->
 
         <div class="panel-body">
             <!-- company logo and job title-->
-            <div class="teaser__job-detail <?php if (!$hasBanner) echo 'no-banner'; ?>">
+            <div class="teaser__job-detail">
                 <div itemprop="logo">
                     <div class="wrapper__logo">
                         <img src="<?= $logoUrl ?>" alt="<?= $orgName?>">
@@ -335,8 +347,10 @@ $orgName = $this->jobOrganizationName($this->job);
                     </li>
                     <li class="company">
                         <!-- company name -->
-                        <?php if ($org = $job->getOrganization()): ?>
+                        <?php if ($org && !$orgIsDisabled): ?>
                             <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
+                        <?php else: ?>
+                            <strong><?= $orgName ?></strong>
                         <?php endif ?>
                         <!-- end company name -->
                     </li>
