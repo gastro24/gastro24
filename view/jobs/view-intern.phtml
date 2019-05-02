@@ -36,7 +36,7 @@ $orgName = $this->jobOrganizationName($this->job);
 
 // check for banner
 $hasBanner = $template && ($image = $template->getImage());
-$imageServerUrl = null;
+$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 if ($hasBanner) {
     $serverUrl = new \Zend\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
@@ -61,15 +61,13 @@ if ($job->getDatePublishStart()) {
 
   <div class="panel panel-default panel__job-detail">
     <!-- Bannerbild -->
-    <?php if ($hasBanner):?>
-      <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-    <?php endif ?>
+    <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
     <!-- End Bannerbild -->
 
 
     <div class="panel-body">
         <!-- company logo and job title-->
-        <div class="teaser__job-detail <?php if (!$hasBanner) echo 'no-banner'; ?>">
+        <div class="teaser__job-detail">
             <div itemprop="logo">
                 <div class="wrapper__logo">
                     <img src="<?= $template && ($logo = $template->getLogo())

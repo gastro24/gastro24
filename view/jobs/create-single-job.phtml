@@ -13,7 +13,7 @@ $this->headTitle('Kostenlos Einzelinserat aufgeben');
 $publishDate = $this->dateFormat(new DateTime(), 'medium', 'none');
 $image = isset($this->details['image']['entity']) ? $this->details['image']['entity'] : null;
 
-$imageServerUrl = null;
+$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 if ($image) {
     $serverUrl = new \Zend\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
@@ -42,14 +42,12 @@ $logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('mo
 
                 <div class="panel panel-default panel__job-detail">
                     <!-- Bannerbild -->
-                    <?php if ($image):?>
-                        <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-                    <?php endif ?>
+                    <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
                     <!-- End Bannerbild -->
 
                     <div class="panel-body">
                         <!-- company logo and job title-->
-                        <div class="teaser__job-detail <?php if (!$image) echo 'no-banner'; ?>">
+                        <div class="teaser__job-detail">
                             <div itemprop="logo">
                                 <div class="wrapper__logo">
                                     <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
