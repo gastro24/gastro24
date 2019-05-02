@@ -29,13 +29,10 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     return str_replace('#image#', $imageHtml, $str);
 };
 
-$orgName = $this->jobOrganizationName($this->job);
-
 $logoUrl = $this->uriLogo;
 if ($template && ($logo = $template->getLogo())) {
     $logoUrl = $this->basePath($logo->getUri());
 }
-
 
 // check for banner
 $hasBanner = $template && ($image = $template->getImage());
@@ -54,6 +51,14 @@ if ($job->getDatePublishStart()) {
     $dayDiff = $today->diff($job->getDateCreated());
     $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
         $this->translate('vor ' . $dayDiff->d . ' Tagen');
+}
+
+// organisation values
+$org = $this->job->getOrganization();
+$orgIsDisabled = false;
+$orgName = $this->jobOrganizationName($this->job);
+if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
+    $orgIsDisabled = true;
 }
 
 ?>
@@ -111,8 +116,10 @@ if ($job->getDatePublishStart()) {
                 </li>
                 <li class="company">
                     <!-- company name -->
-                    <?php if ($org = $this->job->getOrganization()): ?>
+                    <?php if ($org && !$orgIsDisabled): ?>
                         <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
+                    <?php else: ?>
+                        <strong><?= $orgName ?></strong>
                     <?php endif ?>
                     <!-- end company name -->
                 </li>
