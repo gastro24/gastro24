@@ -37,7 +37,7 @@ class JobboardApplyUrl extends AbstractHelper
             $url = $job->getLink();
             $pdflink = null;
             $class = "no-apply-link";
-            if (strpos($url,"http") || strpos($url,"https")) {
+            if (strpos($url,"http") !== false) {
                 $text = '.pdf' == substr($url, -4) ? 'PDF downloaden' : 'Jetzt bewerben';
             } else {
                 $url = null;
