@@ -44,7 +44,6 @@ if ($job->getDatePublishStart()) {
     $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
         $this->translate('vor ' . $dayDiff->d . ' Tagen');
 }
-$orgName = $this->jobOrganizationName($job);
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
@@ -58,6 +57,15 @@ else {
         $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_blue.svg');
     }
 }
+
+// organisation values
+$org = $job->getOrganization();
+$orgIsDisabled = false;
+$orgName = $this->jobOrganizationName($job);
+if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
+    $orgIsDisabled = true;
+}
+
 ?>
 <style>
     #form-jobs-form-preview .panel__job-detail .panel-body{
@@ -109,8 +117,10 @@ else {
                         </li>
                         <li class="company">
                             <!-- company name -->
-                            <?php if ($org = $job->getOrganization()): ?>
+                            <?php if ($org && !$orgIsDisabled): ?>
                                 <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
+                            <?php else: ?>
+                                <strong><?= $orgName ?></strong>
                             <?php endif ?>
                             <!-- end company name -->
                         </li>
