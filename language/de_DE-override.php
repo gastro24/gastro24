@@ -21,7 +21,7 @@ return [
     'Accepted' => 'Angenommen',
     'Changed' => 'Geändert',
     'Rejected' => 'Abgelehnt',
-    'This profile is disabled.' => 'Dieses Firmen-Profil ist deaktiviert.',
+    'This profile is disabled.' => 'Dieses Firmenprofil ist deaktiviert.',
     '%1$s - %2$s of %3$s' => '%1$s - %2$s von %3$s',
     'Job, Keyword or Location' => 'Beruf, Begriff oder Arbeitsort',
     'Back to search' => 'Zurück zur Suche',
