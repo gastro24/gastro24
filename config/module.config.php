@@ -148,6 +148,7 @@ return [
             View\Helper\JobCount::class => View\Helper\JobCountFactory::class,
             View\Helper\HasAutomaticJobActivation::class => View\Helper\HasAutomaticJobActivationFactory::class,
             View\Helper\ShowAutomaticJobActivationHint::class => View\Helper\ShowAutomaticJobActivationHintFactory::class,
+            View\Helper\HydrateOrderObject::class => View\Helper\HydrateOrderObjectFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -160,6 +161,7 @@ return [
             'gastroJobCount' => View\Helper\JobCount::class,
             'hasAutomaticJobActivation' => View\Helper\HasAutomaticJobActivation::class,
             'showAutomaticJobActivationHint' => View\Helper\ShowAutomaticJobActivationHint::class,
+            'hydrateOrderObject' => View\Helper\HydrateOrderObject::class,
         ],
         'delegators' => [
             'jobUrl' => [
@@ -250,6 +252,7 @@ return [
              'content/applications-privacy-policy' => __DIR__ . '/../view/application-disclaimer.phtml',
              'orders/list/index' => __DIR__ . '/../view/gastro24/orders/index.phtml',
              'orders/list/index.ajax' => __DIR__ . '/../view/gastro24/orders/index.ajax.phtml',
+             'orders/view/index' => __DIR__ . '/../view/gastro24/orders/modal.phtml',
              'organizations/profile/detail' => __DIR__ . '/../view/organizations/profile-detail.phtml',
              'organizations/profile/detail.ajax' => __DIR__ . '/../view/organizations/profile-detail.ajax.phtml',
              'organizations/profile/disabled' => __DIR__ . '/../view/organizations/profile-disabled.phtml',
