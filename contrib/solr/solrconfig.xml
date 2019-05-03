@@ -865,15 +865,6 @@
     </lst>
   </initParams>
 
-  <initParams path="/update/**">
-    <lst name="defaults">
-      <str name="df">text</str>
-      <str name="update.chain">langid</str>
-    </lst>
-  </initParams>
-
-
-
   <!-- Solr Cell Update Request Handler
 
        http://wiki.apache.org/solr/ExtractingRequestHandler 
@@ -1129,17 +1120,21 @@
 
   <searchComponent name="suggest" class="solr.SuggestComponent">
     <lst name="suggester">
-      <str name="name">mySuggester</str>
-      <str name="lookupImpl">FuzzyLookupFactory</str>      <!-- org.apache.solr.spelling.suggest.fst -->
-      <str name="dictionaryImpl">DocumentDictionaryFactory</str>     <!-- org.apache.solr.spelling.suggest.HighFrequencyDictionaryFactory --> 
-      <str name="field">cat</str>
-      <str name="weightField">price</str>
-      <str name="suggestAnalyzerFieldType">string</str>
+      <str name="name">infixSuggester</str>
+      <str name="lookupImpl">AnalyzingInfixLookupFactory</str>      <!-- org.apache.solr.spelling.suggest.fst -->
+      <str name="indexPath">infix_suggestions</str>
+      <str name="dictionaryImpl">DocumentDictionaryFactory</str>     <!-- org.apache.solr.spelling.suggest.HighFrequencyDictionaryFactory -->
+      <str name="field">title</str>
+      <str name="weightField">weight</str>
+      <str name="suggestAnalyzerFieldType">suggest_type</str>
+      <str name="buildOnStartup">false</str>
+      <str name="buildOnCommit">false</str>
     </lst>
   </searchComponent>
 
   <requestHandler name="/suggest" class="solr.SearchHandler" startup="lazy">
     <lst name="defaults">
+      <str name="suggest.dictionary">infixSuggester</str>
       <str name="suggest">true</str>
       <str name="suggest.count">10</str>
     </lst>
@@ -1353,13 +1348,13 @@
        <processor class="solr.RunUpdateProcessorFactory" />
      </updateRequestProcessorChain>
     -->
-<!--     <updateRequestProcessorChain name="html-strip-features">    
+     <updateRequestProcessorChain name="html-strip-features">    
       <processor class="solr.HTMLStripFieldUpdateProcessorFactory">    
         <str name="fieldName">html</str>        
       </processor>    
       <processor class="solr.LogUpdateProcessorFactory" />    
       <processor class="solr.RunUpdateProcessorFactory" />    
-    </updateRequestProcessorChain>    -->
+    </updateRequestProcessorChain>    
  
   <!-- Language identification
 
@@ -1371,11 +1366,11 @@
        rich documents injected via ExtractingRequestHandler.
        See more about langId at http://wiki.apache.org/solr/LanguageDetection
     -->
+   
      <updateRequestProcessorChain name="langid">
-       <processor class="org.apache.solr.update.processor.TikaLanguageIdentifierUpdateProcessorFactory">
-         <str name="langid.fl">title</str>
-         <str name="langid.langField">lang</str>
-         <str name="langid.overwrite">true</str>
+       <processor class="org.apache.solr.update.processor.LangDetectLanguageIdentifierUpdateProcessorFactory">
+         <str name="langid.fl">text,title</str>
+         <str name="langid.langField">language_s</str>
          <str name="langid.fallback">de</str>
        </processor>
        <processor class="solr.LogUpdateProcessorFactory" />
