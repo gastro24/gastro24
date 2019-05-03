@@ -96,7 +96,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                 <li class="company">
                     <!-- company name -->
                     <?php if ($org && !$orgIsDisabled): ?>
-                        <a title="Jobs <?= $orgName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
+                        <a title="Jobs <?= $orgName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
                     <?php else: ?>
                         <strong><?= $orgName ?></strong>
                     <?php endif ?>
