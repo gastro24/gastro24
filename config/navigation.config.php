@@ -127,6 +127,7 @@ return [
             ],
             'recruiter' => [
                 'allow' => [
+                    'route/lang/register-confirmation',
                     'route/logout'
                 ],
                 'deny' => [
