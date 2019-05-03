@@ -76,7 +76,7 @@
         border-color: @g24-red;
         border-radius: 4px;
        -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;x;
+       -moz-border-radius: 4px;
         padding: 6px 25px;
       }
     }
@@ -184,6 +184,18 @@
 }
 
 @media(max-width: @screen-sm) {
+.panel__job-detail {
+  .banner {
+    height: 200px;
+    background-size: cover;
+  }
+
+  .panel-body {
+    padding:0 5rem 5rem 5rem;
+
+  }
+}
+
   .job-navigation {
     span {
       flex-direction: column;

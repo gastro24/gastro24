@@ -117,7 +117,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                 <li class="company">
                     <!-- company name -->
                     <?php if ($org && !$orgIsDisabled): ?>
-                        <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
+                        <a title="Jobs <?= $orgName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
                     <?php else: ?>
                         <strong><?= $orgName ?></strong>
                     <?php endif ?>
@@ -141,7 +141,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
         <hr class="job-details-devider"/>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            <div class="col-md-8 col-md-offset-2">
 
                 <!-- apply button -->
                 <?php if($preview): ?>
@@ -174,7 +174,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                     <!-- requirements -->
                     <div class="position">
                         <?php if($this->benefits): ?>
-                            <div><b><?=$this->labelRequirements?></b></div>
+                         <!--   <div><b><?=$this->labelRequirements?></b></div> -->
                         <?php endif;?>
                         <?=$this->requirements;?>
                     </div>
@@ -182,7 +182,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                     <!-- qualifications -->
                     <?php if ($this->qualifications): ?>
                         <div class="position">
-                            <div><b>Qualifikation</b></div>
+                            <!--  <div><b>Qualifikation</b></div> -->
                             <?=$this->qualifications;?>
                         </div>
                     <?php endif;?>
@@ -190,7 +190,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                     <!-- benefits -->
                     <?php if ($this->benefits): ?>
                         <div class="position">
-                            <div><b><?=$this->labelBenefits?></b></div>
+                           <!--   <div><b><?=$this->labelBenefits?></b></div>-->
                             <?=$this->benefits;?>
                         </div>
                     <?php endif;?>

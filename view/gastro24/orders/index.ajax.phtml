@@ -107,6 +107,11 @@ use Orders\Entity\ProductInterface; ?>
                        title="<?php echo $this->translate('Sofortige Jobfreischaltung')?>">
                         <i class="yk-icon fa-check"></i>
                     </a>
+                    <?php elseif($additionalOrderData['automaticJobActivation'] && !$additionalOrderData['singleJob']) : ?>
+                        <a class="btn btn-default btn-xs jobactivation-icon"
+                           title="<?php echo $this->translate('Sofortige Jobfreischaltung aktiviert')?>">
+                            <i class="yk-icon fa-stop-circle"></i>
+                        </a>
                     <?php endif; ?>
                 </div>
             </td>
