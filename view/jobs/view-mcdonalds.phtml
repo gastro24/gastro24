@@ -155,7 +155,8 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                 <?php endif; ?>
                 <!-- end apply button -->
 
-                <!-- job content -->
+            <!-- job content -->
+            <div id="job_content">
                 <?php if ($this->html): ?>
                     <div class="position">
                         <?=$this->html?>
@@ -213,6 +214,8 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                         </address>
                     <?php endif?>
                 </div>
+               </div>
+                <!-- end job__content -->
                 <!-- end company description -->
 
                 <!-- apply button -->
