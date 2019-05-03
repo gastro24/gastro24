@@ -147,6 +147,7 @@ return [
             View\Helper\JobTemplate::class => View\Helper\JobTemplateFactory::class,
             View\Helper\JobCount::class => View\Helper\JobCountFactory::class,
             View\Helper\HasAutomaticJobActivation::class => View\Helper\HasAutomaticJobActivationFactory::class,
+            View\Helper\ShowAutomaticJobActivationHint::class => View\Helper\ShowAutomaticJobActivationHintFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -158,6 +159,7 @@ return [
             'gastroJobTemplate' => View\Helper\JobTemplate::class,
             'gastroJobCount' => View\Helper\JobCount::class,
             'hasAutomaticJobActivation' => View\Helper\HasAutomaticJobActivation::class,
+            'showAutomaticJobActivationHint' => View\Helper\ShowAutomaticJobActivationHint::class,
         ],
         'delegators' => [
             'jobUrl' => [

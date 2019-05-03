@@ -40,6 +40,12 @@ class JobActivation implements EntityInterface, IdentifiableEntityInterface
     protected $userId;
 
     /**
+     * @ODM\Field(type="boolean")
+     * @var boolean
+     */
+    protected $showActivationHint = true;
+
+    /**
      * @return bool
      */
     public function isAutomaticJobActivation()
@@ -94,6 +100,22 @@ class JobActivation implements EntityInterface, IdentifiableEntityInterface
         $this->userId = $userId;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isShowActivationHint()
+    {
+        return $this->showActivationHint;
+    }
+
+    /**
+     * @param bool $showActivationHint
+     */
+    public function setShowActivationHint($showActivationHint)
+    {
+        $this->showActivationHint = $showActivationHint;
     }
 
 
