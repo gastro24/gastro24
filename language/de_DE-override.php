@@ -25,7 +25,7 @@ return [
     '%1$s - %2$s of %3$s' => '%1$s - %2$s von %3$s',
     'Job, Keyword or Location' => 'Beruf, Begriff oder Arbeitsort',
     'Back to search' => 'Zurück zur Suche',
-    'Previous Job' => 'Voriger Job',
+    'Previous Job' => 'Vorheriger Job',
     'Next Job' => 'Nächster Job',
     'Your company logo will be used as default.' => 'Als Standard wird Ihr Unternehmenslogo genutzt.',
     'Your company description will be used as default.' => 'Als Standard wird Ihre Unternehmensbeschreibung genutzt.',
