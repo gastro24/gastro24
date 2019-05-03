@@ -299,19 +299,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
             e.height(c.height()-g.outerHeight(true)-f.outerHeight(true)-b.outerHeight(true)-d)
         }).resize()});
     </script>
-    <!--PRELOAD<script>
-    function setIframeSrc() {
-      var s = "<?=$this->job->getLink()?>";
-      var iframe4 = document.getElementById('iframe4');
-      if ( -1 == navigator.userAgent.indexOf("MSIE") ) {
-        iframe4.src = s;
-      }
-      else {
-        iframe4.location = s;
-      }
-    }
-    setTimeout(setIframeSrc, 5);
-    </script>-->
+  
     <div class="panel panel-default hidden-sm hidden-md hidden-lg text-center">
         <div class="panel-body">
               <a href="<?=$this->job->getLink()?>">&raquo; Direkt zum Inserat</a>
