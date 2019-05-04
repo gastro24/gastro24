@@ -211,7 +211,21 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
      text-decoration:underline;
      color:#22436c 
 }
- 
+ .wp-block-columns.has-2-columns.contact-column .wp-block-column:first-child {
+
+    float: left;
+    width: 60%;
+    border-right: 1px solid #ccc;
+}
+
+.wp-block-columns.has-2-columns.contact-column .wp-block-column:last-child {
+
+    float: left;
+    width: 40%;
+	padding:0 15px;
+}
+
+
 </style>
     <script>
         
