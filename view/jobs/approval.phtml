@@ -30,6 +30,7 @@ if ($isSnapshot) {
 </style>
 <h3><?php echo $this->translate("Preview of the posting"); ?></h3>
 <div class="row">
+ <div class="row">
     <div class="col-md-8">
         <?php if ($isSnapshot): ?>
             <ul class="nav nav-tabs">
@@ -117,8 +118,8 @@ if ($isSnapshot) {
             <a class="btn btn-success" href="<?=$this->approvalLink ?>"><?php echo $this->translate("Accept Job")?></a>
         </div>
     </div>
+  </div>
 </div>
-
 <!-- iframe resizer -->
 <script>
     iFrameResize({ log: false }, '#iframe1');
