@@ -84,246 +84,134 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
     
 <style>
 @media (max-width: 768px) {
-    
-    main ul.column {
-     -webkit-column-count: 1;
-    -moz-column-count: 1;
-    column-count: 1;
+     main ul.column {
+         -webkit-column-count: 1;
+         -moz-column-count: 1;
+         column-count: 1;
+    }
+     .navbar-nav {
+         margin: 0;
+         width: 100%;
+    }
+     .navbar-nav>li>a:hover {
+         color: #fff;
+    }
+     #main-navigation a:hover, #main-navigation .dropdown-menu>li>a:hover {
+         color: #fff!important;
+    }
+     #main-navigation ul li a.inverted:hover {
+         color: #000!important;
+    }
+     .navbar-collapse {
+         box-shadow: none!important;
+    }
+     #main-navigation .dropdown-menu>li>a {
+         color: #000!important;
+    }
+     .navbar-nav .open .dropdown-menu>li>a, .navbar-nav .open .dropdown-menu .dropdown-header {
+         padding: 8px 15px 8px 45px!important;
+    }
+     .nav>li {
+         border-bottom: 1px solid #ddd;
+    }
 }
-
-
-
-	.navbar-nav {
-		margin: 0;
-		width: 100%;
-	}
-	.navbar-nav>li>a:hover {
-		color: #fff;
-	}
-	#main-navigation a:hover,
-	#main-navigation .dropdown-menu>li>a:hover {
-		color: #fff!important;
-	}
-	#main-navigation ul li a.inverted:hover {
-		color: #000!important;
-	}
-	.navbar-collapse {
-		box-shadow: none!important;
-	}
-	#main-navigation .dropdown-menu>li>a {
-		color: #000!important;
-	}
-	.navbar-nav .open .dropdown-menu>li>a,
-	.navbar-nav .open .dropdown-menu .dropdown-header {
-		padding: 8px 15px 8px 45px!important;
-	}
-	.nav>li {
-		border-bottom: 1px solid #ddd;
-	}
+ #yk-login .nav .active a, #wizardcontainer-jobs-form-categoriescontainer .nav .active a, #wizardcontainer-jobs-form-job .nav .active a {
+     color: #fff;
 }
-
-#yk-login .nav .active a,
-#wizardcontainer-jobs-form-categoriescontainer .nav .active a,
-#wizardcontainer-jobs-form-job .nav .active a {
-	color: #fff;
+ #jobsbymail-subscribe-form .row {
+     margin-bottom: 10px;
 }
-
-#jobsbymail-subscribe-form .row {
-	margin-bottom: 10px;
+ iframe {
+     border: 0 
 }
-
-iframe {
-	border: 0
+ #form-jobs-form-preview .panel-body {
+     padding: 0!important;
 }
-
-#form-jobs-form-preview .panel-body {
-	padding: 0!important;
+ #main-navigation ul li a.inverted {
+     background-color: #fff;
+     color: #243b84;
 }
-
-#main-navigation ul li a.inverted {
-	background-color: #fff;
-	color: #243b84;
+ #main-navigation ul li a.inverted:hover {
+     color: #fff;
 }
-
-#main-navigation ul li a.inverted:hover {
-	color: #fff;
+ .navbar-toggle {
+     border-color: #242424!important;
+     background-color: #243b84!important;
 }
-
-.navbar-toggle {
-	border-color: #242424!important;
-	background-color: #243b84!important;
+ .navbar-toggle .icon-bar {
+     background-color: #ffffff;
 }
-
-.navbar-toggle .icon-bar {
-	background-color: #ffffff;
+ #content .navbar {
+     position: static!important;
 }
-
-sup {
-	background: rgb(217, 83, 79);
-	color: #fff;
-	padding: 5px 15px;
-	border-radius: 8px;
+ #jobs-list-filter-wrapper .search-form-container {
+     position: absolute;
+     left: 0;
+     right: 0;
+     margin-top: -15px;
 }
-
-
-.qe-faq-content {
-	padding-top: 1px;
+ main#content {
+     background-color:#f2f2f2;
+     margin-bottom:0px;
+     padding-bottom:50px;
+     min-height:65vh;
+     padding-top:15px;
+     position:relative;
 }
-
-.qe-faq-content i.fa {
-	margin-right: 0.3em;
+ .panel__job-detail {
+     margin-bottom:-50px!important;
 }
-
-.qe-faq-content .qe-faq-top {
-	display: inline-block;
-	margin-bottom: 1em;
+ #rpt_pricr .btn {
+     border-color: #dcdfe2;
+     color: #243b84;
+     background-color:#fff;
+     padding:8px 0;
+     border-radius:3px 
 }
-
-.qe-faq-toggle {
-	margin-bottom: 2px;
-	transition: all 0.5s;
+ .rpt_3_plans .rpt_plan_1 {
+     box-shadow: 1px 5px 9px 2px #ddd;
 }
-
-.qe-faq-toggle .qe-toggle-title {
-	background-color: #fafafa;
-	border: 1px solid #ddd;
-	margin: 0;
-	height: auto;
-	cursor: pointer;
-	transition: all 0.2s;
-	padding: 1em;
+ .rpt_3_plans .rpt_plan_1 .btn {
+     color: #fff!important;
+     background-color: #d9534f!important;
+     border-color: #d9534f;
 }
-
-.qe-faq-toggle .qe-toggle-title i.fa {
-	margin-right: 0.5em;
-}
-
-.qe-faq-toggle.active .qe-toggle-title,
-.qe-faq-toggle .qe-toggle-title:hover {
-	background-color: #eaeaea;
-}
-
-.qe-faq-toggle .qe-toggle-content {
-	padding: 1.5em 1.5em 0.3em;
-	margin: 0;
-	border: 1px solid #ddd;
-	display: none;
-	background-color: #fff;
-}
-
-.qe-faqs-filters-container {
-	list-style: none;
-	padding: 0;
-	margin: 0 0 1em 0;
-}
-
-.qe-faqs-filters-container li {
-	display: inline;
-	padding: 0;
-	margin: 0;
-}
-
-.qe-faqs-filters-container li a {
-	display: inline-block;
-	border-bottom: 1px solid;
-	padding: 5px 10px;
-	margin: 0 10px 0 0;
-}
-
-.qe-faqs-filters-container li a:hover {
-	border-bottom: 2px solid;
-}
-
-.qe-faqs-filters-container li.active a {
-	border-bottom: 2px solid;
-	font-weight: bold;
-}
-
-#content .navbar {
-	position: static!important;
-}
-
-#jobs-list-filter-wrapper .search-form-container {
-	position: absolute;
-	left: 0;
-	right: 0;
-	margin-top: -15px;
-}
-main#content {
-    
-  background-color:#f2f2f2;
-  margin-bottom:0px;
-  padding-bottom:50px;
-  min-height:65vh;
-  padding-top:15px;
-  position:relative;  
-    
-}
-.panel__job-detail {
-    
-    margin-bottom:-50px!important;
-}
-#rpt_pricr .btn {
-    border-color: #dcdfe2;
-    color: #243b84;
-    background-color:#fff;
-    padding:8px 0;
-    border-radius:3px
-     
-}
-
-.rpt_3_plans .rpt_plan_1 {
-    
-        box-shadow: 1px 5px 9px 2px #ddd;
-}
-
-.rpt_3_plans .rpt_plan_1 .btn {
-    color: #fff!important;
-    background-color: #d9534f!important;
-    border-color: #d9534f;
-    
-}
-
-.rpt_3_plans .rpt_plan_1::before {
-    content: "Bestseller";
-    background-color: #d9534f;
-    color: #fff;
-    /* padding: 3px 5px; */
-    line-height: 42px;
-    display: block;
-    font-size: 15px;
-    text-decoration: none;
-    cursor: pointer;
-    position: absolute;
-    left: 15px;
-    top: -41px;
-    text-transform: uppercase;
-    right: 15px;
-    font-weight: bold;
-    height: 41px;
-    border-top-left-radius: 3px;
+ .rpt_3_plans .rpt_plan_1::before {
+     content: "Bestseller";
+     background-color: #d9534f;
+     color: #fff;
+    /* padding: 3px 5px;
+     */
+     line-height: 42px;
+     display: block;
+     font-size: 15px;
+     text-decoration: none;
+     cursor: pointer;
+     position: absolute;
+     left: 15px;
+     top: -41px;
+     text-transform: uppercase;
+     right: 15px;
+     font-weight: bold;
+     height: 41px;
+     border-top-left-radius: 3px;
      border-top-right-radius: 3px;
 }
-
-#rpt_pricr {
-    
-    margin-top:75px;
+ #rpt_pricr {
+     margin-top:75px;
 }
-
-main ul.column {
-    padding-left: 0;
-    list-style-type: none;
+ main ul.column {
+     padding-left: 0;
+     list-style-type: none;
      -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
+     -moz-column-count: 3;
+     column-count: 3;
 }
-
-main ul.column li a {
-    text-decoration:underline;
-    color:#22436c
+ main ul.column li a {
+     text-decoration:underline;
+     color:#22436c 
 }
-
-
+ 
 </style>
     <script>
         
