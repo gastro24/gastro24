@@ -147,12 +147,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
 <div class="row">
  <div class="col-md-12">
     <?php if (!$this->isIntern && $this->isVisited && !$this->isEmbeddable): ?>
-         <div class="panel panel-default">
-             <div class="panel-body">
-                <p> Sie haben sich diese Stellenanzeige bereits angesehen.</p>
-                <p><a style="text-decoration:underline" href="<?=$this->job->getLink()?>">&raquo; Direkt zum Inserat</a></p>
-             </div>
-         </div>
+       
     <?php elseif (!$this->isIntern && !$this->isEmbeddable): ?>
                     
         <style>
@@ -372,7 +367,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
             <!-- end apply button -->
 
             <div class="embed-container">
-                <div class="hidden-xs frame-content">
+                <div class="frame-content">
                     <div id="preload" class="loading hidden text-center">
                         <div class="spinner">
                             <div class="bounce1"></div>
