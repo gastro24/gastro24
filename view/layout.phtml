@@ -233,10 +233,7 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 }
 </style>
     <script>	 
-    var target = window.location.hash.substr(1);
-    $( document ).ready(function() {
-       $("#contact-form-crawler").val(target);
-   });
+
     
         (function( $ ) {
 	'use strict';
@@ -245,7 +242,8 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
      * FAQs Toggles
      */
     $(function() {
- 
+   	 var target = window.location.hash.substr(1);
+	$("#contact-form-crawler").val(target);
         
         
         $('.qe-toggle-title').click(function () {
