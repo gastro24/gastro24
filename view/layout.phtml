@@ -233,7 +233,13 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 }
 </style>
     <script>
-        
+        window.addEventListener('hashchange', fn, false);
+
+window.onload = fn; // fire on pageload
+
+function fn() {
+    document.getElementById('contact-form-crawler').value = window.location.hash.replace('#','');
+}
         
         (function( $ ) {
 	'use strict';
