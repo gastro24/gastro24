@@ -234,9 +234,9 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 </style>
     <script>
     
-         var target = window.location.hash;
- $(window).load(function() {   
-    
+        
+$(window).on('load', function()  {   
+     var target = window.location.hash;
 
     $("#contact-form-crawler option[value="+target+"]").prop("selected","selected");
 });
