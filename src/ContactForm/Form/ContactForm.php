@@ -79,8 +79,8 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
                 'label' => 'Job-Crawler',
                 'value_options' => [
                         ''       => '',
-                        'feld1'   => 'Job-Crawler «Basic»',
-                        'feld2' => 'Job-Crawler «Full»',
+                        'crawler-basic'   => 'Job-Crawler «Basic»',
+                        'crawler-full' => 'Job-Crawler «Full»',
                 ],
                 'description' => 'Bitte wählen Sie einen Job-Crawler aus',
             ],
@@ -92,9 +92,9 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
             'options' => [
                 'label' => 'Laufzeit',
                 'value_options' => [
-                        'feld1'   => '3 Monate',
-                        'feld2' => '6 Monate',
-                        'feld3' => '12 Monate',
+                        '3monate'   => '3 Monate',
+                        '6monate' => '6 Monate',
+                        '12monate' => '12 Monate',
         
                 ],
                 'description' => 'Bitte wählen Sie eine Laufzeit aus',
