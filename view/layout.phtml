@@ -235,11 +235,7 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
     <script>
     
         
-$(window).on('load', function()  {   
-     var target = window.location.hash;
 
-    $("#contact-form-crawler option[value="+target+"]").prop("selected","selected");
-});
     
     
 
@@ -254,6 +250,13 @@ $(window).on('load', function()  {
      * FAQs Toggles
      */
     $(function() {
+        $(window).on('load', function()  {   
+     var target = window.location.hash;
+
+    $("#contact-form-crawler option[value="+target+"]").prop("selected","selected");
+});
+        
+        
         $('.qe-toggle-title').click(function () {
             var parent_toggle = $(this).closest('.qe-faq-toggle');
             if ( parent_toggle.hasClass( 'active' ) ) {
