@@ -233,24 +233,13 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 }
 </style>
     <script>
+ window.addEventListener('hashchange', fn, false);
 
-// Lookup and store the select element to reference it throughout the code
-var option, $select = jQuery( '#contact-form-crawler' );
- 
-/* Attempt to find the option element that belongs to the select element
- * identified by the above ID based on the current window's location.
- *
- * Grab [0] so that we get the actual element rather than a jQuery-wrapped
- * object.
- */
-option = $select.find( 'option[value="' + window.location.href + '"]' )[1];
- 
-/* Check to see if the option for this URL exists. If so, then set the
- * select2's option value equal to that of the current page; otherwise,
- * nothing happens and the default value continues to display.
- */
-if ( 'undefined' !== typeof option ) {
-  $select.select2( 'val', window.location.href );
+window.onload = fn; // fire on pageload
+
+function fn() {
+  var test = document.getElementById('contact-form-crawler').value = window.location.hash.replace('#','');
+   document.getElementById('contact-form-crawler').val(test).trigger('change.select2');
 }
     
     
