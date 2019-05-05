@@ -233,14 +233,15 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 }
 </style>
     <script>
- window.addEventListener('hashchange', fn, false);
+ $(window).load(function() {   
+    
+     var target = window.location.hash;
+    $("#contact-form-crawler option[value="+target+"]").prop("selected","selected");
+});
+    
+    
 
-window.onload = fn; // fire on pageload
 
-function fn() {
-  var test = document.getElementById('contact-form-crawler').value = window.location.hash.replace('#','');
-   document.getElementById('contact-form-crawler').val(test).trigger('change.select2');
-}
     
     
         
