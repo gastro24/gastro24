@@ -232,7 +232,11 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
     color:#22436c;
 }
 </style>
-    <script>
+    <script>	 
+    var target = window.location.hash.substr(1);
+    $(window).on('load', function() { 
+       $("#contact-form-crawler").val(target);
+   });
     
         (function( $ ) {
 	'use strict';
