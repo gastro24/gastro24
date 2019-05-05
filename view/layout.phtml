@@ -243,7 +243,7 @@ var option, $select = jQuery( '#contact-form-crawler' );
  * Grab [0] so that we get the actual element rather than a jQuery-wrapped
  * object.
  */
-option = $select.find( 'option[value="' + window.location.href + '"]' )[0];
+option = $select.find( 'option[value="' + window.location.href + '"]' )[1];
  
 /* Check to see if the option for this URL exists. If so, then set the
  * select2's option value equal to that of the current page; otherwise,
