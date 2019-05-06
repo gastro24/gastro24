@@ -69,6 +69,7 @@ return [
             Listener\JobDetailFileUpload::class => Listener\JobDetailFileUploadFactory::class,
             Listener\DeleteTemplateImage::class => Listener\DeleteTemplateImageFactory::class,
             Listener\AutoApproveChangedJobs::class => Listener\AutoApproveChangedJobsFactory::class,
+            Listener\ExpiredJobListener::class => Listener\ExpiredJobListenerFactory::class,
             Listener\AutomaticJobApproval::class => Listener\AutomaticJobApprovalFactory::class,
             'Gastro24\Validator\IframeEmbeddableUri' => InvokableFactory::class,
         ],
@@ -89,6 +90,7 @@ return [
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
             Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
             Controller\OrdersController::class => Factory\Controller\OrdersControllerFactory::class,
+            'Gastro24/Jobs/Console' => [Controller\Console\JobsConsoleController::class,'factory'],
         ],
     ],
 
@@ -221,6 +223,8 @@ return [
              'mail/job-pending' => __DIR__ . '/../view/mail/job-pending.phtml',
              'mail/job-rejected.en' => __DIR__ . '/../view/mail/job-rejected.en.phtml',
              'mail/job-rejected' => __DIR__ . '/../view/mail/job-rejected.phtml',
+             'mail/job-expired.en' => __DIR__ . '/../view/mail/job-expired.en.phtml',
+             'mail/job-expired' => __DIR__ . '/../view/mail/job-expired.phtml',
              'gastro24/mail/single-job-created' => __DIR__ . '/../view/mail/single-job-created.phtml',
              'gastro24/mail/single-job-pending' => __DIR__ . '/../view/mail/single-job-pending.phtml',
              'gastro24/mail/single-job-accepted' => __DIR__ . '/../view/mail/single-job-accepted.phtml',
@@ -488,6 +492,7 @@ return [
             Listener\IncreaseJobCount::class => [ JobEvent::EVENT_JOB_CREATED, true ],
             Listener\SingleJobAcceptedListener::class => [ JobEvent::EVENT_JOB_ACCEPTED, true ],
             Listener\AutoApproveChangedJobs::class => [JobEvent::EVENT_STATUS_CHANGED, true],
+            Listener\ExpiredJobListener::class => [JobEvent::EVENT_STATUS_CHANGED, true],
             Listener\AutomaticJobApproval::class => [JobEvent::EVENT_JOB_CREATED, true],
         ]],
 
