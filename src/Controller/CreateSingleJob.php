@@ -40,16 +40,15 @@ class CreateSingleJob extends AbstractActionController
         $request = $this->getRequest();
         $session = new Container('Gastro24_SingleJobData');
 
-        // prefill form
-        if (isset($session->data)) {
-            $values = unserialize($session->data);
-            unset($values['details']['logo']);
-            unset($values['details']['image']);
-            $this->form->setData($values);
-        }
-
         if ($request->isPost()) {
             return $this->process();
+        }
+
+        // prefill form
+        if (isset($session->values)) {
+            $values = unserialize($session->values);
+            $values = array_merge_recursive($values, $this->getRequest()->getFiles()->toArray());
+            $this->form->setData($values);
         }
 
         if ('complete' == $request->getQuery('do')) {
