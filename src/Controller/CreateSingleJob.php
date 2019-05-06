@@ -41,8 +41,8 @@ class CreateSingleJob extends AbstractActionController
         $session = new Container('Gastro24_SingleJobData');
 
         // prefill form
-        if (isset($session->values)) {
-            $values = unserialize($session->values);
+        if (isset($session->data)) {
+            $values = unserialize($session->data);
             $this->form->setData($values);
         }
 
