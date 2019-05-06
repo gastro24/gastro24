@@ -38,6 +38,13 @@ class CreateSingleJob extends AbstractActionController
     {
         /* @var \Zend\Http\PhpEnvironment\Request $request */
         $request = $this->getRequest();
+        $session = new Container('Gastro24_SingleJobData');
+
+        // prefill form
+        if (isset($session->values)) {
+            $values = unserialize($session->values);
+            $this->form->setData($values);
+        }
 
         if ($request->isPost()) {
             return $this->process();
