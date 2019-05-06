@@ -43,6 +43,8 @@ class CreateSingleJob extends AbstractActionController
         // prefill form
         if (isset($session->data)) {
             $values = unserialize($session->data);
+            unset($values['details']['logo']);
+            unset($values['details']['image']);
             $this->form->setData($values);
         }
 
