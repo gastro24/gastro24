@@ -35,12 +35,19 @@ $logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('mo
    <h1><?= $this->translate('Einzelinserat'); ?></h1>
    <hr />
  <?php endif?>
+
 <?php if ($this->isProcessed):?>
 
-    <div class="col-md-12">
-            <div class="row">
+    <div class="row job-navigation">
+        <div class="col-md-3">
+            <a title="Zurück zur Suche" href="/de/job/single" class="btn btn-default btn-block no-margin">
+                <i class="fa fa-chevron-left"></i> Zurück zur Eingabe</a>
+        </div>
+    </div>
 
-                <div class="panel panel-default panel__job-detail">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel__job-detail">
                     <!-- Bannerbild -->
                     <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
                     <!-- End Bannerbild -->
@@ -165,9 +172,15 @@ $logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('mo
                         </address>
                     </div>
                  </div>
-            </div>
         </div>
-       
+    </div>
+
+    <div class="row job-navigation">
+        <div class="col-md-3">
+            <a title="Zurück zur Suche" href="/de/job/single" class="btn btn-default btn-block no-margin">
+                <i class="fa fa-chevron-left"></i> Zurück zur Eingabe</a>
+        </div>
+    </div>
 <?php elseif ($this->isSuccess): ?>
 
     <div class="panel panel-default">
@@ -185,13 +198,13 @@ $logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('mo
    </div>
 
 <?php else: ?>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <?=$this->form($this->form->setAttribute('data-handle-by', 'native'))?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <?=$this->form($this->form->setAttribute('data-handle-by', 'native'))?>
+            </div>
         </div>
     </div>
-</div>
 <?php endif ?>
 
 <!-- iframe resizer -->
