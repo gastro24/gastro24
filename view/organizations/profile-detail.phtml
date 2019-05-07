@@ -10,6 +10,7 @@ $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $container->landingPageSearchQuery = null;
 $container->fromCompanyProfile = true;
 $container->companyName = $organization->getName();
+$container->companyId = $organization->getId();
 
 ?>
 <style>
