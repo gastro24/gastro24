@@ -7,6 +7,7 @@
  * @license   MIT
  */
 $hasFacets = $jobs instanceof \Solr\FacetsProviderInterface;
+
 ?>
 <?php
 //@TODO: [ZF3] the line below caused an error in ZF3
@@ -81,12 +82,6 @@ $activeFacets = $facets->getActiveValues();
            <div class="featured-image-box" style="min-height:150px">
              <div class="content-area">
                 <div class="top-cnt">
-               
-
-                    <?php
-                        $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
-                        $container->fromCompanyProfile = true;
-                    ?>
         
                     <h4><?=$this->jobUrl($job, [ 'target' => '_new' ]) ?> </h4>
                   <!--  <p>

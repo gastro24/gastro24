@@ -197,6 +197,8 @@ class Module implements AssetProviderInterface
                             }
                         }
 
+                        $container->fromCompanyProfile = null;
+                        $container->companyName = null;
                         $container->landingPageTerm = null;
                         $container->landingPageSearchQuery = null;
                     }

@@ -8,6 +8,8 @@ $contact = $organization->getContact();
 // reset searchQuery in session
 $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $container->landingPageSearchQuery = null;
+$container->fromCompanyProfile = true;
+$container->companyName = $organization->getName();
 
 ?>
 <style>
@@ -91,81 +93,67 @@ main .nav-tabs>li>a:hover {
            
        </div>
        <div class="tab-content ">
-			  <div class="tab-pane row" id="profil">
-			      <div class="col-md-8">
-			            <?php if($organization->getdescription()): ?>
-                        
-                         <div class="panel panel-default">
-			               <h4 class="organizationtitle">Über uns</h4>
-			               <div class="panel-body">
-                            <p><?php echo $organization->getdescription()?></p>
-      			          </div>
-			             </div> 
-                       <?php else: ?>
-                       <?php endif;?>
-                       
-                       
-                    <?php if($contact->getStreet()): ?>
-                        
-                      <div class="panel panel-default">
-			           <h4 class="organizationtitle">Adresse</h4>
-			             <div class="panel-body">
-			            
-			             
-       
-                             <address style="margin-bottom:0px;">
-                                <?php echo $contact->getStreet()?> <?php echo $contact->getHouseNumber()?><br/>
-                                <?php echo $contact->getPostalcode()?> <?php echo $contact->getCity()?> <br/>
-                                <?php if ($contact->getCountry()): ?><?php echo $contact->getCountry()?><br/> <?php endif ?>
-                                <?php if ($contact->getPhone()): ?><?php echo is_null($contact->getPhone()) ? "":"Telefon: ".$contact->getPhone()."<br/>" ?><?php endif ?>
-                                <?php if ($contact->getFax()): ?><?php echo is_null($contact->getFax()) ? "":"Fax: ".$contact->getFax()."<br/>" ?><?php endif ?>
-                             </address>
-			        </div>
-			        
-			          
-			       </div>
-                      
-                      
-                       <?php else: ?>
-                       <?php endif;?>
-                       
-                       
-                     <?php if($contact->getStreet()): ?>
-                    
-                       <div class="panel panel-default">
-			               <h4 class="organizationtitle">Standort</h4>
-			            
-			        <iframe width="100%" height="450" src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-</iframe>
 
-			          
-			         </div> 
-                       <?php else: ?>
-                       <?php endif;?>
-
-			      </div>
-				</div>
-				<div class="tab-pane active" id="jobs">
-				    
-				    
-                        <div id="jobs-list-container" class="pagination-container">
-                            <div class="pagination-content">
-                                <?php echo $this->render('organizations/profile/detail.ajax')?>
+           <!-- profile header -->
+            <div class="tab-pane row" id="profil">
+                <div class="col-md-8">
+                    <?php if($organization->getdescription()): ?>
+                        <div class="panel panel-default">
+                            <h4 class="organizationtitle">Über uns</h4>
+                            <div class="panel-body">
+                                <p><?php echo $organization->getdescription()?></p>
                             </div>
                         </div>
+                    <?php endif;?>
 
 
-				</div>
-				
-				<div class="tab-pane" id="rating">
-				    <div class="panel panel-default">
-				        <h4 class="organizationtitle">Bewerten Sie diesen Arbeitgeber</h4>
-				         <div class="panel-body">
-				            
-				            <p>Bald können Sie <?php echo $organization->getName()?> hier bewerten.</p>
-				        </div>
-				      </div>
-				</div>
-			</div>
+                    <?php if($contact->getStreet()): ?>
+                        <div class="panel panel-default">
+                            <h4 class="organizationtitle">Adresse</h4>
+                            <div class="panel-body">
+                                <address style="margin-bottom:0px;">
+                                    <?php echo $contact->getStreet()?> <?php echo $contact->getHouseNumber()?><br/>
+                                    <?php echo $contact->getPostalcode()?> <?php echo $contact->getCity()?> <br/>
+                                    <?php if ($contact->getCountry()): ?><?php echo $contact->getCountry()?><br/> <?php endif ?>
+                                    <?php if ($contact->getPhone()): ?><?php echo is_null($contact->getPhone()) ? "":"Telefon: ".$contact->getPhone()."<br/>" ?><?php endif ?>
+                                    <?php if ($contact->getFax()): ?><?php echo is_null($contact->getFax()) ? "":"Fax: ".$contact->getFax()."<br/>" ?><?php endif ?>
+                                </address>
+                            </div>
+                        </div>
+                    <?php endif;?>
+
+
+                    <?php if($contact->getStreet()): ?>
+                        <div class="panel panel-default">
+                            <h4 class="organizationtitle">Standort</h4>
+                            <iframe width="100%" height="450" src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                            </iframe>
+                        </div>
+                    <?php endif;?>
+              </div>
+            </div>
+           <!-- end profile header -->
+
+           <!-- active jobs -->
+            <div class="tab-pane active" id="jobs">
+                <div id="jobs-list-container" class="pagination-container">
+                    <div class="pagination-content">
+                        <?php echo $this->render('organizations/profile/detail.ajax')?>
+                    </div>
+                </div>
+            </div>
+           <!-- end active jobs -->
+
+           <!-- rating -->
+            <div class="tab-pane" id="rating">
+                <div class="panel panel-default">
+                    <h4 class="organizationtitle">Bewerten Sie diesen Arbeitgeber</h4>
+                    <div class="panel-body">
+                        <p>Bald können Sie <?php echo $organization->getName()?> hier bewerten.</p>
+                    </div>
+                </div>
+            </div>
+           <!-- end rating -->
+        </div>
   </div> 
 </div>
