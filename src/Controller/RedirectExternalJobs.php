@@ -79,27 +79,43 @@ class RedirectExternalJobs extends AbstractActionController
         $jobsArray = [];
         $currentJobMark = false; //benchmark if looped over current job
         $page = 1;
-        $searchParams = [
-            'q',
-            'l',
-            'd' => 10
-        ];
+
         if ($container->fromCompanyProfile && $container->companyName) {
-            $searchParams['c'] = $container->companyName;
-            $searchParams['__organizationTag'] = $container->companyName;
+            $result = $this->pagination([
+                'params' => ['Organization_Jobs',[
+                        'q',
+                        'organization_id' => $container->companyId
+                    ],
+                ],
+                'paginator' => [
+                    'as' => 'jobs',
+                    'Organizations/ListJob',
+                    'params' => [
+                        'count' => 4,
+                        'page' => $page,
+                    ]
+                ],
+            ]);
+        }
+        else {
+            $result = $this->pagination([
+                'params' => ['Jobs_Board', [
+                    'q',
+                    'l',
+                    'd' => 10
+                ]],
+                'paginator' => [
+                    'as' => 'jobs',
+                    'Jobs/Board',
+                    'params' => [
+                        'count' => 4,
+                        'page' => $page,
+                    ]
+                ]
+            ]);
         }
 
-        $result = $this->pagination([
-            'params' => ['Jobs_Board', $searchParams],
-            'paginator' => [
-                'as' => 'jobs',
-                'Jobs/Board',
-                'params' => [
-                    'count' => 4,
-                    'page' => $page,
-                ]
-            ]
-        ]);
+
         $paginator = $result['jobs'];
         $counter = 0;
         $max = $paginator->getTotalItemCount();
