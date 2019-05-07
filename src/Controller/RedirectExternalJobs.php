@@ -15,6 +15,7 @@ use Gastro24\Options\CompanyTemplatesMap;
 use Gastro24\Session\VisitedJobsContainer;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Session\Container;
 use Zend\View\Model\ViewModel;
 
 /**
@@ -60,6 +61,8 @@ class RedirectExternalJobs extends AbstractActionController
         /* @var Response $response */
         $response = $this->getResponse();
 
+        $container = new Container('gastro24_jobboardcontainer');
+
         try {
             /* @var \Jobs\Entity\JobInterface $job */
             $job = $this->initializeJob()->get($this->params());
@@ -76,12 +79,18 @@ class RedirectExternalJobs extends AbstractActionController
         $jobsArray = [];
         $currentJobMark = false; //benchmark if looped over current job
         $page = 1;
+        $searchParams = [
+            'q',
+            'l',
+            'd' => 10
+        ];
+        if ($container->fromCompanyProfile && $container->companyName) {
+            $searchParams['c'] = $container->companyName;
+            $searchParams['__organizationTag'] = $container->companyName;
+        }
+
         $result = $this->pagination([
-            'params' => ['Jobs_Board', [
-                'q',
-                'l',
-                'd' => 10]
-            ],
+            'params' => ['Jobs_Board', $searchParams],
             'paginator' => [
                 'as' => 'jobs',
                 'Jobs/Board',

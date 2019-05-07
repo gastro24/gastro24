@@ -24,13 +24,22 @@ elseif(!$this->isIntern && !$this->isEmbeddable):
           $this->headMeta()->setName('robots', 'noindex,nofollow');
 endif;
 
+// organisation values
+$org = $job->getOrganization();
+$orgIsDisabled = false;
+$orgName = $this->jobOrganizationName($this->job);
+if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
+    $orgIsDisabled = true;
+}
+
+// pagination values
 $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $lastSearchQuery = $container->landingPageSearchQuery;
 $searchTerm = $container->searchTerm;
 
 if($container->fromCompanyProfile && $container->companyName) {
     $backTitle = $container->companyName . ' Jobs';
-    $lastSearchQueryUrl = $this->url('lang/jobboard', [], ['query'=> ['q' => $searchTerm, 'c' => $container->companyName]], true);
+    $lastSearchQueryUrl = $this->orgProfileUrl($org) . '?clear=1';
 }
 elseif (!$lastSearchQuery) {
     $lastSearchQueryUrl = ($container->fromCompanyProfile) ? '/de/jobs?clear=1' : $this->url('lang/jobboard', [], ['query'=> ['q' => $searchTerm]], true);
@@ -95,14 +104,6 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'));
-
-// organisation values
-$org = $job->getOrganization();
-$orgIsDisabled = false;
-$orgName = $this->jobOrganizationName($this->job);
-if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
-    $orgIsDisabled = true;
-}
 ?>
 
 <!-- prev / next navigation -->
