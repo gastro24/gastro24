@@ -7,6 +7,7 @@ use Core\ModuleManager\ModuleConfigLoader;
 use Gastro24\Options\Landingpages;
 use Zend\Console\Console;
 use Zend\Mvc\MvcEvent;
+use Zend\Session\Container;
 use Zend\Stdlib\Parameters;
 
 /**
@@ -124,6 +125,8 @@ class Module implements AssetProviderInterface
 
                 $matchedRouteName = $routeMatch->getMatchedRouteName();
 
+                $container = new Container('gastro24_jobboardcontainer');
+
                 if ('lang/landingPage' == $matchedRouteName) {
                     $services = $event->getApplication()->getServiceManager();
                     $options = $services->get(Landingpages::class);
@@ -133,21 +136,24 @@ class Module implements AssetProviderInterface
                         return;
                     }
 
-                        $query = $options->getQueryParameters($term);
-                        $routeMatch->setParam('wpId', $options->getIdMap($term));
-                        $routeMatch->setParam('isLandingPage', true);
-                        $routeMatch->setParam('term', $term);
+                    $query = $options->getQueryParameters($term);
+                    $routeMatch->setParam('wpId', $options->getIdMap($term));
+                    $routeMatch->setParam('isLandingPage', true);
+                    $routeMatch->setParam('term', $term);
 
-                        if ($query) {
-                            $origQuery = $event->getRequest()->getQuery()->toArray();
-                            if (count($origQuery)) {
-                                $routeMatch->setParam('isFilteredLandingPage', true);
-                                $query = array_merge($origQuery, $query);
-                            }
-                            $event->getRequest()->setQuery(new Parameters($query));
-                        } else {
-                            return;
+                    if ($query) {
+                        $origQuery = $event->getRequest()->getQuery()->toArray();
+                        if (count($origQuery)) {
+                            $routeMatch->setParam('isFilteredLandingPage', true);
+                            $query = array_merge($origQuery, $query);
                         }
+                        $event->getRequest()->setQuery(new Parameters($query));
+                    } else {
+                        return;
+                    }
+
+                    $container->landingPageTerm = $term;
+                    $container->landingPageSearchQuery = $query['q'];
                 }
 
                 if ('lang/jobboard' == $matchedRouteName || 'lang/landingPage' == $matchedRouteName) {
@@ -190,6 +196,9 @@ class Module implements AssetProviderInterface
                                 return $response;
                             }
                         }
+
+                        $container->landingPageTerm = null;
+                        $container->landingPageSearchQuery = null;
                     }
 
                 }

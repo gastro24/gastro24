@@ -33,17 +33,8 @@ if (!$lastSearchQuery) {
     $backTitle = $this->translate('Back to search');
 }
 else {
-    // TODO: move to helper or plugin
-    // format $lastSearchQuery
-    $search = array("Ä", "Ö", "Ü", "ä", "ö", "ü", "ß", "´");
-    $replace = array("Ae", "Oe", "Ue", "ae", "oe", "ue", "ss", "");
-    $lastSearchQuery = trim($lastSearchQuery, '"');
-    $originalSearchQuery = $lastSearchQuery;
-    $lastSearchQuery = str_replace($search, $replace, $lastSearchQuery);
-    $lastSearchQuery = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '-', $lastSearchQuery));
-
-    $lastSearchQueryUrl = $this->url('lang/landingPage', ['q' => $lastSearchQuery, 'format' => 'html' ], true);
-    $backTitle = $this->translate($originalSearchQuery . ' Jobs');
+    $lastSearchQueryUrl = $this->url('lang/landingPage', ['q' => $container->landingPageTerm, 'format' => 'html' ], true);
+    $backTitle = $this->translate($lastSearchQuery . ' Jobs');
 }
 
 // banner image
