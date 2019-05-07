@@ -57,7 +57,7 @@ if ($job->getDatePublishStart()) {
 $org = $this->job->getOrganization();
 $orgIsDisabled = false;
 $orgName = $this->jobOrganizationName($this->job);
-if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
+if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting())) ) {
     $orgIsDisabled = true;
 }
 ?>
