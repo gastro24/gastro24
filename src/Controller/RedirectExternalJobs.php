@@ -81,42 +81,13 @@ class RedirectExternalJobs extends AbstractActionController
         $page = 1;
 
         if ($container->fromCompanyProfile && $container->companyName) {
-            $result = $this->pagination([
-                'params' => ['Organization_Jobs',[
-                        'q',
-                        'organization_id' => $container->companyId
-                    ],
-                ],
-                'paginator' => [
-                    'as' => 'jobs',
-                    'Organizations/ListJob',
-                    'params' => [
-                        'count' => 4,
-                        'page' => $page,
-                    ]
-                ],
-            ]);
+            $paginator = $this->getCompanyJobsPaginator($page, $container->companyId);
         }
         else {
-            $result = $this->pagination([
-                'params' => ['Jobs_Board', [
-                    'q',
-                    'l',
-                    'd' => 10
-                ]],
-                'paginator' => [
-                    'as' => 'jobs',
-                    'Jobs/Board',
-                    'params' => [
-                        'count' => 4,
-                        'page' => $page,
-                    ]
-                ]
-            ]);
+            $paginator = $this->getJobPaginator($page);
+
         }
 
-
-        $paginator = $result['jobs'];
         $counter = 0;
         $max = $paginator->getTotalItemCount();
         $prevJob = null;
@@ -152,7 +123,13 @@ class RedirectExternalJobs extends AbstractActionController
             }
 
             $page++;
-            $paginator->setCurrentPageNumber($page);
+            // organization search uses mongo adapter -> here pagination needs to be recreated, otherwise error
+            if ($paginator->getAdapter() instanceof \Core\Paginator\Adapter\DoctrineMongoLateCursor) {
+                $paginator = $this->getCompanyJobsPaginator($page, $container->companyId);
+            }
+            else {
+                $paginator->setCurrentPageNumber($page);
+            }
         }
 
         $appModel = $this->getEvent()->getViewModel();
@@ -193,5 +170,47 @@ class RedirectExternalJobs extends AbstractActionController
         }
 
         return $model;
+    }
+
+    private function getCompanyJobsPaginator($page, $companyId)
+    {
+        $result = $this->pagination([
+            'params' => ['Organization_Jobs',[
+                'q',
+                'organization_id' => $companyId
+            ],
+            ],
+            'paginator' => [
+                'as' => 'jobs',
+                'Organizations/ListJob',
+                'params' => [
+                    'count' => 4,
+                    'page' => $page,
+                ]
+            ],
+        ]);
+
+        return $result['jobs'];
+    }
+
+    private function getJobPaginator($page)
+    {
+        $result = $this->pagination([
+            'params' => ['Jobs_Board', [
+                'q',
+                'l',
+                'd' => 10
+            ]],
+            'paginator' => [
+                'as' => 'jobs',
+                'Jobs/Board',
+                'params' => [
+                    'count' => 4,
+                    'page' => $page,
+                ]
+            ]
+        ]);
+
+        return $result['jobs'];
     }
 }
