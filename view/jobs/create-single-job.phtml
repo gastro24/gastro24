@@ -14,12 +14,12 @@ $publishDate = $this->dateFormat(new DateTime(), 'medium', 'none');
 $image = isset($this->details['image']['entity']) ? $this->details['image']['entity'] : null;
 
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
-if ($image) {
+if (isset($this->details['image_url'])) {
     $serverUrl = new \Zend\View\Helper\ServerUrl();
-    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+    $imageServerUrl = $serverUrl($this->basePath($this->details['image_url']));
 }
-$logo = isset($this->details['logo']['entity']) ? $this->details['logo']['entity'] : null;
-$logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('modules/Gastro24/images/no-company-logo.png');
+$logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->details['logo_url']) :
+    $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
 ?>
 <style>
