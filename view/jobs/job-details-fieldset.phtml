@@ -136,24 +136,45 @@ $modeLabels = $mode->getOption('labels');
 ?>
 
         <!-- Logo and banner fields -->
-        <?=$this->formRow($fieldset->get('logo'));?>
+        <?php
+            $inputLogo = $this->formRow($fieldset->get('logo'));
+
+            if ($logoValue = $fieldset->get('logo')->getValue()) {
+                $inputLogo = str_replace(
+                    '<div class="col-md-9" id="details-logo-span">',
+                    '<div class="col-md-9" id="details-logo-span"><div class="file-info"><a href="' . $logoValue . '" target="_blank">' . basename($logoValue) . '</a>
+                            <a href="/' . $logoValue . '?do=delete" class="file-delete btn btn-default btn-xs">
+                                <span class="yk-icon yk-icon-minus"></span>
+                            </a>
+                            <input type="hidden" value="' . basename(dirname($logoValue)) . '" name="details[logo_id]">
+                            <input type="hidden" value="' . $logoValue . '" name="details[logo_url]"></div>',
+                    $inputLogo
+                );
+                $inputLogo = str_replace('<input type="file"', '<input type="file" style="display:none;"', $inputLogo);
+            }
+
+
+            echo $inputLogo;
+        ?>
 
         <?php
             $input = $this->formRow($fieldset->get('image'));
-        if ($value = $fieldset->get('image')->getValue()) {
-            $input = str_replace(
-                '<div class="col-md-9" id="details-image-span">',
-                '<div class="col-md-9" id="details-image-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
-                    <a href="/' . $value . '?do=delete" class="file-delete btn btn-default btn-xs">
-                        <span class="yk-icon yk-icon-minus"></span>
-                    </a>
-                    <input type="hidden" value="' . basename(dirname($value)) . '" name="details[image_id]"></div>',
-                $input
-            );
-            $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
 
-        }
-        echo $input;
+            if ($value = $fieldset->get('image')->getValue()) {
+                $input = str_replace(
+                    '<div class="col-md-9" id="details-image-span">',
+                    '<div class="col-md-9" id="details-image-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
+                        <a href="/' . $value . '?do=delete" class="file-delete btn btn-default btn-xs">
+                            <span class="yk-icon yk-icon-minus"></span>
+                        </a>
+                        <input type="hidden" value="' . basename(dirname($value)) . '" name="details[image_id]">
+                        <input type="hidden" value="' . $value . '" name="details[image_url]"></div>',
+                    $input
+                );
+                $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
+
+            }
+            echo $input;
         ?>
 
 

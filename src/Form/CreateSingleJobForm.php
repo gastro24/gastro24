@@ -33,6 +33,7 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
     {
         $this->setIsDescriptionsEnabled(true);
         $this->setDescription('Hier können Sie ein Einzelinserat aufgeben');
+        $this->setAttribute('class', $this->getAttribute('class') . ' file-upload');
         $this->setAttribute('id', 'createsinglejob');
 
         $this->add([
