@@ -221,67 +221,60 @@
 
 @media(max-width: @screen-sm) {
     
-main ul.column {
-    
-        -webkit-column-count: 1!important;
+  main ul.column {
+    -webkit-column-count: 1!important;
     -moz-column-count: 1!important;
     column-count: 1!important;
-}
-.job-short-info ul {
-    
-    padding-left:0px;
-}
-.job-navigation {
-    
-    a {
-        
-        float:left;
-        line-height:15px;
-        width:160px;
-        height:30px;
-        margin:0;
-    }
-    
-    
-  
-    
-}
+  }
 
-.panel__job-detail .teaser__job-detail h1 {
+  .job-short-info ul {
+      padding-left:0px;
+  }
+
+  .panel__job-detail .teaser__job-detail h1 {
     font-size: 27px;
     width:100%;
     line-height: 30px;
-    margin-left:0px;
+    margin-left:0;
     position:relative;
-    top: 0px;
-       }
-     
-.panel__job-detail .teaser__job-detail .wrapper__logo {
-      height: 110px;
-      width: 110px;
+    top: 0;
+  }
+
+  .panel__job-detail .teaser__job-detail .wrapper__logo {
+    height: 110px;
+    width: 110px;
+  }
+  .panel__job-detail {
+    .banner {
+      height: 200px;
+      background-size: cover;
     }
-.panel__job-detail {
-  .banner {
-    height: 200px;
-    background-size: cover;
-  }
 
-  .panel-body {
-    padding:0 2.5rem 2.5rem 2.5rem;
+    .panel-body {
+      padding:0 2.5rem 2.5rem 2.5rem;
 
+    }
   }
-}
 
   .job-navigation {
+    a {
+      float:left;
+      line-height:15px;
+      width:160px;
+      height:30px;
+      margin:0;
+    }
+
     span {
       flex-direction:  none;
       float:right;
 
       a {
+        height: 30px;
         margin: 0;
+        padding: 7px 0;
         width: 30px;
-        height:30px;
-      
+
         &:first-child {
           margin-bottom: 0;
           margin-right: 0;
