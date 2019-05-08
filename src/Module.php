@@ -250,4 +250,16 @@ class Module implements AssetProviderInterface
         }
 
     }
+
+    public function getConsoleUsage(\Zend\Console\Adapter\AdapterInterface $console)
+    {
+        return [
+            'Expire jobs',
+            'jobs expire [--days] [--limit] [--info]'  => 'Expire jobs',
+            'jobs clear'  => 'Remove expired jobs from database',
+            ['--days=INT', 'expire jobs after <days> days. Default 30'],
+            ['--limit=INT[,<offset>]', 'Limit jobs to expire per run starting from <offset>. Default 10. 0 means no limit'],
+            ['--info', 'Does not manipulate the database, but prints a list of all matched jobs.']
+        ];
+    }
 }

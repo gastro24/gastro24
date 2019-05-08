@@ -91,6 +91,7 @@ return [
             Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
             Controller\OrdersController::class => Factory\Controller\OrdersControllerFactory::class,
             'Gastro24/Jobs/Console' => [Controller\Console\JobsConsoleController::class,'factory'],
+            'Gastro24/Jobs/Console/DeleteJobs' => [Controller\Console\DeleteJobsController::class,'factory'],
         ],
     ],
 

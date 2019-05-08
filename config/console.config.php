@@ -21,6 +21,15 @@ return [
                             'limit'      => '10,0',
                         ],
                     ],
+                ],
+                'jobs-clear'    => [
+                    'options' => [
+                        'route'    => 'jobs clear',
+                        'defaults' => [
+                            'controller' => 'Gastro24/Jobs/Console/DeleteJobs',
+                            'action'     => 'deleteExpiredJobs'
+                        ],
+                    ],
                 ]
             ]
         ]
