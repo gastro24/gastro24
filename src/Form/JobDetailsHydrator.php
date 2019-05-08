@@ -73,25 +73,24 @@ class JobDetailsHydrator implements HydratorInterface
             $object->getTemplateValues()->position = $data['position'];
             $object->getTemplateValues()->setRequirements($data['requirements']);
 
-
-            $template = $object->getAttachedEntity('gastro24-template');
-            $repository = $this->repositories->get(TemplateImage::class);
-            if (!$template) {
-                $template = new Template();
-                $this->repositories->store($template);
-                $object->addAttachedEntity($template, 'gastro24-template');
-            }
-            if (isset($_POST['details']['logo_id'])) {
-                $file = $repository->find($_POST['details']['logo_id']);
-                $template->setLogo($file);
-            }
-            if (isset($_POST['details']['image_id'])) {
-                $file = $repository->find($_POST['details']['image_id']);
-                $template->setImage($file);
-            }
-
         } else {
             $object->setLink('uri' == $data['mode'] ? $data['uri'] : (isset($_POST['pdf_uri']) ? $_POST['pdf_uri'] : $data['pdf']));
+        }
+
+        $template = $object->getAttachedEntity('gastro24-template');
+        $repository = $this->repositories->get(TemplateImage::class);
+        if (!$template) {
+            $template = new Template();
+            $this->repositories->store($template);
+            $object->addAttachedEntity($template, 'gastro24-template');
+        }
+        if (isset($_POST['details']['logo_id'])) {
+            $file = $repository->find($_POST['details']['logo_id']);
+            $template->setLogo($file);
+        }
+        if (isset($_POST['details']['image_id'])) {
+            $file = $repository->find($_POST['details']['image_id']);
+            $template->setImage($file);
         }
 
         return $object;

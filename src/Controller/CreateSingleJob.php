@@ -83,14 +83,6 @@ class CreateSingleJob extends AbstractActionController
             $values['details']['uri'] = $serverUrl('/' . $basePath . str_replace('public/', '', $values['details']['pdf']['tmp_name']));
         }
 
-//        if (is_array($values['details']['logo']) && UPLOAD_ERR_NO_FILE != $values['details']['logo']['error']) {
-//            $values['details']['logo_id'] = $values['details']['logo']['entity']->getId();
-//        }
-//
-//        if (is_array($values['details']['image']) && UPLOAD_ERR_NO_FILE != $values['details']['image']['error']) {
-//            $values['details']['image_id'] = $values['details']['image']['entity']->getId();
-//        }
-
         if (isset($data['details']['logo_id'])) {
             $values['details']['logo_id'] = $data['details']['logo_id'];
             $values['details']['logo_url'] = $data['details']['logo_url'];
