@@ -144,138 +144,138 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
 
 
 <div class="row">
- <div class="col-md-12">
-    <?php if (!$this->isIntern && $this->isVisited && !$this->isEmbeddable): ?>
-       
-    <?php elseif (!$this->isIntern && !$this->isEmbeddable): ?>
-                    
+    <div class="col-md-12">
+        <?php if (!$this->isIntern && $this->isVisited && !$this->isEmbeddable): ?>
+
+        <?php elseif (!$this->isIntern && !$this->isEmbeddable): ?>
+
+            <style>
+
+         .spinner {
+          margin: 0 auto;
+          width: 70px;
+          text-align: center;
+        }
+
+        .spinner > div {
+          width: 18px;
+          height: 18px;
+          background-color: #333;
+
+          border-radius: 100%;
+          display: inline-block;
+          -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+          animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        .spinner .bounce1 {
+          -webkit-animation-delay: -0.32s;
+          animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+          -webkit-animation-delay: -0.16s;
+          animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes sk-bouncedelay {
+          0%, 80%, 100% { -webkit-transform: scale(0) }
+          40% { -webkit-transform: scale(1.0) }
+        }
+
+        @keyframes sk-bouncedelay {
+          0%, 80%, 100% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+          } 40% {
+            -webkit-transform: scale(1.0);
+            transform: scale(1.0);
+          }
+        }
+
+        </style>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                     </div>
+                     <br /><br />
+                     <p style="text-align:center;">Sie werden in Kürze automatisch auf das Job-Inserat von <?=$orgName?> weitergeleitet...</p>
+                </div>
+            </div>
+        <?php endif ?>
+
+        <!-- not intern and embedded -->
+        <?php if (!$this->isIntern && $this->isEmbeddable):?>
+
         <style>
-
-     .spinner {
-      margin: 0 auto;
-      width: 70px;
-      text-align: center;
-    }
-
-    .spinner > div {
-      width: 18px;
-      height: 18px;
-      background-color: #333;
-
-      border-radius: 100%;
-      display: inline-block;
-      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-    }
-
-    .spinner .bounce1 {
-      -webkit-animation-delay: -0.32s;
-      animation-delay: -0.32s;
-    }
-
-    .spinner .bounce2 {
-      -webkit-animation-delay: -0.16s;
-      animation-delay: -0.16s;
-    }
-
-    @-webkit-keyframes sk-bouncedelay {
-      0%, 80%, 100% { -webkit-transform: scale(0) }
-      40% { -webkit-transform: scale(1.0) }
-    }
-
-    @keyframes sk-bouncedelay {
-      0%, 80%, 100% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-      } 40% {
-        -webkit-transform: scale(1.0);
-        transform: scale(1.0);
-      }
-    }
-
-    </style>
-        <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-             </div>
-             <br /><br />
-             <p style="text-align:center;">Sie werden in Kürze automatisch auf das Job-Inserat von <?=$orgName?> weitergeleitet...</p>
-        </div>
-    </div>
-    <?php endif ?>
-
-<!-- not intern and embedded -->
-<?php if (!$this->isIntern && $this->isEmbeddable):?>
-
-    <style>
-    #preload {
+        #preload {
         background-color:#fff;
         padding:100px 0;
-    }
-    .frame-content {
+        }
+        .frame-content {
         width: 100%;
-    }
-    .frame-content iframe {
+        }
+        .frame-content iframe {
 
         background-color:#fff;
         /*width:100%;*/
         /*height:1800px;*/
         /*overflow:auto;*/
-    }
-    iframe {
+        }
+        iframe {
         width: 1px;
         min-width: 100%;
-    }
-       .spinner {
-      margin: 0 auto;
-      width: 70px;
-      text-align: center;
-    }
+        }
+        .spinner {
+        margin: 0 auto;
+        width: 70px;
+        text-align: center;
+        }
 
-    .spinner > div {
-      width: 18px;
-      height: 18px;
-      background-color: #333;
+        .spinner > div {
+        width: 18px;
+        height: 18px;
+        background-color: #333;
 
-      border-radius: 100%;
-      display: inline-block;
-      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-    }
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        }
 
-    .spinner .bounce1 {
-      -webkit-animation-delay: -0.32s;
-      animation-delay: -0.32s;
-    }
+        .spinner .bounce1 {
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+        }
 
-    .spinner .bounce2 {
-      -webkit-animation-delay: -0.16s;
-      animation-delay: -0.16s;
-    }
+        .spinner .bounce2 {
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+        }
 
-    @-webkit-keyframes sk-bouncedelay {
-      0%, 80%, 100% { -webkit-transform: scale(0) }
-      40% { -webkit-transform: scale(1.0) }
-    }
+        @-webkit-keyframes sk-bouncedelay {
+        0%, 80%, 100% { -webkit-transform: scale(0) }
+        40% { -webkit-transform: scale(1.0) }
+        }
 
-    @keyframes sk-bouncedelay {
-      0%, 80%, 100% {
+        @keyframes sk-bouncedelay {
+        0%, 80%, 100% {
         -webkit-transform: scale(0);
         transform: scale(0);
-      } 40% {
+        } 40% {
         -webkit-transform: scale(1.0);
         transform: scale(1.0);
-      }
-    }
+        }
+        }
 
-    </style>
+        </style>
 
 
-    <script type="text/javascript">
-    $(function(){
+        <script type="text/javascript">
+        $(function(){
         var d=15,
             a=$("#preload").removeClass("hidden"),
             e=$(".frame-content iframe").addClass("hidden"),
@@ -292,10 +292,10 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
         c.resize(function(){
             e.height(c.height()-g.outerHeight(true)-f.outerHeight(true)-b.outerHeight(true)-d)
         }).resize()});
-    </script>
-  
- 
-    <div class="panel panel-default panel__job-detail">
+        </script>
+
+
+        <div class="panel panel-default panel__job-detail">
          <!-- Bannerbild -->
          <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
          <!-- End Bannerbild -->
@@ -400,7 +400,7 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
                     <div class="content">
                         <div class="headline">Empfohlene Jobs</div>
                         <div class="content__inner">
-                          
+
                         </div>
                     </div>
                 </div>
@@ -411,38 +411,38 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
                     <div class="content">
                         <div class="headline">Jobs nach Städten</div>
                         <div class="content__inner">
-                           
+
                         </div>
                     </div>
                 </div>
                  end recommended jobs by cities -->
             <?php endif; ?>
         </div>
-    </div>
+        </div>
 
-    <!-- socials -->
-    <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
-    <script>
-    $("#share").jsSocials({
+        <!-- socials -->
+        <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
+        <script>
+        $("#share").jsSocials({
         showLabel: false,
         showCount: true,
         shares: ["email", "twitter", "facebook", "whatsapp"]
-    });
-    </script>
-    <!-- end socials -->
+        });
+        </script>
+        <!-- end socials -->
 
-     <!-- iframe resizer -->
-    <script>
+        <!-- iframe resizer -->
+        <script>
         iFrameResize({ log: false }, '#iframe4')
-    </script>
-     <!-- end iframe resizer -->
+        </script>
+        <!-- end iframe resizer -->
 
-      </div>
+        <?php endif; ?>
+    </div>
 </div>
 
      
- 
-<?php endif; ?>
+
 
 
 
@@ -466,3 +466,4 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
             </div>
         </div>
     </div>
+</div>
