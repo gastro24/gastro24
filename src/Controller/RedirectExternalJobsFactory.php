@@ -30,7 +30,13 @@ class RedirectExternalJobsFactory implements FactoryInterface
         $validators = $container->get('ValidatorManager');
         $validator  = $validators->get(\Gastro24\Validator\IframeEmbeddableUri::class);
         $templatesMap = $container->get(CompanyTemplatesMap::class);
-        $service    = new RedirectExternalJobs($validator, $templatesMap, $solrClient);
+
+        $helpers = $container->get('ViewHelperManager');
+        $serverUrl = $helpers->get('serverUrl');
+        $basepath = $helpers->get('basepath');
+        $path = $serverUrl($basepath()) . '/';
+
+        $service    = new RedirectExternalJobs($validator, $templatesMap, $solrClient, $path);
         
         return $service;    
     }

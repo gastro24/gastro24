@@ -26,32 +26,30 @@ use Zend\View\Model\ViewModel;
  */
 class RedirectExternalJobs extends AbstractActionController
 {
-
     /**
-     *
-     *
      * @var \Gastro24\Validator\IframeEmbeddableUri
      */
     private $validator;
 
     /**
-     *
-     *
      * @var CompanyTemplatesMap
      */
     private $templatesMap;
 
     private $solrClient;
+    private $mainPath;
 
     public function __construct(
         \Gastro24\Validator\IframeEmbeddableUri $validator,
         CompanyTemplatesMap $templatesMap,
-        $solrClient
+        $solrClient,
+        $mainPath
     )
     {
         $this->validator = $validator;
         $this->templatesMap = $templatesMap;
         $this->solrClient = $solrClient;
+        $this->mainPath = $mainPath;
     }
 
     public function indexAction()
@@ -146,6 +144,7 @@ class RedirectExternalJobs extends AbstractActionController
         } else {
             $visitedJobsContainer = new VisitedJobsContainer();
             $isVisited            = $this->params()->fromRoute('isPreview') ? false : $visitedJobsContainer->isVisited($job);
+            $this->validator->setBasePath($this->mainPath);
             $isEmbeddable         = $this->validator->isValid($job->getLink());
 
             if (!$isVisited && !$isEmbeddable) {
