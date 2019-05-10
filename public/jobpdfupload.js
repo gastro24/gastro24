@@ -89,15 +89,17 @@
 
         $('#description-descriptionForm-details').on('yk:forms:success.jobpdfupload', function(e) {
             var iframeUrl;
-            if ($(e.currentTarget).find('#csj-mode-uri').prop('checked')) {
-                iframeUrl = $('#details-uri').val();
-            } else if ($(e.currentTarget).find('#csj-mode-pdf').prop('checked')) {
-                iframeUrl = $(e.currentTarget).find('input[name="pdf_uri"]').val();
-            } else {
-                iframeUrl = basePath + '/' + lang + '/job/view?id=' + $(e.currentTarget).find('input[name="job"]').val()
-                + '&snapshot=' + $(e.currentTarget).find('input[name="snapshot"]').val();
-            }
+            // if ($(e.currentTarget).find('#csj-mode-uri').prop('checked')) {
+            //     iframeUrl = $('#details-uri').val();
+            // } else if ($(e.currentTarget).find('#csj-mode-pdf').prop('checked')) {
+            //     iframeUrl = $(e.currentTarget).find('input[name="pdf_uri"]').val();
+            // } else {
+            //     iframeUrl = basePath + '/' + lang + '/job/view?id=' + $(e.currentTarget).find('input[name="job"]').val()
+            //     + '&snapshot=' + $(e.currentTarget).find('input[name="snapshot"]').val();
+            // }
 
+            iframeUrl = basePath + '/' + lang + '/job/view?id=' + $(e.currentTarget).find('input[name="job"]').val()
+                + '&snapshot=' + $(e.currentTarget).find('input[name="snapshot"]').val();
             $('#previewJob').attr('src', iframeUrl);
         });
         //.find('#details-description-span, #details-logo-span').parent().hide()
