@@ -10,6 +10,7 @@
 /** */
 namespace Gastro24\Validator;
 
+use Interop\Container\ContainerInterface;
 use Zend\Validator\AbstractValidator;
 use Zend\Validator\ValidatorInterface;
 
@@ -23,6 +24,10 @@ class IframeEmbeddableUri extends AbstractValidator
 {
     const NOT_EMBEDDABLE = 'NOT_EMBEDDABLE';
 
+    /**
+     * @var string
+     */
+    protected $basePath;
 
     protected $messageTemplates = [
         self::NOT_EMBEDDABLE => 'URI "%value%" is not embeddable in an iframe.',
@@ -49,6 +54,12 @@ class IframeEmbeddableUri extends AbstractValidator
 
         foreach ($this->options['invalidUriStart'] as $str) {
             if (0 === strpos($value, $str)) {
+
+                // allow embed for uploaded PDF files
+                if (0 === strpos($this->getPublicJobPdfPath(), $str)) {
+                    return true;
+                }
+
                 $this->match = $str;
                 $this->error(self::NOT_EMBEDDABLE);
                 return false;
@@ -57,4 +68,31 @@ class IframeEmbeddableUri extends AbstractValidator
 
         return true;
     }
+
+    private function getPublicJobPdfPath()
+    {
+        return $this->getBasePath() . '/static/jobs';
+    }
+
+    /**
+     * @return string
+     */
+    public function getBasePath()
+    {
+        return $this->basePath;
+    }
+
+    /**
+     * @param string $basePath
+     *
+     * @return self
+     */
+    public function setBasePath($basePath)
+    {
+        $this->basePath = $basePath;
+
+        return $this;
+    }
+
+
 }
