@@ -51,10 +51,15 @@ else {
     $backTitle = $this->translate($lastSearchQuery . ' Jobs');
 }
 
+
 // banner image
 if (!$this->isIntern && $this->isEmbeddable) {
-    if (!$hasBanner) {
-        $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_blue.svg');
+    $template = $this->job->getAttachedEntity('gastro24-template');
+    $hasBanner = $template && ($image = $template->getImage());
+    $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_blue.svg');
+    if ($hasBanner) {
+        $serverUrl = new \Zend\View\Helper\ServerUrl();
+        $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
     }
 }
 
