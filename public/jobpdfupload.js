@@ -101,6 +101,8 @@
             iframeUrl = basePath + '/' + lang + '/job/view?id=' + $(e.currentTarget).find('input[name="job"]').val()
                 + '&snapshot=' + $(e.currentTarget).find('input[name="snapshot"]').val();
             $('#previewJob').attr('src', iframeUrl);
+            $('.preview-link').attr('href', iframeUrl);
+            $('.preview-link-button').attr('href', iframeUrl);
         });
         //.find('#details-description-span, #details-logo-span').parent().hide()
 
