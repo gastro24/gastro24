@@ -12,12 +12,14 @@ $this->headScript()->appendFile($this->basePath('/dist/js/iframeResizer.js'));
 $job = $this->element->getObject(); /* @var \Jobs\Entity\JobInterface $job */
 
 if ($job instanceOf \Jobs\Entity\JobSnapshot) {
-    $query = ['snapshot' => $job->getSnapshotId()];
+    $snapshotId = $job->getSnapshotId();
+    $query = ['snapshot' => $snapshotId];
 } else {
     $query = ['id' => $job->getId()];
 }
 
-$viewLink = $this->url('lang/jobs/view') . '?id=' . $job->getId() . '&snapshot=' . $job->getSnapshotId();
+$viewLink = ($snapshotId) ? $this->url('lang/jobs/view') . '?id=' . $job->getId() . '&snapshot=' . $job->getSnapshotId() :
+    $this->url('lang/jobs/view') . '?id=' . $job->getId();
 
 $query['page'] = 0;
 $multipostLink = $this->url(
