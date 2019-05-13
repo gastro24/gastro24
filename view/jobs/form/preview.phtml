@@ -12,12 +12,14 @@ $this->headScript()->appendFile($this->basePath('/dist/js/iframeResizer.js'));
 $job = $this->element->getObject(); /* @var \Jobs\Entity\JobInterface $job */
 
 if ($job instanceOf \Jobs\Entity\JobSnapshot) {
-    $query = ['snapshot' => $job->getSnapshotId()];
+    $snapshotId = $job->getSnapshotId();
+    $query = ['snapshot' => $snapshotId];
 } else {
     $query = ['id' => $job->getId()];
 }
 
-$viewLink = $this->jobUrl($job, ['linkOnly' => true, 'preview' => true ]);
+$viewLink = ($snapshotId) ? $this->url('lang/jobs/view') . '?id=' . $job->getId() . '&snapshot=' . $job->getSnapshotId() :
+    $this->url('lang/jobs/view') . '?id=' . $job->getId();
 
 $query['page'] = 0;
 $multipostLink = $this->url(
@@ -82,89 +84,8 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
 <h3><?=$this->translate("Preview of your job posting"); ?></h3>
 <div class="row">
     <div class="col-md-8">
-        <?php if(!$job->getLink()) : ?>
-            <iframe id="previewJob" src="<?= $viewLink ?>"></iframe>
-        <!-- job with link -- needs template wrapper -->
-        <?php else: ?>
-            <div class="panel panel-default panel__job-detail">
-            <!-- Bannerbild -->
-            <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-            <!-- End Bannerbild -->
-
-            <div class="panel-body">
-                <!-- company logo and job title-->
-                <div class="teaser__job-detail">
-                    <div itemprop="logo">
-                        <div class="wrapper__logo">
-                            <img src="<?= $template && ($logo = $template->getLogo())
-                                ? $this->basePath($logo->getUri())
-                                : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
-                        </div>
-                    </div>
-                    <h1><?=$job->getTitle()?></h1>
-                </div>
-                <!-- end company logo and job title-->
-
-                <div class="job-short-info">
-                    <ul>
-                        <li class="location">
-                            <!-- location -->
-                            <?php
-                            $location = $job->getLocations()->current();
-                            echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                            ?>
-                            <!-- end location -->
-                        </li>
-                        <li class="company">
-                            <!-- company name -->
-                            <?php if ($org && !$orgIsDisabled): ?>
-                                <a href="<?= $this->orgProfileUrl($org)?>?clear=1"><strong><?= $orgName ?></strong></a>
-                            <?php else: ?>
-                                <strong><?= $orgName ?></strong>
-                            <?php endif ?>
-                            <!-- end company name -->
-                        </li>
-                        <li class="type">
-                            <!-- type of contract -->
-                            <?php
-                            $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
-                            <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
-                            <!-- end type of contract -->
-                        </li>
-                        <li class="date">
-                            <!-- published date -->
-                            <span><?= $publishDate ?></span>
-                            <!-- end published date -->
-                        </li>
-                    </ul>
-                </div>
-
-                <hr class="job-details-devider"/>
-
-                <!-- apply button - no action because of preview -->
-                <div class="button-job-apply text-center">
-                    <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-                </div>
-                <!-- end apply button -->
-
-                <iframe id="previewJob" src="<?= $viewLink ?>"></iframe>
-
-                <!-- apply button - no action because of preview -->
-                <div class="button-job-apply text-center">
-                    <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-                </div>
-                <!-- end apply button -->
-
-                <hr class="job-details-devider"/>
-
-                <!-- share buttons -->
-                <div class="text-center">Diesen Job teilen: </div>
-                <div id="share" class="text-center round-shares"></div>
-                <div class="clearfix"></div>
-                <!-- end share buttons -->
-            </div>
-        </div>
-        <?php endif; ?>
+        <!-- HINT: $viewLink can be overwritten in jobpdfupload.js -->
+        <iframe id="previewJob" src="<?= $viewLink ?>"></iframe>
     </div>
     <div class="col-md-4">
         <div class="alert alert-info">
@@ -178,9 +99,11 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                     return false;
                 }
             </script>
+
+            <!-- HINT: $viewLink can be overwritten in jobpdfupload.js -->
             <?php echo sprintf($this->translate('Please check the preview of your job position. Click %s to open the preview in a new window'),
-                '<a target="_blank" href="'.$viewLink.'">'.$this->translate("here").'</a>'); ?><br/>
-            <a target="_blank" href="<?=$viewLink?>" class="btn btn-info" role="button"><i class="fa fa-external-link"></i>
+                '<a class="preview-link" target="_blank" href="'. $viewLink .'">'.$this->translate("here").'</a>'); ?><br/>
+            <a target="_blank" href="<?= $viewLink ?>" class="btn btn-info preview-link-button" role="button"><i class="fa fa-external-link"></i>
                 <?=$this->translate('Open new Window')?>
             </a>
             <a href="#" onclick="javascript:printIframe('previewJob');return false;" class="btn btn-info" role="button"><i class="fa fa-print"></i>

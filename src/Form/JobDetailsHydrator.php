@@ -12,6 +12,7 @@ namespace Gastro24\Form;
 
 use Gastro24\Entity\Template;
 use Gastro24\Entity\TemplateImage;
+use Jobs\Entity\JobSnapshot;
 use Zend\Hydrator\HydratorInterface;
 
 /**
@@ -29,6 +30,10 @@ class JobDetailsHydrator implements HydratorInterface
         $this->repositories = $repositories;
     }
 
+    /**
+     * @param JobSnapshot $object
+     * @return array
+     */
     public function extract($object)
     {
         $link = $object->getLink();

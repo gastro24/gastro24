@@ -229,7 +229,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
                     [
                         'name' => 'FileRenameUpload',
                         'options' => [
-                            'target' =>  'public/static/jobs/job.pdf',
+                            'target' =>  'public/static/Jobs/job.pdf',
                             'randomize' => true,
                         ],
                     ],

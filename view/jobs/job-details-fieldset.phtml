@@ -10,71 +10,103 @@
 use Zend\Form\Element\Hidden;
 
 $fieldset = $this->element;
-$mode = $fieldset->get('mode'); $isUri = 'uri' == $mode->getValue(); $isPdf = 'pdf' == $mode->getValue();
+$mode = $fieldset->get('mode');
+$isUri = 'uri' == $mode->getValue();
+$isPdf = 'pdf' == $mode->getValue();
+$isHtml = 'html' == $mode->getValue();
+
 $modeLabels = $mode->getOption('labels');
 
 ?>
 <?php if (isset($this->renderSummary) && $this->renderSummary): ?>
+
     <style type="text/css">
         .mce-content-body { min-height: 100px; }
-        
     </style>
-<div class="row">
-    <?php if ($isUri): ?>
-        <div class="col-md-3 yk-label">Online-Inserat</div>
-        <div class="col-md-9"><?=$fieldset->get('uri')->getValue()?></div>
-    <?php elseif ($isPdf): ?>
-        <div class="col-md-12">
-            <a href="<?=$fieldset->getObject()->getLink() ?>">PDF-Datei</a> ausgewählt.</div>
-    <?php else: ?>
+    <div class="row">
+        <?php if ($isUri): ?>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Online-Inserat</h3>
+                    </div>
+                    <div class="panel-body">
+                        <?=$fieldset->get('uri')->getValue()?>
+                    </div>
+                </div>
+            </div>
+        <?php elseif ($isPdf): ?>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">PDF-Datei</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a href="<?=$fieldset->getObject()->getLink() ?>">PDF-Datei</a> ausgewählt.
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <!-- banner preview -->
         <div class="col-md-12">
             <div class="panel panel-default">
-
-                 <?php $template = $fieldset->getObject()->getAttachedEntity('gastro24-template');
+                <div class="panel-heading">
+                    <h3 class="panel-title">Banner</h3>
+                </div>
+                <div class="panel-body">
+                    <?php
+                    $template = $fieldset->getObject()->getAttachedEntity('gastro24-template');
                     if ($template && ($image = $template->getImage())):?>
-
                         <img style="width:100%" src="<?=$this->basePath($image->getUri());?>">
                     <?php endif ?>
+                </div>
+            </div>
+        </div>
+        <!-- end banner preview -->
 
-                <div class="panel-heading">
-                    <h3 class="panel-title">Einleitung zu Ihrer Stellenanzeige</h3>
-                </div>
-                <div class="panel-body">
-                    <?=$fieldset->get('introduction')->getValue()?>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Tätigkeit</h3>
-                </div>
-                <div class="panel-body">
-                    <?=$fieldset->get('position')->getValue()?>
+        <?php if ($isHtml): ?>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Einleitung zu Ihrer Stellenanzeige</h3>
+                    </div>
+                    <div class="panel-body">
+                        <?=$fieldset->get('introduction')->getValue()?>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Anforderungen</h3>
-                </div>
-                <div class="panel-body">
-                    <?=$fieldset->get('requirements')->getValue()?>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Wir bieten (zusätzliche Information)</h3>
-                </div>
-                <div class="panel-body">
-                    <?=$fieldset->get('benefits')->getValue()?>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Tätigkeit</h3>
+                    </div>
+                    <div class="panel-body">
+                        <?=$fieldset->get('position')->getValue()?>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Anforderungen</h3>
+                    </div>
+                    <div class="panel-body">
+                        <?=$fieldset->get('requirements')->getValue()?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Wir bieten (zusätzliche Information)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <?=$fieldset->get('benefits')->getValue()?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Beschreibung des Unternehmens</h3>
@@ -84,109 +116,113 @@ $modeLabels = $mode->getOption('labels');
                 </div>
             </div>
         </div>
-    <?php endif ?>
-</div>
+        <?php endif ?>
+    </div>
+
 <?php else: ?>
-<fieldset id="details-fs">
-    <div class="fieldset-content">
+    <fieldset id="details-fs">
+        <div class="fieldset-content">
 
-        <?php if (!$mode instanceof Zend\Form\Element\Hidden): ?>
-            <div class="controls controls-row form-group">
-                <div class="col-md-3 yk-label">&nbsp;</div>
-                <div class="col-md-9">
-                    <?php if(isset($modeLabels['uri'])) : ?>
-                        <div class="pull-left" style="margin-right: 15px;" id="csj-mode-uri-span">
-                            <input type="radio" id="csj-mode-uri" name="<?=$mode->getName()?>" value="uri" <?=$isUri ? 'checked' : ''?>> <label for="csj-mode-uri"> <?=$modeLabels['uri']?></label>
-                        </div>
-                    <?php endif; ?>
-                    <?php if(isset($modeLabels['pdf'])) : ?>
-                        <div class="pull-left" style="margin-right: 15px;" id="csj-mode-pdf-span">
-                            <input type="radio" id="csj-mode-pdf" name="<?=$mode->getName()?>" value="pdf" <?=$isPdf ? 'checked' : '' ?>> <label for="csj-mode-pdf"> <?=$modeLabels['pdf']?></label>
-                        </div>
-                    <?php endif; ?>
-                    <?php if(isset($modeLabels['html'])) : ?>
-                        <div class="pull-left" id="csj-mode-html-span">
-                            <input type="radio" id="csj-mode-html" name="<?=$mode->getName()?>" value="html" <?=$isUri || $isPdf ? '' : 'checked' ?>> <label for="csj-mode-html"> <?=$modeLabels['html']?></label>
-                        </div>
-                    <?php endif; ?>
+            <!-- job creation - all modes:  html, pdf, link -->
+            <?php if (!$mode instanceof Zend\Form\Element\Hidden): ?>
+                <div class="controls controls-row form-group">
+                    <div class="col-md-3 yk-label">&nbsp;</div>
+                    <div class="col-md-9">
+                        <?php if(isset($modeLabels['uri'])) : ?>
+                            <div class="pull-left" style="margin-right: 15px;" id="csj-mode-uri-span">
+                                <input type="radio" id="csj-mode-uri" name="<?=$mode->getName()?>" value="uri" <?=$isUri ? 'checked' : ''?>> <label for="csj-mode-uri"> <?=$modeLabels['uri']?></label>
+                            </div>
+                        <?php endif; ?>
+                        <?php if(isset($modeLabels['pdf'])) : ?>
+                            <div class="pull-left" style="margin-right: 15px;" id="csj-mode-pdf-span">
+                                <input type="radio" id="csj-mode-pdf" name="<?=$mode->getName()?>" value="pdf" <?=$isPdf ? 'checked' : '' ?>> <label for="csj-mode-pdf"> <?=$modeLabels['pdf']?></label>
+                            </div>
+                        <?php endif; ?>
+                        <?php if(isset($modeLabels['html'])) : ?>
+                            <div class="pull-left" id="csj-mode-html-span">
+                                <input type="radio" id="csj-mode-html" name="<?=$mode->getName()?>" value="html" <?=$isUri || $isPdf ? '' : 'checked' ?>> <label for="csj-mode-html"> <?=$modeLabels['html']?></label>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>
-        <?php else: ?>
-<!--            <div class="pull-left" id="csj-mode-html-span">-->
+            <!-- end job creation - all modes:  html, pdf, link -->
+            <!-- single job creation - only html mode -->
+            <?php else: ?>
                 <input type="hidden" id="csj-mode-html" name="<?=$mode->getName()?>" value="html">
-<!--            </div>-->
-        <?php endif; ?>
-<?=$this->formRow($fieldset->get('uri'))?>
-<?php $input = $this->formRow($fieldset->get('pdf'));
-    if ($value = $fieldset->get('pdf')->getValue()) {
-        $input = str_replace(
-                '<div class="col-md-9" id="details-pdf-span">',
-                '<div class="col-md-9" id="details-pdf-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
-                <a href="?ajax=jobdetailsdelete&file=' .basename($value). '" class="file-delete btn btn-default btn-xs">
-        <span class="yk-icon yk-icon-minus"></span>
-    </a>
-    <input type="hidden" value="' . $value . '" name="pdf_uri"></div>',
-                $input
-        );
-        $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
+            <?php endif; ?>
+            <!-- end single job creation - only html mode -->
 
-    }
-    echo $input;
+            <?=$this->formRow($fieldset->get('uri'))?>
+            <?php $input = $this->formRow($fieldset->get('pdf'));
+                if ($value = $fieldset->get('pdf')->getValue()) {
+                    $input = str_replace(
+                            '<div class="col-md-9" id="details-pdf-span">',
+                            '<div class="col-md-9" id="details-pdf-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
+                            <a href="?ajax=jobdetailsdelete&file=' .basename($value). '" class="file-delete btn btn-default btn-xs">
+                    <span class="yk-icon yk-icon-minus"></span>
+                </a>
+                <input type="hidden" value="' . $value . '" name="pdf_uri"></div>',
+                            $input
+                    );
+                    $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
 
-?>
+                }
+                echo $input;
 
-        <!-- Logo and banner fields -->
-        <?php
-            $inputLogo = $this->formRow($fieldset->get('logo'));
+            ?>
 
-            if ($logoValue = $fieldset->get('logo')->getValue()) {
-                $inputLogo = str_replace(
-                    '<div class="col-md-9" id="details-logo-span">',
-                    '<div class="col-md-9" id="details-logo-span"><div class="file-info"><a href="' . $logoValue . '" target="_blank">' . basename($logoValue) . '</a>
-                            <a href="/' . $logoValue . '?do=delete" class="file-delete btn btn-default btn-xs">
+            <!-- Logo and banner fields -->
+            <?php
+                $inputLogo = $this->formRow($fieldset->get('logo'));
+
+                if ($logoValue = $fieldset->get('logo')->getValue()) {
+                    $inputLogo = str_replace(
+                        '<div class="col-md-9" id="details-logo-span">',
+                        '<div class="col-md-9" id="details-logo-span"><div class="file-info"><a href="' . $logoValue . '" target="_blank">' . basename($logoValue) . '</a>
+                                <a href="/' . $logoValue . '?do=delete" class="file-delete btn btn-default btn-xs">
+                                    <span class="yk-icon yk-icon-minus"></span>
+                                </a>
+                                <input type="hidden" value="' . basename(dirname($logoValue)) . '" name="details[logo_id]">
+                                <input type="hidden" value="' . $logoValue . '" name="details[logo_url]"></div>',
+                        $inputLogo
+                    );
+                    $inputLogo = str_replace('<input type="file"', '<input type="file" style="display:none;"', $inputLogo);
+                }
+
+
+                echo $inputLogo;
+            ?>
+
+            <?php
+                $input = $this->formRow($fieldset->get('image'));
+
+                if ($value = $fieldset->get('image')->getValue()) {
+                    $input = str_replace(
+                        '<div class="col-md-9" id="details-image-span">',
+                        '<div class="col-md-9" id="details-image-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
+                            <a href="/' . $value . '?do=delete" class="file-delete btn btn-default btn-xs">
                                 <span class="yk-icon yk-icon-minus"></span>
                             </a>
-                            <input type="hidden" value="' . basename(dirname($logoValue)) . '" name="details[logo_id]">
-                            <input type="hidden" value="' . $logoValue . '" name="details[logo_url]"></div>',
-                    $inputLogo
-                );
-                $inputLogo = str_replace('<input type="file"', '<input type="file" style="display:none;"', $inputLogo);
-            }
+                            <input type="hidden" value="' . basename(dirname($value)) . '" name="details[image_id]">
+                            <input type="hidden" value="' . $value . '" name="details[image_url]"></div>',
+                        $input
+                    );
+                    $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
+
+                }
+                echo $input;
+            ?>
 
 
-            echo $inputLogo;
-        ?>
-
-        <?php
-            $input = $this->formRow($fieldset->get('image'));
-
-            if ($value = $fieldset->get('image')->getValue()) {
-                $input = str_replace(
-                    '<div class="col-md-9" id="details-image-span">',
-                    '<div class="col-md-9" id="details-image-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
-                        <a href="/' . $value . '?do=delete" class="file-delete btn btn-default btn-xs">
-                            <span class="yk-icon yk-icon-minus"></span>
-                        </a>
-                        <input type="hidden" value="' . basename(dirname($value)) . '" name="details[image_id]">
-                        <input type="hidden" value="' . $value . '" name="details[image_url]"></div>',
-                    $input
-                );
-                $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
-
-            }
-            echo $input;
-        ?>
-
-
-        <div class="csj-html-wrapper">
-            <?=$this->formRow($fieldset->get('introduction')); ?>
-            <?=$this->formRow($fieldset->get('position')); ?>
-            <?=$this->formRow($fieldset->get('requirements')); ?>
-            <?=$this->formRow($fieldset->get('benefits')); ?>
-            <?=$this->formRow($fieldset->get('description'))?>
+            <div class="csj-html-wrapper">
+                <?=$this->formRow($fieldset->get('introduction')); ?>
+                <?=$this->formRow($fieldset->get('position')); ?>
+                <?=$this->formRow($fieldset->get('requirements')); ?>
+                <?=$this->formRow($fieldset->get('benefits')); ?>
+                <?=$this->formRow($fieldset->get('description'))?>
+            </div>
         </div>
-    </div>
-</fieldset>
+    </fieldset>
 
 
 <?php endif ?>

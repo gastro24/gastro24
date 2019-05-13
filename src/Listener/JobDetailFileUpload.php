@@ -82,7 +82,7 @@ class JobDetailFileUpload
     public function deletePdfFile(AjaxEvent $event)
     {
         $file = $event->getRequest()->getQuery('file');
-        @unlink('public/static/jobs/' . $file);
+        @unlink('public/static/Jobs/' . $file);
 
         return ['ok' => true];
     }
