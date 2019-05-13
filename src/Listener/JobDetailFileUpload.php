@@ -100,7 +100,7 @@ class JobDetailFileUpload
 
             if (!isset($data['job'])) {
                 $filePermissions = $file->getPermissions();
-                //$filePermissions->grant('all', Permissions::PERMISSION_CHANGE);
+                $filePermissions->grant('all', Permissions::PERMISSION_CHANGE);
 
                 return [
                     'valid' => true,
