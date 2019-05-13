@@ -71,7 +71,7 @@ class IframeEmbeddableUri extends AbstractValidator
 
     private function getPublicJobPdfPath()
     {
-        return $this->getBasePath() . '/static/jobs';
+        return $this->getBasePath() . '/static/Jobs';
     }
 
     /**

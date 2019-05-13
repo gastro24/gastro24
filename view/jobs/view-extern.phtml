@@ -375,7 +375,11 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
                                 </div>
                                 <p>Das Inserat wird geladen, bitte haben Sie einem Moment Geduld</p>
                             </div>
-                            <iframe style="height:2500px" id="iframe4" src="<?=$link?>"></iframe>
+                            <?php if(strpos($link, '.pdf') !== false): ?>
+                                <iframe style="height:122rem" id="iframePdf" src="<?=$link?>"></iframe>
+                            <?php else: ?>
+                                <iframe style="height:2500px" id="iframe4" src="<?=$link?>"></iframe>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -438,7 +442,7 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
 
             <!-- iframe resizer -->
             <script>
-            iFrameResize({ log: false }, '#iframe4')
+            iFrameResize({ log: false }, '#iframe4');
             </script>
             <!-- end iframe resizer -->
 
