@@ -111,7 +111,9 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             'type' => 'File',
             'name' => 'image',
             'options' => [
-                'label' => $this->gastroOptions->getLabel('image'),
+                //'label' => $this->gastroOptions->getLabel('image'),
+                // WORKAROUND: options are not read in staging environment
+                'label' => /* @translate */ 'Bannerbild (ideal 1200px * 300px)',
             ]
         ]);
 
