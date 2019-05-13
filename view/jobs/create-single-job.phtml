@@ -7,8 +7,6 @@
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
 
-$this->headScript()->appendFile($this->basePath('/dist/js/iframeResizer.js'));
-
 $this->headTitle('Kostenlos Einzelinserat aufgeben');
 $publishDate = $this->dateFormat(new DateTime(), 'medium', 'none');
 $image = isset($this->details['image']['entity']) ? $this->details['image']['entity'] : null;
@@ -102,50 +100,46 @@ $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->det
                         </div>
                         <!-- end apply button -->
 
-                        <?php if ('uri' == $this->details['mode'] || 'pdf' == $this->details['mode']): ?>
-                            <iframe id="iframe1" src="<?= $this->details['uri'] ?>"></iframe>
-                        <?php else: ?>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-                                    <!-- job content -->
-                                    <?php if ($this->html): ?>
-                                        <div class="position">
-                                            <?=$this->html?>
-                                        </div>
-                                    <?php else: ?>
-                                        <!-- introduction -->
-                                        <div class="introduction">
-                                            <?=$this->details['introduction']?>
-                                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                                <!-- job content -->
+                                <?php if ($this->html): ?>
+                                    <div class="position">
+                                        <?=$this->html?>
+                                    </div>
+                                <?php else: ?>
+                                    <!-- introduction -->
+                                    <div class="introduction">
+                                        <?=$this->details['introduction']?>
+                                    </div>
 
-                                        <!-- position -->
-                                        <div class="position">
-                                            <?=$this->details['position']?>
-                                        </div>
+                                    <!-- position -->
+                                    <div class="position">
+                                        <?=$this->details['position']?>
+                                    </div>
 
-                                        <!-- requirements -->
-                                        <div class="position">
-                                            <?=$this->details['requirements']?>
-                                        </div>
+                                    <!-- requirements -->
+                                    <div class="position">
+                                        <?=$this->details['requirements']?>
+                                    </div>
 
-                                        <!-- qualifications -->
-                                        <div class="position">
-                                            <?=$this->details['qualifications']?>
-                                        </div>
+                                    <!-- qualifications -->
+                                    <div class="position">
+                                        <?=$this->details['qualifications']?>
+                                    </div>
 
-                                        <!-- benefits -->
-                                        <div class="position">
-                                            <?=$this->details['benefits']?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <!-- end job content -->
+                                    <!-- benefits -->
+                                    <div class="position">
+                                        <?=$this->details['benefits']?>
+                                    </div>
+                                <?php endif; ?>
+                                <!-- end job content -->
 
-                                    <!-- company description -->
-                                    <p><?=$this->details['description']?></p>
-                                    <!-- end company description -->
-                                </div>
+                                <!-- company description -->
+                                <p><?=$this->details['description']?></p>
+                                <!-- end company description -->
                             </div>
-                        <?php endif ?>
+                        </div>
 
                         <!-- apply button -->
                         <div class="button-job-apply text-center">
@@ -200,12 +194,6 @@ $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->det
         </div>
     </div>
 <?php endif ?>
-
-<!-- iframe resizer -->
-<script>
-    iFrameResize({ log: false }, '#iframe1')
-</script>
-<!-- end iframe resizer -->
 
 
 
