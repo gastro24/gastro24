@@ -111,7 +111,9 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             'type' => 'File',
             'name' => 'image',
             'options' => [
-                'label' => $this->gastroOptions->getLabel('image'),
+                //'label' => $this->gastroOptions->getLabel('image'),
+                // WORKAROUND: options are not read in staging environment
+                'label' => /* @translate */ 'Bannerbild (ideal 1200px * 300px)',
             ]
         ]);
 
@@ -229,7 +231,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
                     [
                         'name' => 'FileRenameUpload',
                         'options' => [
-                            'target' =>  'public/static/jobs/job.pdf',
+                            'target' =>  'public/static/Jobs/job.pdf',
                             'randomize' => true,
                         ],
                     ],
@@ -240,65 +242,64 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             ];
         } else if ('uri' == $mode) {
             $spec['uri'] = [ 'require' => true ];
-        } else {
-            $spec += [
-                //'description' => [ 'require' => true ],
-                //'position'    => [ 'require' => false ],
-                //'requirements' => [ 'require' => false ],
-                'logo' => [
-                    'allow_empty' => true,
-                    'validators' => [
-                        [
-                            'name' => 'FileMimeType',
-                            'options' => [
-                                'mimeType' => 'image',
-                                'disableMagicFile' => true,
-                                'magicFile' => false,
-                            ],
-                        ],
-                    ],
-                    'filters' => [
-                        [
-                            'name' => \Core\Filter\File\Resize::class,
-                            'options' => $this->gastroOptions->getLogoSize(),
-                        ],
-                        [
-                            'name' => \Core\Filter\File\Entity::class,
-                            'options' => [
-                                'file_entity' => \Gastro24\Entity\TemplateImage::class,
-                                'repository' => true,
-                            ],
-                        ],
-                    ],
-                ],
-                'image' => [
-                    'allow_empty' => true,
-                    'validators' => [
-                        [
-                            'name' => 'FileMimeType',
-                            'options' => [
-                                'mimeType' => 'image',
-                                'disableMagicFile' => true,
-                                'magicFile' => false,
-                            ],
-                        ],
-                    ],
-                    'filters' => [
-                        [
-                            'name' => \Core\Filter\File\Resize::class,
-                            'options' => $this->gastroOptions->getImageSize(),
-                        ],
-                        [
-                            'name' => \Core\Filter\File\Entity::class,
-                            'options' => [
-                                'file_entity' => \Gastro24\Entity\TemplateImage::class,
-                                'repository' => true,
-                            ],
-                        ],
-                    ],
-                ],
-            ];
         }
+        $spec += [
+            //'description' => [ 'require' => true ],
+            //'position'    => [ 'require' => false ],
+            //'requirements' => [ 'require' => false ],
+            'logo' => [
+                'allow_empty' => true,
+                'validators' => [
+                    [
+                        'name' => 'FileMimeType',
+                        'options' => [
+                            'mimeType' => 'image',
+                            'disableMagicFile' => true,
+                            'magicFile' => false,
+                        ],
+                    ],
+                ],
+                'filters' => [
+                    [
+                        'name' => \Core\Filter\File\Resize::class,
+                        'options' => $this->gastroOptions->getLogoSize(),
+                    ],
+                    [
+                        'name' => \Core\Filter\File\Entity::class,
+                        'options' => [
+                            'file_entity' => \Gastro24\Entity\TemplateImage::class,
+                            'repository' => true,
+                        ],
+                    ],
+                ],
+            ],
+            'image' => [
+                'allow_empty' => true,
+                'validators' => [
+                    [
+                        'name' => 'FileMimeType',
+                        'options' => [
+                            'mimeType' => 'image',
+                            'disableMagicFile' => true,
+                            'magicFile' => false,
+                        ],
+                    ],
+                ],
+                'filters' => [
+                    [
+                        'name' => \Core\Filter\File\Resize::class,
+                        'options' => $this->gastroOptions->getImageSize(),
+                    ],
+                    [
+                        'name' => \Core\Filter\File\Entity::class,
+                        'options' => [
+                            'file_entity' => \Gastro24\Entity\TemplateImage::class,
+                            'repository' => true,
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
 
 

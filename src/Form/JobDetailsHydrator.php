@@ -12,6 +12,7 @@ namespace Gastro24\Form;
 
 use Gastro24\Entity\Template;
 use Gastro24\Entity\TemplateImage;
+use Jobs\Entity\JobSnapshot;
 use Zend\Hydrator\HydratorInterface;
 
 /**
@@ -29,6 +30,10 @@ class JobDetailsHydrator implements HydratorInterface
         $this->repositories = $repositories;
     }
 
+    /**
+     * @param JobSnapshot $object
+     * @return array
+     */
     public function extract($object)
     {
         $link = $object->getLink();
@@ -42,6 +47,7 @@ class JobDetailsHydrator implements HydratorInterface
 
         $template = $object->getAttachedEntity('gastro24-template');
         $image    = $template && ($image = $template->getImage()) ? $image->getUri() : null;
+        $logo    = $template && ($logo = $template->getLogo()) ? $logo->getUri() : null;
 
         return [
             'mode' => $mode,
@@ -53,6 +59,7 @@ class JobDetailsHydrator implements HydratorInterface
             'position' => $object->getTemplateValues()->get('position'),
             'requirements' => $object->getTemplateValues()->getRequirements(),
             'image' => $image,
+            'logo' => $logo,
         ];
     }
 
@@ -71,25 +78,24 @@ class JobDetailsHydrator implements HydratorInterface
             $object->getTemplateValues()->position = $data['position'];
             $object->getTemplateValues()->setRequirements($data['requirements']);
 
-
-            $template = $object->getAttachedEntity('gastro24-template');
-            $repository = $this->repositories->get(TemplateImage::class);
-            if (!$template) {
-                $template = new Template();
-                $this->repositories->store($template);
-                $object->addAttachedEntity($template, 'gastro24-template');
-            }
-            if (isset($_POST['details']['logo_id'])) {
-                $file = $repository->find($_POST['details']['logo_id']);
-                $template->setLogo($file);
-            }
-            if (isset($_POST['details']['image_id'])) {
-                $file = $repository->find($_POST['details']['image_id']);
-                $template->setImage($file);
-            }
-
         } else {
             $object->setLink('uri' == $data['mode'] ? $data['uri'] : (isset($_POST['pdf_uri']) ? $_POST['pdf_uri'] : $data['pdf']));
+        }
+
+        $template = $object->getAttachedEntity('gastro24-template');
+        $repository = $this->repositories->get(TemplateImage::class);
+        if (!$template) {
+            $template = new Template();
+            $this->repositories->store($template);
+            $object->addAttachedEntity($template, 'gastro24-template');
+        }
+        if (isset($_POST['details']['logo_id'])) {
+            $file = $repository->find($_POST['details']['logo_id']);
+            $template->setLogo($file);
+        }
+        if (isset($_POST['details']['image_id'])) {
+            $file = $repository->find($_POST['details']['image_id']);
+            $template->setImage($file);
         }
 
         return $object;

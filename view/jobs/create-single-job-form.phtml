@@ -8,7 +8,9 @@
  */
 
 $form = $this->element;
-$this->headScript()->appendFile($this->basePath('modules/Gastro24/create-single-job.js'));
+$this->headScript()->appendFile($this->basePath('modules/Gastro24/create-single-job.js'))
+    ->appendFile($this->basePath('dist/js/blueimp-file-upload.js'))
+    ->appendFile($this->basePath('modules/Gastro24/jobpdfupload.js'));
 ?>
 
 

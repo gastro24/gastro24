@@ -47,7 +47,9 @@ class CreateSingleJob extends AbstractActionController
         // prefill form
         if (isset($session->values)) {
             $values = unserialize($session->values);
-            $values = array_merge_recursive($values, $this->getRequest()->getFiles()->toArray());
+            //$values = array_merge_recursive($values, $this->getRequest()->getFiles()->toArray());
+            $values['details']['logo'] = $values['details']['logo_url'];
+            $values['details']['image'] = $values['details']['image_url'];
             $this->form->setData($values);
         }
 
@@ -81,13 +83,17 @@ class CreateSingleJob extends AbstractActionController
             $values['details']['uri'] = $serverUrl('/' . $basePath . str_replace('public/', '', $values['details']['pdf']['tmp_name']));
         }
 
-        if (is_array($values['details']['logo']) && UPLOAD_ERR_NO_FILE != $values['details']['logo']['error']) {
-            $values['details']['logo_id'] = $values['details']['logo']['entity']->getId();
+        if (isset($data['details']['logo_id'])) {
+            $values['details']['logo_id'] = $data['details']['logo_id'];
+            $values['details']['logo_url'] = $data['details']['logo_url'];
         }
 
-        if (is_array($values['details']['image']) && UPLOAD_ERR_NO_FILE != $values['details']['image']['error']) {
-            $values['details']['image_id'] = $values['details']['image']['entity']->getId();
+        if (isset($data['details']['image_id'])) {
+            $values['details']['image_id'] = $data['details']['image_id'];
+            $values['details']['image_url'] = $data['details']['image_url'];
         }
+
+
 
         $session = new Container('Gastro24_SingleJobData');
         $session->data = serialize($data);

@@ -7,19 +7,17 @@
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
 
-$this->headScript()->appendFile($this->basePath('/dist/js/iframeResizer.js'));
-
 $this->headTitle('Kostenlos Einzelinserat aufgeben');
 $publishDate = $this->dateFormat(new DateTime(), 'medium', 'none');
 $image = isset($this->details['image']['entity']) ? $this->details['image']['entity'] : null;
 
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
-if ($image) {
+if (isset($this->details['image_url'])) {
     $serverUrl = new \Zend\View\Helper\ServerUrl();
-    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+    $imageServerUrl = $serverUrl($this->basePath($this->details['image_url']));
 }
-$logo = isset($this->details['logo']['entity']) ? $this->details['logo']['entity'] : null;
-$logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('modules/Gastro24/images/no-company-logo.png');
+$logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->details['logo_url']) :
+    $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
 ?>
 <style>
@@ -102,50 +100,46 @@ $logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('mo
                         </div>
                         <!-- end apply button -->
 
-                        <?php if ('uri' == $this->details['mode'] || 'pdf' == $this->details['mode']): ?>
-                            <iframe id="iframe1" src="<?= $this->details['uri'] ?>"></iframe>
-                        <?php else: ?>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-                                    <!-- job content -->
-                                    <?php if ($this->html): ?>
-                                        <div class="position">
-                                            <?=$this->html?>
-                                        </div>
-                                    <?php else: ?>
-                                        <!-- introduction -->
-                                        <div class="introduction">
-                                            <?=$this->details['introduction']?>
-                                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                                <!-- job content -->
+                                <?php if ($this->html): ?>
+                                    <div class="position">
+                                        <?=$this->html?>
+                                    </div>
+                                <?php else: ?>
+                                    <!-- introduction -->
+                                    <div class="introduction">
+                                        <?=$this->details['introduction']?>
+                                    </div>
 
-                                        <!-- position -->
-                                        <div class="position">
-                                            <?=$this->details['position']?>
-                                        </div>
+                                    <!-- position -->
+                                    <div class="position">
+                                        <?=$this->details['position']?>
+                                    </div>
 
-                                        <!-- requirements -->
-                                        <div class="position">
-                                            <?=$this->details['requirements']?>
-                                        </div>
+                                    <!-- requirements -->
+                                    <div class="position">
+                                        <?=$this->details['requirements']?>
+                                    </div>
 
-                                        <!-- qualifications -->
-                                        <div class="position">
-                                            <?=$this->details['qualifications']?>
-                                        </div>
+                                    <!-- qualifications -->
+                                    <div class="position">
+                                        <?=$this->details['qualifications']?>
+                                    </div>
 
-                                        <!-- benefits -->
-                                        <div class="position">
-                                            <?=$this->details['benefits']?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <!-- end job content -->
+                                    <!-- benefits -->
+                                    <div class="position">
+                                        <?=$this->details['benefits']?>
+                                    </div>
+                                <?php endif; ?>
+                                <!-- end job content -->
 
-                                    <!-- company description -->
-                                    <p><?=$this->details['description']?></p>
-                                    <!-- end company description -->
-                                </div>
+                                <!-- company description -->
+                                <p><?=$this->details['description']?></p>
+                                <!-- end company description -->
                             </div>
-                        <?php endif ?>
+                        </div>
 
                         <!-- apply button -->
                         <div class="button-job-apply text-center">
@@ -175,12 +169,6 @@ $logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('mo
         </div>
     </div>
 
-    <div class="row job-navigation">
-        <div class="col-md-3">
-            <a title="Zurück zur Eingabe" href="/de/job/single" class="btn btn-default btn-block no-margin">
-                <i class="fa fa-chevron-left"></i> Zurück zur Eingabe</a>
-        </div>
-    </div>
 <?php elseif ($this->isSuccess): ?>
 
     <div class="panel panel-default">
@@ -206,12 +194,6 @@ $logoImageUrl = ($logo) ? $this->basePath($logo->getUri()) : $this->basePath('mo
         </div>
     </div>
 <?php endif ?>
-
-<!-- iframe resizer -->
-<script>
-    iFrameResize({ log: false }, '#iframe1')
-</script>
-<!-- end iframe resizer -->
 
 
 

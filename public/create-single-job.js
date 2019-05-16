@@ -18,7 +18,7 @@
         if ($uriBox.prop('checked')) {
             $uriInput.slideDown();
             $pdfInput.slideUp();
-            $pdfInput.find('input').val('');
+            //$pdfInput.find('input').val('');
             $htmlInput.slideUp();
         } else if ($pdfBox.prop('checked')) {
             $uriInput.slideUp();
@@ -27,7 +27,7 @@
         } else {
             $uriInput.slideUp();
             $pdfInput.slideUp();
-            $pdfInput.find('input').val('');
+            //$pdfInput.find('input').val('');
             $htmlInput.slideDown();
         }
     }

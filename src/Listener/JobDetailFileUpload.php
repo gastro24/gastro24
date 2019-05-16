@@ -82,7 +82,7 @@ class JobDetailFileUpload
     public function deletePdfFile(AjaxEvent $event)
     {
         $file = $event->getRequest()->getQuery('file');
-        @unlink('public/static/jobs/' . $file);
+        @unlink('public/static/Jobs/' . $file);
 
         return ['ok' => true];
     }
@@ -97,6 +97,23 @@ class JobDetailFileUpload
             $values = $this->form->getData();
             /** @var TemplateImage $file */
             $file = $values['details'][$name]['entity'];
+
+            if (!isset($data['job'])) {
+                $filePermissions = $file->getPermissions();
+                $filePermissions->grant('all', Permissions::PERMISSION_CHANGE);
+
+                return [
+                    'valid' => true,
+                    'content' => '
+                    <a href="/' . $file->getUri() . '" target="_blank">'
+                        . $file->getName() . '</a>'
+                        . '<a href="/' . $file->getUri() . '?do=delete" class="file-delete btn btn-default btn-xs">
+                    <span class="yk-icon yk-icon-minus"></span>
+                        </a>
+                        <input type="hidden" value="' . $file->getId() . '" name="details[' . $name . '_id]">
+                        <input type="hidden" value="' . $file->getUri() . '" name="details[' . $name . '_url]">'
+                ];
+            }
 
             // grant change permission for file
             /** @var Job $job */

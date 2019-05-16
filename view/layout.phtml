@@ -83,7 +83,15 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
     <!-- End Google Tag Manager -->
     
 <style>
+
+   #footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
 @media (max-width: 768px) {
+
+
      main ul.column {
          -webkit-column-count: 1;
          -moz-column-count: 1;
@@ -158,9 +166,9 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
      padding-top:15px;
      position:relative;
 }
-/* .panel__job-detail {*/
-/*     margin-bottom:-50px!important;*/
-/*}*/
+.panel__job-detail {
+   margin-bottom:-50px!important;
+}
  #rpt_pricr .btn {
      border-color: #dcdfe2;
      color: #243b84;
