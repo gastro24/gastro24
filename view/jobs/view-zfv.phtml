@@ -1,0 +1,279 @@
+<?php
+/**
+ * YAWIK - Anzeige für Vorschau & Ausgabe
+ *
+ * @filesource
+ * @license MIT
+ * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
+ */
+
+// check for preview
+$routeParams = $this->params()->fromRoute();
+$preview = false;
+if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
+    $preview = true;
+}
+
+$template = $this->job->getAttachedEntity('gastro24-template');
+$basePathHelper = $this->plugin('basePath');
+$replaceImage = function($str) use ($template, $basePathHelper)
+{
+    $image = $template ? $template->getImage() : null;
+    if ($image) {
+        $imageUri = $basePathHelper($image->getUri());
+        $imageHtml = '<img src="' . $imageUri . '">';
+    } else {
+        $imageHtml = '';
+    }
+
+    return str_replace('#image#', $imageHtml, $str);
+};
+
+$logoUrl = $this->uriLogo;
+if ($template && ($logo = $template->getLogo())) {
+    $logoUrl = $this->basePath($logo->getUri());
+}
+
+// check for banner
+$hasBanner = $template && ($image = $template->getImage());
+$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
+if ($hasBanner) {
+    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+}
+
+$today = new DateTime();
+if ($job->getDatePublishStart()) {
+    $dayDiff = $today->diff($job->getDatePublishStart());
+    $publishDate = ($dayDiff->days == 0) ? $this->dateFormat($job->getDatePublishStart(), 'medium', 'none') :
+        $this->translate('vor ' . $dayDiff->days . ' Tagen');
+}elseif($job->getDateCreated()) {
+    $dayDiff = $today->diff($job->getDateCreated());
+    $publishDate = ($dayDiff->days == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
+        $this->translate('vor ' . $dayDiff->days . ' Tagen');
+}
+
+// organisation values
+$org = $this->job->getOrganization();
+$orgIsDisabled = false;
+$orgName = $this->jobOrganizationName($this->job);
+if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
+    $orgIsDisabled = true;
+}
+
+?>
+<?=$this->jsonLd($this->job)?>
+  <style>
+  .link-tag:hover, .link-tag.active {
+    background-color: #4e4e4e;
+  }
+  .link-tag, .link-tag:visited {
+    display: inline-block;
+    padding: 2px 10px;
+    line-height: 23px;
+    border: 0;
+    border-radius: 13px;
+    color: #fff;
+    background-color: #6f6f6f;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .list-no-style, .ui-autocomplete {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .list-no-style li {
+    display: inline;
+  }
+  </style>
+<div class="panel panel-default panel__job-detail">
+    <!-- Bannerbild -->
+    <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
+    <!-- End Bannerbild -->
+
+    <div class="panel-body">
+        <!-- company logo and job title-->
+        <div class="teaser__job-detail">
+            <div itemprop="logo">
+                <div class="wrapper__logo">
+                    <img src="<?= $logoUrl ?>" alt="<?= $this->organizationName?>">
+                </div>
+            </div>
+            <h1><?=$this->job->getTitle()?></h1>
+        </div>
+        <!-- end company logo and job title-->
+
+        <div class="job-short-info">
+            <ul>
+                <li class="location">
+                    <!-- location -->
+                    <?php
+                    $location = $job->getLocations()->current();
+                    echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    ?>
+                    <!-- end location -->
+                </li>
+                <li class="company">
+                    <!-- company name -->
+                    <?php if ($org && !$orgIsDisabled): ?>
+                        <a title="Jobs <?= $orgName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
+                    <?php else: ?>
+                        <strong><?= $orgName ?></strong>
+                    <?php endif ?>
+                    <!-- end company name -->
+                </li>
+                <li class="type">
+                    <!-- type of contract -->
+                    <?php
+                    $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                    <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                    <!-- end type of contract -->
+                </li>
+                <li class="date">
+                    <!-- published date -->
+                    <span><?= $publishDate ?></span>
+                    <!-- end published date -->
+                </li>
+            </ul>
+        </div>
+
+        <hr class="job-details-devider"/>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+                <!-- apply button -->
+                <?php if($preview): ?>
+                    <div class="button-job-apply text-center">
+                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                    </div>
+                <?php else: ?>
+                    <div class="button-job-apply text-center">
+                        <?=$this->gastroApplyUrl($job);?>
+                    </div>
+                <?php endif; ?>
+                <!-- end apply button -->
+
+            <!-- job content -->
+            <div id="job_content">
+                <?php if ($this->html): ?>
+                    <div class="position">
+                        <?=$this->html?>
+                    </div>
+                <?php else: ?>
+                    <!-- introduction -->
+                    <div class="introduction">
+                        <?= $this->job->getTemplateValues()->getIntroduction();?>
+                    </div>
+
+                    <!-- position -->
+                    <div class="position">
+                        <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
+                    </div>
+
+                    <!-- requirements -->
+                    <div class="position">
+                        <?php if($this->benefits): ?>
+                         <!--   <div><b><?=$this->labelRequirements?></b></div> -->
+                        <?php endif;?>
+                        <?=$this->requirements;?>
+                    </div>
+
+                    <!-- qualifications -->
+                    <?php if ($this->qualifications): ?>
+                        <div class="position">
+                            <!--  <div><b>Qualifikation</b></div> -->
+                            <?=$this->qualifications;?>
+                        </div>
+                    <?php endif;?>
+
+                    <!-- benefits -->
+                    <?php if ($this->benefits): ?>
+                        <div class="position">
+                           <!--   <div><b><?=$this->labelBenefits?></b></div>-->
+                            <?=$this->benefits;?>
+                        </div>
+                    <?php endif;?>
+                <?php endif; ?>
+                <!-- end job content -->
+
+                <!-- company description -->
+                <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : $this->descriptionEditable ?></p>
+                <div itemscope itemtype="http://schema.org/Organization">
+                    <strong itemprop="name">
+                        <?= $this->organizationName?>
+                    </strong><br/>
+                    <?php if ($this->street || $this->postalCode || $this->city || $this->phone):?>
+                        <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <?php if ($this->street): ?><span itemprop="streetAddress"><?=$this->street?></span><br><?php endif ?>
+                            <?php if ($this->postalCode): ?><span itemprop="postalCode"><?=$this->postalCode?></span><?php endif ?>
+                            <?php if ($this->city): ?><span itemprop="addressLocality"><?=$this->city?></span><br /><?php endif ?>
+                            <?php if ($this->phone): ?>Telefon: <span itemprop="telephone"><?=$this->phone?></span><br /><?php endif ?>
+                            <?php if ($this->fax): ?>Fax: <?=$this->fax?></span><br /><?php endif ?>
+                        </address>
+                    <?php endif?>
+                </div>
+               </div>
+                <!-- end job__content -->
+                <!-- end company description -->
+
+                <!-- apply button -->
+                <?php if($preview): ?>
+                    <div class="button-job-apply text-center">
+                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                    </div>
+                <?php else: ?>
+                    <div class="button-job-apply text-center">
+                        <?=$this->gastroApplyUrl($job);?>
+                    </div>
+                <?php endif; ?>
+                <!-- end apply button -->
+            </div>
+        </div>
+
+        <hr class="job-details-devider"/>
+
+        <!-- share buttons -->
+        <div class="text-center">Diesen Job teilen: </div>
+        <div id="share" class="text-center round-shares"></div>
+        <div class="clearfix"></div>
+        <!-- end share buttons -->
+
+        <?php if (!$preview): ?>
+            <!-- recommended jobs
+            <div class="grey-description-container">
+                <div class="content">
+                    <div class="headline">Empfohlene Jobs</div>
+                    <div class="content__inner">
+                      
+                    </div>
+                </div>
+            </div>
+             end recommended jobs -->
+
+            <!-- recommended jobs by cities
+            <div class="grey-description-container">
+                <div class="content">
+                    <div class="headline">Jobs nach Städten</div>
+                    <div class="content__inner">
+                        
+                    </div>
+                </div>
+            </div>
+           end recommended jobs by cities -->
+        <?php endif; ?>
+
+    </div>
+</div>
+
+            <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
+            <script>
+                $("#share").jsSocials({
+                    showLabel: false,
+                    showCount: true,
+                    shares: ["email", "twitter", "facebook", "whatsapp"]
+                });
+            </script>
+
+
