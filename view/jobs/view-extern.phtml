@@ -114,42 +114,14 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
 
 <!-- prev / next navigation -->
 <?php if (!$preview) : ?>
-<div class="row job-navigation">
-    <div class="col-md-4">
-        <?php if($hasSession) : ?>
-            <a title="<?= $backTitle ?>"
-               href="<?= $lastSearchQueryUrl ?>"
-               class="btn btn-default btn-block company-jobs-btn">
-                <i class="fa fa-chevron-left"></i> <?= $backTitle ?>
-            </a>
-        <?php else: ?>
-            <a title="<?= $this->translate('Back to search') ?>"
-               href="/de/jobs?clear=1"
-               class="btn btn-default btn-block company-jobs-btn">
-                <i class="fa fa-chevron-left"></i> <?= $backTitle ?>
-            </a>
-        <?php endif; ?>
-    </div>
-    <div class="col-md-4 col-md-offset-4">
-        <span <?php if(!$this->prevJob || !$this->nextJob) echo 'class="reverse"' ?>>
-            <?php if($this->prevJob) : ?>
-            <a title="<?= $this->prevJob->getTitle() ?>"
-               href="<?= $this->jobUrl($this->prevJob, ['linkOnly' => true ]) ?>"
-               class="btn btn-default">
-                <i class="fa fa-chevron-left"></i><span class="hidden-xs"><?= $this->translate('Previous Job') ?></span>
-            </a>
-            <?php endif; ?>
-
-            <?php if($this->nextJob) : ?>
-            <a title="<?= $this->nextJob->getTitle() ?>"
-               href="<?= $this->jobUrl($this->nextJob, ['linkOnly' => true ]) ?>"
-               class="btn btn-default">
-           <span class="hidden-xs"> <?= $this->translate('Next Job') ?></span><i class="fa fa-chevron-right right-align"></i>
-            </a>
-            <?php endif; ?>
-        </span>
-    </div>
-</div>
+    <?php echo $this->partial('jobs/partials/navigation.phtml', [
+        'hasSession' => $hasSession,
+        'backTitle' => $backTitle,
+        'lastSearchQueryUrl' => $lastSearchQueryUrl,
+        'prevJob' => $this->prevJob,
+        'nextJob' => $this->nextJob,
+    ]);
+    ?>
 <?php endif; ?>
 <!-- end prev / next navigation -->
 
