@@ -151,9 +151,9 @@ class DeleteJobsController extends AbstractActionController
         return [
             '$and' => [
                 ['status.name' => StatusInterface::EXPIRED],
-                ['$or' => [
-                    ['datePublishStart.date' => ['$lt' => $date]],
-                    ['datePublishEnd.date' => ['$lt' => new \DateTime('today midnight')]],
+                ['$and' => [
+                    ['history.status.name' => StatusInterface::EXPIRED],
+                    ['history.date.date' => ['$lt' => $date]],
                 ]],
                 ['user' => ['$exists' => true]],
                 ['organization' => ['$nin' => $orgKeys]],
@@ -166,9 +166,9 @@ class DeleteJobsController extends AbstractActionController
         return [
             '$and' => [
                 ['status.name' => StatusInterface::EXPIRED],
-                ['$or' => [
-                    ['datePublishStart.date' => ['$lt' => $date]],
-                    ['datePublishEnd.date' => ['$lt' => new \DateTime('today midnight')]],
+                ['$and' => [
+                    ['history.status.name' => StatusInterface::EXPIRED],
+                    ['history.date.date' => ['$lt' => $date]],
                 ]],
                 ['user' => ['$exists' => true]],
                 ['organization' => ['$eq' => $orgId]],

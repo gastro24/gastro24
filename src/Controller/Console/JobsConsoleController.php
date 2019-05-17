@@ -80,6 +80,7 @@ class JobsConsoleController extends AbstractActionController
         }
 
         $jobs = $jobsRepo->findBy($query, null, (int) $limit, (int) $offset);
+
         $count = count($jobs);
 
         if (0 === $count) {
