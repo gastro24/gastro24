@@ -83,6 +83,24 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
     <!-- End Google Tag Manager -->
     
 <style>
+  .bg-wp-content {
+      padding: 5rem 10rem 5rem 10rem;
+      background-color:#fff;
+      margin-bottom:-50px;
+      min-height:600px;
+      
+  }
+    .bg-wp-content hr {
+   
+      margin-bottom:50px!important;
+  }
+ .bg-wp-content p,  .bg-wp-content li {
+     
+     font-size:16px;
+     line-height:24px;
+ }
+ 
+ 
 
    #footer {
     position: absolute;
@@ -91,7 +109,10 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 }
 @media (max-width: 768px) {
 
+.bg-wp-content {
+    padding: 1rem 2rem 1rem 2rem;
 
+}
      main ul.column {
          -webkit-column-count: 1;
          -moz-column-count: 1;
@@ -240,16 +261,29 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
     color:#22436c;
 }
 </style>
-    <script>	 
-
+    <script>	
     
-        (function( $ ) {
+    $(document).ready(function() {
+        
+        
+          $('.wp-content').closest('.container').addClass('bg-wp-content');
+          $("#rpt_pricr").closest('.container').removeClass('bg-wp-content');
+          
+          
+        });
+    
+
+  (function( $ ) {
 	'use strict';
+	
+ 	
 
     /**
      * FAQs Toggles
      */
     $(function() {
+        
+        
 
         $('.qe-toggle-title').click(function () {
             var parent_toggle = $(this).closest('.qe-faq-toggle');

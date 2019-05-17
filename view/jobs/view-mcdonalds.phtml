@@ -45,12 +45,12 @@ if ($hasBanner) {
 $today = new DateTime();
 if ($job->getDatePublishStart()) {
     $dayDiff = $today->diff($job->getDatePublishStart());
-    $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDatePublishStart(), 'medium', 'none') :
-        $this->translate('vor ' . $dayDiff->d . ' Tagen');
+    $publishDate = ($dayDiff->days == 0) ? $this->dateFormat($job->getDatePublishStart(), 'medium', 'none') :
+        $this->translate('vor ' . $dayDiff->days . ' Tagen');
 }elseif($job->getDateCreated()) {
     $dayDiff = $today->diff($job->getDateCreated());
-    $publishDate = ($dayDiff->d == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
-        $this->translate('vor ' . $dayDiff->d . ' Tagen');
+    $publishDate = ($dayDiff->days == 0) ? $this->dateFormat($job->getDateCreated(), 'medium', 'none'):
+        $this->translate('vor ' . $dayDiff->days . ' Tagen');
 }
 
 // organisation values

@@ -112,7 +112,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             'name' => 'image',
             'options' => [
                 //'label' => $this->gastroOptions->getLabel('image'),
-                // WORKAROUND: options are not read in staging environment
+                // WORKAROUND: options are not read in staging environment, I assume that image might be reserved word
                 'label' => /* @translate */ 'Bannerbild (ideal 1200px * 300px)',
             ]
         ]);

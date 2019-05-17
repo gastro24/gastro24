@@ -41,6 +41,11 @@ class ExpiredJobListener
 
         /** @var Order $order */
         $order = $orderRepo->findByJobId($job->getId());
+
+        if (!$order) {
+            return;
+        }
+        
         $this->mailer->send($this->mailer->get(
             'Gastro24/SingleJobMail',
             [
