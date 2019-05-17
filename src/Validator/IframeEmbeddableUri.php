@@ -39,7 +39,6 @@ class IframeEmbeddableUri extends AbstractValidator
 
     protected $options = [
         'invalidUriStart' => [
-            'http:',
             'https://www.adecco.ch/',
             'https://jobs.mcdonalds.ch',
             'https://www.gilde.ch/',

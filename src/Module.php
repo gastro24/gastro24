@@ -197,6 +197,7 @@ class Module implements AssetProviderInterface
                             }
                         }
 
+                        $container->searchTerm = null;
                         $container->fromCompanyProfile = null;
                         $container->companyName = null;
                         $container->companyId = null;
