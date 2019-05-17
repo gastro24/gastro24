@@ -227,6 +227,9 @@ class RedirectExternalJobs extends AbstractActionController
         $container->companyName = null;
         $container->companyId = null;
 
+        $jobsBoardContainer = new Container('Jobs_Board');
+        $jobsBoardContainer->params['q'] = null;
+
         return $container;
     }
 }
