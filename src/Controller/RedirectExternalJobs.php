@@ -61,6 +61,11 @@ class RedirectExternalJobs extends AbstractActionController
 
         $container = new Container('gastro24_jobboardcontainer');
 
+        // direct call of job, clear session container
+        if (!$request->getHeaders()->get('referer')) {
+            $container = $this->clearJobboardContainer($container);
+        }
+
         try {
             /* @var \Jobs\Entity\JobInterface $job */
             $job = $this->initializeJob()->get($this->params());
@@ -211,5 +216,17 @@ class RedirectExternalJobs extends AbstractActionController
         ]);
 
         return $result['jobs'];
+    }
+
+    private function clearJobboardContainer($container)
+    {
+        $container->searchTerm = null;
+        $container->landingPageTerm = null;
+        $container->landingPageSearchQuery = null;
+        $container->fromCompanyProfile = null;
+        $container->companyName = null;
+        $container->companyId = null;
+
+        return $container;
     }
 }
