@@ -32,7 +32,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
     $orgIsDisabled = true;
 }
 
-$isExpired = $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED;
+$isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
 
 // pagination values
 $container = new \Zend\Session\Container('gastro24_jobboardcontainer');

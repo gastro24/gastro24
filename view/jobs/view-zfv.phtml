@@ -34,7 +34,7 @@ if ($template && ($logo = $template->getLogo())) {
     $logoUrl = $this->basePath($logo->getUri());
 }
 
-$isExpired = $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED;
+$isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
 // check for banner
 $hasBanner = $template && ($image = $template->getImage());
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');

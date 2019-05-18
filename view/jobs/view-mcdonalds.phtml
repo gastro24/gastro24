@@ -13,7 +13,7 @@ $preview = false;
 if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     $preview = true;
 }
-$isExpired = $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED;
+$isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
 $template = $this->job->getAttachedEntity('gastro24-template');
 $basePathHelper = $this->plugin('basePath');
 $replaceImage = function($str) use ($template, $basePathHelper)

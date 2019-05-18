@@ -59,16 +59,15 @@ class DeleteJobsController extends AbstractActionController
         $date->sub(new \DateInterval('P' . $days . 'D'));
         $query = $this->getQueryForSingleJobs($date, $orgKeys);
         $jobs = $jobsRepo->findBy($query);
-        $this->clearJobs($jobsRepo, $jobs);
+        $this->clearJobs($jobsRepo, $jobs, $date);
 
         echo "Clear paid jobs ...\n";
         $days = $this->options->getPaid()['days'];
         $date = new \DateTime('today');
         $date->sub(new \DateInterval('P' . $days . 'D'));
-
         $query = $this->getQueryForPaidJobs($date, $orgKeys);
         $jobs = $jobsRepo->findBy($query);
-        $this->clearJobs($jobsRepo, $jobs);
+        $this->clearJobs($jobsRepo, $jobs, $date);
 
 
         echo "Clear crawler jobs ...\n";
@@ -87,7 +86,7 @@ class DeleteJobsController extends AbstractActionController
 
             echo count($jobs) . " jobs found for " . $organization . ".\n";
 
-            $this->clearJobs($jobsRepo, $jobs);
+            $this->clearJobs($jobsRepo, $jobs, $date);
         }
     }
 
@@ -96,8 +95,20 @@ class DeleteJobsController extends AbstractActionController
      * @param $jobs
      * @return string
      */
-    private function clearJobs($jobsRepo, $jobs)
+    private function clearJobs($jobsRepo, $jobs, $date)
     {
+        // filter history expired date
+        $filteredJobs = $jobs;
+        /* @var \Jobs\Entity\Job $job */
+        foreach ($jobs as $index => $job) {
+            $expiredHistoryEntry = $job->getHistory()->last();
+
+            if ($expiredHistoryEntry->getDate() > $date) {
+                unset($filteredJobs[$index]);
+            }
+        }
+
+        $jobs = $filteredJobs;
         $count = count($jobs);
 
         if (0 === $count) {
@@ -161,10 +172,7 @@ class DeleteJobsController extends AbstractActionController
         return [
             '$and' => [
                 ['status.name' => StatusInterface::EXPIRED],
-                ['$and' => [
-                    ['history.status.name' => StatusInterface::EXPIRED],
-                    ['history.date.date' => ['$lt' => $date]],
-                ]],
+                ['history.status.name' => StatusInterface::EXPIRED],
                 ['user' => ['$exists' => false]],
                 ['organization' => ['$nin' => $orgKeys]],
             ]
@@ -176,10 +184,7 @@ class DeleteJobsController extends AbstractActionController
         return [
             '$and' => [
                 ['status.name' => StatusInterface::EXPIRED],
-                ['$and' => [
-                    ['history.status.name' => StatusInterface::EXPIRED],
-                    ['history.date.date' => ['$lt' => $date]],
-                ]],
+                ['history.status.name' => StatusInterface::EXPIRED],
                 ['user' => ['$exists' => true]],
                 ['organization' => ['$nin' => $orgKeys]],
             ]
@@ -191,10 +196,7 @@ class DeleteJobsController extends AbstractActionController
         return [
             '$and' => [
                 ['status.name' => StatusInterface::EXPIRED],
-                ['$and' => [
-                    ['history.status.name' => StatusInterface::EXPIRED],
-                    ['history.date.date' => ['$lt' => $date]],
-                ]],
+                ['history.status.name' => StatusInterface::EXPIRED],
                 ['user' => ['$exists' => true]],
                 ['organization' => ['$eq' => $orgId]],
             ]

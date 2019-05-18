@@ -31,7 +31,7 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     return str_replace('#image#', $imageHtml, $str);
 };
 
-$isExpired = $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED;
+$isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
 // check for banner
