@@ -31,6 +31,7 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     return str_replace('#image#', $imageHtml, $str);
 };
 
+$isExpired = $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED;
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
 // check for banner
@@ -83,6 +84,10 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
         </div>
         <!-- end company logo and job title-->
 
+        <!-- expired info box -->
+        <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
+        <!-- end expired info box -->
+
         <div class="job-short-info">
             <ul>
                 <li class="location">
@@ -123,19 +128,15 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
             <div class="col-md-8 col-md-offset-2">
 
                 <!-- apply button -->
-                <?php if($preview): ?>
-                    <div class="button-job-apply text-center">
-                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-                    </div>
-                <?php else: ?>
-                <div class="button-job-apply text-center">
-                    <?=$this->gastroApplyUrl($job);?>
-                </div>
-                <?php endif; ?>
+                <?= $this->partial('jobs/partials/apply-button.phtml', [
+                    'preview' => $preview,
+                    'isExpired' => $isExpired,
+                    'job' => $this->job,
+                ]); ?>
                 <!-- end apply button -->
 
-           <!-- job content -->
-            <div id="job_content">
+                <!-- job content -->
+                <div id="job_content">
                 <?php if ($this->html): ?>
                     <div class="position">
                         <?=$this->html?>
@@ -198,15 +199,11 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                 <!-- end company description -->
 
                 <!-- apply button -->
-                <?php if($preview): ?>
-                    <div class="button-job-apply text-center">
-                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-                    </div>
-                <?php else: ?>
-                    <div class="button-job-apply text-center">
-                        <?=$this->gastroApplyUrl($job);?>
-                    </div>
-                <?php endif; ?>
+                <?= $this->partial('jobs/partials/apply-button.phtml', [
+                    'preview' => $preview,
+                    'isExpired' => $isExpired,
+                    'job' => $this->job,
+                ]); ?>
                 <!-- end apply button -->
             </div>
         </div>

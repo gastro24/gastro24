@@ -13,7 +13,7 @@ $preview = false;
 if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     $preview = true;
 }
-
+$isExpired = $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED;
 $template = $this->job->getAttachedEntity('gastro24-template');
 $basePathHelper = $this->plugin('basePath');
 $replaceImage = function($str) use ($template, $basePathHelper)
@@ -104,6 +104,10 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
         </div>
         <!-- end company logo and job title-->
 
+        <!-- expired info box -->
+        <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
+        <!-- end expired info box -->
+
         <div class="job-short-info">
             <ul>
                 <li class="location">
@@ -144,15 +148,11 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
             <div class="col-md-8 col-md-offset-2">
 
                 <!-- apply button -->
-                <?php if($preview): ?>
-                    <div class="button-job-apply text-center">
-                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-                    </div>
-                <?php else: ?>
-                    <div class="button-job-apply text-center">
-                        <?=$this->gastroApplyUrl($job);?>
-                    </div>
-                <?php endif; ?>
+                <?= $this->partial('jobs/partials/apply-button.phtml', [
+                    'preview' => $preview,
+                    'isExpired' => $isExpired,
+                    'job' => $this->job,
+                ]); ?>
                 <!-- end apply button -->
 
             <!-- job content -->
@@ -219,15 +219,11 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                 <!-- end company description -->
 
                 <!-- apply button -->
-                <?php if($preview): ?>
-                    <div class="button-job-apply text-center">
-                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-                    </div>
-                <?php else: ?>
-                    <div class="button-job-apply text-center">
-                        <?=$this->gastroApplyUrl($job);?>
-                    </div>
-                <?php endif; ?>
+                <?= $this->partial('jobs/partials/apply-button.phtml', [
+                    'preview' => $preview,
+                    'isExpired' => $isExpired,
+                    'job' => $this->job,
+                ]); ?>
                 <!-- end apply button -->
             </div>
         </div>

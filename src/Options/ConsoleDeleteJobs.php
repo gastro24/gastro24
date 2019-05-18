@@ -14,6 +14,7 @@ class ConsoleDeleteJobs extends AbstractOptions
 {
     private $crawler;
     private $paid;
+    private $single;
 
     /**
      * @return mixed
@@ -37,6 +38,25 @@ class ConsoleDeleteJobs extends AbstractOptions
     /**
      * @return mixed
      */
+    public function getSingle()
+    {
+        return $this->single;
+    }
+
+    /**
+     * @param mixed $single
+     * @return ConsoleDeleteJobs
+     */
+    public function setSingle($single)
+    {
+        $this->single = $single;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getPaid()
     {
         return $this->paid;
@@ -52,7 +72,4 @@ class ConsoleDeleteJobs extends AbstractOptions
 
         return $this;
     }
-
-
-
 }

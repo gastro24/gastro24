@@ -32,6 +32,8 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
     $orgIsDisabled = true;
 }
 
+$isExpired = $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED;
+
 // pagination values
 $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $lastSearchQuery = $container->landingPageSearchQuery;
@@ -295,6 +297,10 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
                     </div>
                     <!-- end company logo and job title-->
 
+                    <!-- expired info box -->
+                    <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
+                    <!-- end expired info box -->
+
                     <div class="job-short-info">
                         <ul>
                             <li class="location">
@@ -332,15 +338,11 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
                     <hr class="job-details-devider"/>
 
                     <!-- apply button -->
-                    <?php if($preview): ?>
-                        <div class="button-job-apply text-center">
-                            <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-                        </div>
-                    <?php else: ?>
-                        <div class="button-job-apply text-center">
-                            <?=$this->gastroApplyUrl($job);?>
-                        </div>
-                    <?php endif; ?>
+                    <?= $this->partial('jobs/partials/apply-button.phtml', [
+                        'preview' => $preview,
+                        'isExpired' => $isExpired,
+                        'job' => $this->job,
+                    ]); ?>
                     <!-- end apply button -->
 
                     <div class="embed-container">
@@ -362,15 +364,11 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
                     </div>
 
                     <!-- apply button -->
-                    <?php if($preview): ?>
-                        <div class="button-job-apply text-center">
-                            <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-                        </div>
-                    <?php else: ?>
-                        <div class="button-job-apply text-center">
-                            <?=$this->gastroApplyUrl($job);?>
-                        </div>
-                    <?php endif; ?>
+                    <?= $this->partial('jobs/partials/apply-button.phtml', [
+                        'preview' => $preview,
+                        'isExpired' => $isExpired,
+                        'job' => $this->job,
+                    ]); ?>
                     <!-- end apply button -->
 
                     <hr class="job-details-devider"/>
@@ -427,7 +425,7 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
         <?php endif; ?>
 
         <?php if ($this->isIntern):?>
-            <?=$this->internalJob?>
+            <?= $this->internalJob ?>
         <?php endif ?>
 
     </div>

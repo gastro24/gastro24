@@ -51,13 +51,21 @@ class DeleteJobsController extends AbstractActionController
         /* @var \Jobs\Repository\Job $jobsRepo */
         $jobsRepo = $this->repositories->get('Jobs/Job');
         $orgRepo = $this->repositories->get('Organizations/Organization');
+        $orgKeys = array_keys($this->options->getCrawler()['organizations']);
+
+        echo "Clear single jobs ...\n";
+        $days = $this->options->getSingle()['days'];
+        $date = new \DateTime('today');
+        $date->sub(new \DateInterval('P' . $days . 'D'));
+        $query = $this->getQueryForSingleJobs($date, $orgKeys);
+        $jobs = $jobsRepo->findBy($query);
+        $this->clearJobs($jobsRepo, $jobs);
 
         echo "Clear paid jobs ...\n";
         $days = $this->options->getPaid()['days'];
         $date = new \DateTime('today');
         $date->sub(new \DateInterval('P' . $days . 'D'));
 
-        $orgKeys = array_keys($this->options->getCrawler()['organizations']);
         $query = $this->getQueryForPaidJobs($date, $orgKeys);
         $jobs = $jobsRepo->findBy($query);
         $this->clearJobs($jobsRepo, $jobs);
@@ -76,6 +84,8 @@ class DeleteJobsController extends AbstractActionController
 
             $query = $this->getQueryForCrawlerJobs($date, $org->getId());
             $jobs = $jobsRepo->findBy($query);
+
+            echo count($jobs) . " jobs found for " . $organization . ".\n";
 
             $this->clearJobs($jobsRepo, $jobs);
         }
@@ -144,6 +154,21 @@ class DeleteJobsController extends AbstractActionController
         $progress->finish();
 
         return PHP_EOL;
+    }
+
+    private function getQueryForSingleJobs($date, $orgKeys)
+    {
+        return [
+            '$and' => [
+                ['status.name' => StatusInterface::EXPIRED],
+                ['$and' => [
+                    ['history.status.name' => StatusInterface::EXPIRED],
+                    ['history.date.date' => ['$lt' => $date]],
+                ]],
+                ['user' => ['$exists' => false]],
+                ['organization' => ['$nin' => $orgKeys]],
+            ]
+        ];
     }
 
     private function getQueryForPaidJobs($date, $orgKeys)

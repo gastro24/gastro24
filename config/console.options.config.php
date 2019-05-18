@@ -22,11 +22,38 @@ $options = [
             ],
             'zfv Die Gastronomiegruppe'=> [
                 'days' => 30
+            ],
+            'Sprüngli'=> [
+                'days' => 30
+            ],
+            'BÜRGENSTOCK HOTELS & RESORT'=> [
+                'days' => 30
+            ],
+            'Coop'=> [
+                'days' => 30
+            ],
+            'Kramer Gastronomie'=> [
+                'days' => 30
+            ],
+            'gastrag.ch'=> [
+                'days' => 30
+            ],
+            'Randstad (Schweiz) AG'=> [
+                'days' => 30
+            ],
+            'Sv-group'=> [
+                'days' => 30
+            ],
+            'Migros'=> [
+                'days' => 30
             ]
         ]
     ],
     'paid' => [
         'days' => 365
+    ],
+    'single' => [
+        'days' => 30
     ]
 ];
 
