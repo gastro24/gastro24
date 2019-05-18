@@ -128,7 +128,7 @@ class JobsConsoleController extends AbstractActionController
         foreach ($jobs as $job) {
             $progress->update($i++, 'Job ' . $i . ' / ' . $count);
 
-            $job->changeStatus('expired');
+            $job->changeStatus('expired', 'Job was set to expired by cron');
 
             if (0 == $i % 500) {
                 $progress->update($i, 'Write to database...');
