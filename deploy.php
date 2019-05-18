@@ -13,7 +13,7 @@ set('repository', 'git@gitlab.cross-solution.de:YAWIK/Gastro24.git');
 add('shared_files', [
     'test/sandbox/public/.htaccess',
     'test/sandbox/public/robots.txt',
-    'pro-sitemaps-4112318.php'
+    'test/sandbox/public/pro-sitemaps-4112318.php'
 ]);
 add('shared_dirs', [
     'test/sandbox/var/log',
