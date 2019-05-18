@@ -10,7 +10,11 @@ set('application', 'Gastro24');
 set('repository', 'git@gitlab.cross-solution.de:YAWIK/Gastro24.git');
 
 // Shared files/dirs between deploys 
-add('shared_files', ['test/sandbox/public/.htaccess']);
+add('shared_files', [
+    'test/sandbox/public/.htaccess',
+    'test/sandbox/public/robots.txt',
+    'pro-sitemaps-4112318.php'
+]);
 add('shared_dirs', [
     'test/sandbox/var/log',
     'test/sandbox/var/cache',
