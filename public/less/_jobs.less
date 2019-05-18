@@ -39,7 +39,6 @@
 .job-navigation {
   margin-bottom: 1rem;
   
-  
   a {
     display: inline-block;
     position: relative;
@@ -87,23 +86,18 @@
       }
       
       span {
-          
           display:block
       }
     }
-    
-    
-    
   }
 }
 
 .panel__job-detail {
     
-    .alert-warning {
-        
-        margin-top:25px;
-        font-size:18px;
-    }
+  .expired-info {
+      margin-top:25px;
+      font-size:18px;
+  }
     
   .banner {
     height: 300px;
@@ -126,12 +120,20 @@
 
       a,
       span {
-        background-color: @g24-red;
-        border-color: @g24-red;
         border-radius: 4px;
        -webkit-border-radius: 4px;
        -moz-border-radius: 4px;
         padding: 6px 25px;
+      }
+
+      a {
+        background-color: @g24-red;
+        border-color: @g24-red;
+      }
+
+      span {
+        background-color: #ccc;
+        border-color: #ccc;
       }
     }
   }
