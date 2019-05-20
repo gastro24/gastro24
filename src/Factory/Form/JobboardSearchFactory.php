@@ -23,6 +23,12 @@ class JobboardSearchFactory extends BaseFactory
         $solrConnectionString = 'http://' . $moduleOptions->getHostname() . ':' . $moduleOptions->getPort() . $moduleOptions->getJobsPath();
         $instance->setSolrConnectionString($solrConnectionString);
 
+        $helpers = $container->get('ViewHelperManager');
+        $serverUrl = $helpers->get('serverUrl');
+        $basepath = $helpers->get('basepath');
+        $mainPath = $serverUrl($basepath);
+        $instance->setBasePath($mainPath);
+
         return $instance;
     }
 }

@@ -51,9 +51,9 @@
         $("#jobs-list-filter input[name=q]").autocomplete({
             source : function(request, response) {
                 var searchTerm = $("#jobs-list-filter input[name=q]").val();
-                //var URL = $("#jobs-list-filter input[name=q]").attr('data-url');
+                var URL = $("#jobs-list-filter input[name=q]").attr('data-url');
                 $.ajax({
-                    url : '/job/suggest?q=' + searchTerm,
+                    url : URL + '/de/job/suggest?q='+ searchTerm,
                     dataType: 'json',
                     success : function(data) {
                         response( data );

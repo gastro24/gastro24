@@ -14,6 +14,7 @@ class JobboardSearch extends BaseJobboardSearchForm
 {
     /** @var string */
     private $solrConnectionString;
+    private $basePath;
 
     public function init()
     {
@@ -36,7 +37,7 @@ class JobboardSearch extends BaseJobboardSearchForm
                 'attributes' => [
                     'placeholder' => $placeholder,
                     'class' => 'form-control',
-                    //'data-url' => $this->solrConnectionString . '/suggest?suggest=true&suggest.build=true&wt=json&suggest.q='
+                    'data-url' => $this->getBasePath()
                 ],
             ],
             [
@@ -111,4 +112,22 @@ class JobboardSearch extends BaseJobboardSearchForm
     {
         $this->solrConnectionString = $solrConnectionString;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getBasePath()
+    {
+        return $this->basePath;
+    }
+
+    /**
+     * @param mixed $basePath
+     */
+    public function setBasePath($basePath)
+    {
+        $this->basePath = $basePath;
+    }
+
+
 }
