@@ -54,24 +54,8 @@
                 //var URL = $("#jobs-list-filter input[name=q]").attr('data-url');
                 $.ajax({
                     url : '/job/suggest?q=' + searchTerm,
+                    dataType: 'json',
                     success : function(data) {
-                        // var dataObject = JSON.parse(data);
-                        // var parentNodeInfix = dataObject.suggest.infixSuggester;
-                        // var suggestionsNode = null;
-                        // for (var key in parentNodeInfix) {
-                        //     suggestionsNode = parentNodeInfix[key].suggestions;
-                        //     if(suggestionsNode!=null)
-                        //         break;
-                        // }
-                        // var autocomplete_data = [];
-                        // $.each(suggestionsNode, function (i, val) {
-                        //     autocomplete_data.push({
-                        //         "value": val.term,
-                        //         "id": val.term,
-                        //         "label": val.term
-                        //     });
-                        // });
-
                         response( data );
                     },
                     error : function(error) {
