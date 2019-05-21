@@ -474,6 +474,10 @@ return [
                 '5bcf612fb6428b0b1008db60' => 'gastro24/jobs/view-mcdonalds',
                 // zfv
                 '5aa7e1d77bb2b57b5d3c03e4' => 'gastro24/jobs/view-zfv',
+                 // sv group
+                 //'xxx' => 'gastro24/jobs/view-zfv',
+                // buergenstock
+                '5bcdfda2b6428ba17c5c9048' => 'gastro24/jobs/view-zfv',
             ],
         ]],
     ],
