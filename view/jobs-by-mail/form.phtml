@@ -84,6 +84,33 @@ $modalId = 'job-by-mail-subscribe-modal';
                 $form.form().find('select').each($.fn.form.initSelect);
                 $form.find('select.geoselect').geoSelect();
             });
+
         });
     })();
 <?php $this->headScript()->captureEnd() ?>
+<script>
+    /* HINT: should actually work with yk-forms success event*/
+    $(document).ready(function() {
+        $("#jobsbymail-subscribe-form").submit(function(e) {
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+
+            var form = $(this);
+            var url = form.attr('action');
+            var modal = $('#job-by-mail-subscribe-modal');
+
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: url,
+                data: form.serialize(),
+                success: function(data)
+                {
+                    if (data.valid) {
+                        modal.find('.modal-body').html(data.content);
+                        modal.find('.modal-footer .btn-primary').remove();
+                    }
+                }
+            });
+        });
+    })
+</script>
