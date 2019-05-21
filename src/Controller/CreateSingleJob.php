@@ -93,8 +93,6 @@ class CreateSingleJob extends AbstractActionController
             $values['details']['image_url'] = $data['details']['image_url'];
         }
 
-
-
         $session = new Container('Gastro24_SingleJobData');
         $session->data = serialize($data);
         $session->values = serialize($values);
