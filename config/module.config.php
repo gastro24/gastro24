@@ -475,7 +475,7 @@ return [
                 // zfv
                 '5aa7e1d77bb2b57b5d3c03e4' => 'gastro24/jobs/view-zfv',
                  // sv group
-                 //'xxx' => 'gastro24/jobs/view-zfv',
+                 '59e4b53e7bb2b553412f9be9' => 'gastro24/jobs/view-zfv',
                 // buergenstock
                 '5bcdfda2b6428ba17c5c9048' => 'gastro24/jobs/view-zfv',
             ],
