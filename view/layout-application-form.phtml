@@ -11,6 +11,7 @@
 /* @var $options \Core\Options\ModuleOptions */
 $options = $this->services('Core/Options');
 $languages = $options->getSupportedLanguages();
+$lang = $this->params('lang');
 
 // See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
 

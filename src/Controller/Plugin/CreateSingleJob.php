@@ -91,6 +91,7 @@ class CreateSingleJob extends AbstractPlugin
         $job->setStatus(Status::CREATED);
         if ($values['invoiceAddress']['email']) {
             $job->setAtsMode(new AtsMode(AtsMode::MODE_EMAIL, $values['invoiceAddress']['email']));
+            $job->setContactEmail($values['invoiceAddress']['email']);
         } else {
             $job->setAtsMode(new AtsMode(AtsMode::MODE_NONE));
         }
