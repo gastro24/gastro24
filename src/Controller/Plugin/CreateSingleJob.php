@@ -69,6 +69,7 @@ class CreateSingleJob extends AbstractPlugin
             $job->getTemplateValues()->setDescription($values['details']['description']);
             $job->getTemplateValues()->setQualifications($values['details']['qualifications']);
             $job->getTemplateValues()->set('position', $values['details']['position']);
+            $job->getTemplateValues()->set('enableApply', $values['enableApply']);
             $job->getTemplateValues()->setRequirements($values['details']['requirements']);
             $job->getTemplateValues()->setBenefits($values['details']['benefits']);
             $template = new Template();
@@ -89,6 +90,7 @@ class CreateSingleJob extends AbstractPlugin
         $job->setLink($values['details']['uri']);
         $job->setTitle($values['title']);
         $job->setStatus(Status::CREATED);
+        $job->setTermsAccepted($values['termsAccepted']);
         if ($values['invoiceAddress']['email']) {
             $job->setAtsMode(new AtsMode(AtsMode::MODE_EMAIL, $values['invoiceAddress']['email']));
             $job->setContactEmail($values['invoiceAddress']['email']);

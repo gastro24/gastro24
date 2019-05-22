@@ -18,11 +18,18 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/create-single-
 <?=$this->formRow($form->get('title'), null, null, 'form-horizontal')?>
 <?=$this->formRow($form->get('locations'))?>
 <?=$this->formCollection()->render($form->get('details'), true);?>
+<?=$this->formRow($form->get('enableApply'))?>
 <?=$this->formCollection($form->get('invoiceAddress'))?>
+<div class="col-md-10 col-md-offset-2">
+    <?=$this->formRow($form->get('termsAccepted'))?>
+</div>
 
-<div class="controls controls-row form-group"><div class="col-md-12 text-right">
+
+<div class="controls controls-row form-group">
+    <div class="col-md-12 text-right">
         <?=$this->formCollection($form->get('buttons'))?>
-    </div></div>
+    </div>
+</div>
 <?=$this->form()->closeTag($form)?>
 
 
