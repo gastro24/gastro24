@@ -37,6 +37,11 @@ class DeleteJobsController extends AbstractActionController
      */
     private $logger;
 
+    /**
+     * @var bool
+     */
+    private $onlyDebug = false;
+
     public function __construct(
         RepositoryService $repositories,
         ConsoleDeleteJobs $options,
@@ -61,6 +66,7 @@ class DeleteJobsController extends AbstractActionController
         /* @var \Jobs\Repository\Job $jobsRepo */
         $jobsRepo = $this->repositories->get('Jobs/Job');
         $orgRepo = $this->repositories->get('Organizations/Organization');
+        $this->onlyDebug = (bool) $this->params('onlyDebug');
         $orgKeys = [];
 
         echo "Clear crawler jobs ...\n";
@@ -153,6 +159,12 @@ class DeleteJobsController extends AbstractActionController
         );
 
         $i = 0;
+
+        // quit here if only debug ios enabled
+        if ($this->onlyDebug) {
+            echo "Only debug enabled, no database changes.\n";
+            return PHP_EOL;
+        }
 
         // remove from SOLR
         /* @var \Jobs\Entity\Job $job */
