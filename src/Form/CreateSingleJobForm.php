@@ -73,6 +73,14 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
             ],
         ]);
 
+        $this->add([
+            'type' => 'Checkbox',
+            'name' => 'enableApply',
+            'options' => [
+                'label' => /*@translate*/ 'Enable online application',
+            ]
+        ]);
+
 
         $this->add([
             'type' => 'Orders/InvoiceAddressFieldset',
@@ -80,6 +88,26 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
                 'label' => /*@translate */ 'Kontaktadresse',
             ],
         ]);
+
+        $this->add(
+            array(
+                'type' => 'infoCheckBox',
+                'name' => 'termsAccepted',
+                'options' => array(
+                    'long_label' => /*@translate*/ 'I have read the %s and accept it',
+                    'linktext' => /*@translate*/ 'terms an conditions',
+                    'route' => 'lang/wordpress',
+                    'params' => array(
+                        'type' => 'page',
+                        'id'   => 'agb',
+                    )
+                ),
+                'attributes' => array(
+                    'required' => true,
+                    'data-trigger' => 'submit',
+                ),
+            )
+        );
 
         $this->add([
             'type' => 'DefaultButtonsFieldset',
@@ -89,7 +117,6 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
             ]
         ]);
 
-
         $detailsFieldset = $this->get('details');
         $detailsFieldset->remove('mode');
         $detailsFieldset->add([
@@ -98,7 +125,6 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
             'attributes' => [ 'value' => 'html' ],
         ]);
         $this->get('invoiceAddress')->remove('vatId');
-
     }
 
     public function getInputFilterSpecification()

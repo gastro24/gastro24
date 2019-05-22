@@ -36,4 +36,6 @@ return [
     'Als Standard wird Ihr Unternehmenslogo genutzt.' => 'Your company logo will be used as default.',
     'Als Standard wird Ihre Unternehmensbeschreibung genutzt.' => 'Your company description will be used as default.',
 
+    'Bewerbungen online empfangen' => 'Enable online application',
+
 ];
