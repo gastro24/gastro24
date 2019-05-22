@@ -3,9 +3,12 @@
 namespace Gastro24\Controller\Console;
 
 use Core\Repository\RepositoryService;
+use Gastro24\Options\ConsoleDeleteJobs;
 use Interop\Container\ContainerInterface;
 use Jobs\Entity\StatusInterface;
 use Jobs\Listener\Events\JobEvent;
+use MongoDB\BSON\ObjectId;
+use Zend\Log\LoggerInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ProgressBar\Adapter\Console as ConsoleAdapter;
 use Zend\ProgressBar\ProgressBar;
@@ -24,14 +27,28 @@ class JobsConsoleController extends AbstractActionController
     private $mailer;
     private $jobEvents;
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var ConsoleDeleteJobs
+     */
+    private $options;
+
     public function __construct(
         RepositoryService $repositories,
         \Core\Mail\MailService $mailer,
-        $jobEvents
+        $jobEvents,
+        $logger,
+        ConsoleDeleteJobs $options
     ) {
         $this->repositories = $repositories;
         $this->mailer = $mailer;
         $this->jobEvents = $jobEvents;
+        $this->logger = $logger;
+        $this->options = $options;
     }
 
     public static function factory(ContainerInterface $container)
@@ -39,7 +56,9 @@ class JobsConsoleController extends AbstractActionController
         return new self(
             $container->get('repositories'),
             $container->get('Core/MailService'),
-            $container->get('Jobs/Events')
+            $container->get('Jobs/Events'),
+            $container->get('Core/Log'),
+            $container->get(\Gastro24\Options\ConsoleDeleteJobs::class)
         );
     }
 
@@ -52,41 +71,55 @@ class JobsConsoleController extends AbstractActionController
         $limit = (string) $this->params('limit');
         $info = $this->params('info');
 
+        $crawlerDays = 90;
+        $orgKeys = [];
+
         if (!$days) {
             return 'Invalid value for --days. Must be integer.';
         }
-
-        $date = new \DateTime('today');
-        $date->sub(new \DateInterval('P' . $days . 'D'));
-
-        $query        = [
-            '$and' => [
-                ['status.name' => StatusInterface::ACTIVE],
-                ['$or' => [
-                    ['datePublishStart.date' => ['$lt' => $date]],
-                    ['datePublishEnd.date' => ['$lt' => new \DateTime('today midnight')]],
-                ]],
-                ['$or' => [
-                    ['isDeleted' => ['$exists' => false]],
-                    ['isDeleted' => false],
-                ]],
-                ['user' => ['$exists' => false]], // fetch only Einzelinserate
-            ]
-        ];
 
         $offset = 0;
         if ($limit && false !== strpos($limit, ',')) {
             list($limit, $offset) = explode(',', $limit);
         }
 
-        $jobs = $jobsRepo->findBy($query, null, (int) $limit, (int) $offset);
+        // mark crawler jobs as expired
+        echo "Expire crawler jobs ...\n";
+        $date = new \DateTime('today');
+        $date->sub(new \DateInterval('P' . $crawlerDays . 'D'));
 
+        foreach($this->options->getCrawler()['organizations'] as $organizationId => $organizationValues) {
+            $paidQuery = $this->getPaidJobsQuery($date, $organizationId);
+            $jobs = $jobsRepo->findBy($paidQuery);
+            $this->logger->info("Cron: Expire jobs: Mark " . count($jobs) . " paid jobs as expired (" . $organizationValues['name'] . ").");
+            echo "Expire " . count($jobs) ." jobs of " . $organizationValues['name'] . ".\n";
+            $this->markAsExpired($repositories, $jobs);
+
+            $orgKeys[] = new ObjectId($organizationId);
+        }
+
+        // mark single jobs as expired
+        echo "Expire single jobs ...\n";
+        $date = new \DateTime('today');
+        $date->sub(new \DateInterval('P' . $days . 'D'));
+        $singleQuery = $this->getSingleJobsQuery($date, $orgKeys);
+        $jobs = $jobsRepo->findBy($singleQuery, null, (int) $limit, (int) $offset);
         $count = count($jobs);
+        $this->logger->info("Cron: Expire jobs: Mark " . $count . " single jobs as expired.");
 
+        echo "Expire " . $count . " single jobs.\n";
         if (0 === $count) {
             return 'No jobs found.';
         }
 
+        $this->printInfo($info, $offset, $jobs);
+        $this->markAsExpired($repositories, $jobs);
+
+        return PHP_EOL;
+    }
+
+    private function printInfo($info, $offset, $jobs)
+    {
         if ($info) {
             echo count($jobs) , ' Jobs';
             if ($offset) {
@@ -96,13 +129,11 @@ class JobsConsoleController extends AbstractActionController
             $this->listExpiredJobs($jobs);
             return;
         }
+    }
 
-//        foreach ($repositories->getEventManager()->getListeners('preUpdate') as $listener) {
-//            $repositories->getEventManager()->removeEventListener('preUpdate', $listener);
-//        }
-//
-        echo "$count jobs found, which have to expire ...\n";
-
+    private function markAsExpired($repositories, $jobs)
+    {
+        $count = count($jobs);
         $progress     = new ProgressBar(
             new ConsoleAdapter(
                 array(
@@ -141,8 +172,44 @@ class JobsConsoleController extends AbstractActionController
         $repositories->flush();
         $progress->update($i, 'Done');
         $progress->finish();
+    }
 
-        return PHP_EOL;
+    private function getSingleJobsQuery($date, $orgKeys)
+    {
+        return [
+            '$and' => [
+                ['status.name' => StatusInterface::ACTIVE],
+                ['$or' => [
+                    ['datePublishStart.date' => ['$lt' => $date]],
+                    ['datePublishEnd.date' => ['$lt' => new \DateTime('today midnight')]],
+                ]],
+                ['$or' => [
+                    ['isDeleted' => ['$exists' => false]],
+                    ['isDeleted' => false],
+                ]],
+                ['user' => ['$exists' => false]], // fetch only Einzelinserate
+                ['organization' => ['$nin' => $orgKeys]],
+            ]
+        ];
+    }
+
+    private function getPaidJobsQuery($date, $orgId)
+    {
+        return [
+            '$and' => [
+                ['status.name' => StatusInterface::ACTIVE],
+                ['$or' => [
+                    ['datePublishStart.date' => ['$lt' => $date]],
+                    ['datePublishEnd.date' => ['$lt' => new \DateTime('today midnight')]],
+                ]],
+                ['$or' => [
+                    ['isDeleted' => ['$exists' => false]],
+                    ['isDeleted' => false],
+                ]],
+                ['user' => ['$exists' => false]],
+                ['organization' => new ObjectId($orgId)],
+            ]
+        ];
     }
 
     private function listExpiredJobs($jobs)
