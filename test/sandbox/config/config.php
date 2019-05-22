@@ -15,6 +15,7 @@ return [
         'Cv',
         'Orders',
         'JobsByMail',
+        'SimpleImport',
         'CompanyRegistration',
         'Gastro24'
     ],
