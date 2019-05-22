@@ -220,12 +220,8 @@ class RedirectExternalJobs extends AbstractActionController
 
     private function clearJobboardContainer($container)
     {
-        $container->searchTerm = null;
-        $container->landingPageTerm = null;
-        $container->landingPageSearchQuery = null;
-        $container->fromCompanyProfile = null;
-        $container->companyName = null;
-        $container->companyId = null;
+        // clear values in session container
+        $container->exchangeArray([]);
 
         $jobsBoardContainer = new Container('Jobs_Board');
         $jobsBoardContainer->params['q'] = null;
