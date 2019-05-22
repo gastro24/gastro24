@@ -11,40 +11,52 @@ $options = [
 
     'crawler' => [
         'organizations' => [
-            'Adecco' => [
+            '5a0809397bb2b582267c7a97' => [
+                'name' => 'Adecco',
                 'days' => 30
             ],
-            'McDonald\'s Suisse Management & Services Sàrl' => [
+            '5bcf612fb6428b0b1008db60' => [
+                'name' => 'McDonald\'s Suisse Management & Services Sàrl',
                 'days' => 30
             ],
-            'Gilde Restaurants' => [
+            '5bc6e561b6428b641322dbf9' => [
+                'name' => 'Gilde Restaurants',
                 'days' => 30
             ],
-            'zfv Die Gastronomiegruppe'=> [
+            '5aa7e1d77bb2b57b5d3c03e4'=> [
+                'name' => 'zfv Die Gastronomiegruppe',
                 'days' => 30
             ],
-            'Sprüngli'=> [
+            '58a4a59d4e197f17047b23c6'=> [
+                'name' => 'Sprüngli',
                 'days' => 30
             ],
-            'BÜRGENSTOCK HOTELS & RESORT'=> [
+            '5bcdfda2b6428ba17c5c9048'=> [
+                'name' => 'BÜRGENSTOCK HOTELS & RESORT',
                 'days' => 30
             ],
-            'Coop'=> [
+            '59d7d04e7bb2b594121c1235'=> [
+                'name' => 'Coop',
                 'days' => 30
             ],
-            'Kramer Gastronomie'=> [
+            '5aaf724f7bb2b5233a03ed25'=> [
+                'name' => 'Kramer Gastronomie',
                 'days' => 30
             ],
-            'gastrag.ch'=> [
+            '5bd21420b6428bfb4523562e'=> [
+                'name' => 'gastrag.ch',
                 'days' => 30
             ],
-            'Randstad (Schweiz) AG'=> [
+            '5a970fea7bb2b5a578812d52'=> [
+                'name' => 'Randstad (Schweiz) AG',
                 'days' => 30
             ],
-            'Sv-group'=> [
+            '59e4b53e7bb2b553412f9be9'=> [
+                'name' => 'Sv-group',
                 'days' => 30
             ],
-            'Migros'=> [
+            '5a054fa37bb2b593231413a0'=> [
+                'name' => 'Migros',
                 'days' => 30
             ]
         ]
