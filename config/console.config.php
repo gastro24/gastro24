@@ -24,10 +24,11 @@ return [
                 ],
                 'jobs-clear'    => [
                     'options' => [
-                        'route'    => 'jobs clear',
+                        'route'    => 'jobs clear [--onlyDebug=]',
                         'defaults' => [
                             'controller' => 'Gastro24/Jobs/Console/DeleteJobs',
-                            'action'     => 'deleteExpiredJobs'
+                            'action'     => 'deleteExpiredJobs',
+                            'onlyDebug'  => '0',
                         ],
                     ],
                 ]
