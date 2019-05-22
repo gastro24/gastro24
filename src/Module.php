@@ -197,12 +197,8 @@ class Module implements AssetProviderInterface
                             }
                         }
 
-                        $container->searchTerm = null;
-                        $container->fromCompanyProfile = null;
-                        $container->companyName = null;
-                        $container->companyId = null;
-                        $container->landingPageTerm = null;
-                        $container->landingPageSearchQuery = null;
+                        // clear values in session container
+                        $container->exchangeArray([]);
                     }
 
                 }
