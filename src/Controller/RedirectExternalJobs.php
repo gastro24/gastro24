@@ -62,7 +62,7 @@ class RedirectExternalJobs extends AbstractActionController
         $container = new Container('gastro24_jobboardcontainer');
 
         // direct call of job, clear session container
-        if (!$request->getHeaders()->get('referer')) {
+        if (!$request->getHeaders()->get('referer') || strpos($request->getHeaders()->get('referer'), 'sitemap.xml') !== false) {
             $container = $this->clearJobboardContainer($container);
         }
 
