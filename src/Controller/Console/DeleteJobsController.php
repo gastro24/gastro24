@@ -7,6 +7,8 @@ use Gastro24\Options\ConsoleDeleteJobs;
 use Interop\Container\ContainerInterface;
 use Jobs\Entity\StatusInterface;
 use Jobs\Listener\Events\JobEvent;
+use MongoDB\BSON\ObjectId;
+use Zend\Log\LoggerInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ProgressBar\Adapter\Console as ConsoleAdapter;
 use Zend\ProgressBar\ProgressBar;
@@ -30,19 +32,27 @@ class DeleteJobsController extends AbstractActionController
      */
     private $options;
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     public function __construct(
         RepositoryService $repositories,
-        ConsoleDeleteJobs $options
+        ConsoleDeleteJobs $options,
+        $logger
     ) {
         $this->repositories = $repositories;
         $this->options = $options;
+        $this->logger = $logger;
     }
 
     public static function factory(ContainerInterface $container)
     {
         return new self(
             $container->get('repositories'),
-            $container->get(\Gastro24\Options\ConsoleDeleteJobs::class)
+            $container->get(\Gastro24\Options\ConsoleDeleteJobs::class),
+            $container->get('Core/Log')
         );
     }
 
@@ -51,7 +61,29 @@ class DeleteJobsController extends AbstractActionController
         /* @var \Jobs\Repository\Job $jobsRepo */
         $jobsRepo = $this->repositories->get('Jobs/Job');
         $orgRepo = $this->repositories->get('Organizations/Organization');
-        $orgKeys = array_keys($this->options->getCrawler()['organizations']);
+        $orgKeys = [];
+
+        echo "Clear crawler jobs ...\n";
+        foreach($this->options->getCrawler()['organizations'] as $organizationId => $organizationValues) {
+            $days = $organizationValues['days'];
+            $date = new \DateTime('today');
+            $date->sub(new \DateInterval('P' . $days . 'D'));
+
+            $org = $orgRepo->findOneById($organizationId);
+            if (!$org) {
+                $this->logger->info("Delete expired jobs: Organization " . $organizationValues['name'] . " not found");
+                continue;
+            }
+
+            $query = $this->getQueryForCrawlerJobs($date, $organizationId);
+            $jobs = $jobsRepo->findBy($query);
+
+            echo count($jobs) . " jobs found for " . $organizationValues['name'] . ".\n";
+            $this->logger->info("Delete expired jobs: " . count($jobs) . " jobs found for " . $organizationValues['name']);
+
+            $this->clearJobs($jobsRepo, $jobs, $date);
+            $orgKeys[] = new ObjectId($organizationId);
+        }
 
         echo "Clear single jobs ...\n";
         $days = $this->options->getSingle()['days'];
@@ -59,6 +91,7 @@ class DeleteJobsController extends AbstractActionController
         $date->sub(new \DateInterval('P' . $days . 'D'));
         $query = $this->getQueryForSingleJobs($date, $orgKeys);
         $jobs = $jobsRepo->findBy($query);
+        $this->logger->info("Delete expired single jobs: " . count($jobs) . " jobs found.");
         $this->clearJobs($jobsRepo, $jobs, $date);
 
         echo "Clear paid jobs ...\n";
@@ -67,27 +100,8 @@ class DeleteJobsController extends AbstractActionController
         $date->sub(new \DateInterval('P' . $days . 'D'));
         $query = $this->getQueryForPaidJobs($date, $orgKeys);
         $jobs = $jobsRepo->findBy($query);
+        $this->logger->info("Delete expired paid jobs: " . count($jobs) . " jobs found.");
         $this->clearJobs($jobsRepo, $jobs, $date);
-
-
-        echo "Clear crawler jobs ...\n";
-        foreach($this->options->getCrawler()['organizations'] as $organization => $values) {
-            $days = $values['days'];
-            $date = new \DateTime('today');
-            $date->sub(new \DateInterval('P' . $days . 'D'));
-
-            $org = $orgRepo->findOneBy(['_organizationName' => $organization]);
-            if (!$org) {
-                continue;
-            }
-
-            $query = $this->getQueryForCrawlerJobs($date, $org->getId());
-            $jobs = $jobsRepo->findBy($query);
-
-            echo count($jobs) . " jobs found for " . $organization . ".\n";
-
-            $this->clearJobs($jobsRepo, $jobs, $date);
-        }
     }
 
     /**
@@ -117,6 +131,7 @@ class DeleteJobsController extends AbstractActionController
         }
 
         echo "$count jobs found, which will be deleted ...\n";
+        $this->logger->info("Delete expired jobs: " . $count . " jobs will be deleted");
 
         $progress = new ProgressBar(
             new ConsoleAdapter(
@@ -198,7 +213,7 @@ class DeleteJobsController extends AbstractActionController
                 ['status.name' => StatusInterface::EXPIRED],
                 ['history.status.name' => StatusInterface::EXPIRED],
                 ['user' => ['$exists' => true]],
-                ['organization' => ['$eq' => $orgId]],
+                ['organization' => new ObjectId($orgId)],
             ]
         ];
     }
