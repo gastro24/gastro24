@@ -33,6 +33,11 @@
 
 
 $options = [
+    'commis-de-cuisine' => [
+          'id' => 1220,
+		  'query' => [ 'q' => 'Commis de Cuisine'],
+          'text' => 'Commis de Cuisine Jobs'
+     ],
      'studenten' => [
           'id' => 1218,
 		  'query' => [ 'q' => 'Studenten'],
