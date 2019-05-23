@@ -33,6 +33,12 @@
 
 
 $options = [
+    
+     'lehrstellen-gastronomie' => [
+          'id' => 1201,
+		  'query' => [ 'q' => 'Lehrstelle'],
+          'text' => 'Lehrstellen'
+     ],
     'hilfskoch' => [
           'id' => 169,
 		  'query' => [ 'q' => 'Hilfskoch'],
