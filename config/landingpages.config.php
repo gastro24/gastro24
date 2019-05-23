@@ -33,6 +33,11 @@
 
 
 $options = [
+    'chef-de-bar' => [
+          'id' => 1216,
+		  'query' => [ 'q' => 'Chef de Bar'],
+          'text' => 'Chef de Bar Jobs'
+     ],
     
     'general-manager' => [
           'id' => 1214,
