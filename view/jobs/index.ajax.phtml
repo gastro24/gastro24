@@ -22,7 +22,7 @@ $hasRegion= isset($queryGet['region_MultiString']);
 // $description = $wordpress->call('value', ['content.rendered'], '');
 $title = $wordpress->call('value', ['meta-fields.title'], '');
 if ($this->params()->fromRoute('isLandingPage')) {
-    $this->headMeta()->setName('description', ' Aktuell ' . count($jobs) . ' verfügbare ' . $title . ' Jobs finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz');
+    $this->headMeta()->setName('description', ' Aktuell ' . count($jobs) . ' verfügbare ' . $title . ' finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz');
 }
 
 
