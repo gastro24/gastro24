@@ -33,9 +33,13 @@
 
 
 $options = [
-    
+     'front-office' => [
+          'id' => 1212,
+		  'query' => [ 'q' => 'Front Office'],
+          'text' => 'Front Office Jobs'
+     ],
      'lehrstellen-gastronomie' => [
-          'id' => 1201,
+          'id' => 1210,
 		  'query' => [ 'q' => 'Lehrstelle'],
           'text' => 'Lehrstellen'
      ],
