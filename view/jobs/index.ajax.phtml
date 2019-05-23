@@ -17,9 +17,15 @@ $wordpress = $this->proxy('wordpress');
 $searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
 $hasRegion= isset($queryGet['region_MultiString']);
 
-$this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
-$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
-$description = $wordpress->call('value', ['content.rendered'], '');
+// $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
+// $this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
+// $description = $wordpress->call('value', ['content.rendered'], '');
+
+if ($this->params()->fromRoute('isLandingPage')) {
+    $this->headMeta()->setName('description', ' Aktuell ' . count($jobs) . ' verfügbare ' . $queryGet['q'] . ' Jobs finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz');
+}
+
+
 
 $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $container->fromCompanyProfile = false;
