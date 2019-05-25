@@ -11,9 +11,14 @@
 namespace Gastro24\Controller\Plugin;
 
 use Core\Entity\Collection\ArrayCollection;
+use Core\Entity\Hydrator\EntityHydrator;
+use Core\Entity\Tree\EmbeddedLeafs;
+use Core\Entity\Tree\Node;
+use Core\Form\Hydrator\Strategy\TreeSelectStrategy;
 use Gastro24\Entity\Template;
 use Gastro24\Entity\TemplateImage;
 use Jobs\Entity\AtsMode;
+use Jobs\Entity\Classifications;
 use Jobs\Entity\Location;
 use Jobs\Entity\Status;
 use Orders\Entity\InvoiceAddress;
@@ -91,18 +96,25 @@ class CreateSingleJob extends AbstractPlugin
         $job->setTitle($values['title']);
         $job->setStatus(Status::CREATED);
         $job->setTermsAccepted($values['termsAccepted']);
+
+        // save employment type
+        $hydrator = new EntityHydrator();
+        $job = $hydrator->hydrate($values, $job);
+        $this->jobRepository->getDocumentManager()->persist($job->getClassifications()->getEmploymentTypes()->getItems()->last()->getParent());
+        $this->jobRepository->getDocumentManager()->flush($job->getClassifications()->getEmploymentTypes()->getItems()->last()->getParent());
+
+        $locations = new ArrayCollection();
+        foreach ($values['locations'] as $locStr) {
+            $loc = new Location($locStr);
+            $locations->add($loc);
+        }
+        $job->setLocations($locations);
+
         if ($values['invoiceAddress']['email']) {
             $job->setAtsMode(new AtsMode(AtsMode::MODE_EMAIL, $values['invoiceAddress']['email']));
             $job->setContactEmail($values['invoiceAddress']['email']);
         } else {
             $job->setAtsMode(new AtsMode(AtsMode::MODE_NONE));
-        }
-
-        $locations = $job->getLocations();
-
-        foreach ($values['locations'] as $locStr) {
-            $loc = new Location($locStr);
-            $locations->add($loc);
         }
 
         $this->jobRepository->store($job);
