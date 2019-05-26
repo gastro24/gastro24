@@ -28,11 +28,14 @@ $this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.k
 $description = $wordpress->call('value', ['content.rendered'], '');
 
 if ($this->params()->fromRoute('isLandingPage')) {
-    $this->headMeta()->setName('description', 'Aktuell ' . count($jobs) . ' verfügbare ' .
-        trim($queryGet['q'],'"') . ' Jobs finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz.');
+    $descriptionText = 'Aktuell ' . count($jobs) . ' verfügbare ' .
+        trim($queryGet['q'],'"') . ' Jobs finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz.';
+    if (count($jobs) == 1) {
+        $descriptionText = 'Aktuell ' . count($jobs) . ' verfügbaren ' .
+            trim($queryGet['q'],'"') . ' Job finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz.';
+    }
+    $this->headMeta()->setName('description', $descriptionText)->setAutoEscape(false);
 }
-
-
 
 $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $container->fromCompanyProfile = false;
