@@ -33,6 +33,12 @@
 
 
 $options = [
+    
+    'buffet-mitarbeiterin' => [
+          'id' => 1260,
+		  'query' => [ 'q' => 'Buffet'],
+          'text' => 'Buffet Mitarbeiterin'
+     ],
     'commis-de-cuisine' => [
           'id' => 1220,
 		  'query' => [ 'q' => 'Commis de Cuisine'],
@@ -122,7 +128,7 @@ $options = [
      ],
       'hotelfachmann' => [
           'id' => 205,
-		  'query' => [ 'q' => 'Hotelfachmann "Hotelfachfrau"'],
+		  'query' => [ 'q' => 'Hotelfachmann'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Hotelfachmann Jobs'
