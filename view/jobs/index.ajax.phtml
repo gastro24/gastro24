@@ -28,11 +28,12 @@ $this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.k
 $description = $wordpress->call('value', ['content.rendered'], '');
 
 if ($this->params()->fromRoute('isLandingPage')) {
+    $wordpressTitle = $wordpress->call('value', ['title.rendered'], '');
     $descriptionText = 'Aktuell ' . $this->jobs->getTotalItemCount() . ' verfügbare ' .
-        trim($queryGet['q'],'"') . ' Jobs finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz.';
-    if (count($jobs) == 1) {
+        $wordpressTitle . ' finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz.';
+    if ($this->jobs->getTotalItemCount() == 1) {
         $descriptionText = 'Aktuell ' . $this->jobs->getTotalItemCount() . ' verfügbaren ' .
-            trim($queryGet['q'],'"') . ' Job finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz.';
+            $wordpressTitle . ' finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz.';
     }
     $this->headMeta()->setName('description', $descriptionText)->setAutoEscape(false);
 }
