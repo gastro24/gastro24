@@ -29,15 +29,15 @@ $this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoE
 // set default keywords
 
 $this->headMeta()->setCharset("utf-8");
-$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0');
+$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
 $this->configHeadScript()->prependScript('var lang="' . $lang . '";'
                                          . 'var basePath="' . $this->basePath() . '";');
 
-$this->headLink()->prependStylesheet($this->basePath('modules/Gastro24/Gastro24.css'));
+$this->headLink()->prependStylesheet($this->basePath('modules/Gastro24/Gastro24.css'))->setAutoEscape(false);
 $this->headLink()->prependStylesheet($this->basePath('modules/Gastro24/jquery-ui-1-12.css'));
 $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
-$this->configHeadScript()->prependFile($this->basepath('dist/js/core.js'));
+$this->configHeadScript()->prependFile($this->basepath('dist/js/core.js'))->setAutoEscape(false);
 $this->configHeadScript()->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
                          ->appendFile($this->basePath('modules/Gastro24/index.js'))
                          ->appendFile($this->basePath('modules/Gastro24/jobs.search.js'))
