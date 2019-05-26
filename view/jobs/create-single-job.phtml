@@ -82,7 +82,13 @@ $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->det
                                     <strong><?=$this->invoiceAddress['company']?></strong>
                                     <!-- end company name -->
                                 </li>
-
+                                <li class="type">
+                                    <!-- type of contract -->
+                                    <?php
+                                    $typeOfContract = ucfirst($this->classifications->getEmploymentTypes()->__toString()) ?: 'Vollzeit'; ?>
+                                    <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                                    <!-- end type of contract -->
+                                </li>
                                 <li class="date">
                                     <!-- published date -->
                                     <span><?= $publishDate ?></span>

@@ -10,9 +10,11 @@
 /** */
 namespace Gastro24\Form;
 
+use Core\Entity\Hydrator\EntityHydrator;
 use Core\Form\Form;
 use Core\Form\ViewPartialProviderInterface;
 use Core\Form\ViewPartialProviderTrait;
+use Jobs\Entity\Category;
 use Jobs\Entity\Location;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
@@ -74,6 +76,10 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
         ]);
 
         $this->add([
+            'type' => 'Jobs/ClassificationsFieldset'
+        ]);
+
+        $this->add([
             'type' => 'Checkbox',
             'name' => 'enableApply',
             'options' => [
@@ -125,6 +131,10 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
             'attributes' => [ 'value' => 'html' ],
         ]);
         $this->get('invoiceAddress')->remove('vatId');
+
+        $classificationFieldset = $this->get('classifications');
+        $classificationFieldset->remove('professions');
+        $classificationFieldset->remove('industries');
     }
 
     public function getInputFilterSpecification()

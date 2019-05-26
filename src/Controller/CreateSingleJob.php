@@ -10,6 +10,10 @@
 /** */
 namespace Gastro24\Controller;
 
+use Core\Entity\Collection\ArrayCollection;
+use Core\Entity\Hydrator\EntityHydrator;
+use Core\Form\Hydrator\Strategy\TreeSelectStrategy;
+use Jobs\Entity\Classifications;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Session\Container;
 use Zend\View\Helper\ServerUrl;
@@ -50,6 +54,9 @@ class CreateSingleJob extends AbstractActionController
             //$values = array_merge_recursive($values, $this->getRequest()->getFiles()->toArray());
             $values['details']['logo'] = $values['details']['logo_url'];
             $values['details']['image'] = $values['details']['image_url'];
+            $values['classifications'] = [
+                'employmentTypes' => $values['classifications']->getEmploymentTypes()->getValues()
+            ];
             $this->form->setData($values);
         }
 
@@ -93,6 +100,13 @@ class CreateSingleJob extends AbstractActionController
             $values['details']['image_url'] = $data['details']['image_url'];
         }
 
+        $hydrator = $this->form->get('classifications')->getHydrator();
+        $employmentTypes = $hydrator->hydrateValue('employmentTypes', $values['classifications']['employmentTypes']);
+
+        $classifications = new Classifications();
+        $classifications->setEmploymentTypes($employmentTypes);
+        $values['classifications'] = $classifications;
+
         $session = new Container('Gastro24_SingleJobData');
         $session->data = serialize($data);
         $session->values = serialize($values);
@@ -121,7 +135,7 @@ class CreateSingleJob extends AbstractActionController
             ];
         }
 
-        $session->getManager()->getStorage()->clear('Gastro24_SingleJobData');
+        $session->exchangeArray([]);
 
         return [ 'isSuccess' => true ];
 
