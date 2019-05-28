@@ -38,14 +38,14 @@ class SimilarJobs extends AbstractHelper
         $keywords = explode(' ', $currentJob->getTitle());
         $keywordString = implode(' OR ', $keywords);
         $industries = [];
-        $searchQueryString = $keywordString . ' AND NOT ' . $currentJob->getTitle();
+        $searchQueryString = '(' . $keywordString . ') AND NOT "' . $currentJob->getTitle() . '" AND isActive:true';
 
         foreach ($currentJob->getClassifications()->getIndustries()->getItems() as $industry) {
             $industries[] = $industry->getName();
         }
         if (count($industries)) {
             $industryString = implode(' OR ', $industries);
-            $searchQueryString = '(' . $keywordString . ') AND industry_MultiString:(' . $industryString . ') AND NOT "' . $currentJob->getTitle() . '"';
+            $searchQueryString = '(' . $keywordString . ') AND industry_MultiString:(' . $industryString . ') AND NOT "' . $currentJob->getTitle() . '"  AND isActive:true';
         }
 
         $paginator  = $this->paginators->get('Gastro24/Jobs/Similar', [

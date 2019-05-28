@@ -1,9 +1,12 @@
+<?php
+    $similarJobs = $this->similarJobs($this->job);
+?>
+<?php if (count($similarJobs)) : ?>
 <div class="grey-description-container similar-jobs">
     <div class="content">
-        <div class="headline"><h2 style="margin-top:5px; margin-bottom:10px"><?= $this->translate('Bewerber interessieren sich auch für:') ?></h2></div>
+        <div class="headline"><h2 style="margin-top:5px; margin-bottom:10px"><?= $this->translate('Bewerber interessieren sich auch für') ?></h2></div>
             <div class="row">
                 <?php
-                $similarJobs = $this->similarJobs($this->job);
                 /* @var \Jobs\Entity\Job $similarJob */
                 foreach ($similarJobs as $index => $similarJob):  ?>
                     <?php if (($index + 1) % 4 == 0)
@@ -37,3 +40,4 @@
             </div>
     </div>
 </div>
+<?php endif; ?>
