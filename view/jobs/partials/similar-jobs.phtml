@@ -1,0 +1,39 @@
+<div class="grey-description-container similar-jobs">
+    <div class="content">
+        <div class="headline"><h2 style="margin-top:5px; margin-bottom:10px"><?= $this->translate('Bewerber interessieren sich auch für:') ?></h2></div>
+            <div class="row">
+                <?php
+                $similarJobs = $this->similarJobs($this->job);
+                /* @var \Jobs\Entity\Job $similarJob */
+                foreach ($similarJobs as $index => $similarJob):  ?>
+                    <?php if (($index + 1) % 4 == 0)
+                        echo '</div><div class="row">';
+                    ?>
+                    <div class="col-md-4">
+                        <div class="job-box">
+                            <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $this->jobUrl($similarJob, ['linkOnly' => true ]) ?>">
+                                <?=strip_tags($similarJob->getTitle())?>
+                            </a>
+
+                            <div class="job-short-info">
+                                <ul>
+                                    <li class="location">
+                                        <!-- location -->
+                                        <?= $similarJob->getLocations()->last()->getPostalCode() . ' ' . $similarJob->getLocations()->last()->getCity(); ?>
+                                        <!-- end location -->
+                                    </li>
+                                    <li class="type">
+                                        <!-- type of contract -->
+                                        <?php
+                                        $typeOfContract = $similarJob->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                                        <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                                        <!-- end type of contract -->
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+    </div>
+</div>

@@ -112,6 +112,7 @@ return [
             WordpressApi\Filter\PageIdMap::class => Factory\Filter\WpApiPageIdMapFactory::class,
             Filter\PdfFileUri::class => Filter\PdfFileUriFactory::class,
             Filter\OrganizationJobsListQuery::class => InvokableFactory::class,
+            'Gastro24/Paginator/JobsSimilarPaginationQuery' => 'Gastro24\Paginator\JobsSimilarPaginationQueryFactory',
         ],
         'aliases' => [
             'Organizations/ListJobQuery' => Filter\OrganizationJobsListQuery::class,
@@ -150,6 +151,7 @@ return [
             View\Helper\IsEmbeddable::class => View\Helper\IsEmbeddableFactory::class,
             View\Helper\JobTemplate::class => View\Helper\JobTemplateFactory::class,
             View\Helper\JobCount::class => View\Helper\JobCountFactory::class,
+            View\Helper\SimilarJobs::class => View\Helper\SimilarJobsFactory::class,
             View\Helper\HasAutomaticJobActivation::class => View\Helper\HasAutomaticJobActivationFactory::class,
             View\Helper\ShowAutomaticJobActivationHint::class => View\Helper\ShowAutomaticJobActivationHintFactory::class,
             View\Helper\HydrateOrderObject::class => View\Helper\HydrateOrderObjectFactory::class,
@@ -166,6 +168,7 @@ return [
             'hasAutomaticJobActivation' => View\Helper\HasAutomaticJobActivation::class,
             'showAutomaticJobActivationHint' => View\Helper\ShowAutomaticJobActivationHint::class,
             'hydrateOrderObject' => View\Helper\HydrateOrderObject::class,
+            'similarJobs' => View\Helper\SimilarJobs::class,
         ],
         'delegators' => [
             'jobUrl' => [
@@ -434,6 +437,13 @@ return [
                 ],
             ],
         ],
+    ],
+
+    'paginator_manager' => [
+        'factories' => [
+            // replace Jobs/Board paginator with this paginator
+            'Gastro24/Jobs/Similar' => 'Gastro24\Paginator\JobsSimilarPaginatorFactory',
+        ]
     ],
 
     'options' => [

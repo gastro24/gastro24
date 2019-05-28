@@ -85,7 +85,7 @@ class DeleteJobsController extends AbstractActionController
             $jobs = $jobsRepo->findBy($query);
 
             echo count($jobs) . " jobs found for " . $organizationValues['name'] . ".\n";
-            $this->logger->info("Delete expired jobs: " . count($jobs) . " jobs found for " . $organizationValues['name']);
+            $this->logger->info("Delete expired jobs: " . count($jobs) . " jobs found for " . $organizationValues['name'] . ' (before date filter)');
 
             $this->clearJobs($jobsRepo, $jobs, $date);
             $orgKeys[] = new ObjectId($organizationId);
@@ -97,7 +97,7 @@ class DeleteJobsController extends AbstractActionController
         $date->sub(new \DateInterval('P' . $days . 'D'));
         $query = $this->getQueryForSingleJobs($date, $orgKeys);
         $jobs = $jobsRepo->findBy($query);
-        $this->logger->info("Delete expired single jobs: " . count($jobs) . " jobs found.");
+        $this->logger->info("Delete expired single jobs: " . count($jobs) . " jobs found. (before date filter)");
         $this->clearJobs($jobsRepo, $jobs, $date);
 
         echo "Clear paid jobs ...\n";
@@ -106,7 +106,7 @@ class DeleteJobsController extends AbstractActionController
         $date->sub(new \DateInterval('P' . $days . 'D'));
         $query = $this->getQueryForPaidJobs($date, $orgKeys);
         $jobs = $jobsRepo->findBy($query);
-        $this->logger->info("Delete expired paid jobs: " . count($jobs) . " jobs found.");
+        $this->logger->info("Delete expired paid jobs: " . count($jobs) . " jobs found. (before date filter)");
         $this->clearJobs($jobsRepo, $jobs, $date);
     }
 
