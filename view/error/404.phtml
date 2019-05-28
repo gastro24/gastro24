@@ -10,12 +10,12 @@
  * {{rtd: File not found error page}}
  */
 ?>
-
+<div class="bg-wp-content">
 <?php $this->headTitle('404') ?>
 <h1><?php echo $this->translate('A 404 error occurred') ?></h1>
 <hr/>
 <p>Leider konnte die von Ihnen angeforderte Seite nicht gefunden werden. Vielleicht finden Sie Ihren Traumjob in einer der unten stehenden Jobkategorien?</p>
-
+<p>&nbsp;</p>
 
 <ul class="column">
 <li><a href="/de/jobs/hilfskoch.html">Hilfskoch Jobs</a></li>
@@ -169,3 +169,7 @@ if (isset($this->controller_class)
 <?php endif ?>
 
 <?php endif ?>
+
+
+</div>
+
