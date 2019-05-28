@@ -68,6 +68,14 @@ class IframeEmbeddableUri extends AbstractValidator
         return true;
     }
 
+    /**
+     * @return array
+     */
+    public function getInvalidUris()
+    {
+        return $this->options['invalidUriStart'];
+    }
+
     private function getPublicJobPdfPath()
     {
         return $this->getBasePath() . '/static/Jobs';
