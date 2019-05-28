@@ -236,6 +236,15 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
         <div class="clearfix"></div>
         <!-- end share buttons -->
 
+        <!-- similar jobs -->
+        <?php if (!$preview): ?>
+            <?php echo $this->partial('jobs/partials/similar-jobs.phtml', [
+                'job' => $this->job
+            ]);
+            ?>
+        <?php endif; ?>
+        <!-- end similar jobs -->
+
         <?php if (!$preview): ?>
             <!-- recommended jobs
             <div class="grey-description-container">
