@@ -488,6 +488,8 @@ return [
                  '59e4b53e7bb2b553412f9be9' => 'gastro24/jobs/view-zfv',
                 // buergenstock
                 '5bcdfda2b6428ba17c5c9048' => 'gastro24/jobs/view-zfv',
+                // adecco
+                '5a0809397bb2b582267c7a97' => 'gastro24/jobs/view-zfv',
             ],
         ]],
     ],
