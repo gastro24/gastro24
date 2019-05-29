@@ -35,7 +35,12 @@ class SimilarJobs extends AbstractHelper
     public function __invoke($currentJob, $maxResults = 6)
     {
         /** @var \Solr\Paginator\Paginator $paginator */
-        $keywords = explode(' ', $currentJob->getTitle());
+        $keywordParts = explode(' ', $currentJob->getTitle());
+
+        // remove special characters from search query
+        $removeSpecialChars = array('/', '-', ',', ':');
+        $keywords = array_diff($keywordParts, $removeSpecialChars);
+
         $keywordString = implode(' OR ', $keywords);
         $industries = [];
         $searchQueryString = '(' . $keywordString . ') AND NOT "' . $currentJob->getTitle() . '" AND isActive:true';
