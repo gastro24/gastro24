@@ -22,7 +22,9 @@
                                 <ul>
                                     <li class="location">
                                         <!-- location -->
-                                        <?= $similarJob->getLocations()->last()->getPostalCode() . ' ' . $similarJob->getLocations()->last()->getCity(); ?>
+                                        <?php $location = $similarJob->getLocations()->last(); ?>
+                                        <?= ($location) ? $location->getPostalCode() . ' ' . $similarJob->getLocations()->last()->getCity() :
+                                            (string) $similarJob->getLocation(); ?>
                                         <!-- end location -->
                                     </li>
                                     <li class="type">
