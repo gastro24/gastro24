@@ -54,7 +54,7 @@ class SimilarJobs extends AbstractHelper
                     $industryNames[] = ucfirst($industryPart);
                 }
                 $industryName = implode(' & ', $industryNames);
-                $industries[] = $industryName;
+                $industries[] = '"' . $industryName . '"';
             }
             else {
                 $industries[] = ucfirst($industry->getName());
