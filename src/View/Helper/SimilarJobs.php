@@ -46,7 +46,19 @@ class SimilarJobs extends AbstractHelper
         $searchQueryString = '(' . $keywordString . ') AND NOT "' . $currentJob->getTitle() . '" AND isActive:true';
 
         foreach ($currentJob->getClassifications()->getIndustries()->getItems() as $industry) {
-            $industries[] = ucfirst($industry->getName());
+            // change _ to &
+            $parts = explode('_', $industry->getName());
+            if (count($parts)) {
+                $industryNames = [];
+                foreach ($parts as $industryPart) {
+                    $industryNames[] = ucfirst($industryPart);
+                }
+                $industryName = implode(' & ', $industryNames);
+                $industries[] = $industryName;
+            }
+            else {
+                $industries[] = ucfirst($industry->getName());
+            }
         }
         if (count($industries)) {
             $industryString = implode(' OR ', $industries);
