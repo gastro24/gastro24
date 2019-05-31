@@ -245,7 +245,7 @@ $options = [
      ],	 
 	  'konditor-confiseur' => [
           'id' => 175,
-		  'query' => [ 'q' => 'Konditor OR Confiseur'],
+		  'query' => [ 'q' => 'Konditor'],
           'text' => 'Konditor Confiseur Jobs'
      ],
 	   'restaurantmanager' => [
