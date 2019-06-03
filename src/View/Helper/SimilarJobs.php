@@ -38,7 +38,7 @@ class SimilarJobs extends AbstractHelper
         $keywordParts = explode(' ', $currentJob->getTitle());
 
         // remove special characters from search query
-        $removeSpecialChars = array('/', '-', ',', ':', ' ');
+        $removeSpecialChars = array('/', '-', ',', ':', '');
         $keywords = array_diff($keywordParts, $removeSpecialChars);
 
         $keywordString = implode(' OR ', $keywords);
