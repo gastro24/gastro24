@@ -71,6 +71,7 @@ class JobsConsoleController extends AbstractActionController
         $limit = (string) $this->params('limit');
         $info = $this->params('info');
 
+        $aboDays = 365;
         $crawlerDays = 90;
         $orgKeys = [];
 
@@ -106,6 +107,15 @@ class JobsConsoleController extends AbstractActionController
         $jobs = $jobsRepo->findBy($singleQuery, null, (int) $limit, (int) $offset);
         $count = count($jobs);
         $this->logger->info("Cron: Expire jobs: Mark " . $count . " single jobs as expired.");
+
+        // mark abo jobs as expired
+        echo "Expire abo jobs ...\n";
+        $date = new \DateTime('today');
+        $date->sub(new \DateInterval('P' . $aboDays . 'D'));
+        $aboQuery = $this->getAboJobsQuery($date, $orgKeys);
+        $jobs = $jobsRepo->findBy($aboQuery, null, (int) $limit, (int) $offset);
+        $count = count($jobs);
+        $this->logger->info("Cron: Expire jobs: Mark " . $count . " abo jobs as expired.");
 
         echo "Expire " . $count . " single jobs.\n";
         if (0 === $count) {
@@ -208,6 +218,24 @@ class JobsConsoleController extends AbstractActionController
                 ]],
                 ['user' => ['$exists' => false]],
                 ['organization' => new ObjectId($orgId)],
+            ]
+        ];
+    }
+    private function getAboJobsQuery($date, $orgKeys)
+    {
+        return [
+            '$and' => [
+                ['status.name' => StatusInterface::ACTIVE],
+                ['$or' => [
+                    ['datePublishStart.date' => ['$lt' => $date]],
+                    ['datePublishEnd.date' => ['$lt' => new \DateTime('today midnight')]],
+                ]],
+                ['$or' => [
+                    ['isDeleted' => ['$exists' => false]],
+                    ['isDeleted' => false],
+                ]],
+                ['user' => ['$exists' => true]],
+                ['organization' => ['$nin' => $orgKeys]],
             ]
         ];
     }

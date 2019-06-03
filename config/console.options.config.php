@@ -62,7 +62,7 @@ $options = [
         ]
     ],
     'paid' => [
-        'days' => 365
+        'days' => 1
     ],
     'single' => [
         'days' => 30
