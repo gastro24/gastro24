@@ -100,7 +100,7 @@ class DeleteJobsController extends AbstractActionController
         $this->logger->info("Delete expired single jobs: " . count($jobs) . " jobs found. (before date filter)");
         $this->clearJobs($jobsRepo, $jobs, $date);
 
-        echo "Clear paid jobs ...\n";
+        echo "Clear paid abo jobs ...\n";
         $days = $this->options->getPaid()['days'];
         $date = new \DateTime('today');
         $date->sub(new \DateInterval('P' . $days . 'D'));
