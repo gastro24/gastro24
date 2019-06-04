@@ -32,4 +32,13 @@ return [
 
     'Enable online application' => 'Bewerbungen online empfangen',
 
+    'January' => 'Januar',
+    'February' => 'Februar',
+    'March' => 'März',
+    'May' => 'Mai',
+    'June' => 'Juni',
+    'July' => 'Juli',
+    'October' => 'Oktober',
+    'December' => 'Dezember',
+
 ];

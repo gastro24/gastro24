@@ -35,8 +35,9 @@ class RedirectExternalJobsFactory implements FactoryInterface
         $serverUrl = $helpers->get('serverUrl');
         $basepath = $helpers->get('basepath');
         $path = $serverUrl($basepath()) . '/';
+        $translator = $container->get('translator');
 
-        $service    = new RedirectExternalJobs($validator, $templatesMap, $solrClient, $path);
+        $service    = new RedirectExternalJobs($validator, $templatesMap, $solrClient, $translator, $path);
         
         return $service;    
     }
