@@ -11,6 +11,10 @@
  *             $isVisited   bool            Has the user already visited this job in the current session
  */
 
+// meta data
+$this->headTitle($this->metaTitle);
+$this->headMeta()->setName('description', $this->translate($this->metaDescription))->setAutoEscape(false);
+
 // check for preview
 $routeParams = $this->params()->fromRoute();
 $preview = false;
@@ -83,10 +87,6 @@ $logoUrl = $this->gastroLogoUri($this->job);
 if (!$logoUrl) {
     $logoUrl = $defaultLogoUrl;
 }
-//$this->headTitle($this->job->getTitle());
-
-$this->headTitle($this->job->getTitle()." von ".$this->jobOrganizationName($this->job));
-
 
 $link = $this->job->getLink();
 

@@ -13,7 +13,9 @@ namespace Gastro24\Controller;
 use Core\Entity\Exception\NotFoundException;
 use Gastro24\Options\CompanyTemplatesMap;
 use Gastro24\Session\VisitedJobsContainer;
+use Jobs\Entity\Job;
 use Zend\Http\PhpEnvironment\Response;
+use Zend\I18n\Translator\TranslatorInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Session\Container;
 use Zend\View\Model\ViewModel;
@@ -32,6 +34,11 @@ class RedirectExternalJobs extends AbstractActionController
     private $validator;
 
     /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
      * @var CompanyTemplatesMap
      */
     private $templatesMap;
@@ -43,12 +50,14 @@ class RedirectExternalJobs extends AbstractActionController
         \Gastro24\Validator\IframeEmbeddableUri $validator,
         CompanyTemplatesMap $templatesMap,
         $solrClient,
+        TranslatorInterface $translator,
         $mainPath
     )
     {
         $this->validator = $validator;
         $this->templatesMap = $templatesMap;
         $this->solrClient = $solrClient;
+        $this->translator = $translator;
         $this->mainPath = $mainPath;
     }
 
@@ -165,6 +174,8 @@ class RedirectExternalJobs extends AbstractActionController
         $model->setVariables([
             'prevJob' => $prevJob,
             'nextJob' => $nextJob,
+            'metaTitle' => $this->buildMetaTitleByJob($job),
+            'metaDescription' => $this->buildMetaDescriptionByJob($job),
         ]);
         $model->setTemplate('gastro24/jobs/view-extern');
 
@@ -174,6 +185,62 @@ class RedirectExternalJobs extends AbstractActionController
         }
 
         return $model;
+    }
+
+    /**
+     * @param Job $job
+     * @return string
+     */
+    private function buildMetaTitleByJob($job)
+    {
+        $locations = $job->getLocations()->toArray();
+
+        $date = $job->getDatePublishStart();
+        $dateString = $this->translator->translate($date->format('F')) . ' ' . $date->format('Y');
+        if (count($locations) > 0) {
+            $location = array_shift($locations);
+            $city = $location->getCity();
+
+            if (!$city) {
+                return $job->getTitle() . ' - ' . $dateString;
+            }
+        }
+        elseif (count($locations) == 0) {
+            return $job->getTitle() . ' - ' . $dateString;
+        }
+
+        $title = $job->getTitle() . ' in ' . $city .' - ' . $dateString;
+
+        return $title;
+    }
+
+    /**
+     * @param Job $job
+     * @return string
+     */
+    private function buildMetaDescriptionByJob($job)
+    {
+        $title = trim($job->getTitle(), '"');
+        $orgName = ($job->getOrganization()) ? $job->getOrganization()->getOrganizationName()->getName() : $job->getCompany();
+        $locations = $job->getLocations()->toArray();
+
+        if (count($locations) > 0) {
+            $cities = [];
+            foreach ($locations as $loc) {
+                if ($loc->getCity()) {
+                    $cities[] = $loc->getCity();
+                }
+            }
+            $citiesString = implode(',', $cities);
+
+        }
+        elseif (count($locations) == 0) {
+            return 'Auf der Suche nach dem Traumjob? Jetzt bewerben auf die Stelle &quot;' . $title . '&quot; bei ' . $orgName . '.';
+        }
+
+        $description = 'Auf der Suche nach dem Traumjob? Jetzt bewerben auf die Stelle &quot;' . $title . '&quot; in ' . $citiesString . ' bei ' . $orgName . '.';
+
+        return $description;
     }
 
     private function getCompanyJobsPaginator($page, $companyId)
