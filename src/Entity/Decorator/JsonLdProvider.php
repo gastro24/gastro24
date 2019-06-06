@@ -136,7 +136,7 @@ class JsonLdProvider implements JsonLdProviderInterface
             $description .= sprintf("<h1>%s</h1>", $values->getTitle());
 
             if ($introduction = $values->getIntroduction()){
-                $description .= sprintf("<h3>Introduction</h3><p>%s</p>", $introduction);
+                $description .= sprintf("<p>%s</p>", $introduction);
             }
 
             if ($position = $values->get('position')) {
