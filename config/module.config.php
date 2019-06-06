@@ -155,6 +155,7 @@ return [
             View\Helper\HasAutomaticJobActivation::class => View\Helper\HasAutomaticJobActivationFactory::class,
             View\Helper\ShowAutomaticJobActivationHint::class => View\Helper\ShowAutomaticJobActivationHintFactory::class,
             View\Helper\HydrateOrderObject::class => View\Helper\HydrateOrderObjectFactory::class,
+            View\Helper\JsonLd::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -169,6 +170,7 @@ return [
             'showAutomaticJobActivationHint' => View\Helper\ShowAutomaticJobActivationHint::class,
             'hydrateOrderObject' => View\Helper\HydrateOrderObject::class,
             'similarJobs' => View\Helper\SimilarJobs::class,
+            'jsonLd' => View\Helper\JsonLd::class,
         ],
         'delegators' => [
             'jobUrl' => [
