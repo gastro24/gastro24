@@ -31,7 +31,6 @@ return [
     'Your company description will be used as default.' => 'Als Standard wird Ihre Unternehmensbeschreibung genutzt.',
     'Organization Name' => 'Names des Unternehmens',
     'Enable online application' => 'Bewerbungen per E-Mail empfangen',
-
     'January' => 'Januar',
     'February' => 'Februar',
     'March' => 'März',
