@@ -33,7 +33,16 @@
 
 
 $options = [
-    
+     'kaeser-in' => [
+          'id' => 1264,
+		  'query' => [ 'q' => 'Käser'],
+          'text' => 'Käser Käserin Jobs'
+     ],
+     'bereichsleiter' => [
+          'id' => 1266,
+		  'query' => [ 'q' => 'Bereichsleiter'],
+          'text' => 'Bereichsleiter Jobs'
+     ],
     'buffet-mitarbeiterin' => [
           'id' => 1260,
 		  'query' => [ 'q' => 'Buffet'],
