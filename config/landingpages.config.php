@@ -306,9 +306,7 @@ $options = [
      ],
      
      
-     
-     
-     
+    
      
 	 'region-appenzell-ausserrhoden' => [
         'text' => 'Jobs Appenzell Ausserrhoden',
