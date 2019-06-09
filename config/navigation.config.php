@@ -37,7 +37,7 @@ return [
             ],
 
           'jobboard' => [
-               'visible' => false,
+               //'visible' => false,
              'label' => 'Jobs',
                'text_domain' => 'do-not-translate',
               'active_on' => ['lang/jobboard', 'lang/landingPage'],
