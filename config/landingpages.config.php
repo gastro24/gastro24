@@ -33,6 +33,11 @@
 
 
 $options = [
+      'gouvernante' => [
+          'id' => 1269,
+		  'query' => [ 'q' => 'Gouvernante'],
+          'text' => 'Gouvernante Jobs'
+     ],
      'kaeser-in' => [
           'id' => 1264,
 		  'query' => [ 'q' => 'Käser'],
