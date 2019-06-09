@@ -191,10 +191,10 @@ $options = [
      ],
      'restauration' => [
           'id' => 189,
-		  'query' => [ 'q' => 'Restaurationsfachmann "Restaurationsfachfrau"'],
+		  'query' => [ 'q' => 'Restaurationsfachfrau'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Restaurationsfachmann Jobs'
+          'text' => 'Restaurationsfachfrau Jobs'
      ], 
       'servicemitarbeiterin' => [
           'id' => 191,
