@@ -91,18 +91,36 @@ class CreateJobOrder
             $products->add($product);
         }
 
-        $data = [
-            'type' => OrderInterface::TYPE_JOB,
-            'taxRate' => $this->options->getTaxRate(),
-            'price' => $this->priceFilter->filter($job->getPortals()), // must come after tax rate!
-            'invoiceAddress' => $invoiceAddress,
-            'currency' => $this->options->getCurrency(),
-            'currencySymbol' => $this->options->getCurrencySymbol(),
-            'entity' => $snapshot,
-            'products' => $products
-        ];
+        $existingOrder = null;
 
-        $order = $this->orderRepository->create($data);
-        $this->orderRepository->store($order);
+        $criteria = [
+            '$and' => [
+                ['type' => OrderInterface::TYPE_JOB],
+                ['invoiceAddress.email' => $invoiceAddress->getEmail()],
+                ['products' => [
+                    '$elemMatch' => [
+                        'name' => $product->getName()
+                    ]
+                ]]
+            ]
+        ];
+        $existingOrder = $this->orderRepository->findBy($criteria);
+
+        // check if abo order already exists
+        if (!$existingOrder) {
+            $data = [
+                'type' => OrderInterface::TYPE_JOB,
+                'taxRate' => $this->options->getTaxRate(),
+                'price' => $this->priceFilter->filter($job->getPortals()), // must come after tax rate!
+                'invoiceAddress' => $invoiceAddress,
+                'currency' => $this->options->getCurrency(),
+                'currencySymbol' => $this->options->getCurrencySymbol(),
+                'entity' => $snapshot,
+                'products' => $products
+            ];
+
+            $order = $this->orderRepository->create($data);
+            $this->orderRepository->store($order);
+        }
     }
 }
