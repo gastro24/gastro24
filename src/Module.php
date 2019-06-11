@@ -6,6 +6,7 @@ use Yawik\Composer\AssetProviderInterface;
 use Core\ModuleManager\ModuleConfigLoader;
 use Gastro24\Options\Landingpages;
 use Zend\Console\Console;
+use Zend\Http\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
 use Zend\Stdlib\Parameters;
@@ -246,6 +247,9 @@ class Module implements AssetProviderInterface
             }, 5);
         }
 
+        // attach a listener to check for error codes
+        $eventManager->attach(MvcEvent::EVENT_RENDER, array($this, 'onRenderError'));
+
     }
 
     public function getConsoleUsage(\Zend\Console\Adapter\AdapterInterface $console)
@@ -258,5 +262,14 @@ class Module implements AssetProviderInterface
             ['--limit=INT[,<offset>]', 'Limit jobs to expire per run starting from <offset>. Default 10. 0 means no limit'],
             ['--info', 'Does not manipulate the database, but prints a list of all matched jobs.']
         ];
+    }
+
+    public function onRenderError($e)
+    {
+        $response = $e->getResponse();
+        if ($response->getStatusCode() == Response::STATUS_CODE_404) {
+            $response->setStatusCode(Response::STATUS_CODE_410);
+            $e->setResponse($response);
+        }
     }
 }
