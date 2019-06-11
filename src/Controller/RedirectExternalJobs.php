@@ -195,7 +195,7 @@ class RedirectExternalJobs extends AbstractActionController
     {
         $locations = $job->getLocations()->toArray();
 
-        $date = $job->getDatePublishStart();
+        $date = $job->getDatePublishStart() ?: $job->getDateCreated();
         $dateString = $this->translator->translate($date->format('F')) . ' ' . $date->format('Y');
         if (count($locations) > 0) {
             $location = array_shift($locations);
