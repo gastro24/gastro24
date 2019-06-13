@@ -33,6 +33,18 @@
 
 
 $options = [
+    
+      'catering' => [
+          'id' => 1275,
+		  'query' => [ 'q' => 'Catering'],
+          'text' => 'Catering Jobs'
+     ],
+       'promotion' => [
+          'id' => 1279,
+		  'query' => [ 'q' => 'Promotion'],
+          'text' => 'Promotion Jobs'
+     ],
+    
       'gouvernante' => [
           'id' => 1269,
 		  'query' => [ 'q' => 'Gouvernante'],
