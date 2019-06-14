@@ -33,6 +33,12 @@
 
 
 $options = [
+      'ferienaushilfe' => [
+          'id' => 1285,
+		  'query' => [ 'q' => 'Ferienaushilfe'],
+          'text' => 'Ferienjobs'
+     ],
+    
       'take-away' => [
           'id' => 1282,
 		  'query' => [ 'q' => 'Take Away'],
