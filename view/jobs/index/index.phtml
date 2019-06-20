@@ -7,6 +7,9 @@
           ->appendFile($this->basePath('dist/js/bootstrap-dialog.min.js'))
           ->appendFile($this->basepath('modules/Core/js/core.pagination-container.js'))
           ->appendFile($this->basePath('modules/Jobs/js/index.assign-users.js'))
+          ->appendFile($this->basepath('modules/Core/js/core.forms.js'))
+          ->appendFile($this->basepath('modules/Core/js/core.spinnerbutton.js'))
+          ->appendFile($this->basepath('modules/Core/js/forms.descriptions.js'))
           ->appendFile($this->basePath('modules/Jobs/js/jobs.history.js'))
       ;
 $this->headScript()->captureStart() ?>
@@ -26,6 +29,49 @@ $this->headScript()->captureStart() ?>
         fail:        '<?php echo $this->translate('Fail!') ?>'
     });
 })(jQuery);
+
+/*
+* Handle job-edit-popup
+*/
+(function($) {
+    var loadingText;
+
+    $(function() {
+        var $modal = $('#job-edit-popup');
+        loadingText = $modal.find('.modal-header h4').html();
+
+        function onModalLoaded() {
+            var $form = $modal.find('form');
+            $form.form().find('select').each($.fn.form.initSelect);
+            $form.on('done.yk.core.forms', function(e, data) {
+
+                if ('valid' in data.data && data.data.valid) {
+                    console.log('valid');
+                    $modal.modal('hide');
+                    $('#jobs-list-container').paginationContainer('reload');
+console.log($('#jobs-list-container'));
+                }
+
+                $modal.find('.job-edit-save').spinnerbutton('toggle');
+                return false;
+            });
+            $modal.find('.daf-form-container').formdesc();
+            $modal.find('.job-edit-save').on('click.yk.admin.jobs.edit', function() { $form.submit(); });
+        }
+
+        $modal.on('hidden.bs.modal', function() {
+            $modal.find('.job-edit-save').off('.jobs.edit');
+            $modal.find('.modal-body').empty();
+            $modal.find('.modal-footer').remove();
+            $modal.find('.modal-header h4').html(loadingText);
+            $modal.removeData('bs.modal');
+            $modal.one('loaded.bs.modal', onModalLoaded);
+        });
+
+        $modal.one('loaded.bs.modal', onModalLoaded);
+    });
+})(jQuery);
+
 <?php
 $this->headScript()->captureEnd();
 //$this->headLink()->appendStylesheet($this->basePath('/assets/bootstrap3-dialog/css/bootstrap-dialog.min.css'));
@@ -37,26 +83,28 @@ $this->headScript()->captureEnd();
 <?php echo $this->flashMessenger()->render('default', array('alert', 'alert-success')) ?>
 
 <nav class="navbar yk-toolbar" id="jobs-list-filter-wrapper">
-<?php echo $this->form($this->filterForm)  ?>
+    <?php echo $this->form($this->filterForm)  ?>
 </nav>
 
-<!-- cta button if there are no jobs -->
+
 <?php if(count($this->jobs) < 1): ?>
+    <!-- cta button if there are no jobs -->
     <div class="text-center">
         <a title="Jobs durchsuchen" href="<?php echo $this->url('lang/jobs/manage', array('action' => 'edit'), true) ?>"
            class="btn-block-sm margin-top-smaller btn btn-primary btn-large outline">
             <span>Jetzt Stellenanzeige anlegen!</span>
         </a>
     </div>
-<?php endif ?>
-<!-- end cta button -->
+    <!-- end cta button -->
+<?php else: ?>
+    <div id="jobs-list-container" class="pagination-container" data-uri="<?php
+        echo $this->url('lang/jobs', array(), array('query' => $this->params()->fromQuery()), true)?>">
 
-<!--<div id="jobs-list-container" class="pagination-container">-->
-
-    <div class="pagination-content">
-        <?php echo $this->render('jobs/index/index.ajax.phtml')?>
+        <div class="pagination-content">
+            <?php echo $this->render('jobs/index/index.ajax.phtml')?>
+        </div>
     </div>
-<!--</div>-->
+<?php endif; ?>
 
 <!-- Modal Box for Job-History -->
 <div class="modal fade" id="job-application-history" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -70,3 +118,18 @@ $this->headScript()->captureEnd();
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal Box for Job-Edit-Popup -->
+<div class="modal  fade" id="job-edit-popup" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel"><i class="yk-icon yk-icon-spinner fa-spin"></i><?php echo $this->translate('please wait') ?></h4>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>

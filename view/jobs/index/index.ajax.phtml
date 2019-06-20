@@ -123,6 +123,19 @@ if (count($this->jobs)):
 
                             <a href="<?php echo $this->url('lang/jobs/manage', array('action' => 'edit'), array('query' => array('id' => $job->getId())), true) ?>" class="btn btn-default btn-xs">
                                 <span class="yk-icon yk-icon-edit"></span></a>
+
+                            <!-- change status - only available if job is active or inactive -->
+                            <?php if (in_array($job->getStatus(), ['active', 'inactive']) !== false):?>
+                                <a data-toggle="modal"
+                                   class="btn btn-default btn-xs"
+                                   data-target="#job-edit-popup"
+                                   href="<?php echo $this->url('lang/jobs/change-status', ['id' => $job->getId() , 'lang' => $this->params('lang') ], ['query' => [ 'id' => $job->getId() ]]); ?>"
+                                   title="<?php echo $this->translate('Edit state') ?>">
+                                    <i class="yk-icon fa-pencil-square-o"></i>
+                                </a>
+                            <?php endif; ?>
+                            <!-- end change status -->
+
                             <a href="<?php echo $this->url('lang/jobs/manage', ['action' => 'delete'], ['query' => ['id' => $job->getId()]], true)?>"
                                onclick="return window.confirm('<?=$this->translate('Are you sure to delete this job?')?>')"
                                class="btn btn-danger btn-xs"><i class="yk-icon fa-trash"></i>

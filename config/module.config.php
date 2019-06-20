@@ -93,6 +93,7 @@ return [
             'Gastro24/Jobs/Console' => [Controller\Console\JobsConsoleController::class,'factory'],
             'Gastro24/Jobs/Console/DeleteJobs' => [Controller\Console\DeleteJobsController::class,'factory'],
             'Core/File'    => Factory\Controller\FileControllerFactory::class,
+            Controller\JobController::class => [Controller\JobController::class,'factory'],
         ],
     ],
 
@@ -253,6 +254,7 @@ return [
              'gastro24/form/create-single-job' => __DIR__ . '/../view/jobs/create-single-job-form.phtml',
              'gastro24/form/job-details-fieldset' => __DIR__ . '/../view/jobs/job-details-fieldset.phtml',
              'gastro24/dashboard' => __DIR__ . '/../view/gastro24/dashboard.phtml',
+             'gastro24/job/change-status' => __DIR__ . '/../view/jobs/admin/edit.phtml',
              'core/index/dashboard' => __DIR__ . '/../view/gastro24/main-dashboard.phtml',
              'gastro24/list/index' => __DIR__ . '/../view/orders/list/index.phtml',
              'layout/application-form' => __DIR__ . '/../view/layout-application-form.phtml',
@@ -386,6 +388,16 @@ return [
                                     'defaults' => [
                                         'controller' => Controller\SuggestJobs::class,
                                         'action' => 'index'
+                                    ]
+                                ],
+                            ],
+                            'change-status' => [
+                                'type' => 'Literal',
+                                'options' => [
+                                    'route' => '/status',
+                                    'defaults' => [
+                                        'controller' => Controller\JobController::class,
+                                        'action' => 'changeStatus'
                                     ]
                                 ],
                             ]
