@@ -57,6 +57,16 @@ return [
             ],
         ],
     ],
+    'Jobs' => [
+        'dashboard' => [
+            'enabled' => true,
+            'widgets' => [
+                'recentJobs' => [
+                    'controller' => Controller\JobController::class
+                ],
+            ],
+        ],
+    ],
 
     'service_manager' => [
         'factories' => [
@@ -208,7 +218,6 @@ return [
              'jobs/manage/approval' => __DIR__ . '/../view/jobs/approval.phtml',
              'jobs/form/preview' => __DIR__ . '/../view/jobs/form/preview.phtml',
              'jobs/index/index.ajax.phtml' => __DIR__ . '/../view/jobs/index/index.ajax.phtml',
-             'jobs/index/dashboard.phtml' => __DIR__ . '/../view/jobs/index/dashboard.phtml',
              'main-navigation' => __DIR__ . '/../view/main-navigation.phtml',
              'auth/index/login-info' => __DIR__ . '/../view/login-info.phtml',
              'gastro24/wordpress-page/index' => __DIR__ . '/../view/gastro24/wordpress-page/index.phtml',
@@ -252,6 +261,7 @@ return [
              'gastro24/jobs/view-mcdonalds' => __DIR__ . '/../view/jobs/view-mcdonalds.phtml',
              'gastro24/jobs/view-zfv' => __DIR__ . '/../view/jobs/view-zfv.phtml',
              'gastro24/jobs/view-intern' => __DIR__ . '/../view/jobs/view-intern.phtml',
+             'gastro24/job/dashboard' => __DIR__ . '/../view/jobs/index/dashboard.phtml',
              'gastro24/create-single-job/index' => __DIR__ . '/../view/jobs/create-single-job.phtml',
              'gastro24/form/create-single-job' => __DIR__ . '/../view/jobs/create-single-job-form.phtml',
              'gastro24/form/job-details-fieldset' => __DIR__ . '/../view/jobs/job-details-fieldset.phtml',
@@ -402,13 +412,14 @@ return [
                                         'action' => 'changeStatus'
                                     ]
                                 ],
-                            ]
+                            ],
                         ],
+
                     ],
                     'jobboard' => [
                         'options' => [
                             'route' => '/jobs',
-                        ]
+                        ],
                     ],
                     'organizations-profiles' => [
                                 'type' => 'Regex',
@@ -453,6 +464,7 @@ return [
                     ],
                 ],
             ],
+
         ],
     ],
 

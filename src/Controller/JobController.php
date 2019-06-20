@@ -2,6 +2,7 @@
 
 namespace Gastro24\Controller;
 
+use Auth\Entity\User;
 use Core\Factory\ContainerAwareInterface;
 use Core\Repository\RepositoryService;
 use Interop\Container\ContainerInterface;
@@ -94,5 +95,35 @@ class JobController extends AbstractActionController implements ContainerAwareIn
         $form->bind($job);
 
         return [ 'form' => $form, 'job' => $job ];
+    }
+
+    /**
+     * Handles the dashboard widget for the jobs module.
+     *
+     * @return array
+     */
+    public function dashboardAction()
+    {
+        $repositories = $this->repositories;
+        /* @var $request \Zend\Http\Request */
+        $request     = $this->getRequest();
+        $params      = $request->getQuery();
+        $isRecruiter = $this->Acl()->isRole(User::ROLE_RECRUITER);
+        $jobs        = $repositories->get('Jobs');
+
+        if ($isRecruiter) {
+            $params->set('by', 'me');
+        }
+
+        $params['sort'] = 'dateCreated.date';
+
+        $paginator = $this->paginator('Jobs/Job', $params);
+
+        return [
+            'script' => 'jobs/index/dashboard',
+            'type'   => $this->params('type'),
+            'myJobs' => $jobs,
+            'jobs'   => $paginator
+        ];
     }
 }
