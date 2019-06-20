@@ -44,8 +44,14 @@ $name    = str_replace('Gastro24\Entity\Product\\', '', get_class($product));
         <tr>
             <td>geschaltete Anzeigen:</td>
             <td>
-                <?=$product->getJobCount()?><?php if ($limit = $product->getAvailableJobAmount()): ?> von <?=$limit?><?php endif ?>
-                <?php if ($product->getInactiveJobCount()): ?> (<?=$product->getInactiveJobCount()?> inaktiv)<?php endif ?>
+                Sie haben
+                <a style="text-decoration: underline" href="<?= $this->url('lang/jobs', array(), array(), true)?>">
+                    <?=$product->getJobCount()?>
+                    <?php if ($limit = $product->getAvailableJobAmount()): ?> von <?=$limit?><?php endif ?> Jobs
+                </a> inseriert
+                <?php if ($product->getInactiveJobCount()): ?>
+                    (<?=$product->getInactiveJobCount()?> inaktiv)
+                <?php endif ?>
             </td>
         </tr>
         </tbody>
