@@ -45,6 +45,13 @@ abstract class AbstractProduct implements ProductInterface
      */
     protected $jobCount = 0;
 
+    /**
+     *
+     * @ODM\Field(type="int")
+     * @var int
+     */
+    protected $inActiveJobCount = 0;
+
     protected $jobAmount;
 
     public function __construct()
@@ -85,6 +92,11 @@ abstract class AbstractProduct implements ProductInterface
         return $this->jobCount;
     }
 
+    public function getInactiveJobCount()
+    {
+        return $this->inActiveJobCount;
+    }
+
     public function increaseJobCount()
     {
         if (!$this->hasAvailableJobAmount()) {
@@ -98,6 +110,18 @@ abstract class AbstractProduct implements ProductInterface
     {
         if ($this->jobCount) {
             $this->jobCount -= 1;
+        }
+    }
+
+    public function increaseInactiveJobCount()
+    {
+        $this->inActiveJobCount += 1;
+    }
+
+    public function decreaseInactiveJobCount()
+    {
+        if ($this->inActiveJobCount) {
+            $this->inActiveJobCount -= 1;
         }
     }
 }

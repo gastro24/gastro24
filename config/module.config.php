@@ -40,7 +40,8 @@ return [
         'eventmanager' => [
             'odm_default' => [
                 'subscribers' => [
-                    Repository\Events\InjectJobSnapshotHydratorSubscriber::class
+                    Repository\Events\InjectJobSnapshotHydratorSubscriber::class,
+                    Listener\JobDeletedListener::class
                 ],
             ],
         ],
@@ -529,6 +530,7 @@ return [
             Listener\SingleJobAcceptedListener::class => [ JobEvent::EVENT_JOB_ACCEPTED, true ],
             Listener\AutoApproveChangedJobs::class => [JobEvent::EVENT_STATUS_CHANGED, true],
             Listener\ExpiredJobListener::class => [JobEvent::EVENT_STATUS_CHANGED, true],
+            Listener\UpdateJobCount::class => [JobEvent::EVENT_STATUS_CHANGED, true],
             Listener\AutomaticJobApproval::class => [JobEvent::EVENT_JOB_CREATED, true],
         ]],
 

@@ -43,7 +43,10 @@ $name    = str_replace('Gastro24\Entity\Product\\', '', get_class($product));
         </tr>
         <tr>
             <td>geschaltete Anzeigen:</td>
-            <td><?=$product->getJobCount()?><?php if ($limit = $product->getAvailableJobAmount()): ?> von <?=$limit?><?php endif ?></td>
+            <td>
+                <?=$product->getJobCount()?><?php if ($limit = $product->getAvailableJobAmount()): ?> von <?=$limit?><?php endif ?>
+                <?php if ($product->getInactiveJobCount()): ?> (<?=$product->getInactiveJobCount()?> inaktiv)<?php endif ?>
+            </td>
         </tr>
         </tbody>
     </table>
