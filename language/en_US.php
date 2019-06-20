@@ -36,4 +36,6 @@ return [
     'Organization Name' => 'Company name',
     'Bewerbungen online empfangen' => 'Enable online application',
 
+    'Meine Stellenanzeigen' => 'List of your jobs'
+
 ];

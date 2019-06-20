@@ -66,10 +66,11 @@ class Module implements AssetProviderInterface
         $services     = $e->getApplication()->getServiceManager();
 
         /*
-         * remove Submenu from "applications"
+         * remove Submenu from "applications" and "jobs"
          */
         $config=$services->get('config');
         unset($config['navigation']['default']['apply']['pages']);
+        unset($config['navigation']['default']['jobs']['pages']);
         $services->setAllowOverride(true);
         $services->setService('config', $config);
         $services->setAllowOverride(false);
@@ -267,6 +268,10 @@ class Module implements AssetProviderInterface
     public function onRenderError($e)
     {
         $response = $e->getResponse();
+
+        if (get_class($response) === \Zend\Console\Response::class ) {
+            return;
+        }
         if ($response->getStatusCode() == Response::STATUS_CODE_404) {
             $response->setStatusCode(Response::STATUS_CODE_410);
             $e->setResponse($response);

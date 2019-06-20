@@ -318,6 +318,16 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 <?php if (!$this->noHeader):?>
     <header id="header" role="banner">
           <div class="container navbar">
+              <?php if ($this->auth('role') === Auth\Entity\User::ROLE_RECRUITER) : ?>
+                  <div class="row">
+                    <div class="col-12 text-right header-link">
+                        <a class="link--inverted"
+                           href="<?php echo $this->url('lang/jobs/manage', array('action' => 'edit'), true) ?>">
+                            Stellenanzeige anlegen
+                        </a>
+                    </div>
+                  </div>
+              <?php endif ?>
 		     <div class="row">
                <div class="navbar-header">      
                

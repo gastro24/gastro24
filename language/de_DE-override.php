@@ -39,5 +39,6 @@ return [
     'July' => 'Juli',
     'October' => 'Oktober',
     'December' => 'Dezember',
+    'List of your jobs' => 'Meine Stellenanzeigen'
 
 ];
