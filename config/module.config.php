@@ -208,6 +208,7 @@ return [
              'jobs/manage/approval' => __DIR__ . '/../view/jobs/approval.phtml',
              'jobs/form/preview' => __DIR__ . '/../view/jobs/form/preview.phtml',
              'jobs/index/index.ajax.phtml' => __DIR__ . '/../view/jobs/index/index.ajax.phtml',
+             'jobs/index/dashboard.phtml' => __DIR__ . '/../view/jobs/index/dashboard.phtml',
              'main-navigation' => __DIR__ . '/../view/main-navigation.phtml',
              'auth/index/login-info' => __DIR__ . '/../view/login-info.phtml',
              'gastro24/wordpress-page/index' => __DIR__ . '/../view/gastro24/wordpress-page/index.phtml',
