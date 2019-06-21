@@ -106,6 +106,7 @@ class JobsConsoleController extends AbstractActionController
         $singleQuery = $this->getSingleJobsQuery($date, $orgKeys);
         $jobs = $jobsRepo->findBy($singleQuery, null, (int) $limit, (int) $offset);
         $count = count($jobs);
+        $this->markAsExpired($repositories, $jobs);
         $this->logger->info("Cron: Expire jobs: Mark " . $count . " single jobs as expired.");
 
         // mark abo jobs as expired

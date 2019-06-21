@@ -14,11 +14,20 @@
         <h4 class="modal-title"><?php echo sprintf($this->translate('Edit job "%s"'), $this->job->getTitle()) ?></h4>
 </div>
 <div class="modal-body">
-    <?php echo $this->form(
-                    $this->form->setAttribute('action', $this->url(
-                          'lang/jobs/change-status', ['id' => $job->getId() , 'lang' => $this->params('lang')], ['query' => [ 'id' => $this->job->getId()]], true
-                    ))
-    ); ?>
+
+    <?php if ($this->acl()->isRole(\Auth\Entity\User::ROLE_ADMIN)): ?>
+        <?php echo $this->form(
+            $this->form->setAttribute('action', $this->url(
+                'lang/admin/jobs', ['action' => 'edit'], ['query' => [ 'id' => $this->job->getId()]], true
+            ))
+        ); ?>
+    <?php else: ?>
+        <?php echo $this->form(
+                        $this->form->setAttribute('action', $this->url(
+                              'lang/jobs/change-status', ['id' => $job->getId() , 'lang' => $this->params('lang')], ['query' => [ 'id' => $this->job->getId()]], true
+                        ))
+        ); ?>
+    <?php endif; ?>
 </div>
 <div class="modal-footer">
     <div class="btn-group">
