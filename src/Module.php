@@ -2,6 +2,8 @@
 
 namespace Gastro24;
 
+use Jobs\Controller\TemplateController;
+use Jobs\Entity\Status;
 use Yawik\Composer\AssetProviderInterface;
 use Core\ModuleManager\ModuleConfigLoader;
 use Gastro24\Options\Landingpages;
@@ -272,6 +274,26 @@ class Module implements AssetProviderInterface
         if (get_class($response) === \Zend\Console\Response::class ) {
             return;
         }
+        $matchedRouteName = $e->getRouteMatch()->getMatchedRouteName();
+        $viewModel = $e->getViewModel();
+        $job = null;
+
+        if (isset($viewModel->getChildren()[0]) && isset($viewModel->getChildren()[0]->getVariables()['job'])) {
+            $job = $viewModel->getChildren()[0]->getVariables()['job'];
+        }
+
+        /**
+         * @see TemplateController
+         * overwrite 404 error on expired
+         */
+        if ($matchedRouteName == 'lang/jobs/view-extern' &&
+            $job && $job->getStatus()->getName() == Status::EXPIRED &&
+            $response->getStatusCode() == Response::STATUS_CODE_410) {
+
+            $response->setStatusCode(Response::STATUS_CODE_200);
+            $e->setResponse($response);
+        }
+
         if ($response->getStatusCode() == Response::STATUS_CODE_404) {
             $response->setStatusCode(Response::STATUS_CODE_410);
             $e->setResponse($response);
