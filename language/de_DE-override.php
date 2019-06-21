@@ -39,6 +39,7 @@ return [
     'July' => 'Juli',
     'October' => 'Oktober',
     'December' => 'Dezember',
-    'List of your jobs' => 'Meine Stellenanzeigen'
+    'List of your jobs' => 'Meine Stellenanzeigen',
+    'Your job opening is inactive. You can reactivate it. Chargeable channels are not updated.' => 'Ihre Stellenanzeige ist inaktiv. Sie können die Anzeige wieder aktivieren.'
 
 ];
