@@ -62,6 +62,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
     $orgIsDisabled = true;
 }
 
+$industries = $job->getClassifications()->getIndustries();
 ?>
 <?=$this->jsonLd($this->job)?>
   <style>
@@ -144,6 +145,11 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                     <span><?= $publishDate ?></span>
                     <!-- end published date -->
                 </li>
+                <?php if ($industries->getItems()->count()): ?>
+                    <li class="industries">
+                        <?= $industries->__toString(); ?>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
 
