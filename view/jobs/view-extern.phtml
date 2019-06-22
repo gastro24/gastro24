@@ -90,6 +90,8 @@ if (!$logoUrl) {
 
 $link = $this->job->getLink();
 
+$industries = $job->getClassifications()->getIndustries();
+
 //if (!$link) {
 //    $link = $this->jobUrl($job, ['preview' => true, 'linkOnly' => true]);
 //    $this->isEmbeddable = true;
@@ -332,6 +334,11 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
                                 <span><?= $publishDate ?></span>
                                 <!-- end published date -->
                             </li>
+                            <?php if ($industries->getItems()->count()): ?>
+                                <li class="industries">
+                                    <?= $industries->__toString(); ?>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
 
