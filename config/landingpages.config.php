@@ -33,6 +33,13 @@
 
 
 $options = [
+    
+       'sushi-koch' => [
+          'id' => 1288,
+		  'query' => [ 'q' => 'Sushi'],
+          'text' => 'Sushi Koch Jobs'
+     ],
+    
       'ferienaushilfe' => [
           'id' => 1285,
 		  'query' => [ 'q' => 'Ferienaushilfe'],
