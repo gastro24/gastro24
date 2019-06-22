@@ -194,7 +194,7 @@ class RedirectExternalJobs extends AbstractActionController
     private function buildMetaTitleByJob($job)
     {
         $locations = $job->getLocations()->toArray();
-
+        $orgName = ($job->getOrganization()) ? $job->getOrganization()->getOrganizationName()->getName() : $job->getCompany();
         $date = $job->getDatePublishStart() ?: $job->getDateCreated();
         $dateString = $this->translator->translate($date->format('F')) . ' ' . $date->format('Y');
         if (count($locations) > 0) {
@@ -209,7 +209,10 @@ class RedirectExternalJobs extends AbstractActionController
             return $job->getTitle() . ' - ' . $dateString;
         }
 
-        $title = $job->getTitle() . ' in ' . $city .' - ' . $dateString;
+      //  $title = $job->getTitle() . ' in ' . $city .' - ' . $dateString;
+      
+       $title = $job->getTitle() . ' - Job bei ' . $orgName;
+      
 
         return $title;
     }
