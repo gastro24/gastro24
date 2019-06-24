@@ -43,6 +43,12 @@ return [
               'active_on' => ['lang/jobboard', 'lang/landingPage'],
               'query' => [ 'clear' => 1 ],
           ],
+            'jobs' => [
+                'label' =>  /*@translate*/ 'List of your jobs',
+                'route' => 'lang/jobs',
+                'order' => '30',
+                'resource' => 'Jobs',
+            ],
            'post-a-job' => [
                 'label' => 'Stelle inserieren',
                 'route' => 'lang/wordpress',

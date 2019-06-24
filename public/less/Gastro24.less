@@ -624,7 +624,31 @@ h1.job-overview-title {
     margin-left:5px;
     }
     @media(min-width: @screen-sm) {
-  
+
+        .navbar {
+            .header-link {
+                margin-top: 20px;
+                padding-right: 30px;
+
+                .link {
+                    &--inverted {
+                        background-color: @g24-white;
+                        border: 1px solid @g24-blue;
+                        color: @g24-blue;
+                        font-size:16px;
+                        font-weight:300;
+                        margin-top: 30px;
+                        padding: 10px 15px;
+
+                        &:hover {
+                            background-color: darken(@g24-blue,10%);
+                            color: @g24-white
+                        }
+                    }
+                }
+            }
+        }
+
         #main-navigation {
             font-weight: 600;
 

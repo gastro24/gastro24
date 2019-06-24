@@ -62,6 +62,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
     $orgIsDisabled = true;
 }
 
+$industries = $job->getClassifications()->getIndustries();
 ?>
 <?=$this->jsonLd($this->job)?>
   <style>
@@ -126,9 +127,9 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                 <li class="company">
                     <!-- company name -->
                     <?php if ($org && !$orgIsDisabled): ?>
-                        <a title="Jobs <?= $orgName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
+                        <a title="Jobs <?= $this->organizationName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
                     <?php else: ?>
-                        <strong><?= $orgName ?></strong>
+                        <strong><?= $this->organizationName ?></strong>
                     <?php endif ?>
                     <!-- end company name -->
                 </li>
@@ -144,6 +145,11 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                     <span><?= $publishDate ?></span>
                     <!-- end published date -->
                 </li>
+                <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org)): ?>
+                    <li class="industries">
+                        <?= $industries->__toString(); ?>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
 
@@ -232,7 +238,13 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                 <!-- end apply button -->
             </div>
         </div>
-
+        
+        
+        
+          <p class="text-center">Bitte beziehen Sie sich bei Ihrer Bewerbung auf <strong>gastrojob24.ch</strong>.</p>
+          
+          
+          
         <hr class="job-details-devider"/>
 
         <!-- share buttons -->

@@ -61,6 +61,9 @@ $orgName = $this->jobOrganizationName($this->job);
 if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting())) ) {
     $orgIsDisabled = true;
 }
+
+$industries = $job->getClassifications()->getIndustries();
+get_class()
 ?>
 <?=$this->jsonLd($this->job)?>
 
@@ -101,9 +104,9 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                 <li class="company">
                     <!-- company name -->
                     <?php if ($org && !$orgIsDisabled): ?>
-                        <a title="Jobs <?= $orgName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
+                        <a title="Jobs <?= $this->organizationName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
                     <?php else: ?>
-                        <strong><?= $orgName ?></strong>
+                        <strong><?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?></strong>
                     <?php endif ?>
                     <!-- end company name -->
                 </li>
@@ -119,6 +122,12 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                     <span><?= $publishDate ?></span>
                     <!-- end published date -->
                 </li>
+                <!-- HINT: some jobs has invalid industries, therefore check for empty string -->
+                <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
+                <li class="industries">
+                    <?= $industries->__toString(); ?>
+                </li>
+                <?php endif; ?>
             </ul>
         </div>
 
@@ -207,7 +216,10 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
                 <!-- end apply button -->
             </div>
         </div>
-
+        <p class="text-center">Bitte beziehen Sie sich bei Ihrer Bewerbung auf <strong>gastrojob24.ch</strong>.</p>
+       
+       
+       
         <hr class="job-details-devider"/>
 
         <!-- share buttons -->
@@ -226,46 +238,14 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
         <!-- end similar jobs -->
 
         <?php if (!$preview): ?>
-        <!-- recommended jobs -->
+        <!-- recommended categories
         <div class="grey-description-container">
             <div class="content">
-                <div class="headline"><h2 style="margin-top:5px; margin-bottom:10px">Bewerber interessieren sich auch für</h2></div>
-                <div class="content__inner">
-                    <ul class="column">
-                        <li><a href="/de/jobs/hilfskoch.html">Hilfskoch Jobs</a></li>
-                        <li><a href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li>
-                        <li><a href="/de/jobs/baecker.html">Bäcker Jobs</a></li>
-                        <li><a href="/de/jobs/chef-de-rang.html">Chef de Rang Jobs</a></li>
-                        <li><a href="/de/jobs/diaetkoch.html">Diätkoch Jobs</a></li>
-                        <li><a href="/de/jobs/entremetier.html">Entremetier Jobs</a></li>
-                        <li><a href="/de/jobs/hotelfachmann.html">Hotelfachmann Jobs</a></li>
-                        <li><a href="/de/jobs/jungkoch.html">Jungkoch Jobs</a></li>
-                        <li><a href="/de/jobs/koch.html">Koch Jobs</a></li>
-                        <li><a href="/de/jobs/metzger.html">Metzger Jobs</a></li>
-                        <li><a href="/de/jobs/patissier.html">Patissier Jobs</a></li>
-                        <li><a href="/de/jobs/servicemitarbeiterin.html">Servicemitarbeiterin Jobs</a></li>
-                        <li><a href="/de/jobs/zimmermaedchen.html">Zimmermädchen Jobs</a></li>
-                        <li><a href="/de/jobs/sous-chef.html">Sous-Chef Jobs</a></li>
-                        <li><a href="/de/jobs/systemgastronomiefachmann.html">Systemgastronomiefachmann Jobs</a></li>
-                        <li><a href="/de/jobs/chef-de-partie.html">Chef de Partie Jobs</a></li>
-                        <li><a href="/de/jobs/garde-manger.html">Garde Manger Jobs</a></li>
-                        <li><a href="/de/jobs/tournant.html">Tournant Jobs</a></li>
-                        <li><a href="/de/jobs/kellner.html">Kellner Jobs</a></li>
-                        <li><a href="/de/jobs/pizzaiolo.html">Pizzaiolo Jobs</a></li>
-                        <li><a href="/de/jobs/rezeptionistin.html">Rezeptionistin Jobs</a></li>
-                        <li><a href="/de/jobs/konditor-confiseur.html">Konditor Confiseur Jobs</a></li>
-                        <li><a href="/de/jobs/restaurantmanager.html">Restaurant Manager Jobs</a></li>
-                        <li><a href="/de/jobs/barkeeper.html">Barkeeper Jobs</a></li>
-                        <li><a href="/de/jobs/barista.html">Barista Jobs</a></li>
-                        <li><a href="/de/jobs/sommelier.html">Sommelier Jobs</a></li>
-                        <li><a href="/de/jobs?clear=1">Alle Jobs auf einen Blick</a></li>
-                    </ul>
-                    
-      
-                </div>
-            </div>
+                
+                
+             </div>
         </div>
-        <!-- end recommended jobs -->
+        end recommended categories -->
 
         <!-- recommended jobs by cities
         <div class="grey-description-container">

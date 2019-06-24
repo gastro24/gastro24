@@ -40,7 +40,8 @@ return [
         'eventmanager' => [
             'odm_default' => [
                 'subscribers' => [
-                    Repository\Events\InjectJobSnapshotHydratorSubscriber::class
+                    Repository\Events\InjectJobSnapshotHydratorSubscriber::class,
+                    Listener\JobDeletedListener::class
                 ],
             ],
         ],
@@ -52,6 +53,16 @@ return [
             'widgets' => [
                 'productInfo' => [
                     'script' => 'gastro24/dashboard',
+                ],
+            ],
+        ],
+    ],
+    'Jobs' => [
+        'dashboard' => [
+            'enabled' => true,
+            'widgets' => [
+                'recentJobs' => [
+                    'controller' => Controller\JobController::class
                 ],
             ],
         ],
@@ -93,6 +104,7 @@ return [
             'Gastro24/Jobs/Console' => [Controller\Console\JobsConsoleController::class,'factory'],
             'Gastro24/Jobs/Console/DeleteJobs' => [Controller\Console\DeleteJobsController::class,'factory'],
             'Core/File'    => Factory\Controller\FileControllerFactory::class,
+            Controller\JobController::class => [Controller\JobController::class,'factory'],
         ],
     ],
 
@@ -148,6 +160,7 @@ return [
             View\Helper\JobboardApplyUrl::class => Factory\View\Helper\JobboardApplyUrlFactory::class,
             View\Helper\LogoUri::class => View\Helper\LogoUriFactory::class,
             View\Helper\OrgProfileUrl::class => InvokableFactory::class,
+            View\Helper\IsCrawlerJob::class => InvokableFactory::class,
             View\Helper\IsEmbeddable::class => View\Helper\IsEmbeddableFactory::class,
             View\Helper\JobTemplate::class => View\Helper\JobTemplateFactory::class,
             View\Helper\JobCount::class => View\Helper\JobCountFactory::class,
@@ -171,6 +184,7 @@ return [
             'hydrateOrderObject' => View\Helper\HydrateOrderObject::class,
             'similarJobs' => View\Helper\SimilarJobs::class,
             'jsonLd' => View\Helper\JsonLd::class,
+            'isCrawlerJob' => View\Helper\IsCrawlerJob::class,
         ],
         'delegators' => [
             'jobUrl' => [
@@ -205,6 +219,7 @@ return [
              'jobs/jobboard/index' => __DIR__ . '/../view/jobs/index.phtml',
              'jobs/manage/approval' => __DIR__ . '/../view/jobs/approval.phtml',
              'jobs/form/preview' => __DIR__ . '/../view/jobs/form/preview.phtml',
+             'jobs/index/index.ajax.phtml' => __DIR__ . '/../view/jobs/index/index.ajax.phtml',
              'main-navigation' => __DIR__ . '/../view/main-navigation.phtml',
              'auth/index/login-info' => __DIR__ . '/../view/login-info.phtml',
              'gastro24/wordpress-page/index' => __DIR__ . '/../view/gastro24/wordpress-page/index.phtml',
@@ -248,10 +263,12 @@ return [
              'gastro24/jobs/view-mcdonalds' => __DIR__ . '/../view/jobs/view-mcdonalds.phtml',
              'gastro24/jobs/view-zfv' => __DIR__ . '/../view/jobs/view-zfv.phtml',
              'gastro24/jobs/view-intern' => __DIR__ . '/../view/jobs/view-intern.phtml',
+             'gastro24/job/dashboard' => __DIR__ . '/../view/jobs/index/dashboard.phtml',
              'gastro24/create-single-job/index' => __DIR__ . '/../view/jobs/create-single-job.phtml',
              'gastro24/form/create-single-job' => __DIR__ . '/../view/jobs/create-single-job-form.phtml',
              'gastro24/form/job-details-fieldset' => __DIR__ . '/../view/jobs/job-details-fieldset.phtml',
              'gastro24/dashboard' => __DIR__ . '/../view/gastro24/dashboard.phtml',
+             'gastro24/job/change-status' => __DIR__ . '/../view/jobs/admin/edit.phtml',
              'core/index/dashboard' => __DIR__ . '/../view/gastro24/main-dashboard.phtml',
              'gastro24/list/index' => __DIR__ . '/../view/orders/list/index.phtml',
              'layout/application-form' => __DIR__ . '/../view/layout-application-form.phtml',
@@ -387,13 +404,24 @@ return [
                                         'action' => 'index'
                                     ]
                                 ],
-                            ]
+                            ],
+                            'change-status' => [
+                                'type' => 'Literal',
+                                'options' => [
+                                    'route' => '/status',
+                                    'defaults' => [
+                                        'controller' => Controller\JobController::class,
+                                        'action' => 'changeStatus'
+                                    ]
+                                ],
+                            ],
                         ],
+
                     ],
                     'jobboard' => [
                         'options' => [
                             'route' => '/jobs',
-                        ]
+                        ],
                     ],
                     'organizations-profiles' => [
                                 'type' => 'Regex',
@@ -438,6 +466,7 @@ return [
                     ],
                 ],
             ],
+
         ],
     ],
 
@@ -516,6 +545,7 @@ return [
             Listener\SingleJobAcceptedListener::class => [ JobEvent::EVENT_JOB_ACCEPTED, true ],
             Listener\AutoApproveChangedJobs::class => [JobEvent::EVENT_STATUS_CHANGED, true],
             Listener\ExpiredJobListener::class => [JobEvent::EVENT_STATUS_CHANGED, true],
+            Listener\UpdateJobCount::class => [JobEvent::EVENT_STATUS_CHANGED, true],
             Listener\AutomaticJobApproval::class => [JobEvent::EVENT_JOB_CREATED, true],
         ]],
 
