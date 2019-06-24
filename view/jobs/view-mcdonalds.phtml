@@ -140,7 +140,7 @@ $industries = $job->getClassifications()->getIndustries();
                     <span><?= $publishDate ?></span>
                     <!-- end published date -->
                 </li>
-                <?php if ($industries->getItems()->count()): ?>
+                <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org)): ?>
                     <li class="industries">
                         <?= $industries->__toString(); ?>
                     </li>

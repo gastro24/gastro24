@@ -334,7 +334,7 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
                                 <span><?= $publishDate ?></span>
                                 <!-- end published date -->
                             </li>
-                            <?php if ($industries->getItems()->count()): ?>
+                            <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org)): ?>
                                 <li class="industries">
                                     <?= $industries->__toString(); ?>
                                 </li>
