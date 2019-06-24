@@ -160,6 +160,7 @@ return [
             View\Helper\JobboardApplyUrl::class => Factory\View\Helper\JobboardApplyUrlFactory::class,
             View\Helper\LogoUri::class => View\Helper\LogoUriFactory::class,
             View\Helper\OrgProfileUrl::class => InvokableFactory::class,
+            View\Helper\IsCrawlerJob::class => InvokableFactory::class,
             View\Helper\IsEmbeddable::class => View\Helper\IsEmbeddableFactory::class,
             View\Helper\JobTemplate::class => View\Helper\JobTemplateFactory::class,
             View\Helper\JobCount::class => View\Helper\JobCountFactory::class,
@@ -183,6 +184,7 @@ return [
             'hydrateOrderObject' => View\Helper\HydrateOrderObject::class,
             'similarJobs' => View\Helper\SimilarJobs::class,
             'jsonLd' => View\Helper\JsonLd::class,
+            'isCrawlerJob' => View\Helper\IsCrawlerJob::class,
         ],
         'delegators' => [
             'jobUrl' => [
