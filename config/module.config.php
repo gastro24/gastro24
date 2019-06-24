@@ -324,6 +324,7 @@ return [
             'Gastro24/JobPdfUpload' => Form\JobPdfFactory::class,
             'Auth\Form\Register' => \Gastro24\Factory\Form\RegisterFactory::class,
             'Jobs/JobboardSearch' => \Gastro24\Factory\Form\JobboardSearchFactory::class,
+            'LocationSelect' => \Gastro24\Factory\Form\GeoSelectFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
