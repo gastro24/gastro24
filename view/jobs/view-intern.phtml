@@ -63,6 +63,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
 }
 
 $industries = $job->getClassifications()->getIndustries();
+get_class()
 ?>
 <?=$this->jsonLd($this->job)?>
 
@@ -121,7 +122,8 @@ $industries = $job->getClassifications()->getIndustries();
                     <span><?= $publishDate ?></span>
                     <!-- end published date -->
                 </li>
-                <?php if ($industries->getItems()->count()): ?>
+                <!-- HINT: some jobs has invalid industries, therefore check for empty string -->
+                <?php if ($industries->getItems()->count() && $industries->__toString() != ""): ?>
                 <li class="industries">
                     <?= $industries->__toString(); ?>
                 </li>
