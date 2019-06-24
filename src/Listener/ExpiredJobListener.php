@@ -35,6 +35,10 @@ class ExpiredJobListener
         $orderRepo = $this->repositories->get('Orders');
         $job = $event->getJobEntity();
 
+        if (!$event->getParam('status')) {
+            return;
+        }
+
         if (Status::EXPIRED != $event->getParam('status')->getName()) {
             return;
         }
