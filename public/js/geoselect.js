@@ -36,7 +36,7 @@
         var name = "";
 
         if (data.city == 'Bundesland') {
-            data.city = 'Karton'
+            data.city = 'Kanton'
         }
 
         if (data.postalCode) {
