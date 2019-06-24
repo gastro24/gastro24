@@ -13,7 +13,11 @@ $options = $this->services('Core/Options');
 $lang = $this->params('lang');
 
 $routeParams = $this->params()->fromRoute();
-$routeClass = strtolower(str_replace('/', '-', $routeParams['controller'] . '-' . $routeParams['action']));
+$routeClass = '';
+if (isset($routeParams['controller']) && isset($routeParams['action'])) {
+    $routeClass = strtolower(str_replace(['/', '\\'], '-', $routeParams['controller'] . '-' . $routeParams['action']));
+}
+
 
 // See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
 
