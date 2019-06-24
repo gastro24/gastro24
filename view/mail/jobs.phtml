@@ -112,10 +112,10 @@ Neue Jobs warten auf Sie</h3>
              
                             <p><a href="<?= $jobUrl ?>"><?= $job->getTitle() ?></a><br />
                         
-                                <?php if ($hasOrganization
-                                          && $organization->getOrganizationName()->getName()
-                                ): ?>
+                                <?php if ($hasOrganization && $organization->getOrganizationName()->getName()): ?>
                                     <?= $organization->getOrganizationName()->getName() ?>,
+                                <?php elseif(!$hasOrganization): ?>
+                                    <?= $this->jobOrganizationName($job)?>,
                                 <?php endif ?>
                                 <?= $job->getLocation() ?>, (<?php
                                 if ($job->getDatePublishStart()
