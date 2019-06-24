@@ -313,6 +313,7 @@ return [
         'invokables' => [
             'Jobs/Description' => 'Gastro24\Form\JobsDescription',
             'Jobs/PreviewFieldset' => Form\JobPreviewFieldsetDelegator::class,
+            'Applications/Attributes' => Form\Applications\Attributes::class, // only needed until YAWIK fixed error
         ],
         'factories' => [
             Form\CreateSingleJobForm::class => InvokableFactory::class,
