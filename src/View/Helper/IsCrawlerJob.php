@@ -18,6 +18,10 @@ class IsCrawlerJob extends AbstractHelper
      */
     public function __invoke($org)
     {
+        if (!$org) {
+            return false;
+        }
+
         // TODO: read crawler ids from options
         $crawlerOrganizations = [
             '5a0809397bb2b582267c7a97', // Adecco
