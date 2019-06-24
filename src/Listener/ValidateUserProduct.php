@@ -43,7 +43,9 @@ class ValidateUserProduct
 
         $product = $product->getProduct();
 
-        if (!$product->hasAvailableJobAmount()) {
+        $snapShot = $event->getForm()->getEntity();
+        //$status = ($snapShot->getStatus()) ?$snapShot->getStatus()->getName() : '';
+        if (!$product->hasAvailableJobAmount() && !$snapShot->getStatus()) {
             return 'Sie haben bereits alle Ihre Job-Slots verbraucht.';
         }
 
