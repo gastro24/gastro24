@@ -49,7 +49,7 @@ class UpdateJobCount
         /** @var AbstractProduct $product */
         $product = $productWrapper->getProduct();
 
-        if (Status::ACTIVE == $event->getParam('status')->getName() && Status::INACTIVE == $job->getStatus()) {
+        if ($event->getParam('status') && (Status::ACTIVE == $event->getParam('status')->getName()) && Status::INACTIVE == $job->getStatus()) {
             $product->increaseInactiveJobCount();
         }
 
