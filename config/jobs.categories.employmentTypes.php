@@ -24,6 +24,7 @@
 
 return [
     'name' => 'Employment Types',
+    'value' => 'employmentTypes',
     'children' => [
         'Teilzeit',
         'Vollzeit',

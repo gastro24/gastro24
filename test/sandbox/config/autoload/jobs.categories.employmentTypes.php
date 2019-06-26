@@ -33,12 +33,16 @@
 
 return [
     'name' => 'Employment Types',
+    'value' => 'employmentTypes',
     'children' => [
-        'Contract',
-        'Permanent',
-        'Freelancer',
-        'Internship',
-        'Apprenticeship'
+        'Teilzeit',
+        'Vollzeit',
+        'Jahresstelle',
+        'Saison Job',
+        'Per sofort',
+        'Lehrstelle',
+        'Aushilfe',
+        'Praktikum'
     ]
 ];
 

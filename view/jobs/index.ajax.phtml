@@ -357,7 +357,10 @@ $container->searchTerm = $searchTerm;
 </div>
 
 <?php
+    $queryGet = $this->params()->fromQuery();
     $hasPartTwo = (isset($parts[2]) && "" != trim($parts[2]));
+    $searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
+    $hasRegion= isset($queryGet['region_MultiString']);
 ?>
 <?php if (($searchTerm && $hasPartTwo) || ($hasRegion && $hasPartTwo)): ?>
 <div class="col-md-12 job-overview-description-container">

@@ -115,7 +115,7 @@ class JobController extends AbstractActionController implements ContainerAwareIn
             $params->set('by', 'me');
         }
 
-        $params['sort'] = 'dateCreated.date';
+        $params['sort'] = '-dateCreated.date';
 
         $paginator = $this->paginator('Jobs/Job', $params);
 
