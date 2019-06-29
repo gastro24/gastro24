@@ -352,38 +352,28 @@
 
     }
   }
+  
+  
+ .job-navigation div:first-child {
+    display: none;
+}
 
-  .job-navigation {
-    a {
-      float:left;
-      line-height:15px;
-      max-width: 75%;
-      min-width:195px;
-      height:30px;
-      margin:0;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
+.job-navigation div:nth-child(2) {
+    width:100%;
+	float:left;
+}
 
-    span {
-      flex-direction:  none;
-      float:right;
+.job-navigation span {
+display:block;
+float:none
+}
+.job-navigation span a:nth-child(2) {
+float:right
+}
 
-      a {
-        height: 30px;
-        margin: 0;
-        min-width: 30px;
-        padding: 7px 0;
-        width: 30px;
-
-        &:first-child {
-          margin-bottom: 0;
-          margin-right: 0;
-        }
-      }
-    }
-  }
-
+ 
+ 
+ 
   .grey-description-container {
     &.similar-jobs {
       .row {
@@ -396,6 +386,22 @@
     }
   }
 }
+@media(max-width: @screen-xs) {
+      .panel__job-detail .teaser__job-detail .wrapper__logo {
+      
+  height:80px;
+width:80px;
+margin-top:15px;
+box-shadow:none;
+     -webkit-box-shadow: 0 0 2px #666;
+  }
+    
+    
+}
+
+
+
+
 /* END JOB DETAIL PAGE */
 
 /* EDIT JOB WIZARD */
