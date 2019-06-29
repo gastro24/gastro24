@@ -358,18 +358,38 @@
     display: none;
 }
 
-.job-navigation div:nth-child(2) {
-    width:100%;
-	float:left;
-}
+ .job-navigation {
+    a {
+      float:left;
+      line-height:15px;
+      max-width: 75%;
+      min-width:195px;
+      height:30px;
+      margin:0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
 
-.job-navigation span {
-display:block;
-float:none
-}
-.job-navigation span a:nth-child(2) {
-float:right
-}
+    span {
+      flex-direction:  none;
+      float:right;
+
+      a {
+        height: 30px;
+        margin: 0;
+        min-width: 30px;
+        padding: 7px 0;
+        width: 30px;
+
+        &:first-child {
+          margin-bottom: 0;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+
 
  
  
