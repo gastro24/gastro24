@@ -124,6 +124,7 @@ class CreateSingleJobForm extends Form implements InputFilterProviderInterface, 
         ]);
 
         $detailsFieldset = $this->get('details');
+        $detailsFieldset->remove('pdf');
         $detailsFieldset->remove('mode');
         $detailsFieldset->add([
             'type' => 'hidden',

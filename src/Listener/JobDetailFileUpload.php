@@ -51,7 +51,7 @@ class JobDetailFileUpload
         $data    = ArrayUtils::merge($_POST, $files);
 
 
-        if ('pdf' == $mode) {
+        if (isset($files['details']['pdf'])) {
             return $this->uploadPdf($event, $data);
         }
 

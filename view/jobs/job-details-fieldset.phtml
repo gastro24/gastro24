@@ -153,29 +153,38 @@ $modeLabels = $mode->getOption('labels');
             <!-- end single job creation - only html mode -->
 
             <?=$this->formRow($fieldset->get('uri'))?>
-            <?php $input = $this->formRow($fieldset->get('pdf'));
+
+            <!-- HINT: single job does not have pdf input -->
+            <?php if($fieldset->has('pdf')) {
+                $input = $this->formRow($fieldset->get('pdf'));
                 if ($value = $fieldset->get('pdf')->getValue()) {
                     $input = str_replace(
-                            '<div class="col-md-9" id="details-pdf-span">',
-                            '<div class="col-md-9" id="details-pdf-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
+                        '<div class="col-md-9" id="details-pdf-span">',
+                        '<div class="col-md-9" id="details-pdf-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
                             <a href="?ajax=jobdetailsdelete&file=' .basename($value). '" class="file-delete btn btn-default btn-xs">
                     <span class="yk-icon yk-icon-minus"></span>
                 </a>
                 <input type="hidden" value="' . $value . '" name="pdf_uri"></div>',
-                            $input
+                        $input
                     );
                     $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);
 
                 }
                 echo $input;
-
+            }
             ?>
 
             <!-- Logo and banner fields -->
             <?php
                 $inputLogo = $this->formRow($fieldset->get('logo'));
+                $logoValue = $fieldset->get('logo')->getValue();
 
-                if ($logoValue = $fieldset->get('logo')->getValue()) {
+                /* HINT: form throws error - returns empty array*/
+                if (is_array($logoValue) && $logoValue['name'] == '') {
+                    $logoValue = null;
+                }
+
+                if ($logoValue) {
                     $inputLogo = str_replace(
                         '<div class="col-md-9" id="details-logo-span">',
                         '<div class="col-md-9" id="details-logo-span"><div class="file-info"><a href="' . $logoValue . '" target="_blank">' . basename($logoValue) . '</a>
@@ -189,22 +198,27 @@ $modeLabels = $mode->getOption('labels');
                     $inputLogo = str_replace('<input type="file"', '<input type="file" style="display:none;"', $inputLogo);
                 }
 
-
                 echo $inputLogo;
             ?>
 
             <?php
                 $input = $this->formRow($fieldset->get('image'));
+                $imageValue = $fieldset->get('image')->getValue();
 
-                if ($value = $fieldset->get('image')->getValue()) {
+                /* HINT: form throws error - returns empty array*/
+                if (is_array($imageValue) && $imageValue['name'] == '') {
+                    $imageValue = null;
+                }
+
+                if ($imageValue) {
                     $input = str_replace(
                         '<div class="col-md-9" id="details-image-span">',
-                        '<div class="col-md-9" id="details-image-span"><div class="file-info"><a href="' . $value . '" target="_blank">' . basename($value) . '</a>
-                            <a href="/' . $value . '?do=delete" class="file-delete btn btn-default btn-xs">
+                        '<div class="col-md-9" id="details-image-span"><div class="file-info"><a href="' . $imageValue . '" target="_blank">' . basename($imageValue) . '</a>
+                            <a href="/' . $imageValue . '?do=delete" class="file-delete btn btn-default btn-xs">
                                 <span class="yk-icon yk-icon-minus"></span>
                             </a>
-                            <input type="hidden" value="' . basename(dirname($value)) . '" name="details[image_id]">
-                            <input type="hidden" value="' . $value . '" name="details[image_url]"></div>',
+                            <input type="hidden" value="' . basename(dirname($imageValue)) . '" name="details[image_id]">
+                            <input type="hidden" value="' . $imageValue . '" name="details[image_url]"></div>',
                         $input
                     );
                     $input = str_replace('<input type="file"', '<input type="file" style="display:none;"', $input);

@@ -52,8 +52,8 @@ class CreateSingleJob extends AbstractActionController
         if (isset($session->values)) {
             $values = unserialize($session->values);
             //$values = array_merge_recursive($values, $this->getRequest()->getFiles()->toArray());
-            $values['details']['logo'] = $values['details']['logo_url'];
-            $values['details']['image'] = $values['details']['image_url'];
+            $values['details']['logo'] = isset($values['details']['logo_url']) ? $values['details']['logo_url'] : null;
+            $values['details']['image'] = isset($values['details']['image_url']) ? $values['details']['image_url'] : null;
             $values['classifications'] = [
                 'employmentTypes' => $values['classifications']->getEmploymentTypes()->getValues()
             ];
