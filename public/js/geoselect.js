@@ -96,7 +96,8 @@
         if (initialValue.length) {
             for (var i=initialValue.length-1; i>=0; i-=1) {
                 console.debug("initVal " + i + ": "+ initialValue[i]);
-                var $option = $('<option selected>Test</option>');
+                var tmpText = JSON.parse(initialValue[i]).city;
+                var $option = $('<option selected>'+ tmpText +'</option>');
                 $option.val(initialValue[i]);
 
                 var $data = initialValue[i];
