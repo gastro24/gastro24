@@ -83,6 +83,7 @@ return [
             Listener\ExpiredJobListener::class => Listener\ExpiredJobListenerFactory::class,
             Listener\AutomaticJobApproval::class => Listener\AutomaticJobApprovalFactory::class,
             'Gastro24\Validator\IframeEmbeddableUri' => InvokableFactory::class,
+            Listener\DeleteJob::class => Listener\DeleteJobFactory::class,
         ],
         'aliases' => [
             'Orders\Form\Listener\InjectInvoiceAddressInJobContainer' => Listener\VoidListener::class,
@@ -90,6 +91,7 @@ return [
             'Orders\Form\Listener\DisableJobInvoiceAddress' => Listener\VoidListener::class,
             'Orders/Listener/BindInvoiceAddressEntity' => Listener\VoidListener::class,
             'Orders/Listener/CreateJobOrder' => Listener\CreateJobOrder::class,
+            \Jobs\Listener\DeleteJob::class => Listener\DeleteJob::class
         ],
     ],
 
@@ -552,6 +554,7 @@ return [
         ]],
 
         'Core/Ajax/Events' => [ 'listeners' => [
+            Listener\DeleteJob::class => ['jobs.delete', true],
             Listener\JobDetailFileUpload::class  => [
                 'events' => ['jobdetailsupload', 'jobdetailsdelete' => 'deletePdfFile'],
                 'lazy'   => true
