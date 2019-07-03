@@ -31,7 +31,8 @@
         "yawik/company-registration": ">=0.8",
         "yawik/organizations": "^0.33",
         "yawik/composer-plugin": "^1.0",
-        "yawik/install": "^0.33.8"
+        "yawik/install": "^0.33.8",
+        "google/apiclient": "^2.0"
     },
     "autoload": {
         "psr-4": {
