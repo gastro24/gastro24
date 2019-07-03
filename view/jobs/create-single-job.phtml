@@ -130,7 +130,9 @@ $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->det
 
                                     <!-- qualifications -->
                                     <div class="position">
-                                        <?=$this->details['qualifications']?>
+                                        <?php if(isset($this->details['qualifications'])): ?>
+                                            <?=$this->details['qualifications']?>
+                                        <?php endif; ?>
                                     </div>
 
                                     <!-- benefits -->
