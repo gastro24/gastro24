@@ -10,6 +10,7 @@
 $this->headScript()->appendFile($this->basePath('/dist/js/iframeResizer.js'));
 
 $job = $this->element->getObject(); /* @var \Jobs\Entity\JobInterface $job */
+$snapshotId = null;
 
 if ($job instanceOf \Jobs\Entity\JobSnapshot) {
     $snapshotId = $job->getSnapshotId();
