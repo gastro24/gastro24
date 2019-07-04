@@ -383,5 +383,11 @@ $container->searchTerm = $searchTerm;
 </div>
 <?php endif ?>
 
+<!-- lazy loaded javascript -->
+<?php
+echo $this->inlineScript()->appendFile($this->basePath('modules/Gastro24/jobs.search.js'));
+?>
+<!-- end lazy loaded javascript -->
+
 
 
