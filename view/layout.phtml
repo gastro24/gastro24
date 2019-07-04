@@ -18,35 +18,21 @@ if (isset($routeParams['controller']) && isset($routeParams['action'])) {
     $routeClass = strtolower(str_replace(['/', '\\'], '-', $routeParams['controller'] . '-' . $routeParams['action']));
 }
 
-
 // See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
-
 $notifications = $this->partial('core/notifications');
 
 // set default page title
 //$this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoEscape(false);
 $this->headTitle()->setAutoEscape(false);
 
-
 // set default keywords
-
 $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
-$this->configHeadScript()->prependScript('var lang="' . $lang . '"; var basePath="' . $this->basePath() . '";');
-$this->configHeadScript()->prependFile($this->basepath('dist/js/core.min.js'))->setAutoEscape(false);
-
 $this->headLink()->prependStylesheet($this->basePath() . '/modules/Gastro24/Gastro24.css')->setAutoEscape(false);
 $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
-
-$langScript = 'dist/locales/' . $lang . '.js';
-$this->configHeadScript()->appendFile($this->basePath($langScript));
-
 $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials.css'));
 $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css'));
-
-$this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '";'
-    . 'var basePath="' . $this->basePath() . '";');
 
 ?>
 
@@ -60,9 +46,12 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
     <meta name="theme-color" content="#2e5b93">
     <?php echo $this->headTitle() ?>
     <?php echo $this->headMeta() ?>
-    <?php echo $this->configHeadScript() ?>
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
+    <script type="text/javascript" src="<?= $this->basepath('dist/js/core.min.js') ?>"></script>
+    <script>
+        var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
+    </script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -422,9 +411,12 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
 <!-- lazy loaded javascript -->
 <?php
+    $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
-        ->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
-        ->appendFile($this->basePath('modules/Gastro24/index.js'));
+        ->appendFile($this->basePath('/dist/js/index-main.min.js'))
+        ->appendFile($this->basePath($langScript));
+
+    echo $this->configHeadScript()
 ?>
 <!-- end lazy loaded javascript -->
 </body>

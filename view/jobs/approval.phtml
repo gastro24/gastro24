@@ -119,9 +119,7 @@ if ($isSnapshot) {
     </div>
   </div>
 <!-- iframe resizer -->
-<script>
-    iFrameResize({ log: false }, '#iframe1');
-    iFrameResize({ log: false }, '#iframe2');
-    iFrameResize({ log: false }, '#iframe3');
-</script>
+<?= $this->configHeadScript()->appendScript('iFrameResize({ log: false }, "#iframe1")')
+    ->appendScript('iFrameResize({ log: false }, "#iframe2")')
+    ->appendScript('iFrameResize({ log: false }, "#iframe3")'); ?>
 <!-- end iframe resizer -->
