@@ -31,23 +31,18 @@ $this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoE
 $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
-$this->configHeadScript()->prependScript('var lang="' . $lang . '";'
-                                         . 'var basePath="' . $this->basePath() . '";');
+//$this->configHeadScript()->prependScript('var lang="' . $lang . '";'
+//                                         . 'var basePath="' . $this->basePath() . '";');
 
 $this->headLink()->prependStylesheet($this->basePath('modules/Gastro24/Gastro24.css'))->setAutoEscape(false);
 $this->headLink()->prependStylesheet($this->basePath('/dist/css/jquery-ui-1-12.min.css'));
 $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
+
 $this->configHeadScript()->prependFile($this->basepath('dist/js/core.min.js'))->setAutoEscape(false);
-$this->configHeadScript()->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
-                         ->appendFile($this->basePath('modules/Gastro24/index.js'))
-                         ->appendFile($this->basePath('modules/Gastro24/jobs.search.js'))
-                         ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'));
 
 $langScript = 'dist/locales/' . $lang . '.js';
-$this->configHeadScript()->appendFile($this->basePath($langScript));
-
-$this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '";'
-    . 'var basePath="' . $this->basePath() . '";');
+$this->configHeadScript()->appendFile($this->basePath($langScript))
+    ->appendScript('var lang="' . $this->params('lang') . '";' . 'var basePath="' . $this->basePath() . '";');
 
 
 
@@ -403,6 +398,14 @@ $this->headTitle($this->translate('Home'));
 </main>
 <!-- /container -->
 <?php echo $this->partial("footer") ?>
+    <!-- lazy loaded javascript -->
+    <?php
+        echo $this->inlineScript()->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+            ->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
+            ->appendFile($this->basePath('modules/Gastro24/index.js'))
+            ->appendFile($this->basePath('modules/Gastro24/jobs.search.js'));
+    ?>
+    <!-- end lazy loaded javascript -->
 <?php echo $this->partial("piwik") ?>
 </body>
 </html>

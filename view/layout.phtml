@@ -33,15 +33,11 @@ $this->headTitle()->setAutoEscape(false);
 $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
-$this->configHeadScript()->prependScript('var lang="' . $lang . '";'
-                                         . 'var basePath="' . $this->basePath() . '";');
+$this->configHeadScript()->prependScript('var lang="' . $lang . '"; var basePath="' . $this->basePath() . '";');
+$this->configHeadScript()->prependFile($this->basepath('dist/js/core.min.js'))->setAutoEscape(false);
 
 $this->headLink()->prependStylesheet($this->basePath() . '/modules/Gastro24/Gastro24.css')->setAutoEscape(false);
 $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
-
-$this->configHeadScript()->prependFile($this->basepath('dist/js/core.min.js'))->setAutoEscape(false);
-$this->configHeadScript()->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
-    ->appendFile($this->basePath('modules/Gastro24/index.js'));
 
 $langScript = 'dist/locales/' . $lang . '.js';
 $this->configHeadScript()->appendFile($this->basePath($langScript));
@@ -424,5 +420,12 @@ $this->configHeadScript()->appendScript('var lang="' . $this->params('lang') . '
 </main>
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
+<!-- lazy loaded javascript -->
+<?php
+    echo $this->inlineScript()->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+        ->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
+        ->appendFile($this->basePath('modules/Gastro24/index.js'));
+?>
+<!-- end lazy loaded javascript -->
 </body>
 </html>

@@ -7,17 +7,12 @@
  * @copyright  2013 - 2017 Cross Solution <http://cross-solution.de>
  */
 $this->headTitle($this->article->title->rendered);
-$this->configHeadScript()->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'));
-$this->configHeadScript()->appendFile($this->basePath('modules/Gastro24/index.js'));
-
 ?>
+<h1><?=$this->article->title->rendered?></h1>
+<hr />
 
-    
-            <h1><?=$this->article->title->rendered?></h1>
-             <hr />
-
-            <div class="wp-content">
-            <?=$this->article->content->rendered;?>
-           </div>
+<div class="wp-content">
+    <?=$this->article->content->rendered;?>
+</div>
 
 

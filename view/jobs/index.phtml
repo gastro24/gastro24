@@ -4,16 +4,9 @@ $this->headLink()->prependStylesheet($this->basePath('modules/Gastro24/Gastro24.
 $this->headLink()->prependStylesheet($this->basePath('/dist/css/jquery-ui-1-12.min.css'));
 
 $this->headScript()->appendFile($this->basepath('/modules/Core/js/core.pagination-container.js'))
-     ->appendFile($this->basePath('modules/Core/js/core.forms.js'))
-
-     ->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
-     ->appendFile($this->basePath('modules/Gastro24/jobs.js'))
-     ->appendFile($this->basePath('modules/Gastro24/jobs.search.js'))
-     ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'));
-
-    $this->headScript()
-                       ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));
-
+    ->appendFile($this->basePath('modules/Core/js/core.forms.js'))
+    ->appendFile($this->basePath('modules/Gastro24/jobs.js'))
+    ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));
 ?>
 
 <?php
