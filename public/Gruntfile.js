@@ -40,7 +40,14 @@ module.exports = function(grunt) {
                 {
                     src: nodeModulesPath + "/iframe-resizer/js/iframeResizer.contentWindow.min.js",
                     dest: targetDir+"/dist/js/iframeResizer.contentWindow.min.js"
-                }
+                },
+                {
+                    src: [
+                        moduleDir + "/js/jquery.matchHeight.js",
+                        moduleDir + "/js/index.js",
+                    ],
+                    dest: targetDir+"/dist/js/index-main.js"
+                },
               ]
           },
       },
@@ -57,6 +64,10 @@ module.exports = function(grunt) {
                   {
                       src: moduleDir+'/jquery-ui-1-12/jquery-ui-1-12.js',
                       dest: targetDir+'/dist/js/jquery-ui-1-12.min.js',
+                  },
+                  {
+                      src: targetDir+'/dist/js/index-main.js',
+                      dest: targetDir+'/dist/js/index-main.min.js',
                   }
               ]
           },

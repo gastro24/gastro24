@@ -338,8 +338,7 @@ $this->headTitle($this->translate('Home'));
     <?php
         $langScript = 'dist/locales/' . $lang . '.js';
         echo $this->inlineScript()->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
-            ->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
-            ->appendFile($this->basePath('modules/Gastro24/index.js'))
+            ->appendFile($this->basePath('/dist/js/index-main.min.js'))
             ->appendFile($this->basePath('modules/Gastro24/jobs.search.js'))
             ->appendFile($this->basePath($langScript));
         echo $this->configHeadScript() ;
