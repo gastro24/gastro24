@@ -7,45 +7,25 @@
  * @copyright (c) 2013 - 2016 Cross Solution (http://cross-solution.de)
  * @license   Gastrojobs
  */
- 
-
 
 /* @var $options \Core\Options\ModuleOptions */
 $options = $this->services('Core/Options');
 $languages = $options->getSupportedLanguages();
 $lang = $this->params('lang');
 
-
-
-
 // See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
-
 $notifications = $this->partial('core/notifications');
 
 // set default page title
-
 $this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoEscape(false);
 
 // set default keywords
-
 $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
-
-//$this->configHeadScript()->prependScript('var lang="' . $lang . '";'
-//                                         . 'var basePath="' . $this->basePath() . '";');
 
 $this->headLink()->prependStylesheet($this->basePath('modules/Gastro24/Gastro24.css'))->setAutoEscape(false);
 $this->headLink()->prependStylesheet($this->basePath('/dist/css/jquery-ui-1-12.min.css'));
 $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
-
-$this->configHeadScript()->prependFile($this->basepath('dist/js/core.min.js'))->setAutoEscape(false);
-
-$langScript = 'dist/locales/' . $lang . '.js';
-$this->configHeadScript()->appendFile($this->basePath($langScript))
-    ->appendScript('var lang="' . $this->params('lang') . '";' . 'var basePath="' . $this->basePath() . '";');
-
-
-
 ?>
 
 <?php echo $this->doctype(); ?>
@@ -61,10 +41,13 @@ $this->configHeadScript()->appendFile($this->basePath($langScript))
     <title>Gastrojob24: Jobbörse für Gastro Jobs & Hotel Jobs</title>  
     <meta name="description" content="Gastronomie Jobbörse mit <?= $this->gastroJobCount() ?> top-aktuellen Gastro Jobs, Hotel Jobs und mehr. Jetzt Traumjob finden - auf einen Klick!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
 
-    <?php echo $this->configHeadScript() ?>
-  
+
+    <script type="text/javascript" src="<?= $this->basepath('dist/js/core.min.js') ?>"></script>
+    <script>
+        var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
+    </script>
+
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>  
     <!-- Google Tag Manager -->
@@ -181,39 +164,7 @@ margin: 15px 0 35px 0;
 }
 
 </style>
-<script>
-$( document ).ready(function() {
-   
-   $('.berufe > li:nth-child(4)').after("<li class='separator' />");
-   
 
-    var i = 0;
-    $(".berufe > li ").each(function(i, k) {
-       if(++i > 5) $(k).addClass("hide");
-	   
-    });
-	
-	$(".separator").click(function() {
-          $('.berufe > li').removeClass("hide");
-		  $('.berufe > li.separator').addClass("hide");
-		 
-      });
-	
-  $('.regionlist > li:nth-child(4)').after("<li class='separator2' />");
-   
-
-    var i = 0;
-    $(".regionlist > li ").each(function(i, k) {
-       if(++i > 5) $(k).addClass("hide");
-	   
-    });
-	
-	$(".separator2").click(function() {
-        $('.regionlist > li').removeClass("hide");
-        $('.regionlist > li.separator2').addClass("hide");
-    });
-});
-</script>  
     
     <script type="application/ld+json">
         {
@@ -232,9 +183,8 @@ $( document ).ready(function() {
 </head>
 <body class="home startpage.phtml">
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCDJ26Q"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCDJ26Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
 <div id="wrapper" style="margin-bottom:100px">
     <div id="bg-full">
@@ -291,15 +241,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 $queries = $this->services(\Gastro24\Options\Landingpages::class);
 $this->headTitle($this->translate('Home'));
-
 ?>
 
 <main id="content">
     
     <?php echo $notifications?>
-    
-
-
 
     <div class="container" style="max-width:950px">
         
@@ -347,9 +293,6 @@ $this->headTitle($this->translate('Home'));
              <li><a title="Jobs Randstad Schweiz" href="/de/profile-Randstad-Schweiz-AG-5a970fea7bb2b5a578812d52?clear=1">Randstad Schweiz</a></li>
              <li><a title="Jobs Sprüngli" href="/de/profile-Spr%C3%BCngli-58a4a59d4e197f17047b23c6?clear=1">Sprüngli</a></li>
              <li><a title="Jobs Bürgenstock Resort" href="/de/profile-B%C3%9CRGENSTOCK-HOTELS--RESORT-5bcdfda2b6428ba17c5c9048?clear=1">Bürgenstock Resort</a></li>
-             
-    
-
          </ul>
       </div>  
     </div> 
@@ -358,12 +301,7 @@ $this->headTitle($this->translate('Home'));
        Gastrostellen in der Schweiz. Arbeitgeber werden mit innovativen Services und einer grossen Reichweite bei der Suche nach Wunschkandidaten unterstützt. </p>
        <p>Wir glauben daran, dass erstklassige Online-Rekrutierung nicht teuer sein muss. Darum bietet unsere Jobbörse grossartige Funktionen zu einem vernünftigen Preis.</p>
     </div> 
-    
 
-
-
-       
-       
         <div class="row">
             <div class="text-center">
                 
@@ -390,22 +328,56 @@ $this->headTitle($this->translate('Home'));
                     <p>Unkompliziert und günstig Jobs inserieren -<br /> Bequem mit Rechnung bezahlen.</p>
 
                 </div>
-                
-                 
             </div>
         </div>
     </div>
 </main>
 <!-- /container -->
-<?php echo $this->partial("footer") ?>
+    <?php echo $this->partial("footer") ?>
     <!-- lazy loaded javascript -->
     <?php
+        $langScript = 'dist/locales/' . $lang . '.js';
         echo $this->inlineScript()->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
             ->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))
             ->appendFile($this->basePath('modules/Gastro24/index.js'))
-            ->appendFile($this->basePath('modules/Gastro24/jobs.search.js'));
+            ->appendFile($this->basePath('modules/Gastro24/jobs.search.js'))
+            ->appendFile($this->basePath($langScript));
+        echo $this->configHeadScript() ;
     ?>
     <!-- end lazy loaded javascript -->
-<?php echo $this->partial("piwik") ?>
+    <?php echo $this->partial("piwik") ?>
+    <script>
+        $( document ).ready(function() {
+
+            $('.berufe > li:nth-child(4)').after("<li class='separator' />");
+
+
+            var i = 0;
+            $(".berufe > li ").each(function(i, k) {
+                if(++i > 5) $(k).addClass("hide");
+
+            });
+
+            $(".separator").click(function() {
+                $('.berufe > li').removeClass("hide");
+                $('.berufe > li.separator').addClass("hide");
+
+            });
+
+            $('.regionlist > li:nth-child(4)').after("<li class='separator2' />");
+
+
+            var i = 0;
+            $(".regionlist > li ").each(function(i, k) {
+                if(++i > 5) $(k).addClass("hide");
+
+            });
+
+            $(".separator2").click(function() {
+                $('.regionlist > li').removeClass("hide");
+                $('.regionlist > li.separator2').addClass("hide");
+            });
+        });
+    </script>
 </body>
 </html>

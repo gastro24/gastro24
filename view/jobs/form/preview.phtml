@@ -124,9 +124,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
 </script>
 
 <!-- iframe resizer -->
-<script>
-    iFrameResize({ log: false }, '#previewJob')
-</script>
+<?= $this->configHeadScript()->appendScript('iFrameResize({ log: false }, "#previewJob")'); ?>
 <!-- end iframe resizer -->
 
 <div id="product-list-wrapper">
