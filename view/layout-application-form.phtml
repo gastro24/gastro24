@@ -33,7 +33,7 @@ $this->configHeadScript()->prependScript('var lang="' . $lang . '";'
 
 $this->headLink()->prependStylesheet($this->basePath() . '/modules/Gastro24/Gastro24.css')->setAutoEscape(false);
 $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
-$this->configHeadScript()->prependFile($this->basepath('dist/js/core.js'))->setAutoEscape(false);
+$this->configHeadScript()->prependFile($this->basepath('dist/js/core.min.js'))->setAutoEscape(false);
 $this->configHeadScript()->appendFile($this->basePath('modules/Gastro24/jquery.matchHeight.js'))->appendFile($this->basePath('modules/Gastro24/index.js'));
 
 $langScript = 'dist/locales/' . $lang . '.js';
