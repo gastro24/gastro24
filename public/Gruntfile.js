@@ -44,8 +44,35 @@ module.exports = function(grunt) {
               ]
           },
       },
+      uglify: {
+          gastro24: {
+              options: {
+                  "compress": true,
+              },
+              files: [
+                  {
+                      src: targetDir+'/dist/js/blueimp-file-upload.js',
+                      dest: targetDir+'/dist/js/blueimp-file-upload.min.js',
+                  },
+                  {
+                      src: moduleDir+'/jquery-ui-1-12/jquery-ui-1-12.js',
+                      dest: targetDir+'/dist/js/jquery-ui-1-12.min.js',
+                  }
+              ]
+          },
+      },
+      cssmin: {
+          gastro24: {
+              files: [
+                  {
+                      src: moduleDir+'/jquery-ui-1-12/jquery-ui-1-12.css',
+                      dest: targetDir+'/dist/css/jquery-ui-1-12.min.css',
+                  }
+              ]
+          }
+      }
   });
 
-  grunt.registerTask('yawik:gastro24', ["less:gastro24", "concat:gastro24"]);
+  grunt.registerTask('yawik:gastro24', ["less:gastro24", "concat:gastro24", "uglify:gastro24", "cssmin:gastro24"]);
 };
 
