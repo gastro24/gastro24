@@ -18,19 +18,42 @@ class GoogleIndexApi
     const AUTH_FILE = "gastrojob24-apis-be4469f06c2b.json";
 
     private $jobUrlHelper;
+
+    /**
+     * @var \Zend\Log\Logger
+     */
     private $logger;
     private $configPath;
 
-    public function __construct($jobUrlHelper, $logger, $configPath)
+    /**
+     * @var \Gastro24\View\Helper\JobTemplate
+     */
+    private $jobTemplateHelper;
+
+    /**
+     * @var \Gastro24\View\Helper\IsEmbeddable
+     */
+    private $embeddableHelper;
+
+    private $jobActivationRepository;
+
+    public function __construct($jobUrlHelper, $logger, $configPath, $jobTemplateHelper, $embeddableHelper, $jobActivationRepository)
     {
         $this->jobUrlHelper = $jobUrlHelper;
         $this->logger = $logger;
         $this->configPath = $configPath;
+        $this->jobTemplateHelper = $jobTemplateHelper;
+        $this->embeddableHelper = $embeddableHelper;
+        $this->jobActivationRepository = $jobActivationRepository;
     }
 
     public function __invoke(JobEvent $event)
     {
         $job = $event->getJobEntity();
+        if ($this->jobHasRedirect($job)) {
+            return;
+        }
+
         $jobUrl = $this->jobUrlHelper->__invoke(
             $job,
             [
@@ -39,17 +62,13 @@ class GoogleIndexApi
             ]
         );
 
-        //$jobUrl = 'https://www.gastrojob24.ch/de/job-chef-de-rang-mit-bar-erfahrung--80-100---m-w-5d1b67c43c050f2da147be99.html';
-
-        $type = self::GOOGLE_API_UPDATED_TYPE;
-
         // DEV Mode
         if (!file_exists($this->configPath . self::AUTH_FILE)) {
-            $this->logger->info('DEV MODE: GOOGLE INDEX API: send ' . $type . ' for ' . $jobUrl);
+            $this->logger->info('DEV MODE: GOOGLE INDEX API: Job created. Send ' . self::GOOGLE_API_UPDATED_TYPE . ' for ' . $jobUrl);
             return;
         }
         else {
-            $this->logger->info('GOOGLE INDEX API: send ' . $type . ' for ' . $jobUrl);
+            $this->logger->info('GOOGLE INDEX API: Job created. Send ' . self::GOOGLE_API_UPDATED_TYPE . ' for ' . $jobUrl);
             // send request to google index api
             $response = $this->sendGoogleRequest($jobUrl);
         }
@@ -67,6 +86,10 @@ class GoogleIndexApi
             return;
         }
 
+        if ($this->jobHasRedirect($job)) {
+            return;
+        }
+
         $jobUrl = $this->jobUrlHelper->__invoke(
             $job,
             [
@@ -75,17 +98,13 @@ class GoogleIndexApi
             ]
         );
 
-        //$jobUrl = 'https://www.gastrojob24.ch/de/job-chef-de-rang-mit-bar-erfahrung--80-100---m-w-5d1b67c43c050f2da147be99.html';
-
-        $type = self::GOOGLE_API_UPDATED_TYPE;
-
         // DEV Mode
         if (!file_exists($this->configPath . self::AUTH_FILE)) {
-            $this->logger->info('DEV MODE: GOOGLE INDEX API: send ' . $type . ' for ' . $jobUrl);
+            $this->logger->info('DEV MODE: GOOGLE INDEX API: Job updated. Send ' . self::GOOGLE_API_UPDATED_TYPE . ' for ' . $jobUrl);
             return;
         }
         else {
-            $this->logger->info('GOOGLE INDEX API: send ' . $type . ' for ' . $jobUrl);
+            $this->logger->info('GOOGLE INDEX API: Job updated. Send ' . self::GOOGLE_API_UPDATED_TYPE . ' for ' . $jobUrl);
             // send request to google index api
             $response = $this->sendGoogleRequest($jobUrl);
         }
@@ -94,6 +113,19 @@ class GoogleIndexApi
     public function onAdminApproved(JobEvent $event)
     {
         $job = $event->getJobEntity();
+        $user = $job->getUser();
+        if ($user) {
+            /** @var \Gastro24\Entity\JobActivation $jobActivation */
+            $jobActivation = $this->jobActivationRepository->findOneByUserId($user->getId());
+            if ($jobActivation->isAutomaticJobActivation()) {
+                return;
+            }
+        }
+
+        if ($this->jobHasRedirect($job)) {
+            return;
+        }
+
         $jobUrl = $this->jobUrlHelper->__invoke(
             $job,
             [
@@ -102,20 +134,30 @@ class GoogleIndexApi
             ]
         );
 
-        //$jobUrl = 'https://www.gastrojob24.ch/de/job-chef-de-rang-mit-bar-erfahrung--80-100---m-w-5d1b67c43c050f2da147be99.html';
-
-        $type = self::GOOGLE_API_UPDATED_TYPE;
-
         // DEV Mode
         if (!file_exists($this->configPath . self::AUTH_FILE)) {
-            $this->logger->info('DEV MODE: GOOGLE INDEX API: send ' . $type . ' for ' . $jobUrl);
+            $this->logger->info('DEV MODE: GOOGLE INDEX API: Job approved. Send ' . self::GOOGLE_API_UPDATED_TYPE . ' for ' . $jobUrl);
             return;
         }
         else {
-            $this->logger->info('GOOGLE INDEX API: send ' . $type . ' for ' . $jobUrl);
+            $this->logger->info('GOOGLE INDEX API: Job approved. Send ' . self::GOOGLE_API_UPDATED_TYPE . ' for ' . $jobUrl);
             // send request to google index api
             $response = $this->sendGoogleRequest($jobUrl);
         }
+    }
+
+    private function jobHasRedirect($job)
+    {
+        $hasJobTemplate = $this->jobTemplateHelper->__invoke($job->getOrganization());
+        $isIntern = (!$job->getLink() || $hasJobTemplate);
+        $isEmbeddable = $this->embeddableHelper->__invoke($job->getLink());
+        $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+
+        if ($jobHasExternLink) {
+            return true;
+        }
+
+        return false;
     }
 
     private function sendGoogleRequest($jobUrl)
@@ -131,6 +173,14 @@ class GoogleIndexApi
         $notification->setType(self::GOOGLE_API_UPDATED_TYPE);
         $notification->setUrl($jobUrl);
 
-        return $service->urlNotifications->publish($notification);
+        try {
+            $response = $service->urlNotifications->publish($notification);
+        }
+        catch (\Exception $e) {
+            $this->logger->err('Google Indexing API : An error occurred. Message: "{message}"', ['exception' => $e, 'message' => $e->getMessage()]);
+            $response = false;
+        }
+
+        return $response;
     }
 }
