@@ -215,6 +215,8 @@ return [
              'error/index' => __DIR__ . '/../view/error/index.phtml',
              'layout/layout' => __DIR__ . '/../view/layout.phtml',
              'core/index/index' => __DIR__ . '/../view/index.phtml',
+             'applications/apply/index' => __DIR__ . '/../view/applications/apply/index.phtml',
+             'applications/detail/pdf' => __DIR__ . '/../view/applications/manage/detail.pdf.phtml',
              'piwik' => __DIR__ . '/../view/piwik.phtml',
              'footer' => __DIR__ . '/../view/footer.phtml',
              'footer-application' => __DIR__ . '/../view/footer-application.phtml',
