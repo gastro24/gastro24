@@ -438,7 +438,7 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
             <!-- end socials -->
 
             <!-- iframe resizer -->
-            <?= $this->configHeadScript()->appendScript('iFrameResize({ log: false }, "#iframe4")'); ?>
+            <?php $this->configHeadScript()->appendScript('iFrameResize({ log: false }, "#iframe4")'); ?>
             <!-- end iframe resizer -->
 
         <?php endif; ?>

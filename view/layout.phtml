@@ -294,27 +294,17 @@ $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials
     <script>	
     
     $(document).ready(function() {
-        
-        
           $('.wp-content').closest('.container').addClass('bg-wp-content');
           $("#rpt_pricr").closest('.container').removeClass('bg-wp-content');
-          
-          
         });
-    
 
   (function( $ ) {
 	'use strict';
-	
- 	
 
     /**
      * FAQs Toggles
      */
     $(function() {
-        
-        
-
         $('.qe-toggle-title').click(function () {
             var parent_toggle = $(this).closest('.qe-faq-toggle');
             if ( parent_toggle.hasClass( 'active' ) ) {
@@ -416,7 +406,7 @@ $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials
         ->appendFile($this->basePath('/dist/js/index-main.min.js'))
         ->appendFile($this->basePath($langScript));
 
-    echo $this->configHeadScript()
+    echo $this->configHeadScript();
 ?>
 <!-- end lazy loaded javascript -->
 </body>
