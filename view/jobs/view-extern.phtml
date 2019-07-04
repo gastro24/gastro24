@@ -318,7 +318,7 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/jobs.js'))
                                 <?php if ($org && !$orgIsDisabled): ?>
                                     <a title="Jobs <?= ($org->getOrganizationName()) ? $org->getOrganizationName()->getName() : $orgName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
                                 <?php else: ?>
-                                    <strong><?= ($org->getOrganizationName()) ? $org->getOrganizationName()->getName() : $orgName ?></strong>
+                                    <strong><?= ($org && $org->getOrganizationName()) ? $org->getOrganizationName()->getName() : $orgName ?></strong>
                                 <?php endif ?>
                                 <!-- end company name -->
                             </li>

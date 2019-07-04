@@ -84,6 +84,7 @@ return [
             Listener\AutomaticJobApproval::class => Listener\AutomaticJobApprovalFactory::class,
             'Gastro24\Validator\IframeEmbeddableUri' => InvokableFactory::class,
             Listener\DeleteJob::class => Listener\DeleteJobFactory::class,
+            Listener\GoogleIndexApi::class => Listener\GoogleIndexApiFactory::class,
         ],
         'aliases' => [
             'Orders\Form\Listener\InjectInvoiceAddressInJobContainer' => Listener\VoidListener::class,
@@ -547,6 +548,14 @@ return [
         ]],
 
         'Jobs/Events' => [ 'listeners' => [
+            Listener\GoogleIndexApi::class => [
+                'events' => [
+                    JobEvent::EVENT_JOB_CREATED,
+                    JobEvent::EVENT_STATUS_CHANGED => 'onUpdate',
+                    JobEvent::EVENT_JOB_ACCEPTED => 'onAdminApproved',
+                ],
+                'lazy' => true
+            ],
             Listener\IncreaseJobCount::class => [ JobEvent::EVENT_JOB_CREATED, true ],
             Listener\SingleJobAcceptedListener::class => [ JobEvent::EVENT_JOB_ACCEPTED, true ],
             Listener\AutoApproveChangedJobs::class => [JobEvent::EVENT_STATUS_CHANGED, true],
