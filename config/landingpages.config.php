@@ -318,10 +318,10 @@ $options = [
           'text' => 'Sommelier Jobs'
      ],
 	 
-	  'animation' => [
+	  'assistant' => [
           'id' => 231,
-		  'query' => [ 'q' => 'Animateur'],
-          'text' => 'Animateur Jobs'
+		  'query' => [ 'q' => 'Assistant'],
+          'text' => 'Assistant Jobs'
      ],
 	
 	  'teilzeitverkaeuferin' => [
