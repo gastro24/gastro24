@@ -205,7 +205,9 @@ $industries = $job->getClassifications()->getIndustries();
                 <!-- end job content -->
 
                 <!-- company description -->
-                <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : $this->descriptionEditable ?></p>
+                <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>
+                <!-- end company description -->
+                <!-- company address -->
                 <div itemscope itemtype="http://schema.org/Organization">
                     <strong itemprop="name">
                         <?= $this->organizationName?>
@@ -220,9 +222,8 @@ $industries = $job->getClassifications()->getIndustries();
                         </address>
                     <?php endif?>
                 </div>
-               </div>
-                <!-- end job__content -->
-                <!-- end company description -->
+                </div>
+                <!-- end company address -->
 
                 <!-- apply button -->
                 <?= $this->partial('jobs/partials/apply-button.phtml', [
