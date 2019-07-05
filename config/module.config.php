@@ -85,6 +85,7 @@ return [
             'Gastro24\Validator\IframeEmbeddableUri' => InvokableFactory::class,
             Listener\DeleteJob::class => Listener\DeleteJobFactory::class,
             Listener\GoogleIndexApi::class => Listener\GoogleIndexApiFactory::class,
+            Listener\JobDeletedListener::class => [Listener\JobDeletedListener::class,'factory'],
         ],
         'aliases' => [
             'Orders\Form\Listener\InjectInvoiceAddressInJobContainer' => Listener\VoidListener::class,
