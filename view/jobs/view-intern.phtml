@@ -188,7 +188,9 @@ get_class()
                 <!-- end job content -->
 
                 <!-- company description -->
-                <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : $this->descriptionEditable ?></p>
+                <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>
+                <!-- end company description -->
+                <!-- company address -->
                 <div itemscope itemtype="http://schema.org/Organization">
                     <strong itemprop="name">
                         <?= $this->organizationName?>
@@ -204,8 +206,7 @@ get_class()
                     <?php endif?>
                 </div>
                 </div>
-                <!-- end job_content -->
-                <!-- end company description -->
+                <!-- end company address -->
 
                 <!-- apply button -->
                 <?= $this->partial('jobs/partials/apply-button.phtml', [
