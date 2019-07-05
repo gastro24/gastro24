@@ -180,6 +180,7 @@ class GoogleIndexApi
             $this->logger->err('Google Indexing API : An error occurred. Message: "{message}"', ['exception' => $e, 'message' => $e->getMessage()]);
             $response = false;
         }
+        $this->logger->info('Google Indexing API : successful.', ['latestUpdate' => $response->getUrlNotificationMetadata()->getLatestUpdate()]);
 
         return $response;
     }
