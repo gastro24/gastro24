@@ -3,7 +3,8 @@ module.exports = function(grunt) {
 
     grunt.config.init({
         targetDir: './test/sandbox/public',
-        nodeModulesPath: __dirname + "/node_modules"
+        nodeModulesPath: __dirname + "/node_modules",
+        mainDir: __dirname
     });
 
     grunt.file.recurse('./test/sandbox/public/modules',function(absPath,rootDir,subDir,fileName){
@@ -12,5 +13,5 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default',['copy','less','concat','cssmin','uglify']);
+    grunt.registerTask('default',['copy','less','concat','cssmin','uglify','cacheBust']);
 };
