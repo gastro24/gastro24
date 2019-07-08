@@ -29,7 +29,7 @@ $this->headTitle()->setAutoEscape(false);
 $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
-$this->headLink()->prependStylesheet($this->basePath() . '/modules/Gastro24/Gastro24.css')->setAutoEscape(false);
+$this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
 $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
 $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials.css'));
 $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css'));

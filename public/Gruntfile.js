@@ -3,6 +3,7 @@ module.exports = function(grunt) {
   var targetDir = grunt.config.get('targetDir');
   var moduleDir = targetDir + "/modules/Gastro24";
   var nodeModulesPath = grunt.config.get('nodeModulesPath');
+  var mainDir = grunt.config.get('mainDir');
 
   grunt.config.merge({
     less: {
@@ -81,9 +82,22 @@ module.exports = function(grunt) {
                   }
               ]
           }
+      },
+      cacheBust: {
+          gastro24: {
+              options: {
+                  baseDir: targetDir,
+                  jsonOutput: true,
+                  outputDir: "modules/Gastro24/hashed",
+                  jsonOutputFilename: mainDir + '/gastro24-grunt-cache-bust.json',
+                  clearOutputDir: true,
+                  assets: ["modules/Gastro24/Gastro24.css"]
+              },
+              src: [mainDir + '/views/**/*.phtml'] // files where css is used, not really important
+          }
       }
   });
 
-  grunt.registerTask('yawik:gastro24', ["less:gastro24", "concat:gastro24", "uglify:gastro24", "cssmin:gastro24"]);
+  grunt.registerTask('yawik:gastro24', ["less:gastro24", "concat:gastro24", "uglify:gastro24", "cssmin:gastro24", "cacheBust:gastro24"]);
 };
 
