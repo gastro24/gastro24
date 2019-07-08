@@ -199,7 +199,6 @@ return [
 
     'view_helper_config' => [
         'asset' => [
-            //'resource_map' => json_decode(file_get_contents(__DIR__ . '/../gastro24-grunt-cache-bust.json'), true),
             'resource_map' => json_decode(file_get_contents(__DIR__ . '/../gastro24-grunt-cache-bust.json'), true),
         ],
         'headscript' => [
