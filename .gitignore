@@ -4,7 +4,6 @@ build.properties
 view/.*
 public/Gastro24.css
 public/hashed
-gastro24-grunt-cache-bust.json
 build/*
 
 vendor/
