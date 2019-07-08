@@ -22,8 +22,8 @@ if (isset($routeParams['controller']) && isset($routeParams['action'])) {
 $notifications = $this->partial('core/notifications');
 
 // set default page title
-//$this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoEscape(false);
-$this->headTitle()->setAutoEscape(false);
+$this->headTitle($this->translate('Gastrojob24'))->setSeparator(' - ')->setAutoEscape(false);
+//$this->headTitle()->setAutoEscape(false);
 
 // set default keywords
 $this->headMeta()->setCharset("utf-8");
