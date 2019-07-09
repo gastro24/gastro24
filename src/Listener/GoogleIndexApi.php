@@ -50,7 +50,7 @@ class GoogleIndexApi
     public function __invoke(JobEvent $event)
     {
         $job = $event->getJobEntity();
-        if ($this->jobHasRedirect($job)) {
+        if ($this->jobHasRedirectOrLink($job)) {
             return;
         }
 
@@ -86,7 +86,7 @@ class GoogleIndexApi
             return;
         }
 
-        if ($this->jobHasRedirect($job)) {
+        if ($this->jobHasRedirectOrLink($job)) {
             return;
         }
 
@@ -122,7 +122,7 @@ class GoogleIndexApi
             }
         }
 
-        if ($this->jobHasRedirect($job)) {
+        if ($this->jobHasRedirectOrLink($job)) {
             return;
         }
 
@@ -146,12 +146,16 @@ class GoogleIndexApi
         }
     }
 
-    private function jobHasRedirect($job)
+    private function jobHasRedirectOrLink($job)
     {
         $hasJobTemplate = $this->jobTemplateHelper->__invoke($job->getOrganization());
         $isIntern = (!$job->getLink() || $hasJobTemplate);
         $isEmbeddable = $this->embeddableHelper->__invoke($job->getLink());
         $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+
+        if (!$isIntern) {
+            return true;
+        }
 
         if ($jobHasExternLink) {
             return true;
