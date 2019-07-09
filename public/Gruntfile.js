@@ -55,7 +55,7 @@ module.exports = function(grunt) {
       uglify: {
           gastro24: {
               options: {
-                  "compress": true,
+                  compress: true,
               },
               files: [
                   {

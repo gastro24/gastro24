@@ -32,7 +32,7 @@ class JobDetailsForm extends SummaryForm implements HeadscriptProviderInterface
     {
         return [
             'dist/js/blueimp-file-upload.min.js',
-            'modules/Gastro24/jobpdfupload.js'
+            'modules/Gastro24/js/jobpdfupload.js'
         ];
     }
 
