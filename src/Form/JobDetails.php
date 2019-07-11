@@ -80,7 +80,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
                 'rowClass' => 'csj-uri-wrapper'
             ],
             'attributes' => [
-                'placeholder' => 'http://',
+                'placeholder' => 'https://',
                 //'id' => 'csj-uri',
             ]
         ]);
@@ -113,7 +113,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             'options' => [
                 //'label' => $this->gastroOptions->getLabel('image'),
                 // WORKAROUND: options are not read in staging environment, I assume that image might be reserved word
-                'label' => /* @translate */ 'Bannerbild (ideal 1200px * 300px)',
+                'label' => /* @translate */ 'Bannerbild (ideal 1200x300)',
             ]
         ]);
 
