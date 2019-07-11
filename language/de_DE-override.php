@@ -16,6 +16,7 @@
  */
  
  
+ 
 return [
     'One-Click-Apply' => 'Bewerben mit Social Media',
     'Accepted' => 'Angenommen',
@@ -43,5 +44,7 @@ return [
     'Your job opening is inactive. You can reactivate it. Chargeable channels are not updated.' => 'Ihre Stellenanzeige ist inaktiv. Sie können die Anzeige wieder aktivieren.',
     'Professions' => 'Berufsfelder',
     'country' => 'Land'
+
+
 
 ];
