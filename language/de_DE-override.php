@@ -14,8 +14,8 @@
  * 'deutscher text' => 'englicher text'
  *
  */
-
-
+ 
+ 
 return [
     'One-Click-Apply' => 'Bewerben mit Social Media',
     'Accepted' => 'Angenommen',
