@@ -17,7 +17,7 @@
 
 
 return [
-
+    'One-Click-Apply' => 'Bewerben mit Social Media',
     'Accepted' => 'Angenommen',
     'Changed' => 'Geändert',
     'Rejected' => 'Abgelehnt',
