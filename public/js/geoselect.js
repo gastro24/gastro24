@@ -36,7 +36,7 @@
         var name = "";
 
         if (data.city == 'Bundesland') {
-            data.city = 'Kanton'
+            data.city = 'Kanton' + ' ' + data.region
         }
 
         if (data.postalCode) {
