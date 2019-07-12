@@ -66,6 +66,10 @@ $industries = $job->getClassifications()->getIndustries();
 ?>
 <?=$this->jsonLd($this->job)?>
   <style>
+  
+ #job_content br{content:' ';}
+ #job_content br:after{content:' ';}
+  
   .link-tag:hover, .link-tag.active {
     background-color: #4e4e4e;
   }
