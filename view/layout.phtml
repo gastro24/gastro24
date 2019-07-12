@@ -413,11 +413,11 @@ $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials
 <!-- lazy loaded javascript -->
 <?php
     $langScript = 'dist/locales/' . $lang . '.js';
-    echo $this->inlineScript()->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+    echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
         ->appendFile($this->basePath('/dist/js/index-main.min.js'))
         ->appendFile($this->basePath($langScript));
 
-    echo $this->configHeadScript();
+    echo $this->configHeadScript()->setAutoEscape(false);
 ?>
 <!-- end lazy loaded javascript -->
 </body>
