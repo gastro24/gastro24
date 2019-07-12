@@ -57,7 +57,6 @@ else {
     $backTitle = $this->translate($lastSearchQuery . ' Jobs');
 }
 
-
 // banner image
 if (!$this->isIntern && $this->isEmbeddable) {
     $template = $this->job->getAttachedEntity('gastro24-template');
@@ -89,7 +88,6 @@ if (!$logoUrl) {
 }
 
 $link = $this->job->getLink();
-
 $industries = $job->getClassifications()->getIndustries();
 
 //if (!$link) {
@@ -128,7 +126,6 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/jobs.js'))
     ?>
 <?php endif; ?>
 <!-- end prev / next navigation -->
-
 
 <div class="row">
     <div class="col-md-12">
