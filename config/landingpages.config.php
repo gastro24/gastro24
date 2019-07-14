@@ -34,6 +34,12 @@
 
 $options = [
     
+     'saison' => [
+          'id' => 1298,
+		  'query' => [ 'q' => 'Saison'],
+          'text' => 'Saison Jobs'
+     ],
+    
        'sushi-koch' => [
           'id' => 1288,
 		  'query' => [ 'q' => 'Sushi'],
@@ -193,7 +199,7 @@ $options = [
      ],
      'lebensmitteltechnologe' => [
           'id' => 183,
-		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
+		  'query' => [ 'q' => 'Lebensmittel'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Lebensmitteltechnologe Jobs'
@@ -254,9 +260,9 @@ $options = [
           'panel' => '',
           'text' => 'Sous Chef Jobs'
      ],
-       'systemgastronomiefachmann' => [
+       'systemgastronomie' => [
           'id' => 1045,
-		  'query' => [ 'q' => 'Systemgastronomiefachmann'],
+		  'query' => [ 'q' => 'Systemgastronomie'],
           'panel' => '',
           'text' => 'Systemgastronomie Jobs'
      ],
@@ -272,10 +278,10 @@ $options = [
           'panel' => '',
           'text' => 'Tournant Jobs'
      ],
-      'kellner' => [
+      'servicemitarbeiter' => [
           'id' => 1096,
-		  'query' => [ 'q' => 'Kellner'],
-          'text' => 'Kellner Jobs'
+		  'query' => [ 'q' => 'Servicemitarbeiter'],
+          'text' => 'Servicemitarbeiter Jobs'
      ],
 	 'pizzaiolo' => [
           'id' => 1098,
