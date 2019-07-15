@@ -211,23 +211,30 @@ $container->searchTerm = $searchTerm;
                     <div class="content-area">
                         <div class="top-cnt">
 
-                            <h2 class="h3" style="margin-top: 0;margin-bottom: 10px;">
-                                <?php if($jobHasExternLink) { ?>
-                                    <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="noopener nofollow" target="_blank"
-                                       href="<?=$href?>"><?=strip_tags($job->getTitle())?>
-                                    </a>
-                                <?php }
-                                else { ?>
-                                    <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
-                                       href="<?=$href?>"><?=strip_tags($job->getTitle())?>
-                                    </a>
-                                <?php } ?>
-                            </h2>
+                            <div class="box__job-favorite">
+                                <h2 class="h3" style="margin-top: 0;margin-bottom: 10px;">
+                                    <?php if($jobHasExternLink) { ?>
+                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="noopener nofollow" target="_blank"
+                                           href="<?=$href?>"><?=strip_tags($job->getTitle())?>
+                                        </a>
+                                    <?php }
+                                    else { ?>
+                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
+                                           href="<?=$href?>"><?=strip_tags($job->getTitle())?>
+                                        </a>
+                                    <?php } ?>
+                                </h2>
+                                <?php $isSaved = true ?>
+                                <? if ($isSaved) : ?>
+                                    <button type="button" class="btn btn-default saved"><?=$this->translate('Saved')?></button>
+                                <? else : ?>
+                                    <button type="button" class="btn btn-default"><?=$this->translate('Save')?></button>
+                                <? endif ?>
+                            </div>
+
 
                             <p>
-                            <?php
-
-                            if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
+                            <?php if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
 
                             /**
                               * if (\Organizations\Entity\Organization::PROFILE_DISABLED !== $org->getProfileSetting()) {

@@ -41,6 +41,8 @@ return [
     'Meine Stellenanzeigen' => 'List of your jobs',
 
     'Ihre Stellenanzeige ist inaktiv. Sie können die Anzeige wieder aktivieren.' =>
-        'Your job opening is inactive. You can reactivate it.'
+        'Your job opening is inactive. You can reactivate it.',
+    'Merken' => 'Save',
+    'Gemerkt' => 'Saved'
 
 ];
