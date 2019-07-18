@@ -102,22 +102,51 @@
             $('a.external-apply-link, a.no-apply-link').click(onApplyLinkClicked);
         }
 
+        $('.job-short-info button, .apply-button-group .favorite-button').click(function() {
+            var saveButton = $(this);
+            var saveText = saveButton.data('text-save');
+            var savedText = saveButton.data('text-saved');
+            var jobLink = window.location.href;
+            var jobId = jobLink.split('-').pop().replace('.html', '');
+            var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
+
+            // call ajax, add link to session list
+            $.ajax({
+                url : '/' + lang + '/job/' + jobId + '/save',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    id: jobId,
+                    action: updateMethod,
+                },
+                success : function(data) {
+
+                    // update translated text
+                    if (updateMethod == 'remove') {
+                        saveButton.removeClass('saved').find('span').html(saveText);
+                        decrementBadgeCount();
+                    }
+                    else {
+                        saveButton.addClass('saved').find('span').html(savedText);
+                        incrementBadgeCount();
+                    }
+                    console.debug(data)
+                },
+                error : function(error) {
+                    console.log('Error while saving job');
+                }
+            });
+        })
+
         $('.box__job-favorite button').click(function() {
             var saveButton = $(this);
             var saveText = saveButton.data('text-save');
             var savedText = saveButton.data('text-saved');
             var jobLink = $(this).parent().find('h2 > a').attr('href');
             var jobId = jobLink.split('-').pop().replace('.html', '');
-            console.debug('Save button clicked');
-            console.debug('Job link: ' + jobLink);
-            console.debug('Job Id: ' + jobId);
-
             var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
 
-            //var URL = $("#jobs-list-filter input[name=q]").attr('data-url');
-
             // call ajax, add link to session list
-            // TODO: check for saved class, use post method, send save or remove
             $.ajax({
                 url : '/' + lang + '/job/' + jobId + '/save',
                 type: 'post',

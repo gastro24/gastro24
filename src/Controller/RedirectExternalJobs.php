@@ -176,7 +176,7 @@ class RedirectExternalJobs extends AbstractActionController
         $result = $this->pagination([
             'params' => ['Jobs_Board', [
                 'q',
-                'count' => $this->options['count'],
+                'count' => 10,
                 'page' => 1,
                 'l',
                 'd' => 10]

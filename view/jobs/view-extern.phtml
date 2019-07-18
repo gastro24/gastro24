@@ -108,7 +108,7 @@ $this->headScript()->captureStart();?>
 <?php $this->headScript()->captureEnd();
 endif;
 
-$this->headScript()->appendFile($this->basePath('modules/Gastro24/js/jobs.js'))
+$this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'));
@@ -345,17 +345,31 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/jobs.js'))
                                 </li>
                             <?php endif; ?>
                         </ul>
+                        <!-- favorite button -->
+                        <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                            'jobId' => $job->getId(),
+                        ]); ?>
+                        <!-- end favorite button -->
                     </div>
 
                     <hr class="job-details-devider"/>
 
-                    <!-- apply button -->
-                    <?= $this->partial('jobs/partials/apply-button.phtml', [
-                        'preview' => $preview,
-                        'isExpired' => $isExpired,
-                        'job' => $this->job,
-                    ]); ?>
-                    <!-- end apply button -->
+                    <div class="apply-button-group">
+                        <!-- apply button -->
+                        <?= $this->partial('jobs/partials/apply-button.phtml', [
+                            'preview' => $preview,
+                            'isExpired' => $isExpired,
+                            'job' => $this->job,
+                        ]); ?>
+                        <!-- end apply button -->
+
+                        <!-- favorite button -->
+                        <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                            'jobId' => $job->getId(),
+                            'buttonCss' => 'visible-xs favorite-button',
+                        ]); ?>
+                        <!-- end favorite button -->
+                    </div>
 
                     <div class="embed-container">
                         <div class="frame-content">
@@ -375,13 +389,23 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/jobs.js'))
                         </div>
                     </div>
 
-                    <!-- apply button -->
-                    <?= $this->partial('jobs/partials/apply-button.phtml', [
-                        'preview' => $preview,
-                        'isExpired' => $isExpired,
-                        'job' => $this->job,
-                    ]); ?>
-                    <!-- end apply button -->
+                    <div class="apply-button-group">
+                        <!-- apply button -->
+                        <?= $this->partial('jobs/partials/apply-button.phtml', [
+                            'preview' => $preview,
+                            'isExpired' => $isExpired,
+                            'job' => $this->job,
+                        ]); ?>
+                        <!-- end apply button -->
+
+                        <!-- favorite button -->
+                        <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                            'jobId' => $job->getId(),
+                            'buttonCss' => 'visible-xs favorite-button',
+                        ]); ?>
+                        <!-- end favorite button -->
+                    </div>
+
                     
                     <p class="text-center">Bitte beziehen Sie sich bei Ihrer Bewerbung auf <strong>gastrojob24.ch</strong>.</p>
  

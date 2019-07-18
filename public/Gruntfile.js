@@ -91,7 +91,7 @@ module.exports = function(grunt) {
                   outputDir: "modules/Gastro24/hashed",
                   jsonOutputFilename: mainDir + '/gastro24-grunt-cache-bust.json',
                   clearOutputDir: true,
-                  assets: ["modules/Gastro24/Gastro24.css"]
+                  assets: ["modules/Gastro24/Gastro24.css", "modules/Gastro24/js/*"]
               },
               src: [mainDir + '/views/**/*.phtml'] // files where css is used, not really important
           }

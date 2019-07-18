@@ -5,6 +5,7 @@ view/.*
 public/Gastro24.css
 public/hashed
 build/*
+gastro24-grunt-cache-bust.json
 
 vendor/
 node_modules/

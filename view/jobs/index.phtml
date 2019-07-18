@@ -5,7 +5,7 @@ $this->headLink()->prependStylesheet($this->basePath('/dist/css/jquery-ui-1-12.m
 
 $this->headScript()->appendFile($this->basepath('/modules/Core/js/core.pagination-container.js'))
     ->appendFile($this->basePath('modules/Core/js/core.forms.js'))
-    ->appendFile($this->basePath('modules/Gastro24/js/jobs.js'))
+    ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));
 ?>
 
