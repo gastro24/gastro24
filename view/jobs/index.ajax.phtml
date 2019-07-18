@@ -42,7 +42,7 @@ $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $container->fromCompanyProfile = false;
 $container->searchTerm = $searchTerm;
 
-
+$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 ?>
 <style>
   @media (min-width: 992px) {
@@ -224,11 +224,16 @@ $container->searchTerm = $searchTerm;
                                         </a>
                                     <?php } ?>
                                 </h2>
-                                <?php $isSaved = true ?>
-                                <? if ($isSaved) : ?>
-                                    <button type="button" class="btn btn-default saved"><?=$this->translate('Saved')?></button>
+                                <? if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
+                                    <button type="button" class="btn btn-default saved"
+                                            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                        <span class="hidden-xs"><?=$this->translate('Marked')?></span>
+                                    </button>
                                 <? else : ?>
-                                    <button type="button" class="btn btn-default"><?=$this->translate('Save')?></button>
+                                    <button type="button" class="btn btn-default"
+                                            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                        <span class="hidden-xs"><?=$this->translate('Mark')?></span>
+                                    </button>
                                 <? endif ?>
                             </div>
 

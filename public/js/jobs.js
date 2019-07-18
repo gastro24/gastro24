@@ -57,6 +57,35 @@
         return false;
     }
 
+    function incrementBadgeCount()
+    {
+        var badge = $('nav .link__saved-jobs span');
+        if (!badge.length) {
+            var badge = $('<span>').addClass('badge badge-light').html('0');
+            $('nav .link__saved-jobs').removeClass('empty').prepend(badge);
+        }
+
+        var oldValue = badge.html();
+        console.log(oldValue);
+        var newValue = parseInt(oldValue) + 1;
+        badge.html(newValue);
+    }
+
+    function decrementBadgeCount()
+    {
+        var badge = $('nav .link__saved-jobs span');
+        var oldValue = parseInt(badge.html());
+        if (oldValue > 0) {
+            var newValue = oldValue - 1;
+            badge.html(newValue);
+        }
+
+        if (!newValue) {
+            badge.remove();
+            $('nav .link__saved-jobs').addClass('empty');
+        }
+    }
+
     $(function() {
         var $container = $('#jobs-list-container');
 
@@ -72,6 +101,49 @@
             $('a.internal-apply-link').click(onInternalApplyLinkClicked);
             $('a.external-apply-link, a.no-apply-link').click(onApplyLinkClicked);
         }
+
+        $('.box__job-favorite button').click(function() {
+            var saveButton = $(this);
+            var saveText = saveButton.data('text-save');
+            var savedText = saveButton.data('text-saved');
+            var jobLink = $(this).parent().find('h2 > a').attr('href');
+            var jobId = jobLink.split('-').pop().replace('.html', '');
+            console.debug('Save button clicked');
+            console.debug('Job link: ' + jobLink);
+            console.debug('Job Id: ' + jobId);
+
+            var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
+
+            //var URL = $("#jobs-list-filter input[name=q]").attr('data-url');
+
+            // call ajax, add link to session list
+            // TODO: check for saved class, use post method, send save or remove
+            $.ajax({
+                url : '/' + lang + '/job/' + jobId + '/save',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    id: jobId,
+                    action: updateMethod,
+                },
+                success : function(data) {
+
+                    // update translated text
+                    if (updateMethod == 'remove') {
+                        saveButton.removeClass('saved').find('span').html(saveText);
+                        decrementBadgeCount();
+                    }
+                    else {
+                        saveButton.addClass('saved').find('span').html(savedText);
+                        incrementBadgeCount();
+                    }
+                    console.debug(data)
+                },
+                error : function(error) {
+                    console.log('Error while saving job');
+                }
+            });
+        })
     });
 
 })(jQuery, window); 

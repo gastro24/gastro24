@@ -26,6 +26,9 @@ $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0
 $this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
 $this->headLink()->prependStylesheet($this->basePath('/dist/css/jquery-ui-1-12.min.css'));
 $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
+
+$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
 ?>
 
 <?php echo $this->doctype(); ?>
@@ -213,7 +216,7 @@ margin: 15px 0 35px 0;
                     <img src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_white.svg') ?>" alt="Gastrojob24 Schweiz" class="menu-logo">
                 </a>
             </div>
-            <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation">
+            <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation" data-saved-jobs="<?=$savedJobsCount?>">
                 <?=$this->loginInfo(array('lang' => $lang ));?>
                 <?= $this->navigation('Core/Navigation')
                          ->setAcl($this->services('acl'))
@@ -221,7 +224,6 @@ margin: 15px 0 35px 0;
                          ->menu()
                          ->setMaxDepth(0) // only show the top level entries
                          ->renderPartial(null, 'main-navigation');
-//                         ->setUlClass('nav navbar-nav pull-right')//renderPartial(null, 'main-navigation')
                 ?>
             </nav>
             <!-- /main-navigation -->

@@ -365,6 +365,16 @@ return [
                             ]
                         ],
                     ],
+                    'saved-jobs' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => '/saved-jobs',
+                            'defaults' => [
+                                'controller' => Controller\JobController::class,
+                                'action' => 'savedJobs',
+                            ],
+                        ],
+                    ],
                     'jobs' => [
                         'options' => [
                             'route' => '/job',
@@ -426,6 +436,16 @@ return [
                                     ]
                                 ],
                             ],
+                            'save' => [
+                                'type' => 'Segment',
+                                'options' => [
+                                    'route' => '/:id/save',
+                                    'defaults' => [
+                                        'controller' => Controller\JobController::class,
+                                        'action' => 'saveJob',
+                                    ]
+                                ],
+                            ]
                         ],
 
                     ],

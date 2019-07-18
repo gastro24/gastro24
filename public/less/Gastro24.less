@@ -2,6 +2,8 @@
 @import "_forms.less";
 @import "_jobs.less";
 @import "_socials.less";
+@import "_search-form-container.less";
+@import "_saved-jobs.less";
 
 @g24-blue: #243b84;
 @g24-light-blue: #5bc0de;
@@ -10,6 +12,7 @@
 @g24-dark-blue: #22436c;
 @g24-light-grey: #f6f6f6;
 @g24-red: #d9534f;
+@g24-yellow: #c4c407;
 
 @fa-font-path: '/dist/fonts';
 
@@ -106,7 +109,6 @@ input[type="file"] {
         padding: 20px;
     }
 }
-
 .img-box {
     background-color: #fff;
     display: block;
@@ -124,6 +126,8 @@ input[type="file"] {
     padding: 0 10px;
     left: 0;
 }
+
+
 
 .input-group .form-control  {
      border-radius:0
@@ -536,6 +540,9 @@ h1.job-overview-title {
                 padding-top: 15px;
                 position: relative;
             }
+            &.gastro24-controller-jobcontroller-savedjobs {
+                background-color: #fff;
+            }
         }
 
         ul {
@@ -664,7 +671,11 @@ h1.job-overview-title {
                 padding-bottom: 10px;
                 margin-top: 30px;
                 font-weight:300;
-                font-size:16px
+                font-size:16px;
+
+                &.link__saved-jobs {
+                    padding-left: 0;
+                }
             }
             .dropdown-menu > li > a:hover {
                 background-color: @navbar-inverse-toggle-hover-bg;

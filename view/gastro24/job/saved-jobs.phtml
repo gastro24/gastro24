@@ -1,0 +1,89 @@
+<?php
+$this->headScript()->appendFile($this->basePath('modules/Gastro24/js/jobs.js'))
+    ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));
+
+
+$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobs = $savedJobsContainer->jobs;
+?>
+
+<!-- search form container -->
+<?= $this->partial('partials/search-form-container.phtml', [
+    'jobs' => $this->jobs,
+    'filterForm' => $this->filterForm,
+    'clear' => true
+]); ?>
+<!-- end search form container -->
+
+<h1><?=$this->translate('Saved jobs')?></h1>
+
+<?php if(count($savedJobs)) : ?>
+    <div class="box__favorites">
+        <p>
+            <span>
+                <?php
+                    $counter = count($savedJobs);
+                    $title = ($counter == 1) ? $this->translate('You have 1 saved job.') : sprintf($this->translate('You have %s saved jobs.'), $counter);
+                ?>
+                <i class="fa fa-star" aria-hidden="true"></i><?=$title?>
+            </span>
+            <a class="btn btn-default" href="<?= $this->url('lang/saved-jobs', [], ['query' => ['remove' => true]], true)?>">
+                <?=$this->translate("Remove all")?>
+            </a>
+        </p>
+        <?php foreach ($savedJobs as $id => $jobData) : ?>
+            <div class="box__job">
+                <div class="header">
+                    <h2 class="h3">
+                        <a href="<?=$jobData['url']?>" title="<?=$jobData['title']?>"><?=$jobData['title']?></a>
+                    </h2>
+                    <a class="close-link" href="<?= $this->url('lang/saved-jobs', [], ['query' => ['remove' => true, 'id' => $jobData['id']]], true)?>">x</a>
+                </div>
+                <div class="content">
+                    <ul>
+                        <li class="location">
+                            <?=$jobData['location']; ?>
+                        </li>
+                        <li class="company">
+                            <?=$jobData['organizationName']; ?>
+                        </li>
+                        <li class="employmentType">
+                            <?=$jobData['employmentType']; ?>
+                        </li>
+                        <li class="date">
+                            <?=$jobData['createdAt']?>
+                        </li>
+                    </ul>
+                    <!-- apply button -->
+                    <div class="button-job-apply text-center">
+                        <?=$jobData['applyUrl']?>
+                    </div>
+                    <!-- end apply button -->
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else : ?>
+    <div class="text-center box__favorite-note">
+        <p>
+            <?php $buttonHtml = '<button type="button" class="btn btn-default btn__job-favorite">' .
+                $this->translate("Mark") . '</button>'; ?>
+            <?= sprintf($this->translate('To save a job, click the %s button on a job you like.'), $buttonHtml)?>
+        </p>
+        <p>
+            <?=$this->translate('The jobs you save will be stored here.')?>
+        </p>
+    </div>
+<?php endif; ?>
+
+
+<div class="modal fade" id="job-apply-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" style="width: 90%; max-width:1200px; height: 90%" role="document">
+        <div class="modal-content" style="height: 100%">
+            <div class="modal-body" style="height: calc(100% - 65px)"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Schliessen</button>
+            </div>
+        </div>
+    </div>
+</div>

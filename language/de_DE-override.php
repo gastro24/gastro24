@@ -43,8 +43,17 @@ return [
     'Your job opening is inactive. You can reactivate it. Chargeable channels are not updated.' => 'Ihre Stellenanzeige ist inaktiv. Sie können die Anzeige wieder aktivieren.',
     'Professions' => 'Berufsfelder',
     'country' => 'Land',
-    'Save' => 'Merken',
-    'Saved' => 'Gemerkt'
+    'Mark' => 'Merken',
+    'Marked' => 'Gemerkt',
+    'The jobs you save will be stored here.' => 'Gespeicherte Jobs findest du hier.',
+    'To save a job, click the %s button on a job you like.' => 'Um ein Stellenangebot zu speichern, klicken Sie den %s Button für einen Job Ihrer Wahl.',
+    'Saved jobs' => 'Gespeicherte Stellenangebote',
+    'Saved Jobs' => 'Merkliste',
+    'You have 1 saved job.' => 'Sie haben 1 gespeicherte Stellenanzeige.',
+    'You have %s saved jobs.' => 'Sie haben %s gespeicherte Stellenanzeigen.',
+    'No saved jobs' => 'Keine gespeicherten Stellenanzeigen',
+    '1 saved job' => '1 gespeicherte Stellenanzeige',
+    '%s saved jobs' => '%s gespeicherten Stellenanzeigen',
 
 
 
