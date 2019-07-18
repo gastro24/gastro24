@@ -36,20 +36,43 @@ return [
                 ]
             ],
 
-          'jobboard' => [
-               //'visible' => false,
-             'label' => 'Jobs',
-               'text_domain' => 'do-not-translate',
-              'active_on' => ['lang/jobboard', 'lang/landingPage'],
-              'query' => [ 'clear' => 1 ],
-          ],
+            'jobboard' => [
+                //'visible' => false,
+                'label' => 'Jobs',
+                'text_domain' => 'do-not-translate',
+                'active_on' => ['lang/jobboard', 'lang/landingPage'],
+                'query' => [
+                    'clear' => 1
+                ],
+            ],
             'jobs' => [
-                'label' =>  /*@translate*/ 'List of your jobs',
+                'label' =>  /*@translate*/'List of your jobs',
                 'route' => 'lang/jobs',
                 'order' => '30',
                 'resource' => 'Jobs',
             ],
-           'post-a-job' => [
+            'ratgeber' => [
+                'label' => 'Ratgeber',
+                'route' => 'lang/wordpress',
+                'resource' => 'resource/ratgeber',
+                'params' => [
+                    'type' => 'page',
+                    'id' => 'ratgeber',
+                ],
+                'order' => 940,
+            ],
+
+            'contact' => [
+                'label' => 'Kontakt',
+                'route' => 'lang/wordpress',
+                'resource' => 'resource/contact',
+                'params' => [
+                    'type' => 'page',
+                    'id' => 'contact',
+                ],
+                'order' => 950,
+            ],
+            'post-a-job' => [
                 'label' => 'Stelle inserieren',
                 'route' => 'lang/wordpress',
                 'resource' => 'resource/stellenanzeigen-schalten',
@@ -57,30 +80,16 @@ return [
                     'type' => 'page',
                     'id' => 'stellenanzeigen-schalten',
                 ],
-                'order' => 960,
+                'order' => 970,
                 'class' => 'inverted'
             ],
-          'ratgeber' => [
-                'label' => 'Ratgeber',
-               'route' => 'lang/wordpress',
-                'resource' => 'resource/ratgeber',
-                'params' => [
-                   'type' => 'page',
-                   'id' => 'ratgeber',
-               ],
-                'order' => 940,
-           ],
-         
-             'contact' => [
-                'label' => 'Kontakt',
-               'route' => 'lang/wordpress',
-                'resource' => 'resource/contact',
-                'params' => [
-                   'type' => 'page',
-                   'id' => 'contact',
-               ],
-                'order' => 950,
-           ],
+            'saved-jobs' => [
+                'label' => /*@translate*/'Saved Jobs',
+                'resource' => 'route/lang/saved-jobs',
+                'route' => 'lang/saved-jobs',
+                'order' => 960,
+                'class' => 'link__saved-jobs empty'
+            ],
 
             'resume-recruiter' => [
                 'visible' => false,
@@ -121,8 +130,9 @@ return [
                 'allow' => [
                     'resource/stellenanzeigen-schalten',
                     'resource/ratgeber',
-                    //'resource/contact',
+//                    'resource/contact',
                     'route/lang/organizations-profiles',
+                    'route/lang/saved-jobs',
                 ]
             ],
             'user' => [
@@ -151,6 +161,6 @@ return [
         'settings' => null,
     ],
     'Core' => [
-      //  'settings' => null,
+        //  'settings' => null,
     ],
 ];

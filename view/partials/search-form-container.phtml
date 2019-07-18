@@ -1,0 +1,49 @@
+<?php
+$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
+
+if ($this->clear) {
+    $form = $this->services('forms.Jobs/JobboardSearch');
+    $form->setButtonElement('q');
+    $form->setAttribute('data-handle-by', 'native');
+    $form->setAttribute('action', $this->url('lang/jobboard', [], true));
+}
+else {
+    $queryParams = $this->params()->fromQuery();
+
+    foreach (array_keys($this->jobs->getFacets()->toArray()) as $facetName):
+        if (isset($queryParams['__' . $facetName])) {
+            $facetValues = explode('_', $queryParams['__' . $facetName]);
+            $facetValues = array_fill_keys($facetValues, '1');
+            $queryParams[$facetName] = $facetValues;
+        }
+        if (isset($queryParams[$facetName])):
+            foreach (array_keys($queryParams[$facetName]) as $facetValue):
+                $this->filterForm->add(['type' => 'hidden', 'name' => $facetName . '[' . $facetValue . ']',
+                    'attributes' => ['class' => 'facet-param', 'value' => 1]]);
+            endforeach;
+        endif;
+    endforeach;
+
+    $this->filterForm->setButtonElement('q');
+    $this->filterForm->setAttribute('data-handle-by', 'native');
+    $this->filterForm->setAttribute('action', $this->url('lang/jobboard', [], true));
+    $form = $this->filterForm;
+}
+?>
+
+<nav class="navbar yk-toolbar" id="jobs-list-filter-wrapper">
+    <div class="search-form-container search-form-container__header ">
+        <div class="container">
+            <?=$this->searchForm($form);?>
+            <div class="favorite-icon">
+                <?php
+                    $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
+                        sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
+                ?>
+                <a class="link__saved-jobs empty" href="<?=$this->url('lang/saved-jobs', [], true)?>"
+                   data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>"></a>
+            </div>
+        </div>
+    </div>
+</nav>

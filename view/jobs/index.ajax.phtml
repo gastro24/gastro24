@@ -42,7 +42,7 @@ $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
 $container->fromCompanyProfile = false;
 $container->searchTerm = $searchTerm;
 
-
+$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 ?>
 <style>
   @media (min-width: 992px) {
@@ -211,23 +211,35 @@ $container->searchTerm = $searchTerm;
                     <div class="content-area">
                         <div class="top-cnt">
 
-                            <h2 class="h3" style="margin-top: 0;margin-bottom: 10px;">
-                                <?php if($jobHasExternLink) { ?>
-                                    <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="noopener nofollow" target="_blank"
-                                       href="<?=$href?>"><?=strip_tags($job->getTitle())?>
-                                    </a>
-                                <?php }
-                                else { ?>
-                                    <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
-                                       href="<?=$href?>"><?=strip_tags($job->getTitle())?>
-                                    </a>
-                                <?php } ?>
-                            </h2>
+                            <div class="box__job-favorite">
+                                <h2 class="h3" style="margin-top: 0;margin-bottom: 10px;">
+                                    <?php if($jobHasExternLink) { ?>
+                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="noopener nofollow" target="_blank"
+                                           href="<?=$href?>"><?=strip_tags($job->getTitle())?>
+                                        </a>
+                                    <?php }
+                                    else { ?>
+                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
+                                           href="<?=$href?>"><?=strip_tags($job->getTitle())?>
+                                        </a>
+                                    <?php } ?>
+                                </h2>
+                                <? if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
+                                    <button type="button" class="btn btn-default saved"
+                                            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                        <span class="hidden-xs"><?=$this->translate('Marked')?></span>
+                                    </button>
+                                <? else : ?>
+                                    <button type="button" class="btn btn-default"
+                                            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                        <span class="hidden-xs"><?=$this->translate('Mark')?></span>
+                                    </button>
+                                <? endif ?>
+                            </div>
+
 
                             <p>
-                            <?php
-
-                            if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
+                            <?php if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
 
                             /**
                               * if (\Organizations\Entity\Organization::PROFILE_DISABLED !== $org->getProfileSetting()) {

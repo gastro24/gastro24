@@ -63,7 +63,6 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
 }
 
 $industries = $job->getClassifications()->getIndustries();
-get_class()
 ?>
 <?=$this->jsonLd($this->job)?>
 
@@ -263,13 +262,13 @@ get_class()
    </div>
 </div>
 
-    <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
-    <script>
-        $("#share").jsSocials({
-            showLabel: false,
-            showCount: true,
-            shares: ["email", "twitter", "facebook", "whatsapp"]
-        });
-    </script>
+<script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
+<script>
+    $("#share").jsSocials({
+        showLabel: false,
+        showCount: true,
+        shares: ["email", "twitter", "facebook", "whatsapp"]
+    });
+</script>
 
 

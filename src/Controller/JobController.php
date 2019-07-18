@@ -5,6 +5,7 @@ namespace Gastro24\Controller;
 use Auth\Entity\User;
 use Core\Factory\ContainerAwareInterface;
 use Core\Repository\RepositoryService;
+use Gastro24\View\Helper\JobboardApplyUrl;
 use Interop\Container\ContainerInterface;
 use Jobs\Entity\Status;
 use Jobs\Form\AdminJobEdit;
@@ -12,7 +13,9 @@ use Jobs\Form\Element\StatusSelect;
 use Jobs\Listener\Events\JobEvent;
 use Zend\Form\FormElementManager\FormElementManagerTrait;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Session\Container;
 use Zend\View\Model\JsonModel;
+use Zend\View\Model\ViewModel;
 
 /**
  * JobController.php
@@ -27,11 +30,26 @@ class JobController extends AbstractActionController implements ContainerAwareIn
     private $repositories;
 
     /**
+     * @var array
+     */
+    private $options = [
+        'count' => 10
+    ];
+
+    /**
      * @var FormElementManagerTrait
      */
     private $formManager;
 
     private $jobEvents;
+
+    private $imageFileCacheManager;
+
+    /** @var JobboardApplyUrl */
+    private $applyUrlHelper;
+
+    /** @var \Gastro24\View\Helper\JobUrlDelegator */
+    private $urlHelper;
 
     public static function factory(ContainerInterface $container)
     {
@@ -45,6 +63,12 @@ class JobController extends AbstractActionController implements ContainerAwareIn
         $this->repositories     = $container->get('repositories');
         $this->formManager      = $container->get('forms');
         $this->jobEvents        = $container->get('Jobs/Events');
+        $this->imageFileCacheManager = $container->get('Organizations\ImageFileCache\Manager');
+        $options = $container->get('Jobs/JobboardSearchOptions');
+        $this->options = [ 'count' => $options->getPerPage() ];
+        $viewHelperManager = $container->get('ViewHelperManager');
+        $this->applyUrlHelper = $viewHelperManager->get('gastroApplyUrl');
+        $this->urlHelper = $viewHelperManager->get('jobUrl');
     }
 
     public function changeStatusAction()
@@ -125,5 +149,110 @@ class JobController extends AbstractActionController implements ContainerAwareIn
             'myJobs' => $jobs,
             'jobs'   => $paginator
         ];
+    }
+
+    /**
+     * Lists all jobs in favorite list.
+     */
+    public function savedJobsAction()
+    {
+        $routeParams = $this->params()->fromRoute();
+        $queryParams = $this->params()->fromQuery();
+        if (isset($routeParams['q']) && !isset($getParams['q'])) {
+            $getParams['q']=$routeParams['q'];
+        }
+
+
+        if (isset($queryParams['remove']) && $queryParams['remove']) {
+            $container = new Container('gastro24_savedjobs');
+            if (isset($queryParams['id'])) {
+                // remove single job
+                unset($container->jobs[$queryParams['id']]);
+            }
+            else {
+                // clear session
+                $container->exchangeArray([]);
+            }
+        }
+
+        $result = $this->pagination([
+            'params' => ['Jobs_Board', [
+                'q',
+                'count' => $this->options['count'],
+                'page' => 1,
+                'l',
+                'd' => 10]
+            ],
+            'form' => ['as' => 'filterForm', 'Jobs/JobboardSearch'],
+            'paginator' => ['as' => 'jobs', 'Jobs/Board']
+        ]);
+
+        $organizationImageCache = $this->imageFileCacheManager;
+
+        $result['organizationImageCache'] = $organizationImageCache;
+
+        return new ViewModel($result);
+    }
+
+    /**
+     * Saves single job to session favorite list.
+     *
+     */
+    public function saveJobAction()
+    {
+        /* @var $request \Zend\Http\Request */
+        $request     = $this->getRequest();
+        /* @var \Zend\Http\PhpEnvironment\Response $response */
+        $response = $this->getResponse();
+
+        $jobId = $this->params()->fromRoute('id');
+        $action = $request->getPost('action');
+        $jobs = $this->repositories->get('Jobs');
+        /** @var \Jobs\Entity\Job $job */
+        $job = $jobs->find($jobId);
+
+        $container = new Container('gastro24_savedjobs');
+        if (!isset($container->jobs)) {
+            $container->jobs = [];
+        }
+
+        if ($action == 'remove') {
+            unset($container->jobs[$jobId]);
+        }
+        else {
+            $createdAt = $job->getDatePublishStart() ? $job->getDatePublishStart()->format('d.m.Y') :
+                $job->getDateCreated()->format('d.m.Y') ;
+
+            $organization = $job->getOrganization();
+            $orgName = '';
+            if ($organization && $organization->getOrganizationName() && $organization->getOrganizationName()->getName()) {
+                $orgName = $organization->getOrganizationName()->getName();
+            } elseif ($job->getCompany()) {
+                $orgName = $job->getCompany();
+            }
+            $location = preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+
+            $container->jobs[$jobId] = [
+                'id' => $jobId,
+                'title' => $job->getTitle(),
+                'url' => $this->urlHelper->__invoke($job, ['linkOnly' => true ]),
+                'organizationName' => $orgName,
+                'location' => $location,
+                'employmentType' => $job->getClassifications()->getEmploymentTypes()->__toString() ?: /*@translate*/'Vollzeit',
+                'createdAt' => $createdAt,
+                'applyUrl' => $this->applyUrlHelper->__invoke($job),
+            ];
+        }
+        $response->getHeaders()->addHeaderLine( 'Content-Type', 'application/json' );
+
+        $result = [
+            'id' => $jobId,
+            'action' => $action,
+            'jobsCount' => count($container->jobs),
+            'success' => true
+        ];
+        $response->setContent(json_encode($result));
+
+        return $response;
     }
 }

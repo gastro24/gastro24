@@ -212,6 +212,16 @@ class Module implements AssetProviderInterface
                     $query->set('id', $routeMatch->getParam('id') ?: $event->getRequest()->getQuery('id'));
                 }
 
+                /* remove favorite list in navigation */
+                if ('lang' != $matchedRouteName) {
+                    $services = $event->getApplication()->getServiceManager();
+                    $config=$services->get('config');
+                    unset($config['navigation']['default']['saved-jobs']);
+                    $services->setAllowOverride(true);
+                    $services->setService('config', $config);
+                    $services->setAllowOverride(false);
+                }
+
             }, -9999);
 
             $eventManager->attach(MvcEvent::EVENT_DISPATCH, function(MvcEvent $e) {

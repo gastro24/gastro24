@@ -1,0 +1,266 @@
+/* BEGIN FAVORITE BADGE */
+.link {
+  &__saved-jobs {
+    &:before {
+      color: #A5B0BB;
+      font-family: "FontAwesome";
+      font-size: 2rem;
+      content: "\f005";
+      padding-right: 5px;
+    }
+
+    &.empty {
+      &:before {
+        color: #A5B0BB;
+        font-family: "FontAwesome";
+        font-size: 2rem;
+        content: "\f006";
+        padding-right: 5px;
+      }
+    }
+
+    .badge {
+      background-color: @g24-blue;
+      border: 1px solid white;
+      border-radius: 50%;
+      font-size: 10px;
+      margin: -25px 0 0 -15px;
+      padding: 3px 5px;
+    }
+  }
+}
+/* END FAVORITE BADGE */
+
+/* END FAVORITE BUTTON */
+.btn {
+  &__job-favorite {
+    padding: 4px 10px;
+
+    &:before {
+      font-family: "FontAwesome";
+      font-size: 1.5rem;
+      font-weight: normal;
+      content: "\f006";
+      padding-right: 5px;
+    }
+
+    &.saved {
+      &:before {
+        color: #A5B0BB;
+        font-family: "FontAwesome";
+        font-size: 1.5rem;
+        content: "\f005";
+        padding-right: 5px;
+      }
+    }
+  }
+}
+/* END FAVORITE BUTTON */
+
+/* BEGIN LIST FAVORITES */
+.box {
+  &__job {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    padding: 0 15px 15px;
+
+    .header,
+    .content {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .header {
+      align-items: baseline;
+
+      h2 a {
+        color: @g24-blue;
+      }
+
+      .close-link {
+        border: 1px solid gray;
+        border-radius: 50%;
+        padding: 2px 8px;
+        font-weight: bold;
+        color: gray;
+      }
+    }
+
+    .button-job-apply {
+      a,
+      span {
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        padding: 6px 25px;
+      }
+
+      a {
+        background-color: @g24-red;
+        border-color: @g24-red;
+      }
+
+      span {
+        background-color: #ccc;
+        border-color: #ccc;
+      }
+    }
+  }
+
+  &__job-favorite {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    button {
+      padding: 4px 10px;
+
+      &:before {
+        font-family: "FontAwesome";
+        font-size: 1.5rem;
+        font-weight: normal;
+        content: "\f006";
+        padding-right: 5px;
+      }
+
+      &.saved {
+        &:before {
+          color: #A5B0BB;
+          font-family: "FontAwesome";
+          font-size: 1.5rem;
+          content: "\f005";
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+
+  &__favorite-note {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 20px 0;
+  }
+
+  &__favorites {
+    background-color: @g24-light-grey;
+    padding: 15px;
+
+    > p {
+      display: flex;
+      flex-direction: row;
+      font-size: 16px;
+      justify-content: space-between;
+    }
+
+    .fa-star {
+      color: @g24-blue;
+      font-size: 2rem;
+      margin-right: .5rem;
+    }
+
+    ul {
+      display: table;
+      margin-bottom: 0;
+      padding-left: 0;
+
+      li {
+        display: table-row;
+        line-height: 25px;
+        list-style: none;
+
+        &.location {
+          &:before {
+            display: table-cell;
+            font-family: "FontAwesome";
+            font-size: 2rem;
+            content: "\f041";
+            padding-right: 5px;
+          }
+        }
+        &.company {
+          &:before {
+            display: table-cell;
+            font-family: "FontAwesome";
+            font-size: 1.5rem;
+            content: "\f0f7";
+            padding-right: 5px;
+          }
+        }
+        &.employmentType {
+          &:before {
+            display: table-cell;
+            font-family: "FontAwesome";
+            font-size: 1.5rem;
+            content: "\f017";
+            padding-right: 5px;
+          }
+        }
+        &.date {
+          &:before {
+            display: table-cell;
+            font-family: "FontAwesome";
+            font-size: 1.5rem;
+            content: "\f073";
+            padding-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: @screen-sm) {
+  .box {
+    &__job {
+      .content {
+        align-items: unset;
+        flex-direction: column;
+      }
+
+      .button-job-apply {
+        align-self: center;
+        margin-top: 10px;
+      }
+    }
+
+    &__favorite-note {
+      line-height: 35px;
+      padding: 20px 0;
+    }
+
+    &__favorites {
+      > p {
+        flex-direction: column;
+
+        a {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: @screen-xs) {
+  .box {
+    &__job-favorite {
+      button {
+        padding: 2px 7px;
+
+        &:before {
+          padding-right: 0;
+        }
+
+        &.saved {
+          &:before {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+/* END LIST FAVORITES */

@@ -30,10 +30,13 @@ $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
 $this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
-$this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
-$this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials.css'));
-$this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css'));
+$this->headLink()->prependStylesheet($this->basePath('/dist/css/jquery-ui-1-12.min.css'))
+    ->prependStylesheet($this->basePath('dist/css/core.min.css'));
+$this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials.css'))
+    ->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css'));
 
+$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
 ?>
 
 <?php echo $this->doctype(); ?>
@@ -380,7 +383,7 @@ $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials
                         <img src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_blue.svg') ?>" alt="Gastrojob24 Schweiz" class="menu-logo">
                     </a>
                  </div>
-            <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation">
+            <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation" data-saved-jobs="<?=$savedJobsCount?>">
 
                     
                 <?= $this->loginInfo(array('lang' => $lang ));?>
@@ -402,6 +405,10 @@ $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials
     </header>
     <?php endif ?>
 
+
+
+
+
 <main id="content" class="<?= $routeClass ?>">
    <div class="container">
     <?php echo $notifications?>
@@ -415,7 +422,8 @@ $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials
     $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
         ->appendFile($this->basePath('/dist/js/index-main.min.js'))
-        ->appendFile($this->basePath($langScript));
+        ->appendFile($this->basePath($langScript))
+        ->appendFile($this->basePath('modules/Gastro24/js/jobs.search.js'));
 
     echo $this->configHeadScript()->setAutoEscape(false);
 ?>
