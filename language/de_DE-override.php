@@ -45,7 +45,7 @@ return [
     'country' => 'Land',
     'Mark' => 'Merken',
     'Marked' => 'Gemerkt',
-    'The jobs you save will be stored here.' => 'Gespeicherte Jobs findest du hier.',
+    'The jobs you save will be stored here.' => 'Gespeicherte Jobs finden Sie hier.',
     'To save a job, click the %s button on a job you like.' => 'Um ein Stellenangebot zu speichern, klicken Sie den %s Button für einen Job Ihrer Wahl.',
     'Saved jobs' => 'Gespeicherte Stellenangebote',
     'Saved Jobs' => 'Merkliste',

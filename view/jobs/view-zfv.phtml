@@ -167,6 +167,11 @@ $industries = $job->getClassifications()->getIndustries();
                     </li>
                 <?php endif; ?>
             </ul>
+            <!-- favorite button -->
+            <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                'jobId' => $this->job->getId(),
+            ]); ?>
+            <!-- end favorite button -->
         </div>
 
         <hr class="job-details-devider"/>
@@ -174,13 +179,22 @@ $industries = $job->getClassifications()->getIndustries();
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
 
-                <!-- apply button -->
-                <?= $this->partial('jobs/partials/apply-button.phtml', [
-                    'preview' => $preview,
-                    'isExpired' => $isExpired,
-                    'job' => $this->job,
-                ]); ?>
-                <!-- end apply button -->
+                <div class="apply-button-group">
+                    <!-- apply button -->
+                    <?= $this->partial('jobs/partials/apply-button.phtml', [
+                        'preview' => $preview,
+                        'isExpired' => $isExpired,
+                        'job' => $this->job,
+                    ]); ?>
+                    <!-- end apply button -->
+
+                    <!-- favorite button -->
+                    <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                        'jobId' => $job->getId(),
+                        'buttonCss' => 'visible-xs favorite-button',
+                    ]); ?>
+                    <!-- end favorite button -->
+                </div>
 
             <!-- job content -->
             <div id="job_content">
@@ -246,13 +260,22 @@ $industries = $job->getClassifications()->getIndustries();
                 </div>
                 <!-- end company address -->
 
-                <!-- apply button -->
-                <?= $this->partial('jobs/partials/apply-button.phtml', [
-                    'preview' => $preview,
-                    'isExpired' => $isExpired,
-                    'job' => $this->job,
-                ]); ?>
-                <!-- end apply button -->
+                <div class="apply-button-group">
+                    <!-- apply button -->
+                    <?= $this->partial('jobs/partials/apply-button.phtml', [
+                        'preview' => $preview,
+                        'isExpired' => $isExpired,
+                        'job' => $this->job,
+                    ]); ?>
+                    <!-- end apply button -->
+
+                    <!-- favorite button -->
+                    <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                        'jobId' => $job->getId(),
+                        'buttonCss' => 'visible-xs favorite-button',
+                    ]); ?>
+                    <!-- end favorite button -->
+                </div>
             </div>
         </div>
         

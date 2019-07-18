@@ -1,0 +1,15 @@
+<?php
+    $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+?>
+
+<?php if (isset($savedJobsContainer->jobs[$this->jobId])) : ?>
+    <button type="button" class="btn btn-default saved <?= $this->buttonCss?>"
+            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+        <span class="hidden-xs"><?=$this->translate('Marked')?></span>
+    </button>
+<?php else : ?>
+    <button type="button" class="btn btn-default <?= $this->buttonCss?>"
+            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+        <span class="hidden-xs"><?=$this->translate('Mark')?></span>
+    </button>
+<?php endif ?>

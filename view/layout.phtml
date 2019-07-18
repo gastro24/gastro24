@@ -423,7 +423,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
         ->appendFile($this->basePath('/dist/js/index-main.min.js'))
         ->appendFile($this->basePath($langScript))
-        ->appendFile($this->basePath('modules/Gastro24/js/jobs.search.js'));
+        ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
 
     echo $this->configHeadScript()->setAutoEscape(false);
 ?>

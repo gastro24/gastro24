@@ -224,17 +224,19 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                         </a>
                                     <?php } ?>
                                 </h2>
-                                <? if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
+                                <!-- favorite button -->
+                                <?php if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
                                     <button type="button" class="btn btn-default saved"
                                             data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
                                         <span class="hidden-xs"><?=$this->translate('Marked')?></span>
                                     </button>
-                                <? else : ?>
+                                <?php else : ?>
                                     <button type="button" class="btn btn-default"
                                             data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
                                         <span class="hidden-xs"><?=$this->translate('Mark')?></span>
                                     </button>
-                                <? endif ?>
+                                <?php endif ?>
+                                <!-- end favorite button -->
                             </div>
 
 
@@ -397,7 +399,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
 <!-- lazy loaded javascript -->
 <?php
-echo $this->inlineScript()->appendFile($this->basePath('modules/Gastro24/js/jobs.search.js'));
+echo $this->inlineScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
 ?>
 <!-- end lazy loaded javascript -->
 

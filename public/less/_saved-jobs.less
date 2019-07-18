@@ -9,6 +9,10 @@
       padding-right: 5px;
     }
 
+    &:hover {
+      text-decoration: none;
+    }
+
     &.empty {
       &:before {
         color: #A5B0BB;
@@ -264,3 +268,75 @@
   }
 }
 /* END LIST FAVORITES */
+
+/* BEGIN BUTTON IN JOB SHORT INFO */
+.job-short-info {
+  button {
+    margin-bottom: 10px;
+    padding: 4px 10px;
+
+    &:before {
+      font-family: "FontAwesome";
+      font-size: 1.5rem;
+      font-weight: normal;
+      content: "\f006";
+      padding-right: 5px;
+    }
+
+    &.saved {
+      &:before {
+        color: #A5B0BB;
+        font-family: "FontAwesome";
+        font-size: 1.5rem;
+        content: "\f005";
+        padding-right: 5px;
+      }
+    }
+  }
+}
+.apply-button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    padding: 4px 10px;
+
+    &:before {
+      font-family: "FontAwesome";
+      font-size: 1.5rem;
+      font-weight: normal;
+      content: "\f006";
+      padding-right: 5px;
+    }
+
+    &.saved {
+      &:before {
+        color: #A5B0BB;
+        font-family: "FontAwesome";
+        font-size: 1.5rem;
+        content: "\f005";
+        padding-right: 5px;
+      }
+    }
+  }
+}
+@media(max-width: @screen-xs) {
+  .apply-button-group {
+    justify-content: space-around;
+
+    button {
+      &:before {
+        padding-right: 0;
+      }
+
+      &.saved {
+        &:before {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+/* END BUTTON IN JOB SHORT INFO */

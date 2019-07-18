@@ -1,10 +1,11 @@
 <?php
-$this->headScript()->appendFile($this->basePath('modules/Gastro24/js/jobs.js'))
+$this->headMeta()->setName('robots', 'noindex');
+$this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));
 
 
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
-$savedJobs = $savedJobsContainer->jobs;
+$savedJobs = ($savedJobsContainer->jobs) ? $savedJobsContainer->jobs : [];
 ?>
 
 <!-- search form container -->

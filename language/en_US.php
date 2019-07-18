@@ -44,7 +44,7 @@ return [
         'Your job opening is inactive. You can reactivate it.',
     'Merken' => 'Mark',
     'Gemerkt' => 'Marked',
-    'Gespeicherte Jobs findest du hier.' => 'The jobs you save will be stored here.',
+    'Gespeicherte Jobs finden Sie hier.' => 'The jobs you save will be stored here.',
     'Um ein Stellenangebot zu speichern, klicken Sie den %s Button für einen Job Ihrer Wahl.' => 'To save a job, click the %s button on a job you like.',
     'Gespeicherte Stellenangebote' => 'Saved jobs',
     'Merkliste' => 'Saved Jobs',
