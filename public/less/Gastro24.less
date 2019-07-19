@@ -403,8 +403,7 @@ h1.job-overview-title {
 
 }
 
-
-@media(min-width: @screen-sm) {
+@media(max-width: @screen-sm) {
     
     .home #jobs-list-filter-wrapper {
     .search-form-container {
@@ -412,14 +411,16 @@ h1.job-overview-title {
       
         width: 100%;
   
-        .btn-primary {
-            
-        }
-        .btn-primary:hover {
-            
-        }
+        
     }
 }
+ 
+
+}
+
+
+@media(min-width: @screen-sm) {
+
     
     .job-results-container {
 
