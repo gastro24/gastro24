@@ -54,4 +54,6 @@ return [
     '1 gespeicherte Stellenanzeige' => '1 saved job',
     '%s gespeicherten Stellenanzeigen' => '%s saved jobs',
 
+    'Schweiz' => 'Swiss',
+
 ];

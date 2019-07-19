@@ -95,8 +95,13 @@ $industries = $job->getClassifications()->getIndustries();
                 <li class="location">
                     <!-- location -->
                     <?php
-                    $location = $job->getLocations()->current();
-                    echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    if (!$job->getLocation() && !$job->getLocations()) {
+                        echo /*@translate*/'Swiss';
+                    }
+                    else {
+                        $location = $job->getLocations()->current();
+                        echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
                     ?>
                     <!-- end location -->
                 </li>

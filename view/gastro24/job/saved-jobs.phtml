@@ -56,7 +56,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                 <div class="content">
                     <ul>
                         <li class="location">
-                            <?=$jobData['location']; ?>
+                            <?=($jobData['location'] == '') ? $this->translate('Swiss') : $jobData['location']; ?>
                         </li>
                         <li class="company">
                             <?=$jobData['organizationName']; ?>

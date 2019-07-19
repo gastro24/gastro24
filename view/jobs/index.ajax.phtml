@@ -261,7 +261,8 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                             } else if ($job->getCompany()) {
                                 echo $job->getCompany();
                             }
-                            ?>, <?=preg_replace('~\(.*?\)$~', '', (string) $job->getLocation())?>
+                            ?>, <?=(!$job->getLocation() && !$job->getLocations()) ? $this->translate('Swiss') :
+                                    preg_replace('~\(.*?\)$~', '', (string) $job->getLocation())?>
                             </p>
                            <p>
 
