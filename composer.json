@@ -27,7 +27,7 @@
         "yawik/orders": "^0.3",
         "yawik/jobs-by-mail": "^0.2",
         "yawik/solr": "^0.6",
-        "yawik/simple-import": "^0.1",
+        "yawik/simple-import": "^0.3",
         "yawik/company-registration": ">=0.8",
         "yawik/organizations": "^0.33",
         "yawik/composer-plugin": "^1.0",
