@@ -374,16 +374,30 @@ h1.job-overview-title {
     }
 }
 
+
+
+
 .job-results-container {
     background-color: @g24-light-grey;
     margin-bottom: -50px;
     padding: 20px 0;
 
+}
+
+
+@media(min-width: @screen-xs) {
+    
+    .job-results-container {
+
     &.row {
         margin-left: 0;
         margin-right: 0;
     }
+    
 }
+
+}
+
 .job-overview-results {
     .yk-pagination {
         background-color: #e0e0e0;
