@@ -2,7 +2,7 @@
 .link {
   &__saved-jobs {
     &:before {
-      color: #A5B0BB;
+      color: @g24-grey-blue;
       font-family: "FontAwesome";
       font-size: 2rem;
       content: "\f005";
@@ -15,7 +15,7 @@
 
     &.empty {
       &:before {
-        color: #A5B0BB;
+        color: @g24-grey-blue;
         font-family: "FontAwesome";
         font-size: 2rem;
         content: "\f006";
@@ -50,7 +50,7 @@
 
     &.saved {
       &:before {
-        color: #A5B0BB;
+        color: @g24-grey-blue;
         font-family: "FontAwesome";
         font-size: 1.5rem;
         content: "\f005";
@@ -68,6 +68,11 @@
     border: 1px solid #ccc;
     margin-top: 10px;
     padding: 0 15px 15px;
+
+    &.expired {
+      background-color: @g24-light-grey;
+      border: 1px solid @g24-grey-blue;
+    }
 
     .header,
     .content {
@@ -133,7 +138,7 @@
 
       &.saved {
         &:before {
-          color: #A5B0BB;
+          color: @g24-grey-blue;
           font-family: "FontAwesome";
           font-size: 1.5rem;
           content: "\f005";
@@ -225,6 +230,7 @@
         flex-direction: column;
       }
 
+      .badge-expired,
       .button-job-apply {
         align-self: center;
         margin-top: 10px;
@@ -285,7 +291,7 @@
 
     &.saved {
       &:before {
-        color: #A5B0BB;
+        color: @g24-grey-blue;
         font-family: "FontAwesome";
         font-size: 1.5rem;
         content: "\f005";
@@ -313,7 +319,7 @@
 
     &.saved {
       &:before {
-        color: #A5B0BB;
+        color: @g24-grey-blue;
         font-family: "FontAwesome";
         font-size: 1.5rem;
         content: "\f005";

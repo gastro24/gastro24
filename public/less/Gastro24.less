@@ -8,6 +8,7 @@
 @g24-blue: #243b84;
 @g24-light-blue: #5bc0de;
 @g24-grey:  #242424;
+@g24-grey-blue:  #A5B0BB;
 @g24-white: #ffffff;
 @g24-dark-blue: #22436c;
 @g24-light-grey: #f6f6f6;
@@ -87,6 +88,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 input[type="file"] {
     display: block;
     height: auto;
+}
+
+.badge {
+    &.badge {
+        &-expired {
+            background-color: @g24-grey-blue;
+            border-radius: 3px;
+            padding: 5px 9px;
+        }
+    }
 }
 
 .featured-image-box {

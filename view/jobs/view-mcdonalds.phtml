@@ -149,6 +149,7 @@ $industries = $job->getClassifications()->getIndustries();
             <!-- favorite button -->
             <?= $this->partial('jobs/partials/favorite-button.phtml', [
                 'jobId' => $this->job->getId(),
+                'isExpired' => $isExpired,
                 'buttonCss' => 'hidden-xs',
             ]); ?>
             <!-- end favorite button -->
@@ -171,6 +172,7 @@ $industries = $job->getClassifications()->getIndustries();
                     <!-- favorite button -->
                     <?= $this->partial('jobs/partials/favorite-button.phtml', [
                         'jobId' => $job->getId(),
+                        'isExpired' => $isExpired,
                         'buttonCss' => 'visible-xs favorite-button',
                     ]); ?>
                     <!-- end favorite button -->
@@ -252,6 +254,7 @@ $industries = $job->getClassifications()->getIndustries();
                     <!-- favorite button -->
                     <?= $this->partial('jobs/partials/favorite-button.phtml', [
                         'jobId' => $job->getId(),
+                        'isExpired' => $isExpired,
                         'buttonCss' => 'visible-xs favorite-button',
                     ]); ?>
                     <!-- end favorite button -->

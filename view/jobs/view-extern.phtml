@@ -345,9 +345,11 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                                 </li>
                             <?php endif; ?>
                         </ul>
+
                         <!-- favorite button -->
                         <?= $this->partial('jobs/partials/favorite-button.phtml', [
                             'jobId' => $job->getId(),
+                            'isExpired' => $isExpired,
                             'buttonCss' => 'hidden-xs',
                         ]); ?>
                         <!-- end favorite button -->
@@ -367,6 +369,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                         <!-- favorite button -->
                         <?= $this->partial('jobs/partials/favorite-button.phtml', [
                             'jobId' => $job->getId(),
+                            'isExpired' => $isExpired,
                             'buttonCss' => 'visible-xs favorite-button',
                         ]); ?>
                         <!-- end favorite button -->
@@ -402,6 +405,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                         <!-- favorite button -->
                         <?= $this->partial('jobs/partials/favorite-button.phtml', [
                             'jobId' => $job->getId(),
+                            'isExpired' => $isExpired,
                             'buttonCss' => 'visible-xs favorite-button',
                         ]); ?>
                         <!-- end favorite button -->

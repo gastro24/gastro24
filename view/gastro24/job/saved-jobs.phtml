@@ -6,6 +6,8 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
 
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 $savedJobs = ($savedJobsContainer->jobs) ? $savedJobsContainer->jobs : [];
+
+$jobsRepo = $this->services('repositories')->get('Jobs');
 ?>
 
 <!-- search form container -->
@@ -33,11 +35,22 @@ $savedJobs = ($savedJobsContainer->jobs) ? $savedJobsContainer->jobs : [];
             </a>
         </p>
         <?php foreach ($savedJobs as $id => $jobData) : ?>
-            <div class="box__job">
+            <?php
+            $jobObject = $jobsRepo->find($jobData['id']);
+            $isExpired = ($jobObject->getStatus()) ? $jobObject->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
+            ?>
+            <div class="box__job <?= ($isExpired) ? 'expired' : '' ?>">
                 <div class="header">
-                    <h2 class="h3">
-                        <a href="<?=$jobData['url']?>" title="<?=$jobData['title']?>"><?=$jobData['title']?></a>
-                    </h2>
+                    <?php if ($isExpired) : ?>
+                        <h2 class="h3">
+                            <?=$jobData['title']?>
+                        </h2>
+                    <?php else: ?>
+                        <h2 class="h3">
+                            <a href="<?=$jobData['url']?>" title="<?=$jobData['title']?>"><?=$jobData['title']?></a>
+                        </h2>
+                    <?php endif; ?>
+
                     <a class="close-link" href="<?= $this->url('lang/saved-jobs', [], ['query' => ['remove' => true, 'id' => $jobData['id']]], true)?>">x</a>
                 </div>
                 <div class="content">
@@ -55,11 +68,15 @@ $savedJobs = ($savedJobsContainer->jobs) ? $savedJobsContainer->jobs : [];
                             <?=$jobData['createdAt']?>
                         </li>
                     </ul>
-                    <!-- apply button -->
-                    <div class="button-job-apply text-center">
-                        <?=$jobData['applyUrl']?>
-                    </div>
-                    <!-- end apply button -->
+                    <?php if ($isExpired) : ?>
+                        <span class="badge badge-expired"><?=$this->translate('Expired')?></span>
+                    <?php else: ?>
+                        <!-- apply button -->
+                        <div class="button-job-apply text-center">
+                            <?=$jobData['applyUrl']?>
+                        </div>
+                        <!-- end apply button -->
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>
