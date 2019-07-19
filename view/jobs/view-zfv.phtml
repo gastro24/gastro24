@@ -137,7 +137,7 @@ $industries = $job->getClassifications()->getIndustries();
                     <?php
                     $location = $job->getLocations()->current();
                     if ($location == '') {
-                        echo /*@translate*/'Swiss';
+                        echo $this->translate('Swiss');
                     }
                     else {
                         echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
