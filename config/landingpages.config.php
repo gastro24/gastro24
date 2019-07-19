@@ -143,7 +143,7 @@ $options = [
      ],
       'chef-de-rang' => [
           'id' => 193,
-		  'query' => [ 'q' => '"Chef de Rang"'],
+		  'query' => [ 'q' => 'Chef de Rang'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Chef de Rang Jobs'
