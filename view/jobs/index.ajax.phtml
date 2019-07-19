@@ -224,19 +224,22 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                         </a>
                                     <?php } ?>
                                 </h2>
-                                <!-- favorite button -->
-                                <?php if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
-                                    <button type="button" class="btn btn-default saved"
-                                            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
-                                        <span class="hidden-xs"><?=$this->translate('Marked')?></span>
-                                    </button>
-                                <?php else : ?>
-                                    <button type="button" class="btn btn-default"
-                                            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
-                                        <span class="hidden-xs"><?=$this->translate('Mark')?></span>
-                                    </button>
-                                <?php endif ?>
-                                <!-- end favorite button -->
+
+                                <?php if(!$jobHasExternLink) : ?>
+                                    <!-- favorite button -->
+                                    <?php if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
+                                        <button type="button" class="btn btn-default saved"
+                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                            <span class="hidden-xs"><?=$this->translate('Marked')?></span>
+                                        </button>
+                                    <?php else : ?>
+                                        <button type="button" class="btn btn-default"
+                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                            <span class="hidden-xs"><?=$this->translate('Mark')?></span>
+                                        </button>
+                                    <?php endif ?>
+                                    <!-- end favorite button -->
+                                <?php endif; ?>
                             </div>
 
 
@@ -261,7 +264,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                             } else if ($job->getCompany()) {
                                 echo $job->getCompany();
                             }
-                            ?>, <?=(!$job->getLocation() && !$job->getLocations()) ? $this->translate('Swiss') :
+                            ?>, <?=($job->getLocation() == '') ? $this->translate('Swiss') :
                                     preg_replace('~\(.*?\)$~', '', (string) $job->getLocation())?>
                             </p>
                            <p>

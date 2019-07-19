@@ -10,6 +10,7 @@
 
 /* @var $options \Core\Options\ModuleOptions */
 $options = $this->services('Core/Options');
+$test = sha1(sha1('10620725'));
 $languages = $options->getSupportedLanguages();
 $lang = $this->params('lang');
 

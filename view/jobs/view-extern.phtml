@@ -313,11 +313,11 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                             <li class="location">
                                 <!-- location -->
                                 <?php
-                                if (!$job->getLocation() && !$job->getLocations()) {
+                                $location = $job->getLocations()->current();
+                                if ($location == '') {
                                     echo /*@translate*/'Swiss';
                                 }
                                 else {
-                                    $location = $job->getLocations()->current();
                                     echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
                                 }
                                 ?>
