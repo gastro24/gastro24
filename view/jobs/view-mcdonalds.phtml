@@ -114,11 +114,11 @@ $industries = $job->getClassifications()->getIndustries();
                 <li class="location">
                     <!-- location -->
                     <?php
-                    if (!$job->getLocation() && !$job->getLocations()) {
+                    $location = $job->getLocations()->current();
+                    if ($location == '') {
                         echo /*@translate*/'Swiss';
                     }
                     else {
-                        $location = $job->getLocations()->current();
                         echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
                     }
                     ?>
