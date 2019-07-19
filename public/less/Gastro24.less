@@ -141,10 +141,11 @@ input[type="file"] {
 
 
 .input-group .form-control  {
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-         border-radius: 3px;   height: 38px;
-         font-size: 14px;
+        -webkit-border-radius: 3px!important;
+        -moz-border-radius: 3px!important;
+         border-radius: 3px!important; 
+         height: 38px!important;
+         font-size: 14px!important;
 }
 
 #jobs-list-filter-wrapper {
@@ -166,6 +167,12 @@ input[type="file"] {
         position: relative;
         color: #fff;
         padding: 10px 0;
+        
+        
+        .btn-default {
+            display:none
+        }
+        
         .btn-primary {
             background-color: @btn-primary-bg;
             border-color: @btn-primary-border;
@@ -184,6 +191,9 @@ input[type="file"] {
 
 .home #jobs-list-filter-wrapper {
     .search-form-container {
+        
+        margin: 0 auto;
+        width: 75%;
         background-color: rgba(0, 0, 0, 0.7);
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -395,6 +405,21 @@ h1.job-overview-title {
 
 
 @media(min-width: @screen-sm) {
+    
+    .home #jobs-list-filter-wrapper {
+    .search-form-container {
+        
+      
+        width: 100%;
+  
+        .btn-primary {
+            
+        }
+        .btn-primary:hover {
+            
+        }
+    }
+}
     
     .job-results-container {
 
