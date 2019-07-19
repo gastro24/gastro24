@@ -230,7 +230,9 @@ class JobController extends AbstractActionController implements ContainerAwareIn
             } elseif ($job->getCompany()) {
                 $orgName = $job->getCompany();
             }
-            $location = preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+
+            $location = (!$job->getLocation() && !$job->getLocations()) ? /*@translate*/'Swiss' :
+                preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
 
             $container->jobs[$jobId] = [
                 'id' => $jobId,

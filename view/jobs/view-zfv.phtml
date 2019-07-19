@@ -135,8 +135,13 @@ $industries = $job->getClassifications()->getIndustries();
                 <li class="location">
                     <!-- location -->
                     <?php
-                    $location = $job->getLocations()->current();
-                    echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    if (!$job->getLocation() && !$job->getLocations()) {
+                        echo /*@translate*/'Swiss';
+                    }
+                    else {
+                        $location = $job->getLocations()->current();
+                        echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
                     ?>
                     <!-- end location -->
                 </li>
@@ -170,6 +175,7 @@ $industries = $job->getClassifications()->getIndustries();
             <!-- favorite button -->
             <?= $this->partial('jobs/partials/favorite-button.phtml', [
                 'jobId' => $this->job->getId(),
+                'isExpired' => $isExpired,
                 'buttonCss' => 'hidden-xs',
             ]); ?>
             <!-- end favorite button -->
@@ -192,6 +198,7 @@ $industries = $job->getClassifications()->getIndustries();
                     <!-- favorite button -->
                     <?= $this->partial('jobs/partials/favorite-button.phtml', [
                         'jobId' => $job->getId(),
+                        'isExpired' => $isExpired,
                         'buttonCss' => 'visible-xs favorite-button',
                     ]); ?>
                     <!-- end favorite button -->
@@ -273,6 +280,7 @@ $industries = $job->getClassifications()->getIndustries();
                     <!-- favorite button -->
                     <?= $this->partial('jobs/partials/favorite-button.phtml', [
                         'jobId' => $job->getId(),
+                        'isExpired' => $isExpired,
                         'buttonCss' => 'visible-xs favorite-button',
                     ]); ?>
                     <!-- end favorite button -->
