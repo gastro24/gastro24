@@ -34,6 +34,18 @@
 
 $options = [
     
+     'fachverkaeufer' => [
+          'id' => 1312,
+		  'query' => [ 'q' => 'Fachverkäufer'],
+          'text' => 'Fachverkäufer Jobs'
+     ],
+    
+      'hotelfachfrau' => [
+          'id' => 1309,
+		  'query' => [ 'q' => 'Hotelfachfrau '],
+          'text' => 'Hotelfachfrau Jobs'
+     ],
+     
      'saison' => [
           'id' => 1298,
 		  'query' => [ 'q' => 'Saison'],
