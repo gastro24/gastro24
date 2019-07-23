@@ -68,10 +68,23 @@
                 },
                 processResults: function(data, params) {
                     console.debug('processResults: results:', data);
-                    console.debug($.map(data.items, function(item) { return {id: JSON.stringify(item), data: item}; }));
+                    console.debug($.map(data.items, function(item) {
+                        return {
+                            id: JSON.stringify(item),
+                            data: item
+                        };
+                    }));
                     //params.page = params.page || 1;
                     return {
-                        results: $.map(data.items, function(item) { return {id: JSON.stringify(item), data: item}; }),
+                        results: $.map(data.items, function(item) {
+                            if (item.city == 'Bundesland') {
+                                item.city = 'Kanton' + ' ' + item.region
+                            }
+                            return {
+                                id: JSON.stringify(item),
+                                data: item
+                            };
+                        }),
                         pagination: {
                             more: false
                         }
