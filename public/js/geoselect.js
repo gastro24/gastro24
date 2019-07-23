@@ -18,14 +18,12 @@
             return data.text;
         }
 
-
         return '<strong>' + getName(data.data) + '</strong><br /><small>' + data.data.region + '</small>';
 
     }
 
     function formatSelection(data)
     {
-        console.debug(data, typeof data.data);
         if (!data.id || typeof data.data != 'object') { return data.text; }
 
         return getName(data.data);
@@ -47,6 +45,7 @@
 
         return name;
     }
+
     function setupGeoSelect($node)
     {
         $node.select2({
@@ -54,6 +53,7 @@
             width: $node.data('width'),
             placeholder: $node.data('placeholder'),
             minimumInputLength: 2,
+            tags: true,
 
             ajax: {
                 url: basePath + '/',
@@ -75,6 +75,27 @@
                         pagination: {
                             more: false
                         }
+                    }
+                }
+            },
+            createTag: function (params) {
+                var term = $.trim(params.term);
+
+                if (term === '') {
+                    return null;
+                }
+
+                return {
+                    id: JSON.stringify({
+                        city: term,
+                        postalCode: '',
+                        region: ''
+                    }),
+                    text: term,
+                    data: {
+                        city: term,
+                        postalCode: '',
+                        region: ''
                     }
                 }
             },
