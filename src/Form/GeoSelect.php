@@ -25,6 +25,11 @@ class GeoSelect extends Select implements HeadscriptProviderInterface, HydratorS
         'modules/Gastro24/js/geoselect.js'
     ];
 
+    /**
+     * @var \Zend\View\Helper\Asset
+     */
+    private $assetHelper;
+
     public function setOptions($options)
     {
         parent::setOptions($options);
@@ -67,7 +72,18 @@ class GeoSelect extends Select implements HeadscriptProviderInterface, HydratorS
      */
     public function getHeadscripts()
     {
-        return $this->headscripts;
+        $scripts = [];
+
+        foreach ($this->headscripts as $script) {
+            try {
+                $resourceUrl = $this->assetHelper->__invoke($script);
+            }
+            catch (\Zend\View\Exception\InvalidArgumentException $e) {
+                $resourceUrl = $script;
+            }
+            $scripts[] = $resourceUrl;
+        }
+        return $scripts;
     }
 
 
@@ -79,5 +95,10 @@ class GeoSelect extends Select implements HeadscriptProviderInterface, HydratorS
             'data-clear-on-reset' => true,
             'class' => 'geoselect',
         ]);
+    }
+
+    public function setAssetHelper($assetHelper)
+    {
+        $this->assetHelper = $assetHelper;
     }
 }

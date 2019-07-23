@@ -18,14 +18,12 @@
             return data.text;
         }
 
-
         return '<strong>' + getName(data.data) + '</strong><br /><small>' + data.data.region + '</small>';
 
     }
 
     function formatSelection(data)
     {
-        console.debug(data, typeof data.data);
         if (!data.id || typeof data.data != 'object') { return data.text; }
 
         return getName(data.data);
@@ -47,6 +45,7 @@
 
         return name;
     }
+
     function setupGeoSelect($node)
     {
         $node.select2({
@@ -54,6 +53,7 @@
             width: $node.data('width'),
             placeholder: $node.data('placeholder'),
             minimumInputLength: 2,
+            tags: true,
 
             ajax: {
                 url: basePath + '/',
@@ -78,14 +78,33 @@
                     }
                 }
             },
+            createTag: function (params) {
+                var term = $.trim(params.term);
+
+                if (term === '') {
+                    return null;
+                }
+
+                return {
+                    id: JSON.stringify({
+                        city: term,
+                        postalCode: '',
+                        region: ''
+                    }),
+                    text: term,
+                    data: {
+                        city: term,
+                        postalCode: '',
+                        region: ''
+                    }
+                }
+            },
             templateResult: formatResult,
             templateSelection: formatSelection,
             escapeMarkup: function(m) { return m; }
         });
 
         var initialValue = $node.data('val');
-
-
 
         if (!initialValue) {
             initialValue = [];
@@ -96,7 +115,13 @@
         if (initialValue.length) {
             for (var i=initialValue.length-1; i>=0; i-=1) {
                 console.debug("initVal " + i + ": "+ initialValue[i]);
-                var tmpText = JSON.parse(initialValue[i]).city;
+                var locationArray = JSON.parse(initialValue[i]);
+                var tmpText = locationArray.city;
+
+                if (tmpText == 'Bundesland') {
+                    tmpText = 'Kanton' + ' ' + locationArray.region
+                }
+
                 var $option = $('<option selected>'+ tmpText +'</option>');
                 $option.val(initialValue[i]);
 

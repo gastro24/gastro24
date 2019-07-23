@@ -47,7 +47,7 @@ module.exports = function(grunt) {
                         moduleDir + "/js/jquery.matchHeight.js",
                         moduleDir + "/js/index.js",
                     ],
-                    dest: targetDir+"/dist/js/index-main.js"
+                    dest: moduleDir+"/js/index-main.js"
                 },
               ]
           },
@@ -67,8 +67,8 @@ module.exports = function(grunt) {
                       dest: targetDir+'/dist/js/jquery-ui-1-12.min.js',
                   },
                   {
-                      src: targetDir+'/dist/js/index-main.js',
-                      dest: targetDir+'/dist/js/index-main.min.js',
+                      src: moduleDir+'/js/index-main.js',
+                      dest: moduleDir+'/js/index-main.min.js',
                   }
               ]
           },

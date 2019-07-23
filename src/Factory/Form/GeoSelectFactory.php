@@ -18,6 +18,8 @@ class GeoSelectFactory implements FactoryInterface
     {
         /* @var \Geo\Options\ModuleOptions $geoOptions */
         $geoOptions = $container->get('Geo/Options');
+        $helpers = $container->get('ViewHelperManager');
+        $assetHelper = $helpers->get('Asset');
 
         $select = new GeoSelect();
 
@@ -27,6 +29,7 @@ class GeoSelectFactory implements FactoryInterface
         $strategy = new GeoSelectHydratorStrategy($client);
 
         $select->setHydratorStrategy($strategy);
+        $select->setAssetHelper($assetHelper);
 
         return $select;
     }
