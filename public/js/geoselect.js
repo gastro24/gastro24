@@ -85,8 +85,6 @@
 
         var initialValue = $node.data('val');
 
-
-
         if (!initialValue) {
             initialValue = [];
         } else if (!$.isArray(initialValue)) {
@@ -96,7 +94,13 @@
         if (initialValue.length) {
             for (var i=initialValue.length-1; i>=0; i-=1) {
                 console.debug("initVal " + i + ": "+ initialValue[i]);
-                var tmpText = JSON.parse(initialValue[i]).city;
+                var locationArray = JSON.parse(initialValue[i]);
+                var tmpText = locationArray.city;
+
+                if (tmpText == 'Bundesland') {
+                    tmpText = 'Kanton' + ' ' + locationArray.region
+                }
+
                 var $option = $('<option selected>'+ tmpText +'</option>');
                 $option.val(initialValue[i]);
 
