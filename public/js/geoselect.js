@@ -128,7 +128,12 @@
         if (initialValue.length) {
             for (var i=initialValue.length-1; i>=0; i-=1) {
                 console.debug("initVal " + i + ": "+ initialValue[i]);
-                var locationArray = JSON.parse(initialValue[i]);
+                try {
+                    var locationArray = JSON.parse(initialValue[i]);
+                } catch (e) {
+                    var locationArray = initialValue[i];
+                }
+
                 var tmpText = locationArray.city;
 
                 if (tmpText == 'Bundesland') {
