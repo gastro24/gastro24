@@ -19,7 +19,7 @@
 
 
 return [
-     'Bewerben mit Social Media' => 'One-Click-Apply',
+     'Bewerben mit Social Media' => 'One click apply',
     'Täglich ähnliche Jobs in Ihrem Postfach' => 'Similar jobs in your inbox daily',
 
     '%s%d%s Jobs gefunden' => 'Found %s%d%s jobs',
