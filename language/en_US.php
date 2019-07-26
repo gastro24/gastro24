@@ -29,7 +29,7 @@ return [
 
     'Es sind nur Ziffern, "/" und "+" erlaubt' => 'Please enter only numbers, "/" and "+"',
     'Beruf, Begriff oder Arbeitsort' => 'Job, Keyword or Location',
-    'Zurück zur Suche' => 'Back to search',
+    'Zurück' => 'Back to search',
     'Voriger Job' => 'Previous Job',
     'Nächster Job' => 'Next Job',
 
