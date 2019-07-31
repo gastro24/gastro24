@@ -120,6 +120,10 @@ $this->headScript()->captureStart();
                  echo $this->url('lang/jobboard', array(), array('query' => $this->params()->fromQuery()), true) ?>">
 
                <div class="col-md-12">
+                   <h1 style="display:inline-block; font-size: 20px;font-weight: 600;margin-bottom: 10px;" class="h2 job-overview-title">
+                     <?=$wordpress->call('value', ['title.rendered'], '')  ?>
+                   </h1>
+                   
                 <div class="pagination-message alert alert-warning" style="display:none">
                     <?=sprintf(
                            $this->translate('%sSorry%s, there are not any jobs matching your search criteria.'
