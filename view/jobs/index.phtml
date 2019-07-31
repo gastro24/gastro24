@@ -123,7 +123,7 @@ $this->headScript()->captureStart();
                    <h1 style="display:inline-block; font-size: 20px;font-weight: 600;margin-bottom: 10px;" class="h2 job-overview-title">
                      <?=$wordpress->call('value', ['title.rendered'], '')  ?>
                    </h1>
-                   <p>Wir haben leider keine Jobs gefunden für ?=$wordpress->call('value', ['title.rendered'], '')  ?>.</p>
+                   <p>Wir haben leider keine Jobs gefunden für <?=$wordpress->call('value', ['title.rendered'], '')  ?>.</p>
                    
                 <div class="pagination-message alert alert-warning" style="display:none">
                     <?=sprintf(
