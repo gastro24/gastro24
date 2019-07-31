@@ -42,7 +42,7 @@ else {
                         sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
                 ?>
                 <a style="color: #A5B0BB;font-size: 16px;" class="link__saved-jobs empty" href="<?=$this->url('lang/saved-jobs', [], true)?>"
-                   data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>"> Merkliste</a>
+                   data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>"> <span class="hidden-xs">Merkliste</span></a>
             </div>
         </div>
     </div>
