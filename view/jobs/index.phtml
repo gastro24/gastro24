@@ -25,7 +25,7 @@ $this->headTitle($title ?: $this->translate('Jobs'));
 
 $robots = "noindex,follow";
 //if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
-if (xxx === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage' || $description))) {
+if (xxx === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
     $robots = substr($robots, 2);
 }
 $this->headMeta()->setName('robots', $robots);
@@ -120,11 +120,7 @@ $this->headScript()->captureStart();
                  echo $this->url('lang/jobboard', array(), array('query' => $this->params()->fromQuery()), true) ?>">
 
                <div class="col-md-12">
-                   <h1 style="display:inline-block; font-size: 20px;font-weight: 600;margin-bottom: 10px;" class="h2 job-overview-title">
-                     <?=$wordpress->call('value', ['title.rendered'], '')  ?>
-                   </h1>
-                   <p>Wir haben leider keine Jobs gefunden für <?=$wordpress->call('value', ['title.rendered'], '')  ?>.</p>
-                   
+  
                 <div class="pagination-message alert alert-warning" style="display:none">
                     <?=sprintf(
                            $this->translate('%sSorry%s, there are not any jobs matching your search criteria.'
