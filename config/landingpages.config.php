@@ -34,6 +34,23 @@
 
 $options = [
     
+    'teilzeit' => [
+          'id' => 1330,
+		  'query' => [ 'q' => 'Teilzeit'],
+          'text' => 'Teilzeit Jobs'
+     ],
+    
+    'restaurationsfachmann' => [
+          'id' => 1325,
+		  'query' => [ 'q' => 'Restaurationsfachmann'],
+          'text' => 'Restaurationsfachmann Jobs'
+     ],
+    'marketing-sales' => [
+          'id' => 1327,
+		  'query' => [ 'q' => 'Marketing'],
+          'text' => 'Marketing Jobs'
+     ],
+
      'fachverkaeufer' => [
           'id' => 1312,
 		  'query' => [ 'q' => 'Fachverkäufer'],
