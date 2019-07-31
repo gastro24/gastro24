@@ -17,7 +17,7 @@ $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $wordpress = $this->proxy('wordpress');
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
-$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
+//$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
 $description = $wordpress->call('value', ['content.rendered'], '');
 
 $title = $wordpress->call('value', ['meta-fields.title'], '');
