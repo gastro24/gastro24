@@ -24,7 +24,8 @@ $searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($query
 $hasRegion= isset($queryGet['region_MultiString']);
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
-$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
+
+//$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
 $description = $wordpress->call('value', ['content.rendered'], '');
 
 if ($this->params()->fromRoute('isLandingPage')) {
