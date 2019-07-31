@@ -310,7 +310,7 @@ $options = [
 		  'query' => [ 'q' => 'Konditor'],
           'text' => 'Konditor Confiseur Jobs'
      ],
-	   'restaurantmanager' => [
+	   'restaurant-manager' => [
           'id' => 199,
 		  'query' => [ 'q' => 'Restaurant Manager'],
           'text' => 'Restaurant Manager Jobs'
