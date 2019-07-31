@@ -83,7 +83,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
         <?=$wordpress->call('value', ['title.rendered'], '')  ?>
     </h1>
     <h2>
-        (<?=$this->jobs->getTotalItemCount ?: (count($this->jobs) ? 'Jobs gefunden' : 'Leider keine passenden Jobs gefunden');  ?>)
+        (<?=$this->jobs->getTotalItemCount ?> <?= (count($this->jobs) ? 'Jobs gefunden' : 'Leider keine passenden Jobs gefunden');  ?>)
     </h2>
 
     
