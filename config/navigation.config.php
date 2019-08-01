@@ -45,12 +45,12 @@ return [
                     'clear' => 1
                 ],
             ],
-            'jobs' => [
-                'label' =>  /*@translate*/'List of your jobs',
-                'route' => 'lang/jobs',
-                'order' => '30',
-                'resource' => 'Jobs',
-            ],
+            //'jobs' => [
+            //    'label' =>  /*@translate*/'List of your jobs',
+             //   'route' => 'lang/jobs',
+             //   'order' => '30',
+             //   'resource' => 'Jobs',
+           // ],
             'ratgeber' => [
                 'label' => 'Ratgeber',
                 'route' => 'lang/wordpress',
