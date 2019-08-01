@@ -86,6 +86,7 @@ class UserRegisteredListener
         $wrapper->setProduct($product);
 
         $uri = $this->router->assemble(['action' => 'edit'], ['name' => 'lang/jobs/manage', 'only_return_path' => true]);
+        $uri .= '?package=' . $this->productType;
         $this->response->setStatusCode(302);
         $this->response->getHeaders()->addHeaderLine('Location', $uri);
 
