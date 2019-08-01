@@ -46,7 +46,7 @@ return [
                  ],
              ],
             'jobs' => [
-                'visible' => false,
+                'visible' => true,
                 'label' =>  /*@translate*/'List of your jobs',
                'route' => 'lang/jobs',
                'order' => '30',
