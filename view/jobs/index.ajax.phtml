@@ -95,9 +95,16 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                   <li class="breadcrumb-item" itemprop="itemListElement" itemscope
                       itemtype="http://schema.org/ListItem">
                     <a style="text-decoration:underline" itemprop="item" href="/">
-                    <span itemprop="name">Gastrojobs</span></a>
+                    <span itemprop="name">Home</span></a>
                     <meta itemprop="position" content="1" />
                   </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                      itemtype="http://schema.org/ListItem">
+                    <a style="text-decoration:underline" itemprop="item" href="/de/jobs?clear=1">
+                    <span itemprop="name">Jobs</span></a>
+                    <meta itemprop="position" content="2" />
+                  </li>
+                  
                   <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                       itemtype="http://schema.org/ListItem" aria-current="page">
 
@@ -112,7 +119,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
                   <?php }; ?>
 
-                    <meta itemprop="position" content="2" />
+                    <meta itemprop="position" content="3" />
                   </li>
               </ol>
         </nav
