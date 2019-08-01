@@ -130,7 +130,23 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                <!-- tbd. searchstrings region -->
                
                
-               sds
+         <nav aria-label="breadcrumb">
+           <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList" style="background-color:#ececec; margin-bottom:0px;border-radius:0">
+                  <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                      itemtype="http://schema.org/ListItem">
+                    <a style="text-decoration:underline" itemprop="item" href="/">
+                    <span itemprop="name">Home</span></a>
+                    <meta itemprop="position" content="1" />
+                  </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope
+                      itemtype="http://schema.org/ListItem">
+                    <a style="text-decoration:none" itemprop="item" href="/de/jobs?clear=1">
+                    <span itemprop="name">Jobs</span></a>
+                    <meta itemprop="position" content="2" />
+                  </li>
+                  
+              </ol>
+        </nav
 
         <?php }; ?>
     </div>
