@@ -36,21 +36,22 @@ return [
                 ]
             ],
 
-           //  'jobboard' => [
-             //'visible' => false,
-               //  'label' => 'Jobs',
-              //   'text_domain' => 'do-not-translate',
-               //  'active_on' => ['lang/jobboard', 'lang/landingPage'],
-               //  'query' => [
-               //      'clear' => 1
-               //  ],
-            // ],
-            //'jobs' => [
-            //    'label' =>  /*@translate*/'List of your jobs',
-             //   'route' => 'lang/jobs',
-             //   'order' => '30',
-             //   'resource' => 'Jobs',
-           // ],
+             'jobboard' => [
+              'visible' => false,
+                 'label' => 'Jobs',
+                 'text_domain' => 'do-not-translate',
+                 'active_on' => ['lang/jobboard', 'lang/landingPage'],
+                 'query' => [
+                     'clear' => 1
+                 ],
+             ],
+            'jobs' => [
+                'visible' => false,
+                'label' =>  /*@translate*/'List of your jobs',
+               'route' => 'lang/jobs',
+               'order' => '30',
+                'resource' => 'Jobs',
+            ],
             'ratgeber' => [
                 'label' => 'Ratgeber',
                 'route' => 'lang/wordpress',
