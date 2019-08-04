@@ -89,6 +89,13 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
     
     
     <div class="job-overview">
+        
+         <?php if ($hasRegion) { ?>
+         
+            Region...
+         
+          <?php }; ?>
+        
         <?php if ($searchTerm) { ?>
         <nav aria-label="breadcrumb">
            <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList" style="background-color:#ececec; margin-bottom:0px;border-radius:0">
@@ -123,7 +130,10 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                   </li>
               </ol>
         </nav
-
+        
+   
+   
+   
 
         <?php } else { ?>
 
