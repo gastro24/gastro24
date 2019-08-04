@@ -90,11 +90,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
     
     <div class="job-overview">
         
-         <?php if ($hasRegion) { ?>
-         
-            Region...
-         
-          <?php }; ?>
+    
         
         <?php if ($searchTerm) { ?>
         <nav aria-label="breadcrumb">
@@ -132,8 +128,16 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
         </nav
         
    
-   
-   
+    <?php } else if ($hasRegion)    { ?>
+    
+    <a style="text-decoration:none" itemprop="item" href="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>">
+     <span itemprop="name"> <?= $hasRegion ?></span></a>
+
+                 
+
+    <meta itemprop="position" content="3" />
+    
+
 
         <?php } else { ?>
 
