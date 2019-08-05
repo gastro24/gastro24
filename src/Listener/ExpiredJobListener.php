@@ -22,12 +22,19 @@ class ExpiredJobListener
     private $repositories;
     private $mailer;
 
+    /**
+     * @var \Zend\Log\Logger
+     */
+    private $logger;
+
     public function __construct(
         RepositoryService $repositories,
-        \Core\Mail\MailService $mailer
+        \Core\Mail\MailService $mailer,
+        \Zend\Log\Logger $logger
     ) {
         $this->repositories = $repositories;
         $this->mailer = $mailer;
+        $this->logger = $logger;
     }
 
     public function __invoke(JobEvent $event)
@@ -49,20 +56,26 @@ class ExpiredJobListener
         if (!$order) {
             return;
         }
-        
-        $this->mailer->send($this->mailer->get(
-            'Gastro24/SingleJobMail',
-            [
-                'template' => 'mail/job-expired',
-                'subject'  => /*@translate */ 'Ihre Anzeige ist abgelaufen.',
-                'email'    => $order->getInvoiceAddress()->getEmail(),
-                'name'     => $order->getInvoiceAddress()->getName(),
-                'vars'     => [
-                    'job' => $job,
-                    'gender' => $order->getInvoiceAddress()->getGender(),
-                    'userName' => $order->getInvoiceAddress()->getName()
-                ],
-            ]
-        ));
+
+        try {
+            $this->mailer->send($this->mailer->get(
+                'Gastro24/SingleJobMail',
+                [
+                    'template' => 'mail/job-expired',
+                    'subject'  => /*@translate */ 'Ihre Anzeige ist abgelaufen.',
+                    'email'    => $order->getInvoiceAddress()->getEmail(),
+                    'name'     => $order->getInvoiceAddress()->getName(),
+                    'vars'     => [
+                        'job' => $job,
+                        'gender' => $order->getInvoiceAddress()->getGender(),
+                        'userName' => $order->getInvoiceAddress()->getName()
+                    ],
+                ]
+            ));
+        }
+        catch (\Exception $e) {
+            $this->logger->err($e->getMessage());
+        }
+
     }
 }
