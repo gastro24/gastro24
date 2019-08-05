@@ -16,7 +16,8 @@ class ExpiredJobListenerFactory implements FactoryInterface
     {
         $repositories = $container->get('repositories');
         $mailer = $container->get('Core/MailService');
-        $service = new ExpiredJobListener($repositories, $mailer);
+        $logger = $container->get('Core/Log');
+        $service = new ExpiredJobListener($repositories, $mailer, $logger);
 
         return $service;
     }
