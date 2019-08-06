@@ -2,6 +2,7 @@
 
 namespace Gastro24;
 
+use Gastro24\View\Helper\IsCrawlerJob;
 use Jobs\Controller\TemplateController;
 use Jobs\Entity\Status;
 use Yawik\Composer\AssetProviderInterface;
@@ -279,6 +280,10 @@ class Module implements AssetProviderInterface
 
     public function onRenderError($e)
     {
+        $services     = $e->getApplication()->getServiceManager();
+        /** @var IsCrawlerJob $isCrawlerHelper */
+        $viewHelpers = $services->get('ViewHelperManager');
+        $isCrawlerJobHelper = $viewHelpers->get(IsCrawlerJob::class);
         $response = $e->getResponse();
 
         if (get_class($response) === \Zend\Console\Response::class ) {
@@ -291,6 +296,7 @@ class Module implements AssetProviderInterface
         if (isset($viewModel->getChildren()[0]) && isset($viewModel->getChildren()[0]->getVariables()['job'])) {
             $job = $viewModel->getChildren()[0]->getVariables()['job'];
         }
+        $isCrawlerJob = $isCrawlerJobHelper->__invoke($job->getOrganization());
 
         /**
          * @see TemplateController
@@ -298,7 +304,7 @@ class Module implements AssetProviderInterface
          */
         if ($matchedRouteName == 'lang/jobs/view-extern' &&
             $job && $job->getStatus()->getName() == Status::EXPIRED &&
-            $response->getStatusCode() == Response::STATUS_CODE_410) {
+            $response->getStatusCode() == Response::STATUS_CODE_410 && !$isCrawlerJob) {
 
             $response->setStatusCode(Response::STATUS_CODE_200);
             $e->setResponse($response);
