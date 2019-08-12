@@ -16,6 +16,10 @@ if (count($jobs)): ?>
 <?php
 $hasFacets = $jobs instanceof \Solr\FacetsProviderInterface;
 
+// set canonical link
+$jobUrl = $this->serverUrl() . $this->url('lang/jobboard', [], [], true);
+$this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
+
 $queryGet = $this->params()->fromQuery();
 unset($queryGet['clear']);
 $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);

@@ -296,7 +296,11 @@ class Module implements AssetProviderInterface
         if (isset($viewModel->getChildren()[0]) && isset($viewModel->getChildren()[0]->getVariables()['job'])) {
             $job = $viewModel->getChildren()[0]->getVariables()['job'];
         }
-        $isCrawlerJob = $isCrawlerJobHelper->__invoke($job->getOrganization());
+
+        $isCrawlerJob = false;
+        if ($job && $job->getOrganization()) {
+            $isCrawlerJob = $isCrawlerJobHelper->__invoke($job->getOrganization());
+        }
 
         /**
          * @see TemplateController
