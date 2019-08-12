@@ -45,10 +45,10 @@ if ($hasBanner) {
 $today = new DateTime();
 $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
 $dayDiff = $today->diff($jobDate);
-if ($dayDiff->days >= 1 && $dayDiff->days <= 2) {
+if ($dayDiff->days >= 1 && $dayDiff->days < 2) {
     $publishDate = $this->translate('Gestern');
 }
-elseif ($dayDiff->days > 2 && $dayDiff->days <= 30) {
+elseif ($dayDiff->days >= 2 && $dayDiff->days <= 30) {
     $publishDate = $this->translate('vor ' . $dayDiff->days . ' Tagen');
 }
 elseif ($dayDiff->days > 30 ) {
