@@ -145,8 +145,6 @@ class Module implements AssetProviderInterface
                     $routeMatch->setParam('wpId', $options->getIdMap($term));
                     $routeMatch->setParam('isLandingPage', true);
                     $routeMatch->setParam('term', $term);
-                    //$query->setMinimumMatch(0);
-                    $query = array_merge(['mm' => 0], $query);
 
                     if ($query) {
                         $origQuery = $event->getRequest()->getQuery()->toArray();
