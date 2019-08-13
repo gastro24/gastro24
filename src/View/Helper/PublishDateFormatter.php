@@ -23,14 +23,23 @@ class PublishDateFormatter extends AbstractHelper
         // get date difference
         $today = new DateTime();
         $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
+        // workaround for timezone hours difference
+        $time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '+04:00');
+        $jobDate->setTimestamp($time);
+
         $dayDiff = $today->diff($jobDate);
         if ($dayDiff->days >= 1 && $dayDiff->days < 2) {
-            $publishDate = /*@translate*/'Gestern';
+            if ($dayDiff->h > 0) {
+                $publishDate = /*@translate*/'vor ' . ($dayDiff->days + 1) . ' Tagen';
+            }
+            else {
+                $publishDate = /*@translate*/'Gestern';
+            }
         }
-        elseif ($dayDiff->days >= 2 && $dayDiff->days <= 30) {
-            $publishDate = /*@translate*/'vor ' . $dayDiff->days . ' Tagen';
+        elseif ($dayDiff->days >= 2 && $dayDiff->days <= 29) {
+            $publishDate = /*@translate*/'vor ' . ($dayDiff->days + 1) . ' Tagen';
         }
-        elseif ($dayDiff->days > 30 ) {
+        elseif ($dayDiff->days >= 30 ) {
             $publishDate = /*@translate*/'vor 30+ Tagen';
         }
         elseif ($dayDiff->days < 1 && $dayDiff->h < 1) {
