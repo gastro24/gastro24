@@ -68,29 +68,6 @@ if (!$this->isIntern && $this->isEmbeddable) {
     }
 }
 
-// get date difference
-$today = new DateTime();
-$jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
-$dayDiff = $today->diff($jobDate);
-if ($dayDiff->days >= 1 && $dayDiff->days < 2) {
-    $publishDate = $this->translate('Gestern');
-}
-elseif ($dayDiff->days >= 2 && $dayDiff->days <= 30) {
-    $publishDate = $this->translate('vor ' . $dayDiff->days . ' Tagen');
-}
-elseif ($dayDiff->days > 30 ) {
-    $publishDate = $this->translate('vor 30+ Tagen');
-}
-elseif ($dayDiff->days < 1 && $dayDiff->h < 1) {
-    $publishDate = $this->translate('vor ' . $dayDiff->i . ' Minuten');
-}
-elseif ($dayDiff->days < 1) {
-    $publishDate = $this->translate('vor ' . $dayDiff->h . ' Stunden');
-}
-else {
-    $publishDate = $this->dateFormat($job->getDateCreated(), 'medium', 'none');
-}
-
 // get logo url
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 $logoUrl = $this->gastroLogoUri($this->job);
@@ -352,7 +329,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                             </li>
                             <li class="date">
                                 <!-- published date -->
-                                <span><?= $publishDate ?></span>
+                                <span><?= $this->publishDateFormatter($job) ?></span>
                                 <!-- end published date -->
                             </li>
                             <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org)): ?>
