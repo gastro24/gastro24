@@ -173,6 +173,7 @@ return [
             View\Helper\ShowAutomaticJobActivationHint::class => View\Helper\ShowAutomaticJobActivationHintFactory::class,
             View\Helper\HydrateOrderObject::class => View\Helper\HydrateOrderObjectFactory::class,
             View\Helper\JsonLd::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+            View\Helper\PublishDateFormatter::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -189,6 +190,7 @@ return [
             'similarJobs' => View\Helper\SimilarJobs::class,
             'jsonLd' => View\Helper\JsonLd::class,
             'isCrawlerJob' => View\Helper\IsCrawlerJob::class,
+            'publishDateFormatter' => View\Helper\PublishDateFormatter::class,
         ],
         'delegators' => [
             'jobUrl' => [

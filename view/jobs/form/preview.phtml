@@ -36,29 +36,6 @@ $defaultTaxRate = $options->defaultTaxRate;
 
 $template = $job->getAttachedEntity('gastro24-template');
 
-// get date difference
-$today = new DateTime();
-$jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
-$dayDiff = $today->diff($jobDate);
-if ($dayDiff->days >= 1 && $dayDiff->days < 2) {
-    $publishDate = $this->translate('Gestern');
-}
-elseif ($dayDiff->days >= 2 && $dayDiff->days <= 30) {
-    $publishDate = $this->translate('vor ' . $dayDiff->days . ' Tagen');
-}
-elseif ($dayDiff->days > 30 ) {
-    $publishDate = $this->translate('vor 30+ Tagen');
-}
-elseif ($dayDiff->days < 1 && $dayDiff->h < 1) {
-    $publishDate = $this->translate('vor ' . $dayDiff->i . ' Minuten');
-}
-elseif ($dayDiff->days < 1) {
-    $publishDate = $this->translate('vor ' . $dayDiff->h . ' Stunden');
-}
-else {
-    $publishDate = $this->dateFormat($job->getDateCreated(), 'medium', 'none');
-}
-
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 $hasBanner = $template && ($image = $template->getImage());

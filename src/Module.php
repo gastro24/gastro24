@@ -314,6 +314,14 @@ class Module implements AssetProviderInterface
             $e->setResponse($response);
         }
 
+        if ($matchedRouteName == 'lang/jobs/view-extern' &&
+            $job && $job->getStatus()->getName() == Status::EXPIRED &&
+            $response->getStatusCode() == Response::STATUS_CODE_200 && $isCrawlerJob) {
+
+            $response->setStatusCode(Response::STATUS_CODE_410);
+            $e->setResponse($response);
+        }
+
         if ($response->getStatusCode() == Response::STATUS_CODE_404) {
             $response->setStatusCode(Response::STATUS_CODE_410);
             $e->setResponse($response);
