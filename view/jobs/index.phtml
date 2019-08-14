@@ -10,7 +10,6 @@ $this->headScript()->appendFile($this->basepath('/modules/Core/js/core.paginatio
 ?>
 
 <?php
-
 $queryGet = $this->params()->fromQuery();
 unset($queryGet['clear']);
 $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
@@ -24,9 +23,11 @@ $title = $wordpress->call('value', ['meta-fields.title'], '');
 $this->headTitle($title ?: $this->translate('Jobs'));
 
 $robots = "noindex,follow";
-//if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
 if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
     $robots = substr($robots, 2);
+    // set canonical link
+    $jobUrl = $this->serverUrl() . $this->url('lang/jobboard', [], [], true);
+    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
 }
 $this->headMeta()->setName('robots', $robots);
 $this->headScript()->captureStart();
@@ -79,11 +80,7 @@ $this->headScript()->captureStart();
 })(jQuery);
 <?php $this->headScript()->captureEnd();?>
 
-
-
 <?php if ($jobs instanceof \Solr\FacetsProviderInterface): $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/jobs.facets.js')); endif; ?>
-
-
 
 <?php echo $this->flashMessenger()->render('default', array('alert', 'alert-success')) ?>
 

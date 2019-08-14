@@ -377,6 +377,19 @@ return [
                             ],
                         ],
                     ],
+                    'job-view-extern' => [
+                        'type' => 'regex',
+                        'options' => [
+                            'regex' => '/(?<title>.*?)-(?<id>[a-f0-9]+)\.html',
+                            'spec' => '/jobs/%title%-%id%.html',
+                            //'route' => '/jobs/',
+                            'defaults' => [
+                                'controller' => Controller\RedirectExternalJobs::class,
+                                'action' => 'index',
+                            ],
+                        ],
+//                        'priority' => 8000,
+                    ],
                     'jobs' => [
                         'options' => [
                             'route' => '/job',
@@ -392,18 +405,6 @@ return [
                                         'controller' => Controller\RedirectExternalJobs::class,
                                         'action' => 'index',
                                         'isPreview' => true,
-                                    ],
-                                ],
-                            ],
-                            'view-extern' => [
-                                'type' => 'regex',
-                                'options' => [
-                                    'regex' => '-(?<title>.*?)-(?<id>[a-f0-9]+)\.html',
-                                    'spec' => '-%title%-%id%.html',
-                                    'route' => null,
-                                    'defaults' => [
-                                        'controller' => Controller\RedirectExternalJobs::class,
-                                        'action' => 'index',
                                     ],
                                 ],
                             ],

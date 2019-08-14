@@ -37,7 +37,14 @@ class PublishDateFormatter extends AbstractHelper
             }
         }
         elseif ($dayDiff->days >= 2 && $dayDiff->days <= 29) {
-            $publishDate = /*@translate*/'vor ' . ($dayDiff->days + 1) . ' Tagen';
+            $todayInt = (int)$today->format('d') ;
+            if (($todayInt - $dayDiff->d) > (int)$jobDate->format('d')) {
+                $publishDate = /*@translate*/'vor ' . ($dayDiff->days + 1) . ' Tagen';
+            }
+            else {
+                $publishDate = /*@translate*/'vor ' . $dayDiff->days . ' Tagen';
+            }
+
         }
         elseif ($dayDiff->days >= 30 ) {
             $publishDate = /*@translate*/'vor 30+ Tagen';
