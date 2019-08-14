@@ -93,7 +93,8 @@ class RedirectExternalJobs extends AbstractActionController
         if (strpos($jobTitle, 'job-') === 0 && $job->getStatus()->getName() != Status::EXPIRED ) {
             $jobTitle = substr($jobTitle, 4);
             $jobId = $this->params()->fromRoute('id');
-            return $this->redirect()->toRoute('lang/job-view-extern', ['id' => $jobId, 'title' => $jobTitle]);
+            return $this->redirect()->toRoute('lang/job-view-extern', ['id' => $jobId, 'title' => $jobTitle])
+                ->setStatusCode(301);
         }
 
         // get prev and next job
