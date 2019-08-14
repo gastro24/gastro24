@@ -67,8 +67,14 @@ class RedirectExternalJobs extends AbstractActionController
         $request = $this->getRequest();
         /* @var Response $response */
         $response = $this->getResponse();
-
         $container = new Container('gastro24_jobboardcontainer');
+
+        $jobTitle = $this->params()->fromRoute('title');
+        if (strpos($jobTitle, 'job-') === 0) {
+            $jobTitle = substr($jobTitle, 4);
+            $jobId = $this->params()->fromRoute('id');
+            return $this->redirect()->toRoute('lang/job-view-extern', ['id' => $jobId, 'title' => $jobTitle]);
+        }
 
         // direct call of job, clear session container
         if (!$request->getHeaders()->get('referer') ||
