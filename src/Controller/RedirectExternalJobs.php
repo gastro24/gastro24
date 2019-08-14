@@ -14,6 +14,7 @@ use Core\Entity\Exception\NotFoundException;
 use Gastro24\Options\CompanyTemplatesMap;
 use Gastro24\Session\VisitedJobsContainer;
 use Jobs\Entity\Job;
+use Jobs\Entity\Status;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\I18n\Translator\TranslatorInterface;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -69,13 +70,6 @@ class RedirectExternalJobs extends AbstractActionController
         $response = $this->getResponse();
         $container = new Container('gastro24_jobboardcontainer');
 
-        $jobTitle = $this->params()->fromRoute('title');
-        if (strpos($jobTitle, 'job-') === 0) {
-            $jobTitle = substr($jobTitle, 4);
-            $jobId = $this->params()->fromRoute('id');
-            return $this->redirect()->toRoute('lang/job-view-extern', ['id' => $jobId, 'title' => $jobTitle]);
-        }
-
         // direct call of job, clear session container
         if (!$request->getHeaders()->get('referer') ||
             (strpos($request->getHeaders()->get('referer'), 'sitemap.xml') !== false) ||
@@ -93,6 +87,13 @@ class RedirectExternalJobs extends AbstractActionController
             return [
                 'message' => 'Kein Job gefunden'
             ];
+        }
+
+        $jobTitle = $this->params()->fromRoute('title');
+        if (strpos($jobTitle, 'job-') === 0 && $job->getStatus()->getName() != Status::EXPIRED ) {
+            $jobTitle = substr($jobTitle, 4);
+            $jobId = $this->params()->fromRoute('id');
+            return $this->redirect()->toRoute('lang/job-view-extern', ['id' => $jobId, 'title' => $jobTitle]);
         }
 
         // get prev and next job
