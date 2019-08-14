@@ -306,7 +306,7 @@ class Module implements AssetProviderInterface
          * @see TemplateController
          * overwrite 404 error on expired
          */
-        if ($matchedRouteName == 'lang/jobs/view-extern' &&
+        if ($matchedRouteName == 'lang/job-view-extern' &&
             $job && $job->getStatus()->getName() == Status::EXPIRED &&
             $response->getStatusCode() == Response::STATUS_CODE_410 && !$isCrawlerJob) {
 
@@ -314,7 +314,7 @@ class Module implements AssetProviderInterface
             $e->setResponse($response);
         }
 
-        if ($matchedRouteName == 'lang/jobs/view-extern' &&
+        if ($matchedRouteName == 'lang/job-view-extern' &&
             $job && $job->getStatus()->getName() == Status::EXPIRED &&
             $response->getStatusCode() == Response::STATUS_CODE_200 && $isCrawlerJob) {
 
