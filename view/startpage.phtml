@@ -349,7 +349,7 @@ $this->headTitle($this->translate('Home'));
         echo $this->configHeadScript()->setAutoEscape(false);
     ?>
     <!-- end lazy loaded javascript -->
-    <?php echo $this->partial("piwik") ?>
+    
     <script>
         $( document ).ready(function() {
 
@@ -368,12 +368,12 @@ $this->headTitle($this->translate('Home'));
 
              });
 
-            $('.regionlist > li:nth-child(14)').after("<li class='separator2' />");
+            $('.regionlist > li:nth-child(4)').after("<li class='separator2' />");
 
 
             var i = 0;
             $(".regionlist > li ").each(function(i, k) {
-                if(++i > 15) $(k).addClass("hide");
+                if(++i > 5) $(k).addClass("hide");
 
             });
 
