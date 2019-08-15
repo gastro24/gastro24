@@ -33,6 +33,12 @@
 
 
 $options = [
+    'fitness' => [
+          'id' => 1363,
+		  'query' => [ 'q' => 'Fitness OR Kasse'],
+          'text' => 'Fitness Jobs'
+     ],
+    
     
     'teilzeit' => [
           'id' => 1330,
