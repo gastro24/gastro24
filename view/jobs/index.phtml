@@ -25,9 +25,12 @@ $this->headTitle($title ?: $this->translate('Jobs'));
 $robots = "noindex,follow";
 if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
     $robots = substr($robots, 2);
-    // set canonical link
-    $jobUrl = $this->serverUrl() . $this->url('lang/jobboard', [], [], true);
-    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
+
+    // set canonical link - but not on landing pages
+    if (!$this->params()->fromRoute('isLandingPage')) {
+        $jobUrl = $this->serverUrl() . $this->url('lang/jobboard', [], [], true);
+        $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
+    }
 }
 $this->headMeta()->setName('robots', $robots);
 $this->headScript()->captureStart();
