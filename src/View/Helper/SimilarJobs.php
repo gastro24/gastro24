@@ -65,13 +65,24 @@ class SimilarJobs extends AbstractHelper
             $searchQueryString = '(' . $keywordString . ') AND industry_MultiString:(' . $industryString . ') AND NOT "' . $currentJob->getTitle() . '"  AND isActive:true';
         }
 
-        $paginator  = $this->paginators->get('Gastro24/Jobs/Similar', [
+        $jobBoardQueryParams = ['q' => $searchQueryString, 'page' => 1, 'd' => 20, 'count' => 50];
+        $jobBoardParams = [
             'Jobs_Board',
             'q' => $searchQueryString,
-            'd' => 50,
+            'd' => 20,
             'count' => 50,
-            ['q' => $searchQueryString, 'page' => 1, 'l', 'd' => 50, 'count' => 50]
-        ]);
+            $jobBoardQueryParams
+        ];
+
+        // add distance filter
+        if ($currentJob->getLocations()->get(0)) {
+            array_pop($jobBoardParams);
+            $jobBoardParams['l'] = $currentJob->getLocations()->get(0);
+            $jobBoardQueryParams['l'] = $currentJob->getLocations()->get(0);
+            $jobBoardParams[] = $jobBoardQueryParams;
+        }
+
+        $paginator  = $this->paginators->get('Gastro24/Jobs/Similar', $jobBoardParams);
         $paginator->setItemCountPerPage(50);
 
         $jobs = [];
@@ -79,6 +90,14 @@ class SimilarJobs extends AbstractHelper
         $counter = 0;
         $page = 1;
         $maxItems = $paginator->getTotalItemCount();
+
+        if ($maxItems < 1) {
+            // reset distance filter
+            array_pop($jobBoardParams);
+            unset($jobBoardParams['l']);
+            unset($jobBoardQueryParams['l']);
+            $jobBoardParams[] = $jobBoardQueryParams;
+        }
 
         while ($counterAll < $maxItems) {
             foreach ($paginator->getItemsByPage($page) as $job) {
