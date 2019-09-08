@@ -108,31 +108,31 @@ $this->headScript()->captureStart();
                 
                 
                    <?php if (!count($this->jobs)):?>
-    <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-    <script type="text/javascript">
-        ;(function($) {
-            $(function() {
-                $('#form-jobsbymail-subscribe-form').find('button.btn-info').hide().click()
-                    .end().find('#job-by-mail-subscribe-label').html('Informiert werden, sobald Jobs zu Ihrer Suchanfrage verfügbar sind.');
-                $('#jobs-list-container').data('container').$message.show();
-            });
-        })(jQuery);
-    </script>
+                        <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+                        <script type="text/javascript">
+                            ;(function($) {
+                                $(function() {
+                                    $('#form-jobsbymail-subscribe-form').find('button.btn-info').hide().click()
+                                        .end().find('#job-by-mail-subscribe-label').html('Informiert werden, sobald Jobs zu Ihrer Suchanfrage verfügbar sind.');
+                                    $('#jobs-list-container').data('container').$message.show();
+                                });
+                            })(jQuery);
+                        </script>
+                        
+                        
+                              <div class="col-md-12">
+                      
+                                    <div class="alert-warning">
+                                        <?=sprintf(
+                                               $this->translate('%sSorry%s, there are not any jobs matching your search criteria.'
+                                               ),
+                                               '<strong>', '</strong>'
+                                           )?>
+                                    </div>
+                                  </div>
     
     
-          <div class="col-md-12">
-  
-                <div class="pagination-message alert alert-warning">
-                    <?=sprintf(
-                           $this->translate('%sSorry%s, there are not any jobs matching your search criteria.'
-                           ),
-                           '<strong>', '</strong>'
-                       )?>
-                </div>
-              </div>
-    
-    
-<?php endif ?>
+                    <?php endif ?>
 
 
          
