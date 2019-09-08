@@ -94,7 +94,20 @@ $this->headScript()->captureStart();
 ]); ?>
 <!-- end search form container -->
 
-<?php if (!count($this->jobs)):?>
+
+
+
+
+
+
+    <div class="row">
+        <div class="tab-content">
+            
+            
+            <div id="jobs-list-container" class="pagination-container">
+                
+                
+                   <?php if (!count($this->jobs)):?>
     <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
     <script type="text/javascript">
         ;(function($) {
@@ -105,21 +118,9 @@ $this->headScript()->captureStart();
             });
         })(jQuery);
     </script>
-<?php endif ?>
-
-    <div class="row">
-        <div class="tab-content">
-            <div id="jobs-list-container" class="pagination-container"
-                 data-message="<?php echo $this->escapeHtmlAttr(sprintf(
-                                                                    $this->translate('%sSorry%s, there are not any jobs matching your search criteria.'
-                                                                    ),
-                                                                    '<strong>', '</strong>'
-                                                                )
-                 ) ?>"
-                 data-uri="<?php
-                 echo $this->url('lang/jobboard', array(), array('query' => $this->params()->fromQuery()), true) ?>">
-
-               <div class="col-md-12">
+    
+    
+          <div class="col-md-12">
   
                 <div class="pagination-message alert alert-warning" style="display:none">
                     <?=sprintf(
@@ -129,6 +130,12 @@ $this->headScript()->captureStart();
                        )?>
                 </div>
               </div>
+    
+    
+<?php endif ?>
+
+
+         
                 <div class="container pagination-content">
                     <div class="row">
                        <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
