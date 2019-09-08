@@ -126,18 +126,27 @@ $this->headScript()->captureStart();
                                         <strong>Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.</strong>
                                     </div>
                                   </div>
-    
-    
-                    <?php endif ?>
-
-
-         
-                <div class="container pagination-content">
+                  <?php else: ?>
+                  
+                  
+                    
+                    <div class="container pagination-content">
                     <div class="row">
                        <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
                     </div>
 
                 </div>
+                  
+    
+                 <?php endif ?>
+
+
+
+
+
+
+         
+              
             </div>
 
         </div>
