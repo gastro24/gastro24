@@ -108,9 +108,13 @@ $this->headScript()->captureStart();
                  
                 
                    <?php if (!count($this->jobs)):?>
-                    <div style="display:none" >       
+                          
+                          <style>
+                              .form-container .form-content button {display:none;}
+                              
+                          </style>
                             <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-                     </div>
+                     
                         <script type="text/javascript">
                             ;(function($) {
                                 $(function() {
