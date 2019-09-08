@@ -110,7 +110,7 @@ $this->headScript()->captureStart();
                    <?php if (!count($this->jobs)):?>
                           
                           <style>
-                              .form-container .form-content button {display:none;}
+                              .form-container .form-content button {display:none!important;}
                               
                           </style>
                             <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
