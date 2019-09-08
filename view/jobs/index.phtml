@@ -126,11 +126,11 @@ $this->headScript()->captureStart();
                                         <strong>Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.</strong>
                                     </div>
                                   </div>
-                  <?php else: ?>
+                  <?php elseif (count($this->jobs)): ?>
                   
                   
                     
-                    <div class="container pagination-content">
+                <div class="container pagination-content">
                     <div class="row">
                        <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
                     </div>
