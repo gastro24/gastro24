@@ -97,6 +97,10 @@ class SimilarJobs extends AbstractHelper
             unset($jobBoardParams['l']);
             unset($jobBoardQueryParams['l']);
             $jobBoardParams[] = $jobBoardQueryParams;
+            
+            $paginator  = $this->paginators->get('Gastro24/Jobs/Similar', $jobBoardParams);
+            $paginator->setItemCountPerPage(50);
+            $maxItems = $paginator->getTotalItemCount();
         }
 
         while ($counterAll < $maxItems) {
