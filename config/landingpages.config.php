@@ -35,7 +35,7 @@
 $options = [
     'fitness' => [
           'id' => 1363,
-		  'query' => [ 'q' => 'Fitness OR Kasse'],
+		  'query' => [ 'q' => 'Fitness'],
           'text' => 'Fitness Jobs'
      ],
     
