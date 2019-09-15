@@ -33,6 +33,27 @@
 
 
 $options = [
+       'stellvertreter' => [
+          'id' => 1401,
+		  'query' => [ 'q' => 'Stellvertretung'],
+          'text' => 'Stellvertretung Jobs'
+     ],
+       'alleinkoch' => [
+          'id' => 1403,
+		  'query' => [ 'q' => 'Alleinkoch'],
+          'text' => 'Alleinkoch Jobs'
+     ],
+       'allrounder' => [
+          'id' => 1405,
+		  'query' => [ 'q' => 'Allrounder'],
+          'text' => 'Allrounder Jobs'
+     ],
+       'chef-de-service' => [
+          'id' => 1407,
+		  'query' => [ 'q' => 'Chef de Service'],
+          'text' => 'Chef de Service Jobs'
+     ],
+
     'fitness' => [
           'id' => 1363,
 		  'query' => [ 'q' => 'Fitness'],
@@ -234,7 +255,7 @@ $options = [
      ],
      'lebensmitteltechnologe' => [
           'id' => 183,
-		  'query' => [ 'q' => 'Lebensmittel'],
+		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Lebensmitteltechnologe Jobs'
