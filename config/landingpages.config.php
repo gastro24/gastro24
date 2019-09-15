@@ -37,23 +37,28 @@ $options = [
           'id' => 1401,
 		  'query' => [ 'q' => 'Stellvertretung'],
 		   'tab' => 'Jobs von A - Z',
+		     'panel' => '',
           'text' => 'Stellvertretung Jobs'
      ],
        'alleinkoch' => [
           'id' => 1403,
 		  'query' => [ 'q' => 'Alleinkoch'],
+		    'panel' => '',
 		   'tab' => 'Jobs von A - Z',
           'text' => 'Alleinkoch Jobs'
      ],
        'allrounder' => [
           'id' => 1405,
 		  'query' => [ 'q' => 'Allrounder'],
+		      'panel' => '',
+		   'tab' => 'Jobs von A - Z',
           'text' => 'Allrounder Jobs'
      ],
        'chef-de-service' => [
           'id' => 1407,
 		  'query' => [ 'q' => 'Chef de Service'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Chef de Service Jobs'
      ],
 
@@ -61,6 +66,7 @@ $options = [
           'id' => 1363,
 		  'query' => [ 'q' => 'Fitness'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Fitness Jobs'
      ],
     
@@ -69,6 +75,7 @@ $options = [
           'id' => 1330,
 		  'query' => [ 'q' => 'Teilzeit'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Teilzeit Jobs'
      ],
     
@@ -76,12 +83,14 @@ $options = [
           'id' => 1325,
 		  'query' => [ 'q' => 'Restaurationsfachmann'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Restaurationsfachmann Jobs'
      ],
     'marketing-sales' => [
           'id' => 1327,
 		  'query' => [ 'q' => 'Marketing'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Marketing Jobs'
      ],
 
@@ -89,6 +98,7 @@ $options = [
           'id' => 1312,
 		  'query' => [ 'q' => 'Fachverkäufer'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Fachverkäufer Jobs'
      ],
     
@@ -96,6 +106,7 @@ $options = [
           'id' => 1309,
 		  'query' => [ 'q' => 'Hotelfachfrau '],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Hotelfachfrau Jobs'
      ],
      
@@ -103,6 +114,7 @@ $options = [
           'id' => 1298,
 		  'query' => [ 'q' => 'Saison'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Saison Jobs'
      ],
     
@@ -110,6 +122,7 @@ $options = [
           'id' => 1288,
 		  'query' => [ 'q' => 'Sushi'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Sushi Koch Jobs'
      ],
     
@@ -117,6 +130,7 @@ $options = [
           'id' => 1285,
 		  'query' => [ 'q' => 'Ferienaushilfe'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Ferienjobs'
      ],
     
@@ -124,18 +138,22 @@ $options = [
           'id' => 1282,
 		  'query' => [ 'q' => 'Take Away'],
 		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Take Away Jobs'
      ],
     
       'catering' => [
           'id' => 1275,
 		  'query' => [ 'q' => 'Catering'],
+		  		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Catering Jobs'
      ],
        'promotion' => [
           'id' => 1279,
 		  'query' => [ 'q' => 'Promotion'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Promotion Jobs'
      ],
     
@@ -143,36 +161,42 @@ $options = [
           'id' => 1269,
 		  'query' => [ 'q' => 'Gouvernante'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Gouvernante Jobs'
      ],
      'kaeser-in' => [
           'id' => 1264,
 		  'query' => [ 'q' => 'Käser'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Käser Käserin Jobs'
      ],
      'bereichsleiter' => [
           'id' => 1266,
 		  'query' => [ 'q' => 'Bereichsleiter'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Bereichsleiter Jobs'
      ],
     'buffet-mitarbeiterin' => [
           'id' => 1260,
 		  'query' => [ 'q' => 'Buffet'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Buffet Mitarbeiterin'
      ],
     'commis-de-cuisine' => [
           'id' => 1220,
 		  'query' => [ 'q' => 'Commis de Cuisine'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Commis de Cuisine Jobs'
      ],
      'studenten' => [
           'id' => 1218,
 		  'query' => [ 'q' => 'Studenten'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Studenten Jobs'
      ],
     
@@ -180,6 +204,7 @@ $options = [
           'id' => 1216,
 		  'query' => [ 'q' => 'Chef de Bar'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Chef de Bar Jobs'
      ],
     
@@ -187,24 +212,28 @@ $options = [
           'id' => 1214,
 		  'query' => [ 'q' => 'General Manager'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'General Manager Jobs'
      ],
      'front-office' => [
           'id' => 1212,
 		  'query' => [ 'q' => 'Front Office'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Front Office Jobs'
      ],
      'lehrstellen-gastronomie' => [
           'id' => 1210,
 		  'query' => [ 'q' => 'Lehrstelle'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Lehrstellen'
      ],
     'hilfskoch' => [
           'id' => 169,
 		  'query' => [ 'q' => 'Hilfskoch'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Hilfskoch Jobs'
      ],
     'alleinkoch' => [
@@ -368,54 +397,63 @@ $options = [
           'id' => 1096,
 		  'query' => [ 'q' => 'Servicemitarbeiter'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Servicemitarbeiter Jobs'
      ],
 	 'pizzaiolo' => [
           'id' => 1098,
 		  'query' => [ 'q' => 'Pizzaiolo'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Pizzaiolo Jobs'
      ],
 	 'rezeptionistin' => [
           'id' => 219,
 		  'query' => [ 'q' => 'Rezeptionistin'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Rezeptionistin Jobs'
      ],	 
 	  'konditor-confiseur' => [
           'id' => 175,
 		  'query' => [ 'q' => 'Konditor'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Konditor Confiseur Jobs'
      ],
 	   'restaurant-manager' => [
           'id' => 199,
 		  'query' => [ 'q' => 'Restaurant Manager'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Restaurant Manager Jobs'
      ],
 	 'ernaehrungsberater' => [
           'id' => 181,
 		  'query' => [ 'q' => 'Ernährungsberater'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Ernährungsberater Jobs'
      ],	
 	 'barkeeper' => [
           'id' => 195,
 		  'query' => [ 'q' => 'Barkeeper'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Barkeeper Jobs'
      ],
 	  'barista' => [
           'id' => 197,
 		  'query' => [ 'q' => 'Barista'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Barista Jobs'
      ], 
 	  'sommelier' => [
           'id' => 201,
 		  'query' => [ 'q' => 'Sommelier'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Sommelier Jobs'
      ],
 	 
@@ -423,6 +461,7 @@ $options = [
           'id' => 231,
 		  'query' => [ 'q' => 'Assistant'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Assistant Jobs'
      ],
 	
@@ -430,12 +469,14 @@ $options = [
           'id' => 243,
 		  'query' => [ 'q' => 'Teilzeitverkäuferin'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Teilzeitverkäuferin Jobs'
      ],
 	 'kosmetikerin' => [
           'id' => 209,
 		  'query' => [ 'q' => 'Kosmetikerin'],
 		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Kosmetikerin Jobs'
      ],
      
