@@ -33,9 +33,40 @@
 
 
 $options = [
+       'stellvertreter' => [
+          'id' => 1401,
+		  'query' => [ 'q' => 'Stellvertretung'],
+		   'tab' => 'Jobs von A - Z',
+		     'panel' => '',
+          'text' => 'Stellvertretung Jobs'
+     ],
+       'alleinkoch' => [
+          'id' => 1403,
+		  'query' => [ 'q' => 'Alleinkoch'],
+		    'panel' => '',
+		   'tab' => 'Jobs von A - Z',
+          'text' => 'Alleinkoch Jobs'
+     ],
+       'allrounder' => [
+          'id' => 1405,
+		  'query' => [ 'q' => 'Allrounder'],
+		      'panel' => '',
+		   'tab' => 'Jobs von A - Z',
+          'text' => 'Allrounder Jobs'
+     ],
+       'chef-de-service' => [
+          'id' => 1407,
+		  'query' => [ 'q' => 'Chef de Service'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
+          'text' => 'Chef de Service Jobs'
+     ],
+
     'fitness' => [
           'id' => 1363,
-		  'query' => [ 'q' => 'Fitness OR Kasse'],
+		  'query' => [ 'q' => 'Fitness'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Fitness Jobs'
      ],
     
@@ -43,122 +74,166 @@ $options = [
     'teilzeit' => [
           'id' => 1330,
 		  'query' => [ 'q' => 'Teilzeit'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Teilzeit Jobs'
      ],
     
     'restaurationsfachmann' => [
           'id' => 1325,
 		  'query' => [ 'q' => 'Restaurationsfachmann'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Restaurationsfachmann Jobs'
      ],
     'marketing-sales' => [
           'id' => 1327,
 		  'query' => [ 'q' => 'Marketing'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Marketing Jobs'
      ],
 
      'fachverkaeufer' => [
           'id' => 1312,
 		  'query' => [ 'q' => 'Fachverkäufer'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Fachverkäufer Jobs'
      ],
     
       'hotelfachfrau' => [
           'id' => 1309,
 		  'query' => [ 'q' => 'Hotelfachfrau '],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Hotelfachfrau Jobs'
      ],
      
      'saison' => [
           'id' => 1298,
 		  'query' => [ 'q' => 'Saison'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Saison Jobs'
      ],
     
        'sushi-koch' => [
           'id' => 1288,
 		  'query' => [ 'q' => 'Sushi'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Sushi Koch Jobs'
      ],
     
       'ferienaushilfe' => [
           'id' => 1285,
 		  'query' => [ 'q' => 'Ferienaushilfe'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Ferienjobs'
      ],
     
       'take-away' => [
           'id' => 1282,
 		  'query' => [ 'q' => 'Take Away'],
+		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Take Away Jobs'
      ],
     
       'catering' => [
           'id' => 1275,
 		  'query' => [ 'q' => 'Catering'],
+		  		   'tab' => 'Jobs von A - Z',
+		       'panel' => '',
           'text' => 'Catering Jobs'
      ],
        'promotion' => [
           'id' => 1279,
 		  'query' => [ 'q' => 'Promotion'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Promotion Jobs'
      ],
     
       'gouvernante' => [
           'id' => 1269,
 		  'query' => [ 'q' => 'Gouvernante'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Gouvernante Jobs'
      ],
      'kaeser-in' => [
           'id' => 1264,
 		  'query' => [ 'q' => 'Käser'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Käser Käserin Jobs'
      ],
      'bereichsleiter' => [
           'id' => 1266,
 		  'query' => [ 'q' => 'Bereichsleiter'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Bereichsleiter Jobs'
      ],
     'buffet-mitarbeiterin' => [
           'id' => 1260,
 		  'query' => [ 'q' => 'Buffet'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Buffet Mitarbeiterin'
      ],
     'commis-de-cuisine' => [
           'id' => 1220,
 		  'query' => [ 'q' => 'Commis de Cuisine'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Commis de Cuisine Jobs'
      ],
      'studenten' => [
           'id' => 1218,
 		  'query' => [ 'q' => 'Studenten'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Studenten Jobs'
      ],
     
     'chef-de-bar' => [
           'id' => 1216,
 		  'query' => [ 'q' => 'Chef de Bar'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Chef de Bar Jobs'
      ],
     
     'general-manager' => [
           'id' => 1214,
 		  'query' => [ 'q' => 'General Manager'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'General Manager Jobs'
      ],
      'front-office' => [
           'id' => 1212,
 		  'query' => [ 'q' => 'Front Office'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Front Office Jobs'
      ],
      'lehrstellen-gastronomie' => [
           'id' => 1210,
 		  'query' => [ 'q' => 'Lehrstelle'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Lehrstellen'
      ],
     'hilfskoch' => [
           'id' => 169,
 		  'query' => [ 'q' => 'Hilfskoch'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Hilfskoch Jobs'
      ],
     'alleinkoch' => [
@@ -234,7 +309,7 @@ $options = [
      ],
      'lebensmitteltechnologe' => [
           'id' => 183,
-		  'query' => [ 'q' => 'Lebensmittel'],
+		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Lebensmitteltechnologe Jobs'
@@ -285,6 +360,7 @@ $options = [
      'kuechenchef' => [
           'id' => 161,
 		  'query' => [ 'q' => 'Küchenchef'],
+		   'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Küchenchef Jobs'
      ],
@@ -292,87 +368,115 @@ $options = [
      'sous-chef' => [
           'id' => 163,
 		  'query' => [ 'q' => 'Sous Chef'],
+		   'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Sous Chef Jobs'
      ],
        'systemgastronomie' => [
           'id' => 1045,
 		  'query' => [ 'q' => 'Systemgastronomie'],
+		   'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Systemgastronomie Jobs'
      ],
        'chef-de-partie' => [
           'id' => 1052,
 		  'query' => [ 'q' => 'Chef de Partie'],
+		   'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Chef de Partie Jobs'
      ],
       'tournant' => [
           'id' => 1048,
 		  'query' => [ 'q' => 'Tournant'],
+		   'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Tournant Jobs'
      ],
       'servicemitarbeiter' => [
           'id' => 1096,
 		  'query' => [ 'q' => 'Servicemitarbeiter'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Servicemitarbeiter Jobs'
      ],
 	 'pizzaiolo' => [
           'id' => 1098,
 		  'query' => [ 'q' => 'Pizzaiolo'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Pizzaiolo Jobs'
      ],
 	 'rezeptionistin' => [
           'id' => 219,
 		  'query' => [ 'q' => 'Rezeptionistin'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Rezeptionistin Jobs'
      ],	 
 	  'konditor-confiseur' => [
           'id' => 175,
 		  'query' => [ 'q' => 'Konditor'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Konditor Confiseur Jobs'
      ],
 	   'restaurant-manager' => [
           'id' => 199,
 		  'query' => [ 'q' => 'Restaurant Manager'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Restaurant Manager Jobs'
      ],
 	 'ernaehrungsberater' => [
           'id' => 181,
 		  'query' => [ 'q' => 'Ernährungsberater'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Ernährungsberater Jobs'
      ],	
 	 'barkeeper' => [
           'id' => 195,
 		  'query' => [ 'q' => 'Barkeeper'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Barkeeper Jobs'
      ],
 	  'barista' => [
           'id' => 197,
 		  'query' => [ 'q' => 'Barista'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Barista Jobs'
      ], 
 	  'sommelier' => [
           'id' => 201,
 		  'query' => [ 'q' => 'Sommelier'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Sommelier Jobs'
      ],
 	 
 	  'assistant' => [
           'id' => 231,
 		  'query' => [ 'q' => 'Assistant'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Assistant Jobs'
      ],
 	
 	  'teilzeitverkaeuferin' => [
           'id' => 243,
 		  'query' => [ 'q' => 'Teilzeitverkäuferin'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Teilzeitverkäuferin Jobs'
      ],
 	 'kosmetikerin' => [
           'id' => 209,
 		  'query' => [ 'q' => 'Kosmetikerin'],
+		   'tab' => 'Jobs von A - Z',
+		    'panel' => '',
           'text' => 'Kosmetikerin Jobs'
      ],
      
@@ -383,98 +487,98 @@ $options = [
         'text' => 'Jobs Appenzell Ausserrhoden',
         'id' => 316,
         'query' => [ 'region_MultiString' => ['Appenzell Ausserrhoden' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	 'region-appenzell-innerrhoden' => [
         'text' => 'Jobs Appenzell Innerrhoden',
         'id' => 318,
         'query' => [ 'region_MultiString' => ['Appenzell Innerrhoden' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 		'region-glarus' => [
         'text' => 'Jobs Glarus',
         'id' => 320,
         'query' => [ 'region_MultiString' => ['Glarus' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 		'region-liechtenstein' => [
         'text' => 'Jobs Liechtenstein',
         'id' => 322,
         'query' => [ 'region_MultiString' => ['Liechtenstein' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 		'region-schaffhausen' => [
         'text' => 'Jobs Schaffhausen',
         'id' => 325,
         'query' => [ 'region_MultiString' => ['Schaffhausen' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 		'region-st-gallen' => [
         'text' => 'Jobs St. Gallen',
         'id' => 327,
         'query' => [ 'region_MultiString' => ['Sankt Gallen' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	   'region-thurgau' => [
         'text' => 'Jobs Thurgau',
         'id' => 329,
         'query' => [ 'region_MultiString' => ['Thurgau' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	   'region-graubuenden' => [
         'text' => 'Jobs Graubünden',
         'id' => 331,
         'query' => [ 'region_MultiString' => ['Graubünden' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	   'region-aargau' => [
         'text' => 'Jobs Aargau',
         'id' => 333,
         'query' => [ 'region_MultiString' => ['Aargau' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	   'region-basel-landschaft' => [
         'text' => 'Jobs Basel-Landschaft',
         'id' => 335,
         'query' => [ 'region_MultiString' => ['Basel-Landschaft' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	   'region-basel-stadt' => [
         'text' => 'Jobs Basel-Stadt',
         'id' => 337,
         'query' => [ 'region_MultiString' => ['Basel-Stadt' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	   'region-bern' => [
         'text' => 'Jobs Bern',
         'id' => 339,
         'query' => [ 'region_MultiString' => ['Bern' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	   'region-jura' => [
         'text' => 'Jobs Jura',
         'id' => 341,
         'query' => [ 'region_MultiString' => ['Jura' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	   'region-solothurn' => [
         'text' => 'Jobs Solothurn',
         'id' => 343,
         'query' => [ 'region_MultiString' => ['Solothurn' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	 
@@ -482,91 +586,91 @@ $options = [
         'text' => 'Jobs Freiburg',
         'id' => 346,
         'query' => [ 'region_MultiString' => ['Freiburg' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	  'region-genf' => [
         'text' => 'Jobs Genf',
         'id' => 348,
         'query' => [ 'region_MultiString' => ['Genf' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	  'region-neuenburg' => [
         'text' => 'Jobs Neuenburg',
         'id' => 350,
         'query' => [ 'region_MultiString' => ['Neuenburg' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	  'region-waadt' => [
         'text' => 'Jobs Waadt',
         'id' => 352,
         'query' => [ 'region_MultiString' => ['Waadt' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	  'region-wallis' => [
         'text' => 'Jobs Wallis',
         'id' => 354,
         'query' => [ 'region_MultiString' => ['Wallis' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	  'region-luzern' => [
         'text' => 'Jobs Luzern',
         'id' => 356,
         'query' => [ 'region_MultiString' => ['Luzern' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	 'region-nidwalden' => [
         'text' => 'Jobs Nidwalden',
         'id' => 358,
         'query' => [ 'region_MultiString' => ['Nidwalden' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 		'region-obwalden' => [
         'text' => 'Jobs Obwalden',
         'id' => 360,
         'query' => [ 'region_MultiString' => ['Obwalden' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	'region-schwyz' => [
         'text' => 'Jobs Schwyz',
         'id' => 362,
         'query' => [ 'region_MultiString' => ['Schwyz' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	 'region-uri' => [
         'text' => 'Jobs Uri',
         'id' => 364,
         'query' => [ 'region_MultiString' => ['Uri' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	 'region-zug' => [
         'text' => 'Jobs Zug',
         'id' => 366,
         'query' => [ 'region_MultiString' => ['Zug' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	'region-zurich' => [
         'text' => 'Jobs Zürich',
         'id' => 368,
         'query' => [ 'region_MultiString' => ['Zürich' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	'region-tessin' => [
         'text' => 'Jobs Tessin',
         'id' => 370,
         'query' => [ 'region_MultiString' => ['Tessin' => 1]],
-        'tab' => 'Jobs nach Region',
+        'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
 	'koch-in-zuerich' => [
