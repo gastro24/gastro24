@@ -76,6 +76,19 @@
                 .append("<a>" + item.label + "</a>")
                 .appendTo(ul);
         };
+
+        /*
+         * remove q query param from url if value is empty
+         */
+        $('.search-form').submit(function( event ) {
+            var searchInput = $(this).find('input.form-control.ui-autocomplete-input[name="q"]');
+            if (!searchInput.val()) {
+                var uri = $(this).attr('action');
+                uri += (uri.match(/\?/) ? '&' : '?') + 'clear=1';
+                window.location.href = uri;
+                return false;
+            }
+        });
     });
 
 })(jQuery, window);
