@@ -16,9 +16,9 @@
                 <strong style="color:#fff" class="h5">Über Gastrojob24</strong>
                 <nav>
                     <ul class="list-unstyled">
-                        <li><a title="Impressum" href="/de/wp/page/impressum">Impressum & Datenschutz</a></li>
-                        <li><a title="AGB" href="/de/wp/page/agb">AGB</a></li>
-                        <li><a title="Jobs durchsuchen" href="/de/wp/page/jobs-durchsuchen">Jobs durchsuchen</a></li>
+                        <li><a title="Impressum" href="<?= $this->url('lang/wordpress', ['id' => 'impressum'], true)?>">Impressum & Datenschutz</a></li>
+                        <li><a title="AGB" href="<?= $this->url('lang/wordpress', ['id' => 'agb'], true)?>">AGB</a></li>
+                        <li><a title="Jobs durchsuchen" href="<?= $this->url('lang/wordpress', ['id' => 'jobs-durchsuchen'], true)?>">Jobs durchsuchen</a></li>
                     </ul>
                 </nav>
             </div>
@@ -37,12 +37,12 @@
                 <nav>
                     <ul class="list-unstyled">
                         
-                         <li><a title="Kontakt" href="/de/wp/page/contact">Kontakt</a></li>
-                         <li><a title="Häufige Fragen & Antworten" href="/de/wp/page/faq">Hilfe</a></li>
+                         <li><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
+                         <li><a title="Häufige Fragen & Antworten" href="<?= $this->url('lang/wordpress', ['id' => 'faq'], true)?>">Hilfe</a></li>
                         <?php if (!$this->auth()->isLoggedIn()):?>
                         <li><a title="Login für Arbeitgeber" href="<?=$this->url('lang/auth', [], true)?>?ref=<?= urlencode($this->url('lang/dashboard', [], true)) ?>">Einloggen</a></li>
                         <?php endif ?>
-                        <?php if (!$this->auth()->isLoggedIn()):?> <li><a title="Inserieren" href="/de/wp/page/stellenanzeigen-schalten">Inserieren</a></li>   <?php endif ?>
+                        <?php if (!$this->auth()->isLoggedIn()):?> <li><a title="Inserieren" href="<?= $this->url('lang/wordpress', ['id' => 'stellenanzeigen-schalten'], true)?>">Inserieren</a></li>   <?php endif ?>
                     </ul>
                 </nav>
             </div>
