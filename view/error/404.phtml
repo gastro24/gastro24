@@ -14,7 +14,7 @@
 <?php $this->headTitle('404') ?>
 <h1><?php echo $this->translate('A 404 error occurred') ?></h1>
 <hr/>
-<p>Leider konnte die von Ihnen angeforderte Seite nicht gefunden werden. Vielleicht finden Sie Ihren Traumjob in unserer <a href="https://www.gastrojob24.ch/de/wp/page/jobs-durchsuchen">Job-Übersicht</a>?</p>
+<p>Leider konnte die von Ihnen angeforderte Seite nicht gefunden werden. Vielleicht finden Sie Ihren Traumjob in unserer <a href="<?= $this->url('lang/wordpress', ['id' => 'jobs-durchsuchen'], true)?>">Job-Übersicht</a>?</p>
 <p>&nbsp;</p>
 
 
