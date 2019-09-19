@@ -27,9 +27,9 @@ class SuggestJobFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $moduleOptions      = $container->get('Solr/Options/Module');
-        $connectPath        = $this->getConnectPath($moduleOptions);
-        $solrClient = $container->get('Solr/Manager')->getClient($connectPath);
-        $controller = new SuggestJobs($solrClient);
+        //$connectPath        = $this->getConnectPath($moduleOptions);
+        //$solrClient = $container->get('Solr/Manager')->getClient($connectPath);
+        $controller = new SuggestJobs($moduleOptions);
 
         return $controller;
     }
