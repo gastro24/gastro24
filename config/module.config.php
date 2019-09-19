@@ -355,16 +355,14 @@ return [
             'lang' => [
                 'child_routes' => [
                     'wordpress' => [
-                        'type' => 'Segment',
+                        'type' => 'regex',
                         'options' => [
-                            'route' => '/wp/:type/:id',
+                            'regex' => '/(?<id>[a-zA-Z0-9_\-]+)\.html',
+                            'spec' => '/%id%.html',
                             'defaults' => [
                                 'controller' => Controller\WordpressPageController::class,
                                 'action' => 'index',
                             ],
-                            'constraints' => [
-                                'type' => '(page|post)',
-                            ]
                         ],
                     ],
                     'saved-jobs' => [
