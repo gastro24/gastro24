@@ -2,7 +2,6 @@
 
 namespace Gastro24\Controller;
 
-use SolrRestApiClient\Api\Client\Domain\Synonym\SynonymCollection;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
@@ -13,17 +12,17 @@ use Zend\Mvc\Controller\AbstractActionController;
 class SuggestJobs extends AbstractActionController
 {
     /**
-     * @var \Solr\Options\ModuleOptions
+     * @var \SolrClient
      */
-    protected $moduleOptions;
+    protected $client;
 
     /**
      * SuggestJobs constructor.
-     * @param \Solr\Options\ModuleOptions $moduleOptions
+     * @param \SolrClient  $client
      */
-    public function __construct($moduleOptions)
+    public function __construct($client)
     {
-        $this->moduleOptions = $moduleOptions;
+        $this->client = $client;
     }
 
     public function indexAction()
@@ -35,33 +34,38 @@ class SuggestJobs extends AbstractActionController
         $response = $this->getResponse();
         $response->getHeaders()->addHeaderLine( 'Content-Type', 'application/json' );
         $searchTerm = $request->getQuery('q');
-        $host = $this->moduleOptions->getHostname();
-        $port = $this->moduleOptions->getPort();
-        $jobsPath = $this->moduleOptions->getJobsPath() . '/';
 
-        $factory = new \SolrRestApiClient\Common\Factory();
-        $repository = $factory->getSynonymRepository($host,$port,$jobsPath);
+        //http://localhost:8983/solr/YawikJobs/suggest?suggest=true&suggest.build=true&wt=json&suggest.q=
 
-        /** @var SynonymCollection $data */
-        $data = $repository->getAll('german');
-        $collection = $data->toArray();
+        $this->client->setServlet(\SolrClient::SEARCH_SERVLET_TYPE, 'suggest');
+        $solrQuery  = new \SolrQuery();
+        $solrQuery->set('suggest','true');
+        $solrQuery->set('suggest.build','true');
+        $solrQuery->set('wt','json');
+        $solrQuery->setQuery($searchTerm);
+        $query_response = $this->client->query($solrQuery);
+        $data = $query_response->getResponse();
 
-        foreach ($collection as $item) {
-            if (strpos($item->getMainWord(), $searchTerm) !== false) {
-                foreach ($item->getWordsWithSameMeaning() as $word => $wordString) {
-                    $results[$word] = [
-                        'value' => $wordString,
-                        'id' => $wordString,
-                        'label' => $wordString
-                    ];
-                }
+        if (is_null($data->suggest->infixSuggester)) {
+            $response->setContent(json_encode([]));
 
+            return $response;
+        }
+
+        $results = [];
+        foreach ($data->suggest->infixSuggester as $term => $suggest) {
+            foreach ($suggest->suggestions as $suggestionObject) {
+                $results[$suggestionObject->term] = [
+                    'value' => $suggestionObject->term,
+                    'id' => $suggestionObject->term,
+                    'label' => $suggestionObject->term
+                ];
             }
         }
 
-        $results = array_slice($results, 0, 10);
         $response->setContent(json_encode($results));
 
         return $response;
     }
+
 }
