@@ -26,6 +26,7 @@ $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, '
 
 //$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
 $description = $wordpress->call('value', ['content.rendered'], '');
+$wordpressTitle = '';
 
 if ($this->params()->fromRoute('isLandingPage')) {
     $wordpressTitle = $wordpress->call('value', ['title.rendered'], '');
