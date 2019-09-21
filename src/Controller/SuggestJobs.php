@@ -43,7 +43,9 @@ class SuggestJobs extends AbstractActionController
         $repository = $factory->getSynonymRepository($host,$port,$jobsPath);
 
         /** @var SynonymCollection $data */
-        $data = $repository->getAll('german');
+        $data = $repository->getAll('german', [
+            'auth' => [$this->moduleOptions->getUsername(), $this->moduleOptions->getPassword()]
+        ]);
         $collection = $data->toArray();
 
         foreach ($collection as $item) {
