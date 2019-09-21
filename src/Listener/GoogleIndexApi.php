@@ -153,6 +153,10 @@ class GoogleIndexApi
         $isEmbeddable = $this->embeddableHelper->__invoke($job->getLink());
         $jobHasExternLink = (!$isIntern && !$isEmbeddable);
 
+        if ($hasJobTemplate) {
+            return false;
+        }
+
         if (!$isIntern) {
             return true;
         }
