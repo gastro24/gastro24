@@ -33,7 +33,7 @@
         "yawik/composer-plugin": "^1.0",
         "yawik/install": "^0.33.8",
         "google/apiclient": "^2.0",
-        "aoepeople/solr-rest-api-client": "^0.0.2"
+        "stefanied/solr-rest-api-client": "^0.0.1"
     },
     "autoload": {
         "psr-4": {
@@ -45,6 +45,12 @@
             "ext-mongo": "1.6.16"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:StefanieD/solr-rest-api-client.git"
+        }
+    ],
     "scripts": {
         "auto-scripts": [
             "npm install"
