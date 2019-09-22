@@ -33,7 +33,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 
 <?php echo $this->doctype(); ?>
 <html lang="<?php echo $this->params('lang') ?>">
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <link rel="icon" type="image/png" sizes="32x32" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-32x32_1_.png')?>">
     <link rel="icon" type="image/png" sizes="16x16" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-16x16_1_.png')?>">
     <link rel="shortcut icon" type="image/ico" href="<?=$this->basepath('modules/Gastro24/favicons/favicon_1_.ico')?>">
@@ -44,6 +44,13 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <title>Gastronomie Jobs | Hotel Jobs | Jobs für Gastrohelden - Gastrojob24</title>  
     <meta name="description" content="Gastronomie Jobbörse mit <?= $this->gastroJobCount() ?> top-aktuellen Gastronomie Jobs, Hotel Jobs und mehr. Jetzt Traumjob finden - auf einen Klick!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <meta property="og:title" content="Gastronomie Jobs | Hotel Jobs | Jobs für Gastrohelden - Gastrojob24" />
+     <meta property="og:description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Gastronomie Jobs bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz.">
+     <meta property="og:url" content="https://www.gastrojob24.ch" />
+     <meta property="og:image" content="https://www.gastrojob24.ch/modules/Gastro24/gastrojob24_blue.svg" />
+     <meta property="og:locale" content="de_DE" />
+     <meta property="og:type" content="website" />
 
 
     <script type="text/javascript" src="<?= $this->basepath('dist/js/core.min.js') ?>"></script>
