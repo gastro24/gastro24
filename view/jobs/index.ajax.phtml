@@ -66,6 +66,24 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
      text-transform:capitalize;
      
  }
+ 
+ .page-title {
+    margin-top: 13px;
+    margin-bottom: 10px;
+}
+	
+.page-title h1 {
+    display: inline;
+	  font-size: 30px;
+	font-weight:300
+}
+	
+.page-title span {
+    display: inline;
+    font-size: 30px;
+	font-weight:300
+}
+
 
 </style>
 <script>
@@ -79,12 +97,18 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 </script>
 
 <div class="col-md-12">
-    <h1 style="display:inline-block; font-size: 20px;font-weight: 600;margin-bottom: 10px;" class="h2 job-overview-title">
-        <?=$wordpress->call('value', ['title.rendered'], '')  ?>
-    </h1>
-    <h2 style="display:inline-block; font-size: 20px; margin-top: 0px;">
-        (<?=$this->jobs->getTotalItemCount() ?> <?= (count($this->jobs) ? 'Jobs gefunden' : 'Leider keine passenden Jobs gefunden');  ?>)
-    </h2>
+    
+    
+    
+    
+    <div class="page-title">
+         <span><?=$this->jobs->getTotalItemCount() ?> </span>
+         <h1><?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Job-Treffer gefunden' : 'Leider keine passenden Jobs gefunden'); ?>
+            
+            
+      </div>	
+
+    
 
     <div class="job-overview">
         <!-- breadcrumbs -->
@@ -192,7 +216,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                             <div class="box__job-favorite">
                                 <h2 class="h3" style="margin-top: 0;margin-bottom: 10px;">
                                     <?php if($jobHasExternLink) { ?>
-                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="noopener nofollow" target="_blank"
+                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="noopener sponsored" target="_blank"
                                            href="<?=$href?>"><?=strip_tags($job->getTitle())?>
                                         </a>
                                     <?php }

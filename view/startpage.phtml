@@ -33,7 +33,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 
 <?php echo $this->doctype(); ?>
 <html lang="<?php echo $this->params('lang') ?>">
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <link rel="icon" type="image/png" sizes="32x32" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-32x32_1_.png')?>">
     <link rel="icon" type="image/png" sizes="16x16" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-16x16_1_.png')?>">
     <link rel="shortcut icon" type="image/ico" href="<?=$this->basepath('modules/Gastro24/favicons/favicon_1_.ico')?>">
@@ -41,9 +41,16 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <link rel="canonical" href="https://www.gastrojob24.ch" />
     <meta name="theme-color" content="#2e5b93"> 
 
-    <title>Gastrojob24: Jobbörse für Gastronomie Jobs & Hotel Jobs</title>  
-    <meta name="description" content="Gastronomie Jobbörse mit <?= $this->gastroJobCount() ?> top-aktuellen Gastro Jobs, Hotel Jobs und mehr. Jetzt Traumjob finden - auf einen Klick!">
+    <title>Gastronomie Jobs | Hotel Jobs | Jobs für Gastrohelden - Gastrojob24</title>  
+    <meta name="description" content="Gastronomie Jobbörse mit <?= $this->gastroJobCount() ?> top-aktuellen Gastronomie Jobs, Hotel Jobs und mehr. Jetzt Traumjob finden - auf einen Klick!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <meta property="og:title" content="Gastronomie Jobs | Hotel Jobs | Jobs für Gastrohelden - Gastrojob24" />
+     <meta property="og:description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Gastronomie Jobs bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz.">
+     <meta property="og:url" content="https://www.gastrojob24.ch" />
+     <meta property="og:image" content="https://www.gastrojob24.ch/modules/Gastro24/gastro-logo-fb.png" />
+     <meta property="og:locale" content="de_DE" />
+     <meta property="og:type" content="website" />
 
 
     <script type="text/javascript" src="<?= $this->basepath('dist/js/core.min.js') ?>"></script>
@@ -51,15 +58,22 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
     </script>
     
-    <link rel="dns-prefetch" href="//fbstatic-a.akamaihd.net">
-    <link rel="dns-prefetch" href="//www.facebook.com">
-    <link rel="dns-prefetch" href="//connect.facebook.net">
-    <link rel="dns-prefetch" href="//static.ak.facebook.com">
-    <link rel="dns-prefetch" href="//static.ak.fbcdn.net">
-    <link rel="dns-prefetch" href="//s-static.ak.facebook.com">
-    <link rel="dns-prefetch" href="//www.google.com">
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="preconnect" href="https://www.facebook.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.facebook.com">
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://static.ak.facebook.com" crossorigin>
+    <link rel="dns-prefetch" href="https://static.ak.facebook.com">
+    <link rel="preconnect" href="https://static.ak.fbcdn.net" crossorigin>
+    <link rel="dns-prefetch" href="https://static.ak.fbcdn.net">
+    <link rel="preconnect" href="https://s-static.ak.facebook.com" crossorigin>
+    <link rel="dns-prefetch" href="https://s-static.ak.facebook.com">
+    <link rel="preconnect" href="https://www.google.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>  
     <!-- Google Tag Manager -->
@@ -176,9 +190,39 @@ margin: 15px 0 35px 0;
 }
 
 </style>
-
+<script type="application/ld+json">
+ { "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "Gastrojob24",
+ "url": "https://www.gastrojob24.ch",
+ "logo": "https://www.gastrojob24.ch/modules/Gastro24/gastrojob24_blue.svg",
+ "foundingDate": "2008",
+ "founders": [
+ {
+ "@type": "Person",
+ "name": "Marc Bösch"
+ }
+ ],
+ "address": {
+ "@type": "PostalAddress",
+ "streetAddress": "Dorfstrasse 64",
+ "addressLocality": "Andwil",
+ "addressRegion": "SG",
+ "postalCode": "9204",
+ "addressCountry": "Switzerland"
+ },
+ "contactPoint": {
+ "@type": "ContactPoint",
+ "contactType": "customer support",
+ "telephone": "+41 71 310 10 08",
+ "email": "info@gastrojob24.ch"
+ },
+ "sameAs": [ 
+ "https://www.facebook.com/gastrojob24.ch/"
+ ]}
+</script>
     
-    <script type="application/ld+json">
+<script type="application/ld+json">
         {
             "@context": "http://schema.org",
             "@type": "WebSite",
@@ -189,7 +233,7 @@ margin: 15px 0 35px 0;
                 "query-input": "required name=search_term_string"
             }
         }
-    </script>
+</script>
 
 
 </head>
