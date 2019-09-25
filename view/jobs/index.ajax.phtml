@@ -50,12 +50,6 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
 
 ?>
-     <meta property="og:title" content="<?=$this->jobs->getTotalItemCount() ?> <?=$wordpress->call('value', ['title.rendered'], '') ?> verfügbar " />
-     <meta property="og:description" content="Jetzt Traumjob finden aus <?=$this->jobs->getTotalItemCount() ?> <?=$wordpress->call('value', ['title.rendered'], '') ?> bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz.">
-     <meta property="og:url" content="<?= $this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true) ?>" />
-     <meta property="og:image" content="https://www.gastrojob24.ch/modules/Gastro24/gastro-logo-fb.png" />
-     <meta property="og:locale" content="de_DE" />
-     <meta property="og:type" content="website" />
 
 
 
