@@ -94,15 +94,6 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
 
 </style>
-<script>
-    function highlight() {
-        document.getElementById("job-external-link").style.color = "#5bc0de";
-    }
-
-    function removeHighlight() {
-        document.getElementById("job-external-link").style.color = "#243b84";
-    }
-</script>
 
 <div class="col-md-12">
     
@@ -111,8 +102,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
     
     <div class="page-title">
          <span><?=$this->jobs->getTotalItemCount() ?> </span>
-         <h1><?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Job-Treffer gefunden' : 'Leider keine passenden Jobs gefunden'); ?>
-            
+         <h1><?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Job-Treffer' : 'Leider keine passenden Jobs gefunden'); ?>
             
       </div>	
 
@@ -226,6 +216,8 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                     <?php if($jobHasExternLink) { ?>
                                         <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="noopener sponsored" target="_blank"
                                            href="<?=$href?>"><?=strip_tags($job->getTitle())?>
+                                           
+                                           <i class="fa fa-external-link"></i>
                                         </a>
                                     <?php }
                                     else { ?>
@@ -307,13 +299,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                     elseif ($job->getDateCreated()): echo $this->dateFormat($job->getDateCreated(), 'short', 'none');
                                 endif?>
 
-                               <?php if ($jobHasExternLink) { ?>
-                                    <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
-                                       onmouseover="highlight()" onmouseout="removeHighlight()"
-                                    title="<?=strip_tags($job->getTitle())?>" rel="noopener sponsored" target="_blank" href="<?=$href?>">
-                                        <i class="fa fa-external-link"></i>
-                                    </a>
-                               <?php } ?>
+                      
                              </p>
 
                         </div>
