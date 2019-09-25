@@ -310,7 +310,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                <?php if ($jobHasExternLink) { ?>
                                     <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
                                        onmouseover="highlight()" onmouseout="removeHighlight()"
-                                    title="<?=strip_tags($job->getTitle())?>" rel="nofollow" target="_blank" href="<?=$href?>">
+                                    title="<?=strip_tags($job->getTitle())?>" rel="noopener sponsored" target="_blank" href="<?=$href?>">
                                         <i class="fa fa-external-link"></i>
                                     </a>
                                <?php } ?>
