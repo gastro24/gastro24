@@ -68,7 +68,9 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
     line-height: 24px;
      
  } 
- 
+  .panel-default>.panel-heading+.panel-collapse>.panel-body label {
+    font-weight:normal!important
+  }
  .active-searchterm:first-letter {
      
      text-transform:capitalize;
@@ -217,7 +219,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                         <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="noopener sponsored" target="_blank"
                                            href="<?=$href?>"><?=strip_tags($job->getTitle())?>
                                            
-                                           <i class="fa fa-external-link"></i>
+                                           <i style="padding-left:5px" class="fa fa-external-link"></i>
                                         </a>
                                     <?php }
                                     else { ?>
