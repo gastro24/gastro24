@@ -479,10 +479,7 @@ $options = [
 		    'panel' => '',
           'text' => 'Kosmetikerin Jobs'
      ],
-     
-     
     
-     
 	 'region-appenzell-ausserrhoden' => [
         'text' => 'Jobs Appenzell Ausserrhoden',
         'id' => 316,
@@ -504,13 +501,7 @@ $options = [
         'tab' => 'Jobs nach Kanton',
         'panel' => 'Schweiz',
     ],
-		'region-liechtenstein' => [
-        'text' => 'Jobs Liechtenstein',
-        'id' => 322,
-        'query' => [ 'region_MultiString' => ['Liechtenstein' => 1]],
-        'tab' => 'Jobs nach Kanton',
-        'panel' => 'Schweiz',
-    ],
+
 		'region-schaffhausen' => [
         'text' => 'Jobs Schaffhausen',
         'id' => 325,
