@@ -289,9 +289,9 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                            <p>
 
                                <?php if ($jobHasExternLink) { ?>
-                                 <!--  <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
                                    border: 1px solid #243b84;border-radius: 4px;
-                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>-->
+                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
                                <?php } ?>
                                <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
 
