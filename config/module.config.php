@@ -554,7 +554,7 @@ return [
                 // adecco
                 '5a0809397bb2b582267c7a97' => 'gastro24/jobs/view-zfv',
                 //compass
-                '5d8da5e73c050f62cf7c7552' => 'gastro24/jobs/view-zfv',
+                '5d8da3cb3c050f4563073b32' => 'gastro24/jobs/view-zfv',
             ],
         ]],
     ],
