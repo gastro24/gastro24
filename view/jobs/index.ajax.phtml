@@ -131,7 +131,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
             $facets = $jobs->getFacets();
         ?>
 
-        <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+     
 
         <div class="panel-group collapse dont-collapse-sm">
 	
@@ -192,6 +192,9 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
     <!-- result list -->
     <div class="col-md-8 job-overview-results">
+        
+          <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+        
         <div class="row">
       <?php endif;?>
 
