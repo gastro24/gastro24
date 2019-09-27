@@ -123,7 +123,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 <div class="row job-results-container">
 
     <!-- filter -->
-    <div class="col-md-4">
+    <div class="col-md-3">
         <?php if ($hasFacets):
             if ($this->params()->fromRoute('isLandingPage')):?>
                 <span class="facets-url" data-url="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>"></span>
@@ -191,7 +191,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
 
     <!-- result list -->
-    <div class="col-md-8 job-overview-results">
+    <div class="col-md-9 job-overview-results">
         
           <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
         
