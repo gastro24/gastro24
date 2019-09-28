@@ -9,11 +9,11 @@
                 <?php
                 /* @var \Jobs\Entity\Job $similarJob */
                 foreach ($similarJobs as $index => $similarJob):  ?>
-                    /*   
-                    <?php if (($index + 1) % 4 == 0) 
-                        echo '</div><div class="row">';
+                    
+                   <?php if (($index + 1) % 4 == 0) 
+                  //      echo '</div><div class="row">';
                     ?>
-                    */
+                    
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="job-box">
                             <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $this->jobUrl($similarJob, ['linkOnly' => true ]) ?>">
