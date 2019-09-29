@@ -100,6 +100,14 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 <div class="col-md-12">
     
     
+        <!-- breadcrumbs -->
+        <?= $this->partial('jobs/partials/breadcrumbs.phtml', [
+            'searchTerm' => $searchTerm,
+            'hasRegion' => $hasRegion,
+            'wordpressTitle' => $wordpressTitle
+        ]); ?>
+        <!-- breadcrumbs -->
+ 
     
     
     <div class="page-title">
@@ -110,15 +118,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
     
 
-    <div class="job-overview">
-        <!-- breadcrumbs -->
-        <?= $this->partial('jobs/partials/breadcrumbs.phtml', [
-            'searchTerm' => $searchTerm,
-            'hasRegion' => $hasRegion,
-            'wordpressTitle' => $wordpressTitle
-        ]); ?>
-        <!-- breadcrumbs -->
-    </div>
+ 
 
 <div class="row job-results-container">
 
