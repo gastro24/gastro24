@@ -248,7 +248,13 @@ $industries = $job->getClassifications()->getIndustries();
         <div class="clearfix"></div>
         <!-- end share buttons -->
 
-      
+           <!-- similar jobs -->
+        <?php if (!$preview): ?>
+            <?php echo $this->partial('jobs/partials/similar-jobs.phtml', [
+                'job' => $this->job
+            ]);
+            ?>
+         <?php endif; ?>
         
         
         <!-- end similar jobs -->
@@ -277,13 +283,7 @@ $industries = $job->getClassifications()->getIndustries();
 
    </div>
    
-     <!-- similar jobs -->
-        <?php if (!$preview): ?>
-            <?php echo $this->partial('jobs/partials/similar-jobs.phtml', [
-                'job' => $this->job
-            ]);
-            ?>
-    <?php endif; ?>
+
         
    
 </div>
