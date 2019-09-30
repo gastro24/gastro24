@@ -555,6 +555,9 @@ return [
                 '5a0809397bb2b582267c7a97' => 'gastro24/jobs/view-zfv',
                 //compass
                 '5d8da3cb3c050f4563073b32' => 'gastro24/jobs/view-zfv',
+                //active gastro
+                '5d8e267b3c050f7ff12f75d2' => 'gastro24/jobs/view-zfv',
+
             ],
         ]],
     ],
