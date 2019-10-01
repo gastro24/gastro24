@@ -27,7 +27,7 @@ $robots = "noindex,follow";
 
  if (!count($this->jobs)) {
     $jobsLandingpage = "https://www.gastrojob24.ch/de/jobs";
-    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpag));
+    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
  }
 
 if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || (!count($this->jobs)) || $description))) {
