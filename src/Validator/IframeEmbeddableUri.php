@@ -42,6 +42,7 @@ class IframeEmbeddableUri extends AbstractValidator
             //'https://www.adecco.ch/',
             'https://jobs.mcdonalds.ch',
             'https://www.gilde.ch/',
+            'https://jobs.coopjobs.ch',
         ],
     ];
 
