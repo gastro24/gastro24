@@ -22,10 +22,13 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 $title = $wordpress->call('value', ['meta-fields.title'], '');
 $this->headTitle($title ?: $this->translate('Jobs'));
 
+ 
 $robots = "noindex,follow";
-$test = "google.ch";
-$this->headLink()->headLink(array('rel' => 'canonical', 'href' => $test));
 
+ if (!count($this->jobs)) {
+    $test = "google.ch";
+    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $test));
+ }
 
 
 
