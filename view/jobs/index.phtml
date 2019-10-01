@@ -23,6 +23,12 @@ $title = $wordpress->call('value', ['meta-fields.title'], '');
 $this->headTitle($title ?: $this->translate('Jobs'));
 
 $robots = "noindex,follow";
+$test = "google.ch";
+$this->headLink()->headLink(array('rel' => 'canonical', 'href' => $test));
+
+
+
+
 if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
     $robots = substr($robots, 2);
 
@@ -110,7 +116,7 @@ $this->headScript()->captureStart();
                    <?php if (!count($this->jobs)):?>
                           
                           <style>
-                              .form-container .form-content > button, .btn-info {display:none!important;}
+                              .form-container .form-content > button, .btn-info, .jobmail-listings {display:none!important;}
                               
                           </style>
                             <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
