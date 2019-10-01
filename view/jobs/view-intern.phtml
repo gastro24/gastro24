@@ -88,7 +88,8 @@ $industries = $job->getClassifications()->getIndustries();
                         echo $this->translate('Swiss');
                     }
                     else {
-                        echo $location ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                        echo $location ? (($location->getCity()) ? $location->getCity() : $location->getCountry()) :
+                            preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
                     }
                     ?>
                     <!-- end location -->
