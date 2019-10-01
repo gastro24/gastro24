@@ -23,19 +23,21 @@ $title = $wordpress->call('value', ['meta-fields.title'], '');
 $this->headTitle($title ?: $this->translate('Jobs'));
 
  
-//$robots = "noindex,follow";
 
  if (!count($this->jobs)) {
     $jobsLandingpage = "https://www.gastrojob24.ch/de/jobs?clear=1";
     $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
-    $robots = substr($robots, 2);
+    $robots = "index,follow";
  } else {
      
-    $robots = "noindex,follow";
+     $robots = "noindex,follow";
+
  }
+ 
+ 
 
 
- $this->headMeta()->setName('robots', $robots);
+
  
  
 
@@ -52,9 +54,7 @@ if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->pa
 }
 
 
-
-
-
+$this->headMeta()->setName('robots', $robots);
 $this->headScript()->captureStart();
 
 ?>
