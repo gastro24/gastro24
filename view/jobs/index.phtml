@@ -26,11 +26,11 @@ $this->headTitle($title ?: $this->translate('Jobs'));
 $robots = "noindex,follow";
 
  if (!count($this->jobs)) {
-    $jobsLandingpage = "https://www.gastrojob24.ch/de/jobs";
+    $jobsLandingpage = "https://www.gastrojob24.ch/de/jobs?clear=1";
     $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
  }
 
-if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || (!count($this->jobs)) || $description))) {
+if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (!count($this->jobs) || $description))) {
 
 //if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
     $robots = substr($robots, 2);
