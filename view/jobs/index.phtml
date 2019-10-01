@@ -26,13 +26,13 @@ $this->headTitle($title ?: $this->translate('Jobs'));
 $robots = "noindex,follow";
 
  if (!count($this->jobs)) {
-    $test = "google.ch";
-    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $test));
+    $jobsLandingpage = "https://www.gastrojob24.ch/de/jobs";
+    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpag));
  }
 
+if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || (!count($this->jobs)) || $description))) {
 
-
-if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
+//if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
     $robots = substr($robots, 2);
 
     // set canonical link - but not on landing pages
@@ -41,7 +41,11 @@ if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->pa
         $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
     }
 }
+
+
 $this->headMeta()->setName('robots', $robots);
+
+
 $this->headScript()->captureStart();
 
 ?>
