@@ -24,7 +24,7 @@ $this->headTitle($title ?: $this->translate('Jobs'));
 
  
 
- if (!count($this->jobs)) {
+ if (!count($this->jobs) && $this->params()->fromRoute('isLandingPage')) {
     $jobsLandingpage = "https://www.gastrojob24.ch/de/jobs?clear=1";
     $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
     $robots = "index,follow";
