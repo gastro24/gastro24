@@ -23,7 +23,7 @@ $title = $wordpress->call('value', ['meta-fields.title'], '');
 $this->headTitle($title ?: $this->translate('Jobs'));
 
  
-
+// set canonical and index,follow only on landing pages without jobs
  if (!count($this->jobs) && $this->params()->fromRoute('isLandingPage')) {
     $jobsLandingpage = "https://www.gastrojob24.ch/de/jobs?clear=1";
     $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
@@ -33,17 +33,9 @@ $this->headTitle($title ?: $this->translate('Jobs'));
      $robots = "noindex,follow";
 
  }
- 
- 
 
-
-
- 
- 
 
 if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
-
-//if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
     $robots = substr($robots, 2);
 
     // set canonical link - but not on landing pages
