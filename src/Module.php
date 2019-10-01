@@ -226,6 +226,24 @@ class Module implements AssetProviderInterface
             }, -9999);
 
             $eventManager->attach(MvcEvent::EVENT_DISPATCH, function(MvcEvent $e) {
+
+                $services = $e->getApplication()->getServiceManager();
+                $paginatorFactory = $services->get('ControllerPluginManager')->get('paginator');
+                $searchFormFactory = $services->get('ControllerPluginManager')->get('searchform');
+                /** @var \Zend\Paginator\Paginator $paginator */
+                $paginator = call_user_func($paginatorFactory, 'Jobs/Board', [], [
+                    'q',
+                    'count' => 10,
+                    'page' => 1,
+                    'l',
+                    'd' => 10
+                ]);
+                $searchForm = call_user_func($searchFormFactory, 'Jobs/JobboardSearch');
+
+                $viewModel = $e->getViewModel();
+                $viewModel->setVariable('jobs', $paginator);
+                $viewModel->setVariable('filterForm', $searchForm);
+
                 $controller = $e->getTarget();
                 if ( (\Auth\Controller\RegisterController::class == get_class($controller)
                       || \CompanyRegistration\Controller\RegistrationController::class == get_class($controller)

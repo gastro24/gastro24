@@ -415,7 +415,12 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     </header>
     <?php endif ?>
 
-
+<!-- search form container -->
+<?= $this->partial('partials/search-form-container.phtml', [
+    'jobs' => $this->jobs,
+    'filterForm' => $this->filterForm,
+]); ?>
+<!-- end search form container -->
 
 <main id="content" class="<?= $routeClass ?>">
    <div class="container">
