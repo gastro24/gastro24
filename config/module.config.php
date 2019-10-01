@@ -557,7 +557,8 @@ return [
                 '5d8da3cb3c050f4563073b32' => 'gastro24/jobs/view-zfv',
                 //active gastro
                 '5d8e267b3c050f7ff12f75d2' => 'gastro24/jobs/view-zfv',
-
+                //coop
+                '59d7d04e7bb2b594121c1235' => 'gastro24/jobs/view-zfv',
             ],
         ]],
     ],
