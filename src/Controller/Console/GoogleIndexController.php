@@ -43,7 +43,8 @@ class GoogleIndexController extends AbstractActionController
      */
     private $jobTemplateHelper;
 
-    private $jobUrlHelper;
+    private $urlHelper;
+    private $serverUrlHelper;
 
     private $configPath;
 
@@ -57,14 +58,16 @@ class GoogleIndexController extends AbstractActionController
         ConsoleDeleteJobs $options,
         $logger,
         $jobTemplateHelper,
-        $jobUrlHelper,
+        $urlHelper,
+        $serverUrlHelper,
         $configPath
     ) {
         $this->repositories = $repositories;
         $this->options = $options;
         $this->logger = $logger;
         $this->jobTemplateHelper = $jobTemplateHelper;
-        $this->jobUrlHelper = $jobUrlHelper;
+        $this->urlHelper = $urlHelper;
+        $this->serverUrlHelper = $serverUrlHelper;
         $this->configPath = $configPath;
     }
 
@@ -76,7 +79,8 @@ class GoogleIndexController extends AbstractActionController
             $container->get(\Gastro24\Options\ConsoleDeleteJobs::class),
             $container->get('Core/Log'),
             $helpers->get('gastroJobTemplate'),
-            $helpers->get('jobUrl'),
+            $helpers->get('url'),
+            $helpers->get('serverUrl'),
             __DIR__.'/../../../test/sandbox/config/autoload/'
         );
     }
@@ -97,13 +101,18 @@ class GoogleIndexController extends AbstractActionController
             $hasJobTemplate = $this->jobTemplateHelper->__invoke($job->getOrganization());
 
             if ($hasJobTemplate) {
-                $jobUrl = $this->jobUrlHelper->__invoke(
-                    $job,
-                    [
-                        'linkOnly'=> true,
-                        'absolute' => true,
-                    ]
-                );
+                $url = $this->urlHelper->__invoke('lang/job-view-extern', ['lang' => 'de'], true);
+                $jobUrl = $this->serverUrlHelper->__invoke($url);
+//                $jobUrl = $this->jobUrlHelper->__invoke(
+//                    $job,
+//                    [
+//                        'linkOnly' => true,
+//                        'absolute' => true,
+//                    ],
+//                    [
+//                        'lang' => 'de'
+//                    ]
+//                );
 
                 // DEV Mode
                 if (!file_exists($this->configPath . GoogleIndexApi::AUTH_FILE)) {
@@ -130,8 +139,8 @@ class GoogleIndexController extends AbstractActionController
 
         return [
             '$and' => [
-                ['dateCreated' => ['$lt' => $toDate]],
-                ['dateCreated' => ['$gt' => $fromDate]],
+                ['dateCreated.date' => ['$lt' => $toDate]],
+                ['dateCreated.date' => ['$gt' => $fromDate]],
                 ['$or' => $orArray]
             ]
         ];
