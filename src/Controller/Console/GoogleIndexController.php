@@ -43,31 +43,23 @@ class GoogleIndexController extends AbstractActionController
      */
     private $jobTemplateHelper;
 
-    private $urlHelper;
-    private $serverUrlHelper;
+    private $jobUrlHelper;
 
     private $configPath;
-
-    /**
-     * @var bool
-     */
-    private $onlyDebug = false;
 
     public function __construct(
         RepositoryService $repositories,
         ConsoleDeleteJobs $options,
         $logger,
         $jobTemplateHelper,
-        $urlHelper,
-        $serverUrlHelper,
+        $jobUrlHelper,
         $configPath
     ) {
         $this->repositories = $repositories;
         $this->options = $options;
         $this->logger = $logger;
         $this->jobTemplateHelper = $jobTemplateHelper;
-        $this->urlHelper = $urlHelper;
-        $this->serverUrlHelper = $serverUrlHelper;
+        $this->jobUrlHelper = $jobUrlHelper;
         $this->configPath = $configPath;
     }
 
@@ -79,8 +71,7 @@ class GoogleIndexController extends AbstractActionController
             $container->get(\Gastro24\Options\ConsoleDeleteJobs::class),
             $container->get('Core/Log'),
             $helpers->get('gastroJobTemplate'),
-            $helpers->get('url'),
-            $helpers->get('serverUrl'),
+            $helpers->get('jobUrl'),
             __DIR__.'/../../../test/sandbox/config/autoload/'
         );
     }
@@ -101,18 +92,19 @@ class GoogleIndexController extends AbstractActionController
             $hasJobTemplate = $this->jobTemplateHelper->__invoke($job->getOrganization());
 
             if ($hasJobTemplate) {
-                $url = $this->urlHelper->__invoke('lang/job-view-extern', ['lang' => 'de'], true);
-                $jobUrl = $this->serverUrlHelper->__invoke($url);
-//                $jobUrl = $this->jobUrlHelper->__invoke(
-//                    $job,
-//                    [
-//                        'linkOnly' => true,
-//                        'absolute' => true,
-//                    ],
-//                    [
-//                        'lang' => 'de'
-//                    ]
-//                );
+                $jobUrl = $this->jobUrlHelper->__invoke(
+                    $job,
+                    [
+                        'linkOnly' => true,
+                        'absolute' => true,
+                    ],
+                    [
+                        'lang' => 'de'
+                    ]
+                );
+
+                //HINT: workaround to get base url
+                $jobUrl = str_replace('http://', 'https://www.gastrojob24.ch', $jobUrl);
 
                 // DEV Mode
                 if (!file_exists($this->configPath . GoogleIndexApi::AUTH_FILE)) {
@@ -123,7 +115,7 @@ class GoogleIndexController extends AbstractActionController
                 else {
                     $this->logger->info('GOOGLE INDEX API: Crawler Cron - Job created. Send ' .
                         GoogleIndexApi::GOOGLE_API_UPDATED_TYPE . ' for ' . $jobUrl);
-                    //$response = $this->sendGoogleRequest($jobUrl);
+                    $response = $this->sendGoogleRequest($jobUrl);
                 }
             }
         }
