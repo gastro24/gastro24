@@ -55,10 +55,7 @@ $industries = $job->getClassifications()->getIndustries();
 ?>
 <?=$this->jsonLd($this->job)?>
   <style>
-  #job_content b,  #job_content strong {
-  
-    display: block;
-}
+
   #bTitle {
     font-size: 24px!important;
     margin-top: 20px!important;
@@ -68,9 +65,17 @@ $industries = $job->getClassifications()->getIndustries();
 }
 
 
- #job_content br{content:' ';}
+/* #job_content br{content:' ';}
  #job_content br:after{content:' ';}
+    #job_content b,  #job_content strong {
   
+    display: inline;
+}*/
+
+p:empty {
+	display: none;
+	}
+	
   .link-tag:hover, .link-tag.active {
     background-color: #4e4e4e;
   }
