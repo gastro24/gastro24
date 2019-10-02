@@ -274,7 +274,9 @@ class Module implements AssetProviderInterface
             'jobs clear'  => 'Remove expired jobs from database',
             ['--days=INT', 'expire jobs after <days> days. Default 30'],
             ['--limit=INT[,<offset>]', 'Limit jobs to expire per run starting from <offset>. Default 10. 0 means no limit'],
-            ['--info', 'Does not manipulate the database, but prints a list of all matched jobs.']
+            ['--info', 'Does not manipulate the database, but prints a list of all matched jobs.'],
+            'Google Index Api',
+            'jobs google-index' => 'Index crawler jobs'
         ];
     }
 
