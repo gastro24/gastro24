@@ -24,9 +24,19 @@
                                 <ul>
                                     <li class="location">
                                         <!-- location -->
-                                        <?php $location = $similarJob->getLocations()->last(); ?>
-                                        <?= ($location) ? $location->getPostalCode() . ' ' . $similarJob->getLocations()->last()->getCity() :
-                                            (string) $similarJob->getLocation(); ?>
+                                        <?php
+                                            $location = $similarJob->getLocations()->last();
+                                            if ($location == '') {
+                                                echo $this->translate('Swiss');
+                                            }
+                                            elseif ($location) {
+                                                echo $location->getCity() ? $location->getPostalCode() . ' ' . $location->getCity() :
+                                                preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                            }
+                                            else {
+                                                echo (string) $similarJob->getLocation();
+                                            }
+                                         ?>
                                         <!-- end location -->
                                     </li>
                                     <li class="type">
