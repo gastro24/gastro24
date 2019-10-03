@@ -48,10 +48,30 @@ $container->searchTerm = $searchTerm;
 
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
+
+
+$template = $this->job->getAttachedEntity('gastro24-template');
+$basePathHelper = $this->plugin('basePath');
+$replaceImage = function($str) use ($template, $basePathHelper)
+{
+    $image = $template ? $template->getImage() : null;
+    if ($image) {
+        $imageUri = $basePathHelper($image->getUri());
+        $imageHtml = '<img src="' . $imageUri . '">';
+    } else {
+        $imageHtml = '';
+    }
+
+    return str_replace('#image#', $imageHtml, $str);
+};
+
 $logoUrl = $this->uriLogo;
-if ($logo = $template->getLogo()) {
+if ($template && ($logo = $template->getLogo())) {
     $logoUrl = $this->basePath($logo->getUri());
 }
+
+
+
 
 ?>
 
