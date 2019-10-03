@@ -252,7 +252,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                             </div>
                             
                              <?php
-                $logo = $this->basePath($logo->getUri($job));
+                $logo = $this->uriLogo($job);
                 if ($logo) {
                     echo '<img class="yk-logo-sm center-block" src="' . $logo . '">';
                 }
