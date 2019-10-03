@@ -48,6 +48,10 @@ $container->searchTerm = $searchTerm;
 
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
+$logoUrl = $this->uriLogo;
+if ($logo = $template->getLogo()) {
+    $logoUrl = $this->basePath($logo->getUri());
+}
 
 ?>
 
@@ -249,6 +253,8 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                 <?php endif; ?>
                             </div>
 
+
+                             <?= $logoUrl ?>
 
                             <p>
                             <?php if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
