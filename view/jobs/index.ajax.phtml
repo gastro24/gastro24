@@ -251,7 +251,15 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                 <?php endif; ?>
                             </div>
                             
-                            
+                             <?php
+                $logo = $this->basePath($logo->getUri());
+                if ($logo) {
+                    echo '<img class="yk-logo-sm center-block" src="' . $logo . '">';
+                }
+
+                ?>
+
+
 
                             <p>
                             <?php if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
