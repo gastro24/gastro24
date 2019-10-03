@@ -50,15 +50,6 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
 
 
-$template = $this->job->getAttachedEntity('gastro24-template');
-
-
-$logoUrl = $this->uriLogo;
-if ($template && ($logo = $template->getLogo())) {
-    $logoUrl = $this->basePath($logo->getUri());
-}
-
-
 
 ?>
 
@@ -259,15 +250,8 @@ if ($template && ($logo = $template->getLogo())) {
                                     <!-- end favorite button -->
                                 <?php endif; ?>
                             </div>
-
-
-                             <?php
-                             
-    
-
-                             $logoUrl 
-                             
-                             ?>
+                            
+                            
 
                             <p>
                             <?php if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
