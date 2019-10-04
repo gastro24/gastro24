@@ -24,7 +24,7 @@ class JobboardSearch extends BaseJobboardSearchForm
 
         $name = $this->getOption('text_name') ?: 'q';
         $label = $this->getOption('text_label') ?: /*@translate*/ 'Search';
-        $placeholder = $this->getOption('text_placeholder') ?: /*@translate*/ 'Job, Keyword or Location';
+        $placeholder = $this->getOption('text_placeholder') ?: /*@translate*/ 'Job or Keyword';
         $span = $this->getOption('text_span') ?: 12;
         $priority = 50;
         $this->add(
@@ -61,7 +61,7 @@ class JobboardSearch extends BaseJobboardSearchForm
                 'options'    => [
                     'label' => 'Location',
                     'span'  => 3,
-                    'location_entity' => new Location(),
+                    'location_entity' => Location::class,
                 ],
                 'attributes' => [
                     'data-width' => '100%',
