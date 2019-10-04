@@ -35,7 +35,7 @@
 $options = [
       'leitung' => [
           'id' => 1432,
-		  'query' => [ 'q' => 'leitung'],
+		  'query' => [ 'q' => 'Leitung'],
 		   'tab' => 'Jobs von A - Z',
 		     'panel' => '',
           'text' => 'Leitung Jobs'
