@@ -116,12 +116,7 @@ return [
     'controller_plugins' => [
         'factories' => [
             Controller\Plugin\CreateSingleJob::class => Factory\Controller\Plugin\CreateSingleJobFactory::class,
-            //Controller\Plugin\Url::class => InvokableFactory::class,
         ],
-//        'aliases' => [
-//            'url' => Controller\Plugin\Url::class,
-//            'Url' => Controller\Plugin\Url::class,
-//        ],
     ],
 
     'filters' => [
@@ -158,6 +153,7 @@ return [
     'view_helpers' => [
         'invokables' => [
             'formcheckbox' => \Gastro24\Factory\View\Helper\FormCheckbox::class,
+            'searchForm' => \Gastro24\View\Helper\SearchForm::class,
         ],
         'factories' => [
             WordpressApi\View\Helper\WordpressContent::class => WordpressApi\Factory\View\Helper\WordpressContentFactory::class,

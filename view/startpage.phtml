@@ -99,6 +99,14 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     margin: 0px 5px 5px 0px;
    
    }
+      .search-form-container .btn-group {
+          width: 100%;
+      }
+      #jobs-list-filter-wrapper .search-form-container .btn-primary {
+          width: 100%;
+          margin-left: 0;
+      }
+
      .navbar-nav {
          margin: 0;
     }
@@ -276,7 +284,8 @@ margin: 15px 0 35px 0;
         <?php
         /* @todo Probably, we should create a dedicated IndexController to inject this dependencies. */
         $form = $this->services('forms.Jobs/JobboardSearch');
-        $form->setButtonElement('q');
+        // defines after which element the search button will be placed
+        $form->setButtonElement(null);
         $form->setAttribute('action', $this->url('lang/jobboard', [], true));
 
         ?>
@@ -285,7 +294,7 @@ margin: 15px 0 35px 0;
             <h2><?= $this->gastroJobCount() ?> Gastrojobs für die Schweiz verfügbar</h2>
             <nav class="navbar yk-toolbar" id="jobs-list-filter-wrapper">
                 <div class="search-form-container">
-                    <?=$this->searchForm($form);?>
+                    <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
                 </div>
             </nav>
         </div>
