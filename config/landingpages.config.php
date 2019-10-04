@@ -33,7 +33,13 @@
 
 
 $options = [
-    
+      'leitung' => [
+          'id' => 1432,
+		  'query' => [ 'q' => 'leitung'],
+		   'tab' => 'Jobs von A - Z',
+		     'panel' => '',
+          'text' => 'Leitung Jobs'
+       ],
       
     'casserolier' => [
           'id' => 1429,
