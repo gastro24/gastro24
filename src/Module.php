@@ -168,7 +168,8 @@ class Module implements AssetProviderInterface
 
                     foreach ([
                         'r' => '__region_MultiString',
-                        'l' => '__city_MultiString',
+                        //'l' => '__city_MultiString',
+                        'l' => \Solr\Options\ModuleOptions::FIELD_LOCATION,
                         'c' => '__organizationTag',
                         'p' => '__profession_MultiString',
                         'i' => '__industry_MultiString',
