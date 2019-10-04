@@ -127,7 +127,6 @@
 
         if (initialValue.length) {
             for (var i=initialValue.length-1; i>=0; i-=1) {
-                console.debug("initVal " + i + ": "+ initialValue[i]);
                 try {
                     var locationArray = JSON.parse(initialValue[i]);
                 } catch (e) {
@@ -141,7 +140,7 @@
                 }
 
                 var $option = $('<option selected>'+ tmpText +'</option>');
-                $option.val(initialValue[i]);
+                $option.val(JSON.stringify(locationArray));
 
                 var $data = initialValue[i];
 

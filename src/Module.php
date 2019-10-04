@@ -180,6 +180,12 @@ class Module implements AssetProviderInterface
                         }
                     }
 
+                    // remove location from session (from search form)
+                    if (!$query->get('l')) {
+                        $jobsBoardContainer = new Container('Jobs_Board');
+                        unset($jobsBoardContainer->params['l']);
+                    }
+
                     if (!$routeMatch->getParam('isLandingPage')) {
                         $query = $query->toArray();
                         unset($query['clear']);
