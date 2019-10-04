@@ -29,11 +29,8 @@ $this->headTitle($title ?: $this->translate('Jobs'));
     $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
     $robots = "index,follow";
  } else {
-     
      $robots = "noindex,follow";
-
  }
-
 
 if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
     $robots = substr($robots, 2);
@@ -45,13 +42,9 @@ if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->pa
     }
 }
 
-
 $this->headMeta()->setName('robots', $robots);
 $this->headScript()->captureStart();
-
 ?>
-
-
 
 (function($) {
 

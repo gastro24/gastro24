@@ -4,7 +4,8 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 
 if ($this->clear) {
     $form = $this->services('forms.Jobs/JobboardSearch');
-    $form->setButtonElement('q');
+    // defines after which element the search button will be placed
+    $form->setButtonElement(null);
     $form->setAttribute('data-handle-by', 'native');
     $form->setAttribute('action', $this->url('lang/jobboard', [], true));
 }
@@ -25,7 +26,7 @@ else {
         endif;
     endforeach;
 
-    $this->filterForm->setButtonElement('q');
+    $this->filterForm->setButtonElement(null);
     $this->filterForm->setAttribute('data-handle-by', 'native');
     $this->filterForm->setAttribute('action', $this->url('lang/jobboard', [], true));
     $form = $this->filterForm;
@@ -35,7 +36,7 @@ else {
 <nav class="navbar yk-toolbar" id="jobs-list-filter-wrapper">
     <div class="search-form-container search-form-container__header ">
         <div class="container">
-            <?=$this->searchForm($form);?>
+            <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
             <div class="favorite-icon">
                 <?php
                     $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
