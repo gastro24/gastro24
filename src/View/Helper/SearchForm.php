@@ -77,7 +77,7 @@ class SearchForm extends BaseSearchFormHelper
                     . '</div>';
                 $buttonsRendered = true;
             } else {
-                $content .= '<div class="input-group col-md-' . $cols . ' col-xs-12">'
+                $content .= '<div class="input-group col-md-' . $cols . ' col-xs-8">'
                     . $formElement($element)
                     . '</div>';
             }
@@ -89,7 +89,7 @@ class SearchForm extends BaseSearchFormHelper
             if (null === $buttonsSpan) {
                 $buttonsSpan = $form->getOption('buttons_span') ?: 12;
             }
-            $content .= '<div class="input-group search-form-buttons col-md-' . $buttonsSpan . ' col-xs-12 text-right">'
+            $content .= '<div class="input-group search-form-buttons col-md-' . $buttonsSpan . ' col-xs-4 text-right">'
                 . '<div class="btn-group">' . $this->renderButtons($form->getButtons()) .'</div></div>';
         }
 
