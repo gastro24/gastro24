@@ -53,6 +53,7 @@ return [
                 'resource' => 'Jobs',
             ],
             'ratgeber' => [
+                'visible' => false,
                 'label' => 'Ratgeber',
                 'route' => 'lang/wordpress',
                 'resource' => 'resource/ratgeber',
