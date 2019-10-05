@@ -68,7 +68,6 @@ class SearchForm extends BaseSearchFormHelper
             } else {
                 $cols = $element->getOption('span') ?: 12;
             }
-
             if ($element->getName() == $form->getButtonElement()) {
                 $content.='<div class="input-group col-md-' . $cols . ' col-xs-12">'
                     . $formElement($element)
