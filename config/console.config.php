@@ -31,6 +31,15 @@ return [
                             'onlyDebug'  => '0',
                         ],
                     ],
+                ],
+                'jobs-google-index'    => [
+                    'options' => [
+                        'route'    => 'jobs google-index',
+                        'defaults' => [
+                            'controller' => 'Gastro24/Jobs/Console/GoogleIndex',
+                            'action'     => 'googleIndexJobs',
+                        ],
+                    ],
                 ]
             ]
         ]

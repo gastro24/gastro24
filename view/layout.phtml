@@ -42,7 +42,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 
 <?php echo $this->doctype(); ?>
 <html lang="<?php echo $this->params('lang') ?>">
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <link rel="icon" type="image/png" sizes="32x32" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-32x32_1_.png')?>">
     <link rel="icon" type="image/png" sizes="16x16" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-16x16_1_.png')?>">
     <link rel="shortcut icon" type="image/ico" href="<?=$this->basepath('modules/Gastro24/favicons/favicon_1_.ico')?>">
@@ -52,7 +52,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <?php echo $this->headMeta() ?>
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
-    
+    <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
 
     <script type="text/javascript" src="<?= $this->basepath('dist/js/core.min.js') ?>"></script>
     <script>
@@ -85,6 +85,60 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <!-- End Google Tag Manager -->
     
 <style>
+
+
+.search-form-container.search-form-container__header .container form .input-group .form-control {
+-webkit-border-radius: 0!important;
+-moz-border-radius:  0!important;
+border-radius: 0!important;
+border: none!important
+
+	
+
+}
+
+
+
+.search-form-container.search-form-container__header .container form select
+
+	{
+	height: 38px !important;
+    background-color: #fff;
+    border: none;
+    border-left:1px solid #ccc;
+    border-radius: 0;
+	line-height: 27px;
+    padding: 6px 24px 6px 20px;
+    color: #555;
+    font-size: 14px;
+    outline: 0;
+	width:100%;
+	display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+	
+	}
+
+.search-form-container.search-form-container__header .container form .select2-container--bootstrap .select2-selection {
+    -webkit-border-radius: 0!important;
+-moz-border-radius:  0!important;
+border-radius: 0!important;
+    border: none!important;
+    border-left:1px solid #ccc!important;
+    	line-height: 27px!important;
+    padding: 6px 24px 6px 20px!important;
+}
+
+
+
+
+.breadcrumb>li+li:before {
+    color:#000;
+    content: ">";
+}
+
 
 #job_content p  {
     margin-bottom:25px;

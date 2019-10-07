@@ -6,16 +6,27 @@ $form = $this->element;
 $facets = $this->facets;
 $modalId = 'job-by-mail-subscribe-modal';
 ?>
+
+
+<div class="jobmail-listings">
+    
+
+<h2 class="h4">Täglich neue Jobs per E-Mail erhalten?</h2>
+<p class="hidden-xs">Lassen Sie sich automatisch informieren, sobald neue Jobs vorhanden sind.</p>
+    
+
 <button type="button" class="pull-right hidden visible-sm visible-xs btn btn-secondary" aria-expanded="false" data-toggle="collapse" data-target=".panel-group">Filter anzeigen
     </button>
-<p>
     <button class="btn btn-info" data-title="<?=$this->translate('Jobs By Mail')?>" data-toggle="modal" data-target="#<?=$modalId?>" title="<?=$this->translate('Jobs By Mail')?>">
         <i class="yk-icon yk-icon-envelope"></i>
 
-          Diese Suche abonnieren
+          Suche abonnieren
       
     </button>
-</p>
+
+   </div>
+
+
 
 <div id="<?=$modalId?>" class="modal fade" role="dialog" aria-labelledby="job-by-mail-subscribe-label" aria-hidden="true">
     <div class="modal-dialog">

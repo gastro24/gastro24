@@ -4,14 +4,16 @@
 <?php if (count($similarJobs)) : ?>
 <div class="grey-description-container similar-jobs">
     <div class="content">
-        <div class="headline"><h2 style="margin-top:5px; margin-bottom:10px"><?= $this->translate('Ähnliche Jobs') ?></h2></div>
+        <div class="headline"><h2 style="margin-top: 5px; margin-bottom: 20px;font-size: 20px;color: #000;"><?= $this->translate('Ähnliche Jobs') ?></h2></div>
             <div class="row">
                 <?php
                 /* @var \Jobs\Entity\Job $similarJob */
                 foreach ($similarJobs as $index => $similarJob):  ?>
-                    <?php if (($index + 1) % 4 == 0)
-                        echo '</div><div class="row">';
+                    
+                   <?php if (($index + 1) % 4 == 0) 
+                  //      echo '</div><div class="row">';
                     ?>
+                    
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="job-box">
                             <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $this->jobUrl($similarJob, ['linkOnly' => true ]) ?>">
@@ -22,9 +24,19 @@
                                 <ul>
                                     <li class="location">
                                         <!-- location -->
-                                        <?php $location = $similarJob->getLocations()->last(); ?>
-                                        <?= ($location) ? $location->getPostalCode() . ' ' . $similarJob->getLocations()->last()->getCity() :
-                                            (string) $similarJob->getLocation(); ?>
+                                        <?php
+                                            $location = $similarJob->getLocations()->last();
+                                            if ($location == '') {
+                                                echo $this->translate('Swiss');
+                                            }
+                                            elseif ($location) {
+                                                echo $location->getCity() ? $location->getPostalCode() . ' ' . $location->getCity() :
+                                                preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                            }
+                                            else {
+                                                echo (string) $similarJob->getLocation();
+                                            }
+                                         ?>
                                         <!-- end location -->
                                     </li>
                                     <li class="type">

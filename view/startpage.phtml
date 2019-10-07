@@ -44,6 +44,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <title>Gastronomie Jobs | Hotel Jobs | Jobs für Gastrohelden - Gastrojob24</title>  
     <meta name="description" content="Gastronomie Jobbörse mit <?= $this->gastroJobCount() ?> top-aktuellen Gastronomie Jobs, Hotel Jobs und mehr. Jetzt Traumjob finden - auf einen Klick!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
 
      <meta property="og:title" content="Gastronomie Jobs | Hotel Jobs | Jobs für Gastrohelden - Gastrojob24" />
      <meta property="og:description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Gastronomie Jobs bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz.">
@@ -84,7 +85,63 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
         })(window,document,'script','dataLayer','GTM-MCDJ26Q');</script>
     <!-- End Google Tag Manager -->
 <style>
-           .flex-block {
+
+
+.search-form-container .form-control {
+-webkit-border-radius: 0!important;
+-moz-border-radius:  0!important;
+border-radius: 0!important;
+border: none!important
+
+	
+
+}
+
+
+
+.search-form-container select
+
+	{
+	height: 38px !important;
+    background-color: #fff;
+    border: none;
+    border-left:1px solid #ccc;
+    border-radius: 0;
+	line-height: 27px;
+    padding: 6px 24px 6px 20px;
+    color: #555;
+    font-size: 14px;
+    outline: 0;
+	width:100%;
+	display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+	
+	}
+
+
+
+
+.search-form-container .select2-selection {
+    -webkit-border-radius: 0!important;
+   -moz-border-radius:  0!important;
+border-radius: 0!important;
+    border: none!important;
+    border-left:1px solid #ccc!important;
+    	line-height: 27px!important;
+    padding: 6px 24px 6px 20px!important;
+    text-align:left;
+}
+
+
+
+
+
+
+
+   .flex-block {
           
           display:flex;
       }
@@ -98,6 +155,14 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     margin: 0px 5px 5px 0px;
    
    }
+      .search-form-container .btn-group {
+          width: 100%;
+      }
+      #jobs-list-filter-wrapper .search-form-container .btn-primary {
+          width: 100%;
+          margin-left: 0;
+      }
+
      .navbar-nav {
          margin: 0;
     }
@@ -275,7 +340,8 @@ margin: 15px 0 35px 0;
         <?php
         /* @todo Probably, we should create a dedicated IndexController to inject this dependencies. */
         $form = $this->services('forms.Jobs/JobboardSearch');
-        $form->setButtonElement('q');
+        // defines after which element the search button will be placed
+        $form->setButtonElement(null);
         $form->setAttribute('action', $this->url('lang/jobboard', [], true));
 
         ?>
@@ -284,7 +350,7 @@ margin: 15px 0 35px 0;
             <h2><?= $this->gastroJobCount() ?> Gastrojobs für die Schweiz verfügbar</h2>
             <nav class="navbar yk-toolbar" id="jobs-list-filter-wrapper">
                 <div class="search-form-container">
-                    <?=$this->searchForm($form);?>
+                    <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
                 </div>
             </nav>
         </div>

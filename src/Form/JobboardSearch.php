@@ -20,13 +20,16 @@ class JobboardSearch extends BaseJobboardSearchForm
     {
         $this->setAttribute('id', 'jobs-list-filter');
         $this->setOption('text_span', 5);
+        $this->setOption('buttons_span', 1);
         $this->setName($this->getOption('name') ?: 'searchform');
 
         $name = $this->getOption('text_name') ?: 'q';
         $label = $this->getOption('text_label') ?: /*@translate*/ 'Search';
-        $placeholder = $this->getOption('text_placeholder') ?: /*@translate*/ 'Job, Keyword or Location';
+        $placeholder = $this->getOption('text_placeholder') ?: /*@translate*/ 'Job or Keyword';
         $span = $this->getOption('text_span') ?: 12;
         $priority = 50;
+        $this->setButtonElement('d');
+
         $this->add(
             [
                 'type' => 'Text',
@@ -47,12 +50,7 @@ class JobboardSearch extends BaseJobboardSearchForm
         );
         $this->setOption('button_element', $name);
 
-        $this->addButton(/*@translate*/ 'Search', -1000, 'submit');
-        $this->addButton(/*@translate*/ 'Clear', -1001, 'reset');
-
         $this->addElements();
-
-        $this->setButtonElement('q');
 
         $this->add(
             [
@@ -60,16 +58,14 @@ class JobboardSearch extends BaseJobboardSearchForm
                 'type'       => 'LocationSelect',
                 'options'    => [
                     'label' => 'Location',
-                    'span'  => 3,
-                    'location_entity' => new Location(),
+                    'span'  => 4,
+                    'location_entity' => Location::class,
                 ],
                 'attributes' => [
                     'data-width' => '100%',
                 ]
             ]
         );
-        $this->setButtonElement('l');
-
         $this->add(
             array(
                 'name'       => 'd',
@@ -83,7 +79,7 @@ class JobboardSearch extends BaseJobboardSearchForm
                         '50'  => '50 km',
                         '100' => '100 km'
                     ],
-                    'span'          => 4,
+                    'span'          => 3,
                 ),
                 'attributes' => [
                     'value'            => '10', // default distance
@@ -94,7 +90,9 @@ class JobboardSearch extends BaseJobboardSearchForm
                 ]
             )
         );
-        $this->setButtonElement('d');
+
+        $this->addButton(/*@translate*/ 'Search', -1000, 'submit');
+        $this->addButton(/*@translate*/ 'Clear', -1001, 'reset');
     }
 
     /**

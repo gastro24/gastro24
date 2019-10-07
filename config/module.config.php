@@ -107,6 +107,7 @@ return [
             Controller\OrdersController::class => Factory\Controller\OrdersControllerFactory::class,
             'Gastro24/Jobs/Console' => [Controller\Console\JobsConsoleController::class,'factory'],
             'Gastro24/Jobs/Console/DeleteJobs' => [Controller\Console\DeleteJobsController::class,'factory'],
+            'Gastro24/Jobs/Console/GoogleIndex' => [Controller\Console\GoogleIndexController::class,'factory'],
             'Core/File'    => Factory\Controller\FileControllerFactory::class,
             Controller\JobController::class => [Controller\JobController::class,'factory'],
         ],
@@ -115,12 +116,7 @@ return [
     'controller_plugins' => [
         'factories' => [
             Controller\Plugin\CreateSingleJob::class => Factory\Controller\Plugin\CreateSingleJobFactory::class,
-            //Controller\Plugin\Url::class => InvokableFactory::class,
         ],
-//        'aliases' => [
-//            'url' => Controller\Plugin\Url::class,
-//            'Url' => Controller\Plugin\Url::class,
-//        ],
     ],
 
     'filters' => [
@@ -157,6 +153,7 @@ return [
     'view_helpers' => [
         'invokables' => [
             'formcheckbox' => \Gastro24\Factory\View\Helper\FormCheckbox::class,
+            'searchForm' => \Gastro24\View\Helper\SearchForm::class,
         ],
         'factories' => [
             WordpressApi\View\Helper\WordpressContent::class => WordpressApi\Factory\View\Helper\WordpressContentFactory::class,
@@ -553,6 +550,10 @@ return [
                 '5bcdfda2b6428ba17c5c9048' => 'gastro24/jobs/view-zfv',
                 // adecco
                 '5a0809397bb2b582267c7a97' => 'gastro24/jobs/view-zfv',
+                //compass
+                '5d8da3cb3c050f4563073b32' => 'gastro24/jobs/view-zfv',
+                //active gastro
+                '5d8e267b3c050f7ff12f75d2' => 'gastro24/jobs/view-zfv',
             ],
         ]],
     ],

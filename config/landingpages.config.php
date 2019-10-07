@@ -33,6 +33,44 @@
 
 
 $options = [
+      'leitung' => [
+          'id' => 1432,
+		  'query' => [ 'q' => 'Leitung'],
+		   'tab' => 'Jobs von A - Z',
+		     'panel' => '',
+          'text' => 'Leitung Jobs'
+       ],
+      
+    'casserolier' => [
+          'id' => 1429,
+		  'query' => [ 'q' => 'Casserolier'],
+		   'tab' => 'Jobs von A - Z',
+		     'panel' => '',
+          'text' => 'Casserolier Jobs'
+       ],
+    
+    'kuechenhilfe' => [
+          'id' => 1427,
+		  'query' => [ 'q' => 'Küchenhilfe'],
+		   'tab' => 'Jobs von A - Z',
+		     'panel' => '',
+          'text' => 'Küchenhilfe Jobs'
+       ],
+     'kuechenhilfe' => [
+          'id' => 1427,
+		  'query' => [ 'q' => 'Küchenhilfe'],
+		   'tab' => 'Jobs von A - Z',
+		     'panel' => '',
+          'text' => 'Küchenhilfe Jobs'
+       ],
+      'betriebsleitung' => [
+          'id' => 1424,
+		  'query' => [ 'q' => 'Betriebsleitung'],
+		   'tab' => 'Jobs von A - Z',
+		     'panel' => '',
+          'text' => 'Betriebsleiter Jobs'
+       ],
+       
        'stellvertreter' => [
           'id' => 1401,
 		  'query' => [ 'q' => 'Stellvertretung'],

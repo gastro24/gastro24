@@ -168,7 +168,6 @@ class Module implements AssetProviderInterface
 
                     foreach ([
                         'r' => '__region_MultiString',
-                        'l' => '__city_MultiString',
                         'c' => '__organizationTag',
                         'p' => '__profession_MultiString',
                         'i' => '__industry_MultiString',
@@ -179,6 +178,12 @@ class Module implements AssetProviderInterface
                             $query->set($longName, $v);
                             $query->offsetUnset($shortName);
                         }
+                    }
+
+                    // remove location from session (from search form)
+                    if (!$query->get('l')) {
+                        $jobsBoardContainer = new Container('Jobs_Board');
+                        unset($jobsBoardContainer->params['l']);
                     }
 
                     if (!$routeMatch->getParam('isLandingPage')) {
@@ -292,7 +297,9 @@ class Module implements AssetProviderInterface
             'jobs clear'  => 'Remove expired jobs from database',
             ['--days=INT', 'expire jobs after <days> days. Default 30'],
             ['--limit=INT[,<offset>]', 'Limit jobs to expire per run starting from <offset>. Default 10. 0 means no limit'],
-            ['--info', 'Does not manipulate the database, but prints a list of all matched jobs.']
+            ['--info', 'Does not manipulate the database, but prints a list of all matched jobs.'],
+            'Google Index Api',
+            'jobs google-index' => 'Index crawler jobs'
         ];
     }
 

@@ -24,6 +24,9 @@ $hasRegion= isset($queryGet['region_MultiString']);
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
 
+
+     
+
 //$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
 $description = $wordpress->call('value', ['content.rendered'], '');
 $wordpressTitle = '';
@@ -44,7 +47,14 @@ $container->fromCompanyProfile = false;
 $container->searchTerm = $searchTerm;
 
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+
+
+
+
 ?>
+
+
+
 <style>
   @media (min-width: 992px) {
     .collapse.dont-collapse-sm {
@@ -60,7 +70,9 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
     line-height: 24px;
      
  } 
- 
+  .panel-default>.panel-heading+.panel-collapse>.panel-body label {
+    font-weight:normal!important
+  }
  .active-searchterm:first-letter {
      
      text-transform:capitalize;
@@ -86,31 +98,10 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
 
 </style>
-<script>
-    function highlight() {
-        document.getElementById("job-external-link").style.color = "#5bc0de";
-    }
-
-    function removeHighlight() {
-        document.getElementById("job-external-link").style.color = "#243b84";
-    }
-</script>
 
 <div class="col-md-12">
     
     
-    
-    
-    <div class="page-title">
-         <span><?=$this->jobs->getTotalItemCount() ?> </span>
-         <h1><?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Job-Treffer gefunden' : 'Leider keine passenden Jobs gefunden'); ?>
-            
-            
-      </div>	
-
-    
-
-    <div class="job-overview">
         <!-- breadcrumbs -->
         <?= $this->partial('jobs/partials/breadcrumbs.phtml', [
             'searchTerm' => $searchTerm,
@@ -118,12 +109,23 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
             'wordpressTitle' => $wordpressTitle
         ]); ?>
         <!-- breadcrumbs -->
-    </div>
+ 
+    
+    
+    <div class="page-title">
+         <span><?=$this->jobs->getTotalItemCount() ?> </span>
+         <h1><?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Job-Treffer' : 'Leider keine passenden Jobs gefunden'); ?>
+            
+      </div>	
+
+    
+
+ 
 
 <div class="row job-results-container">
 
     <!-- filter -->
-    <div class="col-md-4">
+    <div class="col-md-3">
         <?php if ($hasFacets):
             if ($this->params()->fromRoute('isLandingPage')):?>
                 <span class="facets-url" data-url="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>"></span>
@@ -131,7 +133,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
             $facets = $jobs->getFacets();
         ?>
 
-        <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+     
 
         <div class="panel-group collapse dont-collapse-sm">
 	
@@ -191,7 +193,10 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
 
     <!-- result list -->
-    <div class="col-md-8 job-overview-results">
+    <div class="col-md-9 job-overview-results">
+        
+          <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+        
         <div class="row">
       <?php endif;?>
 
@@ -216,8 +221,10 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                             <div class="box__job-favorite">
                                 <h2 class="h3" style="margin-top: 0;margin-bottom: 10px;">
                                     <?php if($jobHasExternLink) { ?>
-                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="noopener sponsored" target="_blank"
+                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="nofollow noopener sponsored" target="_blank"
                                            href="<?=$href?>"><?=strip_tags($job->getTitle())?>
+                                           
+                                           <i style="padding-left:5px" class="fa fa-external-link"></i>
                                         </a>
                                     <?php }
                                     else { ?>
@@ -243,6 +250,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                     <!-- end favorite button -->
                                 <?php endif; ?>
                             </div>
+                   
 
 
                             <p>
@@ -271,7 +279,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                 $locationString = $this->translate('Swiss');
                             }
                             elseif ($job->getLocations()->get(0)) {
-                                $locationString = $job->getLocations()->get(0)->getCity();
+                                $locationString = $job->getLocations()->get(0)->getCity() ?:  $job->getLocations()->get(0)->getCountry();
                             }
                             else {
                                 $locationString = preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
@@ -281,9 +289,9 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                            <p>
 
                                <?php if ($jobHasExternLink) { ?>
-                                 <!--  <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
+                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
                                    border: 1px solid #243b84;border-radius: 4px;
-                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>-->
+                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
                                <?php } ?>
                                <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
 
@@ -299,13 +307,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                     elseif ($job->getDateCreated()): echo $this->dateFormat($job->getDateCreated(), 'short', 'none');
                                 endif?>
 
-                               <?php if ($jobHasExternLink) { ?>
-                                    <a id="job-external-link" style="color: #243b84;cursor: pointer;font-size: 1.8rem;float: right;"
-                                       onmouseover="highlight()" onmouseout="removeHighlight()"
-                                    title="<?=strip_tags($job->getTitle())?>" rel="nofollow" target="_blank" href="<?=$href?>">
-                                        <i class="fa fa-external-link"></i>
-                                    </a>
-                               <?php } ?>
+                      
                              </p>
 
                         </div>

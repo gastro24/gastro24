@@ -12,7 +12,7 @@
 @g24-white: #ffffff;
 @g24-dark-blue: #22436c;
 @g24-light-grey: #f6f6f6;
-@g24-red: #d9534f;
+@g24-red: #d10a10;
 @g24-yellow: #c4c407;
 
 @fa-font-path: '/dist/fonts';
@@ -150,16 +150,13 @@ input[type="file"] {
 
 #jobs-list-filter-wrapper {
     padding: 0;
-
-
-    .input-group {
-        margin-left: auto;
-    	margin-right: auto;
-        margin-top: 0;
-        margin-bottom: 0;
-        width:100%
-    }
-
+    //.input-group {
+    //    margin-left: auto;
+    //	margin-right: auto;
+    //    margin-top: 0;
+    //    margin-bottom: 0;
+    //    width:100%
+    //}
 
     .search-form-container {
         background-color: rgba(0,0,0,0.7);
@@ -167,8 +164,15 @@ input[type="file"] {
         position: relative;
         color: #fff;
         padding: 10px 0;
-        
-        
+
+        .input-group[class*="col-"] {
+            float: left;
+        }
+
+        .select2-container--bootstrap .select2-selection--single {
+            height: 38px !important;
+        }
+
         .btn-default {
             display:none
         }
@@ -386,21 +390,25 @@ h1.job-overview-title {
     font-size: 30px;
 }
 
-.job-overview.breadcrumb {
+.breadcrumb {
     background-color: #ececec;
     margin-bottom: 0;
     padding: 10px 10px 10px 15px;
 
-    a {
-        text-decoration: underline;
-    }
+   li {
+       
+       a {
+        color:#243b84;
+       }
+       
+   }
 }
 
 
 
 
 .job-results-container {
-    background-color: @g24-light-grey;
+    background-color: #f2f2f2;
     margin-bottom: -50px;
     padding: 20px 0;
 
@@ -477,10 +485,7 @@ h1.job-overview-title {
 
     .content {
         background-color: #ebebeb;
-        padding: 12px;
-        -webkit-border-radius: 4px;
-        -moz-border-radius: 4px;
-        border-radius: 4px;
+        padding: 15px;
 
         &__inner {
             background-color:#fff;
@@ -605,7 +610,7 @@ h1.job-overview-title {
                 margin-bottom: 0;
                 min-height: 65vh;
                 padding-bottom: 50px;
-                padding-top: 15px;
+                padding-top: 10px;
                 position: relative;
             }
             &.gastro24-controller-jobcontroller-savedjobs {
@@ -771,7 +776,19 @@ h1.job-overview-title {
 
     // Menü auf Handy
     @media(max-width: @screen-sm) {
-        
+        #content .navbar {
+            height: 135px;
+
+            .search-form-container {
+                .btn-group {
+                    width: 100%;
+                }
+                .btn-primary {
+                    width: 100%;
+                    margin-left: 0;
+                }
+            }
+        }
               
          #rpt_pricr {
         

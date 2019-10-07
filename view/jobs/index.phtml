@@ -22,7 +22,16 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 $title = $wordpress->call('value', ['meta-fields.title'], '');
 $this->headTitle($title ?: $this->translate('Jobs'));
 
-$robots = "noindex,follow";
+ 
+// set canonical and index,follow only on landing pages without jobs
+ if (!count($this->jobs) && $this->params()->fromRoute('isLandingPage')) {
+    $jobsLandingpage = "/de/jobs?clear=1";
+    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
+    $robots = "index,follow";
+ } else {
+     $robots = "noindex,follow";
+ }
+
 if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
     $robots = substr($robots, 2);
 
@@ -32,12 +41,10 @@ if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->pa
         $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
     }
 }
+
 $this->headMeta()->setName('robots', $robots);
 $this->headScript()->captureStart();
-
 ?>
-
-
 
 (function($) {
 
@@ -110,7 +117,7 @@ $this->headScript()->captureStart();
                    <?php if (!count($this->jobs)):?>
                           
                           <style>
-                              .form-container .form-content > button, .btn-info {display:none!important;}
+                              .form-container .form-content > button, .btn-info, .jobmail-listings {display:none!important;}
                               
                           </style>
                             <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
