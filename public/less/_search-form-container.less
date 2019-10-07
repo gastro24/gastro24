@@ -1,5 +1,61 @@
 /* BEGIN SEARCH FORM CONTAINER */
+/** hide searchform on some pages **/
+body {
+  #jobs-list-filter-wrapper{
+    display: none;
+  }
+}
+body {
+  &.home,
+  &.gastro24-controller-redirectexternaljobs-index,
+  &.jobs-jobboard-index,
+  &.gastro24-controller-jobcontroller-savedjobs {
+    #jobs-list-filter-wrapper{
+      display: block;
+    }
+  }
+}
+
 .search-form-container {
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 0;
+  position: relative;
+  color: #fff;
+  padding: 10px 0;
+
+  .input-group[class*="col-"] {
+    float: left;
+  }
+
+  .select2-container--bootstrap .select2-selection--single {
+    height: 38px !important;
+  }
+
+  .btn-group>.btn:first-child {
+    margin-left: 10px;
+  }
+
+  .btn-default {
+    display: none;
+  }
+
+  .btn-primary {
+    background-color: @btn-primary-bg;
+    border-color: @btn-primary-border;
+    color: @btn-primary-color;
+    font-size: 14px;
+    margin-left: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    height:40px;
+    margin-top:-1px;
+  }
+
+  .btn-primary:hover {
+    background-color: darken(@btn-primary-bg,10%);
+  }
+
   &.search-form-container__header {
     .container {
       display: flex;
@@ -8,6 +64,43 @@
 
       form {
         width: 85%;
+
+        .input-group {
+          .form-control {
+            -webkit-border-radius: 0!important;
+            -moz-border-radius:  0!important;
+            border-radius: 0!important;
+            border: none!important
+          }
+        }
+
+        select {
+          height: 38px !important;
+          background-color: #fff;
+          border: none;
+          border-left:1px solid #ccc;
+          border-radius: 0;
+          line-height: 27px;
+          padding: 6px 24px 6px 20px;
+          color: #555;
+          font-size: 14px;
+          outline: 0;
+          width:100%;
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .select2-container--bootstrap .select2-selection {
+          -webkit-border-radius: 0!important;
+          -moz-border-radius:  0!important;
+          border-radius: 0!important;
+          border: none!important;
+          border-left:1px solid #ccc!important;
+          line-height: 27px!important;
+          padding: 6px 24px 6px 20px!important;
+        }
       }
 
       .favorite-icon {
@@ -50,6 +143,21 @@
           width: 15%;
         }
       }
+    }
+  }
+}
+@media(max-width: @screen-sm) {
+  #jobs-list-filter-wrapper {
+    .search-form-container {
+      .btn-primary {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+  .search-form-container {
+    .btn-group {
+      width: 100%;
     }
   }
 }
