@@ -148,54 +148,6 @@ input[type="file"] {
          font-size: 14px!important;
 }
 
-#jobs-list-filter-wrapper {
-    padding: 0;
-    //.input-group {
-    //    margin-left: auto;
-    //	margin-right: auto;
-    //    margin-top: 0;
-    //    margin-bottom: 0;
-    //    width:100%
-    //}
-
-    .search-form-container {
-        background-color: rgba(0,0,0,0.7);
-        border-radius: 0;
-        position: relative;
-        color: #fff;
-        padding: 10px 0;
-
-        .input-group[class*="col-"] {
-            float: left;
-        }
-
-        .select2-container--bootstrap .select2-selection--single {
-            height: 38px !important;
-        }
-
-        .btn-default {
-            display:none
-        }
-        
-        .btn-primary {
-            background-color: @btn-primary-bg;
-            border-color: @btn-primary-border;
-            color: @btn-primary-color;
-            font-size: 14px;
-            margin-left: 10px;
-            -webkit-border-radius: 3px;
-           -moz-border-radius: 3px;
-            border-radius: 3px;
-            height:40px;
-            margin-top:-1px;
-        }
-        .btn-primary:hover {
-            background-color: darken(@btn-primary-bg,10%);
-        }
-
-    }
-}
-
 .home #jobs-list-filter-wrapper {
     .search-form-container {
         
@@ -659,8 +611,6 @@ h1.job-overview-title {
             top: 10px;
         }
         .btn-primary {
-            height: 55px;
-            font-size: 16px;
             padding: 0 20px;
         }
         input {
@@ -776,27 +726,10 @@ h1.job-overview-title {
 
     // Menü auf Handy
     @media(max-width: @screen-sm) {
-        #content .navbar {
-            height: 135px;
-
-            .search-form-container {
-                .btn-group {
-                    width: 100%;
-                }
-                .btn-primary {
-                    width: 100%;
-                    margin-left: 0;
-                }
-            }
-        }
-              
          #rpt_pricr {
-        
             .col-md-3 {
             width: 100%!important;
-           
             }
-			
        	}
         #main-navigation {
             height: inherit;
@@ -851,15 +784,11 @@ h1.job-overview-title {
 
     // Preistabellen
     #rpt_pricr {
-              
-        
-        
         .col-md-3 {
             width: 33.33333333%;
             text-align:center
             }
-			
-        
+
         .panel-primary {
             border-color: #f1f1f1;
             padding:10px;

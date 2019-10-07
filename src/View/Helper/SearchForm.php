@@ -69,14 +69,14 @@ class SearchForm extends BaseSearchFormHelper
                 $cols = $element->getOption('span') ?: 12;
             }
             if ($element->getName() == $form->getButtonElement()) {
-                $content.='<div class="input-group col-md-' . $cols . ' col-xs-12">'
+                $content.='<div class="input-group col-md-' . $cols . ' col-sm-' . $cols . ' col-xs-12">'
                     . $formElement($element)
                     . '<div class="input-group-btn search-form-buttons" style="width: 1px;">'
                     . $this->renderButtons($form->getButtons()) . '</div>'
                     . '</div>';
                 $buttonsRendered = true;
             } else {
-                $content .= '<div class="input-group col-md-' . $cols . ' col-xs-12">'
+                $content .= '<div class="input-group col-md-' . $cols . ' col-sm-' . $cols . ' col-xs-12">'
                     . $formElement($element)
                     . '</div>';
             }
@@ -88,7 +88,7 @@ class SearchForm extends BaseSearchFormHelper
             if (null === $buttonsSpan) {
                 $buttonsSpan = $form->getOption('buttons_span') ?: 12;
             }
-            $content .= '<div class="input-group search-form-buttons col-md-' . $buttonsSpan . ' col-xs-12 text-right">'
+            $content .= '<div class="input-group search-form-buttons col-md-' . $buttonsSpan . ' col-sm-' . $buttonsSpan . ' col-xs-12 text-right">'
                 . '<div class="btn-group">' . $this->renderButtons($form->getButtons()) .'</div></div>';
         }
 

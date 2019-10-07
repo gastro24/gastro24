@@ -10,14 +10,6 @@ $savedJobs = ($savedJobsContainer->jobs) ? $savedJobsContainer->jobs : [];
 $jobsRepo = $this->services('repositories')->get('Jobs');
 ?>
 
-<!-- search form container -->
-<?= $this->partial('partials/search-form-container.phtml', [
-    'jobs' => $this->jobs,
-    'filterForm' => $this->filterForm,
-    'clear' => true
-]); ?>
-<!-- end search form container -->
-
 <h1><?=$this->translate('Saved jobs')?></h1>
 
 <?php if(count($savedJobs)) : ?>
