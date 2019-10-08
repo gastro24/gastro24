@@ -1,7 +1,7 @@
 /* BEGIN SEARCH FORM CONTAINER */
 /** hide searchform on some pages **/
 body {
-  #jobs-list-filter-wrapper{
+  > #jobs-list-filter-wrapper{
     display: none;
   }
 }
@@ -10,7 +10,7 @@ body {
   &.gastro24-controller-redirectexternaljobs-index,
   &.jobs-jobboard-index,
   &.gastro24-controller-jobcontroller-savedjobs {
-    #jobs-list-filter-wrapper{
+    > #jobs-list-filter-wrapper{
       display: block;
     }
   }
