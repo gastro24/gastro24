@@ -554,6 +554,8 @@ return [
                 '5d8da3cb3c050f4563073b32' => 'gastro24/jobs/view-zfv',
                 //active gastro
                 '5d8e267b3c050f7ff12f75d2' => 'gastro24/jobs/view-zfv',
+                //randstad
+                '5a970fea7bb2b5a578812d52' => 'gastro24/jobs/view-zfv',
             ],
         ]],
     ],
