@@ -49,6 +49,7 @@ class SuggestJobs extends AbstractActionController
             'auth' => [$this->moduleOptions->getUsername(), $this->moduleOptions->getPassword()]
         ]);
         $collection = $data->toArray();
+        $results = [];
 
         foreach ($collection as $item) {
             if (stripos($item->getMainWord(), $searchTerm) !== false) {
