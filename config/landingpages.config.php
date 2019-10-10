@@ -56,13 +56,6 @@ $options = [
 		     'panel' => '',
           'text' => 'Küchenhilfe Jobs'
        ],
-     'kuechenhilfe' => [
-          'id' => 1427,
-		  'query' => [ 'q' => 'Küchenhilfe'],
-		   'tab' => 'Jobs von A - Z',
-		     'panel' => '',
-          'text' => 'Küchenhilfe Jobs'
-       ],
       'betriebsleitung' => [
           'id' => 1424,
 		  'query' => [ 'q' => 'Betriebsleitung'],
