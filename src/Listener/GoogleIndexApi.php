@@ -117,7 +117,7 @@ class GoogleIndexApi
         if ($user) {
             /** @var \Gastro24\Entity\JobActivation $jobActivation */
             $jobActivation = $this->jobActivationRepository->findOneByUserId($user->getId());
-            if ($jobActivation->isAutomaticJobActivation()) {
+            if ($jobActivation && $jobActivation->isAutomaticJobActivation()) {
                 return;
             }
         }

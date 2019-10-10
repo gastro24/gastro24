@@ -313,12 +313,12 @@ class Module implements AssetProviderInterface
         $viewHelpers = $services->get('ViewHelperManager');
         $isCrawlerJobHelper = $viewHelpers->get(IsCrawlerJob::class);
         $response = $e->getResponse();
+        $viewModel = $e->getViewModel();
 
         if (get_class($response) === \Zend\Console\Response::class ) {
             return;
         }
         $matchedRouteName = $e->getRouteMatch()->getMatchedRouteName();
-        $viewModel = $e->getViewModel();
         $job = null;
 
         if (isset($viewModel->getChildren()[0]) && isset($viewModel->getChildren()[0]->getVariables()['job'])) {

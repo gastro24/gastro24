@@ -2,7 +2,7 @@
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
 
-if ($this->clear) {
+if ($this->clear || !$this->filterForm) {
     $form = $this->services('forms.Jobs/JobboardSearch');
     // defines after which element the search button will be placed
     $form->setButtonElement(null);
@@ -12,19 +12,21 @@ if ($this->clear) {
 else {
     $queryParams = $this->params()->fromQuery();
 
-    foreach (array_keys($this->jobs->getFacets()->toArray()) as $facetName):
-        if (isset($queryParams['__' . $facetName])) {
-            $facetValues = explode('_', $queryParams['__' . $facetName]);
-            $facetValues = array_fill_keys($facetValues, '1');
-            $queryParams[$facetName] = $facetValues;
-        }
-        if (isset($queryParams[$facetName])):
-            foreach (array_keys($queryParams[$facetName]) as $facetValue):
-                $this->filterForm->add(['type' => 'hidden', 'name' => $facetName . '[' . $facetValue . ']',
-                    'attributes' => ['class' => 'facet-param', 'value' => 1]]);
-            endforeach;
-        endif;
-    endforeach;
+    if ($this->jobs) {
+        foreach (array_keys($this->jobs->getFacets()->toArray()) as $facetName):
+            if (isset($queryParams['__' . $facetName])) {
+                $facetValues = explode('_', $queryParams['__' . $facetName]);
+                $facetValues = array_fill_keys($facetValues, '1');
+                $queryParams[$facetName] = $facetValues;
+            }
+            if (isset($queryParams[$facetName])):
+                foreach (array_keys($queryParams[$facetName]) as $facetValue):
+                    $this->filterForm->add(['type' => 'hidden', 'name' => $facetName . '[' . $facetValue . ']',
+                        'attributes' => ['class' => 'facet-param', 'value' => 1]]);
+                endforeach;
+            endif;
+        endforeach;
+    }
 
     $this->filterForm->setButtonElement(null);
     $this->filterForm->setAttribute('data-handle-by', 'native');
