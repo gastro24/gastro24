@@ -199,6 +199,7 @@ class RedirectExternalJobs extends AbstractActionController
             'nextJob' => $nextJob,
             'metaTitle' => $this->buildMetaTitleByJob($job),
             'metaDescription' => $this->buildMetaDescriptionByJob($job),
+            'metaOgTitle' => $this->buildMetaOgTitleByJob($job)
         ]);
         $model->setTemplate('gastro24/jobs/view-extern');
 
@@ -231,15 +232,33 @@ class RedirectExternalJobs extends AbstractActionController
         elseif (count($locations) == 0) {
             return $job->getTitle() . ' - Job bei ' . $orgName;
         }
-
-      //  $title = $job->getTitle() . ' in ' . $city .' - ' . $dateString;
-      
-      
-       $title = $job->getTitle() . ' - Job in ' . $city .' bei ' . $orgName;
-       
-      
+        $title = $job->getTitle() . ' - Job in ' . $city .' bei ' . $orgName;
 
         return $title;
+    }
+
+    /**
+     * @param Job $job
+     * @return string
+     */
+    private function buildMetaOgTitleByJob($job)
+    {
+        $locations = $job->getLocations()->toArray();
+        $orgName = ($job->getOrganization()) ? $job->getOrganization()->getOrganizationName()->getName() : $job->getCompany();
+        if (count($locations) > 0) {
+            $location = array_shift($locations);
+            $city = $location->getCity();
+
+            if (!$city) {
+                return $orgName . ' sucht: ' . $job->getTitle() . ' - Gastrojob24';
+            }
+        }
+        elseif (count($locations) == 0) {
+            return $orgName . ' sucht: ' . $job->getTitle() . ' - Gastrojob24';
+        }
+        $title = $orgName . ' sucht: ' . $job->getTitle() . ' in ' . $city;
+
+        return $title . ' - Gastrojob24';
     }
 
     /**
