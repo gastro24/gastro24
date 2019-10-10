@@ -1,10 +1,44 @@
 <?php
     $similarJobs = $this->similarJobs($this->job);
+
+    /* loop through locations to build similar jobs title */
+    $similarJobLocations = [];
+    foreach ($similarJobs as $index => $similarJob) {
+        $location = $similarJob->getLocations()->last();
+        if ($location == '') {
+            $similarJobLocations[] = $this->translate('Swiss');
+        }
+        elseif ($location && $location->getCity()) {
+            $similarJobLocations[] = $location->getCity();
+        }
+        else {
+            $similarJobLocations[] = (string) $similarJob->getLocation();
+        }
+    }
+    $similarJobLocations = array_unique($similarJobLocations);
+
+    if (count($similarJobLocations) == 1) {
+        $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $similarJobLocations[0];
+    }
+    elseif (count($similarJobLocations) > 1) {
+        $location = $this->job->getLocations()->last();
+        if ($location == '') {
+            $jobLocation = $this->translate('Swiss');
+        }
+        elseif ($location && $location->getCity()) {
+            $jobLocation = $location->getCity();
+        }
+        else {
+            $jobLocation = (string) $similarJob->getLocation();
+        }
+        $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $jobLocation . ' und Umgebung';
+    }
+
 ?>
 <?php if (count($similarJobs)) : ?>
 <div class="grey-description-container similar-jobs">
     <div class="content">
-        <div class="headline"><h2 style="margin-top: 5px; margin-bottom: 20px;font-size: 20px;color: #000;"><?= $this->translate('Ähnliche Jobs') ?></h2></div>
+        <div class="headline"><h2 style="margin-top: 5px; margin-bottom: 20px;font-size: 20px;color: #000;"><?= $similarJobTitle ?></h2></div>
             <div class="row">
                 <?php
                 /* @var \Jobs\Entity\Job $similarJob */
