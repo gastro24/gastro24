@@ -23,15 +23,19 @@
     elseif (count($similarJobLocations) > 1) {
         $location = $this->job->getLocations()->last();
         if ($location == '') {
-            $jobLocation = $this->translate('Swiss');
+            $similarJobTitle = $this->translate('Ähnliche Jobs');
         }
         elseif ($location && $location->getCity()) {
             $jobLocation = $location->getCity();
+            $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $jobLocation . ' und Umgebung';
         }
         else {
             $jobLocation = (string) $similarJob->getLocation();
+            $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $jobLocation . ' und Umgebung';
         }
-        $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $jobLocation . ' und Umgebung';
+    }
+    else {
+        $similarJobTitle = $this->translate('Ähnliche Jobs');
     }
 
 ?>
