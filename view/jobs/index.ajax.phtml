@@ -78,23 +78,31 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
  .active-searchterm:first-letter {
      text-transform:capitalize;
  }
- .page-title {
-    margin-top: 13px;
-    margin-bottom: 10px;
-}
-.page-title h1 {
-    display: inline;
-	  font-size: 30px;
-	font-weight:300
-}
-.page-title span {
-    display: inline;
-    font-size: 30px;
-	font-weight:300
-}
 </style>
 
+<?php if ($hasFacets):
+if ($this->params()->fromRoute('isLandingPage')):?>
+    <span class="facets-url" data-url="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>"></span>
+<?php endif;
+$facets = $jobs->getFacets();
+$activeFacets = $facets->getActiveValues();
+?>
+
 <div class="col-md-12">
+    <!-- list active filters -->
+    <?php if ($activeFacets):?>
+        <div class="well well-sm">
+            <?=$this->translate('Active filters:')?>
+            <?php foreach ($activeFacets as $facetName => $facetValues):?>
+                <?php foreach ($facetValues as $facetValue):?>
+                    <button type="button" class="btn btn-primary btn-sm facet-active" data-name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]" title="<?=$this->translate('Remove filter')?>"><?=$facetValue?> <span>&times;</span></button>
+                <?php endforeach;?>
+            <?php endforeach;?>
+            <button type="button" class="btn btn-link facet-reset"><?=$this->translate('Remove all filters')?></button>
+        </div>
+    <?php endif;?>
+    <!-- end list active filters -->
+
     <!-- breadcrumbs -->
     <?= $this->partial('jobs/partials/breadcrumbs.phtml', [
         'searchTerm' => $searchTerm,
@@ -112,15 +120,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
     <!-- filter -->
     <div class="col-md-3">
-        <?php if ($hasFacets):
-            if ($this->params()->fromRoute('isLandingPage')):?>
-                <span class="facets-url" data-url="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>"></span>
-            <?php endif;
-            $facets = $jobs->getFacets();
-        ?>
-
         <div class="panel-group collapse dont-collapse-sm">
-	
         <?php $facetsHtml = ''; $isFirstFacet = true; $atLeastOneTotalActive = false; foreach ($facets as $facetName => $facetValues):?>
             <?php if(count($facetValues)>0): $atLeastOneActive = false; $facetsList = []; ob_start();?>
             <div id="facets-box-<?=$facetName?>" class="panel panel-default">
@@ -165,13 +165,6 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                     $facetsHtml
             );
         ?>
-
-        <div class="panel panel-default">
-                <div class="panel-body">
-                    <button id="facets-apply" class="btn btn-primary">Filter anwenden</button>
-                    <button id="facets-reset" class="btn btn-default pull-right">Löschen</button>
-                </div>
-        </div>
     </div>
     </div>
 
