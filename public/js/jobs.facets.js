@@ -77,9 +77,29 @@
     }
 
     $(function() {
-        renameFacetsFilter($('#jobs-list-filter'));
-        onPaginatorLoaded();
-        $('#jobs-list-container').on('yk-paginator-container:loaded.jobs-facets', onPaginatorLoaded);
+        //renameFacetsFilter($('#jobs-list-filter'));
+        //onPaginatorLoaded();
+        //$('#jobs-list-container').on('yk-paginator-container:loaded.jobs-facets', onPaginatorLoaded);
+
+        // Facets listener
+        $('.facet-checkbox').on('click',function () {
+            var $checkbox = $(this),
+                $form = $('#jobs-list-filter'),
+                name = $checkbox.attr('name');
+            $form.find('input[name="' + name + '"]').remove();
+            if ($checkbox.prop('checked')) {
+                $form.append('<input type="hidden" class="facet-param" name="' + name + '">');
+            }
+            $form.submit();
+        });
+
+        $('.facet-active').on('click',function () {
+            $('#jobs-list-filter').find('input[name="' + $(this).data('name') + '"]').remove().end().submit();
+        });
+
+        $('.facet-reset').on('click',function () {
+            $('#jobs-list-filter').find('.facet-param').remove().end().submit();
+        });
     });
 
 })(jQuery); 
