@@ -96,13 +96,11 @@ $this->headScript()->captureStart();
 
     <div class="row">
         <div class="tab-content">
-            
-            
-            <div id="jobs-list-container" class="pagination-container">
-                 
-                
+
+            <div id="jobs-list-container" class="pagination-container test"
+                 data-uri="<?php echo $this->url('lang/jobboard', array(), array('query' => $this->params()->fromQuery()), true)?>">
+
                    <?php if (!count($this->jobs)):?>
-                          
                           <style>
                               .form-container .form-content > button, .btn-info, .jobmail-listings {display:none!important;}
                               
@@ -122,37 +120,20 @@ $this->headScript()->captureStart();
                         
                               <div class="col-md-12">
                       
-                                    <div class="alert alert-warning">
-                                        <strong>Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.</strong>
-                                    </div>
-                                  </div>
-                 
-                  
-           
-    
+                                <div class="alert alert-warning">
+                                    <strong>Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.</strong>
+                                </div>
+                              </div>
                  <?php endif ?>
 
-
-          
-                    
                 <div class="container pagination-content">
                     <div class="row">
                        <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
                     </div>
-
                 </div>
-                  
-
-
-
-         
-              
             </div>
-
         </div>
     </div>
-
-
 
 <div class="modal fade" id="job-apply-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" style="width: 90%; height: 90%" role="document">
