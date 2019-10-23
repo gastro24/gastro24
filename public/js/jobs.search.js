@@ -80,13 +80,15 @@
         /*
          * remove q query param from url if value is empty
          */
-        $('.search-form').submit(function( event ) {
-
+        $('.search-form').submit(function( event, data) {
+            if (data instanceof Object && data.forceAjax) {
+                return;
+            }
             var searchInput = $(this).find('input.form-control.ui-autocomplete-input[name="q"]');
             var locationInput = $(this).find('select.geoselect[name="l"]');
             var hasFacet = $(this).find('input.facet-param');
 
-            if (!searchInput.val() && !locationInput.val() && hasFacet.length < 1) {
+            if (searchInput.val() == "" && !locationInput.val() && hasFacet.length < 1) {
                 var uri = $(this).attr('action');
                 uri += (uri.match(/\?/) ? '&' : '?') + 'clear=1';
                 window.location.href = uri;

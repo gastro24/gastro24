@@ -92,10 +92,9 @@
             }
             $form.trigger('submit', {forceAjax: true});
         }).on('click', '.facet-active', function () {
-            $('#jobs-list-filter').find('input[name="' + $(this).data('name') + '"]').remove()
+            $form.find('input[name="' + $(this).data('name') + '"]').remove()
                 .end().trigger('submit', {forceAjax: true});
         }).on('click', '.facet-reset', function () {
-
             $form.find('.facet-param').remove()
                 .end().trigger('submit', {forceAjax: true});
         });
