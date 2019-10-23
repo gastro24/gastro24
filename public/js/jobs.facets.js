@@ -80,9 +80,9 @@
         //renameFacetsFilter($('#jobs-list-filter'));
         //onPaginatorLoaded();
         //$('#jobs-list-container').on('yk-paginator-container:loaded.jobs-facets', onPaginatorLoaded);
-
         // Facets listener
-        $('.facet-checkbox').on('click',function () {
+        var $form = $('#jobs-list-filter');
+        $(document).on('click', '.facet-checkbox', function () {
             var $checkbox = $(this),
                 $form = $('#jobs-list-filter'),
                 name = $checkbox.attr('name');
@@ -90,17 +90,28 @@
             if ($checkbox.prop('checked')) {
                 $form.append('<input type="hidden" class="facet-param" name="' + name + '">');
             }
-            $form.submit();
+            $form.trigger('submit', {forceAjax: true});
+        }).on('click', '.facet-active', function () {
+            $('#jobs-list-filter').find('input[name="' + $(this).data('name') + '"]').remove()
+                .end().trigger('submit', {forceAjax: true});
+        }).on('click', '.facet-reset', function () {
+
+            $form.find('.facet-param').remove()
+                .end().trigger('submit', {forceAjax: true});
         });
 
-        $('.facet-active').on('click',function () {
-            $('#jobs-list-filter').find('input[name="' + $(this).data('name') + '"]').remove().end().submit();
-        });
-
-        $('.facet-reset').on('click',function () {
-            $('#jobs-list-filter').find('.facet-param').remove().end().submit();
-        });
+        $form
+            .on('reset.facets', function() { $form.find('.facet-param').remove();})
+            .on('submit.facets', function(e, flags) {
+                if (!flags || !flags.forceAjax) {
+                    $form.find('.facet-param').remove();
+                }
+            })
+        ;
     });
 
-})(jQuery); 
- 
+})(jQuery);
+
+
+
+
