@@ -91,19 +91,6 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
 <div class="row">
     <div class="col-md-12">
-        <!-- list active filters -->
-        <?php if ($activeFacets):?>
-            <div class="well well-sm">
-                <?=$this->translate('Active filters:')?>
-                <?php foreach ($activeFacets as $facetName => $facetValues):?>
-                    <?php foreach ($facetValues as $facetValue):?>
-                        <button type="button" class="btn btn-primary btn-sm facet-active" data-name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]" title="<?=$this->translate('Remove filter')?>"><?=$facetValue?> <span>&times;</span></button>
-                    <?php endforeach;?>
-                <?php endforeach;?>
-                <button type="button" class="btn btn-link facet-reset"><?=$this->translate('Remove all filters')?></button>
-            </div>
-        <?php endif;?>
-        <!-- end list active filters -->
 
         <!-- breadcrumbs -->
         <?= $this->partial('jobs/partials/breadcrumbs.phtml', [
@@ -120,8 +107,27 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
         <div class="row job-results-container">
 
-            <!-- filter -->
-            <div class="col-md-3">
+
+     <div class="col-md-3">
+         
+         
+       <!-- list active filters -->
+        <?php if ($activeFacets):?>
+            <div class="well well-sm">
+              <!--  <?=$this->translate('Active filters:')?>-->
+                <?php foreach ($activeFacets as $facetName => $facetValues):?>
+                    <?php foreach ($facetValues as $facetValue):?>
+                        <button type="button" class="btn btn-primary btn-sm facet-active" data-name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]" title="<?=$this->translate('Remove filter')?>"><?=$facetValue?> <span>&times;</span></button>
+                    <?php endforeach;?>
+                <?php endforeach;?>
+                <button type="button" class="btn btn-link facet-reset"><?=$this->translate('Remove all filters')?></button>
+            </div>
+        <?php endif;?>
+        <!-- end list active filters -->
+        
+        
+                
+         <!-- filter -->
             <div class="panel-group collapse dont-collapse-sm">
             <?php $facetsHtml = ''; $isFirstFacet = true; $atLeastOneTotalActive = false; foreach ($facets as $facetName => $facetValues):?>
                 <?php if(count($facetValues)>0): $atLeastOneActive = false; $facetsList = []; ob_start();?>
