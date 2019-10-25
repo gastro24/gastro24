@@ -84,9 +84,6 @@ $this->headScript()->captureStart();
         $('#jobs-list-filter').on('reset.gastro24', function(ev) { $(ev.target).find('input.facet-param').remove(); });
 
     });
-    
-
-    
 })(jQuery);
 <?php $this->headScript()->captureEnd();?>
 
@@ -94,46 +91,40 @@ $this->headScript()->captureStart();
 
 <?php echo $this->flashMessenger()->render('default', array('alert', 'alert-success')) ?>
 
-    <div class="row">
-        <div class="tab-content">
+<div class="row">
+    <div class="tab-content">
 
-            <div id="jobs-list-container" class="pagination-container test"
-                 data-uri="<?php echo $this->url('lang/jobboard', array(), array('query' => $this->params()->fromQuery()), true)?>">
+        <div id="jobs-list-container" class="pagination-container"
+             data-uri="<?php echo $this->url('lang/jobboard', [], ['query' => $this->params()->fromQuery()], true)?>">
 
-                   <?php if (!count($this->jobs)):?>
-                          <style>
-                              .form-container .form-content > button, .btn-info, .jobmail-listings {display:none!important;}
-                              
-                          </style>
-                            <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-                     
-                        <script type="text/javascript">
-                            ;(function($) {
-                                $(function() {
-                                    $('#form-jobsbymail-subscribe-form').find('button.btn-info').hide().click()
-                                        .end().find('#job-by-mail-subscribe-label').html('Informiert werden, sobald Jobs zu Ihrer Suchanfrage verfügbar sind.');
-                                    $('#jobs-list-container').data('container').$message.show();
-                                });
-                            })(jQuery);
-                        </script>
-                        
-                        
-                              <div class="col-md-12">
-                      
-                                <div class="alert alert-warning">
-                                    <strong>Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.</strong>
-                                </div>
-                              </div>
-                 <?php endif ?>
+            <?php if (!count($this->jobs)):?>
+                <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
 
-                <div class="container pagination-content">
-                    <div class="row">
-                       <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
+                <script type="text/javascript">
+                    ;(function($) {
+                        $(function() {
+                            $('#form-jobsbymail-subscribe-form').find('button.btn-info').hide().click()
+                                .end().find('#job-by-mail-subscribe-label').html('Informiert werden, sobald Jobs zu Ihrer Suchanfrage verfügbar sind.');
+                            $('#jobs-list-container').data('container').$message.show();
+                        });
+                    })(jQuery);
+                </script>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning">
+                        <strong>Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.</strong>
                     </div>
                 </div>
             </div>
+            <?php endif ?>
+
+            <div class="container pagination-content">
+               <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
+            </div>
         </div>
     </div>
+</div>
 
 <div class="modal fade" id="job-apply-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" style="width: 90%; height: 90%" role="document">
