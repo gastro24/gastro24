@@ -159,13 +159,15 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
         <?php if ($activeFacets):?>
             <div class="well well-sm hidden-xs">
               <!--  <?=$this->translate('Active filters:')?>-->
-              <p>Sie können Ihre Jobsuche weiter einschränken, indem Sie unten ein oder mehrere Filterkriterien auswählen.</p>
+             
               
                 <?php foreach ($activeFacets as $facetName => $facetValues):?>
                     <?php foreach ($facetValues as $facetValue):?>
                         <button type="button" class="btn btn-primary btn-sm facet-active" data-name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]" title="<?=$this->translate('Remove filter')?>"><?=$facetValue?> <span>&times;</span></button>
                     <?php endforeach;?>
                 <?php endforeach;?>
+            
+                 <p>Sie können Ihre Jobsuche weiter einschränken, indem Sie unten ein oder mehrere Filterkriterien auswählen.</p>
                 <button type="button" class="btn btn-link facet-reset"><?=$this->translate('Remove all filters')?></button>
             </div>
         <?php endif;?>
