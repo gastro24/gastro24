@@ -147,7 +147,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
          
        <!-- list active filters -->
         <?php if ($activeFacets):?>
-            <div class="well well-sm">
+            <div class="well well-sm hidden-xs">
               <!--  <?=$this->translate('Active filters:')?>-->
                 <?php foreach ($activeFacets as $facetName => $facetValues):?>
                     <?php foreach ($facetValues as $facetValue):?>
@@ -162,7 +162,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
         
                 
          <!-- filter -->
-            <div class="panel-group collapse dont-collapse-sm">
+            <div class="panel-group collapse dont-collapse-sm hidden-xs">
             <?php $facetsHtml = ''; $isFirstFacet = true; $atLeastOneTotalActive = false; foreach ($facets as $facetName => $facetValues):?>
                 <?php if(count($facetValues)>0): $atLeastOneActive = false; $facetsList = []; ob_start();?>
                 <div id="facets-box-<?=$facetName?>" class="panel panel-default">
