@@ -44,6 +44,7 @@ if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->pa
 
 $this->headMeta()->setName('robots', $robots);
 $this->headScript()->captureStart();
+$noJobsMessage = $this->translate('No jobs found.');
 ?>
 
 (function($) {
@@ -95,10 +96,10 @@ $this->headScript()->captureStart();
     <div class="tab-content">
 
         <div id="jobs-list-container" class="pagination-container"
+             <?php if (!count($this->jobs)):?>data-message="<strong><?= $noJobsMessage?></strong>"<? endif ?>
              data-uri="<?php echo $this->url('lang/jobboard', [], ['query' => $this->params()->fromQuery()], true)?>">
 
             <?php if (!count($this->jobs)):?>
-                <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
 
                 <script type="text/javascript">
                     ;(function($) {
@@ -109,14 +110,6 @@ $this->headScript()->captureStart();
                         });
                     })(jQuery);
                 </script>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-warning">
-                        <strong>Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.</strong>
-                    </div>
-                </div>
-            </div>
             <?php endif ?>
 
             <div class="container pagination-content">
