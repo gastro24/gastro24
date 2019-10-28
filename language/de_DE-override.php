@@ -57,7 +57,5 @@ return [
     '%s saved jobs' => '%s gespeicherten Stellenanzeigen',
 
     'Swiss' => 'Schweiz',
-
-
-
+    'No jobs found.' => 'Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.',
 ];
