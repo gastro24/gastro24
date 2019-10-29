@@ -35,9 +35,674 @@ else {
 }
 ?>
 
+<script>
+		
+		
+	
+		
+	
+		
+		(function($){
+	$(document).ready(function(){
+	
+	
+
+		$('ul.dropdown-menu [data-toggle=dropdown2]').on('click', function(event) {
+			event.preventDefault(); 
+			event.stopPropagation(); 
+		
+			$(this).parent().siblings().removeClass('open');
+			$(this).parent().siblings().toggleClass('reveal');
+			$(this).parent().toggleClass('open');
+			
+		
+	
+			
+			 
+			
+		});
+		
+		
+		
+
+	});
+})(jQuery);
+
+		
+		</script>
+	
+		
+		<style>
+		
+		
+		.search-form-container {
+    background-color: #0056a4;
+ 
+}
+
+
+	.dropdown-menu>li>a {
+    display: block;
+    width: 100%;
+    padding: 10px 12px 12px;
+    
+	
+	
+}
+		
+		
+		#main-navigation ul li a.inverted {
+    background-color: #5bbdc6;
+    color: #fff;
+    border-radius: 4px;
+	border: 1px solid  #5bbdc6;
+}
+@media (min-width: 768px) {
+#main-navigation .navbar-nav>li>a {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-top: 40px;
+    font-weight: 300;
+    font-size: 14px;
+}
+		}
+		.navbar-nav>.dropdown {
+		display:table;
+		}
+		.navbar-nav>.dropdown>.dropdown-toggle {
+		
+		
+		    padding: 0!important;
+           height: 52px;
+		   width:48px;
+		   display: table-cell;
+    vertical-align: middle;
+		}
+		
+		
+	.navbar-nav>.dropdown>.dropdown-toggle:hover {
+		    background-color:#0b2235
+		}
+		
+	
+	
+	.navbar-nav>.dropdown.open>.dropdown-toggle {
+		background-color:#0b2235
+		}
+		
+		
+		
+		
+		
+		.search-form-container {
+		    padding:0;
+		 
+		}
+		
+		
+		#meta-navigation {
+		
+		 padding:0;
+		
+		}
+		
+		
+		
+		dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    left: 0;
+    margin-top: 40px;
+    margin-left: 0;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0px;
+}
+#meta-navigation .dropdown.dropdown-submenu.open,#meta-navigation .dropdown.dropdown-submenu.open > .dropdown-menu  {
+    width: 400px;
+
+
+}
+
+
+
+#meta-navigation .dropdown .reveal:not(.open) {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+
+}
+
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    background: #e5e5e5;
+
+    color: #0b2235;
+}
+
+
+
+
+
+#meta-navigation .dropdown>li>.reveal {
+    box-shadow: none;
+
+	
+}
+
+
+
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+.divider.reveal {
+
+display:none
+}
+.navbar-nav>li>.dropdown-menu  {
+margin-top:3px;
+min-width:200px;
+background-color: #0b2235;
+
+}
+.dropdown-menu .divider {
+  
+    margin: 0;
+}
+.navbar-nav>li>.dropdown-menu>li>a {
+color:#fff
+}
+
+
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+
+
+#meta-navigation .dropdown.dropdown-submenu.open .dropdown-menu {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 0;
+    -moz-column-gap: 0;
+    column-gap: 0;
+    max-height: none;
+    box-shadow: rgba(0,0,0,.2) 0 1px 2px;
+    -webkit-perspective: 1;
+    width: 400px;
+}
+#meta-navigation .dropdown.dropdown-submenu.open .dropdown-menu li {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: 200px;
+	padding:0;
+}
+
+
+#meta-navigation .dropdown-submenu.open>a:before {
+    display: block;
+    content: " ";
+    float: left;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #fff;
+    margin-top: 5px;
+    margin-right: 10px;
+	transform: rotate(180deg);
+	
+}
+
+#meta-navigation .dropdown-submenu.open>a:after {
+    display: none
+}
+
+
+.open .dropdown-menu {
+
+padding:0;
+border:none;
+border-radius:0px;
+}
+
+.open.dropdown-submenu {
+
+   
+    padding: 0px;
+    
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+	background:#0b2235
+
+}
+
+
+
+
+
+li.open .dropdown-menu .dropdown-submenu {
+
+padding:0;
+
+}
+
+
+
+
+
+.open.dropdown-submenu>a.dropdown-toggle {
+
+     color: #fff;
+    line-height:20px;
+    height: 40px;
+
+
+}
+
+
+
+
+
+.icon-bar {
+    background-color: #fff;
+}
+.icon-bar {
+    display: block;
+	margin-bottom:3px;
+    width: 22px;
+    height: 2px;
+	margin-left:12px;
+    border-radius: 1px;
+	    -webkit-transition-duration: .35s;
+    -moz-transition-duration: .35s;
+    -o-transition-duration: .35s;
+    transition-duration: .35s;
+}
+
+.middle-bar {
+opacity: 1;
+}
+
+
+.navbar-nav>.dropdown.open>.dropdown-toggle .middle-bar {
+    opacity: 0;
+    margin-top: 2px;
+	
+	
+	
+	
+}
+
+
+.navbar-nav>.dropdown.open>.dropdown-toggle .top-bar {
+    -ms-transform: rotate(45deg);
+    -ms-transform-origin: 15% 10%;
+    -webkit-transform: rotate(45deg);
+    -webkit-transform-origin: 15% 10%;
+    transform: rotate(45deg);
+    transform-origin: 15% 10%;
+    -webkit-transition-duration: .35s;
+    -moz-transition-duration: .35s;
+    -o-transition-duration: .35s;
+    transition-duration: .35s;
+    margin-left: 15px;
+}
+
+.navbar-nav>.dropdown.open>.dropdown-toggle .bottom-bar {
+    -webkit-transform: rotate(-45deg);
+    -webkit-transform-origin: 15% 90%;
+    -ms-transform: rotate(-45deg);
+    -ms-transform-origin: 15% 90%;
+    transform: rotate(-45deg);
+    transform-origin: 15% 90%;
+    -webkit-transition-duration: .35s;
+    -moz-transition-duration: .35s;
+    -o-transition-duration: .35s;
+    transition-duration: .35s;
+    margin-top: 2px;
+    margin-left: 15px;
+}
+
+
+.dropdown .jobs {
+display:block
+}
+
+
+
+
+	
+.featured-image-box {
+  
+    background-color: #fff;
+    margin-bottom: 12px;
+    position: relative;
+    box-shadow: 0 0 5px 0 #ccc;
+    -moz-box-shadow: 0 0 5px 0 #ccc;
+	-webkit-box-shadow: 0 0 5px 0 #ccc;
+	border-radius: 4px;
+	border:none;
+	
+}
+
+	
+	
+.featured-image-box .content-area {
+    background-color: #ffffff;
+    padding: 12px 12px 20px 12px;
+	
+	    border-radius: 4px;
+}
+	
+	
+.featured-image-box .content-area .top-cnt .box__job-favorite h2 {
+  margin-bottom:0px;
+  margin-top:0px;
+  padding-right:10px;
+}
+
+.featured-image-box .content-area h2 a {
+  font-size: 19px;
+  font-weight: 300;
+  color:#243b84;
+  line-height:25px;
+}
+	
+	
+	
+.featured-image-box .content-area p {
+    font-size: 14px;
+    color: #999;
+}
+
+
+
+.box__job-favorite button {
+    padding: 5px 6px;
+		border-radius: 4px;
+
+	
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #fff;
+    margin-top: 5px;
+    margin-right: 0px;
+}
+
+.dropdown-login:not(.reveal) {
+   padding:5px
+
+
+}
+.dropdown-login > a {
+    background: #e5e5e5;
+
+    color: #0b2235!important;
+
+
+}
+
+
+.dropdown-submenu:not(.open)>a:hover,.dropdown-submenu:not(.open)>a:focus {
+    background: #e5e5e5;
+    color: #0b2235!important;
+}
+
+	</style>
+		
+		
+	
+		
+
 <nav class="navbar yk-toolbar" id="jobs-list-filter-wrapper">
     <div class="search-form-container search-form-container__header ">
         <div class="container">
+            
+            
+            
+              <div class="collapse navbar-collapse" id="meta-navigation">
+              <ul id="menu" class="nav navbar-nav">
+                
+                  <li class="dropdown">
+                    <a href="/de/jobs?clear=1" class="dropdown-toggle" data-toggle="dropdown">
+						<span class="icon-bar top-bar"></span>
+						<span class="icon-bar middle-bar"></span>
+						<span class="icon-bar bottom-bar"></span>
+				   </a>
+					
+                    <ul class="dropdown-menu">
+					<li class="dropdown-login" class="dropdown"><a href="/de/login?ref=%252Fde%252Fdashboard">Login für Arbeitgeber</a></li>
+
+                     
+                      <li class="abstand dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Küchenjobs</a>
+                        <ul class="dropdown-menu">
+                        <li><a href="/de/jobs/commis-de-cuisine.html">Commis de Cuisine Jobs</a></li>
+                        <li><a href="/de/jobs/kuechenchef.html">Küchenchef Jobs</a></li>
+		                <li><a href="/de/jobs/sushi-koch.html">Sushi Koch Jobs</a></li>
+						<li><a href="/de/jobs/jungkoch.html">Jungkoch Jobs</a></li>
+                        <li><a href="/de/jobs/koch.html">Koch Jobs</a></li>
+						<li><a href="/de/jobs/sous-chef.html">Sous-Chef Jobs</a></li>
+						<li><a href="/de/jobs/systemgastronomie.html">Systemgastronomie Jobs</a></li>
+						<li><a href="/de/jobs/chef-de-partie.html">Chef de Partie Jobs</a></li>
+						<li><a href="/de/jobs/diaetkoch.html">Diätkoch Jobs</a></li>
+						<li><a href="/de/jobs/entremetier.html">Entremetier Jobs</a></li>
+						<li><a href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li>
+						<li><a href="/de/jobs/saucier.html">Saucier Jobs</a></li>
+						<li><a href="/de/jobs/tournant.html">Tournant Jobs</a></li>
+						<li><a href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li>
+						<li><a href="/de/jobs/kuechenhilfe.html">Küchenhilfe Jobs</a></li>
+						<li><a href="/de/jobs/garde-manger.html">Garde Manger Jobs</a></li>
+						<li><a href="/de/jobs/casserolier.html">Casserolier Jobs</a></li>
+						<li><a href="/de/jobs/hilfskoch.html">Hilfskoch Jobs</a></li>
+						<li><a href="/de/jobs/patissier.html">Patissier Jobs</a></li>
+                        </ul>
+                      </li>
+					  
+					     <li class="dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Servicejobs</a>
+                        <ul class="dropdown-menu">
+                          <li><a href="/de/jobs/barmaid.html">Barmaid Jobs</a></li>
+						  <li><a href="/de/jobs/barkeeper.html">Barkeeper Jobs</a></li>
+						  <li><a href="/de/jobs/barista.html">Barista Jobs</a></li>
+		                  <li><a href="/de/jobs/chef-de-bar.html">Chef de Bar Jobs</a></li>
+		                  <li><a href="/de/jobs/sommelier.html">Sommelier Jobs</a></li>
+						  <li><a href="/de/jobs/chef-de-service.html">Chef de Service Jobs</a></li>
+                          <li><a href="/de/jobs/servicemitarbeiter.html">Servicemitarbeiter Jobs</a></li>
+		                  <li><a href="/de/jobs/restauration.html">Restauration Jobs</a></li>
+                          <li><a href="/de/jobs/servicemitarbeiterin.html">Servicemitarbeiterin Jobs</a></li>
+						<li><a href="/de/jobs/chef-de-rang.html">Chef de Rang Jobs</a></li>
+						<li><a href="/de/jobs/restaurationsfachmann.html">Restaurationsfachmann Jobs</a></li>
+						
+						
+                        </ul>
+                      </li>
+					   <li class="dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Hoteljobs</a>
+                        <ul class="dropdown-menu">
+                        <li><a href="/de/jobs/hotelfachfrau.html">Hotelfachfrau Jobs</a></li>
+                        <li><a href="/de/jobs/hotelfachmann.html">Hotelfachmann Jobs</a></li>
+                        <li><a href="/de/jobs/front-office.html">Front Office Jobs</a></li>
+						<li><a href="/de/jobs/concierge.html">Concierge Jobs</a></li>
+                        <li><a href="/de/jobs/zimmermaedchen.html">Zimmermädchen Jobs</a></li>
+						<li><a href="/de/jobs/gouvernante.html">Gouvernante Jobs</a></li>
+						<li><a href="/de/jobs/rezeptionistin.html">Rezeptionistin Jobs</a></li>
+						
+						
+                        </ul>
+                      </li>
+					   <li class="dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Lebensmitteljobs</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/de/jobs/metzger.html">Metzger Jobs</a></li>
+							<li><a href="/de/jobs/kaeser-in.html">Käser Jobs</a></li>
+							<li><a href="/de/jobs/lebensmitteltechnologe.html">Lebensmitteltechnologe Jobs</a></li>
+							<li><a href="/de/jobs/pizzaiolo.html">Pizzaiolo Jobs</a></li>
+							<li><a href="/de/jobs/konditor-confiseur.html">Konditor Confiseur Jobs</a></li>
+							<li><a href="/de/jobs/baecker.html">Bäcker Jobs</a></li>
+							<li><a href="/de/jobs/fachverkaeufer.html">Fachverkäufer Jobs</a></li>
+							<li><a href="/de/jobs/lehrstellen-gastronomie.html">Lehrstellen</a></li>
+                        </ul>
+                      </li>
+					   <li class="dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Health & Beauty</a>
+                        <ul class="dropdown-menu">
+                           <li><a href="/de/jobs/fitness.html">Fitness Jobs</a></li>
+						   <li><a href="/de/jobs/kosmetikerin.html">Kosmetikerin Jobs</a></li>
+						   <li><a href="/de/jobs/ernaehrungsberater.html">Ernährungsberater Jobs</a></li>
+                       
+                        </ul>
+                      </li>
+					   <li class="dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Management & Kader</a>
+                        <ul class="dropdown-menu">
+                         <li><a href="/de/jobs/general-manager.html">General Manager Jobs</a></li>
+                        <li><a href="/de/jobs/filialleiter.html">Filialleiter Jobs</a></li>
+						<li><a href="/de/jobs/schichtleiter.html">Schichtleiter Jobs</a></li>
+						<li><a href="/de/jobs/restaurant-manager.html">Restaurant Manager Jobs</a></li>
+						<li><a href="/de/jobs/assistant.html">Assistant Jobs</a></li>
+						<li><a href="/de/jobs/bereichsleiter.html">Bereichsleiter Jobs</a></li>
+						<li><a href="/de/jobs/stellvertreter.html">Stellvertreter Jobs</a></li>
+						<li><a href="/de/jobs/betriebsleitung.html">Betriebsleiter Jobs</a></li>
+						<li><a href="/de/jobs/leitung.html">Leitung Gastronomie Jobs</a></li>
+						<li><a href="/de/jobs/office.html">Office Jobs</a></li>
+						<li><a href="/de/jobs/marketing-sales.html">Marketing Jobs</a></li>
+						
+                          
+						  
+                       
+                        </ul>
+                      </li>
+					  
+					     <li class="dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Aushilfs- & Teilzeitjobs</a>
+                        <ul class="dropdown-menu">
+                        <li><a href="/de/jobs/promotion.html">Promotion Jobs</a></li>
+						<li><a href="/de/jobs/take-away.html">Take Away Jobs</a></li>
+						<li><a href="/de/jobs/ferienaushilfe.html">Ferien Jobs</a></li>
+                        <li><a href="/de/jobs/studenten.html">Studenten Jobs</a></li>
+						<li><a href="/de/jobs/allrounder.html">Allrounder Jobs</a></li>
+                        <li><a href="/de/jobs/saison.html">Saison Jobs</a></li>
+						<li><a href="/de/jobs/teilzeit.html">Teilzeit Jobs</a></li>
+						<li><a href="/de/jobs/buffet-mitarbeiterin.html">Buffet Mitarbeiterin Jobs</a></li>
+						<li><a href="/de/jobs/catering.html">Catering Jobs</a></li>
+						<li><a href="/de/jobs/teilzeitverkaeuferin.html">Teilzeitverkäuferin Jobs</a></li>
+						
+                        </ul>
+                      </li>
+					  
+					  
+					  	     <li class="dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Jobs nach Kantone</a>
+                        <ul class="dropdown-menu">
+                   
+							<li><a title="Appenzell Ausserrhoden" href="/de/jobs/region-appenzell-ausserrhoden.html">Appenzell Ausserrhoden</a></li>
+							<li><a title="Appenzell Innerrhoden" href="/de/jobs/region-appenzell-innerrhoden.html">Appenzell Innerrhoden</a></li>
+							<li><a title="Glarus" href="/de/jobs/region-glarus.html">Glarus</a></li>
+							<li><a title="Schaffhausen" href="/de/jobs/region-schaffhausen.html">Schaffhausen</a></li>
+							<li><a title="St. Gallen" href="/de/jobs/region-st-gallen.html">St.Gallen</a></li>
+							<li><a title="Thurgau" href="/de/jobs/region-thurgau.html">Thurgau</a></li>
+							<li><a title="Graubünden" href="/de/jobs/region-graubuenden.html">Graubünden</a></li>
+							<li><a title="Aargau" href="/de/jobs/region-aargau.html">Aargau</a></li>
+							<li><a title="Basel-Landschaft" href="/de/jobs/region-basel-landschaft.html">Basel-Landschaft</a></li>
+							<li><a title="Basel-Stadt" href="/de/jobs/region-basel-stadt.html">Basel-Stadt</a></li>
+							<li><a title="Bern" href="/de/jobs/region-bern.html">Bern</a></li>
+							<li><a title="Jura" href="/de/jobs/region-jura.html">Jura</a></li>
+							<li><a title="Solothurn" href="/de/jobs/region-solothurn.html">Solothurn</a></li>
+							<li><a title="Freiburg" href="/de/jobs/region-freiburg.html">Freiburg</a></li>
+							<li><a title="Genf" href="/de/jobs/region-genf.html">Genf</a></li>
+							<li><a title="Neuenburg" href="/de/jobs/region-neuenburg.html">Neuenburg</a></li>
+							<li><a title="Waadt" href="/de/jobs/region-waadt.html">Waadt</a></li>
+							<li><a title="Wallis" href="/de/jobs/region-wallis.html">Wallis</a></li>
+							<li><a title="Luzern" href="/de/jobs/region-luzern.html">Luzern</a></li>
+							<li><a title="Nidwalden" href="/de/jobs/region-nidwalden.html">Nidwalden</a></li>
+							<li><a title="Obwalden" href="/de/jobs/region-obwalden.html">Obwalden</a></li>
+							<li><a title="Schwyz" href="/de/jobs/region-schwyz.html">Schwyz</a></li>
+							<li><a title="Uri" href="/de/jobs/region-uri.html">Uri</a></li>
+							<li><a title="Zug" href="/de/jobs/region-zug.html">Zug</a></li>
+							<li><a title="Zürich" href="/de/jobs/region-zurich.html">Zürich</a></li>
+							<li><a title="Tessin" href="/de/jobs/region-tessin.html">Tessin</a></li>
+                       
+                        </ul>
+                      </li>
+					  
+                      <li class="dropdown dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Beliebte Unternehmen</a>
+                        <ul class="dropdown-menu">
+                      
+             <li><a title="Jobs ZFV" href="/de/profile-zfv-Die-Gastronomiegruppe-5aa7e1d77bb2b57b5d3c03e4?clear=1">ZFV</a></li>
+             <li><a title="Jobs McDonalds Schweiz" href="/de/profile-McDonald--s-Suisse-Restaurants-S%C3-rl-5bcf612fb6428b0b1008db60?clear=1">McDonalds Schweiz</a></li>
+             <li><a title="Jobs Randstad Schweiz" href="/de/profile-Randstad-Schweiz-AG-5a970fea7bb2b5a578812d52?clear=1">Randstad Schweiz</a></li>
+             <li><a title="Jobs Sprüngli" href="/de/profile-Spr%C3%BCngli-58a4a59d4e197f17047b23c6?clear=1">Sprüngli</a></li>
+             <li><a title="Jobs Bürgenstock Resort" href="/de/profile-B%C3%9CRGENSTOCK-HOTELS--RESORT-5bcdfda2b6428ba17c5c9048?clear=1">Bürgenstock Resort</a></li>
+             <li><a title="Jobs SV Group" href="/de/profile-SV-Group-59e4b53e7bb2b553412f9be9?clear=1">SV Group</a></li>
+
+                          
+						  
+                       
+                        </ul>
+                      </li>
+				
+					
+					<li class="dropdown"><a href="/de/jobs?clear=1">Alle Jobs auf einen Blick</a></li>
+					
+                    </ul>
+                  </li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+            
+            
+            
             <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
             <div class="favorite-icon">
                 <?php
