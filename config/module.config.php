@@ -556,6 +556,8 @@ return [
                 '5d8e267b3c050f7ff12f75d2' => 'gastro24/jobs/view-zfv',
                 //randstad
                 '5a970fea7bb2b5a578812d52' => 'gastro24/jobs/view-zfv',
+                //gastronet.ch
+                '5db7f6bb3c050f1326103fc2' => 'gastro24/jobs/view-zfv',
             ],
         ]],
     ],
