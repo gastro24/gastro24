@@ -33,11 +33,44 @@
 
 
 $options = [
+     
+      'saucier' => [
+          'id' => 1457,
+		  'query' => [ 'q' => 'Saucier'],
+		  'tab' => 'Jobs von A - Z',
+		  'panel' => '',
+          'text' => 'Saucier Jobs'
+       ],
+    
+    'concierge' => [
+          'id' => 1461,
+		  'query' => [ 'q' => 'Concierge'],
+		  'tab' => 'Jobs von A - Z',
+		  'panel' => '',
+          'text' => 'Concierge Jobs'
+       ],
+    
+      'barmaid' => [
+          'id' => 1459,
+		  'query' => [ 'q' => 'Barmaid'],
+		  'tab' => 'Jobs von A - Z',
+		  'panel' => '',
+          'text' => 'Barmaid Jobs'
+       ],
+      
+       'schichtleiter' => [
+          'id' => 1463,
+		  'query' => [ 'q' => 'Schichtleiter'],
+		  'tab' => 'Jobs von A - Z',
+		  'panel' => '',
+          'text' => 'Schichtleiter Jobs'
+       ],
+    
       'leitung' => [
           'id' => 1432,
 		  'query' => [ 'q' => 'Leitung'],
 		   'tab' => 'Jobs von A - Z',
-		     'panel' => '',
+		   'panel' => '',
           'text' => 'Leitung Jobs'
        ],
       
