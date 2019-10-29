@@ -48,6 +48,56 @@
     $.browser = browser;
 
     $(function() {
+        // HINT: copied from core.searchform.js
+        // url should be set, also when ajax is used
+        function serializeForm($form)
+        {
+            var data = $form.serializeArray();
+            var processed = [];
+            var parsed = {};
+            var multiValues = $form.data('multivalues') || {};
+
+            $.each(data, function(i, item) {
+                if (-1 !== $.inArray(item.name, processed)) { return; }
+
+                if (item.name.match(/\[\]$/)) {
+                    var $element = $form.find('select[name="' + item.name + '"]');
+                    var parsedName = item.name.slice(0,-2);
+                    var separator = multiValues.hasOwnProperty(parsedName) ? multiValues[parsedName] : ',';
+
+                    if ($element.length) {
+                        var value = $element.val();
+                    } else {
+                        var value = [];
+                        $form.find('[name="' + item.name + '"]:checked').each(function() {
+                            value.push($(this).val());
+                        });
+                    }
+
+                    parsed[separator+parsedName] = value.join(separator);
+                    processed.push(item.name);
+
+                } else {
+                    parsed[item.name] = item.value;
+                }
+            });
+
+            return toQuery(parsed, false);
+
+        }
+
+        function toQuery(data, encode)
+        {
+            var queryParts = [];
+            $.each(data, function(name, value) {
+                value=(encode) ? encodeURIComponent(value): value;
+                name=(encode) ? encodeURIComponent(name) : name;
+                queryParts.push(name + '=' + value);
+            });
+
+            return queryParts.join('&');
+        }
+
         $("#jobs-list-filter input[name=q]").autocomplete({
             source : function(request, response) {
                 var searchTerm = $("#jobs-list-filter input[name=q]").val();
@@ -81,12 +131,20 @@
          * remove q query param from url if value is empty
          */
         $('.search-form').submit(function( event, data) {
-            if (data instanceof Object && data.forceAjax) {
-                return;
-            }
             var searchInput = $(this).find('input.form-control.ui-autocomplete-input[name="q"]');
             var locationInput = $(this).find('select.geoselect[name="l"]');
             var hasFacet = $(this).find('input.facet-param');
+
+            if (data instanceof Object && data.forceAjax) {
+                var formQuery      = serializeForm($(this));
+                var formUri = $(this).attr('action') + '?' + formQuery;
+                if (searchInput.val() == "" && !locationInput.val() && hasFacet.length < 1) {
+                    formUri = $(this).attr('action');
+                    formUri += (formUri.match(/\?/) ? '&' : '?') + 'clear=1';
+                }
+                window.history.pushState("", "", formUri);
+                return;
+            }
 
             if (searchInput.val() == "" && !locationInput.val() && hasFacet.length < 1) {
                 var uri = $(this).attr('action');
