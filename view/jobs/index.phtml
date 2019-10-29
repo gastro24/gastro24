@@ -100,6 +100,12 @@ $noJobsMessage = $this->translate('No jobs found.');
              data-uri="<?php echo $this->url('lang/jobboard', [], ['query' => $this->params()->fromQuery()], true)?>">
 
             <?php if (!count($this->jobs)):?>
+            <style>
+                #form-jobsbymail-subscribe-form .jobmail-listings {
+                    display: none;
+                }
+            </style>
+                <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
 
                 <script type="text/javascript">
                     ;(function($) {
@@ -130,3 +136,4 @@ $noJobsMessage = $this->translate('No jobs found.');
             </div>
         </div>
     </div>
+</div>
