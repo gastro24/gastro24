@@ -269,12 +269,15 @@ $industries = $job->getClassifications()->getIndustries();
 
         <!-- similar jobs -->
         <?php if (!$preview): ?>
-            <?php echo $this->partial('jobs/partials/similar-jobs.phtml', [
-                'job' => $this->job
-            ]);
-            ?>
+            <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
         <?php endif; ?>
         <!-- end similar jobs -->
+
+        <!-- similar company jobs -->
+        <?php if (!$preview): ?>
+            <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
+        <?php endif; ?>
+        <!-- end similar company jobs -->
 
         <?php if (!$preview): ?>
             <!-- recommended jobs
