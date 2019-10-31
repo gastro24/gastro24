@@ -70,7 +70,8 @@ class SimilarJobs extends AbstractHelper
         }
 
         // exclude jobs from same company
-        $organisationName = $currentJob->getCompany(false);
+        $organisationName = ($currentJob->getCompany(false)) ?
+            $currentJob->getCompany(false) : $currentJob->getCompany();
         $searchQueryString .= ' AND NOT organizationName:"' . $organisationName . '"';
 
         $jobBoardQueryParams = ['q' => $searchQueryString, 'page' => 1, 'd' => 20, 'count' => self::ITEM_PER_PAGE_COUNT];
