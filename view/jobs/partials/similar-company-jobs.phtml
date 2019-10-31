@@ -1,9 +1,6 @@
 <?php
     $similarCompanyJobs = $this->similarCompanyJobs($this->job);
-    $organization = $this->job->getOrganization();
-    $companyName = $organization ? $organization->getOrganizationName()->getName() : $this->job->getCompany();
-    $similarJobTitle = $this->translate('Weitere Jobs') . ' von ' . $companyName;
-
+    $similarJobTitle = $this->translate('Weitere Jobs') . ' von ' . $this->job->getCompany(false);
 ?>
 <?php if (count($similarCompanyJobs)) : ?>
 <div class="grey-description-container similar-jobs">
