@@ -47,11 +47,7 @@ class SimilarCompanyJobs extends AbstractHelper
         $industries = [];
         $searchQueryString = '(' . $keywordString . ') AND NOT id:"' . $currentJob->getId() . '" AND isActive:true';
 
-        // exclude jobs from same company
-        $organization = $currentJob->getOrganization();
-        $organisationName = $organization ? $organization->getOrganizationName()->getName() : $currentJob->getCompany();
-        $searchQueryString .= ' AND organizationName:"' . $organisationName . '"';
-
+        // same industries
         foreach ($currentJob->getClassifications()->getIndustries()->getItems() as $industry) {
             // change _ to &
             $parts = explode('_', $industry->getName());
@@ -69,8 +65,13 @@ class SimilarCompanyJobs extends AbstractHelper
         }
         if (count($industries)) {
             $industryString = implode(' OR ', $industries);
-            $searchQueryString = '(' . $keywordString . ') AND industry_MultiString:(' . $industryString . ') AND NOT id:"' . $currentJob->getTitle() . '"  AND isActive:true';
+            $searchQueryString = '(' . $keywordString . ') AND industry_MultiString:(' . $industryString .
+                ') AND NOT id:"' . $currentJob->getId() . '"  AND isActive:true';
         }
+
+        // exclude jobs from same company
+        $organisationName = $currentJob->getCompany(false);
+        $searchQueryString .= ' AND organizationName:"' . $organisationName . '"';
 
         $jobBoardQueryParams = ['q' => $searchQueryString, 'page' => 1, 'count' => self::ITEM_PER_PAGE_COUNT];
         $jobBoardParams = [
