@@ -45,6 +45,16 @@ class SimilarJobs extends AbstractHelper
         $industries = [];
         $searchQueryString = '(' . $keywordString . ') AND NOT "' . $currentJob->getTitle() . '" AND isActive:true';
 
+        // exclude jobs from same company
+        if ($currentJob->getOrganization()) {
+            $organisationName = $currentJob->getOrganization()->getOrganizationName();
+            $searchQueryString .= ' AND NOT organizationName:"' . $organisationName . '"';
+        }
+        else if ($currentJob->getCompany()) {
+            $searchQueryString .= ' AND NOT organizationName:"' . $currentJob->getCompany() . '"';
+        }
+
+
         foreach ($currentJob->getClassifications()->getIndustries()->getItems() as $industry) {
             // change _ to &
             $parts = explode('_', $industry->getName());
