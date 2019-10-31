@@ -1,14 +1,7 @@
 <?php
     $similarCompanyJobs = $this->similarCompanyJobs($this->job);
-    $companyName = '';
-
-    if ($this->job->getOrganization()) {
-        $companyName = $this->job->getOrganization()->getOrganizationName();
-    }
-    elseif ($this->job->getCompany()) {
-        $companyName = $this->job->getCompany();
-    }
-
+    $organization = $this->job->getOrganization();
+    $companyName = $organization ? $organization->getOrganizationName()->getName() : $this->job->getCompany();
     $similarJobTitle = $this->translate('Weitere Jobs') . ' von ' . $companyName;
 
 ?>
