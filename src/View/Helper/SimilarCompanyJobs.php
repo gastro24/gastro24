@@ -10,7 +10,7 @@ use Zend\Form\View\Helper\AbstractHelper;
  *
  * @author Stefanie Drost <contact@stefaniedrost.com>
  */
-class SimilarJobs extends AbstractHelper
+class SimilarCompanyJobs extends AbstractHelper
 {
     const ITEM_PER_PAGE_COUNT = 15;
 
@@ -50,10 +50,10 @@ class SimilarJobs extends AbstractHelper
         // exclude jobs from same company
         if ($currentJob->getOrganization()) {
             $organisationName = $currentJob->getOrganization()->getOrganizationName();
-            $searchQueryString .= ' AND NOT organizationName:"' . $organisationName . '"';
+            $searchQueryString .= ' AND organizationName:"' . $organisationName . '"';
         }
         else if ($currentJob->getCompany()) {
-            $searchQueryString .= ' AND NOT organizationName:"' . $currentJob->getCompany() . '"';
+            $searchQueryString .= ' AND organizationName:"' . $currentJob->getCompany() . '"';
         }
 
 
@@ -74,25 +74,16 @@ class SimilarJobs extends AbstractHelper
         }
         if (count($industries)) {
             $industryString = implode(' OR ', $industries);
-            $searchQueryString = '(' . $keywordString . ') AND industry_MultiString:(' . $industryString . ') AND NOT "' . $currentJob->getTitle() . '"  AND isActive:true';
+            $searchQueryString = '(' . $keywordString . ') AND industry_MultiString:(' . $industryString . ') AND NOT id:"' . $currentJob->getTitle() . '"  AND isActive:true';
         }
 
-        $jobBoardQueryParams = ['q' => $searchQueryString, 'page' => 1, 'd' => 20, 'count' => self::ITEM_PER_PAGE_COUNT];
+        $jobBoardQueryParams = ['q' => $searchQueryString, 'page' => 1, 'count' => self::ITEM_PER_PAGE_COUNT];
         $jobBoardParams = [
             'Jobs_Board',
             'q' => $searchQueryString,
-            'd' => 20,
             'count' => self::ITEM_PER_PAGE_COUNT,
             $jobBoardQueryParams
         ];
-
-        // add distance filter
-        if ($currentJob->getLocations()->get(0)) {
-            array_pop($jobBoardParams);
-            $jobBoardParams['l'] = $currentJob->getLocations()->get(0);
-            $jobBoardQueryParams['l'] = $currentJob->getLocations()->get(0);
-            $jobBoardParams[] = $jobBoardQueryParams;
-        }
 
         $paginator  = $this->paginators->get('Gastro24/Jobs/Similar', $jobBoardParams);
         $paginator->setItemCountPerPage(self::ITEM_PER_PAGE_COUNT);
@@ -103,13 +94,12 @@ class SimilarJobs extends AbstractHelper
         $page = 1;
         $maxItems = $paginator->getTotalItemCount();
 
-        if ($maxItems < 1) {
-            // reset distance filter
-            array_pop($jobBoardParams);
-            unset($jobBoardParams['l']);
-            unset($jobBoardQueryParams['l']);
-            $jobBoardParams[] = $jobBoardQueryParams;
-
+        if ($maxItems < 7) {
+            $searchParts = explode('AND', $searchQueryString, 2);
+            $searchQueryString = $searchParts[1];
+            // reset keywords filter
+            $jobBoardParams['q'] = $searchQueryString;
+            $jobBoardQueryParams['q'] = $searchQueryString;
             $paginator  = $this->paginators->get('Gastro24/Jobs/Similar', $jobBoardParams);
             $paginator->setItemCountPerPage(self::ITEM_PER_PAGE_COUNT);
             $maxItems = $paginator->getTotalItemCount();
