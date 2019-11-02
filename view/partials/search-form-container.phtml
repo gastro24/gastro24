@@ -237,7 +237,17 @@ else {
 
             <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
              
-            
+<div class="navbar-always-on collapsed pull-right navbar-item visible-xs search-icon" style="position: absolute;
+    right: 65px;
+    top: 15px;">
+  <span id="navbar-search-toggle"  style="cursor:pointer;display:block;" data-target="#navbar-search-bar" data-toggle="collapse">Suche</span>
+
+
+</div>
+
+
+
+
             <div class="favorite-icon">
                 <?php
                     $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
@@ -249,10 +259,11 @@ else {
         </div>
     </div>
 </nav>
+<div class="container collapse navbar-collapse always-collapse tj-collapse-menu navbar-site-search-bar navbar-search-container navbar-search-container-mobile" id="navbar-search-bar">
+  <div class="visible-xs">
 
- <div class="mobile-search" style="display:none">
-            
-              <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
-             
- </div>  
-            
+  <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
+
+
+  </div>
+</div>
