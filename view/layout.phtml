@@ -59,7 +59,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
     </script>
     
-     <link rel="preconnect" href="https://www.facebook.com" crossorigin>
+    <link rel="preconnect" href="https://www.facebook.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.facebook.com">
     <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
     <link rel="dns-prefetch" href="https://connect.facebook.net">
@@ -150,7 +150,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <?php if (!$this->noHeader):?>
-    <header id="header" role="banner">
+    <header id="header" role="banner" class="hidden-xs">
           <div class="container navbar">
               <?php if ($this->auth('role') === Auth\Entity\User::ROLE_RECRUITER) : ?>
                   <div class="row">
