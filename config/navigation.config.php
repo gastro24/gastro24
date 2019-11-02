@@ -37,7 +37,7 @@ return [
             ],
 
              'jobboard' => [
-              'visible' => true,
+              'visible' => false,
                  'label' => 'Jobs',
                  'text_domain' => 'do-not-translate',
                  'active_on' => ['lang/jobboard', 'lang/landingPage'],
@@ -46,7 +46,7 @@ return [
                  ],
              ],
             'jobs' => [
-                'visible' => true,
+                'visible' => false,
                 'label' =>  /*@translate*/'List of your jobs',
                'route' => 'lang/jobs',
                'order' => '30',
@@ -75,7 +75,7 @@ return [
                 'order' => 950,
             ],
             'post-a-job' => [
-                'label' => 'Stelle inserieren',
+                'label' => 'Stellenanzeige schalten',
                 'route' => 'lang/wordpress',
                 'resource' => 'resource/stellenanzeigen-schalten',
                 'params' => [
