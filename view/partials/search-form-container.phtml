@@ -231,14 +231,20 @@ else {
               </ul>
             </div><!-- /.navbar-collapse -->
             
-           <a class="visible-xs  navbar-brand" href="/">
+           <a class="visible-xs navbar-brand" href="/">
             <img src="/modules/Gastro24/gastrojob24_white.svg" alt="Gastrojob24 Schweiz" class="menu-logo">
         </a>
 			
             
+         <div class="hidden-xs">
+             
+              <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
+             
+         </div>  
+            
+           
             
             
-            <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
             <div class="favorite-icon">
                 <?php
                     $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
