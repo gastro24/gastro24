@@ -251,13 +251,13 @@ else {
 
 
 
-            <div class="favorite-icon" style="max-width:50px">
+            <div class="favorite-icon">
                 <?php
                     $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
                         sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
                 ?>
                 <a style="color: #A5B0BB;font-size: 16px;" class="link__saved-jobs empty" href="<?=$this->url('lang/saved-jobs', [], true)?>"
-                   data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>"> <em style="font-style:normal" class="hidden-xs">Merkliste</em></a>
+                   data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>"><!-- <em style="font-style:normal" class="hidden-xs">Merkliste</em>--></a>
             </div>
         </div>
     </div>
