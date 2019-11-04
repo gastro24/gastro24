@@ -12,12 +12,20 @@ body {
   &.gastro24-controller-jobcontroller-savedjobs {
     > #jobs-list-filter-wrapper{
       display: block;
+
+      &.searchform-preview {
+        display: none;
+      }
     }
   }
 }
 
 #jobs-list-filter-wrapper{
   margin-bottom: 0;
+
+  &.searchform-preview {
+    display: none;
+  }
 }
 
 .search-form-container {
@@ -162,6 +170,22 @@ body {
   .search-form-container {
     .btn-group {
       width: 100%;
+    }
+  }
+}
+@media(max-width: @screen-xs) {
+  body {
+    &.gastro24-controller-redirectexternaljobs-index {
+      > #jobs-list-filter-wrapper{
+        &.searchform-preview {
+          display: none!important;
+        }
+      }
+    }
+  }
+  #jobs-list-filter-wrapper {
+    &.searchform-preview {
+      display: block!important;
     }
   }
 }
