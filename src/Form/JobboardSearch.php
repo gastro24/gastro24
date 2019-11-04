@@ -63,6 +63,7 @@ class JobboardSearch extends BaseJobboardSearchForm
                 ],
                 'attributes' => [
                     'data-width' => '100%',
+                    'data-placeholder' => /*@translate*/ 'Location or Zip',
                 ]
             ]
         );
