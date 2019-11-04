@@ -22,12 +22,12 @@ deploy_master:
  script:
    - dep -vvv deploy
 
-deploy_staging:
- stage: deploy
- except: 
-   - master
- script:
-   - dep deploy staging
+#deploy_staging:
+# stage: deploy
+# except:
+#   - master
+# script:
+#   - dep deploy staging
 
 test:
  stage: test

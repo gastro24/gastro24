@@ -107,7 +107,6 @@ class RedirectExternalJobs extends AbstractActionController
         }
         else {
             $paginator = $this->getJobPaginator($page);
-
         }
 
         $counter = 0;
@@ -302,7 +301,7 @@ class RedirectExternalJobs extends AbstractActionController
                 'as' => 'jobs',
                 'Organizations/ListJob',
                 'params' => [
-                    'count' => 4,
+                    'count' => 50,
                     'page' => $page,
                 ]
             ],
@@ -323,7 +322,7 @@ class RedirectExternalJobs extends AbstractActionController
                 'as' => 'jobs',
                 'Jobs/Board',
                 'params' => [
-                    'count' => 4,
+                    'count' => 50,
                     'page' => $page,
                 ]
             ]
