@@ -18,6 +18,11 @@ if (isset($routeParams['controller']) && isset($routeParams['action'])) {
     $routeClass = strtolower(str_replace(['/', '\\'], '-', $routeParams['controller'] . '-' . $routeParams['action']));
 }
 
+// check for preview
+$preview = false;
+if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
+    $preview = true;
+}
 
 // See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
 $notifications = $this->partial('core/notifications');
@@ -202,6 +207,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 <?= $this->partial('partials/search-form-container.phtml', [
     'jobs' => $this->jobs,
     'filterForm' => $this->filterForm,
+    'cssClass' => $preview ? 'searchform-preview' : '',
 ]); ?>
 <!-- end search form container -->
 
