@@ -311,9 +311,21 @@ class Module implements AssetProviderInterface
         $services     = $e->getApplication()->getServiceManager();
         /** @var IsCrawlerJob $isCrawlerHelper */
         $viewHelpers = $services->get('ViewHelperManager');
+        $mailer = $services->get('Core/MailService');
         $isCrawlerJobHelper = $viewHelpers->get(IsCrawlerJob::class);
         $response = $e->getResponse();
         $viewModel = $e->getViewModel();
+
+        if ($e->getResponse()->getStatusCode() == Response::STATUS_CODE_500) {
+            // send mail to admin
+            $mail = new \Core\Mail\Message();
+            $mail->setSubject('Gastro24 - 500 Exception');
+            $mail->setFrom('noreply@gastrojob24.ch');
+            $mail->setTo('contact@stefaniedrost.com');
+            $exception = $e->getParams()['exception'];
+            $mail->setBody($exception->getMessage() . "\n\n " . $exception->getFile() . "\n\n " . $exception->getTraceAsString());
+            $mailer->send($mail);
+        }
 
         if (get_class($response) === \Zend\Console\Response::class ) {
             return;
