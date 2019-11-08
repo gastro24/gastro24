@@ -184,19 +184,6 @@ class RedirectExternalJobs extends AbstractActionController
             ]);
         }
 
-//        $result = $this->pagination([
-//            'params' => ['Jobs_Board', [
-//                'q',
-//                'count' => 10,
-//                'page' => 1,
-//                'l',
-//                'd' => 10]
-//            ],
-//            'form' => ['as' => 'filterForm', 'Jobs/JobboardSearch'],
-//            'paginator' => ['as' => 'jobs', 'Jobs/Board']
-//        ]);
-//
-//        $model->setVariables($result);
         $model->setVariables([
             'prevJob' => $prevJob,
             'nextJob' => $nextJob,
@@ -321,14 +308,14 @@ class RedirectExternalJobs extends AbstractActionController
                 'q',
                 'l',
                 'd' => 10,
-                'count' => 50,
+                'count' => 150,
                 'page' => $page,
             ]],
             'paginator' => [
                 'as' => 'jobs',
                 'Jobs/Board',
                 'params' => [
-                    'count' => 50,
+                    'count' => 150,
                     'page' => $page,
                 ]
             ]
