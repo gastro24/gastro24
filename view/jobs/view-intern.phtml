@@ -55,14 +55,17 @@ $industries = $job->getClassifications()->getIndustries();
 <?=$this->jsonLd($this->job)?>
 
   <div class="panel panel-default panel__job-detail">
-    <!-- Bannerbild -->
-    <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-    <!-- End Bannerbild -->
+
+      <?php if ($hasBanner): ?>
+        <!-- Bannerbild -->
+        <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
+        <!-- End Bannerbild -->
+      <?php endif; ?>
 
 
     <div class="panel-body">
         <!-- company logo and job title-->
-        <div class="teaser__job-detail">
+        <div class="teaser__job-detail <?php if(!$hasBanner) echo 'no-banner' ?>">
             <div itemprop="logo">
                 <div class="wrapper__logo">
                     <img src="<?= $template && ($logo = $template->getLogo())
@@ -122,14 +125,23 @@ $industries = $job->getClassifications()->getIndustries();
                 </li>
                 <?php endif; ?>
             </ul>
+            <div>
+                <?php if (!$hasBanner): ?>
+                    <div class="wrapper__logo">
+                        <img src="<?= $template && ($logo = $template->getLogo())
+                            ? $this->basePath($logo->getUri())
+                            : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
+                    </div>
+                <?php endif; ?>
+                <!-- favorite button -->
+                <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                    'jobId' => $job->getId(),
+                    'isExpired' => $isExpired,
+                    'buttonCss' => 'hidden-xs',
+                ]); ?>
+                <!-- end favorite button -->
+            </div>
 
-            <!-- favorite button -->
-            <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                'jobId' => $job->getId(),
-                'isExpired' => $isExpired,
-                'buttonCss' => 'hidden-xs',
-            ]); ?>
-            <!-- end favorite button -->
         </div>
 
         <hr class="job-details-devider"/>
