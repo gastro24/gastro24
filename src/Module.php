@@ -316,7 +316,11 @@ class Module implements AssetProviderInterface
         $response = $e->getResponse();
         $viewModel = $e->getViewModel();
 
-        if ($e->getResponse()->getStatusCode() == Response::STATUS_CODE_500) {
+        if (get_class($response) === \Zend\Console\Response::class ) {
+            return;
+        }
+
+        /*if ($response->getStatusCode() == Response::STATUS_CODE_500) {
             // send mail to admin
             $mail = new \Core\Mail\Message();
             $mail->setSubject('Gastro24 - 500 Exception');
@@ -325,11 +329,8 @@ class Module implements AssetProviderInterface
             $exception = $e->getParams()['exception'];
             $mail->setBody($exception->getMessage() . "\n\n " . $exception->getFile() . "\n\n " . $exception->getTraceAsString());
             $mailer->send($mail);
-        }
+        }*/
 
-        if (get_class($response) === \Zend\Console\Response::class ) {
-            return;
-        }
         $matchedRouteName = $e->getRouteMatch()->getMatchedRouteName();
         $job = null;
 
