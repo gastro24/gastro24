@@ -276,26 +276,33 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
 
             <div class="panel panel-default panel__job-detail">
                  <!-- Bannerbild -->
-                 <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
+                <?php if ($hasBanner): ?>
+                    <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
+                <?php endif; ?>
                  <!-- End Bannerbild -->
 
                 <div class="panel-body">
                     <!-- company logo and job title-->
-                    <div class="teaser__job-detail">
-                        <div itemprop="logo">
-                            <div class="wrapper__logo">
-                                <img src="<?= $logoUrl ?>" alt="<?= $orgName?>">
+                    <?php if ($hasBanner): ?>
+                        <div class="teaser__job-detail">
+                            <div itemprop="logo">
+                                <div class="wrapper__logo">
+                                    <img src="<?= $logoUrl ?>" alt="<?= $orgName?>">
+                                </div>
                             </div>
+                            <h1><?=$job->getTitle()?></h1>
                         </div>
-                        <h1><?=$job->getTitle()?></h1>
-                    </div>
+                    <?php endif; ?>
+                    <?php if (!$hasBanner): ?>
+                        <h1 class="no-banner"><?=$job->getTitle()?></h1>
+                    <?php endif; ?>
                     <!-- end company logo and job title-->
 
                     <!-- expired info box -->
                     <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
                     <!-- end expired info box -->
 
-                    <div class="job-short-info">
+                    <div class="job-short-info <?php if(!$hasBanner) echo 'no-banner' ?>">
                         <ul>
                             <li class="location">
                                 <!-- location -->
@@ -339,13 +346,21 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                             <?php endif; ?>
                         </ul>
 
-                        <!-- favorite button -->
-                        <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                            'jobId' => $job->getId(),
-                            'isExpired' => $isExpired,
-                            'buttonCss' => 'hidden-xs',
-                        ]); ?>
-                        <!-- end favorite button -->
+                        <div class="wrapper__right">
+                            <?php if (!$hasBanner): ?>
+                                <div class="wrapper__logo">
+                                    <img src="<?= $logoUrl ?>" alt="<?= $orgName?>">
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- favorite button -->
+                            <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                                'jobId' => $job->getId(),
+                                'isExpired' => $isExpired,
+                                'buttonCss' => 'hidden-xs',
+                            ]); ?>
+                            <!-- end favorite button -->
+                        </div>
                     </div>
 
                     <hr class="job-details-devider"/>

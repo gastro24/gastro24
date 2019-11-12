@@ -228,11 +228,31 @@
     }
   }
 
+  h1 {
+    &.no-banner {
+      margin-top: 35px;
+    }
+  }
+
   .job-short-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+
+    &.no-banner {
+      align-items: flex-start;
+      margin-top: 20px;
+
+      .wrapper__right {
+        text-align: center;
+      }
+      .wrapper__logo {
+        margin-bottom: 20px;
+        height: 120px;
+        width: 120px;
+      }
+    }
 
     ul {
       li {
@@ -283,6 +303,37 @@
           content: "\f02c";
           padding-right: 5px;
         }
+      }
+    }
+
+    .wrapper__logo {
+      background-color: #fff;
+      border: none;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      display: block;
+      height: 150px;
+      line-height: 1.5;
+      overflow: hidden;
+      padding: 2px;
+      position: relative;
+      transition: border .2s ease-in-out;
+      width: 150px;
+      box-shadow: 0 0 5px #666;
+      -moz-box-shadow:   0 0 5px #666;
+      -webkit-box-shadow: 0 0 5px #666;
+
+      img {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        width: auto;
+        max-width:80%;
       }
     }
   }
@@ -362,8 +413,22 @@
     column-count: 1!important;
   }
 
-  .job-short-info ul {
-      padding-left:0px;
+  .panel__job-detail {
+    .job-short-info {
+
+      &.no-banner {
+        align-items: flex-start;
+
+        .wrapper__logo {
+          height: 100px;
+          width: 100px;
+        }
+      }
+
+      ul {
+        padding-left: 0;
+      }
+    }
   }
 
   .panel__job-detail .teaser__job-detail h1 {
@@ -442,16 +507,26 @@
   }
 }
 @media(max-width: @screen-xs) {
-      .panel__job-detail .teaser__job-detail .wrapper__logo {
-      
-  height:80px;
-width:80px;
-margin-top:15px;
-box-shadow:none;
-     -webkit-box-shadow: 0 0 2px #666;
+  .panel__job-detail {
+    .job-short-info {
+      &.no-banner {
+        align-items: center;
+
+        .wrapper__logo {
+          height: 80px;
+          width: 80px;
+        }
+      }
+    }
+
+    .teaser__job-detail .wrapper__logo {
+      height: 80px;
+      width: 80px;
+      margin-top: 15px;
+      box-shadow: none;
+      -webkit-box-shadow: 0 0 2px #666;
+    }
   }
-    
-    
 }
 /* END JOB DETAIL PAGE */
 

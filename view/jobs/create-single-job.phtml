@@ -12,9 +12,11 @@ $publishDate = $this->dateFormat(new DateTime(), 'medium', 'none');
 $image = isset($this->details['image']['entity']) ? $this->details['image']['entity'] : null;
 
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
+$hasBanner = false;
 if (isset($this->details['image_url'])) {
     $serverUrl = new \Zend\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($this->details['image_url']));
+    $hasBanner = true;
 }
 $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->details['logo_url']) :
     $this->basePath('modules/Gastro24/images/no-company-logo.png');
@@ -45,23 +47,30 @@ $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->det
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default panel__job-detail">
-                    <!-- Bannerbild -->
+                <!-- Bannerbild -->
+                <?php if ($hasBanner): ?>
                     <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-                    <!-- End Bannerbild -->
+                <?php endif; ?>
+                <!-- End Bannerbild -->
 
                     <div class="panel-body">
                         <!-- company logo and job title-->
-                        <div class="teaser__job-detail">
-                            <div itemprop="logo">
-                                <div class="wrapper__logo">
-                                    <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
+                        <?php if ($hasBanner): ?>
+                            <div class="teaser__job-detail">
+                                <div itemprop="logo">
+                                    <div class="wrapper__logo">
+                                        <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
+                                    </div>
                                 </div>
+                                <h1><?=$this->title?></h1>
                             </div>
-                            <h1><?=$this->title?></h1>
-                        </div>
+                        <?php endif; ?>
+                        <?php if (!$hasBanner): ?>
+                            <h1 class="no-banner"><?=$this->title?></h1>
+                        <?php endif; ?>
                         <!-- end company logo and job title-->
 
-                        <div class="job-short-info">
+                        <div class="job-short-info <?php if(!$hasBanner) echo 'no-banner' ?>">
                             <ul>
                                 <li class="location">
                                     <!-- location -->
@@ -94,6 +103,14 @@ $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->det
                                     <!-- end published date -->
                                 </li>
                             </ul>
+
+                            <div class="wrapper__right">
+                                <?php if (!$hasBanner): ?>
+                                    <div class="wrapper__logo">
+                                        <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
+                                    </div>
+                                <?php endif; ?>
+                            </div>
                         </div>
 
                         <hr class="job-details-devider"/>
