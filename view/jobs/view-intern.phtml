@@ -56,32 +56,36 @@ $industries = $job->getClassifications()->getIndustries();
 
   <div class="panel panel-default panel__job-detail">
 
-      <?php if ($hasBanner): ?>
-        <!-- Bannerbild -->
+    <!-- Bannerbild -->
+    <?php if ($hasBanner): ?>
         <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-        <!-- End Bannerbild -->
-      <?php endif; ?>
-
+    <?php endif; ?>
+    <!-- End Bannerbild -->
 
     <div class="panel-body">
         <!-- company logo and job title-->
-        <div class="teaser__job-detail <?php if(!$hasBanner) echo 'no-banner' ?>">
-            <div itemprop="logo">
-                <div class="wrapper__logo">
-                    <img src="<?= $template && ($logo = $template->getLogo())
-                        ? $this->basePath($logo->getUri())
-                        : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
+        <?php if ($hasBanner): ?>
+            <div class="teaser__job-detail">
+                <div itemprop="logo">
+                    <div class="wrapper__logo">
+                        <img src="<?= $template && ($logo = $template->getLogo())
+                            ? $this->basePath($logo->getUri())
+                            : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
+                    </div>
                 </div>
+                <h1><?=$this->job->getTitle()?></h1>
             </div>
-            <h1><?=$this->job->getTitle()?></h1>
-        </div>
+        <?php endif; ?>
+        <?php if (!$hasBanner): ?>
+            <h1 class="no-banner"><?=$this->job->getTitle()?></h1>
+        <?php endif; ?>
         <!-- end company logo and job title-->
 
         <!-- expired info box -->
         <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
         <!-- end expired info box -->
 
-        <div class="job-short-info">
+        <div class="job-short-info <?php if(!$hasBanner) echo 'no-banner' ?>">
             <ul>
                 <li class="location">
                     <!-- location -->
@@ -120,12 +124,13 @@ $industries = $job->getClassifications()->getIndustries();
                 </li>
                 <!-- HINT: some jobs has invalid industries, therefore check for empty string -->
                 <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
-                <li class="industries">
-                    <?= $industries->__toString(); ?>
-                </li>
+                    <li class="industries">
+                        <?= $industries->__toString(); ?>
+                    </li>
                 <?php endif; ?>
             </ul>
-            <div>
+
+            <div class="wrapper__right">
                 <?php if (!$hasBanner): ?>
                     <div class="wrapper__logo">
                         <img src="<?= $template && ($logo = $template->getLogo())
