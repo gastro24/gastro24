@@ -218,7 +218,7 @@
     }
 
     h1 {
-      font-size: 34px;
+      font-size: 30px;
       font-weight: 300;
       line-height:38px;
       margin-left: 170px;
@@ -231,6 +231,8 @@
   h1 {
     &.no-banner {
       margin-top: 35px;
+      font-size:30px;
+      margin-bottom:35px;
     }
   }
 
@@ -248,22 +250,36 @@
         text-align: center;
       }
       .wrapper__logo {
-        margin-bottom: 20px;
-        height: 120px;
-        width: 120px;
-      }
+        margin-bottom: 10px;
+        height: 150px;
+        width: 150px;   
+        border: 1px solid #ddd!important;
+        box-shadow: none!important;
+       -webkit-border-radius: 0px!important;
+    	-moz-border-radius: 0px!important;
+        border-radius: 0px!important;
+     }
     }
 
     ul {
+        padding-left:10px;
+        margin:0;
+        
       li {
+        font-size: 18px!important;
+        margin-bottom:3px;
         line-height: 3rem;
         list-style: none;
+           &:before {
+           color: #B9B9B9;
+          }
       }
-
+      
+      
       li.location {
         &:before {
           font-family: "FontAwesome";
-          font-size: 2.2rem;
+          font-size: 1.8rem;
           content: "\f041";
           padding-right: 5px;
         }
