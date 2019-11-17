@@ -23,10 +23,10 @@ $title = $wordpress->call('value', ['meta-fields.title'], '');
 $this->headTitle($title ?: $this->translate('Jobs'));
 
  
-// set canonical and index,follow only on landing pages without jobs
+// set temporarly index,follow without caonical only on landing pages without jobs
  if (!count($this->jobs) && $this->params()->fromRoute('isLandingPage')) {
-   $jobsLandingpage = "/de/jobs?clear=1";
-    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
+   //$jobsLandingpage = "/de/jobs?clear=1";
+   // $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
     $robots = "index,follow";
  } else {
      $robots = "noindex,follow";
