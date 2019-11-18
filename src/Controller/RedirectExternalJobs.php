@@ -308,7 +308,6 @@ class RedirectExternalJobs extends AbstractActionController
                 'q',
                 'l',
                 'd' => 10,
-                'count' => 150,
                 'page' => $page,
             ]],
             'paginator' => [
