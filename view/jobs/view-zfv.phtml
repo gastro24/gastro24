@@ -200,7 +200,7 @@ $industries = $job->getClassifications()->getIndustries();
             <?= $this->partial('jobs/partials/favorite-button.phtml', [
                 'jobId' => $job->getId(),
                 'isExpired' => $isExpired,
-                'buttonCss' => 'visible-xs favorite-button',
+                'buttonCss' => 'favorite-button',
             ]); ?>
             <!-- end favorite button -->
         </div>
