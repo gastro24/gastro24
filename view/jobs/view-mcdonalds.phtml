@@ -155,41 +155,38 @@ $industries = $job->getClassifications()->getIndustries();
                         <img src="<?= $logoUrl ?>" alt="<?= $this->organizationName?>">
                     </div>
                 <?php endif; ?>
-                <!-- favorite button -->
-                <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                    'jobId' => $this->job->getId(),
-                    'isExpired' => $isExpired,
-                    'buttonCss' => 'hidden-xs',
-                ]); ?>
-                <!-- end favorite button -->
             </div>
         </div>
 
         <hr class="job-details-devider"/>
 
+        <div class="apply-button-group">
+            <!-- share button -->
+            <div id="shareMailTop" class="text-center hidden-xs"></div>
+            <div id="shareWhatsappTop" class="text-center visible-xs"></div>
+            <!-- end share button -->
+
+            <!-- apply button -->
+            <?= $this->partial('jobs/partials/apply-button.phtml', [
+                'preview' => $preview,
+                'isExpired' => $isExpired,
+                'job' => $this->job,
+            ]); ?>
+            <!-- end apply button -->
+
+            <!-- favorite button -->
+            <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                'jobId' => $job->getId(),
+                'isExpired' => $isExpired,
+                'buttonCss' => 'favorite-button',
+            ]); ?>
+            <!-- end favorite button -->
+        </div>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-
-                <div class="apply-button-group">
-                    <!-- apply button -->
-                    <?= $this->partial('jobs/partials/apply-button.phtml', [
-                        'preview' => $preview,
-                        'isExpired' => $isExpired,
-                        'job' => $this->job,
-                    ]); ?>
-                    <!-- end apply button -->
-
-                    <!-- favorite button -->
-                    <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                        'jobId' => $job->getId(),
-                        'isExpired' => $isExpired,
-                        'buttonCss' => 'visible-xs favorite-button',
-                    ]); ?>
-                    <!-- end favorite button -->
-                </div>
-
-            <!-- job content -->
-            <div id="job_content">
+                <!-- job content -->
+                <div id="job_content">
                 <?php if ($this->html): ?>
                     <div class="position">
                         <?=$this->html?>
@@ -251,25 +248,30 @@ $industries = $job->getClassifications()->getIndustries();
                 </div>
                 </div>
                 <!-- end company address -->
-
-                <div class="apply-button-group">
-                    <!-- apply button -->
-                    <?= $this->partial('jobs/partials/apply-button.phtml', [
-                        'preview' => $preview,
-                        'isExpired' => $isExpired,
-                        'job' => $this->job,
-                    ]); ?>
-                    <!-- end apply button -->
-
-                    <!-- favorite button -->
-                    <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                        'jobId' => $job->getId(),
-                        'isExpired' => $isExpired,
-                        'buttonCss' => 'visible-xs favorite-button',
-                    ]); ?>
-                    <!-- end favorite button -->
-                </div>
             </div>
+        </div>
+
+        <div class="apply-button-group">
+            <!-- share button -->
+            <div id="shareMailBottom" class="text-center hidden-xs"></div>
+            <div id="shareWhatsappBottom" class="text-center visible-xs"></div>
+            <!-- end share button -->
+
+            <!-- apply button -->
+            <?= $this->partial('jobs/partials/apply-button.phtml', [
+                'preview' => $preview,
+                'isExpired' => $isExpired,
+                'job' => $this->job,
+            ]); ?>
+            <!-- end apply button -->
+
+            <!-- favorite button -->
+            <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                'jobId' => $job->getId(),
+                'isExpired' => $isExpired,
+                'buttonCss' => 'favorite-button',
+            ]); ?>
+            <!-- end favorite button -->
         </div>
         
 <div style="
@@ -335,14 +337,31 @@ $industries = $job->getClassifications()->getIndustries();
 
     </div>
 </div>
-
-            <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
-            <script>
-                $("#share").jsSocials({
-                    showLabel: false,
-                    showCount: true,
-                    shares: ["email", "twitter", "facebook", "whatsapp"]
-                });
-            </script>
+<script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
+<script>
+    $("#share").jsSocials({
+        showLabel: false,
+        showCount: true,
+        shares: ["email", "twitter", "facebook", "whatsapp"]
+    });
+    $("#shareMailTop").jsSocials({
+        showCount: true,
+        shares: ["email"]
+    });
+    $("#shareMailBottom").jsSocials({
+        showCount: true,
+        shares: ["email"]
+    });
+    $("#shareWhatsappTop").jsSocials({
+        showLabel: false,
+        showCount: true,
+        shares: ["whatsapp"]
+    });
+    $("#shareWhatsappBottom").jsSocials({
+        showLabel: false,
+        showCount: true,
+        shares: ["whatsapp"]
+    });
+</script>
 
 

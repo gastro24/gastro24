@@ -352,20 +352,17 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                                     <img src="<?= $logoUrl ?>" alt="<?= $orgName?>">
                                 </div>
                             <?php endif; ?>
-
-                            <!-- favorite button -->
-                            <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                                'jobId' => $job->getId(),
-                                'isExpired' => $isExpired,
-                                'buttonCss' => 'hidden-xs',
-                            ]); ?>
-                            <!-- end favorite button -->
                         </div>
                     </div>
 
                     <hr class="job-details-devider"/>
 
                     <div class="apply-button-group">
+                        <!-- share button -->
+                        <div id="shareMailTop" class="text-center hidden-xs"></div>
+                        <div id="shareWhatsappTop" class="text-center visible-xs"></div>
+                        <!-- end share button -->
+
                         <!-- apply button -->
                         <?= $this->partial('jobs/partials/apply-button.phtml', [
                             'preview' => $preview,
@@ -378,7 +375,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                         <?= $this->partial('jobs/partials/favorite-button.phtml', [
                             'jobId' => $job->getId(),
                             'isExpired' => $isExpired,
-                            'buttonCss' => 'visible-xs favorite-button',
+                            'buttonCss' => 'favorite-button',
                         ]); ?>
                         <!-- end favorite button -->
                     </div>
@@ -402,6 +399,11 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                     </div>
 
                     <div class="apply-button-group">
+                        <!-- share button -->
+                        <div id="shareMailBottom" class="text-center hidden-xs"></div>
+                        <div id="shareWhatsappBottom" class="text-center visible-xs"></div>
+                        <!-- end share button -->
+
                         <!-- apply button -->
                         <?= $this->partial('jobs/partials/apply-button.phtml', [
                             'preview' => $preview,
@@ -414,12 +416,10 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                         <?= $this->partial('jobs/partials/favorite-button.phtml', [
                             'jobId' => $job->getId(),
                             'isExpired' => $isExpired,
-                            'buttonCss' => 'visible-xs favorite-button',
+                            'buttonCss' => 'favorite-button',
                         ]); ?>
                         <!-- end favorite button -->
                     </div>
-
-                    
 <div style="
     background: #f6f6f6;
     border-radius: 3px 3px 0 0;
@@ -487,11 +487,29 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
             <!-- socials -->
             <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
             <script>
-            $("#share").jsSocials({
-            showLabel: false,
-            showCount: true,
-            shares: ["email", "twitter", "facebook", "whatsapp"]
-            });
+                $("#share").jsSocials({
+                    showLabel: false,
+                    showCount: true,
+                    shares: ["email", "twitter", "facebook", "whatsapp"]
+                });
+                $("#shareMailTop").jsSocials({
+                    showCount: true,
+                    shares: ["email"]
+                });
+                $("#shareMailBottom").jsSocials({
+                    showCount: true,
+                    shares: ["email"]
+                });
+                $("#shareWhatsappTop").jsSocials({
+                    showLabel: false,
+                    showCount: true,
+                    shares: ["whatsapp"]
+                });
+                $("#shareWhatsappBottom").jsSocials({
+                    showLabel: false,
+                    showCount: true,
+                    shares: ["whatsapp"]
+                });
             </script>
             <!-- end socials -->
 
