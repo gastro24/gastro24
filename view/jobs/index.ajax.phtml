@@ -234,6 +234,10 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
                 <div class="row">
                     <div class="row-eq-height">
+                        <?php
+                            // get date difference
+                            $today = new DateTime();
+                        ?>
                         <?php foreach ($jobs as $job): /* @var \Jobs\Entity\Job $job */ ?>
                             <?php
                                 $org = $job->getOrganization();
@@ -246,6 +250,15 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                             ?>
                             <div class="col-md-12 col-sm-6 col-xs-12">
                         <div class="featured-image-box">
+                            <?php
+                                // check for newer than 24 hours
+                                $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
+                                $dayDiff = $today->diff($jobDate);
+                                if ($dayDiff->days < 1) {
+                                    echo '<div class="corner"><span>NEU</span></div>';
+                                }
+                            ?>
+
                             <div class="content-area">
                                 <div class="top-cnt">
 

@@ -51,6 +51,16 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
     $orgIsDisabled = true;
 }
 
+// check for newer than 24 hours
+$newerThanDay = false;
+// get date difference
+$today = new DateTime();
+$jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
+$dayDiff = $today->diff($jobDate);
+if ($dayDiff->days < 1) {
+    $newerThanDay = true;
+}
+
 $industries = $job->getClassifications()->getIndustries();
 ?>
 <?=$this->jsonLd($this->job)?>
@@ -100,6 +110,12 @@ $industries = $job->getClassifications()->getIndustries();
 }
   </style>
 <div class="panel panel-default panel__job-detail">
+    <!-- New Badge -->
+    <?php if (!$hasBanner && $newerThanDay): ?>
+        <div class="corner"><span>NEU</span></div>
+    <?php endif; ?>
+    <!-- End New Badge -->
+
     <!-- Bannerbild -->
     <?php if ($hasBanner): ?>
         <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
@@ -110,6 +126,12 @@ $industries = $job->getClassifications()->getIndustries();
         <!-- company logo and job title-->
         <?php if ($hasBanner): ?>
             <div class="teaser__job-detail">
+                <!-- New Badge -->
+                <?php if ($newerThanDay): ?>
+                    <div class="corner"><span>NEU</span></div>
+                <?php endif; ?>
+                <!-- End New Badge -->
+
                 <div itemprop="logo">
                     <div class="wrapper__logo">
                         <img src="<?= $logoUrl ?>" alt="<?= $this->organizationName?>">
