@@ -24,8 +24,8 @@ class PublishDateFormatter extends AbstractHelper
         $today = new DateTime();
         $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
         // workaround for timezone hours difference
-        $time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '+04:00');
-        $jobDate->setTimestamp($time);
+//        $time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '-02:00');
+//        $jobDate->setTimestamp($time);
 
         $dayDiff = $today->diff($jobDate);
         if ($dayDiff->days >= 1 && $dayDiff->days < 2) {
@@ -50,11 +50,19 @@ class PublishDateFormatter extends AbstractHelper
             $publishDate = /*@translate*/'vor 30+ Tagen';
         }
         elseif ($dayDiff->days < 1 && $dayDiff->h < 1) {
-            $publishDate = /*@translate*/'vor ' . $dayDiff->i . ' Minuten';
+            if ($dayDiff->i == 1) {
+                $publishDate = /*@translate*/'vor 1 Minute';
+            }
+            else {
+                $publishDate = /*@translate*/'vor ' . $dayDiff->i . ' Minuten';
+            }
         }
         elseif ($dayDiff->days < 1) {
             if ($today->format('d') !== $jobDate->format('d')) {
                 $publishDate = /*@translate*/'Gestern';
+            }
+            elseif ($dayDiff->h == 1) {
+                $publishDate = /*@translate*/'vor 1 Stunde';
             }
             else {
                 $publishDate = /*@translate*/'vor ' . $dayDiff->h . ' Stunden';

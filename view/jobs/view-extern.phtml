@@ -82,6 +82,16 @@ if (!$logoUrl) {
     $logoUrl = $defaultLogoUrl;
 }
 
+// check for newer than 24 hours
+$newerThanDay = false;
+// get date difference
+$today = new DateTime();
+$jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
+$dayDiff = $today->diff($jobDate);
+if ($dayDiff->days < 1) {
+    $newerThanDay = true;
+}
+
 $link = $this->job->getLink();
 $industries = $job->getClassifications()->getIndustries();
 
@@ -275,6 +285,12 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
 
 
             <div class="panel panel-default panel__job-detail">
+                <!-- New Badge -->
+                <?php if (!$hasBanner && $newerThanDay): ?>
+                    <div class="corner"><span>NEU</span></div>
+                <?php endif; ?>
+                <!-- End New Badge -->
+
                  <!-- Bannerbild -->
                 <?php if ($hasBanner): ?>
                     <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
@@ -285,6 +301,11 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                     <!-- company logo and job title-->
                     <?php if ($hasBanner): ?>
                         <div class="teaser__job-detail">
+                            <!-- New Badge -->
+                            <?php if ($newerThanDay): ?>
+                                <div class="corner"><span>NEU</span></div>
+                            <?php endif; ?>
+                            <!-- End New Badge -->
                             <div itemprop="logo">
                                 <div class="wrapper__logo">
                                     <img src="<?= $logoUrl ?>" alt="<?= $orgName?>">
