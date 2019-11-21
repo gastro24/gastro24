@@ -332,9 +332,11 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                                 if ($location == '') {
                                     echo $this->translate('Swiss');
                                 }
+                                elseif ($location) {
+                                    echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                }
                                 else {
-                                    echo $location ? (($location->getCity()) ? $location->getCity() : $location->getCountry()) :
-                                        preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                    echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
                                 }
                                 ?>
                                 <!-- end location -->
