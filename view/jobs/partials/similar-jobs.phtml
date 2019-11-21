@@ -47,14 +47,20 @@
                 <?php
                 /* @var \Jobs\Entity\Job $similarJob */
                 foreach ($similarJobs as $index => $similarJob):  ?>
-                    
-                   <?php if (($index + 1) % 4 == 0) 
-                  //      echo '</div><div class="row">';
+                    <?php
+                        // check for job external redirect (i.e. coop)
+                        $org = $similarJob->getOrganization();
+                        $hasJobTemplate = $this->gastroJobTemplate($org);
+                        $isIntern = (!$similarJob->getLink() || $hasJobTemplate);
+                        $isEmbeddable = $this->gastroIsEmbeddable($similarJob->getLink());
+                        $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+
+                        $jobHref = ($jobHasExternLink) ? $similarJob->getLink() : $this->jobUrl($similarJob, ['linkOnly' => true ]);
                     ?>
                     
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="job-box">
-                            <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $this->jobUrl($similarJob, ['linkOnly' => true ]) ?>">
+                            <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $jobHref ?>">
                                 <?=strip_tags($similarJob->getTitle())?>
                             </a>
 
