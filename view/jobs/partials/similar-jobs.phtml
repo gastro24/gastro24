@@ -71,7 +71,7 @@
                                     <li class="location">
                                         <!-- location -->
                                         <?php
-                                            $location = $similarJob->getLocations()->last();
+                                            $location = $similarJob->getLocations()->current();
                                             if ($location == '') {
                                                 echo $this->translate('Swiss');
                                             }
