@@ -45,7 +45,7 @@
         <div class="headline"><h2 style="margin-top: 5px; margin-bottom: 20px;font-size: 20px;color: #000;"><?= $similarJobTitle ?></h2></div>
             <div class="row">
                 <?php
-                /* @var \Jobs\Entity\Job $similarJob */
+                /* @var Solr\Entity\JobProxy $similarJob */
                 foreach ($similarJobs as $index => $similarJob):  ?>
                     <?php
                         // check for job external redirect (i.e. coop)
