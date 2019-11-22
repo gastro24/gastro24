@@ -359,56 +359,13 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                 <!-- end pagination -->
 
                 <!-- similar jobs -->
-                <style>
-                .similiar-jobs-landingpages {
-
-                    float:left;
-                    line-height:22px;
-                }
-
-                  .similiar-jobs-landingpages h2 {
-
-                    margin-bottom:15px;
-                }
-                 .similiar-jobs-landingpages ol {
-                    list-style-type:square;
-                    }
-                      .similiar-jobs-landingpages ol li {
-                   margin-bottom:5px;
-                    }
-                .similiar-jobs-landingpages ul {
-                    padding-left: 0;
-                    }
-                .similiar-jobs-landingpages {
-                        padding-left: 0;
-                        list-style-type: none;
-               }
-                .similiar-jobs-landingpages ul li {
-                 display: inline-block;
-                  margin: 0;
-                }
-
-                    .similiar-jobs-landingpages li a {
-                    margin: 0px 5px 5px 0px;
-                    background-color: #dcdfe2;
-                    color: #566578;
-                    padding: 3px 12px;
-                    line-height: 24px;
-                    display: block;
-                    font-size: 14px;
-                    text-decoration: none;
-                 }
-
-                </style>
-
-
                 <div class="similiar-jobs-landingpages">
-                <?php $parts=preg_split('~<!--more-->~' , $description);?>
+                    <?php $parts=preg_split('~<!--more-->~' , $description);?>
                     <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
                         <?= $parts[1] ?>
                         <?php if (51 == $query): echo $this->landingpages(); endif; ?>
                     <?php endif ?>
-                  </div>
+                </div>
                 <!-- end similar jobs -->
             </div>
             <?=$hasFacets ? '</div>' : '' ?>
