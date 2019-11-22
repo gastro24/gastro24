@@ -315,11 +315,13 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                         echo $job->getCompany();
                                     }
                                     // get location string
-                                    if ($job->getLocation() == '') {
+                                    $location = $job->getLocations()->last();
+                                    if ($location == '') {
                                         $locationString = $this->translate('Swiss');
                                     }
-                                    elseif ($job->getLocations()->get(0)) {
-                                        $locationString = $job->getLocations()->get(0)->getCity() ?:  $job->getLocations()->get(0)->getCountry();
+                                    elseif ($location) {
+                                        $locationString = $location->getCity() ? $location->getCity() :
+                                            preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
                                     }
                                     else {
                                         $locationString = preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
