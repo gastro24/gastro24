@@ -64,8 +64,12 @@
     }
 }
 
+
+
 .job-navigation {
   margin-bottom: 1rem;
+  display:table;
+  width:100%;
   
   a {
     display: inline-block;
@@ -478,6 +482,13 @@
 
 @media(max-width: @screen-sm) {
     
+    .embed-container {
+        
+        
+        margin-left:-25px;
+        margin-right:-25px;
+    }
+    
    .panel__job-detail h1.no-banner {
     font-size: 24px;
     margin-bottom: 10px;
@@ -546,6 +557,7 @@
   }
   
  .job-navigation {
+     
     a {
       float:left;
       line-height:15px;
