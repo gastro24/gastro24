@@ -91,6 +91,63 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     
 <style>
 
+.panel__job-detail, .featured-image-box {
+
+position:relative
+}
+
+
+.featured-image-box .corner {
+    width: 0;
+    height: 0;
+    border-top: 40px solid #60A5D1;
+    border-bottom: 40px solid transparent;
+    border-left: 40px solid transparent;
+    position: absolute;
+    right: 0;
+}
+
+
+.featured-image-box .corner span {
+      color: #fff;
+    position: absolute;
+    top: -33px;
+    width: 40px;
+    left: -35px;
+    text-align: center;
+    font-size: 10px;
+    font-family: arial;
+    transform: rotate(45deg);
+    display: block;
+}
+
+
+
+
+.panel__job-detail .corner {
+width: 0;
+    height: 0;
+    border-top: 60px solid #60A5D1;
+    border-bottom: 60px solid transparent;
+    border-left: 60px solid transparent;
+    position: absolute;
+    right: 0;
+}
+
+.panel__job-detail .corner span {
+    color: #fff;
+    position: absolute;
+    top: -47px;
+    width: 100px;
+    left: -72px;
+    text-align: center;
+    font-size: 12px;
+    font-family: arial;
+    transform: rotate(45deg);
+    display: block;
+}
+
+
 .fa-search:before {
     font-family: "FontAwesome";
 }
