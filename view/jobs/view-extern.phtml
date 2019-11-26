@@ -87,6 +87,9 @@ $newerThanDay = false;
 // get date difference
 $today = new DateTime();
 $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
+// workaround - mongodb entity has difference in time
+$time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '+02:00');
+$jobDate->setTimestamp($time);
 $dayDiff = $today->diff($jobDate);
 if ($dayDiff->days < 1) {
     $newerThanDay = true;
