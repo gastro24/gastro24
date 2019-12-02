@@ -53,8 +53,6 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
      <meta property="og:locale" content="de_DE" />
      <meta property="og:type" content="website" />
 
-
-    <script type="text/javascript" src="<?= $this->basepath($this->asset('dist/js/core.min.js')) ?>"></script>
     <script>
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
     </script>
@@ -437,10 +435,12 @@ $this->headTitle($this->translate('Home'));
 </main>
 <!-- /container -->
     <?php echo $this->partial("footer") ?>
+
     <!-- lazy loaded javascript -->
     <?php
         $langScript = 'dist/locales/' . $lang . '.js';
-        echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+        echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
+            ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
             ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
             ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')))
             ->appendFile($this->basePath($langScript));
@@ -450,14 +450,11 @@ $this->headTitle($this->translate('Home'));
     
     <script>
         $( document ).ready(function() {
-
           $('.berufe > li:nth-child(9)').after("<li class='separator' />");
-
 
             var i = 0;
               $(".berufe > li ").each(function(i, k) {
                  if(++i > 10) $(k).addClass("hide");
-
               });
 
              $(".separator").click(function() {
