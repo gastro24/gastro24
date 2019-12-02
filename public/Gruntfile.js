@@ -14,9 +14,10 @@ module.exports = function(grunt) {
         },
         files: [
             {
-              dest: targetDir + "/modules/Gastro24/Gastro24.css",
-              src: moduleDir + "/less/Gastro24.less"
+                src: moduleDir + "/less/Gastro24.less",
+                dest: targetDir + "/modules/Gastro24/Gastro24.css"
             },
+            { dest: targetDir + "/modules/Gastro24/g24-startpage.css", src: moduleDir + "/less/g24-startpage.less"}, // destination file and source file
             { dest: moduleDir + "/templates/default/job.css", src: moduleDir + "/templates/default/less/job.less"}, // destination file and source file
             { dest: moduleDir + "/templates/modern/job.css", src: moduleDir + "/templates/modern/less/job.less"}, // destination file and source file
             { dest: moduleDir + "/templates/classic/job.css", src: moduleDir + "/templates/classic/less/job.less"} // destination file and source file
@@ -91,7 +92,7 @@ module.exports = function(grunt) {
                   outputDir: "modules/Gastro24/hashed",
                   jsonOutputFilename: mainDir + '/gastro24-grunt-cache-bust.json',
                   clearOutputDir: true,
-                  assets: ["modules/Gastro24/Gastro24.css", "modules/Gastro24/js/*", "dist/js/core.min.js"]
+                  assets: ["modules/Gastro24/Gastro24.css", "modules/Gastro24/g24-startpage.css", "modules/Gastro24/js/*", "dist/js/core.min.js"]
               },
               src: [mainDir + '/views/**/*.phtml'] // files where css is used, not really important
           }

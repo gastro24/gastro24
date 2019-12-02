@@ -18,15 +18,6 @@ $notifications = $this->partial('core/notifications');
 
 // set default page title
 $this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoEscape(false);
-
-// set default keywords
-$this->headMeta()->setCharset("utf-8");
-$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
-
-$this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
-$this->headLink()->prependStylesheet($this->basePath('/dist/css/jquery-ui-1-12.min.css'));
-$this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
-
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
 ?>
@@ -38,8 +29,13 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <link rel="icon" type="image/png" sizes="16x16" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-16x16_1_.png')?>">
     <link rel="shortcut icon" type="image/ico" href="<?=$this->basepath('modules/Gastro24/favicons/favicon_1_.ico')?>">
     <meta name="msapplication-TileColor" content="#2e5b93">
+    <meta name="theme-color" content="#2e5b93">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <link rel="canonical" href="https://www.gastrojob24.ch" />
-    <meta name="theme-color" content="#2e5b93"> 
+
+    <link rel="stylesheet" type="text/css" href="<?= $this->basePath('dist/css/core.min.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('modules/Gastro24/g24-startpage.css')) ?>">
 
     <title>Gastronomie Jobs | Hotel Jobs | Jobs für Gastrohelden - Gastrojob24</title>  
     <meta name="description" content="Gastronomie Jobbörse mit <?= $this->gastroJobCount() ?> top-aktuellen Gastronomie Jobs, Hotel Jobs und mehr. Jetzt Traumjob finden - auf einen Klick!">
@@ -84,65 +80,6 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <!-- End Google Tag Manager -->
 <style>
 
-
-.search-form-container .form-control {
--webkit-border-radius: 0!important;
--moz-border-radius:  0!important;
-border-radius: 0!important;
-border: none!important
-
-	
-
-}
-
-
-
-.search-form-container select
-
-	{
-	height: 38px !important;
-    background-color: #fff;
-    border: none;
-    border-left:1px solid #ccc;
-    border-radius: 0;
-	line-height: 27px;
-    padding: 6px 24px 6px 20px;
-    color: #555;
-    font-size: 14px;
-    outline: 0;
-	width:100%;
-	display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-	
-	}
-
-
-
-
-.search-form-container .select2-selection {
-    -webkit-border-radius: 0!important;
-   -moz-border-radius:  0!important;
-border-radius: 0!important;
-    border: none!important;
-    border-left:1px solid #ccc!important;
-    	line-height: 27px!important;
-    padding: 6px 24px 6px 20px!important;
-    text-align:left;
-}
-
-
-
-
-
-
-
-   .flex-block {
-          
-          display:flex;
-      }
   @media (max-width: 768px){
       
       .flex-block {
@@ -181,32 +118,13 @@ border-radius: 0!important;
          text-align: left;
     }
 }
- .homepage-links {
-     padding-left: 0;
-     list-style-type: none;
-}
- .homepage-links li {
-     display: inline-block;
-     margin: 0;
 
-}
- .homepage-links li a {
-      margin:0px 0px 5px 5px;
-    background-color: #dcdfe2;
-    color: #566578;
-    padding: 3px 12px;
-    line-height: 24px;
-    display: block;
-    font-size: 14px;
-
-    text-decoration: none;
-}
 .hide {
     display:none!important;
 }
 .separator::before {
     content: "Alle Berufe anzeigen ...";
-      margin: 0px 0PX 5px 5px;
+    margin: 0 0 5px 5px;
     background-color: #dcdfe2;
     color: #566578;
     padding: 3px 12px;
@@ -214,11 +132,11 @@ border-radius: 0!important;
     display: block;
     font-size: 14px;
     text-decoration: none;
-	 cursor:pointer
+    cursor:pointer
 }
 .separator2::before {
     content: "Alle Kantone anzeigen ... ";
-    margin: 0px 0PX 5px 5px;
+    margin: 0 0 5px 5px;
     background-color: #dcdfe2;
     color: #566578;
     padding: 3px 12px;
@@ -226,32 +144,12 @@ border-radius: 0!important;
     display: block;
     font-size: 14px;
     text-decoration: none;
-	 cursor:pointer
+    cursor:pointer
 }
 
 div p a {
-    
     text-decoration:underline;
 }
-
-.jumbotron h1 {
-color: #fff;
-font-size: 42px;
-font-weight: 700;
-margin: 0;
-}
-.jumbotron h2 {
-color: #f2f2f2;
-font-size: 24px;
-font-weight: 300;
-margin: 15px 0 35px 0;
-}
-
-.jumbotron h2 a {
-   color: #f2f2f2;
-    text-decoration:underline;
-}
-
 </style>
 <script type="application/ld+json">
  { "@context": "https://schema.org",

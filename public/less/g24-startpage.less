@@ -1,0 +1,354 @@
+//@import "../../../modules/Core/less/yawik.less";
+@import "../../../modules/Core/less/yawik-core.less";
+@import "_variables";
+//@import "_forms.less";
+@import "_main.less";
+@import "_search-form-container.less";
+@import "_saved-jobs.less";
+
+.navbar-header {
+    .menu-logo {
+        width: 200px;
+    }
+}
+
+input[type="file"] {
+    display: block;
+    height: auto;
+}
+
+.page-title {
+    margin-top: 13px;
+    margin-bottom: 10px;
+
+    h1,
+    span {
+        display: inline;
+        font-size: 30px;
+        font-weight:300
+    }
+}
+
+.input-group .form-control  {
+        -webkit-border-radius: 3px!important;
+        -moz-border-radius: 3px!important;
+         border-radius: 3px!important; 
+         height: 38px!important;
+         font-size: 14px!important;
+}
+
+.search-form-container {
+    .btn-default {
+        position: absolute;
+        right: 100px;
+        top: 10px;
+    }
+    .btn-primary {
+        padding: 0 20px;
+    }
+    input {
+        height: 55px;
+        font-size: 16px;
+        padding: 0 20px;
+    }
+
+    .form-control {
+        -webkit-border-radius: 0!important;
+        -moz-border-radius:  0!important;
+        border-radius: 0!important;
+        border: none!important;
+    }
+
+    select {
+        height: 38px !important;
+        background-color: #fff;
+        border: none;
+        border-left:1px solid #ccc;
+        border-radius: 0;
+        line-height: 27px;
+        padding: 6px 24px 6px 20px;
+        color: #555;
+        font-size: 14px;
+        outline: 0;
+        width:100%;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .select2-selection {
+        -webkit-border-radius: 0!important;
+        -moz-border-radius:  0!important;
+        border-radius: 0!important;
+        border: none!important;
+        border-left:1px solid #ccc!important;
+        line-height: 27px!important;
+        padding: 6px 24px 6px 20px!important;
+        text-align:left;
+    }
+}
+
+.home #jobs-list-filter-wrapper {
+    .search-form-container {
+        
+        margin: 0 auto;
+        width: 75%;
+        background-color: rgba(0, 0, 0, 0.7);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+         border-radius: 3px;
+        border: none;
+        padding: 20px;
+        .btn-primary {
+            background-color: @btn-primary-bg;
+            border-color: @btn-primary-border;
+            color: @btn-primary-color;
+        }
+        .btn-primary:hover {
+            background-color: darken(@btn-primary-bg,10%);
+        }
+    }
+}
+
+#wrapper {
+    text-align: center;
+    min-height: 600px;
+    #bg-full {
+        position: absolute;
+        width: 100%;
+    }
+    .bg-static {
+        background-image: url(../background_gastrojob24_img.jpg);
+        background-color: #999;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: block;
+        min-height: 600px;
+    }
+}
+
+.homepage-links {
+    padding-left: 0;
+    list-style-type: none;
+
+    li {
+        display: inline-block;
+        margin: 0;
+
+        a {
+            margin: 0 0 5px 5px;
+            background-color: #dcdfe2;
+            color: #566578;
+            padding: 3px 12px;
+            line-height: 24px;
+            display: block;
+            font-size: 14px;
+            text-decoration: none;
+        }
+    }
+}
+
+@media(max-width: @screen-sm) {
+    .home #jobs-list-filter-wrapper {
+        .search-form-container {
+            width: 100%;
+        }
+    }
+}
+
+.jumbotron {
+    margin-top: 40px;
+    position: relative;
+    margin-bottom: 25px;
+    padding: 0;
+    color: #fff;
+    background-color: transparent;
+
+    h1 {
+        color: #fff;
+        font-size: 42px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    h2 {
+        color: #f2f2f2;
+        font-size: 24px;
+        font-weight: 300;
+        margin: 15px 0 35px 0;
+
+        a {
+            color: #f2f2f2;
+            text-decoration:underline;
+        }
+    }
+}
+
+.home {
+    .navbar-brand {
+        color: @g24-blue;
+    }
+
+    #header {
+        left: 0;
+        position: relative;
+        right: 0;
+        top: 0;
+        background-image: linear-gradient( #121212, rgba(0, 0, 0, 0.001));
+    }
+
+    #yk-login-info {
+        position: relative;
+        background-color: transparent;
+        .dropdown > a {
+            color: @g24-white;
+        }
+    }
+}
+
+.collapsed {
+    background-color: transparent;
+    border-color: @g24-white;
+    border-radius: 4px;
+    .icon-bar {
+        background-color: @g24-white;
+    }
+}
+
+.navbar-brand {
+   display: block;
+    margin-top: 33px;
+    padding: 0;
+     height: auto;
+}
+
+ .navbar-brand>img {
+    margin-left:5px;
+    }
+    @media(min-width: @screen-sm) {
+
+        .navbar {
+            .header-link {
+                margin-top: 20px;
+                padding-right: 30px;
+
+                .link {
+                    &--inverted {
+                        background-color: @g24-white;
+                        border: 1px solid @g24-blue;
+                        color: @g24-blue;
+                        font-size:16px;
+                        font-weight:300;
+                        margin-top: 30px;
+                        padding: 10px 15px;
+
+                        &:hover {
+                            background-color: darken(@g24-blue,10%);
+                            color: @g24-white
+                        }
+                    }
+                }
+            }
+        }
+
+        #main-navigation {
+            font-weight: 600;
+
+            ul li a.inverted {
+                border: 1px solid @g24-blue;
+                background-color: @g24-blue;
+                color: @g24-white;
+            }
+            ul li a.inverted:hover {
+                background-color: darken(@g24-blue,10%);
+            }
+            .navbar-nav > li > a {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-top: 30px;
+                font-weight:300;
+                font-size:16px;
+
+                &.link__saved-jobs {
+                    padding-left: 0;
+                }
+            }
+            .dropdown-menu > li > a:hover {
+                background-color: @navbar-inverse-toggle-hover-bg;
+            }
+
+        }
+
+        .home #main-navigation {
+            height: 145px !important;
+            .navbar-nav > li > a {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-top: 30px;
+                color: @g24-white;
+            }
+            a:hover {
+                background-color: transparent;
+            }
+            ul li a.inverted {
+                border: 1px solid @g24-white;
+                background-color: transparent;
+            }
+        }
+    }
+
+// Menü auf Handy
+@media(max-width: @screen-sm) {
+     #rpt_pricr {
+        .col-md-3 {
+        width: 100%!important;
+        }
+    }
+    #main-navigation {
+        height: inherit;
+        ul li a.inverted {
+            border: 1px solid @g24-grey;
+            background-color: @g24-blue;
+            color: @g24-white;
+        }
+        .dropdown-menu>li>a {
+            color: @g24-white;
+        }
+        a:hover {
+            background-color: @g24-blue;
+        }
+    }
+    .home #main-navigation {
+        a {
+            color: @g24-white;
+        }
+        a:hover {
+            background-color: @g24-blue;
+        }
+    }
+    button.collapsed {
+        border-color: @g24-grey;
+        background-color: @g24-blue;
+    }
+
+}
+
+// Aufklappbare Kategorien
+a[data-toggle="collapse"] {
+    &:before {
+        font-family: "FontAwesome";
+        content: "\f077";
+        float: right;
+    }
+    &.collapsed:before {
+        content: "\f078";
+    }
+    span {
+        display: none;
+    }
+    &.collapsed span {
+        display: block;
+    }
+}

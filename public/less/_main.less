@@ -1,0 +1,109 @@
+body {
+  margin-top: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+h1 {
+  font-weight:300;
+}
+
+h2 {
+  color: @g24-dark-blue;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+h3 {
+  color: @g24-dark-blue;
+  font-weight: bold;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.h6 {
+  color: @g24-dark-blue;
+  font-weight: bold;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.text-center {
+  text-align: center;
+}
+.flex-block {
+  display:flex;
+}
+
+/* LAYOUT ELEMENTS */
+.breadcrumb {
+  background-color: #ececec;
+  margin-bottom: 0;
+  padding: 10px 10px 10px 15px;
+
+  li {
+    a {
+      color:#243b84;
+    }
+  }
+}
+
+#footer {
+  background-color: #243b84;
+  padding: 25px 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: #b6bed6;
+
+  nav ul li a {
+    text-decoration: underline;
+  }
+  a {
+    color: #b6bed6;
+  }
+  h5 {
+    color: #fff;
+  }
+  hr {
+    border-top: 1px solid @g24-blue;
+  }
+}
+
+/* YAWIK ELEMENTS */
+.yk-notifications {
+  margin-top: 0;
+}
+
+/* Overwrite jquery ui autocomplete style */
+.ui-menu .ui-menu-item {
+  margin: 0;
+  padding: 1rem 0.5rem;
+}
+
+.ui-menu .ui-menu-item a{
+  text-decoration: none;
+  margin: 0;
+}
+.ui-menu .ui-menu-item-wrapper {
+  padding: 1rem 0.5rem;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+  background: white;
+  border: none;
+  color: black;
+  margin: 0;
+  padding: 1rem 0.5rem;
+}
+.ui-menu .ui-menu-item a:hover{
+  background: white;
+  border: none;
+  color: black;
+}
