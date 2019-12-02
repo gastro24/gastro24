@@ -54,7 +54,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
      <meta property="og:type" content="website" />
 
 
-    <script type="text/javascript" src="<?= $this->basepath('dist/js/core.min.js') ?>"></script>
+    <script type="text/javascript" src="<?= $this->basepath($this->asset('dist/js/core.min.js')) ?>"></script>
     <script>
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
     </script>

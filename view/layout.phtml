@@ -59,7 +59,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <?php echo $this->headStyle() ?>
     <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
 
-    <script type="text/javascript" src="<?= $this->basepath('dist/js/core.min.js') ?>"></script>
+    <script type="text/javascript" src="<?= $this->basepath($this->asset('dist/js/core.min.js')) ?>"></script>
     <script>
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
     </script>
