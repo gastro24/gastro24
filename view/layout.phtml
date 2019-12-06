@@ -62,7 +62,6 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <link rel="preload" as="style" href="<?= $this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css') ?>" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="<?= $this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css') ?>"></noscript>
 
-
     <!-- polyfill for preload css -->
     <script>
         /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
@@ -178,8 +177,6 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
         }( typeof global !== "undefined" ? global : this ) );
     </script>
     <!-- end polyfill for preload css -->
-
-<!--    <script type="text/javascript" src="--><?//= $this->basepath($this->asset('dist/js/core.min.js')) ?><!--"></script>-->
     <script>
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
     </script>
