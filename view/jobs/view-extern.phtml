@@ -267,26 +267,26 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
             </style>
 
 
-            <script type="text/javascript">
+            <?php $this->configHeadScript()->appendScript('
             $(function(){
-            var d=15,
-                a=$("#preload").removeClass("hidden"),
-                e=$(".frame-content iframe").addClass("hidden"),
-                c=$(window),
-                g=$("header"),
-                f=$("footer"),
-                b=$(".box.intro");
-
-            setTimeout(function(){
-                a.addClass("hidden");
-                e.removeClass("hidden");
-            },3000);
-
-            c.resize(function(){
-                e.height(c.height()-g.outerHeight(true)-f.outerHeight(true)-b.outerHeight(true)-d)
-            }).resize()});
-            </script>
-
+                var d=15,
+                    a=$("#preload").removeClass("hidden"),
+                    e=$(".frame-content iframe").addClass("hidden"),
+                    c=$(window),
+                    g=$("header"),
+                    f=$("footer"),
+                    b=$(".box.intro");
+    
+                setTimeout(function(){
+                    a.addClass("hidden");
+                    e.removeClass("hidden");
+                },3000);
+    
+                c.resize(function(){
+                    e.height(c.height()-g.outerHeight(true)-f.outerHeight(true)-b.outerHeight(true)-d)
+                }).resize()
+            });
+            '); ?>
 
             <div class="panel panel-default panel__job-detail">
                 <!-- New Badge -->
