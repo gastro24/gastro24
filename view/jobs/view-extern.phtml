@@ -119,7 +119,8 @@ endif;
 $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.js'))
-    ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'));
+    ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'))
+    ->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
 ?>
 
 <!-- prev / next navigation -->
@@ -462,7 +463,6 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
     margin-bottom: 0;
     color: #454342;
     ">Bitte beziehen Sie sich bei Ihrer Bewerbung auf <strong>gastrojob24.ch</strong>.</p>
-    
 </div>
                   
 
@@ -511,8 +511,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
             </div>
 
             <!-- socials -->
-            <script src="/modules/Gastro24/jssocials-1.4.0/dist/jssocials.js"></script>
-            <script>
+            <?php $this->configHeadScript()->appendScript('
                 $("#share").jsSocials({
                     showLabel: false,
                     showCount: true,
@@ -536,7 +535,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                     showCount: true,
                     shares: ["whatsapp"]
                 });
-            </script>
+            '); ?>
             <!-- end socials -->
 
             <!-- iframe resizer -->

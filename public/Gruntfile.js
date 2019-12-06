@@ -93,6 +93,7 @@ module.exports = function(grunt) {
                   jsonOutputFilename: mainDir + '/gastro24-grunt-cache-bust.json',
                   clearOutputDir: true,
                   assets: ["modules/Gastro24/Gastro24.css", "modules/Gastro24/g24-startpage.css",
+                      "modules/Gastro24/jssocials-1.4.0/dist/jssocials.js",
                       "dist/css/jquery-ui-1-12.min.css", "modules/Gastro24/js/*", "dist/js/core.min.js"]
               },
               src: [mainDir + '/views/**/*.phtml'] // files where css is used, not really important
