@@ -67,7 +67,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     
 
     window.addEventListener('load', function(e) {
-		if( isOnScreen( jQuery( '.apply-button-group' ).not('.first') ) ) { /* Pass element id/class you want to check */
+		if( isOnScreen( jQuery( '.apply-button-group' ).not('.first') ) ) { 
 			
 			$('.apply-button-group.first').hide();
  		}	
@@ -79,7 +79,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 		}
 	});
    window.addEventListener('scroll', function(e) {
-		if( isOnScreen( jQuery( '.apply-button-group' ).not('.first') ) ) { /* Pass element id/class you want to check */
+		if( isOnScreen( jQuery( '.apply-button-group' ).not('.first') ) ) {
 			
 			$('.apply-button-group.first').hide();
  		}	
@@ -107,7 +107,9 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 	return (top >= viewport_top && top < viewport_bottom) ||
 	(bottom > viewport_top && bottom <= viewport_bottom) ||
 	(height > viewport_height && top <= viewport_top && bottom >= viewport_bottom)
-  }
+  };
+
+
 
         /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
         /* This file is meant as a standalone workflow for
