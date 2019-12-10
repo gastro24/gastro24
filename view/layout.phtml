@@ -62,8 +62,53 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <link rel="preload" as="style" href="<?= $this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css') ?>" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="<?= $this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css') ?>"></noscript>
 
-    <!-- polyfill for preload css -->
+   
     <script>
+    
+
+    window.addEventListener('load', function(e) {
+		if( isOnScreen( jQuery( '.apply-button-group' ).not('.first') ) ) { /* Pass element id/class you want to check */
+			
+			$('.apply-button-group.first').hide();
+ 		}	
+		
+		else {
+		   
+		   $('.apply-button-group.first').show();
+		
+		}
+	});
+   window.addEventListener('scroll', function(e) {
+		if( isOnScreen( jQuery( '.apply-button-group' ).not('.first') ) ) { /* Pass element id/class you want to check */
+			
+			$('.apply-button-group.first').hide();
+ 		}	
+		
+		else {
+		   
+		   $('.apply-button-group.first').show();
+		
+		}
+	});
+    function isOnScreen(elem) {
+	// if the element doesn't exist, abort
+	if( elem.length == 0 ) {
+		return;
+	}
+	var $window = jQuery(window)
+	var viewport_top = $window.scrollTop()
+	var viewport_height = $window.height()
+	var viewport_bottom = viewport_top + viewport_height
+	var $elem = jQuery(elem)
+	var top = $elem.offset().top
+	var height = $elem.height()
+	var bottom = top + height
+
+	return (top >= viewport_top && top < viewport_bottom) ||
+	(bottom > viewport_top && bottom <= viewport_bottom) ||
+	(height > viewport_height && top <= viewport_top && bottom >= viewport_bottom)
+  }
+
         /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
         /* This file is meant as a standalone workflow for
         - testing support for link[rel=preload]
