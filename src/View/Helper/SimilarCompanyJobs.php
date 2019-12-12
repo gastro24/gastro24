@@ -37,7 +37,8 @@ class SimilarCompanyJobs extends AbstractHelper
     public function __invoke($currentJob, $maxResults = 6)
     {
         /** @var \Solr\Paginator\Paginator $paginator */
-        $keywordParts = explode(' ', $currentJob->getTitle());
+        $sanitizedTitle = str_replace('/', ' ', $currentJob->getTitle());
+        $keywordParts = explode(' ', $sanitizedTitle);
 
         // remove special characters from search query
         $removeSpecialChars = array('/', '-', ',', ':', '');
