@@ -37,6 +37,7 @@ class IsCrawlerJob extends AbstractHelper
             '59e4b53e7bb2b553412f9be9', // Sv Group
             '5a054fa37bb2b593231413a0', //Migros
             '5dc120e93c050f419712a3b2', // Coople Schweiz
+            '5db7f6bb3c050f1326103fc2', // Jobs And More
         ];
 
         return in_array($org->getId(), $crawlerOrganizations) !== false;
