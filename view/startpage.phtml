@@ -190,7 +190,10 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <?php echo $this->headLink() ?>
-    <?php echo $this->headStyle() ?>  
+    <?php echo $this->headStyle() ?>
+    <!-- main inline styles -->
+    <?php echo $this->partial("gastro24/styles/startpage") ?>
+    <!-- main inline styles -->
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -271,51 +274,10 @@ div p a {
     text-decoration:underline;
 }
 </style>
-<script type="application/ld+json">
- { "@context": "https://schema.org",
- "@type": "Organization",
- "name": "Gastrojob24",
- "url": "https://www.gastrojob24.ch",
- "logo": "https://www.gastrojob24.ch/modules/Gastro24/gastrojob24_blue.svg",
- "foundingDate": "2008",
- "founders": [
- {
- "@type": "Person",
- "name": "Marc Bösch"
- }
- ],
- "address": {
- "@type": "PostalAddress",
- "streetAddress": "Dorfstrasse 64",
- "addressLocality": "Andwil",
- "addressRegion": "SG",
- "postalCode": "9204",
- "addressCountry": "Switzerland"
- },
- "contactPoint": {
- "@type": "ContactPoint",
- "contactType": "customer support",
- "telephone": "+41 71 310 10 08",
- "email": "info@gastrojob24.ch"
- },
- "sameAs": [ 
- "https://www.facebook.com/gastrojob24.ch/"
- ]}
-</script>
-    
-<script type="application/ld+json">
-        {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            "url": "https://www.gastrojob24.ch",
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://www.gastrojob24.ch/de/jobs?q={search_term_string}",
-                "query-input": "required name=search_term_string"
-            }
-        }
-</script>
 
+    <!-- gogole json schema -->
+    <?php echo $this->partial("gastro24/schema") ?>
+    <!-- end gogole json schema -->
 
 </head>
 <body class="home startpage.phtml">
