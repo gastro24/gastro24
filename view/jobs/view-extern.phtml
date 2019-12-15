@@ -213,7 +213,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
             <style>
             #preload {
             background-color:#fff;
-            padding:100px 0;
+            padding:100px 15px;
             }
             .frame-content {
             width: 100%;
@@ -282,11 +282,13 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                     c=$(window),
                     g=$("header"),
                     f=$("footer"),
-                    b=$(".box.intro");
+                    b=$(".box.intro"),
+                    g=$(".apply-button-group").not(".first").addClass("hidden");
     
                 setTimeout(function(){
                     a.addClass("hidden");
                     e.removeClass("hidden");
+                    g.addClass("hidden")
                 },3000);
     
                 c.resize(function(){
