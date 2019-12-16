@@ -35,9 +35,11 @@ class IsCrawlerJob extends AbstractHelper
             '5bd21420b6428bfb4523562e', // gastrag.ch
             '5a970fea7bb2b5a578812d52', // Randstad
             '59e4b53e7bb2b553412f9be9', // Sv Group
-            '5a054fa37bb2b593231413a0', //Migros
+            '5a054fa37bb2b593231413a0', // Migros
             '5dc120e93c050f419712a3b2', // Coople Schweiz
             '5db7f6bb3c050f1326103fc2', // Jobs And More
+            '5d8e267b3c050f7ff12f75d2', // Active Gastro
+            '5d8da3cb3c050f4563073b32', // Compass Group
         ];
 
         return in_array($org->getId(), $crawlerOrganizations) !== false;
