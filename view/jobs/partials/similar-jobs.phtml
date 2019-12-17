@@ -2,42 +2,41 @@
     $similarJobs = $this->similarJobs($this->job);
 
     /* loop through locations to build similar jobs title */
-    $similarJobLocations = [];
-    foreach ($similarJobs as $index => $similarJob) {
-        $location = $similarJob->getLocations()->last();
-        if ($location == '') {
-            $similarJobLocations[] = $this->translate('Swiss');
-        }
-        elseif ($location && $location->getCity()) {
-            $similarJobLocations[] = $location->getCity();
-        }
-        else {
-            $similarJobLocations[] = (string) $similarJob->getLocation();
-        }
-    }
-    $similarJobLocations = array_unique($similarJobLocations);
-
-    if (count($similarJobLocations) == 1) {
-        $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $similarJobLocations[0];
-    }
-    elseif (count($similarJobLocations) > 1) {
-        $location = $this->job->getLocations()->last();
+//    $similarJobLocations = [];
+//    foreach ($similarJobs as $index => $similarJob) {
+//        $location = $similarJob->getLocations()->last();
+//        if ($location == '') {
+//            $similarJobLocations[] = $this->translate('Swiss');
+//        }
+//        elseif ($location && $location->getCity()) {
+//            $similarJobLocations[] = $location->getCity();
+//        }
+//        else {
+//            $similarJobLocations[] = (string) $similarJob->getLocation();
+//        }
+//    }
+//    $similarJobLocations = array_unique($similarJobLocations);
+//
+//    if (count($similarJobLocations) == 1) {
+//        $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $similarJobLocations[0];
+//    }
+//    elseif (count($similarJobLocations) > 1) {
+        $location = $this->job->getLocations()->current();
         if ($location == '') {
             $similarJobTitle = $this->translate('Ähnliche Jobs');
         }
-        elseif ($location && $location->getCity()) {
-            $jobLocation = $location->getCity();
+        elseif ($location) {
+            $jobLocation = $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string)$job->getLocation());
             $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $jobLocation . ' und Umgebung';
         }
         else {
-            $jobLocation = (string) $similarJob->getLocation();
+            $jobLocation = preg_replace('~\(.*?\)$~', '', (string)$job->getLocation());
             $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $jobLocation . ' und Umgebung';
         }
-    }
-    else {
-        $similarJobTitle = $this->translate('Ähnliche Jobs');
-    }
-
+//    }
+//    else {
+//        $similarJobTitle = $this->translate('Ähnliche Jobs');
+//    }
 ?>
 <?php if (count($similarJobs)) : ?>
 <div class="grey-description-container similar-jobs">

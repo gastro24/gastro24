@@ -213,7 +213,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
             <style>
             #preload {
             background-color:#fff;
-            padding:100px 0;
+            padding:100px 15px;
             }
             .frame-content {
             width: 100%;
@@ -282,11 +282,13 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                     c=$(window),
                     g=$("header"),
                     f=$("footer"),
-                    b=$(".box.intro");
+                    b=$(".box.intro"),
+                    g=$(".apply-button-group").not(".first").addClass("hidden");
     
                 setTimeout(function(){
                     a.addClass("hidden");
                     e.removeClass("hidden");
+                    g.removeClass("hidden");
                 },3000);
     
                 c.resize(function(){
@@ -454,23 +456,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                         ]); ?>
                         <!-- end favorite button -->
                     </div>
-<div style="
-    background: #f6f6f6;
-    border-radius: 3px 3px 0 0;
-    font-size: 16px;
-    padding: 13px 10px 10px;
-    margin-bottom: 0;
-    text-align: center;
-    position: relative;
-    border-bottom: 1px solid #ececec;
-    border-top: 1px solid #ececec;
-    margin-bottom: 25px;
-    ">
-  <p class="text-center" style="
-    margin-bottom: 0;
-    color: #454342;
-    ">Bitte beziehen Sie sich bei Ihrer Bewerbung auf <strong>gastrojob24.ch</strong>.</p>
-</div>
+
                   
 
                     <!-- share buttons -->
