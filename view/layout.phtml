@@ -41,7 +41,12 @@ $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials
 
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
+
+
 ?>
+
+
+
 
 <?php echo $this->doctype(); ?>
 <html lang="<?php echo $this->params('lang') ?>">
@@ -57,13 +62,17 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <?php echo $this->headStyle() ?>
     <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
     
-   <php if ($this->params()->fromRoute('isLandingPage')) {
+    
+    <?php if ($this->params()->fromRoute('isLandingPage')):?>
+    
+    
+
     echo "<script type="text/javascript">";
     echo "document.write("Hello World!")";
      echo "</script>";
      
-     } 
-    ?>
+ 
+    <?php endif ?>
 
 
     
