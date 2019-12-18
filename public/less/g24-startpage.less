@@ -32,7 +32,7 @@ input[type="file"] {
 .input-group .form-control  {
         -webkit-border-radius: 3px!important;
         -moz-border-radius: 3px!important;
-         border-radius: 3px!important; 
+         border-radius: 3px!important;
          height: 38px!important;
          font-size: 14px!important;
 }
@@ -88,10 +88,25 @@ input[type="file"] {
         text-align:left;
     }
 }
-
+#wrapper {
+    text-align: center;
+    min-height: 600px;
+    #bg-full {
+        position: absolute;
+        width: 100%;
+    }
+    .bg-static {
+        background-image: url(../background_gastrojob24_img.jpg);
+        background-color: #999;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: block;
+        min-height: 600px;
+    }
+}
 .home #jobs-list-filter-wrapper {
     .search-form-container {
-        
         margin: 0 auto;
         width: 75%;
         background-color: rgba(0, 0, 0, 0.7);
@@ -108,24 +123,6 @@ input[type="file"] {
         .btn-primary:hover {
             background-color: darken(@btn-primary-bg,10%);
         }
-    }
-}
-
-#wrapper {
-    text-align: center;
-    min-height: 600px;
-    #bg-full {
-        position: absolute;
-        width: 100%;
-    }
-    .bg-static {
-        background-image: url(../background_gastrojob24_img.jpg);
-        background-color: #999;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-        display: block;
-        min-height: 600px;
     }
 }
 
@@ -157,7 +154,6 @@ input[type="file"] {
         }
     }
 }
-
 .jumbotron {
     margin-top: 40px;
     position: relative;
@@ -185,7 +181,6 @@ input[type="file"] {
         }
     }
 }
-
 .home {
     .navbar-brand {
         color: @g24-blue;
@@ -218,86 +213,87 @@ input[type="file"] {
 }
 
 .navbar-brand {
-   display: block;
+    display: block;
     margin-top: 33px;
     padding: 0;
-     height: auto;
+    height: auto;
 }
 
- .navbar-brand>img {
+.navbar-brand>img {
     margin-left:5px;
-    }
-    @media(min-width: @screen-sm) {
+}
 
-        .navbar {
-            .header-link {
-                margin-top: 20px;
-                padding-right: 30px;
+@media(min-width: @screen-sm) {
 
-                .link {
-                    &--inverted {
-                        background-color: @g24-white;
-                        border: 1px solid @g24-blue;
-                        color: @g24-blue;
-                        font-size:16px;
-                        font-weight:300;
-                        margin-top: 30px;
-                        padding: 10px 15px;
+    .navbar {
+        .header-link {
+            margin-top: 20px;
+            padding-right: 30px;
 
-                        &:hover {
-                            background-color: darken(@g24-blue,10%);
-                            color: @g24-white
-                        }
+            .link {
+                &--inverted {
+                    background-color: @g24-white;
+                    border: 1px solid @g24-blue;
+                    color: @g24-blue;
+                    font-size:16px;
+                    font-weight:300;
+                    margin-top: 30px;
+                    padding: 10px 15px;
+
+                    &:hover {
+                        background-color: darken(@g24-blue,10%);
+                        color: @g24-white
                     }
                 }
             }
         }
+    }
 
-        #main-navigation {
-            font-weight: 600;
+    #main-navigation {
+        font-weight: 600;
 
-            ul li a.inverted {
-                border: 1px solid @g24-blue;
-                background-color: @g24-blue;
-                color: @g24-white;
-            }
-            ul li a.inverted:hover {
-                background-color: darken(@g24-blue,10%);
-            }
-            .navbar-nav > li > a {
-                padding-top: 10px;
-                padding-bottom: 10px;
-                margin-top: 30px;
-                font-weight:300;
-                font-size:16px;
-
-                &.link__saved-jobs {
-                    padding-left: 0;
-                }
-            }
-            .dropdown-menu > li > a:hover {
-                background-color: @navbar-inverse-toggle-hover-bg;
-            }
-
+        ul li a.inverted {
+            border: 1px solid @g24-blue;
+            background-color: @g24-blue;
+            color: @g24-white;
         }
+        ul li a.inverted:hover {
+            background-color: darken(@g24-blue,10%);
+        }
+        .navbar-nav > li > a {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            font-weight:300;
+            font-size:16px;
 
-        .home #main-navigation {
-            height: 145px !important;
-            .navbar-nav > li > a {
-                padding-top: 10px;
-                padding-bottom: 10px;
-                margin-top: 30px;
-                color: @g24-white;
+            &.link__saved-jobs {
+                padding-left: 0;
             }
-            a:hover {
-                background-color: transparent;
-            }
-            ul li a.inverted {
-                border: 1px solid @g24-white;
-                background-color: transparent;
-            }
+        }
+        .dropdown-menu > li > a:hover {
+            background-color: @navbar-inverse-toggle-hover-bg;
         }
     }
+
+    .home #main-navigation {
+        height: 145px !important;
+
+        .navbar-nav > li > a {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            color: @g24-white;
+        }
+        a:hover {
+            background-color: transparent;
+        }
+        ul li a.inverted {
+            border: 1px solid @g24-white;
+            background-color: transparent;
+        }
+    }
+}
 
 // Menü auf Handy
 @media(max-width: @screen-sm) {
