@@ -56,6 +56,17 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
     <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
+    
+   <php if ($this->params()->fromRoute('isLandingPage')) {
+    echo "<script type="text/javascript">";
+    echo "document.write("Hello World!")";
+     echo "</script>";
+     
+     } 
+    ?>
+
+
+    
     <script data-ad-client="ca-pub-1700827639031413" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <script>
