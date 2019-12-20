@@ -125,12 +125,108 @@
     justify-content: space-between;
     flex-direction: row;
 
+    .h3 {
+      font-size: 16px;
+    }
+  }
+
+  &__job-short-info {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 10px 0;
+
+    ul {
+      padding-left: 0;
+      margin:0;
+
+      li {
+        font-size: 14px!important;
+        margin-bottom:3px;
+        line-height: 2.5rem;
+        list-style: none;
+        &:before {
+          color: #B9B9B9;
+        }
+      }
+
+      li.location {
+        &:before {
+          font-family: "FontAwesome";
+          font-size: 1.8rem;
+          content: "\f041";
+          padding-right: 5px;
+        }
+      }
+
+      li.company {
+        a {
+          color: @g24-blue;
+        }
+
+        &:before {
+          font-family: "FontAwesome";
+          content: "\f0f7";
+          padding-right: 5px;
+        }
+      }
+
+      li.type {
+        &:before {
+          font-family: "FontAwesome";
+          content: "\f017";
+          padding-right: 5px;
+        }
+      }
+
+      li.date {
+        &:before {
+          font-family: "FontAwesome";
+          content: "\f073";
+          padding-right: 5px;
+        }
+      }
+
+      li.industries {
+        &:before {
+          font-family: "FontAwesome";
+          content: "\f02c";
+          padding-right: 5px;
+        }
+      }
+    }
+
+    .wrapper__right {
+      text-align: center;
+
+      .wrapper__logo {
+        height: 100px;
+        width: 100px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__action-buttons {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
     button {
-      padding: 4px 10px;
+      display: flex;
+      align-items: center;
+      padding: 5px 7px;
+      border-radius: 4px;
+      margin: 0.2em 0;
 
       &:before {
         font-family: "FontAwesome";
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-weight: normal;
         content: "\f006";
         padding-right: 5px;
@@ -140,9 +236,22 @@
         &:before {
           color: @g24-grey-blue;
           font-family: "FontAwesome";
-          font-size: 1.5rem;
+          font-size: 2rem;
           content: "\f005";
           padding-right: 5px;
+        }
+      }
+    }
+
+    .jssocials {
+      .jssocials-shares {
+        .jssocials-share-whatsapp .jssocials-share-link,
+        .jssocials-share-email .jssocials-share-link {
+          background: #fff!important;
+          border:1px solid #ccc;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
         }
       }
     }
@@ -237,6 +346,15 @@
       }
     }
 
+    &__job-short-info {
+      .wrapper__right {
+        .wrapper__logo {
+          height: 80px;
+          width: 80px;
+        }
+      }
+    }
+
     &__favorite-note {
       line-height: 35px;
       padding: 20px 0;
@@ -256,19 +374,9 @@
 
 @media(max-width: @screen-xs) {
   .box {
-    &__job-favorite {
+    &__action-buttons {
       button {
-        padding: 2px 7px;
-
-        &:before {
-          padding-right: 0;
-        }
-
-        &.saved {
-          &:before {
-            padding-right: 0;
-          }
-        }
+        padding: 5px 7px;
       }
     }
   }

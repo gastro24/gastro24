@@ -66,7 +66,6 @@
         }
 
         var oldValue = badge.html();
-        console.log(oldValue);
         var newValue = parseInt(oldValue) + 1;
         badge.html(newValue);
     }
@@ -136,43 +135,44 @@
                     console.log('Error while saving job');
                 }
             });
-        })
+        });
 
-        $('.box__job-favorite button').click(function() {
-            var saveButton = $(this);
-            var saveText = saveButton.data('text-save');
-            var savedText = saveButton.data('text-saved');
-            var jobLink = $(this).parent().find('h2 > a').attr('href');
-            var jobId = jobLink.split('-').pop().replace('.html', '');
-            var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
+        $container.on('yk-paginator-container:loaded.gastro24 g24-jobs:init', function(ev) {
+            $('.box__action-buttons button').click(function() {
+                var saveButton = $(this);
+                var saveText = saveButton.data('text-save');
+                var savedText = saveButton.data('text-saved');
+                var jobLink = $(this).parent().parent().find('.box__job-favorite h2 > a').attr('href');
+                var jobId = jobLink.split('-').pop().replace('.html', '');
+                var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
 
-            // call ajax, add link to session list
-            $.ajax({
-                url : '/' + lang + '/job/' + jobId + '/save',
-                type: 'post',
-                dataType: 'json',
-                data: {
-                    id: jobId,
-                    action: updateMethod,
-                },
-                success : function(data) {
+                // call ajax, add link to session list
+                $.ajax({
+                    url : '/' + lang + '/job/' + jobId + '/save',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        id: jobId,
+                        action: updateMethod,
+                    },
+                    success : function(data) {
 
-                    // update translated text
-                    if (updateMethod == 'remove') {
-                        saveButton.removeClass('saved').find('span').html(saveText);
-                        decrementBadgeCount();
+                        // update translated text
+                        if (updateMethod == 'remove') {
+                            saveButton.removeClass('saved').find('span').html(saveText);
+                            decrementBadgeCount();
+                        }
+                        else {
+                            saveButton.addClass('saved').find('span').html(savedText);
+                            incrementBadgeCount();
+                        }
+                    },
+                    error : function(error) {
+                        console.log('Error while saving job');
                     }
-                    else {
-                        saveButton.addClass('saved').find('span').html(savedText);
-                        incrementBadgeCount();
-                    }
-                    console.debug(data)
-                },
-                error : function(error) {
-                    console.log('Error while saving job');
-                }
-            });
-        })
+                });
+            })
+        });
     });
 
 })(jQuery, window); 
