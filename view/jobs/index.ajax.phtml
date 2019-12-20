@@ -354,10 +354,12 @@ $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png')
                                                 <?php
                                                     $preview = substr($job->getTemplateValues()->getIntroduction(), 0 , 150);
                                                     if ($preview) {
-                                                        $preview = str_replace('</p>', ' ...</p>', $preview);
+                                                        $preview = str_replace('<p>', '', $preview);
+                                                        $preview = str_replace('</p>', '', $preview);
+                                                        $preview .= ' ...';
                                                     }
                                                 ?>
-                                                <?= $preview?>
+                                                <p><?= $preview?></p>
                                             </p>
 
                                             <div class="box__action-buttons">
