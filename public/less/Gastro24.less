@@ -101,9 +101,14 @@ input[type="file"] {
 }
 
 .featured-image-box {
-    border: 1px solid #ccc;
+    -webkit-box-shadow: 0 0 5px 0 #ccc;
+    -moz-box-shadow: 0 0 5px 0 #ccc;
+    box-shadow: 0 0 5px 0
+    #ccc;
+    border-radius: 4px;
+    padding: 12px 12px 12px 12px;
     background-color:#fff;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     position: relative;
 
     .img-box {
@@ -113,11 +118,13 @@ input[type="file"] {
         vertical-align: top;
     }
 
-
-
     .content-area {
         background-color: @g24-white;
-        padding: 20px;
+        //padding: 20px;
+
+        .preview-text {
+            margin: 15px 0;
+        }
     }
 }
 .img-box {

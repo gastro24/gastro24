@@ -23,6 +23,7 @@ $searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($query
 $hasRegion= isset($queryGet['region_MultiString']);
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
+$this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
 
 //$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
 $description = $wordpress->call('value', ['content.rendered'], '');
@@ -56,6 +57,7 @@ $container->fromCompanyProfile = false;
 $container->searchTerm = $searchTerm;
 
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 ?>
 
 
@@ -238,20 +240,27 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                             // get date difference
                             $today = new DateTime();
                         ?>
-                        <?php foreach ($jobs as $index => $job): /* @var \Jobs\Entity\Job $job */ ?>
+                        <?php foreach ($jobs as $index => $job): ?>
                             <?php
                                 $org = $job->getOrganization();
                                 $hasJobTemplate = $this->gastroJobTemplate($org);
                                 $isIntern = (!$job->getLink() || $hasJobTemplate);
                                 $isEmbeddable = $this->gastroIsEmbeddable($job->getLink());
                                 $jobHasExternLink = (!$isIntern && !$isEmbeddable);
-
+                                $industries = $job->getClassifications()->getIndustries();
+                                $orgName = $this->jobOrganizationName($job);
+                                $template = $job->getAttachedEntity('gastro24-template');
+                                $isExpired = ($job->getStatus()) ? $job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
+                                $orgIsDisabled = false;
+                                if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting())) ) {
+                                    $orgIsDisabled = true;
+                                }
                                 $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true ]);
                             ?>
                             <div class="col-md-12 col-sm-6 col-xs-12">
                                 <div class="featured-image-box">
                                     <?php
-                                        // check for newer than 24 hours
+                                        // check for newer than 24 hoursj
                                         $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
                                         $dayDiff = $today->diff($jobDate);
                                         if ($dayDiff->days < 1) {
@@ -277,74 +286,99 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
                                                         </a>
                                                     <?php } ?>
                                                 </h2>
+                                            </div>
+
+                                            <div class="box__job-short-info">
+                                                <ul>
+                                                    <li class="location">
+                                                        <!-- location -->
+                                                        <?php
+                                                        $location = $job->getLocations()->current();
+                                                        if ($location == '') {
+                                                            echo $this->translate('Swiss');
+                                                        }
+                                                        elseif ($location) {
+                                                            echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                                        }
+                                                        else {
+                                                            echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                                        }
+                                                        ?>
+                                                        <!-- end location -->
+                                                    </li>
+                                                    <li class="company">
+                                                        <!-- company name -->
+                                                        <?php if ($org && !$orgIsDisabled): ?>
+                                                            <a title="Jobs <?= $this->organizationName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
+                                                        <?php else: ?>
+                                                            <strong><?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?></strong>
+                                                        <?php endif ?>
+                                                        <!-- end company name -->
+                                                    </li>
+                                                    <li class="type">
+                                                        <!-- type of contract -->
+                                                        <?php
+                                                        $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                                                        <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                                                        <!-- end type of contract -->
+                                                    </li>
+                                                    <li class="date">
+                                                        <!-- published date -->
+                                                        <span><?= $this->publishDateFormatter($job) ?></span>
+                                                        <!-- end published date -->
+                                                    </li>
+                                                    <!-- HINT: some jobs has invalid industries, therefore check for empty string -->
+                                                    <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
+                                                        <li class="industries">
+                                                            <?= $industries->__toString(); ?>
+                                                        </li>
+                                                    <?php endif; ?>
+                                                </ul>
+                                                <div class="wrapper__right">
+                                                    <div class="wrapper__logo">
+                                                        <img src="<?= $template && ($logo = $template->getLogo())
+                                                            ? $this->basePath($logo->getUri())
+                                                            : $defaultLogoUrl ?>" alt="<?= $orgName ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <p class="preview-text">
+                                                <?php
+                                                    $preview = substr($job->getTemplateValues()->getIntroduction(), 0 , 150);
+                                                    if ($preview) {
+                                                        $preview = str_replace('</p>', ' ...</p>', $preview);
+                                                    }
+                                                ?>
+                                                <?= $preview?>
+                                            </p>
+
+                                            <div class="box__action-buttons">
+                                                <!-- share button -->
+                                                <?php if(!$jobHasExternLink) : ?>
+                                                    <div id="shareMail<?= $index ?>" class="hidden-xs shareMail"
+                                                         data-url="<?=$href?>" data-title="<?=strip_tags($job->getTitle())?>"></div>
+                                                    <div id="shareWhatsapp<?= $index ?>" class="visible-xs shareWhatsapp"
+                                                         data-url="<?=$href?>" data-title="<?=strip_tags($job->getTitle())?>"></div>
+                                                <?php endif; ?>
+                                                <!-- end share button -->
 
                                                 <?php if(!$jobHasExternLink) : ?>
                                                     <!-- favorite button -->
                                                     <?php if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
                                                         <button type="button" class="btn btn-default saved"
                                                                 data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
-                                                            <span class="hidden-xs"><?=$this->translate('Marked')?></span>
+                                                            <span><?=$this->translate('Marked')?></span>
                                                         </button>
                                                     <?php else : ?>
                                                         <button type="button" class="btn btn-default"
                                                                 data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
-                                                            <span class="hidden-xs"><?=$this->translate('Mark')?></span>
+                                                            <span><?=$this->translate('Mark')?></span>
                                                         </button>
                                                     <?php endif ?>
                                                     <!-- end favorite button -->
                                                 <?php endif; ?>
                                             </div>
-
-                                            <p>
-                                            <?php if ($org && $org->getOrganizationName() && $org->getOrganizationName()->getName()) {
-
-                                            /**
-                                              * if (\Organizations\Entity\Organization::PROFILE_DISABLED !== $org->getProfileSetting()) {
-                                                      echo sprintf('<a href="%s?clear=1">%s</a>',
-                                                        $this->orgProfileUrl($org),
-                                                        $org->getOrganizationName()->getName());
-                                                } else {
-                                                   echo $org->getOrganizationName()->getName();
-
-                                                }
-                                              */
-                                              echo $org->getOrganizationName()->getName();
-
-
-                                            } else if ($job->getCompany()) {
-                                                echo $job->getCompany();
-                                            }
-                                            // get location string
-                                            $location = $job->getLocations()->last();
-                                            if ($location == '') {
-                                                $locationString = $this->translate('Swiss');
-                                            }
-                                            elseif ($location) {
-                                                $locationString = $location->getCity() ? $location->getCity() :
-                                                    preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                                            }
-                                            else {
-                                                $locationString = preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                                            }
-                                            ?>, <?=$locationString ?>
-                                            </p>
-                                           <p>
-
-                                               <?php if ($jobHasExternLink) { ?>
-                                                <span class="sponsored" style="margin: 0 2px 4px 0;font-size: 12px;line-height: 17px;color: #243b84;
-                                                   border: 1px solid #243b84;border-radius: 4px;
-                                                   background-color: #fff;padding: 1px 6px;">Sponsored</span>
-                                               <?php } ?>
-                                               <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
-
-                                                <span style="margin: 0 2px 4px 0;  font-size: 12px; line-height: 17px; color:
-                                                #FFF;border: 1px solid transparent;border-radius: 4px;  background-color: #A5B0BB;cursor: pointer;padding: 1px 6px;" class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
-
-                                                <?php
-                                                    if ($job->getDatePublishStart()): echo $this->dateFormat($job->getDatePublishStart(), 'short', 'none');
-                                                    elseif ($job->getDateCreated()): echo $this->dateFormat($job->getDateCreated(), 'short', 'none');
-                                                endif?>
-                                             </p>
                                         </div>
                                     </div>
                                 </div>
@@ -408,6 +442,9 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
     </div>
 </div>
 <?php endif ?>
+
+
+
 
 
 
