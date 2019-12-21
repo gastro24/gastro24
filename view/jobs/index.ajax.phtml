@@ -365,10 +365,10 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                 <?php
                                                     $preview = null;
                                                     if ($job->getTemplateValues()->getIntroduction()) {
-                                                        $preview = substr($job->getTemplateValues()->getIntroduction(), 0 , 250);
+                                                        $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 250);
                                                     }
                                                     elseif ($job->getTemplateValues()->getHtml()) {
-                                                        $preview = substr($job->getTemplateValues()->getHtml(), 0 , 250);
+                                                        $preview = substr(strip_tags($job->getTemplateValues()->getHtml()), 0 , 250);
                                                     }
                                                     if ($preview) {
                                                         $preview = str_replace('<p>', '', $preview);
