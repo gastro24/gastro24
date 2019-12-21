@@ -80,6 +80,19 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
+      .wrapper__logo {
+        height: 100px;
+        width: 100px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+
+    .footer {
+      margin: 15px 0;
     }
 
     .header {
@@ -334,11 +347,6 @@
 @media(max-width: @screen-sm) {
   .box {
     &__job {
-      .content {
-        align-items: unset;
-        flex-direction: column;
-      }
-
       .badge-expired,
       .button-job-apply {
         align-self: center;

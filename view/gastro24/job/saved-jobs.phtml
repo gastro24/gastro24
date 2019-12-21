@@ -28,8 +28,10 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
         </p>
         <?php foreach ($savedJobs as $id => $jobData) : ?>
             <?php
-            $jobObject = $jobsRepo->find($jobData['id']);
-            $isExpired = ($jobObject->getStatus()) ? $jobObject->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
+                $jobObject = $jobsRepo->find($jobData['id']);
+                $isExpired = ($jobObject->getStatus()) ? $jobObject->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
+                $org = $jobObject->getOrganization();
+                $template = $jobObject->getAttachedEntity('gastro24-template');
             ?>
             <div class="box__job <?= ($isExpired) ? 'expired' : '' ?>">
                 <div class="header">
@@ -48,7 +50,20 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                 <div class="content">
                     <ul>
                         <li class="location">
-                            <?=($jobData['location'] == '') ? $this->translate('Swiss') : $jobData['location']; ?>
+                            <!-- location -->
+                            <?php
+                            $location = $jobObject->getLocations()->last();
+                            if ($location == '') {
+                                echo $this->translate('Swiss');
+                            }
+                            elseif ($location) {
+                                echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $jobObject->getLocation());
+                            }
+                            else {
+                                echo preg_replace('~\(.*?\)$~', '', (string) $jobObject->getLocation());
+                            }
+                            ?>
+                            <!-- end location -->
                         </li>
                         <li class="company">
                             <?=$jobData['organizationName']; ?>
@@ -60,11 +75,28 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                             <?=$jobData['createdAt']?>
                         </li>
                     </ul>
+                    <div class="wrapper__logo">
+                        <?php
+                            $logoUrl = null;
+
+                            if (is_object($org) && is_object($org->getImage()) && $org->getImage()->getUri()) {
+                                $logoUrl = $this->basePath($this->organizationImageCache->getUri($org->getImage(true)));
+                            }
+                            if ($template && ($logo = $template->getLogo())) {
+                                $logoUrl = $this->basePath($logo->getUri());
+                            }
+                        ?>
+                        <img src="<?= $logoUrl ? $logoUrl : $this->basePath('modules/Gastro24/images/no-company-logo.png'); ?>"
+                             alt="<?= $jobData['organizationName'] ?>">
+                    </div>
+                </div>
+
+                <div class="footer">
                     <?php if ($isExpired) : ?>
                         <span class="badge badge-expired"><?=$this->translate('Expired')?></span>
                     <?php else: ?>
                         <!-- apply button -->
-                        <div class="button-job-apply text-center">
+                        <div class="button-job-apply text-right">
                             <?=$jobData['applyUrl']?>
                         </div>
                         <!-- end apply button -->

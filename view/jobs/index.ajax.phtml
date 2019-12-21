@@ -58,9 +58,8 @@ $container->searchTerm = $searchTerm;
 
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
+$jobsRepo = $this->services('repositories')->get('Jobs');
 ?>
-
-
 
 <style>
   @media (min-width: 992px) {
@@ -178,8 +177,6 @@ $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png')
         <?php endif;?>
         <!-- end list active filters -->
         
-        
-                
          <!-- filter -->
             <div class="panel-group collapse dont-collapse-sm hidden-xs">
             <?php $facetsHtml = ''; $isFirstFacet = true; $atLeastOneTotalActive = false; foreach ($facets as $facetName => $facetValues):?>
@@ -249,13 +246,17 @@ $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png')
                                 $jobHasExternLink = (!$isIntern && !$isEmbeddable);
                                 $industries = $job->getClassifications()->getIndustries();
                                 $orgName = $this->jobOrganizationName($job);
-                                $template = $job->getAttachedEntity('gastro24-template');
+
+                                // TODO: remove workaround with repo after yawik/solr Update
+                                $jobObject = $jobsRepo->find($job->getId());
+                                $template = $jobObject->getAttachedEntity('gastro24-template');
+
                                 $isExpired = ($job->getStatus()) ? $job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
                                 $orgIsDisabled = false;
                                 if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting())) ) {
                                     $orgIsDisabled = true;
                                 }
-                                $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true ]);
+                                $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true, 'absolute' => true ]);
                             ?>
                             <div class="col-md-12 col-sm-6 col-xs-12">
                                 <div class="featured-image-box">
@@ -293,17 +294,19 @@ $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png')
                                                     <li class="location">
                                                         <!-- location -->
                                                         <?php
-                                                        $location = $job->getLocations()->current();
+                                                        $location = $job->getLocations()->last();
                                                         if ($location == '') {
-                                                            echo $this->translate('Swiss');
+                                                            $locationString = $this->translate('Swiss');
                                                         }
                                                         elseif ($location) {
-                                                            echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                                            $locationString = $location->getCity() ? $location->getCity() :
+                                                                preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
                                                         }
                                                         else {
-                                                            echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                                            $locationString = preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
                                                         }
                                                         ?>
+                                                        <?=$locationString ?>
                                                         <!-- end location -->
                                                     </li>
                                                     <li class="company">
@@ -345,21 +348,35 @@ $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png')
                                                                 $logoUrl = $this->basePath($logo->getUri());
                                                             }
                                                         ?>
-                                                        <img src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" alt="<?= $orgName ?>">
+                                                        <?php if(!$jobHasExternLink) : ?>
+                                                            <a title="<?=strip_tags($job->getTitle())?>" target="_blank"
+                                                               href="<?=$href?>">
+                                                                <img src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" alt="<?= $orgName ?>">
+                                                            </a>
+                                                        <?php else : ?>
+                                                            <img src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" alt="<?= $orgName ?>">
+                                                        <?php endif; ?>
+
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <p class="preview-text">
                                                 <?php
-                                                    $preview = substr($job->getTemplateValues()->getIntroduction(), 0 , 150);
+                                                    $preview = null;
+                                                    if ($job->getTemplateValues()->getIntroduction()) {
+                                                        $preview = substr($job->getTemplateValues()->getIntroduction(), 0 , 250);
+                                                    }
+                                                    elseif ($job->getTemplateValues()->getHtml()) {
+                                                        $preview = substr($job->getTemplateValues()->getHtml(), 0 , 250);
+                                                    }
                                                     if ($preview) {
                                                         $preview = str_replace('<p>', '', $preview);
                                                         $preview = str_replace('</p>', '', $preview);
                                                         $preview .= ' ...';
                                                     }
                                                 ?>
-                                                <p><?= $preview?></p>
+                                                <?= $preview?>
                                             </p>
 
                                             <div class="box__action-buttons">
