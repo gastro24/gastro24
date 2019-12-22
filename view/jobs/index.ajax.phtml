@@ -416,11 +416,20 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                             <?php endif ?>
                             <?php if ($index == 2) : ?>
                                 <!-- box after third job -->
-                                <div class="jobmail-form-2">
-                                    
-                                  
-                                    
-                                </div>
+                                
+                                <div class="col-md-12 col-sm-6 col-xs-12 jobmail-form-2 visible-lg">
+                                        <div class="featured-image-box">
+                                          <h2>Täglich neue Jobs per E-Mail erhalten?</h2>
+                        	                <p>Lassen Sie sich automatisch informieren, sobald neue Jobs für <?= $this->searchTerm ?> vorhanden sind.</p>
+                        	   
+                        	   <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+                        
+                        	
+                        	</div>
+                        	
+                        </div>
+                                
+                                
                             <?php endif ?>
                         <?php endforeach?>
                     </div>
