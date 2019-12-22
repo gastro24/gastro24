@@ -228,8 +228,19 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
             <!-- result list -->
             <div class="col-md-9 job-overview-results">
-
-                <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+                
+                
+                        <div id="form-jobsbymail-subscribe-form" class="form-container visible-xs">
+                        <div class="form-content">
+                           <div class="jobmail-listings">
+                            <h2 class="h4">Täglich neue Jobs per E-Mail erhalten?</h2>
+                         
+                                  <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+                             </div>
+                          </div>
+                        </div>
+                 
+               
 
                 <div class="row">
                     <div class="row-eq-height">
