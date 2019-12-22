@@ -7,18 +7,17 @@ $facets = $this->facets;
 $modalId = 'job-by-mail-subscribe-modal';
 ?>
 
-<div class="jobmail-listings">
-    <h2 class="h4">Täglich neue Jobs per E-Mail erhalten?</h2>
-    <p class="hidden-xs">
-        Lassen Sie sich automatisch informieren, sobald neue Jobs vorhanden sind.
-    </p>
-    <button type="button" class="pull-right hidden visible-sm hidden-xs btn btn-secondary" aria-expanded="false"
-            data-toggle="collapse" data-target=".panel-group">Filter anzeigen</button>
+
+    
+    
+    
+    <button style="display:none" type="button" class="pull-right hidden visible-sm btn btn-secondary" aria-expanded="false" data-toggle="collapse" data-target=".panel-group">Filter anzeigen</button>
+            
     <button class="btn btn-info" data-title="<?=$this->translate('Jobs By Mail')?>" data-toggle="modal" data-target="#<?=$modalId?>"
             title="<?=$this->translate('Jobs By Mail')?>">
         <i class="yk-icon yk-icon-envelope"></i>Suche abonnieren
     </button>
-</div>
+
 
 <!-- job-by-mail modal form -->
 <?= $this->partial('jobs-by-mail/partials/jobs-by-mail-modal.phtml', [
