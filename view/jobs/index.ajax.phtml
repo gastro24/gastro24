@@ -150,7 +150,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
         <div class="page-title">
              <span><?=$this->jobs->getTotalItemCount() ?> </span>
-             <h1><?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Job-Treffer' : 'Leider keine passenden Jobs gefunden'); ?>
+            <h1><?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Job-Treffer' : 'Leider keine passenden Jobs gefunden'); ?></h1>
         </div>
 
         <div class="row job-results-container">
