@@ -154,6 +154,17 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
         </div>
 
         <div class="row job-results-container">
+            <div class="col-md-3 col-md-offset-9" style="padding-bottom: 15px;">
+                <span>Nach Datum filtern:</span>
+                <select name="jobDateFilter" size="5" >
+                    <option selected>Alle</option>
+                    <option>Letzten 24 Stunden</option>
+                    <option>Letzten 3 Tage</option>
+                    <option>Letzten 7 Tage</option>
+                    <option>Letzten 30 Tage</option>
+                </select>
+
+            </div>
 
 
      <div class="col-md-3">
