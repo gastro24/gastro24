@@ -228,19 +228,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
             <!-- result list -->
             <div class="col-md-9 job-overview-results">
-                
-                
-                        <div id="form-jobsbymail-subscribe-form" class="form-container visible-xs visible-sm">
-                        <div class="form-content">
-                           <div class="jobmail-listings">
-                            <h2 class="h4">Täglich neue Jobs per E-Mail erhalten?</h2>
-                         
-                                  <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-                             </div>
-                          </div>
-                        </div>
-                 
-               
 
                 <div class="row">
                     <div class="row-eq-height">
@@ -423,17 +410,14 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
                             <?php if ($index == 1) : ?>
                                 <!-- box after second job -->
-                                
-                               <div class="col-md-12 col-sm-6 col-xs-12 jobmail-form-2 visible-md visible-lg">
-    <div class="featured-image-box">
-        <h2 style="color: #22436c;font-weight: 300;margin-top: 0; margin-bottom: 10px;font-size: 19px;line-height: 1.3;}">Täglich neue Jobs per E-Mail erhalten?</h2>
-        <p>Lassen Sie sich automatisch informieren, sobald neue
-            <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs' : 'Jobs'); ?> vorhanden sind.</p>
-
-        <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-
-    </div>
-</div>
+                               <div id="form-jobsbymail-subscribe-form" class="col-md-12 col-sm-6 col-xs-12 visible-md visible-lg">
+                                    <div class="featured-image-box">
+                                        <h2 style="color: #22436c;font-weight: 300;margin-top: 0; margin-bottom: 10px;font-size: 19px;line-height: 1.3;}">Täglich neue Jobs per E-Mail erhalten?</h2>
+                                        <p>Lassen Sie sich automatisch informieren, sobald neue
+                                            <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs' : 'Jobs'); ?> vorhanden sind.</p>
+                                        <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+                                    </div>
+                                </div>
                             <?php endif ?>
                             <?php if ($index == 2) : ?>
                                 <!-- box after third job -->
