@@ -1,0 +1,68 @@
+<?php
+    $cuttedHeadline = str_replace(' Jobs', '', $this->headline);
+    $similarJobs = $this->similarJobs(null, 6, $cuttedHeadline);
+    $similarJobTitle = $this->translate('Diese Jobs könnten Sie auch interessieren');
+?>
+<?php if (count($similarJobs)) : ?>
+    <h1><?= $this->headline ?></h1>
+    <div class="panel panel-default panel__job-detail">
+        <div class="grey-description-container similar-jobs" style="margin: 0;">
+            <div class="content">
+                <div class="headline"><h2 style="margin-top: 5px; margin-bottom: 20px;font-size: 20px;color: #000;"><?= $similarJobTitle ?></h2></div>
+                    <div class="row">
+                        <?php
+                        /* @var Solr\Entity\JobProxy $similarJob */
+                        foreach ($similarJobs as $index => $similarJob):  ?>
+                            <?php
+                                // check for job external redirect (i.e. coop)
+                                $org = $similarJob->getOrganization();
+                                $hasJobTemplate = $this->gastroJobTemplate($org);
+                                $isIntern = (!$similarJob->getLink() || $hasJobTemplate);
+                                $isEmbeddable = $this->gastroIsEmbeddable($similarJob->getLink());
+                                $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+
+                                $jobHref = ($jobHasExternLink) ? $similarJob->getLink() : $this->jobUrl($similarJob, ['linkOnly' => true ]);
+                            ?>
+
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <div class="job-box">
+                                    <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $jobHref ?>">
+                                        <?=strip_tags($similarJob->getTitle())?>
+                                    </a>
+
+                                    <div class="job-short-info">
+                                        <ul>
+                                            <li class="location">
+                                                <!-- location -->
+                                                <?php
+                                                    $location = $similarJob->getLocations()->last();
+                                                    if ($location == '') {
+                                                        echo $this->translate('Swiss');
+                                                    }
+                                                    elseif ($location) {
+                                                        echo $location->getCity() ? $location->getPostalCode() . ' ' . $location->getCity() :
+                                                        preg_replace('~\(.*?\)$~', '', (string) $similarJob->getLocation());
+                                                    }
+                                                    else {
+                                                        echo (string) $similarJob->getLocation();
+                                                    }
+                                                 ?>
+                                                <!-- end location -->
+                                            </li>
+                                            <li class="type">
+                                                <!-- type of contract -->
+                                                <?php
+                                                $typeOfContract = $similarJob->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                                                <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                                                <!-- end type of contract -->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

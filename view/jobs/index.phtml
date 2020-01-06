@@ -12,6 +12,7 @@ $this->headScript()->appendFile($this->basepath('/modules/Core/js/core.paginatio
 <?php
 $queryGet = $this->params()->fromQuery();
 unset($queryGet['clear']);
+$searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
 $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $wordpress = $this->proxy('wordpress');
 
@@ -21,8 +22,9 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 
 $title = $wordpress->call('value', ['meta-fields.title'], '');
 $this->headTitle($title ?: $this->translate('Jobs'));
+$headline = $wordpress->call('value', ['title.rendered'], '');
+$headline = $headline ?: $searchTerm;
 
- 
 // set temporarly index,follow without caonical only on landing pages without jobs
  if (!count($this->jobs) && $this->params()->fromRoute('isLandingPage')) {
    //$jobsLandingpage = "/de/jobs?clear=1";
@@ -100,11 +102,11 @@ $noJobsMessage = $this->translate('No jobs found.');
              data-uri="<?php echo $this->url('lang/jobboard', [], ['query' => $this->params()->fromQuery()], true)?>">
 
             <?php if (!count($this->jobs)):?>
-            <style>
-                #form-jobsbymail-subscribe-form {
-                    display: none;
-                }
-            </style>
+                <style>
+                    #form-jobsbymail-subscribe-form {
+                        display: none;
+                    }
+                </style>
                 <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
 
                 <script type="text/javascript">
@@ -116,8 +118,10 @@ $noJobsMessage = $this->translate('No jobs found.');
                         });
                     })(jQuery);
                 </script>
+                <!-- similar jobs by raw string -->
+                <?php echo $this->partial('jobs/partials/similar-jobs-by-title.phtml', ['headline' => $headline]); ?>
+                <!-- end similar jobs by raw string -->
             <?php endif ?>
-
             <div class="container pagination-content">
                <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
             </div>

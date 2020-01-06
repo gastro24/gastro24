@@ -34,8 +34,13 @@ class SimilarJobs extends AbstractHelper
      * @param \Jobs\Entity\Job $currentJob
      * @return array
      */
-    public function __invoke($currentJob, $maxResults = 6)
+    public function __invoke($currentJob, $maxResults = 6, $searchTitle = null)
     {
+        // search similar jobs by raw string, not by job entity
+        if (is_null($currentJob) && !is_null($searchTitle)) {
+            return $this->getSimilarJobsByTitle($searchTitle, $maxResults);
+        }
+
         /** @var \Solr\Paginator\Paginator $paginator */
         $sanitizedTitle = str_replace('/', ' ', $currentJob->getTitle());
         $keywordParts = explode(' ', $sanitizedTitle);
@@ -112,6 +117,64 @@ class SimilarJobs extends AbstractHelper
             $paginator->setItemCountPerPage(self::ITEM_PER_PAGE_COUNT);
             $maxItems = $paginator->getTotalItemCount();
         }
+
+        while ($counterAll < $maxItems) {
+            foreach ($paginator->getItemsByPage($page) as $job) {
+                $counterAll++;
+                // check for external jobs
+                if (!$this->validator->isValid($job->getLink())) {
+                    continue;
+                }
+
+                $jobs[] = $job;
+                $counter++;
+                if ($counter == $maxResults) {
+                    return $jobs;
+                }
+            }
+            $page++;
+            $paginator->setCurrentPageNumber($page);
+        }
+
+        return $jobs;
+    }
+
+    /**
+     * @param string $title
+     * @param int $maxResults
+     * @return array
+     */
+    public function getSimilarJobsByTitle($title, $maxResults = 6)
+    {
+        /** @var \Solr\Paginator\Paginator $paginator */
+        $sanitizedTitle = str_replace('/', ' ', $title);
+        $keywordParts = explode(' ', $sanitizedTitle);
+
+        // remove special characters from search query
+        $removeSpecialChars = array('/', '-', ',', ':', '');
+        $keywords = array_diff($keywordParts, $removeSpecialChars);
+
+        $keywordString = implode(' OR ', $keywords);
+        $industries = [];
+        $searchQueryString = '(' . $keywordString . ') AND isActive:true';
+
+        $jobBoardQueryParams = ['q' => $searchQueryString, 'page' => 1, 'd' => 20, 'count' => self::ITEM_PER_PAGE_COUNT];
+        $jobBoardParams = [
+            'Jobs_Board',
+            'q' => $searchQueryString,
+            'd' => 20,
+            'count' => self::ITEM_PER_PAGE_COUNT,
+            $jobBoardQueryParams
+        ];
+
+        $paginator  = $this->paginators->get('Gastro24/Jobs/Similar', $jobBoardParams);
+        $paginator->setItemCountPerPage(self::ITEM_PER_PAGE_COUNT);
+
+        $jobs = [];
+        $counterAll = 0;
+        $counter = 0;
+        $page = 1;
+        $maxItems = $paginator->getTotalItemCount();
 
         while ($counterAll < $maxItems) {
             foreach ($paginator->getItemsByPage($page) as $job) {
