@@ -105,8 +105,6 @@ class JobController extends AbstractActionController implements ContainerAwareIn
                     $job->changeStatus($post['status'], '[System] Status changed by abo user.');
                     $events = $this->jobEvents;
                     $events->trigger(JobEvent::EVENT_STATUS_CHANGED, $this, [ 'job' => $job, 'status' => $oldStatus ]);
-
-
                 }
             }
 
@@ -161,7 +159,6 @@ class JobController extends AbstractActionController implements ContainerAwareIn
         if (isset($routeParams['q']) && !isset($getParams['q'])) {
             $getParams['q']=$routeParams['q'];
         }
-
 
         if (isset($queryParams['remove']) && $queryParams['remove']) {
             $container = new Container('gastro24_savedjobs');
