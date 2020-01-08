@@ -374,33 +374,35 @@ h1.job-overview-title {
 }
 
 
-
-
 .job-results-container {
     background-color: #f2f2f2;
     margin-bottom: -50px;
-    padding: 20px 0;
 
+    .container__date-filter {
+        background-color: #e8e8e8;
+        margin-bottom: 10px;
+
+        .container__filter {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: baseline;
+            padding: 10px 0;
+        }
+    }
 }
 
 @media(max-width: @screen-sm) {
-    
      ol.breadcrumb {
         margin-left:-15px;
         margin-right:-15px;
     }
     
     .home #jobs-list-filter-wrapper {
-    .search-form-container {
-        
-      
-        width: 100%;
-  
-        
+        .search-form-container {
+            width: 100%;
+        }
     }
-}
- 
-
 }
 
 

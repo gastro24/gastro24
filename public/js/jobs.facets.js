@@ -107,6 +107,15 @@
                 }
             })
         ;
+
+        $(document).on('change', '#jobDateFilter', function () {
+            var $option = $(this),
+                name = 'dateFilter';
+
+            $form.find('input[name="' + name + '"]').remove();
+            $form.append('<input type="hidden" class="facet-param" name="' + name + '" value="' + $option.val() + '">');
+            $form.trigger('submit', {forceAjax: true});
+        });
     });
 
 })(jQuery);

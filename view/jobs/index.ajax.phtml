@@ -21,6 +21,7 @@ $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $wordpress = $this->proxy('wordpress');
 $searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
 $hasRegion= isset($queryGet['region_MultiString']);
+$dateFilterValue = isset($queryGet['dateFilter']) ? $queryGet['dateFilter'] : '';
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
 $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
@@ -154,18 +155,20 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
         </div>
 
         <div class="row job-results-container">
-            <div class="col-md-3 col-md-offset-9" style="padding-bottom: 15px;">
-                <span>Nach Datum filtern:</span>
-                <select name="jobDateFilter" size="5" >
-                    <option selected>Alle</option>
-                    <option>Letzten 24 Stunden</option>
-                    <option>Letzten 3 Tage</option>
-                    <option>Letzten 7 Tage</option>
-                    <option>Letzten 30 Tage</option>
-                </select>
-
+            <!-- date filter -->
+            <div class="col-md-12 container__date-filter">
+                <div class="container__filter">
+                    <div style="margin-right: 10px;">Datum filtern</div>
+                    <select id="jobDateFilter" name="jobDateFilter" data-searchbox="-1" >
+                        <option class="date-filter-option" value="all" <?php if($dateFilterValue == '') echo 'selected'; ?>>Alle</option>
+                        <option class="date-filter-option" value="1440" <?php if($dateFilterValue == '1440') echo 'selected'; ?>>Letzten 24 Stunden</option>
+                        <option class="date-filter-option" value="4320" <?php if($dateFilterValue == '4320') echo 'selected'; ?>>Letzten 3 Tage</option>
+                        <option class="date-filter-option" value="10080" <?php if($dateFilterValue == '10080') echo 'selected'; ?>>Letzten 7 Tage</option>
+                        <option class="date-filter-option" value="43200" <?php if($dateFilterValue == '43200') echo 'selected'; ?>>Letzten 30 Tage</option>
+                    </select>
+                </div>
             </div>
-
+            <!-- end date filter -->
 
      <div class="col-md-3">
          
@@ -173,9 +176,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
        <!-- list active filters -->
         <?php if ($activeFacets):?>
             <div class="well well-sm hidden-xs">
-              <!--  <?=$this->translate('Active filters:')?>-->
-             
-              
                 <?php foreach ($activeFacets as $facetName => $facetValues):?>
                     <?php foreach ($facetValues as $facetValue):?>
                         <button type="button" class="btn btn-primary btn-sm facet-active" data-name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]" title="<?=$this->translate('Remove filter')?>"><?=$facetValue?> <span>&times;</span></button>
@@ -239,7 +239,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
             <!-- result list -->
             <div class="col-md-9 job-overview-results">
-
                 <div class="row">
                     <div class="row-eq-height">
                         <?php

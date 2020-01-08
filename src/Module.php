@@ -180,6 +180,12 @@ class Module implements AssetProviderInterface
                         }
                     }
 
+                    $dateFilterValue = $query->get('dateFilter');
+                    if ($dateFilterValue && $dateFilterValue != 'all') {
+                        $publishStartFilter = strtotime('-' . $dateFilterValue . ' minutes');
+                        $query->set('publishedSince', date('Y-m-d H:i:s', $publishStartFilter));
+                    }
+
                     // remove location from session (from search form)
                     if (!$query->get('l')) {
                         $jobsBoardContainer = new Container('Jobs_Board');
