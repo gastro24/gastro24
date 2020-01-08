@@ -90,7 +90,7 @@ $noJobsMessage = $this->translate('No jobs found.');
 })(jQuery);
 <?php $this->headScript()->captureEnd();?>
 
-<?php if ($jobs instanceof \Solr\FacetsProviderInterface): $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/jobs.facets.js')); endif; ?>
+<?php if ($jobs instanceof \Solr\FacetsProviderInterface): $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.facets.js'))); endif; ?>
 
 <?php echo $this->flashMessenger()->render('default', array('alert', 'alert-success')) ?>
 
