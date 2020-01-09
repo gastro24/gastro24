@@ -393,7 +393,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                     }
                                                     elseif ($job->getTemplateValues()->getHtml()) {
                                                         $preview = $job->getTemplateValues()->getHtml();
-                                                        $preview = str_replace(['<li>', '</p>', '</h2>'], ' ', $preview);
+                                                        $preview = str_replace(['<li>', '</p>', '</h2>', '<b>', '</b>', '<br>'], ' ', $preview);
                                                         $preview = substr(strip_tags($preview), 0 , 250);
                                                     }
                                                     if ($preview) {
