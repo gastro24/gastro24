@@ -392,15 +392,18 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                         $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 250);
                                                     }
                                                     elseif ($job->getTemplateValues()->getHtml()) {
-                                                        $preview = substr(strip_tags($job->getTemplateValues()->getHtml()), 0 , 250);
+                                                        $preview = $job->getTemplateValues()->getHtml();
+                                                        $preview = str_replace(['<li>', '</p>', '</h2>'], ' ', $preview);
+                                                        $preview = substr(strip_tags($preview), 0 , 250);
                                                     }
                                                     if ($preview) {
                                                         $preview = str_replace('<p>', '', $preview);
                                                         $preview = str_replace('</p>', '', $preview);
+                                                        $preview   = implode(' ', explode(' ', $preview, -1));
                                                         $preview .= ' ...';
                                                     }
                                                 ?>
-                                                <?= $preview?>
+                                                <?= $preview ?>
                                             </p>
 
                                             <div class="box__action-buttons">
