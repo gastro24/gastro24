@@ -159,6 +159,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
             <div class="col-md-12 container__date-filter">
                 <div class="container__filter">
                     <div style="margin-right: 10px;">Datum filtern</div>
+                    
                     <select class="select-css" id="jobDateFilter" name="jobDateFilter" data-searchbox="-1" >
                         <option class="date-filter-option" value="all" <?php if($dateFilterValue == '') echo 'selected'; ?>>Alle</option>
                         <option class="date-filter-option" value="1440" <?php if($dateFilterValue == '1440') echo 'selected'; ?>>Letzten 24 Stunden</option>
