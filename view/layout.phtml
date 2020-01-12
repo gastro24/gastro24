@@ -226,7 +226,12 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
                 }
             });
         });
-
+		window.addEventListener('load', function(e) {
+            if( isOnScreen( jQuery( '.apply-button-group' ).not('.first') ) ) {
+                $('.apply-button-group.first').hide();
+            }
+           
+        });
         window.addEventListener('scroll', function(e) {
             if( isOnScreen( jQuery( '.apply-button-group' ).not('.first') ) ) {
                 $('.apply-button-group.first').hide();
