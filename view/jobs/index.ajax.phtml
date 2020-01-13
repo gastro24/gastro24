@@ -85,7 +85,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
  }
  
  .well-sm {
-     
     padding: 0;
     background: none;
     border: none;
@@ -95,7 +94,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
  }
  
 .facet-active {
-    
     margin: 0px 5px 5px 0px;
     background-color: #dcdfe2;
     color: #566578;
@@ -106,11 +104,9 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
     border-radius: 0;
     position: relative;
     text-decoration: none;
-
 }
 
 .facet-active span {
-    
     font-size: 24px;
     position: absolute;
     right: 10px;
@@ -122,11 +118,10 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
     display: block;
     margin-top: 5px;
     text-decoration: underline;
-    
 }
-   
- 
- 
+.container__date-filter .select2 {
+    min-width: 144px!important;
+}
 </style>
 
 <?php if ($hasFacets):
@@ -155,25 +150,19 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
         </div>
 
         <div class="row job-results-container">
-            <!-- date filter -->
+
             <div class="col-md-12 container__date-filter">
                 <div class="container__filter">
                     <div style="margin-right: 10px;">Datum filtern</div>
-                    
-                    <select id="jobDateFilter" name="jobDateFilter" data-searchbox="-1" >
-                        <option class="date-filter-option" value="all" <?php if($dateFilterValue == '') echo 'selected'; ?>>Alle</option>
-                        <option class="date-filter-option" value="1440" <?php if($dateFilterValue == '1440') echo 'selected'; ?>>Letzten 24 Stunden</option>
-                        <option class="date-filter-option" value="4320" <?php if($dateFilterValue == '4320') echo 'selected'; ?>>Letzten 3 Tage</option>
-                        <option class="date-filter-option" value="10080" <?php if($dateFilterValue == '10080') echo 'selected'; ?>>Letzten 7 Tage</option>
-                        <option class="date-filter-option" value="43200" <?php if($dateFilterValue == '43200') echo 'selected'; ?>>Letzten 30 Tage</option>
-                    </select>
+                    <!-- date filter -->
+                    <?= $this->partial('jobs/partials/date-filter-select.phtml', [
+                        'dateFilterValue' => $dateFilterValue,
+                        'facets' => $facets,
+                    ]); ?>
+                    <!-- end date filter -->
                 </div>
             </div>
-            <!-- end date filter -->
-
      <div class="col-md-3">
-         
-         
        <!-- list active filters -->
         <?php if ($activeFacets):?>
             <div class="well well-sm hidden-xs">
@@ -191,7 +180,9 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
         
          <!-- filter -->
             <div class="panel-group collapse dont-collapse-sm hidden-xs">
-            <?php $facetsHtml = ''; $isFirstFacet = true; $atLeastOneTotalActive = false; foreach ($facets as $facetName => $facetValues):?>
+                <?php $facetsHtml = ''; $isFirstFacet = true; $atLeastOneTotalActive = false; foreach ($facets as $facetName => $facetValues):?>
+                <?php $facetOptionsCounter = 0; ?>
+                <?php if($facetName == 'datePublishStart') continue; ?>
                 <?php if(count($facetValues)>0): $atLeastOneActive = false; $facetsList = []; ob_start();?>
                 <div id="facets-box-<?=$facetName?>" class="panel panel-default">
                     <div class="panel-heading">
@@ -204,6 +195,8 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                     <div id="facets-box-<?=$facetName?>-content" class="panel-collapse collapse <?=$isFirstFacet ? '%firstIn%' : '%in%' ?>">
                     <div class="panel-body">
                         <?php foreach ($facetValues as $facetValue => $facetValueCount):
+                            $facetOptionsCounter++;
+                            if($facetOptionsCounter > 10) continue;
                             $activeFacet = $facets->isValueActive($facetName, $facetValue);
                             $atLeastOneActive = $atLeastOneActive || $activeFacet;?>
                             <div>
@@ -240,13 +233,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
             <!-- result list -->
             <div class="col-md-9 job-overview-results">
-                <?php $this->headScript()->captureStart();?>
-                (function($) {
-                    if ($(window).width() > 767) {
-                        $('.form-jobsbymail-subscribe-form-mobile').remove();
-                    }
-                })(jQuery);
-                <?php $this->headScript()->captureEnd();?>
                 <div id="form-jobsbymail-subscribe-form" class="form-container form-jobsbymail-subscribe-form-mobile visible-xs visible-sm">
                     <div class="form-content">
                         <div class="jobmail-listings">
@@ -440,13 +426,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
                             <?php if ($index == 1) : ?>
                                 <!-- box after second job -->
-                                <?php $this->headScript()->captureStart();?>
-                                    (function($) {
-                                        if ($(window).width() < 767) {
-                                            $('.form-jobsbymail-subscribe-form-desktop').remove();
-                                        }
-                                    })(jQuery);
-                                <?php $this->headScript()->captureEnd();?>
                                <div id="form-jobsbymail-subscribe-form" class="form-jobsbymail-subscribe-form-desktop col-md-12 col-sm-6 col-xs-12 visible-md visible-lg">
                                     <div class="featured-image-box">
                                         <h2 style="color: #22436c;font-weight: 300;margin-top: 0; margin-bottom: 10px;font-size: 19px;line-height: 1.3;}">Täglich neue Jobs per E-Mail erhalten?</h2>
@@ -458,8 +437,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                             <?php endif ?>
                             <?php if ($index == 2) : ?>
                                 <!-- box after third job -->
-                                
-                                
+
                             <?php endif ?>
                         <?php endforeach?>
                     </div>
