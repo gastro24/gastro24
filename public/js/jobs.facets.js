@@ -112,7 +112,6 @@
             var $option = $(this),
                 name = 'dateFilter';
 
-            console.debug($option);
             $form.find('input[name="' + name + '"]').remove();
             $form.append('<input type="hidden" class="facet-param" name="' + name + '" value="' + $option.val() + '">');
             $form.trigger('submit', {forceAjax: true});
