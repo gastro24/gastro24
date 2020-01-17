@@ -103,10 +103,9 @@ $noJobsMessage = $this->translate('No jobs found.');
 <?php echo $this->flashMessenger()->render('default', array('alert', 'alert-success')) ?>
 
 <div class="row">
-    <div class="tab-content">
-
-        <div id="jobs-list-container" class="pagination-container"
-             <?php if (!count($this->jobs)):?>data-message="<strong><?= $noJobsMessage ?></strong>"<?php endif ?>
+   
+      <?php if (!count($this->jobs)):?>data-message="<strong><?= $noJobsMessage ?></strong>"<?php endif ?>
+       <div class="col-md-12">
              data-uri="<?php echo $this->url('lang/jobboard', [], ['query' => $this->params()->fromQuery()], true)?>">
 
             <?php if (!count($this->jobs)):?>
@@ -124,12 +123,12 @@ $noJobsMessage = $this->translate('No jobs found.');
                 <!-- similar jobs by raw string -->
                 <?php echo $this->partial('jobs/partials/similar-jobs-by-title.phtml', ['headline' => $headline]); ?>
                 <!-- end similar jobs by raw string -->
+         </div>
             <?php endif ?>
-            <div class="container pagination-content">
+        
+          <div class="container pagination-content">
                <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
-            </div>
         </div>
-    </div>
 </div>
 
 <div class="modal fade" id="job-apply-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
