@@ -114,7 +114,7 @@ $noJobsMessage = $this->translate('No jobs found.');
              data-uri="<?php echo $this->url('lang/jobboard', [], ['query' => $this->params()->fromQuery()], true)?>">
 
             <?php if (!count($this->jobs)):?>
-                <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
+         
                 <?php $this->headScript()->captureStart();?>
                     (function($) {
                         $(function() {
@@ -131,12 +131,12 @@ $noJobsMessage = $this->translate('No jobs found.');
             <?php endif ?>
             
             
-          
-        </div>
-        
-          <div class="pagination-content">
+           <div class="pagination-content">
                <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
             </div>
+        </div>
+        
+         
             
             
     </div>
