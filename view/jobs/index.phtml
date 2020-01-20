@@ -25,8 +25,10 @@ $this->headTitle($title ?: $this->translate('Jobs'));
 $headline = $wordpress->call('value', ['title.rendered'], '');
 $headline = $headline ?: $searchTerm;
 
+$wordpressTitle = '';
 // set temporarly index,follow without caonical only on landing pages without jobs
  if (!count($this->jobs) && $this->params()->fromRoute('isLandingPage')) {
+     $wordpressTitle = $wordpress->call('value', ['title.rendered'], '');
    //$jobsLandingpage = "/de/jobs?clear=1";
    // $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
     $robots = "index,follow";
@@ -103,11 +105,20 @@ $noJobsMessage = $this->translate('No jobs found.');
 <?php echo $this->flashMessenger()->render('default', array('alert', 'alert-success')) ?>
 
 <div class="row">
-  
-    
-    
-    
+
     <div class="col-md-12">
+        <?php if (!count($this->jobs)):?>
+            <!-- breadcrumbs -->
+            <?= $this->partial('jobs/partials/breadcrumbs.phtml', [
+                'searchTerm' => $searchTerm,
+                'hasRegion' => $hasRegion,
+                'wordpressTitle' => $wordpressTitle
+            ]); ?>
+            <!-- breadcrumbs -->
+            <div class="page-title">
+                <h1><?= $headline ?></h1>
+            </div>
+        <?php endif ?>
 
         <div id="jobs-list-container" class="pagination-container"
              <?php if (!count($this->jobs)):?>data-message="<strong><?= $noJobsMessage ?></strong>"<?php endif ?>
@@ -135,10 +146,7 @@ $noJobsMessage = $this->translate('No jobs found.');
                <?php echo $this->render('jobs/jobboard/index.ajax.phtml') ?>
             </div>
         </div>
-        
-         
-            
-            
+
     </div>
 </div>
 
