@@ -12,49 +12,21 @@
 <footer id="footer">
     <div class="container">
         <div class="row">
-            <div class="col-xs-6 col-md-2">
-                <strong style="color:#fff" class="h5">Über Gastrojob24</strong>
-                <nav>
-                    <ul class="list-unstyled">
-                        <li><a title="Über Gastrojob24" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
-                        <li><a title="Impressum" href="<?= $this->url('lang/wordpress', ['id' => 'impressum'], true)?>">Impressum</a></li>
-                        <li><a title="AGB" href="<?= $this->url('lang/wordpress', ['id' => 'agb'], true)?>">AGB</a></li>
-                        
-                    </ul>
-                </nav>
+            <div class="col-md-12">
+                <a class="text-center facebook" title="Gastrojob24.ch bei Facebook"
+                   href="https://www.facebook.com/gastrojob24.ch/" target="_blank"
+                   rel="ugc"><i class="fa fa-facebook"></i>
+                </a>
             </div>
-            <div class="col-xs-6 col-md-2">
-                <strong style="color:#fff" class="h5">Social Media</strong>
-                <nav>
-                    <ul class="list-unstyled">
-                        <li><a title="Gastrojob24.ch bei Facebook" href="https://www.facebook.com/gastrojob24.ch/" target="_blank" rel="ugc">Facebook</a></li>
-
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-xs-6 col-md-2">
-                <strong style="color:#fff" class="h5">Für Arbeitgeber</strong>
-                <nav>
-                    <ul class="list-unstyled">
-                        
-                         <li><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
-                         <li><a title="Häufige Fragen & Antworten" href="<?= $this->url('lang/wordpress', ['id' => 'faq'], true)?>">Hilfe</a></li>
-                        <?php if (!$this->auth()->isLoggedIn()):?>
-                        <li><a title="Login für Arbeitgeber" href="<?=$this->url('lang/auth', [], true)?>?ref=<?= urlencode($this->url('lang/dashboard', [], true)) ?>">Einloggen</a></li>
-                        <?php endif ?>
-                        <?php if (!$this->auth()->isLoggedIn()):?> <li><a title="Inserieren" href="<?= $this->url('lang/wordpress', ['id' => 'stellenanzeigen-schalten'], true)?>">Inserieren</a></li>   <?php endif ?>
-                    </ul>
-                </nav>
-            </div>
-            <!--<div class="col-md-offset-3 col-md-3">
-                <?php #$this->languageSwitcher()?>
-            </div>-->
-        </div>
-
-        <hr style="border-top: 1px solid #b6bed6">
-        <div class="row">
-            <div class="col-md-12 text-center">
-               <p>&copy; <?=date('Y')?> Alle Rechte vorbehalten <strong>Gastrojob24 Schweiz</strong> </p>
+            <div class="col-md-12">
+                <ul class="footer-link">
+                    <li><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
+                    <li><a title="Impressum" href="<?= $this->url('lang/wordpress', ['id' => 'impressum'], true)?>">Impressum</a></li>
+                    <li><a title="AGB" href="<?= $this->url('lang/wordpress', ['id' => 'agb'], true)?>">AGB</a></li>
+                    <li><a title="Häufige Fragen &amp; Antworten" href="<?= $this->url('lang/wordpress', ['id' => 'faq'], true)?>">Hilfe</a></li>
+                    <li>&copy; <?=date('Y')?> Alle Rechte vorbehalten</li>
+                </ul>
             </div>
         </div>
+    </div>
 </footer>
