@@ -1,5 +1,7 @@
 @import "../../../modules/Core/less/yawik.less";
 @import "_forms.less";
+@import "_header.less";
+@import "_footer.less";
 @import "_jobs.less";
 @import "_socials.less";
 @import "_search-form-container.less";
@@ -295,14 +297,6 @@ input[type="file"] {
 
 }
 
-.home #header {
-    left: 0;
-    position: relative;
-    right: 0;
-    top: 0;
-    background-image: linear-gradient( #121212, rgba(0, 0, 0, 0.001));
-}
-
 #form-orders-settings {
     margin-bottom: 20px;
     background-color: #fff;
@@ -327,27 +321,6 @@ input[type="file"] {
         &:hover {
             border-color: #ccc;
         }
-    }
-}
-
-#footer {
-    background-color: #243b84;
-    padding: 25px 0;
-    font-size: 15px;
-    line-height: 24px;
-    color: #b6bed6;
-
-    nav ul li a {
-        text-decoration: underline;
-    }
-    a {
-        color: #b6bed6;
-    }
-    h5 {
-        color: #fff;
-    }
-    hr {
-        border-top: 1px solid @g24-blue;
     }
 }
 
@@ -668,12 +641,12 @@ h1.job-overview-title {
         padding: 0;
          height: auto;
     }
- .navbar-brand>img {
-    margin-left:5px;
+    .navbar-brand>img {
+        margin-left:5px;
     }
-    @media(min-width: @screen-sm) {
 
-        .navbar {
+    @media(min-width: @screen-sm) {
+        header {
             .header-link {
                 margin-top: 20px;
                 padding-right: 30px;

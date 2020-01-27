@@ -58,4 +58,6 @@ return [
 
     'Schweiz' => 'Swiss',
     'Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.' => 'No jobs found.',
+
+    'Passwort vergessen?' => 'I forgot my password'
 ];

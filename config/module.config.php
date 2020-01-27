@@ -324,6 +324,7 @@ return [
             'Jobs/Description' => 'Gastro24\Form\JobsDescription',
             'Jobs/PreviewFieldset' => Form\JobPreviewFieldsetDelegator::class,
             'Applications/Attributes' => Form\Applications\Attributes::class, // only needed until YAWIK fixed error
+            'Auth/Login' => 'Gastro24\Form\Login',
         ],
         'factories' => [
             Form\CreateSingleJobForm::class => InvokableFactory::class,
@@ -336,6 +337,7 @@ return [
             'Auth\Form\Register' => \Gastro24\Factory\Form\RegisterFactory::class,
             'Jobs/JobboardSearch' => \Gastro24\Factory\Form\JobboardSearchFactory::class,
             'LocationSelect' => \Gastro24\Factory\Form\GeoSelectFactory::class,
+            'Gastro24\Form\Login' => \Gastro24\Factory\Form\LoginFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,

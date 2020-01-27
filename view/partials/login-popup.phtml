@@ -1,0 +1,39 @@
+<?php
+
+$formElementManager = $this->services('FormElementManager');
+$loginForm = $formElementManager->get('Gastro24\Form\Login');
+$ref = $this->url('lang/dashboard', [], true);
+$url = $this->url('lang/auth', array(), array('query' => array('ref' => urlencode($ref),true)));
+$loginForm->setAttribute("action", $url);
+$deviceCss = ($this->device) ?? 'mobile';
+
+?>
+<?php $this->headScript()->captureStart();?>
+    (function($) {
+        // prevent duplicated forms
+        if ($(window).width() > 767) {
+            $('.login-form-mobile').remove();
+        }
+        if ($(window).width() < 767) {
+            $('.login-form-desktop').remove();
+        }
+    })(jQuery);
+<?php $this->headScript()->captureEnd();?>
+
+<div class="yamm-content login-form-<?= $deviceCss ?>">
+    <div class="row">
+        <div class="col-md-12">
+            <strong class="reveal-form-title"><i class="fa fa-lock"></i> Anmelden</strong>
+            <?= $this->form($loginForm); ?>
+            <?php if (!isset($this->allowResetPassword) || $this->allowResetPassword == true): ?>
+                <p>
+                    <a href="<?php echo $this->url('lang/forgot-password'); ?>"
+                       title="<?php echo $this->translate('I forgot my password'); ?>">
+                        <?php echo $this->translate('I forgot my password'); ?>
+                    </a>
+                    <!--<br>Noch kein Konto? <a href="#">Registrieren</a>-->
+                </p>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
