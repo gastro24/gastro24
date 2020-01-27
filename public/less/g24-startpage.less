@@ -757,7 +757,13 @@
     }
 
     .container-search {
-        padding: 20px 0 5px 0!important;
+        padding: 20px 15px 5px 15px!important;
+
+        form.search-form {
+            > .row {
+                padding: 0!important;
+            }
+        }
 
         form.search-form .input-group[class*="col-"] {
             padding-right: 12px;
