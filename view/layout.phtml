@@ -893,7 +893,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <?php if (!$this->noHeader):?>
-    <header id="header" role="banner" class="hidden-xs">
+    <header id="header" role="banner" class="hidden-xs" data-saved-jobs="<?=$savedJobsCount?>">
         <div class="container">
             <?php if ($this->auth('role') === Auth\Entity\User::ROLE_RECRUITER) : ?>
                 <div class="row">
@@ -933,7 +933,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
                             </li>
                         </ul>
                     <?php else: ?>
-                        <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation" data-saved-jobs="<?=$savedJobsCount?>">
+                        <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation">
                             <?= $this->loginInfo(array('lang' => $lang ));?>
                             <?= $this->navigation('Core/Navigation')
                                 ->setAcl($this->services('acl'))
