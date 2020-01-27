@@ -20,7 +20,8 @@
         });
 
         // add saved jobs badge
-        var savedJobsCount = $('#main-navigation').data('saved-jobs');
+        var savedJobsCount = $('header').data('saved-jobs');
+        console.log(savedJobsCount);
 
         if (savedJobsCount > 0) {
             var savedJobsIcon = $('nav .link__saved-jobs');

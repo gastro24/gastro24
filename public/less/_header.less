@@ -150,16 +150,6 @@ header {
     }
   }
 
-  //.dropdown-menu-mobile {
-  //  display: none !important;
-  //}
-
-  .collapse-textbox,
-  .collapse-textbox.in {
-    display: block;
-    height: auto !important;
-  }
-
   .dropdown-menu>li>a:focus,
   .dropdown-menu>li>a:hover {
     background: #e5e5e5;
@@ -188,7 +178,11 @@ header {
       border: none;
       border-radius: 0;
       box-shadow: none;
-      background: #0b2235 !important
+      background: #0b2235 !important;
+
+      .dropdown-menu>li>a {
+        color: #333;
+      }
     }
 
     .navbar-nav2 {
