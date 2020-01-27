@@ -86,9 +86,24 @@ class SearchForm extends BaseSearchFormHelper
 
         if (!$buttonsRendered) {
             if (null === $buttonsSpan) {
-                $buttonsSpan = $form->getOption('buttons_span') ?: 12;
+                $spanData = $form->getOption('buttons_span');
+                if ($spanData) {
+                    if (is_array($spanData)) {
+                        $buttonsSpanMd = $spanData['md'];
+                        $buttonsSpanSm = $spanData['sm'];
+                    }
+                    else {
+                        $buttonsSpanMd = $spanData;
+                        $buttonsSpanSm = $spanData;
+                    }
+                }
+                else {
+                    $buttonsSpanMd = 12;
+                    $buttonsSpanSm = 12;
+                }
+
             }
-            $content .= '<div class="input-group search-form-buttons col-md-' . $buttonsSpan . ' col-sm-' . $buttonsSpan . ' col-xs-12 text-right">'
+            $content .= '<div class="input-group search-form-buttons col-md-' . $buttonsSpanMd . ' col-sm-' . $buttonsSpanSm . ' col-xs-12 text-right">'
                 . '<div class="btn-group">' . $this->renderButtons($form->getButtons()) .'</div></div>';
         }
 

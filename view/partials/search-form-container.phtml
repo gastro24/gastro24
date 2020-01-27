@@ -34,193 +34,202 @@ else {
     $form = $this->filterForm;
 }
 ?>
+<?php $this->headScript()->captureStart();?>
+    (function($) {
+        // prevent duplicated forms
+        if ($(window).width() > 767) {
+            $('.navbar-search-container-mobile .search-form').remove();
+        }
+        if ($(window).width() < 767) {
+            $('.search-form-container.search-form-container__header .container .search-form').remove();
+        }
+    })(jQuery);
+<?php $this->headScript()->captureEnd();?>
+
 <nav class="navbar yk-toolbar <?= $this->cssClass ?>" id="jobs-list-filter-wrapper">
     <div class="search-form-container search-form-container__header ">
         <div class="container">
-            
-            
-            
-             <div class="navbar-collapse" id="meta-navigation">
-              <ul id="menu" class="nav navbar-nav2">
-                
-                  <li class="dropdown">
-                    <a href="/de/jobs?clear=1" class="dropdown-toggle" data-toggle="dropdown">
-						<span class="icon-bar top-bar"></span>
-						<span class="icon-bar middle-bar"></span>
-						<span class="icon-bar bottom-bar"></span>
-				   </a>
-					
-					<!-- todo: if login: show menu -->
-					
-                    <ul class="dropdown-menu">
-					  <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="/de/stellenanzeigen-schalten.html">Anzeige schalten</a></li>
+            <div class="navbar-collapse" id="meta-navigation">
+                <ul id="menu" class="nav navbar-nav2">
 
-                     
-                      <li class="abstand dropdown dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Küchenjobs</a>
+                    <li class="dropdown">
+                        <a href="/de/jobs?clear=1" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="icon-bar top-bar"></span>
+                            <span class="icon-bar middle-bar"></span>
+                            <span class="icon-bar bottom-bar"></span>
+                        </a>
+
+                        <!-- todo: if login: show menu -->
+
                         <ul class="dropdown-menu">
-                        <li><a href="/de/jobs/commis-de-cuisine.html">Commis de Cuisine Jobs</a></li>
-                        <li><a href="/de/jobs/kuechenchef.html">Küchenchef Jobs</a></li>
-		                <li><a href="/de/jobs/sushi-koch.html">Sushi Koch Jobs</a></li>
-						<li><a href="/de/jobs/jungkoch.html">Jungkoch Jobs</a></li>
-                        <li><a href="/de/jobs/koch.html">Koch Jobs</a></li>
-						<li><a href="/de/jobs/sous-chef.html">Sous-Chef Jobs</a></li>
-						<li><a href="/de/jobs/systemgastronomie.html">Systemgastronomie Jobs</a></li>
-						<li><a href="/de/jobs/chef-de-partie.html">Chef de Partie Jobs</a></li>
-						<li><a href="/de/jobs/diaetkoch.html">Diätkoch Jobs</a></li>
-						<li><a href="/de/jobs/entremetier.html">Entremetier Jobs</a></li>
-						<li><a href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li>
-						<li><a href="/de/jobs/saucier.html">Saucier Jobs</a></li>
-						<li><a href="/de/jobs/tournant.html">Tournant Jobs</a></li>
-						<li><a href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li>
-						<li><a href="/de/jobs/kuechenhilfe.html">Küchenhilfe Jobs</a></li>
-						<li><a href="/de/jobs/garde-manger.html">Garde Manger Jobs</a></li>
-						<li><a href="/de/jobs/casserolier.html">Casserolier Jobs</a></li>
-						<li><a href="/de/jobs/hilfskoch.html">Hilfskoch Jobs</a></li>
-						<li><a href="/de/jobs/patissier.html">Patissier Jobs</a></li>
+                            <li class="hidden-sm hidden-md hidden-lg btn-danger"><a
+                                    href="/de/stellenanzeigen-schalten.html">Anzeige schalten</a></li>
+
+
+                            <li class="abstand dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Küchenjobs</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/de/jobs/commis-de-cuisine.html">Commis de Cuisine Jobs</a></li>
+                                    <li><a href="/de/jobs/kuechenchef.html">Küchenchef Jobs</a></li>
+                                    <li><a href="/de/jobs/sushi-koch.html">Sushi Koch Jobs</a></li>
+                                    <li><a href="/de/jobs/jungkoch.html">Jungkoch Jobs</a></li>
+                                    <li><a href="/de/jobs/koch.html">Koch Jobs</a></li>
+                                    <li><a href="/de/jobs/sous-chef.html">Sous-Chef Jobs</a></li>
+                                    <li><a href="/de/jobs/systemgastronomie.html">Systemgastronomie Jobs</a></li>
+                                    <li><a href="/de/jobs/chef-de-partie.html">Chef de Partie Jobs</a></li>
+                                    <li><a href="/de/jobs/diaetkoch.html">Diätkoch Jobs</a></li>
+                                    <li><a href="/de/jobs/entremetier.html">Entremetier Jobs</a></li>
+                                    <li><a href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li>
+                                    <li><a href="/de/jobs/saucier.html">Saucier Jobs</a></li>
+                                    <li><a href="/de/jobs/tournant.html">Tournant Jobs</a></li>
+                                    <li><a href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li>
+                                    <li><a href="/de/jobs/kuechenhilfe.html">Küchenhilfe Jobs</a></li>
+                                    <li><a href="/de/jobs/garde-manger.html">Garde Manger Jobs</a></li>
+                                    <li><a href="/de/jobs/casserolier.html">Casserolier Jobs</a></li>
+                                    <li><a href="/de/jobs/hilfskoch.html">Hilfskoch Jobs</a></li>
+                                    <li><a href="/de/jobs/patissier.html">Patissier Jobs</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Servicejobs</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/de/jobs/barmaid.html">Barmaid Jobs</a></li>
+                                    <li><a href="/de/jobs/barkeeper.html">Barkeeper Jobs</a></li>
+                                    <li><a href="/de/jobs/barista.html">Barista Jobs</a></li>
+                                    <li><a href="/de/jobs/chef-de-bar.html">Chef de Bar Jobs</a></li>
+                                    <li><a href="/de/jobs/sommelier.html">Sommelier Jobs</a></li>
+                                    <li><a href="/de/jobs/chef-de-service.html">Chef de Service Jobs</a></li>
+                                    <li><a href="/de/jobs/servicemitarbeiter.html">Servicemitarbeiter Jobs</a></li>
+                                    <li><a href="/de/jobs/restauration.html">Restauration Jobs</a></li>
+                                    <li><a href="/de/jobs/servicemitarbeiterin.html">Servicemitarbeiterin Jobs</a></li>
+                                    <li><a href="/de/jobs/chef-de-rang.html">Chef de Rang Jobs</a></li>
+                                    <li><a href="/de/jobs/restaurationsfachmann.html">Restaurationsfachmann Jobs</a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Hoteljobs</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/de/jobs/hotelfachfrau.html">Hotelfachfrau Jobs</a></li>
+                                    <li><a href="/de/jobs/hotelfachmann.html">Hotelfachmann Jobs</a></li>
+                                    <li><a href="/de/jobs/front-office.html">Front Office Jobs</a></li>
+                                    <li><a href="/de/jobs/concierge.html">Concierge Jobs</a></li>
+                                    <li><a href="/de/jobs/zimmermaedchen.html">Zimmermädchen Jobs</a></li>
+                                    <li><a href="/de/jobs/gouvernante.html">Gouvernante Jobs</a></li>
+                                    <li><a href="/de/jobs/rezeptionistin.html">Rezeptionistin Jobs</a></li>
+
+
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Lebensmitteljobs</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/de/jobs/metzger.html">Metzger Jobs</a></li>
+                                    <li><a href="/de/jobs/kaeser-in.html">Käser Jobs</a></li>
+                                    <li><a href="/de/jobs/lebensmitteltechnologe.html">Lebensmitteltechnologe Jobs</a>
+                                    </li>
+                                    <li><a href="/de/jobs/pizzaiolo.html">Pizzaiolo Jobs</a></li>
+                                    <li><a href="/de/jobs/konditor-confiseur.html">Konditor Confiseur Jobs</a></li>
+                                    <li><a href="/de/jobs/baecker.html">Bäcker Jobs</a></li>
+                                    <li><a href="/de/jobs/fachverkaeufer.html">Fachverkäufer Jobs</a></li>
+                                    <li><a href="/de/jobs/lehrstellen-gastronomie.html">Lehrstellen</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Health & Beauty</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/de/jobs/fitness.html">Fitness Jobs</a></li>
+                                    <li><a href="/de/jobs/kosmetikerin.html">Kosmetikerin Jobs</a></li>
+                                    <li><a href="/de/jobs/ernaehrungsberater.html">Ernährungsberater Jobs</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Management & Kader</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/de/jobs/general-manager.html">General Manager Jobs</a></li>
+                                    <li><a href="/de/jobs/filialleiter.html">Filialleiter Jobs</a></li>
+                                    <li><a href="/de/jobs/schichtleiter.html">Schichtleiter Jobs</a></li>
+                                    <li><a href="/de/jobs/restaurant-manager.html">Restaurant Manager Jobs</a></li>
+                                    <li><a href="/de/jobs/assistant.html">Assistant Jobs</a></li>
+                                    <li><a href="/de/jobs/bereichsleiter.html">Bereichsleiter Jobs</a></li>
+                                    <li><a href="/de/jobs/stellvertreter.html">Stellvertreter Jobs</a></li>
+                                    <li><a href="/de/jobs/betriebsleitung.html">Betriebsleiter Jobs</a></li>
+                                    <li><a href="/de/jobs/leitung.html">Leitung Gastronomie Jobs</a></li>
+                                    <li><a href="/de/jobs/office.html">Office Jobs</a></li>
+                                    <li><a href="/de/jobs/marketing-sales.html">Marketing Jobs</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Aushilfs- & Teilzeitjobs</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/de/jobs/promotion.html">Promotion Jobs</a></li>
+                                    <li><a href="/de/jobs/take-away.html">Take Away Jobs</a></li>
+                                    <li><a href="/de/jobs/ferienaushilfe.html">Ferien Jobs</a></li>
+                                    <li><a href="/de/jobs/studenten.html">Studenten Jobs</a></li>
+                                    <li><a href="/de/jobs/allrounder.html">Allrounder Jobs</a></li>
+                                    <li><a href="/de/jobs/saison.html">Saison Jobs</a></li>
+                                    <li><a href="/de/jobs/teilzeit.html">Teilzeit Jobs</a></li>
+                                    <li><a href="/de/jobs/buffet-mitarbeiterin.html">Buffet Mitarbeiterin Jobs</a></li>
+                                    <li><a href="/de/jobs/catering.html">Catering Jobs</a></li>
+                                    <li><a href="/de/jobs/teilzeitverkaeuferin.html">Teilzeitverkäuferin Jobs</a></li>
+                                </ul>
+                            </li>
+
                         </ul>
-                      </li>
-					  
-					     <li class="dropdown dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Servicejobs</a>
-                        <ul class="dropdown-menu">
-                          <li><a href="/de/jobs/barmaid.html">Barmaid Jobs</a></li>
-						  <li><a href="/de/jobs/barkeeper.html">Barkeeper Jobs</a></li>
-						  <li><a href="/de/jobs/barista.html">Barista Jobs</a></li>
-		                  <li><a href="/de/jobs/chef-de-bar.html">Chef de Bar Jobs</a></li>
-		                  <li><a href="/de/jobs/sommelier.html">Sommelier Jobs</a></li>
-						  <li><a href="/de/jobs/chef-de-service.html">Chef de Service Jobs</a></li>
-                          <li><a href="/de/jobs/servicemitarbeiter.html">Servicemitarbeiter Jobs</a></li>
-		                  <li><a href="/de/jobs/restauration.html">Restauration Jobs</a></li>
-                          <li><a href="/de/jobs/servicemitarbeiterin.html">Servicemitarbeiterin Jobs</a></li>
-						<li><a href="/de/jobs/chef-de-rang.html">Chef de Rang Jobs</a></li>
-						<li><a href="/de/jobs/restaurationsfachmann.html">Restaurationsfachmann Jobs</a></li>
-						
-						
-                        </ul>
-                      </li>
-					   <li class="dropdown dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Hoteljobs</a>
-                        <ul class="dropdown-menu">
-                        <li><a href="/de/jobs/hotelfachfrau.html">Hotelfachfrau Jobs</a></li>
-                        <li><a href="/de/jobs/hotelfachmann.html">Hotelfachmann Jobs</a></li>
-                        <li><a href="/de/jobs/front-office.html">Front Office Jobs</a></li>
-						<li><a href="/de/jobs/concierge.html">Concierge Jobs</a></li>
-                        <li><a href="/de/jobs/zimmermaedchen.html">Zimmermädchen Jobs</a></li>
-						<li><a href="/de/jobs/gouvernante.html">Gouvernante Jobs</a></li>
-						<li><a href="/de/jobs/rezeptionistin.html">Rezeptionistin Jobs</a></li>
-						
-						
-                        </ul>
-                      </li>
-					   <li class="dropdown dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Lebensmitteljobs</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/de/jobs/metzger.html">Metzger Jobs</a></li>
-							<li><a href="/de/jobs/kaeser-in.html">Käser Jobs</a></li>
-							<li><a href="/de/jobs/lebensmitteltechnologe.html">Lebensmitteltechnologe Jobs</a></li>
-							<li><a href="/de/jobs/pizzaiolo.html">Pizzaiolo Jobs</a></li>
-							<li><a href="/de/jobs/konditor-confiseur.html">Konditor Confiseur Jobs</a></li>
-							<li><a href="/de/jobs/baecker.html">Bäcker Jobs</a></li>
-							<li><a href="/de/jobs/fachverkaeufer.html">Fachverkäufer Jobs</a></li>
-							<li><a href="/de/jobs/lehrstellen-gastronomie.html">Lehrstellen</a></li>
-                        </ul>
-                      </li>
-					   <li class="dropdown dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Health & Beauty</a>
-                        <ul class="dropdown-menu">
-                           <li><a href="/de/jobs/fitness.html">Fitness Jobs</a></li>
-						   <li><a href="/de/jobs/kosmetikerin.html">Kosmetikerin Jobs</a></li>
-						   <li><a href="/de/jobs/ernaehrungsberater.html">Ernährungsberater Jobs</a></li>
-                       
-                        </ul>
-                      </li>
-					   <li class="dropdown dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Management & Kader</a>
-                        <ul class="dropdown-menu">
-                         <li><a href="/de/jobs/general-manager.html">General Manager Jobs</a></li>
-                        <li><a href="/de/jobs/filialleiter.html">Filialleiter Jobs</a></li>
-						<li><a href="/de/jobs/schichtleiter.html">Schichtleiter Jobs</a></li>
-						<li><a href="/de/jobs/restaurant-manager.html">Restaurant Manager Jobs</a></li>
-						<li><a href="/de/jobs/assistant.html">Assistant Jobs</a></li>
-						<li><a href="/de/jobs/bereichsleiter.html">Bereichsleiter Jobs</a></li>
-						<li><a href="/de/jobs/stellvertreter.html">Stellvertreter Jobs</a></li>
-						<li><a href="/de/jobs/betriebsleitung.html">Betriebsleiter Jobs</a></li>
-						<li><a href="/de/jobs/leitung.html">Leitung Gastronomie Jobs</a></li>
-						<li><a href="/de/jobs/office.html">Office Jobs</a></li>
-						<li><a href="/de/jobs/marketing-sales.html">Marketing Jobs</a></li>
-						
-                          
-						  
-                       
-                        </ul>
-                      </li>
-					  
-					     <li class="dropdown dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Aushilfs- & Teilzeitjobs</a>
-                        <ul class="dropdown-menu">
-                        <li><a href="/de/jobs/promotion.html">Promotion Jobs</a></li>
-						<li><a href="/de/jobs/take-away.html">Take Away Jobs</a></li>
-						<li><a href="/de/jobs/ferienaushilfe.html">Ferien Jobs</a></li>
-                        <li><a href="/de/jobs/studenten.html">Studenten Jobs</a></li>
-						<li><a href="/de/jobs/allrounder.html">Allrounder Jobs</a></li>
-                        <li><a href="/de/jobs/saison.html">Saison Jobs</a></li>
-						<li><a href="/de/jobs/teilzeit.html">Teilzeit Jobs</a></li>
-						<li><a href="/de/jobs/buffet-mitarbeiterin.html">Buffet Mitarbeiterin Jobs</a></li>
-						<li><a href="/de/jobs/catering.html">Catering Jobs</a></li>
-						<li><a href="/de/jobs/teilzeitverkaeuferin.html">Teilzeitverkäuferin Jobs</a></li>
-						
-                        </ul>
-                      </li>
-					
-                    </ul>
-                  </li>
-              </ul>
+                    </li>
+                </ul>
             </div><!-- /.navbar-collapse -->
-            
-           <a class="visible-xs navbar-brand" href="/">
-            <img src="/modules/Gastro24/gastrojob24_white.svg" alt="Gastrojob24 Schweiz" class="menu-logo">
-        </a>
 
-            <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
-             
-<div class="navbar-always-on collapsed pull-right navbar-item visible-xs search-icon" style="position: absolute;
-    right: 60px;
-    top: 0">
-  <span id="navbar-search-toggle" class="fa-search" style="
-    cursor: pointer;
-    display: block;
-    font-weight: 300;
-    font-size: 18px;
-    color: #A5B0BB;
-    height: 52px;
-    text-align: center;
-    width: 40px;
-    padding-top: 13px;
-    " data-target="#navbar-search-bar" data-toggle="collapse"></span>
+            <a class="visible-xs navbar-brand" href="/">
+                <img src="<?= $this->basepath('/modules/Gastro24/gastrojob24_white.svg') ?>" alt="Gastrojob24 Schweiz"
+                     class="menu-logo">
+            </a>
 
+            <?= $this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]); ?>
 
-</div>
-
-
-
-
-            <div class="favorite-icon" style="width:50px">
-                <?php
-                    $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
-                        sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
-                ?>
-                <a style="color: #A5B0BB;font-size: 16px;" class="link__saved-jobs empty" href="<?=$this->url('lang/saved-jobs', [], true)?>"
-                   data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>"><!-- <em style="font-style:normal" class="hidden-xs">Merkliste</em>--></a>
+            <div class="navbar-always-on collapsed pull-right navbar-item visible-xs search-icon"
+                 style="position: absolute; right: 80px; top: 0">
+                <span id="navbar-search-toggle" class="fa-search" style="
+                cursor: pointer;
+                display: block;
+                font-weight: 300;
+                font-size: 18px;
+                color: #A5B0BB;
+                height: 52px;
+                text-align: center;
+                width: 40px;
+                padding-top: 13px;
+                " data-target="#navbar-search-bar" data-toggle="collapse"></span>
             </div>
+
+            <div class="favorite-icon" style="top: 11px; width: unset;">
+                <?php
+                $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
+                    sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
+                ?>
+                <a style="color: #A5B0BB;font-size: 16px;" class="link__saved-jobs empty"
+                   href="<?= $this->url('lang/saved-jobs', [], true) ?>"
+                   data-toggle="tooltip" data-placement="bottom" title="<?= $tooltip ?>">
+                    <!-- <em style="font-style:normal" class="hidden-xs">Merkliste</em>--></a>
+            </div>
+            <div class="login-icon pull-right visible-xs" data-toggle="dropdown" aria-expanded="false">
+                <span class="fa fa-user"></span>
+            </div>
+            <!-- login content mobile -->
+            <div class="dropdown-menu dropdown-menu-mobile">
+                <?= $this->partial('partials/login-popup.phtml'); ?>
+            </div>
+            <!--end login content mobile -->
         </div>
     </div>
 </nav>
-<div class="container collapse navbar-collapse always-collapse tj-collapse-menu navbar-site-search-bar navbar-search-container navbar-search-container-mobile" id="navbar-search-bar">
+<div class="container collapse navbar-collapse always-collapse tj-collapse-menu navbar-site-search-bar navbar-search-container navbar-search-container-mobile"
+     id="navbar-search-bar">
   <div class="visible-xs">
-
-  <?=$this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]);?>
-
-
+    <?= $this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]); ?>
   </div>
 </div>

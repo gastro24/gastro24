@@ -75,7 +75,7 @@ return [
                 'order' => 950,
             ],
             'post-a-job' => [
-                'label' => 'Stellenanzeige schalten',
+                'label' => 'Anzeige schalten',
                 'route' => 'lang/wordpress',
                 'resource' => 'resource/stellenanzeigen-schalten',
                 'params' => [
@@ -83,16 +83,8 @@ return [
                     'id' => 'stellenanzeigen-schalten',
                 ],
                 'order' => 970,
-                'class' => 'inverted'
+                'class' => 'px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none'
             ],
-            'saved-jobs' => [
-                'label' => /*@translate*/'Saved Jobs',
-                'resource' => 'route/lang/saved-jobs',
-                'route' => 'lang/saved-jobs',
-                'order' => 960,
-                'class' => 'link__saved-jobs empty'
-            ],
-
             'resume-recruiter' => [
                 'visible' => false,
             ],
