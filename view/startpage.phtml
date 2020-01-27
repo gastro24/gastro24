@@ -40,11 +40,11 @@ $this->headTitle($this->translate('Home'));
     <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
     <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('modules/Gastro24/g24-startpage.css')) ?>">
 
-    <title>Gastronomie Jobs | Hotel Jobs | Jobs für Gastrohelden - Gastrojob24</title>  
-    <meta name="description" content="Gastronomie Jobbörse mit <?= $this->gastroJobCount() ?> top-aktuellen Gastronomie Jobs, Hotel Jobs und mehr. Jetzt Traumjob finden - auf einen Klick!">
+    <title>Gastronomie und Hotel Jobs - Traumjob finden | Gastrojob24/title>  
+    <meta name="description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Stellen bei Gastrojob24.ch - der #1 Gastronomie & Hotellerie Jobbörse der Schweiz.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
-    <meta property="og:title" content="Gastronomie Jobs | Hotel Jobs | Jobs für Gastrohelden - Gastrojob24" />
+    <meta property="og:title" content="Gastronomie Jobs | Hotel Jobs | Traumjob finden - Gastrojob24" />
     <meta property="og:description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Gastronomie Jobs bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz.">
     <meta property="og:url" content="https://www.gastrojob24.ch" />
     <meta property="og:image" content="https://www.gastrojob24.ch/modules/Gastro24/gastro-logo-fb.png" />
@@ -139,34 +139,8 @@ $this->headTitle($this->translate('Home'));
 .hide {
     display:none!important;
 }
-.separator::before {
-    content: "Alle Berufe anzeigen ...";
-    margin: 0 0 5px 5px;
-    background-color: #dcdfe2;
-    color: #566578;
-    padding: 3px 12px;
-    line-height: 24px;
-    display: block;
-    font-size: 14px;
-    text-decoration: none;
-    cursor:pointer
-}
-.separator2::before {
-    content: "Alle Kantone anzeigen ... ";
-    margin: 0 0 5px 5px;
-    background-color: #dcdfe2;
-    color: #566578;
-    padding: 3px 12px;
-    line-height: 24px;
-    display: block;
-    font-size: 14px;
-    text-decoration: none;
-    cursor:pointer
-}
 
-/*div p a {*/
-/*    text-decoration:underline;*/
-/*}*/
+
 
     /*Content Animation*/
     @keyframes fadeInScale {
@@ -187,7 +161,7 @@ $this->headTitle($this->translate('Home'));
     <!-- end gogole json schema -->
 
 </head>
-<body class="home startpage.phtml">
+<body class="home startpage">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCDJ26Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
