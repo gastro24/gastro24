@@ -138,10 +138,6 @@ header {
     }
   }
 
-  .dropdown-backdrop {
-    display: none;
-  }
-
   .yamm-content {
     &.login-form-mobile {
       .btn-primary {
@@ -251,6 +247,31 @@ header {
     .dropdown-submenu:not(.open)>a:hover {
       background: #e5e5e5;
       color: #0b2235 !important
+    }
+  }
+
+  .dropdown-menu-mobile {
+    .yamm-content {
+
+      &.logged-in {
+        padding: 10px 5px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        > li > a {
+          display: block;
+          font-size: 16px;
+          padding: 3px 20px;
+          clear: both;
+          font-weight: 400;
+          line-height: 1.42857143;
+          color: #333;
+          white-space: nowrap;
+        }
+      }
     }
   }
 }

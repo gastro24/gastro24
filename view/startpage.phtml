@@ -21,12 +21,6 @@ $this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoE
 $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
 
-$formElementManager = $this->services('FormElementManager');
-$loginForm = $formElementManager->get('Gastro24\Form\Login');
-$ref = $this->url('lang/dashboard', [], true);
-$url = $this->url('lang/auth', array(), array('query' => array('ref' => urlencode($ref),true)));
-$loginForm->setAttribute("action", $url);
-
 $this->headTitle($this->translate('Home'));
 ?>
 
@@ -230,7 +224,7 @@ $this->headTitle($this->translate('Home'));
                         </ul>
                     <?php else : ?>
                         <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation" >
-                            <?=$this->loginInfo(array('lang' => $lang ));?>
+                            <?= $this->loginInfo(array('lang' => $lang )); ?>
                             <?= $this->navigation('Core/Navigation')
                                 ->setAcl($this->services('acl'))
                                 ->setRole($this->auth('role'))
@@ -296,7 +290,20 @@ $this->headTitle($this->translate('Home'));
 
                     <!-- login content mobile -->
                     <div class="dropdown-menu dropdown-menu-mobile">
-                        <?= $this->partial('partials/login-popup.phtml'); ?>
+                        <?php if ('guest' == $this->auth('role')): ?>
+                            <?= $this->partial('partials/login-popup.phtml'); ?>
+                        <?php else: ?>
+                            <div class="yamm-content logged-in">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <?= $this->partial('partials/logged-in-submenu.phtml', [
+                                            'cssClass' => '',
+                                            'lang' => $lang
+                                        ]); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <!--end login content mobile -->
 

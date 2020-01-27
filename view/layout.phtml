@@ -980,7 +980,6 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 <!-- end lazy loaded javascript -->
 <script>
     $(document).ready(function() {
-
         $('ul.dropdown-menu [data-toggle=dropdown2]').on('click', function(event) {
             event.preventDefault();
             event.stopPropagation();
@@ -989,9 +988,6 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
             $(this).parent().siblings().toggleClass('reveal');
             $(this).parent().toggleClass('open');
         });
-
-
-
     });
 
     (function( $ ) {

@@ -221,7 +221,20 @@ else {
             </div>
             <!-- login content mobile -->
             <div class="dropdown-menu dropdown-menu-mobile">
-                <?= $this->partial('partials/login-popup.phtml'); ?>
+                <?php if ('guest' == $this->auth('role')): ?>
+                    <?= $this->partial('partials/login-popup.phtml'); ?>
+                <?php else: ?>
+                    <div class="yamm-content logged-in">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?= $this->partial('partials/logged-in-submenu.phtml', [
+                                    'cssClass' => '',
+                                    'lang' => $this->params('lang')
+                                ]); ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
             <!--end login content mobile -->
         </div>
