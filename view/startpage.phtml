@@ -83,37 +83,56 @@ $this->headTitle($this->translate('Home'));
         })(window,document,'script','dataLayer','GTM-MCDJ26Q');</script>
     <!-- End Google Tag Manager -->
 <style>
-
-
- @media (max-width: 768px) {
-
-
-      .collapse-textbox,
-      .collapse-textbox.in {
-          display: block;
-          height: auto !important;
+@media (min-width: 768px) {
+.collapse-textbox, .collapse-textbox.in {
+    display: block;
+    height: auto !important;
+  }
+ }
+ @media (max-width: 768px){
+    
+      .search-form-container .btn-group {
+          width: 100%;
       }
 
-  }
+      #jobs-list-filter-wrapper .search-form-container .btn-primary {
+          width: 100%;
+          margin-left: 0;
+      }
+}
 
-  .favorite-icon {
-      margin-right: -15px;
-  }
+    .favorite-icon {
+        margin-right: -15px;
+    }
 
-  .favorite-icon .link__saved-jobs {
-      color: #A5B0BB;
-      font-size: 16px;
-      display: block;
-      height: 52px;
-      line-height: 52px;
-      width: 50px;
-      text-align: center;
-  }
+    .favorite-icon .link__saved-jobs {
+        color: #A5B0BB;
+        font-size: 16px;
+        display: block;
+        height: 52px;
+        line-height: 52px;
+        width: 50px;
+        text-align: center;
+    }
 
-  .hide {
-      display: none !important;
-  }
+.hide {
+    display:none!important;
+}
 
+
+
+    /*Content Animation*/
+    @keyframes fadeInScale {
+        0% {
+            transform: scale(0.9);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
 
 
 </style>
