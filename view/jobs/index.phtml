@@ -41,8 +41,11 @@ if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->pa
 
     // set canonical link - but not on landing pages
     if (!$this->params()->fromRoute('isLandingPage')) {
-        $jobUrl = $this->serverUrl() . $this->url('lang/jobboard', [], [], true);
-        $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
+       // $jobUrl = $this->serverUrl() . $this->url('lang/jobboard', [], [], true);
+      //  $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
+      
+      $jobsLandingpage = "/de/jobs?clear=1";
+      $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
     }
 }
 
