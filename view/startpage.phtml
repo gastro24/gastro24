@@ -377,9 +377,19 @@ $this->headTitle($this->translate('Home'));
                                                     </a>
                                                 </div>
                                                 <div class="col-xs-4 save-job pull-right">
-                                                    <button type="button" class="btn btn-default" data-text-saved="Gemerkt" data-text-save="Merken">
-                                                        <span>Merken</span>
-                                                    </button>
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5e1c47c93c050f66a63d4da3'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
                                                 </div>
                                             </div>
                                         </div>
@@ -423,9 +433,19 @@ $this->headTitle($this->translate('Home'));
                                                 </div>
 
                                                 <div class="col-xs-4 save-job pull-right">
-                                                    <button type="button" class="btn btn-default" data-text-saved="Gemerkt" data-text-save="Merken">
-                                                        <span>Merken</span>
-                                                    </button>
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5da815e53c050f205567afb2'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
                                                 </div>
                                             </div>
                                         </div>
@@ -470,15 +490,23 @@ $this->headTitle($this->translate('Home'));
                                                     </a>
                                                 </div>
                                                 <div class="col-xs-4 save-job pull-right">
-                                                    <button type="button" class="btn btn-default" data-text-saved="Gemerkt" data-text-save="Merken">
-                                                        <span>Merken</span>
-                                                    </button>
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5d94b2f93c050f29b6515f67'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <div class="item">
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -518,9 +546,19 @@ $this->headTitle($this->translate('Home'));
                                                     </a>
                                                 </div>
                                                 <div class="col-xs-4 save-job pull-right">
-                                                    <button type="button" class="btn btn-default" data-text-saved="Gemerkt" data-text-save="Merken">
-                                                        <span>Merken</span>
-                                                    </button>
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5e2085513c050f1c8e66f9f3'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
                                                 </div>
                                             </div>
                                         </div>
@@ -921,6 +959,70 @@ $this->headTitle($this->translate('Home'));
                         .addClass("cloneditem-" + (i))
                         .appendTo($(this));
                 }
+            });
+
+            // carousel on startpage
+            function incrementBadgeCount()
+            {
+                var badge = $('nav .link__saved-jobs span');
+                if (!badge.length) {
+                    var badge = $('<span>').addClass('badge badge-light').html('0');
+                    $('nav .link__saved-jobs').removeClass('empty').prepend(badge);
+                }
+
+                var oldValue = badge.html();
+                var newValue = parseInt(oldValue) + 1;
+                badge.html(newValue);
+            }
+
+            function decrementBadgeCount()
+            {
+                var badge = $('nav .link__saved-jobs span');
+                var oldValue = parseInt(badge.html());
+                if (oldValue > 0) {
+                    var newValue = oldValue - 1;
+                    badge.html(newValue);
+                }
+
+                if (!newValue) {
+                    badge.remove();
+                    $('nav .link__saved-jobs').addClass('empty');
+                }
+            }
+
+            $('.recommended-box .recommended-box-actions button').click(function() {
+                var saveButton = $(this);
+                var saveText = saveButton.data('text-save');
+                var savedText = saveButton.data('text-saved');
+                var jobLink = $(this).parent().parent().parent().find('.recommended-box-jobtitle > a').attr('href');
+                var jobId = jobLink.split('-').pop().replace('.html', '');
+                var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
+
+                // call ajax, add link to session list
+                $.ajax({
+                    url : '/' + lang + '/job/' + jobId + '/save',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        id: jobId,
+                        action: updateMethod,
+                    },
+                    success : function(data) {
+
+                        // update translated text
+                        if (updateMethod == 'remove') {
+                            saveButton.removeClass('saved').find('span').html(saveText);
+                            decrementBadgeCount();
+                        }
+                        else {
+                            saveButton.addClass('saved').find('span').html(savedText);
+                            incrementBadgeCount();
+                        }
+                    },
+                    error : function(error) {
+                        console.log('Error while saving job');
+                    }
+                });
             });
         });
     </script>
