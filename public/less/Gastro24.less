@@ -3,6 +3,7 @@
 @import "_header.less";
 @import "_footer.less";
 @import "_jobs.less";
+@import "_prices.less";
 @import "_socials.less";
 @import "_search-form-container.less";
 @import "_saved-jobs.less";
@@ -91,6 +92,35 @@ input[type="file"] {
     display: block;
     height: auto;
 }
+
+/* Wordpress Styles */
+.wp-block-column {
+    li {
+        list-style-type: none
+    }
+
+    a {
+        text-decoration: underline;
+        color: #22436c
+    }
+}
+
+.wp-block-columns.has-2-columns.contact-column {
+    .wp-block-column {
+        &:first-child {
+            float: left;
+            width: 70%;
+            border-right: 1px solid #ccc;
+        }
+
+        &:last-child {
+            float: left;
+            width: 30%;
+            padding: 0 15px;
+        }
+    }
+}
+/* End Wordpress Styles */
 
 .dropdown-backdrop {
     background-color: rgba(0, 0, 0, 0.5);
