@@ -127,6 +127,7 @@ return [
 //                    'resource/contact',
                     'route/lang/organizations-profiles',
                     'route/lang/saved-jobs',
+                    'route/lang/forgot-password',
                 ]
             ],
             'user' => [

@@ -865,6 +865,10 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="nav-item">
                                         <?= $this->partial('partials/login-popup.phtml', ['device' => 'desktop']); ?>
+                                        <?= $this->partial('partials/password-reset.phtml', [
+                                            'style' => 'display: none;',
+                                            'device' => 'desktop'
+                                        ]) ?>
                                     </li>
                                 </ul>
                             </li>
@@ -924,6 +928,24 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
             $(this).parent().siblings().removeClass('open');
             $(this).parent().siblings().toggleClass('reveal');
             $(this).parent().toggleClass('open');
+        });
+
+        $(document).on('click', function(e) {
+            var $trigger = $('.dropdown-menu');
+            if($trigger !== e.target && !$trigger.has(e.target).length) {
+                $('.login-form-desktop').css('display', 'block');
+                $('.reset-form-desktop').css('display', 'none');
+                $('.login-form-mobile').css('display', 'block');
+                $('.reset-form-mobile').css('display', 'none');
+            }
+        });
+
+        $('a.link--reset-password').click(function(e) {
+            e.stopPropagation();
+            $('.login-form-desktop').css('display', 'none');
+            $('.reset-form-desktop').css('display', 'block');
+            $('.login-form-mobile').css('display', 'none');
+            $('.reset-form-mobile').css('display', 'block');
         });
     });
 

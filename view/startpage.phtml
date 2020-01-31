@@ -167,6 +167,10 @@ $this->headTitle($this->translate('Home'));
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="nav-item">
                                         <?= $this->partial('partials/login-popup.phtml', ['device' => 'desktop']); ?>
+                                        <?= $this->partial('partials/password-reset.phtml', [
+                                            'style' => 'display: none;',
+                                            'device' => 'desktop'
+                                        ]) ?>
                                     </li>
                                 </ul>
                             </li>
@@ -241,6 +245,9 @@ $this->headTitle($this->translate('Home'));
                     <div class="dropdown-menu dropdown-menu-mobile">
                         <?php if ('guest' == $this->auth('role')): ?>
                             <?= $this->partial('partials/login-popup.phtml'); ?>
+                            <?= $this->partial('partials/password-reset.phtml', [
+                                    'style' => 'display: none;'
+                            ]) ?>
                         <?php else: ?>
                             <div class="yamm-content logged-in">
                                 <div class="row">
@@ -263,6 +270,7 @@ $this->headTitle($this->translate('Home'));
 
     <div class="full-background">
         <div class="container">
+            <?php echo $notifications?>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tagline-container">
@@ -914,6 +922,24 @@ $this->headTitle($this->translate('Home'));
                         .addClass("cloneditem-" + (i))
                         .appendTo($(this));
                 }
+            });
+
+            $(document).on('click', function(e) {
+                var $trigger = $('.dropdown-menu');
+                if($trigger !== e.target && !$trigger.has(e.target).length) {
+                    $('.login-form-desktop').css('display', 'block');
+                    $('.reset-form-desktop').css('display', 'none');
+                    $('.login-form-mobile').css('display', 'block');
+                    $('.reset-form-mobile').css('display', 'none');
+                }
+            });
+
+            $('a.link--reset-password').click(function(e) {
+                e.stopPropagation();
+                $('.login-form-desktop').css('display', 'none');
+                $('.reset-form-desktop').css('display', 'block');
+                $('.login-form-mobile').css('display', 'none');
+                $('.reset-form-mobile').css('display', 'block');
             });
 
             // carousel on startpage

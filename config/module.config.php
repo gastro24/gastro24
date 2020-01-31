@@ -1,6 +1,7 @@
 <?php
 namespace Gastro24;
 
+use Gastro24\Controller\ForgotPasswordPopupController;
 use Gastro24\Filter\OrganizationJobsListQuery;
 use Gastro24\Form\JobDetailsHydrator;
 use Gastro24\Form\JobDetailsHydratorFactory;
@@ -86,6 +87,7 @@ return [
             Listener\DeleteJob::class => Listener\DeleteJobFactory::class,
             Listener\GoogleIndexApi::class => Listener\GoogleIndexApiFactory::class,
             Listener\JobDeletedListener::class => [Listener\JobDeletedListener::class,'factory'],
+            'Gastro24\Form\ForgotPasswordPopup' => \Gastro24\Factory\Form\ForgotPasswordPopupFactory::class,
         ],
         'aliases' => [
             'Orders\Form\Listener\InjectInvoiceAddressInJobContainer' => Listener\VoidListener::class,
@@ -110,6 +112,7 @@ return [
             'Gastro24/Jobs/Console/GoogleIndex' => [Controller\Console\GoogleIndexController::class,'factory'],
             'Core/File'    => Factory\Controller\FileControllerFactory::class,
             Controller\JobController::class => [Controller\JobController::class,'factory'],
+            Controller\ForgotPasswordPopupController::class => Factory\Controller\ForgotPasswordPopupControllerFactory::class,
         ],
     ],
 
@@ -172,6 +175,7 @@ return [
             View\Helper\HydrateOrderObject::class => View\Helper\HydrateOrderObjectFactory::class,
             View\Helper\JsonLd::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
             View\Helper\PublishDateFormatter::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+            View\Helper\PopupForm::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -190,6 +194,7 @@ return [
             'jsonLd' => View\Helper\JsonLd::class,
             'isCrawlerJob' => View\Helper\IsCrawlerJob::class,
             'publishDateFormatter' => View\Helper\PublishDateFormatter::class,
+            'popupForm' => View\Helper\PopupForm::class,
         ],
         'delegators' => [
             'jobUrl' => [
@@ -338,6 +343,7 @@ return [
             'Jobs/JobboardSearch' => \Gastro24\Factory\Form\JobboardSearchFactory::class,
             'LocationSelect' => \Gastro24\Factory\Form\GeoSelectFactory::class,
             'Gastro24\Form\Login' => \Gastro24\Factory\Form\LoginFactory::class,
+            'Gastro24\Form\ForgotPasswordPopup' => \Gastro24\Factory\Form\ForgotPasswordPopupFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
@@ -365,6 +371,17 @@ return [
                                 'action' => 'index',
                             ],
                         ],
+                    ],
+                    'forgot-password-startpage' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => '/forgot-password',
+                            'defaults' => [
+                                'controller' => Controller\ForgotPasswordPopupController::class,
+                                'action' => 'index'
+                            ],
+                            'may_terminate' => true
+                        ]
                     ],
                     'saved-jobs' => [
                         'type' => 'Literal',
