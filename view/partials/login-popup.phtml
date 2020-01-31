@@ -27,7 +27,7 @@ $deviceCss = ($this->device) ?? 'mobile';
             <?= $this->form($loginForm); ?>
             <?php if (!isset($this->allowResetPassword) || $this->allowResetPassword == true): ?>
                 <p>
-                    <a href="<?php echo $this->url('lang/forgot-password'); ?>"
+                    <a class="link--reset-password" href="#"
                        title="<?php echo $this->translate('I forgot my password'); ?>">
                         <?php echo $this->translate('I forgot my password'); ?>
                     </a>

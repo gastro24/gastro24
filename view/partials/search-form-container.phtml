@@ -223,6 +223,9 @@ else {
             <div class="dropdown-menu dropdown-menu-mobile">
                 <?php if ('guest' == $this->auth('role')): ?>
                     <?= $this->partial('partials/login-popup.phtml'); ?>
+                    <?= $this->partial('partials/password-reset.phtml', [
+                        'style' => 'display: none;'
+                    ]) ?>
                 <?php else: ?>
                     <div class="yamm-content logged-in">
                         <div class="row">
