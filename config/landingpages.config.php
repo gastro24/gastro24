@@ -119,7 +119,7 @@ $options = [
      'stadt-sankt-gallen' => [
         'text' => 'Gastro Jobs Stadt St. Gallen',
         'id' => 1477,
-        'query' => [ 'city_MultiString' => ['St.%20Gallen' => 1]],
+        'query' => [ 'city_MultiString' => ['St. Gallen' => 1]],
         'tab' => '',
         'panel' => '',
     ],
