@@ -33,6 +33,16 @@
 
 
 $options = [
+    
+    'stadt-bern' => [
+        'text' => 'Gastro Jobs Stadt Bern',
+        'id' => 1469,
+        'query' => [ 'city_MultiString' => ['Bern' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+    
+    
      
       'saucier' => [
           'id' => 1457,
