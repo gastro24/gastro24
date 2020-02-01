@@ -33,6 +33,112 @@
 
 
 $options = [
+      'stadt-zug' => [
+        'text' => 'Gastro Jobs Stadt Zug',
+        'id' => 1499,
+        'query' => [ 'city_MultiString' => ['Zug' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+      'stadt-genf' => [
+        'text' => 'Gastro Jobs Stadt Genf',
+        'id' => 1497,
+        'query' => [ 'city_MultiString' => ['Genf' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+      'stadt-aarau' => [
+        'text' => 'Gastro Jobs Aarau',
+        'id' => 1495,
+        'query' => [ 'city_MultiString' => ['Aarau' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+     'stadt-horgen' => [
+        'text' => 'Gastro Jobs Kloten',
+        'id' => 1493,
+        'query' => [ 'city_MultiString' => ['Horgen' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+     'stadt-kloten' => [
+        'text' => 'Gastro Jobs Kloten',
+        'id' => 1491,
+        'query' => [ 'city_MultiString' => ['Kloten' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+   'stadt-dietikon' => [
+        'text' => 'Gastro Jobs Dietikon',
+        'id' => 1489,
+        'query' => [ 'city_MultiString' => ['Dietikon' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+    
+     'stadt-winterthur' => [
+        'text' => 'Gastro Jobs Winterthur',
+        'id' => 1487,
+        'query' => [ 'city_MultiString' => ['Winterthur' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+    
+      'stadt-chur' => [
+        'text' => 'Gastro Jobs Chur',
+        'id' => 1485,
+        'query' => [ 'city_MultiString' => ['Chur' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+    
+     'stadt-lausanne' => [
+        'text' => 'Gastro Jobs Lausanne',
+        'id' => 1483,
+        'query' => [ 'city_MultiString' => ['Lausanne' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+    
+     'stadt-duebendorf' => [
+        'text' => 'Gastro Jobs Dübendorf',
+        'id' => 1481,
+        'query' => [ 'city_MultiString' => ['Dübendorf' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+    
+     'stadt-luzern' => [
+        'text' => 'Gastro Jobs Stadt Luzern',
+        'id' => 1479,
+        'query' => [ 'city_MultiString' => ['Luzern' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+    
+     'stadt-sankt-gallen' => [
+        'text' => 'Gastro Jobs Stadt St. Gallen',
+        'id' => 1477,
+        'query' => [ 'city_MultiString' => ['St.%20Gallen' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+     'stadt-basel' => [
+        'text' => 'Gastro Jobs Stadt Basel',
+        'id' => 1475,
+        'query' => [ 'city_MultiString' => ['Basel' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+
+  'stadt-zuerich' => [
+        'text' => 'Gastro Jobs Stadt Zürich',
+        'id' => 1473,
+        'query' => [ 'city_MultiString' => ['Zürich' => 1]],
+        'tab' => '',
+        'panel' => '',
+    ],
+
     
     'stadt-bern' => [
         'text' => 'Gastro Jobs Stadt Bern',
@@ -41,9 +147,8 @@ $options = [
         'tab' => '',
         'panel' => '',
     ],
-    
-    
-     
+
+
       'saucier' => [
           'id' => 1457,
 		  'query' => [ 'q' => 'Saucier'],
