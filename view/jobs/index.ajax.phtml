@@ -429,8 +429,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                <div id="form-jobsbymail-subscribe-form" class="form-jobsbymail-subscribe-form-desktop col-md-12 col-sm-6 col-xs-12 visible-md visible-lg">
                                     <div class="featured-image-box">
                                         <h2 style="color: #22436c;font-weight: 300;margin-top: 0; margin-bottom: 10px;font-size: 19px;line-height: 1.3;}">Täglich neue Jobs per E-Mail erhalten?</h2>
-                                        <p>Lassen Sie sich automatisch informieren, sobald neue
-                                            <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Jobs' : 'Jobs'); ?> vorhanden sind.</p>
+                                        <p>Lassen Sie sich automatisch informieren, sobald für dieses Suchergebnis neue Stellen online sind.</p>
                                         <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
                                     </div>
                                 </div>
