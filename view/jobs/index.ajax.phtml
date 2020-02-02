@@ -21,6 +21,7 @@ $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $wordpress = $this->proxy('wordpress');
 $searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
 $hasRegion= isset($queryGet['region_MultiString']);
+$hasCity= isset($queryGet['city_MultiString']);
 $dateFilterValue = isset($queryGet['dateFilter']) ? $queryGet['dateFilter'] : '';
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
@@ -140,6 +141,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
         <?= $this->partial('jobs/partials/breadcrumbs.phtml', [
             'searchTerm' => $searchTerm,
             'hasRegion' => $hasRegion,
+            'hasCity' => $hasCity,
             'wordpressTitle' => $wordpressTitle
         ]); ?>
         <!-- breadcrumbs -->
@@ -467,6 +469,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
     $hasPartTwo = (isset($parts[2]) && "" != trim($parts[2]));
     $searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
     $hasRegion= isset($queryGet['region_MultiString']);
+    $hasCity= isset($queryGet['city_MultiString']);
 ?>
 <?php if (($searchTerm && $hasPartTwo) || ($hasRegion && $hasPartTwo)): ?>
 <div class="col-md-12 job-overview-description-container">
