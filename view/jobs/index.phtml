@@ -26,12 +26,12 @@ $headline = $wordpress->call('value', ['title.rendered'], '');
 $headline = $headline ?: $searchTerm;
 
 $wordpressTitle = '';
-// set temporarly index,follow without caonical only on landing pages without jobs
+// set temporarly noindex,follow without canonical only on landing pages without jobs, because there are ol landingpages
  if (!count($this->jobs) && $this->params()->fromRoute('isLandingPage')) {
      $wordpressTitle = $wordpress->call('value', ['title.rendered'], '');
    //$jobsLandingpage = "/de/jobs?clear=1";
    // $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
-    $robots = "index,follow";
+    $robots = "noindex,follow";
  } else {
      $robots = "noindex,follow";
  }
