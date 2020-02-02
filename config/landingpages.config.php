@@ -148,7 +148,7 @@ $options = [
     ],
 
   'stadt-zuerich' => [
-        'text' => 'Gastro Jobs Stadt Zürich',
+        'text' => 'Stadt Zürich',
         'id' => 1473,
         'query' => [ 'city_MultiString' => ['Zürich' => 1]],
         'tab' => '',
