@@ -33,6 +33,16 @@
 
 
 $options = [
+    
+    
+       'coop' => [
+          'id' => 1530,
+		  'query' => [ 'q' => 'Coop'],
+		  'tab' => '',
+		  'panel' => '',
+          'text' => 'Gastronomie Jobs Coop'
+       ],
+    
       'stadt-zug' => [
         'text' => 'Gastro Jobs Stadt Zug',
         'id' => 1499,
