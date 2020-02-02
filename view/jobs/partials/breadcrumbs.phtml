@@ -21,10 +21,7 @@
      <?php if ($this->params()->fromRoute('isLandingPage')) : ?>
             <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem" aria-current="page">
-                  <!--  <a style="text-decoration:none" itemprop="item"
-                       href="<?= $this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true) ?>">
-                        <span itemprop="name"> <?= $this->searchTerm ?></span>
-                    </a>-->
+                
                     <span itemprop="name"> <?= $this->searchTerm ?></span>
                 <meta itemprop="position" content="3"/>
             </li>
@@ -51,18 +48,47 @@
 
             <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem" aria-current="page">
-               <!-- <a style="text-decoration:none" itemprop="item"
-                   href="<?= $this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true) ?>">
-                    <span itemprop="name"> <?= $this->wordpressTitle ?></span>
-                </a>-->
+             
                  <span itemprop="name"> <?= $this->wordpressTitle ?></span>
                 
                 <meta itemprop="position" content="3"/>
             </li>
         </ol>
     </nav>
+    
+<?php } else if ($this->hasCity) { ?>
+    
+    
+     <nav aria-label="breadcrumb">
+        <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"
+            style="background-color:#fff; margin-bottom:0px;border-radius:0;padding:0;font-size:13px">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="/">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1"/>
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="/de/jobs?clear=1">
+                    <span itemprop="name">Jobs</span>
+                </a>
+                <meta itemprop="position" content="2"/>
+            </li>
+
+            <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
+                itemtype="http://schema.org/ListItem" aria-current="page">
+             
+                 <span itemprop="name"> <?= $this->wordpressTitle ?></span>
+                
+                <meta itemprop="position" content="3"/>
+            </li>
+        </ol>
+    </nav>
+    
+    
+    
 <?php } else { ?>
-    <!-- tbd. searchstrings region -->
+
     <nav aria-label="breadcrumb">
         <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"
            style="background-color:#fff; margin-bottom:0px;border-radius:0;padding:0;font-size:13px">
