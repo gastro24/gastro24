@@ -22,7 +22,7 @@ $wordpress = $this->proxy('wordpress');
 $searchTerm = (isset($queryGet['q']) && is_string($queryGet['q'])) ? trim($queryGet['q'],'"') : null;
 $hasRegion= isset($queryGet['region_MultiString']);
 $hasCity= isset($queryGet['city_MultiString']);
-$breadcrumbText = $queries->$text;
+$breadcrumbText = $options->$text;
 $dateFilterValue = isset($queryGet['dateFilter']) ? $queryGet['dateFilter'] : '';
 
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
