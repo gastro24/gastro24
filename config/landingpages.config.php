@@ -34,7 +34,13 @@
 
 $options = [
     
-    
+    'coople' => [
+          'id' => 1532,
+		  'query' => [ 'q' => 'Coople'],
+		  'tab' => '',
+		  'panel' => '',
+          'text' => 'Jobs Coople'
+       ],
        'coop' => [
           'id' => 1530,
 		  'query' => [ 'q' => 'Coop'],
