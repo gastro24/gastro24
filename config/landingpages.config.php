@@ -37,7 +37,7 @@ $options = [
   
       'active-gastro-eng-gmbh' => [
           'id' => 1540,
-		  'query' => [ 'q' => 'Active Gastro Eng GmbH'],
+		  'query' => [ 'q' => 'Active Gastro'],
 		  'tab' => '',
 		  'panel' => '',
           'text' => 'Jobs Active Gastro Eng GmbH'
