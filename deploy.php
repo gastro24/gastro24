@@ -19,14 +19,16 @@ add('shared_dirs', [
     'test/sandbox/var/log',
     'test/sandbox/var/cache',
     'test/sandbox/config/autoload',
-    'test/sandbox/public/static'
+    'test/sandbox/public/static',
+    'test/sandbox/public/lg'
 ]);
 
 // Writable dirs by web server 
 add('writable_dirs', [
     'test/sandbox/var/cache',
     'test/sandbox/var/log',
-    'test/sandbox/public/static'
+    'test/sandbox/public/static',
+    'test/sandbox/public/lg'
 ]);
 
 set('default_stage', 'prod');
