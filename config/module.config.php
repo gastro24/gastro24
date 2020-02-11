@@ -104,6 +104,7 @@ return [
             Controller\WordpressPageController::class => Factory\Controller\WordpressPageControllerFactory::class,
             Controller\RedirectExternalJobs::class => Controller\RedirectExternalJobsFactory::class,
             Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
+            Controller\LpStellenanzeigen::class => InvokableFactory::class,
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
             Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
             Controller\OrdersController::class => Factory\Controller\OrdersControllerFactory::class,
@@ -262,6 +263,7 @@ return [
              'mail/job-rejected' => __DIR__ . '/../view/mail/job-rejected.phtml',
              'mail/job-expired.en' => __DIR__ . '/../view/mail/job-expired.en.phtml',
              'mail/job-expired' => __DIR__ . '/../view/mail/job-expired.phtml',
+             'gastro24/lp-stellenanzeigen/index' => __DIR__ . '/../view/gastro24/lp/stellenanzeigen-schalten.phtml',
              'gastro24/mail/single-job-created' => __DIR__ . '/../view/mail/single-job-created.phtml',
              'gastro24/mail/single-job-pending' => __DIR__ . '/../view/mail/single-job-pending.phtml',
              'gastro24/mail/single-job-accepted' => __DIR__ . '/../view/mail/single-job-accepted.phtml',
@@ -359,6 +361,17 @@ return [
 
     'router' => [
         'routes' => [
+            'stellenanzeigen-schalten' => [
+                'type' => 'Literal',
+                'options' => [
+                    'route' => '/lg/stellenanzeigen-schalten',
+                    'defaults' => [
+                        'controller' => Controller\LpStellenanzeigen::class,
+                        'action' => 'index'
+                    ],
+                    'may_terminate' => true
+                ]
+            ],
             'lang' => [
                 'child_routes' => [
                     'wordpress' => [
