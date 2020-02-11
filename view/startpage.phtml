@@ -159,7 +159,7 @@ $this->headTitle($this->translate('Home'));
                     <?php if ('guest' == $this->auth('role')) : ?>
                         <ul class="pull-right navbar-nav nav-recruiting">
                             <li class="nav-item">
-                                <a title="Anzeige schalten" href="/lg/stellenanzeigen-schalten.html"
+                                <a title="Anzeige schalten" href="<?= $this->url('stellenanzeigen-schalten') ?>"
                                    class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Anzeige schalten</a>
                             </li>
                             <li class="nav-item dropdown">
@@ -207,7 +207,7 @@ $this->headTitle($this->translate('Home'));
                                 <!-- todo: if login: show menu -->
 
                                 <ul class="dropdown-menu">
-                                    <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="/lg/stellenanzeigen-schalten.html">Anzeige schalten</a></li>
+                                    <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="<?= $this->url('stellenanzeigen-schalten') ?>">Anzeige schalten</a></li>
                                     <li class=""><a title="Jobs" href="/de/jobs?clear=1">Jobs</a></li>
                                     <li class=""><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
                                     <li class=""><a title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
@@ -548,7 +548,7 @@ $this->headTitle($this->translate('Home'));
                         <div class="col-xs-12 col-sm-6 col-md-5">
                             <div class="shout-out">
                                 <h2>Mit einem Klick zum Traumkandidaten<span>Schneller und besser inserieren.</span></h2>
-                                <a href="/lg/stellenanzeigen-schalten.html" class="btn btn-danger">Stellenanzeige jetzt schalten</a>
+                                <a href="<?= $this->url('stellenanzeigen-schalten') ?>" class="btn btn-danger">Stellenanzeige jetzt schalten</a>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-7">
