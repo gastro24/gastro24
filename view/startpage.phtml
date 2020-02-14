@@ -53,8 +53,11 @@ $this->headTitle($this->translate('Home'));
 
     <script>
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
-        document.documentElement.classList.remove("no-js");
+
     </script>
+    <script>
+      document.documentElement.classList.remove("no-js");
+   </script>
     
     <link rel="preconnect" href="https://www.facebook.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.facebook.com">
