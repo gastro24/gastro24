@@ -237,14 +237,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
             <!-- result list -->
             <div class="col-md-9 job-overview-results">
-                <div id="form-jobsbymail-subscribe-form" class="form-container form-jobsbymail-subscribe-form-mobile visible-xs visible-sm">
-                    <div class="form-content">
-                        <div class="jobmail-listings">
-                            <h2 class="h4">Täglich neue Jobs per E-Mail erhalten?</h2>
-                            <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-                        </div>
-                    </div>
-                </div>
+        
 
                 <div class="row">
                     <div class="row-eq-height">
@@ -430,7 +423,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
                             <?php if ($index == 1) : ?>
                                 <!-- box after second job -->
-                               <div id="form-jobsbymail-subscribe-form" class="form-jobsbymail-subscribe-form-desktop col-md-12 col-sm-6 col-xs-12 visible-md visible-lg">
+                               <div id="form-jobsbymail-subscribe-form" class="form-jobsbymail-subscribe-form-desktop col-md-12 col-sm-6 col-xs-12">
                                     <div class="featured-image-box">
                                         <h2 style="color: #22436c;font-weight: 300;margin-top: 0; margin-bottom: 10px;font-size: 19px;line-height: 1.3;}">Täglich neue Jobs per E-Mail erhalten?</h2>
                                         <p>Lassen Sie sich automatisch informieren, sobald für dieses Suchergebnis neue Stellen online sind.</p>
@@ -473,29 +466,3 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
     $hasRegion= isset($queryGet['region_MultiString']);
     $hasCity= isset($queryGet['city_MultiString']);
 ?>
-<?php if (($searchTerm && $hasPartTwo) || ($hasRegion && $hasPartTwo)): ?>
-<div class="col-md-12 job-overview-description-container">
-    <div class="col-md-12 content">
-        <div class="content__inner">
-             <!-- title searchterm -->
-            <?php $parts=preg_split('~<!--more-->~' , $description);?>
-            <?php if ($hasPartTwo): ?>
-                <?= $parts[2] ?>
-            <?php endif ?>
-            <!-- end title searchterm -->
-            <!-- additional infos -->
-            <?php $parts=preg_split('~<!--more-->~' , $description);?>
-            <?php if (isset($parts[3]) && "" != trim($parts[3])): ?>
-                <?= $parts[3] ?>
-            <?php endif ?>
-             <!-- end additional infos -->
-        </div>
-    </div>
-</div>
-<?php endif ?>
-
-
-
-
-
-
