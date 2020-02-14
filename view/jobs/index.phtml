@@ -66,14 +66,6 @@ $noJobsMessage = $this->translate('No jobs found.');
 
             $('#jobDateFilter').each($.fn.form.initSelect);
 
-            // prevent duplicated forms
-            if ($(window).width() > 767) {
-                $('.form-jobsbymail-subscribe-form-mobile').remove();
-            }
-            if ($(window).width() < 767) {
-                $('.form-jobsbymail-subscribe-form-desktop').remove();
-            }
-
             $('#jobs-list-container ul.pagination a, link[rel="prev"], link[rel="next"]').each(function() {
                 var $a = $(this), href = $a.attr('href');
                 console.debug($a, href);
