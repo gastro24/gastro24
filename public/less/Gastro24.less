@@ -3,7 +3,6 @@
 @import "_header.less";
 @import "_footer.less";
 @import "_jobs.less";
-@import "_prices.less";
 @import "_socials.less";
 @import "_search-form-container.less";
 @import "_saved-jobs.less";
@@ -50,7 +49,6 @@
 
 @btn-primary-bg: @g24-blue;
 
-@jumbotron-padding: 0px;
 
 @font-size-h2: 18px;
 @font-size-h3: 14px;
@@ -62,13 +60,9 @@
 @yk-tab-active-bg: @g24-blue;
 @yk-tab-active-color: lightgray;
 
-html {
-    //height: 100%;
-}
 
 body {
   margin-top: 0;
-  //height: 100%;
   overflow-x: hidden;
 }
 
@@ -105,21 +99,6 @@ input[type="file"] {
     }
 }
 
-.wp-block-columns.has-2-columns.contact-column {
-    .wp-block-column {
-        &:first-child {
-            float: left;
-            width: 70%;
-            border-right: 1px solid #ccc;
-        }
-
-        &:last-child {
-            float: left;
-            width: 30%;
-            padding: 0 15px;
-        }
-    }
-}
 /* End Wordpress Styles */
 
 .dropdown-backdrop {
@@ -139,8 +118,7 @@ input[type="file"] {
 .featured-image-box {
     -webkit-box-shadow: 0 0 5px 0 #ccc;
     -moz-box-shadow: 0 0 5px 0 #ccc;
-    box-shadow: 0 0 5px 0
-    #ccc;
+    box-shadow: 0 0 5px 0 #ccc;
     border-radius: 4px;
     padding: 12px 12px 12px 12px;
     background-color:#fff;
@@ -156,7 +134,6 @@ input[type="file"] {
 
     .content-area {
         background-color: @g24-white;
-        //padding: 20px;
 
         .preview-text {
             margin: 15px 0;
@@ -238,25 +215,6 @@ input[type="file"] {
 }
 
 
-#wrapper {
-    text-align: center;
-    min-height: 600px;
-    #bg-full {
-        position: absolute;
-        width: 100%;
-    }
-    .bg-static {
-        background-image: url(../background_gastrojob24_img.jpg);
-        background-color: #999;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-        display: block;
-        min-height: 600px;
-    }
-
-}
-
 #form-orders-settings {
     margin-bottom: 20px;
     background-color: #fff;
@@ -284,13 +242,7 @@ input[type="file"] {
     }
 }
 
-/* BEGIN JOB OVERVIEW */
-h1.job-overview-title {
-    color: @g24-dark-blue;
-    margin-bottom: 15px;
-    font-weight: 300;
-    font-size: 30px;
-}
+
 
 .breadcrumb {
     background-color: #ececec;
@@ -325,17 +277,16 @@ h1.job-overview-title {
     }
 }
 
+ /* General Styles */
+
+
 @media(max-width: @screen-sm) {
-     ol.breadcrumb {
-        margin-left:-15px;
-        margin-right:-15px;
-    }
-    
-    .home #jobs-list-filter-wrapper {
-        .search-form-container {
-            width: 100%;
-        }
-    }
+   
+   
+   
+   
+   
+   
 }
 
 
@@ -349,7 +300,11 @@ h1.job-overview-title {
         margin-right: 0;
     }
     
-}
+    }
+
+
+
+
 
 }
 
@@ -366,114 +321,10 @@ h1.job-overview-title {
         }
     }
 }
-.job-overview-description-container {
-    margin-bottom: 20px;
 
-    .content {
-        background-color: @g24-light-grey;
-        padding: 10px;
 
-        &__inner {
-            background-color:#fff;
-            padding: 20px;
-        }
-    }
-}
 
-.grey-description-container {
-    margin-bottom: 20px;
 
-    .headline {
-        margin-bottom: 5px;
-    }
-
-    .content {
-        background-color: #ebebeb;
-        padding: 15px;
-
-        &__inner {
-            background-color:#fff;
-            padding: 20px;
-        }
-    }
-}
-
-    .carousel-indicators { bottom: -10px; }
-
-    .scroll-arrow {
-        position: absolute;
-        bottom: 30px;
-        bottom: 3rem;
-        right: 0;
-        left: 0;
-        width: 55px;
-        width: 5.5rem;
-        margin: auto;
-        cursor: pointer;
-
-        .arrow-icon {
-            position: relative;
-            border: solid #fff;
-            border-width: 0 5px 5px 0;
-            border-width: 0 0.5rem 0.5rem 0;
-            padding: 20px;
-            padding: 2rem;
-            display: inline-block;
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            -o-transform: rotate(45deg);
-            transform: rotate(45deg);
-            -webkit-animation: pulse 4s infinite;
-            -moz-animation: pulse 4s infinite;
-            -o-animation: pulse 4s infinite;
-            animation: pulse 4s infinite;
-        }
-        .scroll-arrow .arrow-icon:last-child {
-            margin-top: -30px;
-            margin-top: -3rem;
-        }
-    }
-
-    .jumbotron {
-        margin-top: 40px;
-        position: relative;
-        margin-bottom: 25px;
-        padding: 0;
-        color: #fff;
-        background-color: transparent;
-        h1 {
-            color: #fff;
-            /* text-shadow: 0px 0px 11px #111; */
-            font-size: 31px;
-            font-weight: 300;
-        }
-    }
-
-    #searchform-wrapper {
-        position: absolute;
-    }
-
-    .frame {
-        padding-bottom: 85%;
-        vertical-align: top;
-        border: 1px solid #DDD;
-        position: relative;
-        min-height: 1px;
-        img {
-            max-height: 100%;
-            max-width: 100%;
-            width: auto;
-            height: auto;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-            padding: 0 10px;
-        }
-    }
 
     h2 {
         color: @g24-dark-blue;
@@ -501,10 +352,6 @@ h1.job-overview-title {
         font-size: 14px;
     }
 
-    .wp-content p a {
-
-        text-decoration:underline
-    }
 
     main {
         /** different layouts for views **/
@@ -535,25 +382,7 @@ h1.job-overview-title {
             }
         }
 
-        .region {
-            text-align: center;
-
-            h3 {
-                display: none;
-            }
-            div {
-                display: inline;
-            }
-            ul {
-                display: inline;
-                li {
-                    padding-left: 3px;
-                    padding-right: 3px;
-                    list-style: none;
-                    display: inline-block;
-                }
-            }
-        }
+      
     }
 
     .search-form-container {
@@ -572,22 +401,7 @@ h1.job-overview-title {
         }
     }
 
-    .home #yk-login-info {
-        position: relative;
-        background-color: transparent;
-        .dropdown > a {
-            color: @g24-white;
-        }
-    }
-
-    .collapsed {
-        background-color: transparent;
-        border-color: @g24-white;
-        border-radius: 4px;
-        .icon-bar {
-            background-color: @g24-white;
-        }
-    }
+   
 
     .home .navbar-brand {
         color: @g24-white;
@@ -605,207 +419,12 @@ h1.job-overview-title {
         margin-left:5px;
     }
 
-    @media(min-width: @screen-sm) {
-        header {
-            .header-link {
-                margin-top: 20px;
-                padding-right: 30px;
 
-                .link {
-                    &--inverted {
-                        background-color: @g24-white;
-                        border: 1px solid @g24-blue;
-                        color: @g24-blue;
-                        font-size:16px;
-                        font-weight:300;
-                        margin-top: 30px;
-                        padding: 10px 15px;
-
-                        &:hover {
-                            background-color: darken(@g24-blue,10%);
-                            color: @g24-white
-                        }
-                    }
-                }
-            }
-        }
-
-        #main-navigation {
-            font-weight: 600;
-
-            ul li a.inverted {
-                border: 1px solid @g24-blue;
-                background-color: @g24-blue;
-                color: @g24-white;
-            }
-            ul li a.inverted:hover {
-                background-color: darken(@g24-blue,10%);
-            }
-            .navbar-nav > li > a {
-                padding-top: 10px;
-                padding-bottom: 10px;
-                margin-top: 30px;
-                font-weight:300;
-                font-size:16px;
-
-                &.link__saved-jobs {
-                    padding-left: 0;
-                }
-            }
-            .dropdown-menu > li > a:hover {
-                background-color: @navbar-inverse-toggle-hover-bg;
-            }
-
-        }
-
-        .home #main-navigation {
-            height: 145px !important;
-            .navbar-nav > li > a {
-                padding-top: 10px;
-                padding-bottom: 10px;
-                margin-top: 30px;
-                color: @g24-white;
-            }
-            a:hover {
-                background-color: transparent;
-            }
-            ul li a.inverted {
-                border: 1px solid @g24-white;
-                background-color: transparent;
-            }
-        }
-    }
-
-    // Menü auf Handy
-    @media(max-width: @screen-sm) {
-         #rpt_pricr {
-            .col-md-3 {
-            width: 100%!important;
-            }
-       	}
-        #main-navigation {
-            height: inherit;
-            ul li a.inverted {
-                border: 1px solid @g24-grey;
-                background-color: @g24-blue;
-                color: @g24-white;
-            }
-            .dropdown-menu>li>a {
-                color: @g24-white;
-            }
-            a:hover {
-                background-color: @g24-blue;
-            }
-        }
-        .home #main-navigation {
-            a {
-                color: @g24-white;
-            }
-            a:hover {
-                background-color: @g24-blue;
-            }
-        }
-        button.collapsed {
-            border-color: @g24-grey;
-            background-color: @g24-blue;
-        }
-
-    }
-
-    // Aufklappbare Kategorien
-    a[data-toggle="collapse"] {
-        &:before {
-            font-family: "FontAwesome";
-            content: "\f077";
-            float: right;
-        }
-        &.collapsed:before {
-            content: "\f078";
-        }
-        span {
-            display: none;
-        }
-        &.collapsed span {
-            display: block;
-        }
-    }
-
-    #sf-general-salaryForm {
-        display:none
-    }
-
-    // Preistabellen
-    #rpt_pricr {
-        .col-md-3 {
-            width: 33.33333333%;
-            text-align:center
-            }
-
-        .panel-primary {
-            border-color: #f1f1f1;
-            padding:10px;
-            >.panel-heading {
-                color: black;
-                padding-top:20px;
-                margin: 0;
-                text-align:center!important;
-                font-size:20px;
-            }
-        }
-        .btn {
-            display:block;
-            white-space: normal;
-        }
+  
 
 
-        .rpt_head {
-            .rpt_price {
-                font-size: 32px;
-                font-weight: 400;
-                text-align: center;
-                strike {
-                    color: #b2b2b2;
-                    padding-right:5px;
-                    font-size: 15px;
-                    text-align: center;
-                }
-            }
-            .rpt_subtitle {
-                text-align: center;
-                font-size: 16px;
-            }
-            .rpt_description {
-                margin-top: 10px;
-                font-size: 16px;
-                color: #ccc;
-                text-align:center;
-            }
-            a {
-                text-align: center;
-            }
-        }
-        .rpt_yk_inactive {
-            color: #ccc;
-        }
-    }
 
-    // links im Wordpress-Bereich
-    #wp-content1 {
-
-        a:hover {
-            background-color: lightgray;
-        }
-        ul li {
-            list-style: inside;
-        }
-    }
-
-    #form-orders-settings .daf-desc,
-    #sf-general-customerNote {
-        display: none;
-    }
-
-    /* Overwrite jquery ui autocomplete style */
+ /* Overwrite jquery ui autocomplete style */
 .ui-menu .ui-menu-item {
     margin: 0;
     padding: 1rem 0.5rem;
