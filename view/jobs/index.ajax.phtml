@@ -64,67 +64,6 @@ $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png')
 $jobsRepo = $this->services('repositories')->get('Jobs');
 ?>
 
-<style>
-  @media (min-width: 992px) {
-    .collapse.dont-collapse-sm {
-      display: block;
-      height: auto !important;
-      visibility: visible;
-    }
-  }
- .yk-pagination ul>li>a, .yk-pagination ul>li>span {
-    padding: 10px 15px;
-    margin: 0 5px;
-    font-size: 16px;
-    line-height: 24px;
-     
- } 
-  .panel-default>.panel-heading+.panel-collapse>.panel-body label {
-    font-weight:normal!important
-  }
- .active-searchterm:first-letter {
-     text-transform:capitalize;
- }
- 
- .well-sm {
-    padding: 0;
-    background: none;
-    border: none;
-    box-shadow: none;
-    -webkit-box-shadow:none;
-    margin-bottom: 10px;
- }
- 
-.facet-active {
-    margin: 0px 5px 5px 0px;
-    background-color: #dcdfe2;
-    color: #566578;
-    padding: 3px 30px 3px 10px;
-    font-size: 14px;
-    line-height: 24px;
-    border-color: #dcdfe2;
-    border-radius: 0;
-    position: relative;
-    text-decoration: none;
-}
-
-.facet-active span {
-    font-size: 24px;
-    position: absolute;
-    right: 10px;
-    top: 4px;
-}
- 
-.facet-reset {
-    padding: 0;
-    display: block;
-    margin-top: 5px;
-    text-decoration: underline;
-}
-.container__date-filter .select2 {
-    min-width: 144px!important;
-}
-</style>
 
 <?php if ($hasFacets):
     if ($this->params()->fromRoute('isLandingPage')):?>
