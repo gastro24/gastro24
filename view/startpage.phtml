@@ -250,8 +250,67 @@ $this->headTitle($this->translate('Home'));
                         <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav" data-ride="carousel" data-interval="4500">
                             <div class="carousel-inner">
                                 <!-- begin carousel -->
-                              
+                                
+                                
                                 <div class="item active">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="recommended-box">
+                                            <div class="recommended-box-inner">
+                                                <div class="recommended-box-jobtitle">
+                                                    <a title="Wirt/in / Hüttenwart für Berghaus gesucht!" href="/de/jobs/wirt-in---huettenwart-fuer-berghaus-gesucht--5e427d173c050f12987dc353.html">
+                                                        <span class="block-ellipsis">
+                                                            Wirt/in / Hüttenwart für Berghaus gesucht!
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8 col-lg-9 col-xs-8 ">
+                                                        <ul class="short-details">
+                                                            <li class="location">
+                                                                <span>Sörenberg</span>
+                                                            </li>
+                                                            <li class="company">
+                                                                <span class=""> Bergbahnen Sörenberg AG</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="recommended-box-company-logo-container ">
+                                                        <img src="/file/Gastro24.TemplateImage/5e427b6a3c050f11ec0c67e2/Sörenberg+Bergbahnen+farbig+-+Kopie.jpg">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="recommended-hero " style="background-image: url(/modules/Gastro24/images/bg_placeholder_blue.svg)"></div>
+                                                </div>
+                                            </div>
+                                            <div class="recommended-box-actions clearfix">
+                                                <div class="col-xs-4 pull-left">
+                                                    <a href="/de/jobs/wirt-in---huettenwart-fuer-berghaus-gesucht--5e427d173c050f12987dc353.html" class="view-btn btn">
+                                                        Bewerben
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-xs-4 save-job pull-right">
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5da815e53c050f205567afb2'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                              
+                                <div class="item">
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="recommended-box">
                                             <div class="recommended-box-inner">
@@ -369,9 +428,9 @@ $this->headTitle($this->translate('Home'));
                                         <div class="recommended-box">
                                             <div class="recommended-box-inner">
                                                 <div class="recommended-box-jobtitle">
-                                                    <a title="Restaurationsfachfrau/-mann 100%" href="/de/jobs/restaurationsfachfrau--mann-100--5e2085513c050f1c8e66f9f3.html">
+                                                    <a title="Servicemitarbeitern Teilzeit" href="/de/jobs/servicemitarbeiterin-5e43393f3c050f3b41505433.html">
                                                         <span class="block-ellipsis">
-                                                            Restaurationsfachfrau/-mann 100%
+                                                            Servicemitarbeiterin Teilzeit
                                                         </span>
                                                     </a>
                                                 </div>
@@ -379,25 +438,25 @@ $this->headTitle($this->translate('Home'));
                                                     <div class="col-md-8 col-lg-9 col-xs-8 ">
                                                         <ul class="short-details">
                                                             <li class="location">
-                                                                <span>Lachen SZ</span>
+                                                                <span>Brunnen</span>
                                                             </li>
                                                             <li class="company">
-                                                                <span class=""> Marina Gastro AG</span>
+                                                                <span class=""> Natolien Grillhaus</span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div class="recommended-box-company-logo-container ">
-                                                        <img src="https://www.gastrojob24.ch/file/Gastro24.TemplateImage/5e20833f3c050f1bc8455b12/marina_100x100.jpg">
+                                                        <img src="/file/Gastro24.TemplateImage/5e43363d3c050f22fb5a6f02/logo.PNG">
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="recommended-hero " style="background-image: url(https://www.gastrojob24.ch/file/Gastro24.TemplateImage/5e2083e63c050f1bc704bc12/Aussenansicht_1200x300px.jpg)"></div>
+                                                    <div class="recommended-hero " style="background-image: url(/modules/Gastro24/images/bg_placeholder_gray.svg)"></div>
                                                 </div>
                                             </div>
 
                                             <div class="recommended-box-actions clearfix">
                                                 <div class="col-xs-4 pull-left">
-                                                    <a href="/de/jobs/restaurationsfachfrau--mann-100--5e2085513c050f1c8e66f9f3.html" class="view-btn btn">
+                                                    <a href="/de/jobs/servicemitarbeiterin-5e43393f3c050f3b41505433.html" class="view-btn btn">
                                                         Bewerben
                                                     </a>
                                                 </div>
