@@ -298,10 +298,10 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                         <?php if(!$jobHasExternLink) : ?>
                                                             <a title="<?=strip_tags($job->getTitle())?>" target="_blank"
                                                                href="<?=$href?>">
-                                                                <img rel="preload" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" as="image" alt="<?= $orgName ?>" >
+                                                                <img rel="preload" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" as="image" alt="<?= $orgName ?>" />
                                                             </a>
                                                         <?php else : ?>
-                                                            <img rel="preload" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" as="image" alt="<?= $orgName ?>">
+                                                            <img rel="preload" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" as="image" alt="<?= $orgName ?>" />
                                                         <?php endif; ?>
 
                                                     </div>
