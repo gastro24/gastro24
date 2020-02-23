@@ -36,10 +36,10 @@ $wordpressTitle = '';
 if ($this->params()->fromRoute('isLandingPage')) {
     $wordpressTitle = $wordpress->call('value', ['title.rendered'], '');
     $descriptionText = 'Aktuell ' . $this->jobs->getTotalItemCount() . ' verfügbare ' .
-        $wordpressTitle . ' finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz.';
+        $wordpressTitle . ' finden auf Gastrojob24.ch, der #1 Gastronomie & Hotellerie Jobbörse der Schweiz.';
     if ($this->jobs->getTotalItemCount() == 1) {
         $descriptionText = 'Aktuell ' . $this->jobs->getTotalItemCount() . ' verfügbaren ' .
-            $wordpressTitle . ' finden auf Gastrojob24.ch, der Gastronomie & Hotellerie Jobbörse der Schweiz.';
+            $wordpressTitle . ' finden auf Gastrojob24.ch, der #1 Gastronomie & Hotellerie Jobbörse der Schweiz.';
     }
     
     
