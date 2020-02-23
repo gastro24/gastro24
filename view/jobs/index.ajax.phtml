@@ -338,7 +338,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                 <?php if(!$jobHasExternLink) : ?>
                                                     <div id="shareMail<?= $index ?>" class="hidden shareMail"
                                                          data-url="<?=$href?>" data-title="<?=strip_tags($job->getTitle())?>"></div>
-                                                    <div id="shareWhatsapp<?= $index ?>" class="visible-xs shareWhatsapp"
+                                                    <div id="shareWhatsapp<?= $index ?>" class="visible-sm shareWhatsapp"
                                                          data-url="<?=$href?>" data-title="<?=strip_tags($job->getTitle())?>"></div>
                                                 <?php endif; ?>
                                                 <!-- end share button -->
