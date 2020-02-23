@@ -220,7 +220,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                         <div class="top-cnt">
 
                                             <div class="box__job-favorite">
-                                                <h2 class="h3" style="margin-top: 0;margin-bottom: 10px;">
+                                                <h2 class="h3" style="margin-top: 0;margin-bottom: 10px;max-width:75%">
                                                     <?php if($jobHasExternLink) { ?>
                                                         <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="nofollow noopener sponsored" target="_blank"
                                                            href="<?=$href?>"><?=strip_tags($job->getTitle())?>
