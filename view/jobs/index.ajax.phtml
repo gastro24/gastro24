@@ -64,7 +64,6 @@ $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png')
 $jobsRepo = $this->services('repositories')->get('Jobs');
 ?>
 
-
 <?php if ($hasFacets):
     if ($this->params()->fromRoute('isLandingPage')):?>
         <span class="facets-url" data-url="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>"></span>
