@@ -102,7 +102,6 @@
         }
 
         $('.box__action-buttons button, .apply-button-group .favorite-button').click(function() {
-            
             var saveButton = $(this);
             var saveText = saveButton.data('text-save');
             var savedText = saveButton.data('text-saved');
