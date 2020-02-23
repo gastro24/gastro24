@@ -97,6 +97,7 @@
             onPagiantorLoaded();
 
         } else {
+            
             $('a.internal-apply-link').click(onInternalApplyLinkClicked);
             $('a.external-apply-link, a.no-apply-link').click(onApplyLinkClicked);
         }
