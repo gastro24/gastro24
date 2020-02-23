@@ -308,16 +308,18 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                 </div>
                                             </div>
 
+                                   <div class="row">
+                                       <div class="col-xs-12 col-md-10">
                                             <p class="preview-text">
                                                 <?php
                                                     $preview = null;
                                                     if ($job->getTemplateValues()->getIntroduction()) {
-                                                        $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 250);
+                                                        $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 150);
                                                     }
                                                     elseif ($job->getTemplateValues()->getHtml()) {
                                                         $preview = $job->getTemplateValues()->getHtml();
                                                         $preview = str_replace(['<li>', '</p>', '</h2>', '<b>', '</b>', '<br>'], ' ', $preview);
-                                                        $preview = substr(strip_tags($preview), 0 , 250);
+                                                        $preview = substr(strip_tags($preview), 0 , 150);
                                                     }
                                                     if ($preview) {
                                                         $preview = str_replace('<p>', '', $preview);
@@ -328,11 +330,13 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                 ?>
                                                 <?= $preview ?>
                                             </p>
-
-                                            <div class="box__action-buttons">
+                                        </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        
+                                         <div class="box__action-buttons">
                                                 <!-- share button -->
                                                 <?php if(!$jobHasExternLink) : ?>
-                                                    <div id="shareMail<?= $index ?>" class="hidden-xs shareMail"
+                                                    <div id="shareMail<?= $index ?>" class="hidden shareMail"
                                                          data-url="<?=$href?>" data-title="<?=strip_tags($job->getTitle())?>"></div>
                                                     <div id="shareWhatsapp<?= $index ?>" class="visible-xs shareWhatsapp"
                                                          data-url="<?=$href?>" data-title="<?=strip_tags($job->getTitle())?>"></div>
@@ -355,6 +359,11 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                     <!-- end favorite button -->
                                                 <?php endif; ?>
                                             </div>
+
+                                   </div>
+                                  </div>
+
+                                           
                                         </div>
                                     </div>
                                 </div>
