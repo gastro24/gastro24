@@ -101,7 +101,7 @@
             $('a.external-apply-link, a.no-apply-link').click(onApplyLinkClicked);
         }
 
-        $('.job-short-info button, .apply-button-group .favorite-button').click(function() {
+        $('.box__action-buttons button, .apply-button-group .favorite-button').click(function() {
             var saveButton = $(this);
             var saveText = saveButton.data('text-save');
             var savedText = saveButton.data('text-saved');
