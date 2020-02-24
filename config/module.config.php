@@ -375,14 +375,15 @@ return [
             'lang' => [
                 'child_routes' => [
                     'facebook' => [
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '[/:facebokParam]',
-                            'defaults' => array(
+                        'type' => 'regex',
+                        'options' => [
+                            'regex' => '/fbclid=(?<facebookParam>[a-zA-Z0-9_\-]+)',
+                            'spec' => '/fbclid=%facebookParam%',
+                            'defaults' => [
                                 'controller' => 'Core/Index',
                                 'action' => 'index',
-                            ),
-                        ),
+                            ],
+                        ],
                     ],
                     'wordpress' => [
                         'type' => 'regex',
