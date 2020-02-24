@@ -377,8 +377,8 @@ return [
                     'facebook' => [
                         'type' => 'regex',
                         'options' => [
-                            'regex' => '/fbclid=(?<facebookParam>[a-zA-Z0-9_\-]+)',
-                            'spec' => '/fbclid=%facebookParam%',
+                            'regex' => '/(fbclid|gclid)=(?<shareParam>[a-zA-Z0-9_\-]+)',
+                            'spec' => '/(fbclid|gclid)=%shareParam%',
                             'defaults' => [
                                 'controller' => 'Core/Index',
                                 'action' => 'index',

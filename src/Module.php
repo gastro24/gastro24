@@ -332,6 +332,22 @@ class Module implements AssetProviderInterface
             $e->setResult($response);
             return $response;
         }
+
+        if ($e->getRequest()->getQuery('gclid')) {
+            $basePath= $e->getRouter()->getBaseUrl();
+            $origUri = str_replace($basePath, '', $e->getRequest()->getRequestUri());
+            $origUri = str_replace('?gclid', 'gclid', $origUri);
+            //$lang = $options->isDetectLanguage() ? $this->detectLanguage($e):$options->getDefaultLanguage();
+            $langUri = rtrim("$basePath/de$origUri", '/');
+
+            /* \Zend\Http\PhpEnvironment\Response $response */
+            //$url = $e->getRouter()->assemble([], ['name' => 'lang']);
+            $response = $e->getResponse();
+            $response->getHeaders()->addHeaderLine('Location', $langUri);
+            $response->setStatusCode(302);
+            $e->setResult($response);
+            return $response;
+        }
     }
 
     public function onRenderError(MvcEvent $e)
