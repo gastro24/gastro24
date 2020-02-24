@@ -374,6 +374,16 @@ return [
             ],
             'lang' => [
                 'child_routes' => [
+                    'facebook' => [
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/:facebokParam]',
+                            'defaults' => array(
+                                'controller' => 'Core/Index',
+                                'action' => 'index',
+                            ),
+                        ),
+                    ],
                     'wordpress' => [
                         'type' => 'regex',
                         'options' => [
