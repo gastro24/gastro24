@@ -81,6 +81,8 @@ class Module implements AssetProviderInterface
         if (!Console::isConsole()) {
             $sharedManager = $eventManager->getSharedManager();
 
+            $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'onDispatchError'));
+
             /*
              * use a neutral layout, when rendering the application form and its result page.
              * Also the application preview should be rendered in this layout.
@@ -312,7 +314,27 @@ class Module implements AssetProviderInterface
         ];
     }
 
-    public function onRenderError($e)
+    public function onDispatchError($e)
+    {
+        // has facebook share param - redirect to startpage
+        if ($e->getRequest()->getQuery('fbclid')) {
+            $basePath= $e->getRouter()->getBaseUrl();
+            $origUri = str_replace($basePath, '', $e->getRequest()->getRequestUri());
+            $origUri = str_replace('?fbclid', 'fbclid', $origUri);
+            //$lang = $options->isDetectLanguage() ? $this->detectLanguage($e):$options->getDefaultLanguage();
+            $langUri = rtrim("$basePath/de$origUri", '/');
+
+            /* \Zend\Http\PhpEnvironment\Response $response */
+            //$url = $e->getRouter()->assemble([], ['name' => 'lang']);
+            $response = $e->getResponse();
+            $response->getHeaders()->addHeaderLine('Location', $langUri);
+            $response->setStatusCode(302);
+            $e->setResult($response);
+            return $response;
+        }
+    }
+
+    public function onRenderError(MvcEvent $e)
     {
         $services     = $e->getApplication()->getServiceManager();
         /** @var IsCrawlerJob $isCrawlerHelper */
