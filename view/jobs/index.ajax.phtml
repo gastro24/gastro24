@@ -171,8 +171,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                 );
             ?>
         </div>
-        </div>
-
+       </div>
             <!-- result list -->
             <div class="col-md-9 job-overview-results">
                 <div class="row">
@@ -215,24 +214,21 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 
                                     <div class="content-area">
                                         <div class="top-cnt">
-
                                             <div class="box__job-favorite">
-                                                <h2 class="h3" style="margin-top: 0;margin-bottom: 10px;max-width:75%;">
+                                                <h2>
                                                     <?php if($jobHasExternLink) { ?>
-                                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>" rel="nofollow noopener sponsored" target="_blank"
+                                                        <a title="<?=strip_tags($job->getTitle())?>" rel="nofollow noopener sponsored" target="_blank"
                                                            href="<?=$href?>"><?=strip_tags($job->getTitle())?>
-
-                                                           <i style="padding-left:5px" class="fa fa-external-link"></i>
+                                                           <i class="fa fa-external-link"></i>
                                                         </a>
                                                     <?php }
                                                     else { ?>
-                                                        <a style="color:#243b84" title="<?=strip_tags($job->getTitle())?>"
+                                                        <a title="<?=strip_tags($job->getTitle())?>"
                                                            href="<?=$href?>"><?=strip_tags($job->getTitle())?>
                                                         </a>
                                                     <?php } ?>
                                                 </h2>
                                             </div>
-
                                             <div class="box__job-short-info">
                                                 <ul>
                                                     <li class="location">
@@ -369,7 +365,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                 <!-- box after second job -->
                                <div id="form-jobsbymail-subscribe-form" class="form-jobsbymail-subscribe-form-desktop col-md-12 col-sm-6 col-xs-12">
                                     <div class="featured-image-box">
-                                        <h2 style="color: #22436c;font-weight: 300;margin-top: 0; margin-bottom: 10px;font-size: 19px;line-height: 1.3;}">Täglich neue Jobs per E-Mail erhalten?</h2>
+                                        <h2>Täglich neue Jobs per E-Mail erhalten?</h2>
                                         <p>Lassen Sie sich automatisch informieren, sobald für dieses Suchergebnis neue Stellen online sind.</p>
                                         <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
                                     </div>
