@@ -384,8 +384,27 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                            
                             <?php $parts=preg_split('~<!--more-->~' , $description);?>
                               <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
+                              
+                              <style>
+                                  .similarjob {
+                                      
+                                      background-color:#f7f8fa;
+                                      
+                                     
+                                  }
+                                  
+                                  .similarjob ul {
+                                      padding-left:0px;
+                                  }
+                                  .similiarjob a {
+                                      
+                                      color:#1e69a3;
+                                  }
+                                  
+                                  
+                              </style>
                               <div class="col-md-12 col-sm-6 col-xs-12">
-                                <div class="featured-image-box">
+                                <div class="featured-image-box similarjob">
                                     <h2>Ähnliche Jobs</h2>
             
                                     <?= $parts[1] ?>
