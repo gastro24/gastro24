@@ -375,23 +375,28 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                 <!-- box after third job -->
 
                             <?php endif ?>
-                            <?php if ($index == 6) : ?>
+                            <?php if ($index == 5) : ?>
                                 <!-- box after sixth job -->
 
 
 
-                                  <!-- similar jobs -->
-                             <div class="col-md-12 col-sm-6 col-xs-12">
+                                 
+                           
+                            <?php $parts=preg_split('~<!--more-->~' , $description);?>
+                              <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
+                              <div class="col-md-12 col-sm-6 col-xs-12">
                                 <div class="featured-image-box">
+                                    <h2>Ähnliche Jobs</h2>
             
-                                <?php $parts=preg_split('~<!--more-->~' , $description);?>
-                                <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
                                     <?= $parts[1] ?>
                                     <?php if (51 == $query): echo $this->landingpages(); endif; ?>
-                                <?php endif ?>
-                             </div>
-                            </div>
-                                <!-- end similar jobs -->
+                                    
+                                    </div>
+                                 </div>
+                              <?php endif ?>
+                             
+                            
+                            
                                
                             <?php endif ?>
                         <?php endforeach?>
