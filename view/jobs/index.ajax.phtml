@@ -307,12 +307,12 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                 <?php
                                                     $preview = null;
                                                     if ($job->getTemplateValues()->getIntroduction()) {
-                                                        $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 175);
+                                                        $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 185);
                                                     }
                                                     elseif ($job->getTemplateValues()->getHtml()) {
                                                         $preview = $job->getTemplateValues()->getHtml();
                                                         $preview = str_replace(['<li>', '</p>', '</h2>', '<b>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>'], ' ', $preview);
-                                                        $preview = substr(strip_tags($preview), 0 , 175);
+                                                        $preview = substr(strip_tags($preview), 0 , 185);
                                                     }
                                                     if ($preview) {
                                                         $preview = str_replace('<p>', '', $preview);
@@ -323,24 +323,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                 ?>
                                                 <?= $preview ?>
                                                 
-                                                <?php
-                                                    $preview2 = null;
-                                                    if ($job->getTemplateValues()->getIntroduction()) {
-                                                        $preview2 = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 176 , 350);
-                                                    }
-                                                    elseif ($job->getTemplateValues()->getHtml()) {
-                                                        $preview2 = $job->getTemplateValues()->getHtml();
-                                                        $preview2 = str_replace(['<li>', '</p>', '</h2>', '<b>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>'], ' ', $preview2);
-                                                        $preview2 = substr(strip_tags($preview2), 176 , 350);
-                                                    }
-                                                    if ($preview2) {
-                                                        $preview2 = str_replace('<p>', '', $preview2);
-                                                        $preview2 = str_replace('</p>', '', $preview2);
-                                                        $preview2   = implode(' ', explode(' ', $preview2, -1));
-                                                        $preview2 .= '';
-                                                    }
-                                                ?>
-                                                <?= $preview2 ?>
+                                              
                                                 
                                                 
                                             </p>
