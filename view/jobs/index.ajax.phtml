@@ -318,10 +318,31 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                         $preview = str_replace('<p>', '', $preview);
                                                         $preview = str_replace('</p>', '', $preview);
                                                         $preview   = implode(' ', explode(' ', $preview, -1));
-                                                        $preview .= ' ...';
+                                                        $preview .= ' ... ';
                                                     }
                                                 ?>
                                                 <?= $preview ?>
+                                                
+                                                <?php
+                                                    $preview2 = null;
+                                                    if ($job->getTemplateValues()->getIntroduction()) {
+                                                        $preview2 = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 176 , 350);
+                                                    }
+                                                    elseif ($job->getTemplateValues()->getHtml()) {
+                                                        $preview2 = $job->getTemplateValues()->getHtml();
+                                                        $preview2 = str_replace(['<li>', '</p>', '</h2>', '<b>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>'], ' ', $preview2);
+                                                        $preview2 = substr(strip_tags($preview2), 176 , 350);
+                                                    }
+                                                    if ($preview2) {
+                                                        $preview2 = str_replace('<p>', '', $preview2);
+                                                        $preview2 = str_replace('</p>', '', $preview2);
+                                                        $preview2   = implode(' ', explode(' ', $preview2, -1));
+                                                        $preview2 .= '';
+                                                    }
+                                                ?>
+                                                <?= $preview2 ?>
+                                                
+                                                
                                             </p>
                                         </div>
                                     <div class="col-xs-12 col-md-2">
