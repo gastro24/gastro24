@@ -317,8 +317,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                     if ($preview) {
                                                         $preview = str_replace('<p>', '', $preview);
                                                         $preview = str_replace('</p>', '', $preview);
-                                                        $preview = str_replace('<div>', '', $preview);
-                                                        $preview = str_replace('</div>', '', $preview);
                                                         $preview   = implode(' ', explode(' ', $preview, -1));
                                                         $preview .= ' ... ';
                                                     }
