@@ -33,7 +33,38 @@
 
 
 $options = [
+     'hausdame' => [
+          'id' => 1588,
+		  'query' => [ 'q' => 'Hausdame'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Hausdame Jobs'
+       ],
+  
+  'zimmerreinigung' => [
+          'id' => 1586,
+		  'query' => [ 'q' => 'Zimmerreinigung'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Zimmerreinigung Jobs'
+       ],
+  
+    'reinigungskraft' => [
+          'id' => 1584,
+		  'query' => [ 'q' => 'Reinigungskraft'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Reinigungskraft Jobs'
+       ],
     
+    'hauswirtschaft' => [
+          'id' => 1582,
+		  'query' => [ 'q' => 'Hauswirtschaft'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Hauswirtschaft Jobs'
+       ],
+
   
       'active-gastro-eng-gmbh' => [
           'id' => 1540,
@@ -42,6 +73,8 @@ $options = [
 		  'panel' => '',
           'text' => 'Jobs Active Gastro Eng GmbH'
        ],
+       
+      
     
     'coople' => [
           'id' => 1532,
