@@ -57,12 +57,12 @@ $options = [
           'text' => 'Reinigungskraft Jobs'
        ],
     
-    'hauswirtschaft' => [
+    'housekeeping' => [
           'id' => 1582,
-		  'query' => [ 'q' => 'Hauswirtschaft'],
+		  'query' => [ 'q' => 'Housekeeping'],
 		   'tab' => '',
 		   'panel' => '',
-          'text' => 'Hauswirtschaft Jobs'
+          'text' => 'Housekeeping Jobs'
        ],
 
   
