@@ -33,6 +33,15 @@
 
 
 $options = [
+    
+     'kueche' => [
+          'id' => 157,
+		  'query' => [ 'q' => 'Küche'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Küche Jobs'
+       ],
+  
      'hausdame' => [
           'id' => 1588,
 		  'query' => [ 'q' => 'Hausdame'],
@@ -59,10 +68,10 @@ $options = [
     
     'housekeeping' => [
           'id' => 1582,
-		  'query' => [ 'q' => 'Housekeeping'],
+		  'query' => [ 'q' => 'Hauswirtschaft'],
 		   'tab' => '',
 		   'panel' => '',
-          'text' => 'Housekeeping Jobs'
+          'text' => 'Hauswirtschaft Jobs'
        ],
 
   
