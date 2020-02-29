@@ -379,7 +379,7 @@ $options = [
     
        'sushi-koch' => [
           'id' => 1288,
-		  'query' => [ 'q' => 'Sushi'],
+		  'query' => [ 'q' => 'Sushi Koch'],
 		   'tab' => 'Jobs von A - Z',
 		       'panel' => '',
           'text' => 'Sushi Koch Jobs'
