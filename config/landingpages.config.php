@@ -34,6 +34,13 @@
 
 $options = [
     
+     'service' => [
+          'id' => 1603,
+		  'query' => [ 'q' => 'Service'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Service Jobs'
+       ],
      'kueche' => [
           'id' => 157,
 		  'query' => [ 'q' => 'Küche'],
