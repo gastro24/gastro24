@@ -35,7 +35,7 @@
 $options = [
     'hotel' => [
           'id' => 1629,
-		  'query' => [ 'q' => 'Hotel Jobs'],
+		  'query' => [ 'q' => 'Hotel'],
 		   'tab' => '',
 		   'panel' => '',
           'text' => 'Hotel Jobs'
