@@ -374,12 +374,12 @@ $options = [
           'text' => 'Marketing Jobs'
      ],
 
-     'fachverkaeufer' => [
+     'verkauf' => [
           'id' => 1312,
-		  'query' => [ 'q' => 'Fachverkäufer'],
+		  'query' => [ 'q' => 'Verkauf'],
 		   'tab' => 'Jobs von A - Z',
 		       'panel' => '',
-          'text' => 'Fachverkäufer Jobs'
+          'text' => 'Jobs Verkauf'
      ],
     
       'hotelfachfrau' => [
