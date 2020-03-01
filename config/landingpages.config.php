@@ -33,6 +33,27 @@
 
 
 $options = [
+    'administration-verkauf' => [
+          'id' => 1642,
+		  'query' => [ 'q' => 'Administration'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Administration Jobs'
+       ],
+    'night-auditor' => [
+          'id' => 1638,
+		  'query' => [ 'q' => 'Night Auditor'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Night Auditor Jobs'
+       ],
+     'reservation' => [
+          'id' => 1640,
+		  'query' => [ 'q' => 'Reservation'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Reservation Jobs'
+       ],
     'hotel' => [
           'id' => 1629,
 		  'query' => [ 'q' => 'Hotel'],
