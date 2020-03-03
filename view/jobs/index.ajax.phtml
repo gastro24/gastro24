@@ -390,78 +390,17 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                             <?php endif ?>
                             <?php if ($index == 4) : ?>
                                 <!-- box after fifth job -->
-
-
-
-                                 
-                           
                             <?php $parts=preg_split('~<!--more-->~' , $description);?>
                               <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
-                              
-                              <style>
-                                  .similarjob {
-                                      
-                                      background-color:#f7f8fa;
-                                      
-                                     
-                                  }
-                                  
-                                  .similarjob ul {
-                                      padding-left:0px;
-                                      list-style-type:none;
-                                      -webkit-column-count: 3;
-                                      -moz-column-count: 3;
-                                       column-count: 3;
-                                       -webkit-column-gap: 0;
-                                        -moz-column-gap: 0;
-                                       column-gap: 0;
-                                      
-                                  }
-                                  
-                                  .similarjob ul li {
-                                      margin-bottom:5px;
-                                  }
-                                  .similarjob ul li a {
-                                      
-                                      color:#1e69a3;
-                                      margin-bottom:10px;
-                                      display:block;
-                                      margin-top:2px;
-                                  }
-                                  
-                                  @media (max-width: 768px) {
-                                      
-                                      .similarjob ul {
-                                      padding-left:0px;
-                                      list-style-type:none;
-                                      -webkit-column-count: 2;
-                                      -moz-column-count: 2;
-                                       column-count: 2;
-                                       -webkit-column-gap: 0;
-                                        -moz-column-gap: 0;
-                                       column-gap: 0;
-                                      
-                                  }
-                                      
-                                  }
-    
-    
-                                  
-                              </style>
                               <div class="col-md-12 col-sm-6 col-xs-12" id="infobox-<?=$this->params()->fromRoute('term') ?>">
                                 <div class="featured-image-box similarjob">
-                        
-            
-                                    <?= $parts[1] ?>
+                                   <?= $parts[1] ?>
                                     <?php if (51 == $query): echo $this->landingpages(); endif; ?>
                                     
                                     </div>
                                  </div>
                               <?php endif ?>
-                             
-                            
-                            
-                               
+
                             <?php endif ?>
                         <?php endforeach?>
                     </div>
