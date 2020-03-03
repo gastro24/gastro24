@@ -415,16 +415,17 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
             <?=$hasFacets ? '</div>' : '' ?>
         <?php endif ?>
         
-<div class="container">
- <div class="row">
-    <div class="col-md-12">
-        <div class="to-top-link">
-            <a id="scroll-to-top" href="#top"><span class="fa fa-chevron-up"></span> nach oben</a>
-        </div>
-    </div>
-  </div>
- </div>  
- 
+ <?php if (count($this->jobs)):?>       
+        <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+                <div class="to-top-link">
+                    <a id="scroll-to-top" href="#top"><span class="fa fa-chevron-up"></span> nach oben</a>
+                </div>
+            </div>
+          </div>
+         </div>  
+   <?php endif ?>
  
         </div>
     </div>
