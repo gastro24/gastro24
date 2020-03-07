@@ -1,1 +1,873 @@
-<?php /** * Gastrojobs24 * * General layout template file. Defines the general layout. * * @copyright (c) 2013 - 2016 Cross Solution (http://cross-solution.de) * @license Gastrojobs *//* @var $options CoreOptionsModuleOptions */ $options = $this->services('Core/Options'); $languages = $options->getSupportedLanguages(); $lang = $this->params('lang');// See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html $notifications = $this->partial('core/notifications');// set default page title $this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoEscape(false); $savedJobsContainer = new ZendSessionContainer('gastro24_savedjobs'); $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;$this->headTitle($this->translate('Home')); ?> <?php echo $this->doctype(); ?><html class="no-js" lang="<?php echo $this->params('lang') ?>"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#"><link rel="icon" type="image/png" sizes="32x32" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-32x32.png')?>"><link rel="icon" type="image/png" sizes="16x16" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-16x16.png')?>"><link rel="shortcut icon" type="image/ico" href="<?=$this->basepath('modules/Gastro24/favicons/favicon.ico')?>"><meta name="msapplication-TileColor" content="#2e5b93"><meta name="theme-color" content="#2e5b93"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><link rel="canonical" href="https://www.gastrojob24.ch" /><link rel="stylesheet" type="text/css" href="<?= $this->basePath('dist/css/core.min.css') ?>"><link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>"><link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('modules/Gastro24/g24-startpage.css')) ?>"><title>Jobbörse Gastrojob24 - Gastronomie Jobs & Hotel Jobs</title><meta name="description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Stellen bei Gastrojob24.ch - der #1 Gastronomie & Hotellerie Jobbörse der Schweiz."><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" /><meta property="og:title" content="Gastronomie Jobs | Hotel Jobs | Traumjob finden - Gastrojob24" /><meta property="og:description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Gastronomie Jobs bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz."><meta property="og:url" content="https://www.gastrojob24.ch" /><meta property="og:image" content="https://www.gastrojob24.ch/modules/Gastro24/gastro-logo-fb.png" /><meta property="og:locale" content="de_DE" /><meta property="og:type" content="website" /> <script>var lang="<?= $this->params('lang') ?>";var basePath="<?= $this->basePath() ?>";</script> <script>document.documentElement.classList.remove("no-js");</script> <link rel="preconnect" href="https://www.google.com" crossorigin><link rel="dns-prefetch" href="https://www.google.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><link rel="dns-prefetch" href="https://www.google-analytics.com"> <?php echo $this->headLink() ?> <?php echo $this->headStyle() ?> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125791873-1"></script> <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js',new Date());gtag('config','UA-125791873-1');gtag('config','AW-980688466');</script> <?php echo $this->partial("gastro24/schema") ?></head><body class="home startpage"> <header id="header" role="banner" class="hidden-xs" data-saved-jobs="<?=$savedJobsCount?>"><div class="container"><div class="row"><div class="navbar-header col-md-4"> <a class="logo" title="Gastrojob24" href="<?php echo $this->basepath('/' . $this->params('lang')) ?>"> <img src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_blue.svg') ?>" alt="Gastrojob24 Logo"> </a></div><div class="col-md-8"> <?php if ('guest' == $this->auth('role')) : ?><ul class="pull-right navbar-nav nav-recruiting"><li class="nav-item"> <a title="Stellenanzeige schalten" href="<?= $this->url('stellenanzeigen-schalten') ?>" class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Anzeige schalten</a></li><li class="nav-item dropdown"> <a title="Anmelden" href="#" class="login-link nav-link text-reset _dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a><ul class="dropdown-menu dropdown-menu-right"><li class="nav-item"> <?= $this->partial('partials/login-popup.phtml', ['device' => 'desktop']); ?> <?= $this->partial('partials/password-reset.phtml', [ 'style' => 'display: none;', 'device' => 'desktop' ]) ?></li></ul></li></ul> <?php else : ?> <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation" > <?= $this->loginInfo(array('lang' => $lang )); ?> <?= $this->navigation('Core/Navigation') ->setAcl($this->services('acl')) ->setRole($this->auth('role')) ->menu() ->setMaxDepth(0) // only show the top level entries ->renderPartial(null, 'main-navigation'); ?> </nav> <?php endif; ?></div></div></div> </header> <nav class="navbar-home search-form-container"><div class="container"><div class="row"><div class="col-md-12"><div class="navbar-collapse visible-xs" id="meta-navigation"><ul id="menu" class="nav navbar-nav2"><li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </a><ul class="dropdown-menu"><li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="<?= $this->url('stellenanzeigen-schalten') ?>">Anzeige schalten</a></li><li class=""><a title="Jobs" href="/de/jobs?clear=1">Jobs</a></li><li class=""><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li><li class=""><a title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li></ul></li><ul></div> <a class="visible-xs navbar-brand" href="/"> <img src="<?= $this->basepath('/modules/Gastro24/gastrojob24_white.svg') ?>" alt="Gastrojob24 Schweiz" class="menu-logo"> </a><div id="navbar-home-site-links" class="hidden-xs"><ul><li><a class="navbar-item-anchor" title="Alle Jobs" href="/de/jobs?clear=1">Jobs</a></li><li><a class="navbar-item-anchor" title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li><li><a class="navbar-item-anchor" title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li></ul></div><div class="favorite-icon pull-right"> <?php $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') : sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs'); ?> <a class="link__saved-jobs empty" href="<?=$this->url('lang/saved-jobs', [], true)?>" data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>"></a></div><div class="login-icon pull-right visible-xs" data-toggle="dropdown" aria-expanded="false"> <span class="fa fa-user"></span></div><div class="dropdown-menu dropdown-menu-mobile"> <?php if ('guest' == $this->auth('role')): ?> <?= $this->partial('partials/login-popup.phtml'); ?> <?= $this->partial('partials/password-reset.phtml', [ 'style' => 'display: none;' ]) ?> <?php else: ?><div class="yamm-content logged-in"><div class="row"><div class="col-md-12"> <?= $this->partial('partials/logged-in-submenu.phtml', [ 'cssClass' => '', 'lang' => $lang ]); ?></div></div></div> <?php endif; ?></div></div></div></div> </nav><div class="full-background"><div class="container"> <?php echo $notifications?><div class="row"><div class="col-md-12"><div class="tagline-container"><h1>Traumjob finden im Gastgewerbe</h1></div></div><?php /* @todo Probably, we should create a dedicated IndexController to inject this dependencies. */ $form = $this->services('forms.Jobs/JobboardSearch'); // defines after which element the search button will be placed $form->setButtonElement(null); $form->setOption('buttons_span', ['md' => 2, 'sm' => 1]); $form->setAttribute('action', $this->url('lang/jobboard', [], true)); ?> <?php //TODO: column sizes are applied to md and sm ?><div class="col-md-12 container-search"> <?=$this->searchForm($form, ['q' => 5, 'l' => 3, 'd' => 2]);?></div></div><div id="recommended-jobs"><div class="container-fluid"><div class="row"><div class="col-md-12"><h2>Empfohlene Stellenanzeigen</h2></div><div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav" data-ride="carousel" data-interval="4500"><div class="carousel-inner"><div class="item active"><div class="col-xs-12 col-sm-6 col-md-4"><div class="recommended-box"><div class="recommended-box-inner"><div class="recommended-box-jobtitle"> <a title="Wirt/in / Hüttenwart für Berghaus gesucht!" href="/de/jobs/wirt-in---huettenwart-fuer-berghaus-gesucht--5e427d173c050f12987dc353.html"> <span class="block-ellipsis"> Wirt/in / Hüttenwart für Berghaus gesucht! </span> </a></div><div class="row"><div class="col-md-8 col-lg-9 col-xs-8 "><ul class="short-details"><li class="location"> <span>Sörenberg</span></li><li class="company"> <span class=""> Bergbahnen Sörenberg AG</span></li></ul></div><div class="recommended-box-company-logo-container "> <img rel="preload" as="image" src="/file/Gastro24.TemplateImage/5e427b6a3c050f11ec0c67e2/Sörenberg+Bergbahnen+farbig+-+Kopie.jpg"></div></div><div class="row"><div class="recommended-hero " style="background-image: url(/modules/Gastro24/images/bg_placeholder_blue.svg)"></div></div></div><div class="recommended-box-actions clearfix"><div class="col-xs-4 pull-left"> <a href="/de/jobs/wirt-in---huettenwart-fuer-berghaus-gesucht--5e427d173c050f12987dc353.html" class="view-btn btn"> Bewerben </a></div><div class="col-xs-4 save-job pull-right"> <?php if (isset($savedJobsContainer->jobs['5da815e53c050f205567afb2'])) : ?> <button type="button" class="btn btn-default saved" data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>"> <span><?=$this->translate('Marked')?></span> </button> <?php else : ?> <button type="button" class="btn btn-default" data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>"> <span><?=$this->translate('Mark')?></span> </button> <?php endif ?></div></div></div></div></div><div class="item"><div class="col-xs-12 col-sm-6 col-md-4"><div class="recommended-box"><div class="recommended-box-inner"><div class="recommended-box-jobtitle"> <a title="Junior Restaurant Leitung" href="/de/jobs/junior-restaurant-leitung-5d94b2f93c050f29b6515f67.html"> <span class="block-ellipsis"> Junior Restaurant Leitung </span> </a></div><div class="row"><div class="col-md-8 col-lg-9 col-xs-8 "><ul class="short-details"><li class="location"> <span>Zürich</span></li><li class="company"> <span class="">Hiltl AG</span></li></ul></div><div class="recommended-box-company-logo-container "> <img rel="preload" as="image" src="https://www.gastrojob24.ch/file/Gastro24.TemplateImage/5d94b4753c050f3bef608812/Hiltl_since_1898_dg.png"></div></div><div class="row"><div class="recommended-hero" style="background-image: url(https://www.gastrojob24.ch/file/Gastro24.TemplateImage/5d94b4a23c050f2fd80aca22/Leiter+Marketing.jpg)"></div></div></div><div class="recommended-box-actions clearfix"><div class="col-xs-4 pull-left"> <a href="/de/jobs/junior-restaurant-leitung-5d94b2f93c050f29b6515f67.html" class="view-btn btn"> Bewerben </a></div><div class="col-xs-4 save-job pull-right"> <?php if (isset($savedJobsContainer->jobs['5d94b2f93c050f29b6515f67'])) : ?> <button type="button" class="btn btn-default saved" data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>"> <span><?=$this->translate('Marked')?></span> </button> <?php else : ?> <button type="button" class="btn btn-default" data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>"> <span><?=$this->translate('Mark')?></span> </button> <?php endif ?></div></div></div></div></div><div class="item"><div class="col-xs-12 col-sm-6 col-md-4"><div class="recommended-box"><div class="recommended-box-inner"><div class="recommended-box-jobtitle"> <a title="Servicemitarbeitern Teilzeit" href="/de/jobs/servicemitarbeiterin-5e43393f3c050f3b41505433.html"> <span class="block-ellipsis"> Servicemitarbeiterin Teilzeit </span> </a></div><div class="row"><div class="col-md-8 col-lg-9 col-xs-8 "><ul class="short-details"><li class="location"> <span>Brunnen</span></li><li class="company"> <span class=""> Natolien Grillhaus</span></li></ul></div><div class="recommended-box-company-logo-container "> <img rel="preload" as="image" src="/file/Gastro24.TemplateImage/5e43363d3c050f22fb5a6f02/logo.PNG"></div></div><div class="row"><div class="recommended-hero " style="background-image: url(/modules/Gastro24/images/bg_placeholder_gray.svg)"></div></div></div><div class="recommended-box-actions clearfix"><div class="col-xs-4 pull-left"> <a href="/de/jobs/servicemitarbeiterin-5e43393f3c050f3b41505433.html" class="view-btn btn"> Bewerben </a></div><div class="col-xs-4 save-job pull-right"> <?php if (isset($savedJobsContainer->jobs['5e2085513c050f1c8e66f9f3'])) : ?> <button type="button" class="btn btn-default saved" data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>"> <span><?=$this->translate('Marked')?></span> </button> <?php else : ?> <button type="button" class="btn btn-default" data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>"> <span><?=$this->translate('Mark')?></span> </button> <?php endif ?></div></div></div></div></div></div></div><a class="left carousel-control" href="#carousel-tilenav" data-slide="prev"><i class="fa fa-chevron-left"></i></a> <a class="right carousel-control" href="#carousel-tilenav" data-slide="next"><i class="fa fa-chevron-right"></i></a></div></div></div></div></div><div id="inspireBanner"><div class="container"><div class="row"><div class="col-md-12"><div class="inspireContent row"><div class="col-xs-12 col-sm-6 col-md-5"><div class="shout-out"><h2>Mit einem Klick zum Traumkandidaten<span>Schneller und besser inserieren.</span></h2> <a href="<?= $this->url('stellenanzeigen-schalten') ?>" class="btn btn-danger">Stellenanzeige jetzt schalten</a></div></div><div class="col-xs-12 col-sm-6 col-md-7"><ul class="usp"><li> <span class="thick" fill="#243b84"> <svg fill="#243b84" viewBox="0 0 128 128" width="24px" height="24px"> <path d="M114.156 15.188l-5.469 5.844L43.781 89.97 19.593 66.282l-5.719-5.594L2.686 72.126l5.719 5.594 30.031 29.406 5.844 5.688 5.594-5.938 70.438-74.906 5.5-5.813-11.656-10.969z"> </path> </svg> </span> <span>Jobs kostenlos inserieren</span></li><li> <span class="thick" fill="#243b84"> <svg fill="#243b84" viewBox="0 0 128 128" width="24px" height="24px"> <path d="M114.156 15.188l-5.469 5.844L43.781 89.97 19.593 66.282l-5.719-5.594L2.686 72.126l5.719 5.594 30.031 29.406 5.844 5.688 5.594-5.938 70.438-74.906 5.5-5.813-11.656-10.969z"> </path> </svg> </span> <span>Beliebt bei Fachkräften <span class="hidden-xs">aus Gastronomie und Hotellerie</span></span></li><li> <span class="thick" fill="#243b84"> <svg fill="#243b84" viewBox="0 0 128 128" width="24px" height="24px"> <path d="M114.156 15.188l-5.469 5.844L43.781 89.97 19.593 66.282l-5.719-5.594L2.686 72.126l5.719 5.594 30.031 29.406 5.844 5.688 5.594-5.938 70.438-74.906 5.5-5.813-11.656-10.969z"> </path> </svg> </span> <span><span class="hidden-xs">Automatisch für</span> Google Job Search Experience optimiert</span></li></ul></div></div></div></div></div></div><div id="home-tabs"><div class="container"><div class="row"><div class="col-md-12"><div class="tab_container"> <input id="tab1" type="radio" name="tabs" checked> <label for="tab1"><span class="visible-xs">Alle</span><span class="hidden-xs">Jobs von A - Z</span></label><input id="tab2" type="radio" name="tabs"> <label for="tab2"><span><span class="hidden-xs">Beliebte</span> Städte</span></label><input id="tab3" type="radio" name="tabs"> <label for="tab3"><span><span class="hidden-xs">Jobs nach</span> Region</span></label><input id="tab4" type="radio" name="tabs"> <label for="tab4"><span class="visible-xs">Beliebte</span><span class="hidden-xs">Häufig gesucht</span></label><section id="content1" class="tab-content"><div class="row"><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav"><li><a title="Alleinkoch Jobs" href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li><li><a title="Bäcker Jobs" href="/de/jobs/baecker.html">Bäcker Jobs</a></li><li><a title="Concierge Jobs" href="/de/jobs/concierge.html">Concierge Jobs</a></li><li><a title="Diätkoch Jobs" href="/de/jobs/diaetkoch.html">Diätkoch Jobs</a></li><li><a title="Entremetier Jobs" href="/de/jobs/entremetier.html">Entremetier Jobs</a></li><li><a title="Front Office Jobs" href="/de/jobs/front-office.html">Front Office Jobs</a></li></ul></div><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav collapse-linkbox collapse"><li><a title="Gouvernante Job" href="/de/jobs/gouvernante.html">Gouvernante Jobs</a></li><li><a title="Hotelfachmann Jobs" href="/de/jobs/hotelfachmann.html">Hotelfachmann Jobs</a></li><li><a title="Jungkoch Jobs" href="/de/jobs/jungkoch.html">Jungkoch Jobs</a></li><li><a title="Koch Jobs" href="/de/jobs/koch.html">Koch Jobs</a></li><li><a title="Leitung Gastronomie Jobs" href="/de/jobs/leitung.html">Leitung Gastronomie Jobs</a></li><li><a title="Metzger Jobs" href="/de/jobs/metzger.html">Metzger Jobs</a></li></ul></div><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav collapse-linkbox collapse"><li><a title="Office Jobs" href="/de/jobs/office.html">Office Jobs</a></li><li><a title="Patissier Jobs" href="/de/jobs/patissier.html">Patissier Jobs</a></li><li><a title="Restauration Jobs" href="/de/jobs/restauration.html">Restauration Jobs</a></li><li><a title="Saison Jobs" href="/de/jobs/saison.html">Saison Jobs</a></li><li><a title="Tournant Jobs" href="/de/jobs/tournant.html">Tournant Jobs</a></li><li><a title="Zimmermädchen Jobs" href="/de/jobs/zimmermaedchen.html">Zimmermädchen Jobs</a></li></ul></div></div><div class="tab-readmore visible-xs"> <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-linkbox"><p class="collapse-linkbox tab-more collapse in" aria-expanded="true"><span class="fa fa-chevron-down"></span> Mehr</p><p class="collapse-linkbox tab-less collapse" aria-expanded="false" style="height: 0px;"><span class="fa fa-chevron-up"></span> Weniger</p> </button></div> </section><section id="content2" class="tab-content"><div class="row"><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav"><li><a title="Gastro Jobs Stadt Zürich" href="/de/jobs/stadt-zuerich.html">Jobs Zürich</a></li><li><a title="Gastro Jobs Stadt Bern" href="/de/jobs/stadt-bern.html">Jobs Bern </a></li><li><a title="Gastro Jobs Stadt Basel" href="/de/jobs/stadt-basel.html">Jobs Basel </a></li><li><a title="Gastro Jobs Stadt St. Gallen" href="/de/jobs/stadt-sankt-gallen.html">Jobs St. Gallen </a></li><li><a title="Gastro Jobs Stadt Luzern" href="/de/jobs/stadt-luzern.html">Jobs Luzern</a></li></ul></div><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav collapse-linkbox2 collapse"><li><a title="Gastro Jobs Dübendorf" href="/de/jobs/stadt-duebendorf.html">Jobs Dübendorf </a></li><li><a title="Gastro Jobs Lausanne" href="/de/jobs/stadt-lausanne.html">Jobs Lusanne</a></li><li><a title="Gastro Jobs Chur" href="/de/jobs/stadt-chur.html">Jobs Chur</a></li><li><a title="Gastro Jobs Winterthur" href="/de/jobs/stadt-winterthur.html">Jobs Winterthur</a></li><li><a title="Gastro Jobs Dietikon" href="/de/jobs/stadt-dietikon.html">Jobs Dietikon</a></li></ul></div><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav collapse-linkbox2 collapse"><li><a title="Gastro Jobs Kloten" href="/de/jobs/stadt-kloten.html">Jobs Kloten</a></li><li><a title="Gastro Jobs Horgen" href="/de/jobs/stadt-horgen.html">Jobs Horgen</a></li><li><a title="Gastro Jobs Aarau" href="/de/jobs/stadt-aarau.html">Jobs Aarau</a></li><li><a title="Gastro Jobs Stadt Genf" href="/de/jobs/stadt-genf.html">Jobs Genf</a></li><li><a title="Gastro Jobs Stadt Zug" href="/de/jobs/stadt-zug.html">Jobs Zug</a></li></ul></div></div><div class="tab-readmore visible-xs"> <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-linkbox2"><p class="collapse-linkbox2 tab-more collapse in" aria-expanded="true"><span class="fa fa-chevron-down"></span> Mehr</p><p class="collapse-linkbox2 tab-less collapse" aria-expanded="false" style="height: 0px;"><span class="fa fa-chevron-up"></span> Weniger</p> </button></div> </section><section id="content3" class="tab-content"><div class="row"><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav"><li><a title="Jobs Appenzell Ausserrhoden" href="/de/jobs/region-appenzell-ausserrhoden.html">Jobs Appenzell Ausserrhoden</a></li><li><a title="Jobs Appenzell Innerrhoden" href="/de/jobs/region-appenzell-innerrhoden.html">Jobs Appenzell Innerrhoden</a></li><li><a title="Jobs Glarus" href="/de/jobs/region-glarus.html">Jobs Glarus</a></li><li><a title="Jobs Schaffhausen" href="/de/jobs/region-schaffhausen.html">Jobs Schaffhausen</a></li><li><a title="Jobs St.Gallen" href="/de/jobs/region-st-gallen.html">Jobs St. Gallen</a></li><li><a title="Jobs Thurgau" href="/de/jobs/region-thurgau.html">Jobs Thurgau</a></li><li><a title="Jobs Graubünden" href="/de/jobs/region-graubuenden.html">Jobs Graubünden</a></li><li><a title="Jobs Tessin" href="/de/jobs/region-tessin.html">Jobs Tessin</a></li></ul></div><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav collapse-linkbox3 collapse"><li><a title="Jobs Aargau" href="/de/jobs/region-aargau.html">Jobs Aargau</a></li><li><a title="Jobs Basel-Landschaft" href="/de/jobs/region-basel-landschaft.html">Jobs Basel-Landschaft</a></li><li><a title="Jobs Basel-Stadt" href="/de/jobs/region-basel-stadt.html">Jobs Basel-Stadt</a></li><li><a title="Jobs Bern" href="/de/jobs/region-bern.html">Jobs Bern</a></li><li><a title="Jobs Jura" href="/de/jobs/region-jura.html">Jobs Jura</a></li><li><a title="Jobs Solothurn" href="/de/jobs/region-solothurn.html">Jobs Solothurn</a></li><li><a title="Jobs Freiburg" href="/de/jobs/region-freiburg.html">Jobs Freiburg</a></li><li><a title="Jobs Genf" href="/de/jobs/region-genf.html">Jobs Genf</a></li><li><a title="Jobs Neuenburg" href="/de/jobs/region-neuenburg.html">Jobs Neuenburg</a></li></ul></div><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav collapse-linkbox3 collapse"><li><a title="Jobs Waadt" href="/de/jobs/region-waadt.html">Jobs Waadt</a></li><li><a title="Jobs Wallis" href="/de/jobs/region-wallis.html">Jobs Wallis</a></li><li><a title="Jobs Luzern" href="/de/jobs/region-luzern.html">Jobs Luzern</a></li><li><a title="Jobs Nidwalden" href="/de/jobs/region-nidwalden.html">Jobs Nidwalden</a></li><li><a title="Jobs Obwalden" href="/de/jobs/region-obwalden.html">Jobs Obwalden</a></li><li><a title="Jobs Schwyz" href="/de/jobs/region-schwyz.html">Jobs Schwyz</a></li><li><a title="Jobs Uri" href="/de/jobs/region-uri.html">Jobs Uri</a></li><li><a title="Jobs Zug" href="/de/jobs/region-zug.html">Jobs Zug</a></li><li><a title="Jobs Zürich" href="/de/jobs/region-zurich.html">Jobs Zürich</a></li></ul></div></div><div class="tab-readmore visible-xs"> <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-linkbox3"><p class="collapse-linkbox3 tab-more collapse in" aria-expanded="true"><span class="fa fa-chevron-down"></span> Mehr</p><p class="collapse-linkbox3 tab-less collapse" aria-expanded="false" style="height: 0px;"><span class="fa fa-chevron-up"></span> Weniger</p> </button></div> </section><section id="content4" class="tab-content"><div class="row"><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav"><li><a title="Saucier Jobs" href="/de/jobs/saucier.html">Saucier Jobs</a></li><li><a title="Marketing Jobs" href="/de/jobs/marketing-sales.html">Marketing Jobs</a></li><li><a title="Restaurationsfachmann Jobs" href="/de/jobs/restaurationsfachmann.html">Restaurationsfachmann Jobs</a></li><li><a title="Hilfskoch Jobs" href="/de/jobs/hilfskoch.html">Hilfskoch Jobs</a></li><li><a title="Chef de Rang Jobs" href="/de/jobs/chef-de-rang.html">Chef de Rang Jobs</a></li><li><a title="Hotelfachfrau Jobs" href="/de/jobs/hotelfachfrau.html">Hotelfachfrau Jobs</a></li><li><a title="Casserolier Jobs" href="/de/jobs/casserolier.html">Casserolier Jobs</a></li><li><a title="Promotion Jobs" href="/de/jobs/promotion.html">Promotion Jobs</a></li></ul></div><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav collapse-linkbox4 collapse"><li><a title="Barkeeper Jobs" href="/de/jobs/barkeeper.html">Barkeeper Jobs</a></li><li><a title="Sous-Chef Jobs" href="/de/jobs/sous-chef.html">Sous-chef Jobs</a></li><li><a title="Chef de Partie Jobs" href="/de/jobs/chef-de-partie.html">Chef de Partie Jobs</a></li><li><a title="Garde Manger Jobs" href="/de/jobs/garde-manger.html">Garde Manger Jobs</a></li><li><a title="Pizzaiolo Jobs" href="/de/jobs/pizzaiolo.html">Pizzaiolo Jobs</a></li><li><a title="Rezeptionistin Jobs" href="/de/jobs/rezeptionistin.html">Rezeptionistin Jobs</a></li><li><a title="Konditor Confiseur Jobs" href="/de/jobs/konditor-confiseur.html">Konditor Confiseur Jobs</a></li><li><a title="Restaurant Manager Jobs" href="/de/jobs/restaurant-manager.html">Restaurant Manager Jobs</a></li></ul></div><div class="col-xs-12 col-sm-4 col-md-4"><ul class="column nav collapse-linkbox4 collapse"><li><a title="Sommelier Jobs" href="/de/jobs/sommelier.html">Sommelier Jobs</a></li><li><a title="Assistant Jobs" href="/de/jobs/assistant.html">Assistant Jobs</a></li><li><a title="Lehrstellen" href="/de/jobs/lehrstellen-gastronomie.html">Lehrstellen</a></li><li><a title="Catering Jobs" href="/de/jobs/catering.html">Catering Jobs</a></li><li><a title="Alleinkoch Jobs" href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li><li><a title="Allrounder Jobs" href="/de/jobs/allrounder.html">Allrounder Jobs</a></li><li><a title="Chef de Service Jobs" href="/de/jobs/chef-de-service.html">Chef de Service Jobs</a></li><li><a title="Küchenhilfe Jobs" href="/de/jobs/kuechenhilfe.html">Küchenhilfe Jobs</a></li></ul></div></div><div class="tab-readmore visible-xs"> <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-linkbox4"><p class="collapse-linkbox4 tab-more collapse in" aria-expanded="true"><span class="fa fa-chevron-down"></span> Mehr</p><p class="collapse-linkbox4 tab-less collapse" aria-expanded="false" style="height: 0px;"><span class="fa fa-chevron-up"></span> Weniger</p> </button></div> </section></div></div></div></div></div><div id="companies"><div class="container"><div class="row"><div class="col-md-12"><div class="content-companies"><div class="full-width-titles"><h2><span class="brand-highlight"><?= $this->gastroJobCount() ?></span> Gastronomie Jobs verfügbar</h2><p class="text-center">Diese und viele weitere Unternehmen suchen aktuell Fachkräfte aus Gastronomie und Hotellerie</p></div><div class="partner-carousel" id="partner-logo-list"><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Adecco Jobs" href="/de/jobs?q=adecco&d=10"><img alt="Adecco Logo" src="/static/Organizations/Image/8/9/5a0896967bb2b58c257c7a98.png"></a></div><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Compass Group (Schweiz) AG" href="/de/jobs?q=compass&d=10&clear=1"><img alt="Compass Group (Schweiz) AG Logo " src="/static/Organizations/Image/3/f/5d8f19ea3c050f71c84049f3.gif"></a></div><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Hiltl AG Jobs" href="/de/jobs?q=hiltl&d=10&clear=1"><img alt="Hiltl AG Logo" src="/file/Gastro24.TemplateImage/5d94b4753c050f3bef608812/Hiltl_since_1898_dg.png"></a></div><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Gastronomie Jobs bei Coop" href="/de/jobs/coop.html"><img alt="Coop Logo" src="/static/Organizations/Image/3/5/5dfe8ffd3c050f0c1720e553.jpg"></a></div><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Randstad Jobs" href="/de/jobs?q=randstad"><img alt="Randstad (Schweiz) AG Logo" src="/static/Organizations/Image/1/9/5aaa46287bb2b56c7fe77891.png"></a></div><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Gastronet.ch Jobs" href="/de/jobs?q=gastronet&d=10&clear=1"><img alt="Gastronet.ch Logo" src="/static/Organizations/Image/3/9/5e0487e73c050f598c774793.png"></a></div><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Kramer Gastronomie Jobs" href="/de/jobs?q=kramer+gastronomie&d=10&clear=1"><img alt="Kramer Gastronomie Logo" src="/static/Organizations/Image/3/d/5ced7c7e3c050f147120f2d3.jpg"></a></div><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Coople Jobs" href="/de/jobs/coople.html"><img alt="Coople (Schweiz) AG Logo" src="/static/Organizations/Image/3/d/5dc6bdf13c050f0f4845c6d3.png"></a></div><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Active Gastro Eng GmbH Jobs" href="/de/jobs/active-gastro-eng-gmbh.html"><img alt="Active Gastro Eng GmbH Logo" src="/static/Organizations/Image/3/a/5d92620e3c050f35e36768a3.png"></a></div><div class="item col-sm-4 col-md-2 col-xs-6"> <a title="Confiserie Sprüngli Jobs" href="/de/jobs?q=Sprüngli&d=10&clear=1"><img alt="Confiserie Sprüngli Logo" src="/static/Organizations/Image/f/b/59f5fa807bb2b5942b5f45bf.png"></a></div></div></div></div></div></div></div><div id="home-teaser-text"><div class="container"><div class="row"><div class="col-md-12"><div class="row content-teaser"><div class="col-md-3 col-sm-4"><h2>Auf der Suche nach dem Traumjob?</h2></div><div class="col-md-9 col-sm-8"><p> Sie arbeiten bereits im Gastgewerbe oder möchten gerne in diese Branche einsteigen? Finden Sie jetzt Ihren Traumjob im Hotel, Restaurant, Gastronomie und Freizeit auf Gastrojob24.ch. Durchsuchen Sie <?= $this->gastroJobCount() ?> Stellen im Gastgewerbe und bewerben Sie sich auf Stellenangebote bei namhaften Unternehmen. Gastrojob24.ch ist die führender Schweizer Jobbörse für das Gastgewerbe, die Ihre Jobsuche schnell, einfach und erfolgreich macht.</p><p class="collapse-textbox collapse"> Unsere Mission lautet: Unternehmen und Fachkräfte durch einen erstklassigen Online-Service schnell und unkompliziert zusammenzuführen. Jeden Tag helfen wir Stellensuchenden dabei, ihren Traumjob in der Gastronomie zu finden - und das seit 2008. Auf Gastrojob24.ch finden Jobsuchende attraktive Angebote, die häufig exklusiv bei uns veröffentlicht werden - beste Aussichten für Bewerber, den Traumjob zu finden <br /><br /> <a title="Traumjob finden" href="/de/jobs?clear=1">Jetzt Traumjob finden</a></p></div><div class="tab-readmore visible-xs text-center"> <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-textbox"><p class="collapse-textbox tab-more collapse in" aria-expanded="true"> <span class="fa fa-chevron-down"></span> Mehr</p><p class="collapse-textbox tab-less collapse" aria-expanded="false" style="height: 0px;"> <span class="fa fa-chevron-up"></span> Weniger</p> </button></div></div></div></div></div></div><?php echo $this->partial("footer") ?> <?php $langScript = 'dist/locales/' . $lang . '.js'; echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basepath($this->asset('dist/js/core.min.js'))) ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js')) ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js'))) ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js'))) ->appendFile($this->basePath($langScript)); echo $this->configHeadScript()->setAutoEscape(false); ?> <script>$(document).ready(function(){$('.carousel-showmanymoveone .item').each(function(){var itemToClone=$(this);for(var i=1;i<3;i++){itemToClone=itemToClone.next();if(!itemToClone.length){itemToClone=$(this).siblings(':first');} itemToClone.children(':first-child').clone().addClass("cloneditem-"+(i)).appendTo($(this));}});$(document).on('click',function(e){var $trigger=$('.dropdown-menu');if($trigger!==e.target&&!$trigger.has(e.target).length){$('.login-form-desktop').css('display','block');$('.reset-form-desktop').css('display','none');$('.login-form-mobile').css('display','block');$('.reset-form-mobile').css('display','none');}});$('a.link--reset-password').click(function(e){e.stopPropagation();$('.login-form-desktop').css('display','none');$('.reset-form-desktop').css('display','block');$('.login-form-mobile').css('display','none');$('.reset-form-mobile').css('display','block');});function incrementBadgeCount() {var badge=$('nav .link__saved-jobs span');if(!badge.length){var badge=$('<span>').addClass('badge badge-light').html('0');$('nav .link__saved-jobs').removeClass('empty').prepend(badge);} var oldValue=badge.html();var newValue=parseInt(oldValue)+1;badge.html(newValue);} function decrementBadgeCount() {var badge=$('nav .link__saved-jobs span');var oldValue=parseInt(badge.html());if(oldValue>0){var newValue=oldValue-1;badge.html(newValue);} if(!newValue){badge.remove();$('nav .link__saved-jobs').addClass('empty');}} $('.recommended-box .recommended-box-actions button').click(function(){var saveButton=$(this);var saveText=saveButton.data('text-save');var savedText=saveButton.data('text-saved');var jobLink=$(this).parent().parent().parent().find('.recommended-box-jobtitle > a').attr('href');var jobId=jobLink.split('-').pop().replace('.html','');var updateMethod=(saveButton.hasClass('saved'))?'remove':'save';$.ajax({url:'/'+lang+'/job/'+jobId+'/save',type:'post',dataType:'json',data:{id:jobId,action:updateMethod,},success:function(data){if(updateMethod=='remove'){saveButton.removeClass('saved').find('span').html(saveText);decrementBadgeCount();} else{saveButton.addClass('saved').find('span').html(savedText);incrementBadgeCount();}},error:function(error){console.log('Error while saving job');}});});});</script> </body></html>
+<?php
+/**
+ * Gastrojobs24
+ *
+ * General layout template file. Defines the general layout.
+ *
+ * @copyright (c) 2013 - 2016 Cross Solution (http://cross-solution.de)
+ * @license   Gastrojobs
+ */
+
+/* @var $options \Core\Options\ModuleOptions */
+$options = $this->services('Core/Options');
+$languages = $options->getSupportedLanguages();
+$lang = $this->params('lang');
+
+// See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
+$notifications = $this->partial('core/notifications');
+
+// set default page title
+$this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoEscape(false);
+$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
+
+$this->headTitle($this->translate('Home'));
+?>
+<?php echo $this->doctype(); ?>
+<html class="no-js" lang="<?php echo $this->params('lang') ?>">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-32x32.png')?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-16x16.png')?>">
+    <link rel="shortcut icon" type="image/ico" href="<?=$this->basepath('modules/Gastro24/favicons/favicon.ico')?>">
+    <meta name="msapplication-TileColor" content="#2e5b93">
+    <meta name="theme-color" content="#2e5b93">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="canonical" href="https://www.gastrojob24.ch" />
+    <link rel="stylesheet" type="text/css" href="<?= $this->basePath('dist/css/core.min.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
+    <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('modules/Gastro24/g24-startpage.css')) ?>">
+    <title>Jobbörse Gastrojob24 - Gastronomie Jobs & Hotel Jobs</title> 
+    <meta name="description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Stellen bei Gastrojob24.ch - der #1 Gastronomie & Hotellerie Jobbörse der Schweiz.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
+    <meta property="og:title" content="Gastronomie Jobs | Hotel Jobs | Traumjob finden - Gastrojob24" />
+    <meta property="og:description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Gastronomie Jobs bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz.">
+    <meta property="og:url" content="https://www.gastrojob24.ch" />
+    <meta property="og:image" content="https://www.gastrojob24.ch/modules/Gastro24/gastro-logo-fb.png" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:type" content="website" />
+
+    <script>
+        var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
+
+    </script>
+    <script>
+      document.documentElement.classList.remove("no-js");
+   </script>
+    <link rel="preconnect" href="https://www.google.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headStyle() ?>
+    
+    
+ <!-- Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125791873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-125791873-1');
+  gtag('config', 'AW-980688466');
+
+</script>
+<!-- End Google Tag Manager -->
+
+    <?php echo $this->partial("gastro24/schema") ?>
+</head>
+<body class="home startpage">
+    
+    <header id="header" role="banner" class="hidden-xs" data-saved-jobs="<?=$savedJobsCount?>">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header col-md-4">
+                    <a class="logo" title="Gastrojob24" href="<?php echo $this->basepath('/' . $this->params('lang')) ?>">
+                        <img src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_blue.svg') ?>" alt="Gastrojob24 Logo">
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <?php if ('guest' == $this->auth('role')) : ?>
+                        <ul class="pull-right navbar-nav nav-recruiting">
+                            <li class="nav-item">
+                                <a title="Stellenanzeige schalten" href="<?= $this->url('stellenanzeigen-schalten') ?>"
+                                   class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Anzeige schalten</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a title="Anmelden" href="#" class="login-link nav-link text-reset _dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="nav-item">
+                                        <?= $this->partial('partials/login-popup.phtml', ['device' => 'desktop']); ?>
+                                        <?= $this->partial('partials/password-reset.phtml', [
+                                            'style' => 'display: none;',
+                                            'device' => 'desktop'
+                                        ]) ?>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    <?php else : ?>
+                        <nav id="main-navigation" class="navbar-collapse collapse navbar-collapse" role="navigation" >
+                            <?= $this->loginInfo(array('lang' => $lang )); ?>
+                            <?= $this->navigation('Core/Navigation')
+                                ->setAcl($this->services('acl'))
+                                ->setRole($this->auth('role'))
+                                ->menu()
+                                ->setMaxDepth(0) // only show the top level entries
+                                ->renderPartial(null, 'main-navigation');
+                            ?>
+                        </nav>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav class="navbar-home search-form-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-collapse visible-xs" id="meta-navigation">
+                        <ul id="menu" class="nav navbar-nav2">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="icon-bar top-bar"></span>
+                                    <span class="icon-bar middle-bar"></span>
+                                    <span class="icon-bar bottom-bar"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="<?= $this->url('stellenanzeigen-schalten') ?>">Anzeige schalten</a></li>
+                                    <li class=""><a title="Jobs" href="/de/jobs?clear=1">Jobs</a></li>
+                                    <li class=""><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
+                                    <li class=""><a title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
+                                </ul>
+                            </li>
+                        <ul>
+                    </div>
+                    <a class="visible-xs navbar-brand" href="/">
+                        <img src="<?= $this->basepath('/modules/Gastro24/gastrojob24_white.svg') ?>"
+                             alt="Gastrojob24 Schweiz" class="menu-logo">
+                    </a>
+
+                    <!-- menu --->
+                    <div id="navbar-home-site-links" class="hidden-xs">
+                        <ul>
+                            <li><a class="navbar-item-anchor" title="Alle Jobs" href="/de/jobs?clear=1">Jobs</a></li>
+                            <li><a class="navbar-item-anchor" title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
+                            <li><a class="navbar-item-anchor" title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="favorite-icon pull-right">
+                        <?php
+                        $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
+                            sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
+                        ?>
+                        <a class="link__saved-jobs empty" href="<?=$this->url('lang/saved-jobs', [], true)?>"
+                           data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>"></a>
+                    </div>
+                    <div class="login-icon pull-right visible-xs" data-toggle="dropdown" aria-expanded="false">
+                        <span class="fa fa-user"></span>
+                    </div>
+
+                    <!-- login content mobile -->
+                    <div class="dropdown-menu dropdown-menu-mobile">
+                        <?php if ('guest' == $this->auth('role')): ?>
+                            <?= $this->partial('partials/login-popup.phtml'); ?>
+                            <?= $this->partial('partials/password-reset.phtml', [
+                                    'style' => 'display: none;'
+                            ]) ?>
+                        <?php else: ?>
+                            <div class="yamm-content logged-in">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <?= $this->partial('partials/logged-in-submenu.phtml', [
+                                            'cssClass' => '',
+                                            'lang' => $lang
+                                        ]); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <!--end login content mobile -->
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="full-background">
+        <div class="container">
+            <?php echo $notifications?>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tagline-container">
+                        <h1>Traumjob finden im Gastgewerbe</h1>
+                    </div>
+                </div>
+
+                <?php
+                    /* @todo Probably, we should create a dedicated IndexController to inject this dependencies. */
+                    $form = $this->services('forms.Jobs/JobboardSearch');
+                    // defines after which element the search button will be placed
+                    $form->setButtonElement(null);
+                    $form->setOption('buttons_span', ['md' => 2, 'sm' => 1]);
+                    $form->setAttribute('action', $this->url('lang/jobboard', [], true));
+                ?>
+                <?php //TODO: column sizes are applied to md and sm ?>
+                <div class="col-md-12 container-search">
+                    <?=$this->searchForm($form, ['q' => 5, 'l' => 3, 'd' => 2]);?>
+                </div>
+            </div>
+
+            <div id="recommended-jobs">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Empfohlene Stellenanzeigen</h2>
+                        </div>
+                        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav" data-ride="carousel" data-interval="4500">
+                            <div class="carousel-inner">
+                                <!-- begin carousel -->
+                                
+                            
+                                <div class="item active">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="recommended-box">
+                                            <div class="recommended-box-inner">
+                                                <div class="recommended-box-jobtitle">
+                                                    <a title="Wirt/in / Hüttenwart für Berghaus gesucht!" href="/de/jobs/wirt-in---huettenwart-fuer-berghaus-gesucht--5e427d173c050f12987dc353.html">
+                                                        <span class="block-ellipsis">
+                                                            Wirt/in / Hüttenwart für Berghaus gesucht!
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8 col-lg-9 col-xs-8 ">
+                                                        <ul class="short-details">
+                                                            <li class="location">
+                                                                <span>Sörenberg</span>
+                                                            </li>
+                                                            <li class="company">
+                                                                <span class=""> Bergbahnen Sörenberg AG</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="recommended-box-company-logo-container ">
+                                                        <img rel="preload" as="image" src="/file/Gastro24.TemplateImage/5e427b6a3c050f11ec0c67e2/Sörenberg+Bergbahnen+farbig+-+Kopie.jpg">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="recommended-hero " style="background-image: url(/modules/Gastro24/images/bg_placeholder_blue.svg)"></div>
+                                                </div>
+                                            </div>
+                                            <div class="recommended-box-actions clearfix">
+                                                <div class="col-xs-4 pull-left">
+                                                    <a href="/de/jobs/wirt-in---huettenwart-fuer-berghaus-gesucht--5e427d173c050f12987dc353.html" class="view-btn btn">
+                                                        Bewerben
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-xs-4 save-job pull-right">
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5da815e53c050f205567afb2'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="item">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="recommended-box">
+                                            <div class="recommended-box-inner">
+                                                <div class="recommended-box-jobtitle">
+                                                    <a title="Junior Restaurant Leitung" href="/de/jobs/junior-restaurant-leitung-5d94b2f93c050f29b6515f67.html">
+                                                        <span class="block-ellipsis">
+                                                            Junior Restaurant Leitung
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8 col-lg-9 col-xs-8 ">
+                                                        <ul class="short-details">
+                                                            <li class="location">
+                                                                <span>Zürich</span>
+                                                            </li>
+                                                            <li class="company">
+                                                                <span class="">Hiltl AG</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="recommended-box-company-logo-container ">
+                                                        <img rel="preload" as="image" src="https://www.gastrojob24.ch/file/Gastro24.TemplateImage/5d94b4753c050f3bef608812/Hiltl_since_1898_dg.png">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="recommended-hero" style="background-image: url(https://www.gastrojob24.ch/file/Gastro24.TemplateImage/5d94b4a23c050f2fd80aca22/Leiter+Marketing.jpg)"></div>
+                                                </div>
+                                            </div>
+                                            <div class="recommended-box-actions clearfix">
+                                                <div class="col-xs-4 pull-left">
+                                                    <a href="/de/jobs/junior-restaurant-leitung-5d94b2f93c050f29b6515f67.html" class="view-btn btn">
+                                                        Bewerben
+                                                    </a>
+                                                </div>
+                                                <div class="col-xs-4 save-job pull-right">
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5d94b2f93c050f29b6515f67'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="recommended-box">
+                                            <div class="recommended-box-inner">
+                                                <div class="recommended-box-jobtitle">
+                                                    <a title="Servicemitarbeitern Teilzeit" href="/de/jobs/servicemitarbeiterin-5e43393f3c050f3b41505433.html">
+                                                        <span class="block-ellipsis">
+                                                            Servicemitarbeiterin Teilzeit
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8 col-lg-9 col-xs-8 ">
+                                                        <ul class="short-details">
+                                                            <li class="location">
+                                                                <span>Brunnen</span>
+                                                            </li>
+                                                            <li class="company">
+                                                                <span class=""> Natolien Grillhaus</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="recommended-box-company-logo-container ">
+                                                        <img rel="preload" as="image" src="/file/Gastro24.TemplateImage/5e43363d3c050f22fb5a6f02/logo.PNG">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="recommended-hero " style="background-image: url(/modules/Gastro24/images/bg_placeholder_gray.svg)"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="recommended-box-actions clearfix">
+                                                <div class="col-xs-4 pull-left">
+                                                    <a href="/de/jobs/servicemitarbeiterin-5e43393f3c050f3b41505433.html" class="view-btn btn">
+                                                        Bewerben
+                                                    </a>
+                                                </div>
+                                                <div class="col-xs-4 save-job pull-right">
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5e2085513c050f1c8e66f9f3'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end carousel -->
+                            </div>
+                        </div>
+
+                        <a class="left carousel-control" href="#carousel-tilenav" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                        <a class="right carousel-control" href="#carousel-tilenav" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="inspireBanner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inspireContent row">
+                        <div class="col-xs-12 col-sm-6 col-md-5">
+                            <div class="shout-out">
+                                <h2>Mit einem Klick zum Traumkandidaten<span>Schneller und besser inserieren.</span></h2>
+                                <a href="<?= $this->url('stellenanzeigen-schalten') ?>" class="btn btn-danger">Stellenanzeige jetzt schalten</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-7">
+                            <ul class="usp">
+                                <li>
+                                    <span class="thick" fill="#243b84">
+                                        <svg fill="#243b84" viewBox="0 0 128 128" width="24px" height="24px">
+                                            <path d="M114.156 15.188l-5.469 5.844L43.781 89.97 19.593 66.282l-5.719-5.594L2.686 72.126l5.719 5.594 30.031 29.406 5.844 5.688 5.594-5.938 70.438-74.906 5.5-5.813-11.656-10.969z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span>Jobs kostenlos inserieren</span>
+                                </li>
+                                <li>
+                                    <span class="thick" fill="#243b84">
+                                        <svg fill="#243b84" viewBox="0 0 128 128" width="24px" height="24px">
+                                            <path d="M114.156 15.188l-5.469 5.844L43.781 89.97 19.593 66.282l-5.719-5.594L2.686 72.126l5.719 5.594 30.031 29.406 5.844 5.688 5.594-5.938 70.438-74.906 5.5-5.813-11.656-10.969z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span>Beliebt bei Fachkräften <span class="hidden-xs">aus Gastronomie und Hotellerie</span></span>
+                                </li>
+                                <li>
+                                    <span class="thick" fill="#243b84">
+                                        <svg fill="#243b84" viewBox="0 0 128 128" width="24px" height="24px">
+                                            <path d="M114.156 15.188l-5.469 5.844L43.781 89.97 19.593 66.282l-5.719-5.594L2.686 72.126l5.719 5.594 30.031 29.406 5.844 5.688 5.594-5.938 70.438-74.906 5.5-5.813-11.656-10.969z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span><span class="hidden-xs">Automatisch für</span> Google Job Search Experience optimiert</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="home-tabs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab_container">
+                        <input id="tab1" type="radio" name="tabs" checked>
+                        <label for="tab1"><span class="visible-xs">Alle</span><span class="hidden-xs">Jobs von A - Z</span></label>
+
+                        <input id="tab2" type="radio" name="tabs">
+                        <label for="tab2"><span><span class="hidden-xs">Beliebte</span> Städte</span></label>
+
+                        <input id="tab3" type="radio" name="tabs">
+                        <label for="tab3"><span><span class="hidden-xs">Jobs nach</span> Region</span></label>
+
+                        <input id="tab4" type="radio" name="tabs">
+                        <label for="tab4"><span class="visible-xs">Beliebte</span><span class="hidden-xs">Häufig gesucht</span></label>
+
+                        <section id="content1" class="tab-content">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav">
+                                        <li><a title="Alleinkoch Jobs" href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li>
+                                        <li><a title="Bäcker Jobs" href="/de/jobs/baecker.html">Bäcker Jobs</a></li>
+                                        <li><a title="Concierge Jobs" href="/de/jobs/concierge.html">Concierge Jobs</a></li>
+                                        <li><a title="Diätkoch Jobs" href="/de/jobs/diaetkoch.html">Diätkoch Jobs</a></li>
+                                        <li><a title="Entremetier Jobs" href="/de/jobs/entremetier.html">Entremetier Jobs</a></li>
+                                        <li><a title="Front Office Jobs" href="/de/jobs/front-office.html">Front Office Jobs</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav collapse-linkbox collapse">
+                                        <li><a title="Gouvernante Job" href="/de/jobs/gouvernante.html">Gouvernante Jobs</a></li>
+                                        <li><a title="Hotelfachmann Jobs" href="/de/jobs/hotelfachmann.html">Hotelfachmann Jobs</a></li>
+                                        <li><a title="Jungkoch Jobs" href="/de/jobs/jungkoch.html">Jungkoch Jobs</a></li>
+                                        <li><a title="Koch Jobs" href="/de/jobs/koch.html">Koch Jobs</a></li>
+                                        <li><a title="Leitung Gastronomie Jobs" href="/de/jobs/leitung.html">Leitung Gastronomie Jobs</a></li>
+                                        <li><a title="Metzger Jobs" href="/de/jobs/metzger.html">Metzger Jobs</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav collapse-linkbox collapse">
+                                        <li><a title="Office Jobs" href="/de/jobs/office.html">Office Jobs</a></li>
+                                        <li><a title="Patissier Jobs" href="/de/jobs/patissier.html">Patissier Jobs</a></li>
+                                        <li><a title="Restauration Jobs" href="/de/jobs/restauration.html">Restauration Jobs</a></li>
+                                        <li><a title="Saison Jobs" href="/de/jobs/saison.html">Saison Jobs</a></li>
+                                        <li><a title="Tournant Jobs" href="/de/jobs/tournant.html">Tournant Jobs</a></li>
+                                        <li><a title="Zimmermädchen Jobs" href="/de/jobs/zimmermaedchen.html">Zimmermädchen Jobs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tab-readmore visible-xs">
+                                <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-linkbox">
+                                    <p class="collapse-linkbox tab-more collapse in" aria-expanded="true"><span class="fa fa-chevron-down"></span> Mehr</p>
+                                    <p class="collapse-linkbox tab-less collapse" aria-expanded="false" style="height: 0px;"><span class="fa fa-chevron-up"></span> Weniger</p>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section id="content2" class="tab-content">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav">
+                                        <li><a title="Gastro Jobs Stadt Zürich" href="/de/jobs/stadt-zuerich.html">Jobs Zürich</a></li>
+                                        <li><a title="Gastro Jobs Stadt Bern" href="/de/jobs/stadt-bern.html">Jobs Bern </a></li>
+                                        <li><a title="Gastro Jobs Stadt Basel" href="/de/jobs/stadt-basel.html">Jobs Basel </a></li>
+                                        <li><a title="Gastro Jobs Stadt St. Gallen" href="/de/jobs/stadt-sankt-gallen.html">Jobs St. Gallen </a></li>
+                                        <li><a title="Gastro Jobs Stadt Luzern" href="/de/jobs/stadt-luzern.html">Jobs Luzern</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav collapse-linkbox2 collapse">
+                                        <li><a title="Gastro Jobs Dübendorf" href="/de/jobs/stadt-duebendorf.html">Jobs Dübendorf </a></li>
+                                        <li><a title="Gastro Jobs Lausanne" href="/de/jobs/stadt-lausanne.html">Jobs Lusanne</a></li>
+                                        <li><a title="Gastro Jobs Chur" href="/de/jobs/stadt-chur.html">Jobs Chur</a></li>
+                                        <li><a title="Gastro Jobs Winterthur" href="/de/jobs/stadt-winterthur.html">Jobs Winterthur</a></li>
+                                        <li><a title="Gastro Jobs Dietikon" href="/de/jobs/stadt-dietikon.html">Jobs Dietikon</a></li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav collapse-linkbox2 collapse">
+                                        <li><a title="Gastro Jobs Kloten" href="/de/jobs/stadt-kloten.html">Jobs Kloten</a></li>
+                                        <li><a title="Gastro Jobs Horgen" href="/de/jobs/stadt-horgen.html">Jobs Horgen</a></li>
+                                        <li><a title="Gastro Jobs Aarau" href="/de/jobs/stadt-aarau.html">Jobs Aarau</a></li>
+                                        <li><a title="Gastro Jobs Stadt Genf" href="/de/jobs/stadt-genf.html">Jobs Genf</a></li>
+                                        <li><a title="Gastro Jobs Stadt Zug" href="/de/jobs/stadt-zug.html">Jobs Zug</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-readmore visible-xs">
+                                <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-linkbox2">
+                                    <p class="collapse-linkbox2 tab-more collapse in" aria-expanded="true"><span class="fa fa-chevron-down"></span> Mehr</p>
+                                    <p class="collapse-linkbox2 tab-less collapse" aria-expanded="false" style="height: 0px;"><span class="fa fa-chevron-up"></span> Weniger</p>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section id="content3" class="tab-content">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav">
+                                        <li><a title="Jobs Appenzell Ausserrhoden" href="/de/jobs/region-appenzell-ausserrhoden.html">Jobs Appenzell Ausserrhoden</a></li>
+                                        <li><a title="Jobs Appenzell Innerrhoden" href="/de/jobs/region-appenzell-innerrhoden.html">Jobs Appenzell Innerrhoden</a></li>
+                                        <li><a title="Jobs Glarus" href="/de/jobs/region-glarus.html">Jobs Glarus</a></li>
+                                        <li><a title="Jobs Schaffhausen" href="/de/jobs/region-schaffhausen.html">Jobs Schaffhausen</a></li>
+                                        <li><a title="Jobs St.Gallen" href="/de/jobs/region-st-gallen.html">Jobs St. Gallen</a></li>
+                                        <li><a title="Jobs Thurgau" href="/de/jobs/region-thurgau.html">Jobs Thurgau</a></li>
+                                        <li><a title="Jobs Graubünden" href="/de/jobs/region-graubuenden.html">Jobs Graubünden</a></li>
+                                        <li><a title="Jobs Tessin" href="/de/jobs/region-tessin.html">Jobs Tessin</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav collapse-linkbox3 collapse">
+                                        <li><a title="Jobs Aargau" href="/de/jobs/region-aargau.html">Jobs Aargau</a></li>
+                                        <li><a title="Jobs Basel-Landschaft" href="/de/jobs/region-basel-landschaft.html">Jobs Basel-Landschaft</a></li>
+                                        <li><a title="Jobs Basel-Stadt" href="/de/jobs/region-basel-stadt.html">Jobs Basel-Stadt</a></li>
+                                        <li><a title="Jobs Bern" href="/de/jobs/region-bern.html">Jobs Bern</a></li>
+                                        <li><a title="Jobs Jura" href="/de/jobs/region-jura.html">Jobs Jura</a></li>
+                                        <li><a title="Jobs Solothurn" href="/de/jobs/region-solothurn.html">Jobs Solothurn</a></li>
+                                        <li><a title="Jobs Freiburg" href="/de/jobs/region-freiburg.html">Jobs Freiburg</a></li>
+                                        <li><a title="Jobs Genf" href="/de/jobs/region-genf.html">Jobs Genf</a></li>
+                                        <li><a title="Jobs Neuenburg" href="/de/jobs/region-neuenburg.html">Jobs Neuenburg</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav collapse-linkbox3 collapse">
+                                        <li><a title="Jobs Waadt" href="/de/jobs/region-waadt.html">Jobs Waadt</a></li>
+                                        <li><a title="Jobs Wallis" href="/de/jobs/region-wallis.html">Jobs Wallis</a></li>
+                                        <li><a title="Jobs Luzern" href="/de/jobs/region-luzern.html">Jobs Luzern</a></li>
+                                        <li><a title="Jobs Nidwalden" href="/de/jobs/region-nidwalden.html">Jobs Nidwalden</a></li>
+                                        <li><a title="Jobs Obwalden" href="/de/jobs/region-obwalden.html">Jobs Obwalden</a></li>
+                                        <li><a title="Jobs Schwyz" href="/de/jobs/region-schwyz.html">Jobs Schwyz</a></li>
+                                        <li><a title="Jobs Uri" href="/de/jobs/region-uri.html">Jobs Uri</a></li>
+                                        <li><a title="Jobs Zug" href="/de/jobs/region-zug.html">Jobs Zug</a></li>
+                                        <li><a title="Jobs Zürich" href="/de/jobs/region-zurich.html">Jobs Zürich</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-readmore visible-xs">
+                                <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-linkbox3">
+                                    <p class="collapse-linkbox3 tab-more collapse in" aria-expanded="true"><span class="fa fa-chevron-down"></span> Mehr</p>
+                                    <p class="collapse-linkbox3 tab-less collapse" aria-expanded="false" style="height: 0px;"><span class="fa fa-chevron-up"></span> Weniger</p>
+                                </button>
+                            </div>
+                        </section>
+
+                        <section id="content4" class="tab-content">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav">
+                                        <li><a title="Saucier Jobs" href="/de/jobs/saucier.html">Saucier Jobs</a></li>
+                                        <li><a title="Marketing Jobs" href="/de/jobs/marketing-sales.html">Marketing Jobs</a></li>
+                                        <li><a title="Restaurationsfachmann Jobs" href="/de/jobs/restaurationsfachmann.html">Restaurationsfachmann Jobs</a></li>
+                                        <li><a title="Hilfskoch Jobs" href="/de/jobs/hilfskoch.html">Hilfskoch Jobs</a></li>
+                                        <li><a title="Chef de Rang Jobs" href="/de/jobs/chef-de-rang.html">Chef de Rang Jobs</a></li>
+                                        <li><a title="Hotelfachfrau Jobs" href="/de/jobs/hotelfachfrau.html">Hotelfachfrau Jobs</a></li>
+                                        <li><a title="Casserolier Jobs" href="/de/jobs/casserolier.html">Casserolier Jobs</a></li>
+                                        <li><a title="Promotion Jobs" href="/de/jobs/promotion.html">Promotion Jobs</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav collapse-linkbox4 collapse">
+                                        <li><a title="Barkeeper Jobs" href="/de/jobs/barkeeper.html">Barkeeper Jobs</a></li>
+                                        <li><a title="Sous-Chef Jobs" href="/de/jobs/sous-chef.html">Sous-chef Jobs</a></li>
+                                        <li><a title="Chef de Partie Jobs" href="/de/jobs/chef-de-partie.html">Chef de Partie Jobs</a></li>
+                                        <li><a title="Garde Manger Jobs" href="/de/jobs/garde-manger.html">Garde Manger Jobs</a></li>
+                                        <li><a title="Pizzaiolo Jobs" href="/de/jobs/pizzaiolo.html">Pizzaiolo Jobs</a></li>
+                                        <li><a title="Rezeptionistin Jobs" href="/de/jobs/rezeptionistin.html">Rezeptionistin Jobs</a></li>
+                                        <li><a title="Konditor Confiseur Jobs" href="/de/jobs/konditor-confiseur.html">Konditor Confiseur Jobs</a></li>
+                                        <li><a title="Restaurant Manager Jobs" href="/de/jobs/restaurant-manager.html">Restaurant Manager Jobs</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                    <ul class="column nav collapse-linkbox4 collapse">
+                                        <li><a title="Sommelier Jobs" href="/de/jobs/sommelier.html">Sommelier Jobs</a></li>
+                                        <li><a title="Assistant Jobs" href="/de/jobs/assistant.html">Assistant Jobs</a></li>
+                                        <li><a title="Lehrstellen" href="/de/jobs/lehrstellen-gastronomie.html">Lehrstellen</a></li>
+                                        <li><a title="Catering Jobs" href="/de/jobs/catering.html">Catering Jobs</a></li>
+                                        <li><a title="Alleinkoch Jobs" href="/de/jobs/alleinkoch.html">Alleinkoch Jobs</a></li>
+                                        <li><a title="Allrounder Jobs" href="/de/jobs/allrounder.html">Allrounder Jobs</a></li>
+                                        <li><a title="Chef de Service Jobs" href="/de/jobs/chef-de-service.html">Chef de Service Jobs</a></li>
+                                        <li><a title="Küchenhilfe Jobs" href="/de/jobs/kuechenhilfe.html">Küchenhilfe Jobs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-readmore visible-xs">
+                                <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-linkbox4">
+                                    <p class="collapse-linkbox4 tab-more collapse in" aria-expanded="true"><span class="fa fa-chevron-down"></span> Mehr</p>
+                                    <p class="collapse-linkbox4 tab-less collapse" aria-expanded="false" style="height: 0px;"><span class="fa fa-chevron-up"></span> Weniger</p>
+                                </button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="companies">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-companies">
+
+                        <div class="full-width-titles">
+                            <h2><span class="brand-highlight"><?= $this->gastroJobCount() ?></span> Gastronomie Jobs verfügbar</h2>
+                            <p class="text-center">Diese und viele weitere Unternehmen suchen aktuell Fachkräfte aus Gastronomie und Hotellerie</p>
+                        </div>
+
+                        <div class="partner-carousel" id="partner-logo-list">
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Adecco Jobs" href="/de/jobs?q=adecco&d=10"><img alt="Adecco Logo" src="/static/Organizations/Image/8/9/5a0896967bb2b58c257c7a98.png"></a>
+                            </div>
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Compass Group (Schweiz) AG" href="/de/jobs?q=compass&d=10&clear=1"><img alt="Compass Group (Schweiz) AG Logo " src="/static/Organizations/Image/3/f/5d8f19ea3c050f71c84049f3.gif"></a>
+                            </div>
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Hiltl AG Jobs" href="/de/jobs?q=hiltl&d=10&clear=1"><img alt="Hiltl AG Logo" src="/file/Gastro24.TemplateImage/5d94b4753c050f3bef608812/Hiltl_since_1898_dg.png"></a>
+                            </div>
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Gastronomie Jobs bei Coop" href="/de/jobs/coop.html"><img alt="Coop Logo" src="/static/Organizations/Image/3/5/5dfe8ffd3c050f0c1720e553.jpg"></a>
+                            </div>
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Randstad Jobs" href="/de/jobs?q=randstad"><img alt="Randstad (Schweiz) AG Logo" src="/static/Organizations/Image/1/9/5aaa46287bb2b56c7fe77891.png"></a>
+                            </div>
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Gastronet.ch Jobs" href="/de/jobs?q=gastronet&d=10&clear=1"><img alt="Gastronet.ch Logo" src="/static/Organizations/Image/3/9/5e0487e73c050f598c774793.png"></a>
+                            </div>
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Kramer Gastronomie Jobs" href="/de/jobs?q=kramer+gastronomie&d=10&clear=1"><img alt="Kramer Gastronomie Logo" src="/static/Organizations/Image/3/d/5ced7c7e3c050f147120f2d3.jpg"></a>
+                            </div>
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Coople Jobs" href="/de/jobs/coople.html"><img alt="Coople (Schweiz) AG Logo" src="/static/Organizations/Image/3/d/5dc6bdf13c050f0f4845c6d3.png"></a>
+                            </div>
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Active Gastro Eng GmbH Jobs" href="/de/jobs/active-gastro-eng-gmbh.html"><img alt="Active Gastro Eng GmbH Logo" src="/static/Organizations/Image/3/a/5d92620e3c050f35e36768a3.png"></a>
+                            </div>
+                            <div class="item col-sm-4 col-md-2 col-xs-6">
+                                <a title="Confiserie Sprüngli Jobs" href="/de/jobs?q=Sprüngli&d=10&clear=1"><img alt="Confiserie Sprüngli Logo" src="/static/Organizations/Image/f/b/59f5fa807bb2b5942b5f45bf.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="home-teaser-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row content-teaser">
+                        <div class="col-md-3 col-sm-4">
+                            <h2>Auf der Suche nach dem Traumjob?</h2>
+                        </div>
+                        <div class="col-md-9 col-sm-8">
+                            <p>
+                                Sie arbeiten bereits im Gastgewerbe oder möchten gerne in diese Branche einsteigen?
+                                Finden Sie jetzt Ihren Traumjob im Hotel, Restaurant, Gastronomie und Freizeit auf Gastrojob24.ch.
+                                Durchsuchen Sie <?= $this->gastroJobCount() ?> Stellen im Gastgewerbe und bewerben Sie sich auf Stellenangebote bei namhaften Unternehmen.
+                                Gastrojob24.ch ist die führender Schweizer Jobbörse für das Gastgewerbe, die Ihre Jobsuche schnell, einfach und erfolgreich macht.
+                            </p>
+
+                            <p class="collapse-textbox collapse">
+                                Unsere Mission lautet: Unternehmen und Fachkräfte durch einen erstklassigen Online-Service schnell und
+                                unkompliziert zusammenzuführen. Jeden Tag helfen wir Stellensuchenden dabei, ihren Traumjob in der Gastronomie zu
+                                finden - und das seit 2008. Auf Gastrojob24.ch finden Jobsuchende attraktive Angebote, die häufig
+                                exklusiv bei uns veröffentlicht werden - beste Aussichten für Bewerber, den Traumjob zu finden
+                                <br /><br />
+                                <a title="Traumjob finden" href="/de/jobs?clear=1">Jetzt Traumjob finden</a>
+                            </p>
+                        </div>
+                        <div class="tab-readmore visible-xs text-center">
+                            <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-textbox">
+                                <p class="collapse-textbox tab-more collapse in" aria-expanded="true">
+                                    <span class="fa fa-chevron-down"></span> Mehr
+                                </p>
+                                <p class="collapse-textbox tab-less collapse" aria-expanded="false" style="height: 0px;">
+                                    <span class="fa fa-chevron-up"></span> Weniger
+                                </p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php echo $this->partial("footer") ?>
+    
+    <!-- lazy loaded javascript -->
+    <?php
+        $langScript = 'dist/locales/' . $lang . '.js';
+        echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
+            ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+            ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
+            ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')))
+            ->appendFile($this->basePath($langScript));
+        echo $this->configHeadScript()->setAutoEscape(false);
+    ?>
+    <!-- end lazy loaded javascript -->
+    
+    <script>
+        $( document ).ready(function() {
+            $('.carousel-showmanymoveone .item').each(function() {
+                var itemToClone = $(this);
+
+                for (var i = 1; i < 3; i++) {
+                    itemToClone = itemToClone.next();
+
+                    // wrap around if at end of item collection
+                    if (!itemToClone.length) {
+                        itemToClone = $(this).siblings(':first');
+                    }
+
+                    // grab item, clone, add marker class, add to collection
+                    itemToClone.children(':first-child').clone()
+                        .addClass("cloneditem-" + (i))
+                        .appendTo($(this));
+                }
+            });
+
+            $(document).on('click', function(e) {
+                var $trigger = $('.dropdown-menu');
+                if($trigger !== e.target && !$trigger.has(e.target).length) {
+                    $('.login-form-desktop').css('display', 'block');
+                    $('.reset-form-desktop').css('display', 'none');
+                    $('.login-form-mobile').css('display', 'block');
+                    $('.reset-form-mobile').css('display', 'none');
+                }
+            });
+
+            $('a.link--reset-password').click(function(e) {
+                e.stopPropagation();
+                $('.login-form-desktop').css('display', 'none');
+                $('.reset-form-desktop').css('display', 'block');
+                $('.login-form-mobile').css('display', 'none');
+                $('.reset-form-mobile').css('display', 'block');
+            });
+
+            // carousel on startpage
+            function incrementBadgeCount()
+            {
+                var badge = $('nav .link__saved-jobs span');
+                if (!badge.length) {
+                    var badge = $('<span>').addClass('badge badge-light').html('0');
+                    $('nav .link__saved-jobs').removeClass('empty').prepend(badge);
+                }
+
+                var oldValue = badge.html();
+                var newValue = parseInt(oldValue) + 1;
+                badge.html(newValue);
+            }
+
+            function decrementBadgeCount()
+            {
+                var badge = $('nav .link__saved-jobs span');
+                var oldValue = parseInt(badge.html());
+                if (oldValue > 0) {
+                    var newValue = oldValue - 1;
+                    badge.html(newValue);
+                }
+
+                if (!newValue) {
+                    badge.remove();
+                    $('nav .link__saved-jobs').addClass('empty');
+                }
+            }
+
+            $('.recommended-box .recommended-box-actions button').click(function() {
+                var saveButton = $(this);
+                var saveText = saveButton.data('text-save');
+                var savedText = saveButton.data('text-saved');
+                var jobLink = $(this).parent().parent().parent().find('.recommended-box-jobtitle > a').attr('href');
+                var jobId = jobLink.split('-').pop().replace('.html', '');
+                var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
+
+                // call ajax, add link to session list
+                $.ajax({
+                    url : '/' + lang + '/job/' + jobId + '/save',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        id: jobId,
+                        action: updateMethod,
+                    },
+                    success : function(data) {
+
+                        // update translated text
+                        if (updateMethod == 'remove') {
+                            saveButton.removeClass('saved').find('span').html(saveText);
+                            decrementBadgeCount();
+                        }
+                        else {
+                            saveButton.addClass('saved').find('span').html(savedText);
+                            incrementBadgeCount();
+                        }
+                    },
+                    error : function(error) {
+                        console.log('Error while saving job');
+                    }
+                });
+            });
+        });
+    </script>
+ </body>
+</html>
