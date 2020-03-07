@@ -316,12 +316,12 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                 <?php
                                                     $preview = null;
                                                     if ($job->getTemplateValues()->getIntroduction()) {
-                                                        $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 185);
+                                                        $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 215);
                                                     }
                                                     elseif ($job->getTemplateValues()->getHtml()) {
                                                         $preview = $job->getTemplateValues()->getHtml();
                                                         $preview = str_replace(['<li>', '</p>', '</h2>', '<b>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>','<div>'], ' ', $preview);
-                                                        $preview = substr(strip_tags($preview), 0 , 185);
+                                                        $preview = substr(strip_tags($preview), 0 , 215);
                                                     }
                                                     if ($preview) {
                                                         $preview = str_replace('<p>', '', $preview);
