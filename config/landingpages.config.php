@@ -636,7 +636,7 @@ $options = [
      ],
      'restauration' => [
           'id' => 189,
-		  'query' => [ 'q' => 'Restaurationsfachfrau'],
+		  'query' => [ 'q' => 'Restauration'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Restaurationsfachfrau Jobs'
