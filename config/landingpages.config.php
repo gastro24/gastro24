@@ -34,6 +34,13 @@
 
 $options = [
     
+      'management' => [
+          'id' => 1667,
+		  'query' => [ 'q' => 'Management'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Management Jobs'
+       ],
      'food' => [
           'id' => 1648,
 		  'query' => [ 'q' => 'Food'],
