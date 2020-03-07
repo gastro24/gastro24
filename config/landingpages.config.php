@@ -113,7 +113,7 @@ $options = [
   
     'reinigungskraft' => [
           'id' => 1584,
-		  'query' => [ 'q' => 'Reinigungskraft'],
+		  'query' => [ 'q' => 'Reinigung'],
 		   'tab' => '',
 		   'panel' => '',
           'text' => 'Reinigungskraft Jobs'
