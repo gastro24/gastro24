@@ -51,9 +51,9 @@ $options = [
           'text' => 'Administration Jobs'
        ],
 
-      'management' => [
+      'manager' => [
           'id' => 1667,
-		  'query' => [ 'q' => 'Management'],
+		  'query' => [ 'q' => 'Manager'],
 		   'tab' => '',
 		   'panel' => '',
           'text' => 'Management Jobs'
