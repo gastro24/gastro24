@@ -388,10 +388,12 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                 <!-- box after third job -->
 
                             <?php endif ?>
-                            <?php if ($index == 4) : ?>
-                                <!-- box after fifth job -->
-                            <?php $parts=preg_split('~<!--more-->~' , $description);?>
+                        <?php endforeach?>
+                    </div>
+                </div>
+               <?php $parts=preg_split('~<!--more-->~' , $description);?>
                               <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
+							<div class="row">
                               <div class="col-md-12 col-sm-6 col-xs-12" id="infobox-<?=$this->params()->fromRoute('term') ?>">
                                 <div class="featured-image-box similarjob">
                                    <?= $parts[1] ?>
@@ -399,13 +401,8 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                     
                                     </div>
                                  </div>
-                              <?php endif ?>
-
-                            <?php endif ?>
-                        <?php endforeach?>
-                    </div>
-                </div>
-
+								</div>
+                 <?php endif ?>
                 <!-- pagination -->
                 <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
                 <!-- end pagination -->
