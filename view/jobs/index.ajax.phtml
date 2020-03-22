@@ -145,7 +145,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                 <label<?=$activeFacet ? ' class="text-primary"' : ''?>>
                                     <input type="checkbox" name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]"
                                            class="facet-checkbox"<?=$activeFacet?" checked":""?>>
-                                    <?=$facetValue?> (<?=$facetValueCount?>)
+                                    <?=$facetValue?> <span class="filter-count"><?=$facetValueCount?></span>
                                 </label>
                             </div>
                         <?php if ($activeFacet): $facetsList[] = $facetValue; endif; endforeach;?>
