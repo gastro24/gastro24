@@ -128,9 +128,9 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                 <?php if(count($facetValues)>0): $atLeastOneActive = false; $facetsList = []; ob_start();?>
                 <div id="facets-box-<?=$facetName?>" class="panel panel-default">
                     <div class="panel-heading">
-                        <a class="<?=$isFirstFacet ?  '%firstCollapsed% ' : '%collapsed%'?>" style="display:block;width: 100%;text-decoration:none;" data-toggle="collapse" data-parent="#facets-box-<?=$facetName?>" href="#facets-box-<?=$facetName?>-content">
+                        <a class="<?=$isFirstFacet ?  '%firstCollapsed% ' : '%collapsed%'?>" data-toggle="collapse" data-parent="#facets-box-<?=$facetName?>" href="#facets-box-<?=$facetName?>-content">
                         <?=$this->translate($facets->getTitle($facetName))?>
-                            <span class="small">%facetsList%</span>
+                             <span class="fa fa-chevron-down">%facetsList%</span>
                         </a>
 
                     </div>
