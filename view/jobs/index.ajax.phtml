@@ -175,15 +175,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
             <!-- result list -->
             <div class="col-md-9 job-overview-results">
                 <div class="row">
-                     <?php $parts=preg_split('~<!--more-->~' , $description);?>
-                              <?php if (isset($parts[2]) && "" != trim($parts[2])): ?>
-                              
-                              <div class="col-md-12">
-                                   <?= $parts[2] ?>
-                               </div>
-                              
-                              <?php endif; ?>
-                              
                     <div class="row-eq-height">
                         <?php
                             // get date difference
