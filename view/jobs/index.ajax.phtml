@@ -141,7 +141,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                             if($facetOptionsCounter > 10) continue;
                             $activeFacet = $facets->isValueActive($facetName, $facetValue);
                             $atLeastOneActive = $atLeastOneActive || $activeFacet;?>
-                            <div>
+                            <div class="filter-links">
                                 <label<?=$activeFacet ? ' class="text-primary"' : ''?>>
                                     <input type="checkbox" name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]"
                                            class="facet-checkbox"<?=$activeFacet?" checked":""?>>
