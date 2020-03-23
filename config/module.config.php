@@ -332,6 +332,7 @@ return [
             'Jobs/PreviewFieldset' => Form\JobPreviewFieldsetDelegator::class,
             'Applications/Attributes' => Form\Applications\Attributes::class, // only needed until YAWIK fixed error
             'Auth/Login' => 'Gastro24\Form\Login',
+            'Jobs/ClassificationsFieldset'  => 'Gastro24\Form\ClassificationsFieldset',
         ],
         'factories' => [
             Form\CreateSingleJobForm::class => InvokableFactory::class,
