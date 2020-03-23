@@ -60,5 +60,14 @@ return [
     'Swiss' => 'Schweiz',
     'No jobs found.' => 'Leider haben wir keine Stellenanzeigen, die Ihrer Suchanfrage entsprechen.',
 
-    'I forgot my password' => 'Passwort vergessen?'
+    'I forgot my password' => 'Passwort vergessen?',
+    'Salary' => 'Gehalt',
+    'Currency' => 'Währung',
+    'Time interval unit' => 'Intervall',
+    'Salary rate is no set yet.' => 'Gehaltsangaben sind noch unvollständig.',
+    'Hour' => 'Stunde',
+    'Day' => 'Tag',
+    'Week' => 'Woche',
+    'Month' => 'Monat',
+    'Year' => 'Jahr',
 ];
