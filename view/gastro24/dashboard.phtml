@@ -17,6 +17,9 @@ if (!$productWrapper) { return; }
 
 $product = $productWrapper->getProduct();
 $name    = str_replace('Gastro24\Entity\Product\\', '', get_class($product));
+$jobDraftsCount = $this->gastroJobDraftsCount($user);
+$inactiveJobCount = $product->getInactiveJobCount();
+$activeJobCount = $product->getJobCount();
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -46,11 +49,20 @@ $name    = str_replace('Gastro24\Entity\Product\\', '', get_class($product));
             <td>
                 Sie haben
                 <a style="text-decoration: underline" href="<?= $this->url('lang/jobs', array(), array(), true)?>">
-                    <?=$product->getJobCount()?>
+                    <?=$activeJobCount?>
                     <?php if ($limit = $product->getAvailableJobAmount()): ?> von <?=$limit?><?php endif ?> Jobs
                 </a> inseriert
-                <?php if ($product->getInactiveJobCount()): ?>
-                    (<?=$product->getInactiveJobCount()?> inaktiv)
+                <?php if ($jobDraftsCount && $product->getInactiveJobCount()) {
+                    if ($jobDraftsCount == 1) {
+                        echo '(davon ' . $inactiveJobCount . ' inaktiv, ' . $jobDraftsCount . ' Entwurf)';
+                    }
+                    else {
+                        echo '(davon ' . $inactiveJobCount . ' inaktiv, ' . $jobDraftsCount . ' Entwürfe)';
+                    }
+                }
+                ?>
+                <?php if (!$jobDraftsCount && $inactiveJobCount): ?>
+                    (davon <?=$inactiveJobCount?> inaktiv)
                 <?php endif ?>
             </td>
         </tr>

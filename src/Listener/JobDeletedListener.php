@@ -85,7 +85,9 @@ class JobDeletedListener implements EventSubscriber
 
         /** @var AbstractProduct $product */
         $product = $productWrapper->getProduct();
-        $product->decreaseJobCount();
+        if (!$job->isDraft()) {
+            $product->decreaseJobCount();
+        }
 
         if ($job->getStatus() && ($job->getStatus()->getName() == Status::INACTIVE)) {
             $product->decreaseInactiveJobCount();
