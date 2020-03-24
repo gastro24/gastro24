@@ -29,6 +29,7 @@ $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, '
 $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
 
 //$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
+$keywords = $wordpress->call('value', ['meta-fields.keywords'], '');
 $description = $wordpress->call('value', ['content.rendered'], '');
 $wordpressTitle = '';
 
@@ -397,7 +398,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                 <!-- pagination -->
                 <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
                 
-                <?php echo $this->partial('jobs/partials/similar-jobs-by-title.phtml', ['headline' => $description]); ?>
+                <?php echo $this->partial('jobs/partials/similar-jobs-by-title.phtml', ['headline' => $keywords]); ?>
                 <!-- end pagination -->
 
                 
