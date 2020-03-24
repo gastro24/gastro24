@@ -396,9 +396,9 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                 <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
                 <?php if (isset($description)): ?>
                  
-                <?php echo $this->partial('jobs/partials/similar-jobs-by-title.phtml', ['headline' => $description]); ?>
+                   <?php echo $this->partial('jobs/partials/similar-jobs-by-title.phtml', ['headline' => $description]); ?>
                     <?php else : ?>
-                  <?php echo $this->partial('jobs/partials/similar-jobs-by-title.phtml', ['headline' => $searchTerm]); ?>
+                  
                  <?php endif ?>
                 <!-- end pagination -->
 
