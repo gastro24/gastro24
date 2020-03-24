@@ -61,6 +61,15 @@ $activeJobCount = $product->getJobCount();
                     }
                 }
                 ?>
+                <?php if ($jobDraftsCount && !$inactiveJobCount) {
+                    if ($jobDraftsCount == 1) {
+                        echo '(' . $jobDraftsCount . ' Entwurf)';
+                    }
+                    else {
+                        echo '(' . $jobDraftsCount . ' Entwürfe)';
+                    }
+                }
+                ?>
                 <?php if (!$jobDraftsCount && $inactiveJobCount): ?>
                     (davon <?=$inactiveJobCount?> inaktiv)
                 <?php endif ?>
