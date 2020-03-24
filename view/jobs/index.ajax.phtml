@@ -397,11 +397,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                 
                 <!-- end pagination -->
 
-                 <?php if (isset($description)): ?>
-                 
-                   <?php echo $this->partial('jobs/partials/similar-jobs-by-title.phtml', ['headline' => $description]); ?>
-    
-               <?php endif ?>
+              
                
                
             </div>
@@ -410,6 +406,12 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                  
                  
             <?=$hasFacets ? '</div>' : '' ?>
+            
+               <?php if (isset($description)): ?>
+                 
+                   <?php echo $this->partial('jobs/partials/similar-jobs-by-title.phtml', ['headline' => $description]); ?>
+    
+               <?php endif ?>
         <?php endif ?>
         
          
