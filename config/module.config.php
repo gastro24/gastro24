@@ -177,6 +177,7 @@ return [
             View\Helper\JsonLd::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
             View\Helper\PublishDateFormatter::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
             View\Helper\PopupForm::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+            View\Helper\JobDraftsCount::class => View\Helper\JobDraftsCountFactory::class,
         ],
         'aliases' => [
             'wordpress' => WordpressApi\View\Helper\WordpressContent::class,
@@ -196,6 +197,7 @@ return [
             'isCrawlerJob' => View\Helper\IsCrawlerJob::class,
             'publishDateFormatter' => View\Helper\PublishDateFormatter::class,
             'popupForm' => View\Helper\PopupForm::class,
+            'gastroJobDraftsCount' => View\Helper\JobDraftsCount::class,
         ],
         'delegators' => [
             'jobUrl' => [
