@@ -393,7 +393,12 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
 								</div>
                  <?php endif ?>
                 <!-- pagination -->
-                <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
+                
+               <?php if (count($jobs)>18): ?>
+                
+                   <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
+                   
+                <?php endif ?>
                 
                 <!-- end pagination -->
 
