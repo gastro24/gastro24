@@ -20,10 +20,10 @@ if ($this->pageCount):
     $enablePrevButton = true;
 
     ?>
-    <div class="row yk-pagination">
+    <div class="row">
         <div class="col-md-12">
             <!-- First page link -->
-            <ul class="pagination">
+            <ul class="pagination pull-right">
                 <!-- Previous page link -->
                 <?php if ($enablePrevButton): ?>
                     <?php if (isset($this->previous)): $query['page'] = $this->previous; ?>
