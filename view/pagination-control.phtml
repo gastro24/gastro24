@@ -28,12 +28,12 @@ if ($this->pageCount):
                 <?php if ($enablePrevButton): ?>
                     <?php if (isset($this->previous)): $query['page'] = $this->previous; ?>
                         <?php $url = $this->url($this->route, ['lang' => $this->lang], ['query' => $query], true); ?>
-                        <li><a title="<?= $this->translate('Back') ?>" href="<?php echo $url ?>"><span fill="currentColor" class="pagination-previous">
+                        <li class="prev-link"><a title="<?= $this->translate('Back') ?>" href="<?php echo $url ?>"><span fill="currentColor" class="pagination-previous">
 <svg fill="currentColor" data-icon="caret-left" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M12 0L4 8l8 8V0z"></path></svg></span>
                                 <?php $this->headLink(array('rel' => 'prev', 'href' => $url), 'PREPEND'); ?>
                             </a></li>
                     <?php else: ?>
-                        <li class="disabled"><a title="<?=$this->translate('Back') ?>"><span fill="currentColor" class="pagination-previous">
+                        <li class="prev-link disabled"><a title="<?=$this->translate('Back') ?>"><span fill="currentColor" class="pagination-previous">
 <svg fill="currentColor" data-icon="caret-left" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M12 0L4 8l8 8V0z"></path></svg></span></a></li>
                     <?php endif; ?>
                 <?php endif;?>
@@ -43,14 +43,14 @@ if ($this->pageCount):
                 <?php if (isset($this->next)): $query['page'] = $this->next; ?>
                     <?php $url                 =
                         $this->url($this->route, array('lang' => $this->lang), array('query' => $query), true); ?>
-                    <li><a title="<?=$this->translate('Next') ?>" href="<?php echo $url ?>"><span fill="currentColor" class="pagination-next">
+                    <li class="next-link"><a title="<?=$this->translate('Next') ?>" href="<?php echo $url ?>"><span fill="currentColor" class="pagination-next">
 <svg fill="currentColor" 
 data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M4 0v16l8-8-8-8z"></path></svg></span>
 
                             <?php $this->headLink(array('rel' => 'next', 'href' => $url), 'PREPEND'); ?>
                         </a></li>
                 <?php else: ?>
-                    <li class="disabled"><a title="<?=$this->translate('Next') ?>"><span fill="currentColor" class="pagination-next">
+                    <li class="next-link disabled"><a title="<?=$this->translate('Next') ?>"><span fill="currentColor" class="pagination-next">
 <svg fill="currentColor" 
 data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M4 0v16l8-8-8-8z"></path></svg></span>
 </a></li>
