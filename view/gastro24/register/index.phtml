@@ -4,9 +4,23 @@ $this->headTitle($this->translate("Register"));
 $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registration.js'))
 
 ?>
-    <div class="row">
+<div class="row">
 
         <div class="col-md-12">
+     <nav aria-label="breadcrumb">
+        <ol class="hidden-xs breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList" >
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="/">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                 <span itemprop="name">Als Arbeitgeber registrieren</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
             <div class="page-title">
                 <h1>Jetzt als Arbeitgeber registrieren</h1>
             </div>
