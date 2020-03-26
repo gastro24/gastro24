@@ -1,4 +1,3 @@
-<?php
 /**
  * YAWIK
  *
@@ -98,7 +97,8 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                         </a>
                     </span>
                     <div class="container--date-picker">
-                        <div style="margin-right: 10px;">Datum filtern</div>
+                      
+                      
                         <!-- date filter -->
                         <?= $this->partial('jobs/partials/date-filter-select.phtml', [
                             'dateFilterValue' => $dateFilterValue,
