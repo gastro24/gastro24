@@ -141,6 +141,7 @@ $this->headTitle($this->translate('Home'));
                                 <ul class="dropdown-menu">
                                     <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="<?= $this->url('stellenanzeigen-schalten') ?>">Anzeige schalten</a></li>
                                     <li class=""><a title="Jobs" href="/de/jobs?clear=1">Jobs</a></li>
+                                    <li class=""><a title="Für Arbeitgeber" href="/de/auth/register?pt=plus&ref=/de/job/edit">Für Arbeitgeber</a></li>
                                     <li class=""><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
                                     <li class=""><a title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
                                 </ul>
@@ -155,7 +156,8 @@ $this->headTitle($this->translate('Home'));
                     <!-- menu --->
                     <div id="navbar-home-site-links" class="hidden-xs">
                         <ul>
-                            <li><a class="navbar-item-anchor" title="Alle Jobs" href="/de/jobs?clear=1">Jobs</a></li>
+                            <li><a class="navbar-item-anchor" title="Jobs" href="/de/jobs?clear=1">Jobs</a></li>
+                            <li class=""><a title="Für Arbeitgeber" href="/de/auth/register?pt=plus&ref=/de/job/edit">Für Arbeitgeber</a></li>
                             <li><a class="navbar-item-anchor" title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
                             <li><a class="navbar-item-anchor" title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
                         </ul>
