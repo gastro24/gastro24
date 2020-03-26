@@ -1,3 +1,4 @@
+<?php
 /**
  * YAWIK
  *
@@ -12,7 +13,7 @@ if (count($jobs)): ?>
         <?=$this->jobs->getTotalItemCount()?>
     </div>
 
-<?php
+    <?php
 $hasFacets = $jobs instanceof \Solr\FacetsProviderInterface;
 $queryGet = $this->params()->fromQuery();
 unset($queryGet['clear']);
