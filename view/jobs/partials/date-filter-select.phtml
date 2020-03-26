@@ -31,17 +31,17 @@ foreach ($publishFacetsDayValues as $facetPublishDay) {
 ?>
 
 <select id="jobDateFilter" name="jobDateFilter" data-searchbox="-1" >
-    <option class="date-filter-option" value="all" <?php if($this->dateFilterValue == '') echo 'selected'; ?>>Alle</option>
+    <option class="date-filter-option" value="all" <?php if($this->dateFilterValue == '') echo 'selected'; ?>>Alle Erscheinungdaten</option>
     <?php if ($showLast24Hours): ?>
-        <option class="date-filter-option" value="1440" <?php if($this->dateFilterValue == '1440') echo 'selected'; ?>>Letzten 24 Stunden</option>
+        <option class="date-filter-option" value="1440" <?php if($this->dateFilterValue == '1440') echo 'selected'; ?>>neuer als 24 h</option>
     <?php endif; ?>
     <?php if ($showLast3Days): ?>
-        <option class="date-filter-option" value="4320" <?php if($this->dateFilterValue == '4320') echo 'selected'; ?>>Letzten 3 Tage</option>
+        <option class="date-filter-option" value="4320" <?php if($this->dateFilterValue == '4320') echo 'selected'; ?>>neuer als 3 Tage</option>
     <?php endif; ?>
     <?php if ($showLast7Days): ?>
-        <option class="date-filter-option" value="10080" <?php if($this->dateFilterValue == '10080') echo 'selected'; ?>>Letzten 7 Tage</option>
+        <option class="date-filter-option" value="10080" <?php if($this->dateFilterValue == '10080') echo 'selected'; ?>>neuer als 7 Tage</option>
     <?php endif; ?>
     <?php if ($showLast30Days): ?>
-        <option class="date-filter-option" value="43200" <?php if($this->dateFilterValue == '43200') echo 'selected'; ?>>Letzten 30 Tage</option>
+        <option class="date-filter-option" value="43200" <?php if($this->dateFilterValue == '43200') echo 'selected'; ?>>neuer als 30 Tage</option>
     <?php endif; ?>
 </select>
