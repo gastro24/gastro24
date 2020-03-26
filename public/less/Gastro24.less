@@ -185,10 +185,7 @@ input[type="file"] {
     padding: 1px 3px 2px;
 }
 
-.job-results-container > .col-md-3 {
-  padding-right:0px!important;
 
-}
 .panel-default .panel-heading a {
 	
 	display: block;
@@ -456,15 +453,39 @@ width: 40px;
 
 .job-results-container {
 	background-color: #f2f2f2;
+
 	.container__date-filter {
 		background-color: #e8e8e8;
 		margin-bottom: 10px;
-		.container__filter {
+
+		.container--filter {
+
+			.filter-icon {
+				display: block;
+				padding-right: 25px;
+
+				a {
+					text-decoration: none;
+				}
+
+				i {
+					font-size: 2em;
+				}
+			}
+
+			.container--date-picker {
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-end;
+				align-items: baseline;
+				padding: 10px 0;
+			}
+
 			display: flex;
 			flex-direction: row;
-			justify-content: flex-end;
-			align-items: baseline;
-			padding: 10px 0;
+			justify-content: space-between;
+			align-items: center;
+			//padding: 10px 0;
 		}
 	}
 }
@@ -1055,13 +1076,29 @@ main ul.column li a {
 	background: #e5e5e5;
 	color: #0b2235 !important
 }
- @media (min-width: 992px) {
-    .collapse.dont-collapse-sm {
-      display: block;
-      height: auto !important;
-      visibility: visible;
-    }
-  }
+
+@media (min-width: 992px) {
+	.collapse.dont-collapse-sm {
+		display: block;
+		height: auto !important;
+		visibility: visible;
+	}
+	.job-results-container > .col-md-3 {
+		padding-right: 0;
+	}
+
+	.job-results-container {
+		.container__date-filter {
+			.container--filter {
+				.filter-icon {
+					display: none;
+				}
+
+				justify-content: flex-end;
+			}
+		}
+	}
+}
 
 
   .panel-default>.panel-heading+.panel-collapse>.panel-body label {
