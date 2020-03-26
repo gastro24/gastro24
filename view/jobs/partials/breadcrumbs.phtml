@@ -1,7 +1,6 @@
 <?php if ($this->searchTerm) { ?>
     <nav aria-label="breadcrumb">
-        <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"
-            style="background-color:#fff; margin-bottom:0px;border-radius:0;padding:0;font-size:13px">
+        <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
                     <span itemprop="name">Home</span>
@@ -31,8 +30,7 @@
 <?php } else if ($this->hasRegion) { ?>
 
     <nav aria-label="breadcrumb">
-        <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"
-            style="background-color:#fff; margin-bottom:0px;border-radius:0;padding:0;font-size:13px">
+        <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
                     <span itemprop="name">Home</span>
@@ -49,7 +47,7 @@
             <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem" aria-current="page">
              
-                 <span itemprop="name"> <?= $this->wordpressTitle ?></span>
+                 <span itemprop="name"> <?= $this->searchTerm ?></span>
                 
                 <meta itemprop="position" content="3"/>
             </li>
@@ -60,8 +58,7 @@
     
     
      <nav aria-label="breadcrumb">
-        <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"
-            style="background-color:#fff; margin-bottom:0px;border-radius:0;padding:0;font-size:13px">
+        <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
                     <span itemprop="name">Home</span>
@@ -78,7 +75,7 @@
             <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem" aria-current="page">
              
-                 <span itemprop="name"> <?= $this->wordpressTitle ?></span>
+                 <span itemprop="name"> <?= $this->searchTerm ?></span>
                 
                 <meta itemprop="position" content="3"/>
             </li>
@@ -91,8 +88,7 @@
 <?php } else { ?>
 
     <nav aria-label="breadcrumb">
-        <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"
-           style="background-color:#fff; margin-bottom:0px;border-radius:0;padding:0;font-size:13px">
+        <ol class="hidden-xs breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
                     <span itemprop="name">Home</span>
