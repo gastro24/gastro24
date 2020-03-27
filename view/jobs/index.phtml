@@ -81,9 +81,7 @@ $noJobsMessage = $this->translate('No jobs found.');
             });
 
             $('.container--filter .filter-icon').on('click', function() {
-                var $facetsContainer = $('.container--facets');
-                $facetsContainer.find('.well').toggleClass('hidden-xs');
-                $facetsContainer.find('.panel-group').toggleClass('hidden-xs');
+                $(this).toggleClass('active');
             });
 
 

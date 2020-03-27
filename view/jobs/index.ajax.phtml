@@ -108,24 +108,25 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                     <!-- end date filter -->
                 </div>
             </div>
-     <div class="col-md-3 container--facets">
-       <!-- list active filters -->
+     <div class="col-md-3 container--facets dont-collapse-sm collapse <?= ($activeFacets) ? 'in' : '' ?>"
+          aria-expanded="<?= ($activeFacets) ? 'true' : 'false' ?>" id="facets-container">
+        <!-- list active filters -->
         <?php if ($activeFacets):?>
-            <div class="well well-sm hidden-xs">
+            <div class="well well-sm">
                 <?php foreach ($activeFacets as $facetName => $facetValues):?>
                     <?php foreach ($facetValues as $facetValue):?>
                         <button type="button" class="btn btn-primary btn-sm facet-active" data-name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]" title="<?=$this->translate('Remove filter')?>"><?=$facetValue?> <span>&times;</span></button>
                     <?php endforeach;?>
                 <?php endforeach;?>
-            
-                 <p>Sie können Ihre Jobsuche weiter einschränken, indem Sie unten ein oder mehrere Filterkriterien auswählen.</p>
+
+                <p>Sie können Ihre Jobsuche weiter einschränken, indem Sie unten ein oder mehrere Filterkriterien auswählen.</p>
                 <button type="button" class="btn btn-link facet-reset"><?=$this->translate('Remove all filters')?></button>
             </div>
         <?php endif;?>
         <!-- end list active filters -->
         
          <!-- filter -->
-            <div class="panel-group collapse dont-collapse-sm hidden-xs" id="facets-container">
+        <div class="panel-group">
                 <?php $facetsHtml = ''; $isFirstFacet = true; $atLeastOneTotalActive = false; foreach ($facets as $facetName => $facetValues):?>
                 <?php $facetOptionsCounter = 0; ?>
                 <?php if($facetName == 'datePublishStart') continue; ?>
