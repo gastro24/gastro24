@@ -80,7 +80,14 @@ $noJobsMessage = $this->translate('No jobs found.');
             });
 
             $('.container--filter .filter-icon').on('click', function() {
+                var regionFacet = $('.facets-heading-region_MultiString'),
+                    hasActiveRegionFacet = $('.container--facets .well').find('button[data-name*="region_MultiString"]');
+
                 $(this).toggleClass('active');
+
+                if (!regionFacet.hasClass('collapsed') && !hasActiveRegionFacet.length) {
+                    $('.facets-heading-region_MultiString').click();
+                }
             });
 
 
