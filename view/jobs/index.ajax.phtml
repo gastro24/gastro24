@@ -387,8 +387,19 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                         <?php endforeach?>
                     </div>
                 </div>
-               <?php $parts=preg_split('~<!--more-->~' , $description);?>
-                              <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
+             
+                <!-- pagination -->
+                   <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
+                <!-- end pagination -->
+            </div>
+            <?=$hasFacets ? '</div>' : '' ?>
+        <?php endif ?>
+        
+ <?php if (count($this->jobs)):?>
+ 
+ 
+          <?php $parts=preg_split('~<!--more-->~' , $description);?>
+                <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
 							<div class="row">
                               <div class="col-md-12 col-sm-6 col-xs-12" id="infobox-<?=$this->params()->fromRoute('term') ?>">
                                 <div class="featured-image-box similarjob">
@@ -399,15 +410,6 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                  </div>
 								</div>
                  <?php endif ?>
-                <!-- pagination -->
-                   <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
-                <!-- end pagination -->
-            </div>
-            <?=$hasFacets ? '</div>' : '' ?>
-        <?php endif ?>
-        
- <?php if (count($this->jobs)):?>
-        <div class="container">
          <div class="row">
             <div class="col-md-12">
                 <div class="to-top-link">
@@ -415,7 +417,8 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                 </div>
             </div>
           </div>
-         </div>  
+         
+        
    <?php endif ?>
  
         </div>
