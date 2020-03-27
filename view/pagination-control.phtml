@@ -23,8 +23,8 @@ if ($this->pageCount > 1):
     ?>
     <div class="row">
         <div class="col-md-10 pagination-pages-span">
-            <?php $pagesContent = $currentPage . ' von ' . $this->pageCount . ' Seiten'; ?>
-            <span class="pull-right" style="margin-top: 10px;"><?= $pagesContent ?></span>
+            <?php '<strong>' . $pagesContent = $currentPage . '</strong> von <strong>' . $this->pageCount . ' </strong>'; ?>
+            <span class="pull-right"><?= $pagesContent ?></span>
         </div>
         <div class="col-md-2">
             <!-- First page link -->
