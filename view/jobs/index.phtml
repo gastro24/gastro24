@@ -66,7 +66,8 @@ $noJobsMessage = $this->translate('No jobs found.');
             $('#jobDateFilter').each($.fn.form.initSelect);
 
             $('#jobs-list-container ul.pagination a, link[rel="prev"], link[rel="next"]').each(function() {
-                var $a = $(this), href = $a.attr('href');
+                var $a = $(this),
+                    href = $a.attr('href');
                 console.debug($a, href);
                 if (href) {
                     href = href.replace(/__region_MultiString/, 'r')
@@ -90,6 +91,10 @@ $noJobsMessage = $this->translate('No jobs found.');
                 }
             });
 
+            // scroll to top after pagination clicked
+            $('.pagination li[class!="disabled"] a, .pagination li[class!="disabled"] a').on('click', function() {
+                $('html, body').animate({ scrollTop: 0 }, 'fast');
+            });
 
         }).trigger('g24-jobs:init');
 

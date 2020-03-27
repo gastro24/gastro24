@@ -1168,22 +1168,28 @@ main ul.column li a {
 /* End General Styles */
 
 @media(max-width: @screen-sm) {
-    
-.pagination {
-    
-    width:100%;
-}
+	.pagination-pages-span {
+		text-align: center;
 
-    
-.pagination .prev-link  {
-    
-    float:left;
-}  
-   .pagination .next-link {
-    
-    float:right;
-}  
-    
+		span {
+			float: none!important;
+		}
+	}
+
+	.pagination {
+		width:100%;
+
+		.prev-link,
+		#prev-link  {
+			float:left;
+		}
+
+		.next-link,
+		#next-link{
+			float:right;
+		}
+	}
+
 .similarjob ul {
 padding-left:0px;
 list-style-type:none;
