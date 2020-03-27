@@ -67,7 +67,8 @@ $noJobsMessage = $this->translate('No jobs found.');
             $('#jobDateFilter').each($.fn.form.initSelect);
 
             $('#jobs-list-container ul.pagination a, link[rel="prev"], link[rel="next"]').each(function() {
-                var $a = $(this), href = $a.attr('href');
+                var $a = $(this),
+                    href = $a.attr('href');
                 console.debug($a, href);
                 if (href) {
                     href = href.replace(/__region_MultiString/, 'r')

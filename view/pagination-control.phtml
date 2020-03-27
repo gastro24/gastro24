@@ -19,9 +19,21 @@ if ($this->pageCount):
     $enableNextButton = true;
     $enablePrevButton = true;
 
+    $currentPage = (!is_null($query['page'])) ? $query['page'] : '1';
     ?>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10 pagination-pages-span">
+            <?php
+                if ($this->pageCount == 1) {
+                    $pagesContent = '1 von 1 Seite';
+                }
+                else {
+                    $pagesContent = $currentPage . ' von ' . $this->pageCount . ' Seiten';
+                }
+            ?>
+            <span class="pull-right" style="margin-top: 10px;"><?= $pagesContent ?></span>
+        </div>
+        <div class="col-md-2">
             <!-- First page link -->
             <ul class="pagination pull-right">
                 <!-- Previous page link -->
@@ -33,8 +45,13 @@ if ($this->pageCount):
                                 <?php $this->headLink(array('rel' => 'prev', 'href' => $url), 'PREPEND'); ?>
                             </a></li>
                     <?php else: ?>
-                        <li class="prev-link disabled"><a title="<?=$this->translate('Back') ?>"><span fill="currentColor" class="pagination-previous">
-<svg fill="currentColor" data-icon="caret-left" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M12 0L4 8l8 8V0z"></path></svg></span></a></li>
+                        <li class="disabled" id="prev-link">
+                            <a title="<?=$this->translate('Back') ?>">
+                                <span fill="currentColor" class="pagination-previous">
+<svg fill="currentColor" data-icon="caret-left" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M12 0L4 8l8 8V0z"></path></svg>
+                                </span>
+                            </a>
+                        </li>
                     <?php endif; ?>
                 <?php endif;?>
 
@@ -50,7 +67,7 @@ data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 1
                             <?php $this->headLink(array('rel' => 'next', 'href' => $url), 'PREPEND'); ?>
                         </a></li>
                 <?php else: ?>
-                    <li class="next-link disabled"><a title="<?=$this->translate('Next') ?>"><span fill="currentColor" class="pagination-next">
+                    <li class="disabled" id="next-link"><a title="<?=$this->translate('Next') ?>"><span fill="currentColor" class="pagination-next">
 <svg fill="currentColor" 
 data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M4 0v16l8-8-8-8z"></path></svg></span>
 </a></li>
