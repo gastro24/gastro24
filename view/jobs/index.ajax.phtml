@@ -309,7 +309,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                    <div class="row">
                                        <div class="col-xs-12 col-md-10">
                                             <p class="preview-text">
-                                                <span class="hidden-xs">
+                                               
                                                 <?php
                                                     $preview = null;
                                                     if ($job->getTemplateValues()->getIntroduction()) {
@@ -328,10 +328,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
                                                     }
                                                 ?>
                                                 <?= $preview ?>
-                                                </span>
-                                              
-                                                
-                                                
+   
                                             </p>
                                         </div>
                                     <div class="col-xs-12 col-md-2">
