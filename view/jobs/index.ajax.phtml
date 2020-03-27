@@ -92,7 +92,7 @@ $jobsRepo = $this->services('repositories')->get('Jobs');
             <div class="col-md-12 container__date-filter">
 
                 <div class="container--filter">
-                    <span class="filter-icon">
+                    <span class="filter-icon <?= ($activeFacets) ? 'active' : '' ?>">
                         <a data-toggle="collapse" href="#facets-container" aria-expanded="false" aria-controls="facets-container">
                             <i class="fa fa-sliders" aria-hidden="true"></i>
                         </a>
