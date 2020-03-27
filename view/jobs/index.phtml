@@ -54,7 +54,6 @@ $noJobsMessage = $this->translate('No jobs found.');
 ?>
 <?php $this->headScript()->captureStart();?>
 (function($) {
-
     $(function() {
         var $tabbar = $('#search-tabs');
 
@@ -95,6 +94,11 @@ $noJobsMessage = $this->translate('No jobs found.');
         });
 
         $('#jobs-list-filter').on('reset.gastro24', function(ev) { $(ev.target).find('input.facet-param').remove(); });
+
+        // used for first facet collapse
+        if ($(window).width() < 992) {
+            $('.facets-heading-region_MultiString').click();
+        }
     });
 })(jQuery);
 <?php $this->headScript()->captureEnd();?>
