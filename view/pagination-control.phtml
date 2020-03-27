@@ -10,7 +10,7 @@
  * {{rtd: Renders paginations}}
  */
 
-if ($this->pageCount):
+if ($this->pageCount > 1):
 
     //$this->headScript()->appendFile($this->basepath('/Core/js/core.pagination.js'));
 
@@ -23,14 +23,7 @@ if ($this->pageCount):
     ?>
     <div class="row">
         <div class="col-md-10 pagination-pages-span">
-            <?php
-                if ($this->pageCount == 1) {
-                    $pagesContent = '1 von 1 Seite';
-                }
-                else {
-                    $pagesContent = $currentPage . ' von ' . $this->pageCount . ' Seiten';
-                }
-            ?>
+            <?php $pagesContent = $currentPage . ' von ' . $this->pageCount . ' Seiten'; ?>
             <span class="pull-right" style="margin-top: 10px;"><?= $pagesContent ?></span>
         </div>
         <div class="col-md-2">

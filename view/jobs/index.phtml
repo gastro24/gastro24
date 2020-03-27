@@ -54,7 +54,6 @@ $noJobsMessage = $this->translate('No jobs found.');
 ?>
 <?php $this->headScript()->captureStart();?>
 (function($) {
-
     $(function() {
         var $tabbar = $('#search-tabs');
 
@@ -82,9 +81,20 @@ $noJobsMessage = $this->translate('No jobs found.');
             });
 
             $('.container--filter .filter-icon').on('click', function() {
+                var regionFacet = $('.facets-heading-region_MultiString'),
+                    hasActiveRegionFacet = $('.container--facets .well').find('button[data-name*="region_MultiString"]');
+
                 $(this).toggleClass('active');
+
+                if (!regionFacet.hasClass('collapsed') && !hasActiveRegionFacet.length) {
+                    $('.facets-heading-region_MultiString').click();
+                }
             });
 
+            // scroll to top after pagination clicked
+            $('.pagination li[class!="disabled"] a, .pagination li[class!="disabled"] a').on('click', function() {
+                $('html, body').animate({ scrollTop: 0 }, 'fast');
+            });
 
         }).trigger('g24-jobs:init');
 
@@ -96,6 +106,11 @@ $noJobsMessage = $this->translate('No jobs found.');
         });
 
         $('#jobs-list-filter').on('reset.gastro24', function(ev) { $(ev.target).find('input.facet-param').remove(); });
+
+        // used for first facet collapse
+        if ($(window).width() < 992) {
+            $('.facets-heading-region_MultiString').click();
+        }
     });
 })(jQuery);
 <?php $this->headScript()->captureEnd();?>
