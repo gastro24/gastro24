@@ -229,6 +229,11 @@ input[type="file"] {
 
 /* End Panel Filter Styles */
 /* Styles for Pagination */
+
+.pagination-pages-span span {
+    height: 40px;
+    line-height: 40px;
+}
 .pagination-loading {
     background-color: rgba(242, 242, 242, 0.8)!important;
 }
@@ -1174,6 +1179,15 @@ main ul.column li a {
 /* End General Styles */
 
 @media(max-width: @screen-sm) {
+    
+ .pagination-pages-span span {
+    position: absolute;
+    left: 50%;
+    width: 120px;
+    margin-top: 10px;
+    margin-left: -60px;
+
+}
 	.pagination-pages-span {
 		text-align: center;
 
