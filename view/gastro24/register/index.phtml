@@ -24,14 +24,13 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registratio
             <div class="page-title">
                 <h1>Jetzt als Arbeitgeber registrieren</h1>
             </div>
-            <p>Als registrierter Arbeitgeber erhalten Sie für nur CHF 595.- exklusiv Zugriff auf alle Services während 12 Monaten. </p>
         </div>
         
         <div class="col-md-6">
             <div class="panel panel-info">
-                <div class="panel-heading">
-                    <?php echo $this->translate("I'm not yet a customer"); ?>
-                </div>
+              
+              
+              
                 <div class="panel-body">
                     <?php echo $this->form($this->form);?>
                 </div>
@@ -39,17 +38,18 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registratio
         </div>
         <div class="col-md-6">
             <div class="panel panel-info">
-                <div class="panel-heading">
-                    <?php echo $this->translate("I am already a customer"); ?>
-                </div>
+              
                 <div class="panel-body">
-                    <?php echo $this->form($this->formLogin);?>
+                   
+                   <h2>Ihre Vorteile als registrierter Arbeitgeber</h2>
+                  <p>Als registrierter Arbeitgeber erhalten Sie für nur CHF 595.- exklusiv Zugriff während 12 Monaten und können folgende Gastrojob24 Services voll in Anspruch nehmen.</p>
+                   
+                   
+                   
                 </div>
-                <div class="panel-footer">
-                    <a href="<?php echo  $this->url('lang/forgot-password'); ?>" title="<?php echo  $this->translate('I forgot my password'); ?>" class="small">
-                        <?php echo  $this->translate('I forgot my password'); ?>
-                    </a>
-                </div>
+               
+               
+    
             </div>
         </div>
     </div>
