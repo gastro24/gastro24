@@ -11,6 +11,52 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registratio
         
         text-decoration:underline;
     }
+    h2 {
+        
+    margin-bottom: 10px;
+    color: #0b2235;
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: bold;
+    }
+    
+    .ecom-list {
+    position: relative;
+    list-style: none inside;
+    padding: 0;
+}
+
+.ecom-list__item--checked {
+    position: relative;
+    padding-left: 19px;
+}
+
+.ecom-list__item--checked::before {
+    content: '\f00c';
+    display: block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    margin-left: -20px;
+    color: #7aae1a;
+    top: 3px;
+    font-weight: 100;
+}
+
+  .panel-body {
+      
+      padding: 15px 15px 30px 15px;  
+  }
+  
+  .panel-info {
+    border: 0;
+    box-shadow: 0px 1px 3px 0 rgba(44,43,35,0.3);
+      -moz-box-shadow:  0px 1px 3px 0 rgba(44,43,35,0.3);
+  -webkit-box-shadow: 0px 1px 3px 0 rgba(44,43,35,0.3);
+}
+
     
     
 </style>
@@ -54,9 +100,20 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registratio
                 <div class="panel-body">
                    
                    <h2>Ihre Vorteile als registrierter Arbeitgeber</h2>
-                  <p>Als registrierter Arbeitgeber erhalten Sie für nur CHF 595.- exklusiv Zugriff während 12 Monaten und können folgende Gastrojob24 Services voll in Anspruch nehmen.</p>
-                   
-                   
+                  <p>Als registrierter Arbeitgeber erhalten Sie für <strong>nur CHF 595.-</strong> exklusiv Zugriff während 12 Monaten und können folgende 
+                  Gastrojob24-Services voll in Anspruch nehmen:</p>
+
+<ul class="ecom-list">
+<li class="ecom-list__item ecom-list__item--checked">Sensationelles Preis-Leistungsverhältnis</li>
+<li class="ecom-list__item ecom-list__item--checked">Enorme Reichweite</li>
+<li class="ecom-list__item ecom-list__item--checked">Google Job Search und Mobile optimiert</li>
+<li class="ecom-list__item ecom-list__item--checked">Unlimitiert Jobs schalten (Flatrate)</li>
+<li class="ecom-list__item ecom-list__item--checked">Bewerberverwaltung</li>
+<li class="ecom-list__item ecom-list__item--checked">Individuelle Inserate-Laufzeit</li>
+<li class="ecom-list__item ecom-list__item--checked">Eigenes Firmenprofil</li>
+<li class="ecom-list__item ecom-list__item--checked">Jobs direkt von Ihrer Webseite einbinden</li>
+<li class="ecom-list__item ecom-list__item--checked">Permanente Logopräsenz auf der Startseite</li>
+</ul>
                    
                 </div>
                <div class="panel-footer">
