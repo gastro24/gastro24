@@ -4,6 +4,18 @@ $this->headTitle($this->translate("Register"));
 $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registration.js'))
 
 ?>
+<style>
+    /*only for register page */
+    
+    .panel-footer a {
+        
+        text-decoration:underline;
+    }
+    
+    
+</style>
+
+
 <div class="row">
 
         <div class="col-md-12">
@@ -47,7 +59,12 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registratio
                    
                    
                 </div>
-               
+               <div class="panel-footer">
+                   
+                   Fragen? <a href="mailto:info@gastrojob24.ch">Kontaktieren</a> Sie uns!
+                   <div class="pull-right"> Es gelten unsere <a href="/de/agb.html">AGB</a></div>
+                   
+               </div>
                
     
             </div>
