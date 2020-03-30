@@ -248,7 +248,7 @@ class CompanyRegisterForm extends Register
                 'name' => 'button',
                 'attributes' => array(
                     'type' => 'submit',
-                    'value' => /*@translate*/ 'Als Arbeitgeber registrieren',
+                    'value' => /*@translate*/ 'Jetzt als Arbeitgeber registrieren',
                     'class' => 'btn btn-primary'
                 ),
             )
