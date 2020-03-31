@@ -19,7 +19,7 @@ if ($this->pageCount > 1):
     $enableNextButton = true;
     $enablePrevButton = true;
 
-    $currentPage = (!is_null($query['page'])) ? $query['page'] : '1';
+    $currentPage = (isset($query['page']) && !is_null($query['page'])) ? $query['page'] : '1';
     ?>
     <div class="row">
         <div class="col-md-10 pagination-pages-span">
