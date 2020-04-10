@@ -109,6 +109,15 @@ $industries = $job->getClassifications()->getIndustries();
         <!-- expired info box -->
         <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
         <!-- end expired info box -->
+        
+        
+         <!-- similar jobs -->
+        <?php if (!$preview && $isExpired): ?>  
+            <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
+         <?php endif; ?>
+        <!-- end similar jobs -->
+        
+        
 
         <div class="job-short-info <?php if(!$hasBanner) echo 'no-banner' ?>">
             <ul>
@@ -301,27 +310,7 @@ $industries = $job->getClassifications()->getIndustries();
         <?php endif; ?>
         <!-- end similar company jobs -->
 
-        <?php if (!$preview): ?>
-        <!-- recommended categories
-        <div class="grey-description-container">
-            <div class="content">
-                
-                
-             </div>
-        </div>
-        end recommended categories -->
-
-        <!-- recommended jobs by cities
-        <div class="grey-description-container">
-            <div class="content">
-                <div class="headline">Jobs nach Städten</div>
-                <div class="content__inner">
-                   
-                </div>
-            </div>
-        </div>
-        end recommended jobs by cities -->
-        <?php endif; ?>
+      
 
    </div>
 </div>
