@@ -290,13 +290,13 @@ $industries = $job->getClassifications()->getIndustries();
         <!-- end share buttons -->
 
         <!-- similar jobs -->
-        <?php if (!$preview): ?>
+        <?php if (!$preview && !$isExpired): ?>  
             <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
          <?php endif; ?>
         <!-- end similar jobs -->
 
         <!-- similar company jobs -->
-        <?php if (!$preview): ?>
+        <?php if (!$preview && !$isExpired): ?>
             <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
         <?php endif; ?>
         <!-- end similar company jobs -->
