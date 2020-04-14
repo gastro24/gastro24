@@ -63,7 +63,16 @@ $this->headTitle($this->translate('Home'));
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
-    
+    <style>
+        .login-link {
+            width:auto!important;
+        }
+        .login-link span {
+            
+            font-size:15px;
+            padding-left:15px;
+        }
+    </style>
     
  <!-- Google Tag Manager -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125791873-1"></script>
@@ -98,7 +107,9 @@ $this->headTitle($this->translate('Home'));
                                    class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Gratis Einzelinserat schalten</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a title="Anmelden" href="#" class="login-link nav-link text-reset _dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a>
+                                <a title="Anmelden" href="#" class="login-link nav-link text-reset _dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i>
+                                  <span>Anmelden</span>
+                                </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="nav-item">
                                         <?= $this->partial('partials/login-popup.phtml', ['device' => 'desktop']); ?>
