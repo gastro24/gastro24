@@ -83,10 +83,34 @@ header {
         }
 .login-link span {
     
-    padding-left: 10px;
+    padding-left: 15px;
     font-size: 15px;
 }
-
+	           .login-icon::before {
+    content: " ";
+    display: block;
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    border: 1px solid;
+    border-radius: 100%;
+}
+                
+                .login-icon::after {
+    content: " ";
+    display: block;
+    width: 15px;
+    height: 7px;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    border: 1px solid;
+    border-bottom: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
 #navbar-home-site-links ul {
   list-style-type: none;
   float: left;
