@@ -2,23 +2,10 @@
 
 namespace Gastro24\Form;
 
-use Auth\Entity\User;
 use Auth\Form\RegisterFormInterface;
-use Auth\Form\UserPasswordFieldset;
-use Auth\Options\CaptchaOptions;
-use CompanyRegistration\Form\Register;
 use CompanyRegistration\Options\RegistrationFormOptions;
-use Core\Form\ButtonsFieldset;
 use Core\Form\Form;
-use Orders\Entity\InvoiceAddress;
-use Orders\Entity\Order;
-use Orders\Entity\SettingsContainer;
-use Settings\Repository\Event\InjectSettingsEntityResolverListener;
-use Zend\Captcha\Image;
-use Zend\Captcha\ReCaptcha;
-use Zend\Form\Fieldset;
 use Zend\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * RegisterCompanyForm.php
@@ -252,7 +239,7 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
             'attributes' => array(
                 'type' => 'submit',
                 'value' => /*@translate*/ 'Speichern',
-                'class' => 'btn btn-primary registration-button'
+                'class' => 'btn btn-primary registration-button pull-right'
             ),
         ]);
     }

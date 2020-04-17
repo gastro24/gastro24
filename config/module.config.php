@@ -356,7 +356,6 @@ return [
             Form\RegisterCompanyForm::class => \Gastro24\Factory\Form\RegisterCompanyFactory::class,
             'Gastro24/JobPdfUpload' => Form\JobPdfFactory::class,
             'Auth\Form\SimpleRegister' => \Gastro24\Factory\Form\SimpleRegisterFactory::class,
-            'Auth\Form\Register' => \Gastro24\Factory\Form\RegisterFactory::class,
             'Jobs/JobboardSearch' => \Gastro24\Factory\Form\JobboardSearchFactory::class,
             'LocationSelect' => \Gastro24\Factory\Form\GeoSelectFactory::class,
             'Gastro24\Form\Login' => \Gastro24\Factory\Form\LoginFactory::class,

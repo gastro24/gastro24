@@ -6,7 +6,6 @@ use Auth\Options\CaptchaOptions;
 use CompanyRegistration\Options\RegistrationFormOptions;
 use Gastro24\Form\Filter\SimpleRegisterInputFilter;
 use Gastro24\Form\RegisterCompanyForm;
-use Gastro24\Form\SimpleRegisterForm;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 

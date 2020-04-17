@@ -111,7 +111,7 @@ class Register extends BaseRegisterService
         }
     }
 
-    public function proceedCompanyRegisteredMail($user, $organization)
+    public function proceedCompanyRegisteredMail($user, $organization, $invoiceAddress)
     {
         $userRepository = $this->getUserRepository();
         $user->getInfo()->setEmailVerified(true);
@@ -123,6 +123,7 @@ class Register extends BaseRegisterService
         $mail->setVariables([
             'user' => $user,
             'organization' => $organization,
+            'invoiceAddress' => $invoiceAddress,
         ]);
         $mail->setSubject('Eine Jahres-Job wurde erstellt.');
         $mail->setTo($this->options->getSystemMessageEmail());

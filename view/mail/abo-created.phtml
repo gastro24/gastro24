@@ -55,7 +55,7 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Vertreter:</td>
-                                                                    <td><?= $organization->getName() ?></td>
+                                                                    <td><?= $invoiceAddress->getName() ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>E-Mail Adresse:</td>
@@ -95,23 +95,23 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                             <table border="0" cellpadding="3" cellspacing="0" width="100%">
                                                                 <tr>
                                                                     <td><?= $this->translate("street") ?>:</td>
-                                                                    <td><?= $user->getInfo()->getStreet() ?></td>
+                                                                    <td><?= $invoiceAddress->getStreet() ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><?= $this->translate("addressSuffix") ?>:</td>
-                                                                    <td><?= $user->getInfo()->getFirstName() ?></td>
+                                                                    <td><?= $invoiceAddress->getFirstName() ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><?= $this->translate("Postalcode") ?>:</td>
-                                                                    <td><?= $user->getInfo()->getPostalCode() ?></td>
+                                                                    <td><?= $invoiceAddress->getPostalCode() ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><?= $this->translate("City") ?>:</td>
-                                                                    <td><?= $user->getInfo()->getCity() ?></td>
+                                                                    <td><?= $invoiceAddress->getCity() ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><?= $this->translate("country") ?>:</td>
-                                                                    <td><?= $user->getInfo()->getCountry() ?></td>
+                                                                    <td><?= $invoiceAddress->getCountry() ?></td>
                                                                 </tr>
                                                             </table>
                                                         </div>

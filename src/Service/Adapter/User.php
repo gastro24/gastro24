@@ -82,7 +82,7 @@ class User extends BaseAdapter
         $users       = $this->getRepository();
         $user = $users->findByLogin($identity, ['allowDeactivated' => true]);
 
-        if (!$user->getInfo()->isEmailVerified()) {
+        if ($user->getLogin() !== 'admin' && !$user->getInfo()->isEmailVerified()) {
             return new Result(Result::FAILURE_CREDENTIAL_INVALID, $identity, array('User not verified'));
         }
 

@@ -102,9 +102,10 @@ class RegisterConfirmationController extends AbstractActionController
 
                         // save invoice address
                         $vatId = $registerCompanyForm->get('vat')->getValue();
-                        $this->createInvoiceAddress($user, $vatId);
+                        $representative = $registerCompanyForm->get('representative')->getValue();
+                        $invoiceAddress = $this->createInvoiceAddress($user, $vatId, $representative);
 
-                        $this->registerService->proceedCompanyRegisteredMail($user, $organization);
+                        $this->registerService->proceedCompanyRegisteredMail($user, $organization, $invoiceAddress);
 
                         $this->notification()->success('Sie haben sich erfolgreich als Arbeitgeber registriert und können nun Ihre erste Stellenanzeige erfassen.');
 
@@ -182,17 +183,18 @@ class RegisterConfirmationController extends AbstractActionController
         return $organization;
     }
 
-    private function createInvoiceAddress($user, $vatId)
+    private function createInvoiceAddress($user, $vatId, $representative = null)
     {
         $info = $user->getInfo();
         $settings = $user->getSettings('Orders');
         $settings->enableWriteAccess(true);
-        /* @var \Orders\Entity\InvoiceAddressSettings $invoiceAddress */
+        /* @var \Orders\Entity\InvoiceAddress $invoiceAddress */
         $invoiceAddress = $settings->getInvoiceAddress();
         $org = $user->getOrganization()->getOrganization();
 
+        $invoiceName = $representative ?? $info->getDisplayName(false);
         $invoiceAddress->setGender($info->getGender());
-        $invoiceAddress->setName($info->getDisplayName(false));
+        $invoiceAddress->setName($invoiceName);
 
         $invoiceAddress->setStreet($info->getStreet());
         $invoiceAddress->setHouseNumber($info->getHouseNumber());
@@ -204,5 +206,7 @@ class RegisterConfirmationController extends AbstractActionController
         $invoiceAddress->setVatId($vatId);
 
         $this->repositories->store($user);
+
+        return $invoiceAddress;
     }
 }
