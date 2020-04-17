@@ -421,17 +421,6 @@ return [
                             'may_terminate' => true
                         ]
                     ],
-//                    'register-organization-confirmation' => [
-//                        'type' => 'Segment',
-//                        'options' => [
-//                            'route' => '/auth/register-organization-confirmation/:userId',
-//                            'defaults' => [
-//                                'controller' => Controller\RegisterConfirmationController::class,
-//                                'action' => 'organization'
-//                            ]
-//                        ],
-//                        'may_terminate' => true
-//                    ],
                     'register-organization-confirmation' => [
                         'type' => 'Segment',
                         'options' => [

@@ -135,7 +135,6 @@ return [
                 'deny' => [
                     'resource/stellenanzeigen-schalten',
                     'resource/ratgeber',
-                    #'route/lang/register-organization-confirmation',
                 ]
             ],
             'recruiter' => [

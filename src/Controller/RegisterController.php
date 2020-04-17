@@ -2,11 +2,8 @@
 
 namespace Gastro24\Controller;
 
-use Auth\Entity\User;
 use Auth\Entity\UserInterface;
 use Auth\Service\Exception\UserAlreadyExistsException;
-use Core\Entity\PermissionsInterface;
-use Organizations\Entity\OrganizationReference;
 use Zend\Stdlib\AbstractOptions;
 use Zend\View\Model\ViewModel;
 
@@ -47,8 +44,6 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
     {
         /* @var $request \Zend\Http\Request */
         $request                  = $this->getRequest();
-        $repositories             = $this->repositories;
-        $repositoriesOrganization = $repositories->get('Organizations/Organization');
         $registerService          = $this->authRegisterService;
         $logger                   = $this->logger;
         $formManager              = $this->formManager;
@@ -59,7 +54,6 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
 
         if ($request->isPost()) {
             $postData = $request->getPost()->toArray() ?: array();
-            //$simpleRegisterForm->getInputFilter()->setData($postData);
             $simpleRegisterForm->setData($postData);
             if ($simpleRegisterForm->isValid()) {
                 try {
@@ -77,132 +71,8 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
                     $user = $registerService->proceedWithNameAndEmail($firstname, $lastname, $email, $mailer, $url);
 
                     if (isset($user) && $user instanceof UserInterface) {
-
-//                        if(User::ROLE_RECRUITER == $register->get('role')->getValue()) {
-//                            if ($register->has('houseNumber')) {
-//                                $user->getInfo()->setHouseNumber($register->get('houseNumber')->getValue());
-//                            }
-//                            if ($register->has('phone')) {
-//                                $user->getInfo()->setPhone($register->get('phone')->getValue());
-//                            }
-//                            if ($register->has('postalCode')) {
-//                                $user->getInfo()->setPostalCode($register->get('postalCode')->getValue());
-//                            }
-//                            if ($register->has('city')) {
-//                                $user->getInfo()->setCity($register->get('city')->getValue());
-//                            }
-//                            if ($register->has('street')) {
-//                                $user->getInfo()->setStreet($register->get('street')->getValue());
-//                            }
-//                            if ($register->has('gender')) {
-//                                $user->getInfo()->setGender($register->get('gender')->getValue());
-//                            }
-//                        }
-//                        $repositories->store($user);
-
-//                        if(User::ROLE_RECRUITER == $register->get('role')->getValue()) {
-//                            if ($register->has('organizationName')) {
-//                                $organizationName = $register->get('organizationName')->getValue();
-//                                /* @var \Organizations\Entity\Organization $organization */
-//                                $organization = $repositoriesOrganization->createWithName($organizationName);
-//                                $organization->setUser($user);
-//
-//                                if ($register->has('postalCode') && is_object($organization)) {
-//                                    $organization->getContact()->setPostalcode($register->get('postalCode')->getValue());
-//                                }
-//
-//                                if ($register->has('city') && is_object($organization)) {
-//                                    $organization->getContact()->setCity($register->get('city')->getValue());
-//                                }
-//
-//                                if ($register->has('street')) {
-//                                    $organization->getContact()->setStreet($register->get('street')->getValue());
-//                                }
-//
-//                                if ($register->has('houseNumber') && is_object($organization)) {
-//                                    $organization->getContact()->setHouseNumber($register->get('houseNumber')->getValue());
-//                                }
-//
-//                                $permissions = $organization->getPermissions();
-//                                $permissions->grant($user, PermissionsInterface::PERMISSION_ALL);
-//                                $repositories->persist($organization);
-//
-//                                // needed otherwise company is empty in UserRegisteredListener
-//                                $reference = new OrganizationReference($user->getId(), $repositories->get('Organizations\Entity\Organization'));
-//                                $user->setOrganization($reference);
-//                                $repositories->store($user);
-//                            }
-//                        }
-
-                        // save different invoice address
-//                        if ($register->has('differentInvoiceAddress') &&
-//                            filter_var($register->get('differentInvoiceAddress')->getValue(), FILTER_VALIDATE_BOOLEAN)) {
-//                            /* @var \Zend\Form\FieldSet $invoiceAddress */
-//                            $invoiceAddressData = $simpleRegisterForm->get('registerAddressFieldset');
-//                            $orderSettings = $user->getSettings('Orders');
-//                            $orderSettings->enableWriteAccess(true);
-//                            $invoiceAddress = $orderSettings->getInvoiceAddress();
-//
-//                            if ($invoiceAddressData->has('company')) {
-//                                $invoiceAddress->setCompany($invoiceAddressData->get('company')->getValue());
-//                            }
-//                            if ($invoiceAddressData->has('houseNumber')) {
-//                                $invoiceAddress->setHouseNumber($invoiceAddressData->get('houseNumber')->getValue());
-//                            }
-//                            if ($invoiceAddressData->has('zipCode')) {
-//                                $invoiceAddress->setZipCode($invoiceAddressData->get('zipCode')->getValue());
-//                            }
-//                            if ($invoiceAddressData->has('city')) {
-//                                $invoiceAddress->setCity($invoiceAddressData->get('city')->getValue());
-//                            }
-//                            if ($invoiceAddressData->has('street')) {
-//                                $invoiceAddress->setStreet($invoiceAddressData->get('street')->getValue());
-//                            }
-//                            if ($invoiceAddressData->has('gender')) {
-//                                $invoiceAddress->setGender($invoiceAddressData->get('gender')->getValue());
-//                            }
-//                            if ($invoiceAddressData->has('region')) {
-//                                $invoiceAddress->setRegion($invoiceAddressData->get('region')->getValue());
-//                            }
-//                            if ($invoiceAddressData->has('country')) {
-//                                $invoiceAddress->setCountry($invoiceAddressData->get('country')->getValue());
-//                            }
-//                            if ($invoiceAddressData->has('email')) {
-//                                $invoiceAddress->setEmail($invoiceAddressData->get('email')->getValue());
-//                            }
-//                            if ($invoiceAddressData->has('name')) {
-//                                $invoiceAddress->setName($invoiceAddressData->get('name')->getValue());
-//                            }
-//
-//                            $repositories->store($user);
-//                            $repositories->flush();
-//                        }
-//                        // create invoice address from info
-//                        else {
-//                            /* @var \Orders\Entity\InvoiceAddressSettings $settings */
-//                            $info = $user->getInfo();
-//                            $settings = $user->getSettings('Orders');
-//                            $settings->enableWriteAccess(true);
-//                            $settings = $settings->getInvoiceAddress();
-//                            $org = $user->getOrganization()->getOrganization();
-//
-//                            $settings->setGender($info->getGender());
-//                            $settings->setName($info->getDisplayName(false));
-//
-//                            $settings->setStreet($info->getStreet());
-//                            $settings->setHouseNumber($info->getHouseNumber());
-//                            $settings->setZipCode($info->getPostalCode());
-//                            $settings->setCity($info->getCity());
-//                            $settings->setCountry($info->getCountry());
-//                            $settings->setEmail($info->getEmail());
-//                            $settings->setCompany($org->getOrganizationName()->getName());
-//
-//                            $repositories->store($user);
-//                        }
-
                         $viewModel->setVariable('successMessage',
                             'Bitte verifizieren Sie Ihre E-Mail-Adresse, in dem Sie im soeben versendeten E-Mail auf den Link klicken');
-                        //$viewModel->setTemplate('registration\completed');
 
                         $this->notification()->success(
                         /*@translate*/ 'An Email with an activation link has been sent, please try to check your email box'
@@ -214,9 +84,7 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
                     }
                 } catch (UserAlreadyExistsException $e) {
 
-                    $this->notification()->danger(
-                    /*@translate*/ 'User can not be created'
-                    );
+                    $this->notification()->danger(/*@translate*/ 'User can not be created');
 
                     $this->notification()->info(
                         json_encode(
@@ -225,19 +93,13 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
                         )
                     );
                 } catch (\Exception $e) {
-                    $this->notification()->danger(
-                    /*@translate*/ 'Please fill form correctly'
-                    );
+                    $this->notification()->danger(/*@translate*/ 'Please fill form correctly');
                 }
             } else {
-                $messages = $simpleRegisterForm->getMessages();
-                $this->notification()->danger(
-                /*@translate*/ 'Please fill form correctly'
-                );
+                $this->notification()->danger(/*@translate*/ 'Please fill form correctly');
             }
         }
         $viewModel->setVariable('form', $simpleRegisterForm);
-//        $viewModel->setVariable('formLogin', $formLogin);
 
         return $viewModel;
     }
