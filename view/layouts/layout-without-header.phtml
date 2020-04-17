@@ -1,0 +1,213 @@
+<?php
+/**
+ * Gastrojobs24
+ *
+ * General layout template file. Defines the general layout.
+ *
+ * @copyright (c) 2013 - 2016 Cross Solution (http://cross-solution.de)
+ * @license   Gastrojobs
+ */
+
+/* @var $options \Core\Options\ModuleOptions */
+$options = $this->services('Core/Options');
+$lang = $this->params('lang');
+
+$routeParams = $this->params()->fromRoute();
+$routeClass = '';
+if (isset($routeParams['controller']) && isset($routeParams['action'])) {
+    $routeClass = strtolower(str_replace(['/', '\\'], '-', $routeParams['controller'] . '-' . $routeParams['action']));
+}
+
+// check for preview
+$preview = false;
+if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
+    $preview = true;
+}
+
+// See: http://yawik.readthedocs.org/en/latest/modules/core/notifications.html
+$notifications = $this->partial('core/notifications');
+// set default page title
+$this->headTitle($this->translate('Gastrojob24'))->setSeparator(' - ')->setAutoEscape(false);
+
+// set default keywords
+$this->headMeta()->setCharset("utf-8");
+$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
+
+$this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
+$this->headLink()->prependStylesheet($this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')))
+    ->prependStylesheet($this->basePath('dist/css/core.min.css'));
+$this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials.css'))
+    ->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css'));
+
+$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
+?>
+
+<?php echo $this->doctype(); ?>
+<html lang="<?php echo $this->params('lang') ?>">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-32x32.png')?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-16x16.png')?>">
+    <link rel="shortcut icon" type="image/ico" href="<?=$this->basepath('modules/Gastro24/favicons/favicon.ico')?>">
+    <meta name="msapplication-TileColor" content="#2e5b93">
+    <meta name="theme-color" content="#2e5b93">
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headMeta() ?>
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headStyle() ?>
+    <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
+
+    <?php if ($this->params()->fromRoute('isLandingPage')):?>
+      
+    <?php endif ?>
+
+    <script>
+        var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
+    </script>
+    
+    <link rel="preconnect" href="https://www.google.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    
+<!-- Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125791873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-125791873-1');
+  gtag('config', 'AW-980688466');
+
+</script>
+  
+    <!-- End Google Tag Manager -->
+    
+</head>
+<body class="<?= $routeClass ?>" id="top">
+
+<?php if (!$this->noHeader):?>
+    <header id="header" role="banner" class="hidden-xs" data-saved-jobs="<?=$savedJobsCount?>">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header col-md-12">
+                    <img class="logo" src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_blue.svg') ?>" alt="Gastrojob24 Logo">
+                </div>
+            </div>
+        </div>
+    </header>
+<?php endif ?>
+
+
+<main id="content" class="<?= $routeClass ?>">
+   <div class="container">
+    <?php echo $notifications?>
+     <?php echo $this->content;?>
+  </div>
+</main>
+
+<?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
+<!-- lazy loaded javascript -->
+<?php
+    $langScript = 'dist/locales/' . $lang . '.js';
+    echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
+        ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+        ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
+        ->appendFile($this->basePath($langScript))
+        ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
+
+    echo $this->configHeadScript()->setAutoEscape(false);
+?>
+<!-- end lazy loaded javascript -->
+<script>
+    $(document).ready(function() {
+        $('ul.dropdown-menu [data-toggle=dropdown2]').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            $(this).parent().siblings().removeClass('open');
+            $(this).parent().siblings().toggleClass('reveal');
+            $(this).parent().toggleClass('open');
+        });
+
+        $(document).on('click', function(e) {
+            var $trigger = $('.dropdown-menu');
+            if($trigger !== e.target && !$trigger.has(e.target).length) {
+                $('.login-form-desktop').css('display', 'block');
+                $('.reset-form-desktop').css('display', 'none');
+                $('.login-form-mobile').css('display', 'block');
+                $('.reset-form-mobile').css('display', 'none');
+            }
+        });
+
+        $('a.link--reset-password').click(function(e) {
+            e.stopPropagation();
+            $('.login-form-desktop').css('display', 'none');
+            $('.reset-form-desktop').css('display', 'block');
+            $('.login-form-mobile').css('display', 'none');
+            $('.reset-form-mobile').css('display', 'block');
+        });
+    });
+
+    (function( $ ) {
+        'use strict';
+
+	
+        window.addEventListener('scroll', function(e) {
+            if( isOnScreen( jQuery( '.apply-button-group' ).not('.first') ) ) {
+                $('.apply-button-group.first').hide();
+            }
+            else {
+                $('.apply-button-group.first').show();
+            }
+        });
+
+        function isOnScreen(elem) {
+            // if the element doesn't exist, abort
+            if( elem.length == 0 ) {
+                return;
+            }
+            var $window = jQuery(window)
+            var viewport_top = $window.scrollTop()
+            var viewport_height = $window.height()
+            var viewport_bottom = viewport_top + viewport_height
+            var $elem = jQuery(elem)
+            var top = $elem.offset().top
+            var height = $elem.height()
+            var bottom = top + height
+
+            return (top >= viewport_top && top < viewport_bottom) ||
+                (bottom > viewport_top && bottom <= viewport_bottom) ||
+                (height > viewport_height && top <= viewport_top && bottom >= viewport_bottom)
+        };
+
+        $('#jobs-list-container').on('yk-paginator-container:loaded.gastro24 g24-jobs:init', function(ev) {
+            $(".shareMail").each(function() {
+                var link = $(this).data("url");
+                var title = $(this).data("title");
+                $(this).jsSocials({
+                    url: link,
+                    text: title,
+                    showCount: true,
+                    shares: ["email"]
+                });
+            });
+            $(".shareWhatsapp").each(function() {
+                var link = $(this).data("url");
+                var title = $(this).data("title");
+                $(this).jsSocials({
+                    url: link,
+                    text: title,
+                    showLabel: false,
+                    showCount: true,
+                    shares: ["whatsapp"]
+                });
+            });
+        });
+    })( jQuery );
+</script>
+</body>
+</html>

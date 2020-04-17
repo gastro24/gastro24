@@ -128,17 +128,20 @@ return [
                     'route/lang/organizations-profiles',
                     'route/lang/saved-jobs',
                     'route/lang/forgot-password',
+                    'route/lang/register-organization-confirmation',
                 ]
             ],
             'user' => [
                 'deny' => [
                     'resource/stellenanzeigen-schalten',
-                    'resource/ratgeber'
+                    'resource/ratgeber',
+                    #'route/lang/register-organization-confirmation',
                 ]
             ],
             'recruiter' => [
                 'allow' => [
                     'route/lang/register-confirmation',
+                    'route/lang/register-organization-confirmation',
                     'route/logout'
                 ],
                 'deny' => [

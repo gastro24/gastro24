@@ -260,21 +260,6 @@ class Module implements AssetProviderInterface
 
                 $viewModel->setVariable('filterForm', $searchForm);
 
-                $controller = $e->getTarget();
-                if ( (\Auth\Controller\RegisterController::class == get_class($controller)
-                      || \CompanyRegistration\Controller\RegistrationController::class == get_class($controller)
-                      || \Gastro24\Controller\RegisterController::class == get_class($controller)
-                     )
-                    && (($pt = $e->getRequest()->getQuery('pt')) || ($pt = $e->getRequest()->getPost('pt')))
-                ) {
-                    $result = $e->getResult();
-                    $form   = $result->getVariable('form');
-                    $form->add([
-                        'type' => 'hidden',
-                        'name' => 'pt',
-                        'attributes' => [ 'value' => $pt ],
-                    ]);
-                }
             }, -10);
 
             $eventManager->attach(MvcEvent::EVENT_RENDER, function(MvcEvent $e) {

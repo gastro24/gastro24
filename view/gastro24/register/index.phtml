@@ -6,493 +6,549 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registratio
 ?>
 <style>
     /*only for register page */
-    
+
+    a.link--blue {
+        color:#1e69a3;
+    }
+
     .panel-footer a {
-        
-        text-decoration:underline;
+
+        text-decoration: underline;
     }
+
     h2 {
-        
-    margin-bottom: 10px;
-    color: #0b2235;
-    font-size: 24px;
-    line-height: 30px;
-    font-weight: bold;
+
+        margin-bottom: 10px;
+        color: #0b2235;
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: bold;
     }
-    
 
- main#content .panel-body {
-      
-      padding: 4px 24px 14px 24px;
-  }
-  
-  .panel-info {
-    border: 0;
-    box-shadow: 0px 1px 3px 0 rgba(44,43,35,0.3);
-      -moz-box-shadow:  0px 1px 3px 0 rgba(44,43,35,0.3);
-  -webkit-box-shadow: 0px 1px 3px 0 rgba(44,43,35,0.3);
-  -webkit-border-radius: 4px;
--moz-border-radius: 4px;
-border-radius: 4px;
-}
-.breadcrumb, main#content {
-    background-color: #fff;
-}
 
-.advantage-box {
-    
-    color:#566578;
-}
+    main#content .panel-body {
 
-.where-your-are {
-    margin-top: 0;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    background-size: cover;
-    height: 550px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-}
-
-.where-your-are h1 {
-    text-align: left;
-    color: #fff;
-    font-size: 60px;
-    font-weight: 700;
-    line-height: 75px;
-    max-width: 589px;
-    margin: 0;
-}
-
-.where-your-are h2 {
-    margin: 0;
-    color: #fff;
-    font-size: 40px;
-    padding-top: 15px;
-}
-
-.navbar {
-    position: relative;
-    height: 52px;
-    margin-bottom: 0;
-    border: none;
-}
-
-.help-opportunities {
-    margin: 30px auto 0;
-    max-width: 50%;
-    font-size: 16px;
-    text-align: center
-}
-
-.help-opportunities i {
-    display: block;
-    margin-bottom: 12px;
-    font-size: 32px;
-}
-
-.help-header {
-    line-height: 52px;
-    height: 52px;
-    padding-right: 10px;
-    padding-left: 10px;
-    display: inline-block;
-    color: #fff;
-}
-
-.help-header a {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.containerHeader {
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
-
-.brands {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-}
-
-.back-button {
-    padding: 8px 16px !important;
-    margin-top: 2px;
-}
-
-.brands img {
-    height: 41px;
-    margin: 30px;
-}
-
-.brands img {
-    width: auto;
-}
-
-.reasonWhyPostJob {
-    font-size: 16px;
-    line-height: 24px;
-    color: #fff;
-    font-weight: 700;
-}
-
-.reasonWhyPostJob i {
-    display: block;
-    font-size: 32px;
-    color: #fff;
-    margin-bottom: 5px;
-}
-
-.reasonWhyPostJob h2 {
-    font-size: 24px;
-    color: #fff;
-    font-weight: bold;
-}
-
-.reasonWhyPostJob .usp i {
-    display: block;
-    width: 24px;
-    margin-right: 20px;
-    position: relative;
-    top: -3px;
-    float: left;
-}
-
-.reasonWhyPostJob ul.usp {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-}
-
-.reasonWhyPostJob ul.usp li {
-    margin: 0;
-    color: #fff;
-    font-size: 17px;
-    line-height: 25px;
-    font-weight: bold;
-    position: relative;
-    padding-right: 50px;
-    text-align: left;
-    display: flex;
-}
-
-.postJobScrollButton {
-    min-width: 194px;
-    border-radius: 8px;
-    box-shadow: 0 22px 23px -19px rgba(0, 0, 0, .2);
-    font-size: 20px;
-    font-weight: 600;
-    margin: 20px 0;
-    font-weight: 600;
-    padding: 12px 24px;
-    outline: none;
-    cursor: pointer;
-    transition: background .2s ease-in-out;
-}
-
-button:focus {
-    outline: none !important
-}
-
-#testimonials {
-    background-color: #f2f2f2;
-    padding: 20px 0 30px 0;
-}
-
-#promote-abos {
-    background-color: #fff;
-}
-
-#promote-abos hr {
-    background-color: #bac4da;
-    height: 1px;
-    margin: 60px auto;
-}
-
-#post-job-help {
-    padding: 0 0 20px 0;
-}
-
-#promote-abos h3 {
-    margin-top: 0px;
-    font-size: 22px;
-    font-weight: 300;
-}
-.ecom--sh-productlist strong {
-    font-size:18px;
-}
-.ecom-list {
-    position: relative;
-    list-style: none inside;
-    padding: 0;
-}
-
-.ecom-list__item--checked {
-    position: relative;
-    padding-left: 19px;
-}
-
-.ecom-list__item--checked::before {
-    content: '\f00c';
-    display: block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    position: absolute;
-    margin-left: -20px;
-    color: #7aae1a;
-    top: 3px;
-    font-weight: 100;
-}
-
-.subTextMarginBottom {
-    margin-bottom: 90px;
-}
-
-.full-width-titles h2 {
-    margin-bottom: 10px;
-    text-align: center;
-    color: #0b2235;
-    font-size: 24px;
-    line-height: 30px;
-    font-weight: bold;
-}
-
-.link-inverted-post {
-    display: inline-block;
-    background-color: #ffffff;
-    border: 1px solid #243b84;
-    color: #243b84;
-    font-size: 16px;
-    font-weight: 300;
-    margin-top: 15px;
-    padding: 10px 15px;
-}
-
-.link-inverted-post:hover {
-    background-color: #19295c;
-    color: #ffffff;
-    text-decoration: none
-}
-
-#why-we {
-    padding: 60px 0;
-    text-align: center;
-    background-color:#f2f2f2;
-    border:1px solid #ccc;
-    margin-top:10px;
-}
-
-#why-we h2 {
-    margin-top: 0px
-}
-
-#why-we p {
-    font-size: 22px;
-    color: #333;
-    line-height: 1.5;
-}
-
-#why-we p a {
-    text-decoration: underline
-}
-
-#why-we img {
-    width: 50px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-.full-background {
-    background-size: cover;
-    width: 100%;
-}
-
-.tagline-container h1 {
-    font-size: 72px;
-    line-height: 85px;
-    color: #fff;
-    max-width: 72%;
-    margin-top: 20px;
-    font-weight: 600;
- }
-
-@media (min-width: 768px) {
-    .promote-container {
-        max-width: 780px;
-        padding: 40px 0;
+        padding: 4px 24px 14px 24px;
     }
-}
 
+    .panel-info {
+        border: 0;
+        box-shadow: 0px 1px 3px 0 rgba(44, 43, 35, 0.3);
+        -moz-box-shadow: 0px 1px 3px 0 rgba(44, 43, 35, 0.3);
+        -webkit-box-shadow: 0px 1px 3px 0 rgba(44, 43, 35, 0.3);
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
 
-@media (max-width: 768px) {
-  
-    #why-we {
-        padding: 20px 12px;
+    .breadcrumb, main#content {
+        background-color: #fff;
     }
-   
-    .brands img {
-        height: 25px;
-        margin: 25px;
+
+    .advantage-box {
+
+        color: #566578;
     }
-    .subTextMarginBottom {
-        margin-bottom: 30px;
+
+    .where-your-are {
+        margin-top: 0;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        background-size: cover;
+        height: 550px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
     }
-    
-    .full-width-titles h2 {
+
+    .where-your-are h1 {
         text-align: left;
+        color: #fff;
+        font-size: 60px;
+        font-weight: 700;
+        line-height: 75px;
+        max-width: 589px;
+        margin: 0;
     }
-    .full-width-titles h2 {
-        font-size: 21px;
+
+    .where-your-are h2 {
+        margin: 0;
+        color: #fff;
+        font-size: 40px;
+        padding-top: 15px;
     }
-  
-    
-    .link-inverted-post {
+
+    .navbar {
+        position: relative;
+        height: 52px;
+        margin-bottom: 0;
+        border: none;
+    }
+
+    .help-opportunities {
+        margin: 30px auto 0;
+        max-width: 50%;
+        font-size: 16px;
+        text-align: center
+    }
+
+    .help-opportunities i {
         display: block;
+        margin-bottom: 12px;
+        font-size: 32px;
     }
-   
-}
+
+    .help-header {
+        line-height: 52px;
+        height: 52px;
+        padding-right: 10px;
+        padding-left: 10px;
+        display: inline-block;
+        color: #fff;
+    }
+
+    .help-header a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .containerHeader {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .brands {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .back-button {
+        padding: 8px 16px !important;
+        margin-top: 2px;
+    }
+
+    .brands img {
+        height: 41px;
+        margin: 30px;
+    }
+
+    .brands img {
+        width: auto;
+    }
+
+    .reasonWhyPostJob {
+        font-size: 16px;
+        line-height: 24px;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .reasonWhyPostJob i {
+        display: block;
+        font-size: 32px;
+        color: #fff;
+        margin-bottom: 5px;
+    }
+
+    .reasonWhyPostJob h2 {
+        font-size: 24px;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .reasonWhyPostJob .usp i {
+        display: block;
+        width: 24px;
+        margin-right: 20px;
+        position: relative;
+        top: -3px;
+        float: left;
+    }
+
+    .reasonWhyPostJob ul.usp {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .reasonWhyPostJob ul.usp li {
+        margin: 0;
+        color: #fff;
+        font-size: 17px;
+        line-height: 25px;
+        font-weight: bold;
+        position: relative;
+        padding-right: 50px;
+        text-align: left;
+        display: flex;
+    }
+
+    .postJobScrollButton {
+        min-width: 194px;
+        border-radius: 8px;
+        box-shadow: 0 22px 23px -19px rgba(0, 0, 0, .2);
+        font-size: 20px;
+        font-weight: 600;
+        margin: 20px 0;
+        font-weight: 600;
+        padding: 12px 24px;
+        outline: none;
+        cursor: pointer;
+        transition: background .2s ease-in-out;
+    }
+
+    button:focus {
+        outline: none !important
+    }
+
+    #testimonials {
+        background-color: #f2f2f2;
+        padding: 20px 0 30px 0;
+    }
+
+    #promote-abos {
+        background-color: #fff;
+    }
+
+    #promote-abos hr {
+        background-color: #bac4da;
+        height: 1px;
+        margin: 60px auto;
+    }
+
+    #post-job-help {
+        padding: 0 0 20px 0;
+    }
+
+    #promote-abos h3 {
+        margin-top: 0px;
+        font-size: 22px;
+        font-weight: 300;
+    }
+
+    .ecom--sh-productlist strong {
+        font-size: 18px;
+    }
+
+    .ecom-list {
+        position: relative;
+        list-style: none inside;
+        padding: 0;
+    }
+
+    .ecom-list__item--checked {
+        position: relative;
+        padding-left: 19px;
+    }
+
+    .ecom-list__item--checked::before {
+        content: '\f00c';
+        display: block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        position: absolute;
+        margin-left: -20px;
+        color: #7aae1a;
+        top: 3px;
+        font-weight: 100;
+    }
+
+    .subTextMarginBottom {
+        margin-bottom: 90px;
+    }
+
+    .full-width-titles h2 {
+        margin-bottom: 10px;
+        text-align: center;
+        color: #0b2235;
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: bold;
+    }
+
+    .link-inverted-post {
+        display: inline-block;
+        background-color: #ffffff;
+        border: 1px solid #243b84;
+        color: #243b84;
+        font-size: 16px;
+        font-weight: 300;
+        margin-top: 15px;
+        padding: 10px 15px;
+    }
+
+    .link-inverted-post:hover {
+        background-color: #19295c;
+        color: #ffffff;
+        text-decoration: none
+    }
+
+    #why-we {
+        padding: 60px 0;
+        text-align: center;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+    }
+
+    #why-we h2 {
+        margin-top: 0px
+    }
+
+    #why-we p {
+        font-size: 22px;
+        color: #333;
+        line-height: 1.5;
+    }
+
+    #why-we p a {
+        text-decoration: underline
+    }
+
+    #why-we img {
+        width: 50px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .full-background {
+        background-size: cover;
+        width: 100%;
+    }
+
+    .tagline-container h1 {
+        font-size: 72px;
+        line-height: 85px;
+        color: #fff;
+        max-width: 72%;
+        margin-top: 20px;
+        font-weight: 600;
+    }
+
+    .simple-registration-form span.required-mark {
+        color: red;
+        padding-left: 3px;
+    }
+    .simple-registration-form .registration-button {
+        width: 100%;
+    }
+
+    @media (min-width: 768px) {
+        .promote-container {
+            max-width: 780px;
+            padding: 40px 0;
+        }
+    }
+
+
+    @media (max-width: 768px) {
+
+        #why-we {
+            padding: 20px 12px;
+        }
+
+        .brands img {
+            height: 25px;
+            margin: 25px;
+        }
+
+        .subTextMarginBottom {
+            margin-bottom: 30px;
+        }
+
+        .full-width-titles h2 {
+            text-align: left;
+        }
+
+        .full-width-titles h2 {
+            font-size: 21px;
+        }
+
+
+        .link-inverted-post {
+            display: block;
+        }
+
+    }
 </style>
 
 
 <div class="row">
 
-        <div class="col-md-12">
-     <nav aria-label="breadcrumb">
-        <ol class="hidden-xs breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList" >
-            <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                <a itemprop="item" href="/">
-                    <span itemprop="name">Home</span>
-                </a>
-                <meta itemprop="position" content="1">
-            </li>
-            <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                 <span itemprop="name">Jahresabo</span>
-                <meta itemprop="position" content="2">
-            </li>
-        </ol>
-    </nav>
-            <div class="page-title">
-                <h1>Arbeitgeber Jahres-Job-Flatrate</h1>
-            </div>
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="hidden-xs breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope=""
+                    itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="/">
+                        <span itemprop="name">Home</span>
+                    </a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope=""
+                    itemtype="http://schema.org/ListItem">
+                    <span itemprop="name">Jahresabo</span>
+                    <meta itemprop="position" content="2">
+                </li>
+            </ol>
+        </nav>
+        <div class="page-title">
+            <h1>Arbeitgeber Jahres-Job-Flatrate</h1>
         </div>
-        
-        <div class="col-md-6">
-            <div class="panel panel-info">
-              
-              
-              
-                <div class="panel-body">
-                    
-                    <h2>Registrieren und rasch Mitarbeiter finden!</h2>
-                    
-                    <?php echo $this->form($this->form);?>
-                    
-                   <div class="row">
-                     <div class="col-md-offset-3 col-md-9">
-                        <p>Bereits registriert? <a style="color:#1e69a3;" href="/de/login">Anmelden</a></p>
-                      </div>  
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-info">
-              
-                <div class="panel-body advantage-box">
-                   
-                   <h2>Ihre Vorteile</h2>
-                  <p>Als registrierter Arbeitgeber erhalten Sie für <strong>nur CHF 595.-</strong> exklusiv Zugriff auf Ihr eigenes Dashboard während 12 Monaten und können folgende 
-                  Gastrojob24-Services voll in Anspruch nehmen:</p>
-
-<ul class="ecom-list">
-<li class="ecom-list__item ecom-list__item--checked">Unschlagbares Preis-Leistungsverhältnis</li>
-<li class="ecom-list__item ecom-list__item--checked">Enorme Reichweite</li>
-<li class="ecom-list__item ecom-list__item--checked">Google Job Search und Mobile optimiert</li>
-<li class="ecom-list__item ecom-list__item--checked">Unlimitiert Jobs schalten (Flatrate)</li>
-<li class="ecom-list__item ecom-list__item--checked">Bewerberverwaltung</li>
-<li class="ecom-list__item ecom-list__item--checked">Individuelle Inserate-Laufzeit</li>
-<li class="ecom-list__item ecom-list__item--checked">Eigenes Firmenprofil</li>
-<li class="ecom-list__item ecom-list__item--checked">Jobs direkt von Ihrer Webseite einbinden</li>
-<li class="ecom-list__item ecom-list__item--checked">Permanente Logopräsenz auf der Startseite</li>
-</ul>
-                   
-                </div>
-               <div class="panel-footer">
-                   
-                   Fragen? <a href="mailto:info@gastrojob24.ch">Kontaktieren</a> Sie uns!
-                   <div class="pull-right"> Es gelten unsere <a href="/de/agb.html">AGB</a></div>
-                   
-               </div>
-               
-    
-            </div>
-        </div>
-        
-        <div class="col-md-12">
-                    <div class="full-width-titles">
-                        <h2 class="full-width-titles text-center">Gastrojob24 besetzt Vakanzen bekannter Arbeitgeber</h2>
-                        <div class="brands">
-                            <img src="/modules/Gastro24/images/coop-grey.png" alt="Coop Logo">
-                            <img src="/modules/Gastro24/images/adecco-grey.png" alt="Adecco Schweiz Logo">
-                            <img src="/modules/Gastro24/images/mcdonalds-grey.png" alt="McDonalds Schweiz Logo">
-                            <img src="/modules/Gastro24/images/coople-grey.png" alt="Coople Schweiz Logo">
-                            <img src="/modules/Gastro24/images/spruengli-grey.png" alt="Sprüngli Logo">
-                            <img src="/modules/Gastro24/images/jaegerhof-grey.png" alt="Jägerhof St.Gallen Logo">
-                            <img src="/modules/Gastro24/images/hiltl-grey.png" alt="Hiltl Logo">
-                        </div>
-                    </div>
-                </div>
-
-          <div class="col-md-12">
-                <div id="why-we">
-                    <div class="row">
-                        <div class="full-width-titles">
-                            
-
-                            <div style="max-width:70%;margin:0 auto;">
-
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-
-                                    <img alt="Zahlung mit Rechnung" src="/modules/Gastro24/images/rechnung.png">
-
-                                    <p>Zahlung einfach &amp; bequem mit Rechnung</p>
-                                </div>
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <img src="/modules/Gastro24/images/geld-zurueck-garantie.png" alt="60 Tage Geld-zurück-Garantie">
-                                    <p>60 Tage kompromisslos <a href="/de/geld-zurueck-garantie.html">Geld-zurück-Garantie</a>
-								
-
-                                </div>
-
-                                <div class="col-md-4 col-sm-6 col-xs-12">
-                                    <img src="/modules/Gastro24/images/support.png" alt="Persönlicher Support">
-                                    <p>Persönlicher Support per E-Mail oder Telefon</p>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-          
-   
     </div>
+
+    <div class="col-md-6">
+        <?php if ($this->successMessage) : ?>
+        <div class="panel panel-info">
+            <div class="panel-body" style="background-color: rgba(139,195,74,0.5); padding-top: 14px;">
+                <div style="padding: 10px;"><?= $this->successMessage ?></div>
+            </div>
+        </div>
+        <?php else : ?>
+
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <h2>Registrieren und Mitarbeiter finden!</h2>
+                <div id="form-registration" class="form-container">
+                    <div class="form-content">
+
+                        <!-- begin form -->
+                        <?php echo $this->form()->openTag($form); ?>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <?php echo $this->formLabel($this->form->get('email'), 'E-Mail Adresse'); ?>
+                                <?php echo $this->formEmail($this->form->get('email')); ?>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <?php echo $this->formLabel($this->form->get('password'), 'Passwort wählen'); ?>
+                                <?php echo $this->formPassword($this->form->get('password')); ?>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <?php echo $this->formLabel($this->form->get('password2'), 'Passwort wiederholen'); ?>
+                                <?php echo $this->formPassword($this->form->get('password2')); ?>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <?php echo $this->formLabel($this->form->get('firstname'), 'Vorname'); ?>
+                                <?php echo $this->formText($this->form->get('firstname')); ?>
+                            </div>
+                            <div class="col-md-6">
+                                <?php echo $this->formLabel($this->form->get('lastname'), 'Nachname'); ?>
+                                <?php echo $this->formText($this->form->get('lastname')); ?>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <p>Mit Absenden des Formulars erklären sie sich mit unseren
+                                    <a class="link--blue" href="<?= $this->url('lang/wordpress', ['id' => 'agb'], true)?>">AGB</a> und der
+                                    <a class="link--blue" href="<?= $this->url('lang/wordpress', ['id' => 'datenschutz'], true)?>">Datenschutzerklärung</a> einverstanden.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <?php echo $this->formSubmit($this->form->get('button')); ?>
+                            </div>
+                        </div>
+                        <?php echo $this->form()->closeTag($form); ?>
+                        <!-- end form -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Bereits registriert? <a class="link--blue" href="/de/login">Anmelden</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif ?>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-body advantage-box">
+
+                <h2>Ihre Vorteile als registrierter Arbeitgeber</h2>
+                <p>Als registrierter Arbeitgeber erhalten Sie für <strong>nur CHF 595.-</strong> exklusiv Zugriff auf
+                    Ihr eigenes Dashboard während 12 Monaten und können folgende
+                    Gastrojob24-Services voll in Anspruch nehmen:</p>
+
+                <ul class="ecom-list">
+                    <li class="ecom-list__item ecom-list__item--checked">Unschlagbares Preis-Leistungsverhältnis</li>
+                    <li class="ecom-list__item ecom-list__item--checked">Enorme Reichweite</li>
+                    <li class="ecom-list__item ecom-list__item--checked">Google Job Search und Mobile optimiert</li>
+                    <li class="ecom-list__item ecom-list__item--checked">Unlimitiert Jobs schalten (Flatrate)</li>
+                    <li class="ecom-list__item ecom-list__item--checked">Bewerberverwaltung</li>
+                    <li class="ecom-list__item ecom-list__item--checked">Individuelle Inserate-Laufzeit</li>
+                    <li class="ecom-list__item ecom-list__item--checked">Eigenes Firmenprofil</li>
+                    <li class="ecom-list__item ecom-list__item--checked">Jobs direkt von Ihrer Webseite einbinden</li>
+                    <li class="ecom-list__item ecom-list__item--checked">Permanente Logopräsenz auf der Startseite</li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+                Fragen? <a class="link--blue" href="mailto:info@gastrojob24.ch">Kontaktieren</a> Sie uns!
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="full-width-titles">
+            <h2 class="full-width-titles text-center">Gastrojob24 besetzt Vakanzen bekannter Arbeitgeber</h2>
+            <div class="brands">
+                <img src="/modules/Gastro24/images/coop-grey.png" alt="Coop Logo">
+                <img src="/modules/Gastro24/images/adecco-grey.png" alt="Adecco Schweiz Logo">
+                <img src="/modules/Gastro24/images/mcdonalds-grey.png" alt="McDonalds Schweiz Logo">
+                <img src="/modules/Gastro24/images/coople-grey.png" alt="Coople Schweiz Logo">
+                <img src="/modules/Gastro24/images/spruengli-grey.png" alt="Sprüngli Logo">
+                <img src="/modules/Gastro24/images/jaegerhof-grey.png" alt="Jägerhof St.Gallen Logo">
+                <img src="/modules/Gastro24/images/hiltl-grey.png" alt="Hiltl Logo">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div id="why-we">
+            <div class="row">
+                <div class="full-width-titles">
+                    <div style="max-width:70%;margin:0 auto;">
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <img alt="Zahlung mit Rechnung" src="/modules/Gastro24/images/rechnung.png">
+                            <p>Zahlung einfach &amp; bequem mit Rechnung</p>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <img src="/modules/Gastro24/images/geld-zurueck-garantie.png"
+                                 alt="60 Tage Geld-zurück-Garantie">
+                            <p>60 Tage kompromisslos <a href="/de/geld-zurueck-garantie.html">Geld-zurück-Garantie</a>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <img src="/modules/Gastro24/images/support.png" alt="Persönlicher Support">
+                            <p>Persönlicher Support per E-Mail oder Telefon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
