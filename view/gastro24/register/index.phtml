@@ -442,13 +442,13 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registratio
                                 <?php echo $this->formLabel($this->form->get('password'), 'Passwort wählen'); ?>
                                 <?php echo $this->formPassword($this->form->get('password')); ?>
                             </div>
-                        </div>
-                        <div class="row form-group">
+                            
                             <div class="col-md-6">
                                 <?php echo $this->formLabel($this->form->get('password2'), 'Passwort wiederholen'); ?>
                                 <?php echo $this->formPassword($this->form->get('password2')); ?>
                             </div>
                         </div>
+                     
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <?php echo $this->formLabel($this->form->get('firstname'), 'Vorname'); ?>
@@ -462,8 +462,8 @@ $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registratio
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <p>Mit Absenden des Formulars erklären sie sich mit unseren
-                                    <a class="link--blue" href="<?= $this->url('lang/wordpress', ['id' => 'agb'], true)?>">AGB</a> und der
-                                    <a class="link--blue" href="<?= $this->url('lang/wordpress', ['id' => 'datenschutz'], true)?>">Datenschutzerklärung</a> einverstanden.
+                                    <a class="link--blue" target="_blank" href="<?= $this->url('lang/wordpress', ['id' => 'agb'], true)?>">AGB</a> und der
+                                    <a class="link--blue" target="_blank" href="<?= $this->url('lang/wordpress', ['id' => 'datenschutz'], true)?>">Datenschutzerklärung</a> einverstanden.
                                 </p>
                             </div>
                         </div>
