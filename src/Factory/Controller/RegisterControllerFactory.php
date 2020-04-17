@@ -18,7 +18,7 @@ class RegisterControllerFactory
         $options = new RegisterControllerOptions(array());
 
         $repositories = $container->get('repositories');
-        $authRegisterService = $container->get('Auth\Service\Register');
+        $authRegisterService = $container->get('Gastro24\Service\Register');
         $logger = $container->get('Core/Log');
         $formManager = $container->get('FormElementManager');
         return new RegisterController(

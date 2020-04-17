@@ -1,0 +1,114 @@
+<style>
+    .registration-company-form span.required-mark {
+        color: red;
+        padding-left: 3px;
+    }
+    .registration-company-form label {
+        font-weight: normal;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-body">
+                <div id="form-registration-organization" class="form-container">
+                    <div class="form-content">
+
+                        <!-- begin form -->
+                        <?php echo $this->form()->openTag($this->form); ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>Unternehmen</h5>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <?php echo $this->formLabel($this->form->get('organizationName'), 'Firmenname'); ?>
+                                <?php echo $this->formText($this->form->get('organizationName')); ?>
+                            </div>
+                            <div class="col-md-6">
+                                <?php echo $this->formLabel($this->form->get('representative'), 'Vertreter'); ?>
+                                <?php echo $this->formText($this->form->get('representative')); ?>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <?php echo $this->formLabel($this->form->get('email'), 'Konbtakt E-Mail Adresse'); ?>
+                                <?php echo $this->formEmail($this->form->get('email')); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php echo $this->formLabel($this->form->get('phone'), 'Telefon'); ?>
+                                <?php echo $this->formTel($this->form->get('phone')); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php echo $this->formLabel($this->form->get('vat'), 'USt-ID-Nr/UID'); ?>
+                                <?php echo $this->formText($this->form->get('vat')); ?>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <h5>Benutzer</h5>
+                                <div class="row form-group">
+                                    <div class="col-md-12">
+                                        <?php echo $this->formLabel($this->form->get('gender'), 'Anrede'); ?>
+                                        <?php echo $this->formSelect($this->form->get('gender')); ?>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-6">
+                                        <?php echo $this->formLabel($this->form->get('firstname'), 'Vorname'); ?>
+                                        <?php echo $this->formText($this->form->get('firstname')); ?>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <?php echo $this->formLabel($this->form->get('lastname'), 'Nachname'); ?>
+                                        <?php echo $this->formText($this->form->get('lastname')); ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Rechnungsadresse</h5>
+                                <div class="row form-group">
+                                    <div class="col-md-9">
+                                        <?php echo $this->formLabel($this->form->get('street'), 'Straße'); ?>
+                                        <?php echo $this->formText($this->form->get('street')); ?>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <?php echo $this->formLabel($this->form->get('addressSuffix'), 'Adresszusatz'); ?>
+                                        <?php echo $this->formText($this->form->get('addressSuffix')); ?>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-md-3">
+                                        <?php echo $this->formLabel($this->form->get('postalCode'), 'PLZ'); ?>
+                                        <?php echo $this->formText($this->form->get('postalCode')); ?>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <?php echo $this->formLabel($this->form->get('city'), 'Stadt'); ?>
+                                        <?php echo $this->formText($this->form->get('city')); ?>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <?php echo $this->formLabel($this->form->get('country'), 'Land'); ?>
+                                        <?php echo $this->formSelect($this->form->get('country')); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php echo $this->formHidden($this->form->get('pt')); ?>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <?php echo $this->formSubmit($this->form->get('button')); ?>
+                            </div>
+                        </div>
+                        <?php echo $this->form()->closeTag($this->form); ?>
+                        <!-- end form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

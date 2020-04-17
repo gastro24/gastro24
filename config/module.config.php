@@ -70,8 +70,13 @@ return [
     ],
 
     'service_manager' => [
+        'invokables' => [
+            'Gastro24\Form\Filter\SimpleRegisterInputFilter' => 'Gastro24\Form\Filter\SimpleRegisterInputFilter',
+        ],
         'factories' => [
             'Auth/Dependency/Manager' => 'Gastro24\Factory\Dependency\ManagerFactory',
+            'Gastro24\Service\Register' => 'Gastro24\Factory\Service\RegisterFactory',
+            'Gastro24\Service\RegisterConfirmation' => 'Gastro24\Factory\Service\RegisterConfirmationFactory',
             WordpressApi\Service\WordpressClient::class => WordpressApi\Factory\Service\WordpressClientFactory::class,
             WordpressApi\Listener\WordpressContentSnippet::class => WordpressApi\Factory\Listener\WordpressContentSnippetFactory::class,
             Listener\UserRegisteredListener::class => Listener\UserRegisteredListenerFactory::class,
@@ -88,6 +93,7 @@ return [
             Listener\GoogleIndexApi::class => Listener\GoogleIndexApiFactory::class,
             Listener\JobDeletedListener::class => [Listener\JobDeletedListener::class,'factory'],
             'Gastro24\Form\ForgotPasswordPopup' => \Gastro24\Factory\Form\ForgotPasswordPopupFactory::class,
+            'Auth/Adapter/UserLogin' => Factory\Service\UserAdapterFactory::class,
         ],
         'aliases' => [
             'Orders\Form\Listener\InjectInvoiceAddressInJobContainer' => Listener\VoidListener::class,
@@ -95,7 +101,8 @@ return [
             'Orders\Form\Listener\DisableJobInvoiceAddress' => Listener\VoidListener::class,
             'Orders/Listener/BindInvoiceAddressEntity' => Listener\VoidListener::class,
             'Orders/Listener/CreateJobOrder' => Listener\CreateJobOrder::class,
-            \Jobs\Listener\DeleteJob::class => Listener\DeleteJob::class
+            \Jobs\Listener\DeleteJob::class => Listener\DeleteJob::class,
+
         ],
     ],
 
@@ -106,6 +113,7 @@ return [
             Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
             Controller\LpStellenanzeigen::class => InvokableFactory::class,
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
+            Controller\RegisterConfirmationController::class => Factory\Controller\RegisterConfirmationControllerFactory::class,
             Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
             Controller\OrdersController::class => Factory\Controller\OrdersControllerFactory::class,
             'Gastro24/Jobs/Console' => [Controller\Console\JobsConsoleController::class,'factory'],
@@ -269,6 +277,7 @@ return [
              'gastro24/mail/single-job-created' => __DIR__ . '/../view/mail/single-job-created.phtml',
              'gastro24/mail/single-job-pending' => __DIR__ . '/../view/mail/single-job-pending.phtml',
              'gastro24/mail/single-job-accepted' => __DIR__ . '/../view/mail/single-job-accepted.phtml',
+             'gastro24/mail/abo-created' => __DIR__ . '/../view/mail/abo-created.phtml',
              'auth/mail/new-registration.en' => __DIR__ . '/../view/mail/new-registration.en.phtml',
              'auth/mail/new-registration' => __DIR__ . '/../view/mail/new-registration.phtml',
              'auth/mail/user-confirmed.en' => __DIR__ . '/../view/mail/user-confirmed.en.phtml',
@@ -328,6 +337,7 @@ return [
             ],
         ],
     ],
+
     'form_elements' => [
         'invokables' => [
             'Jobs/Description' => 'Gastro24\Form\JobsDescription',
@@ -343,8 +353,9 @@ return [
             Form\OrdersSettingsFieldset::class => \Settings\Form\Factory\SettingsFieldsetFactory::class,
             Form\JobDetails::class => Form\JobDetailsFactory::class,
             Form\JobDetailsForm::class => InvokableFactory::class,
+            Form\RegisterCompanyForm::class => \Gastro24\Factory\Form\RegisterCompanyFactory::class,
             'Gastro24/JobPdfUpload' => Form\JobPdfFactory::class,
-            'Auth\Form\Register' => \Gastro24\Factory\Form\RegisterFactory::class,
+            'Auth\Form\SimpleRegister' => \Gastro24\Factory\Form\SimpleRegisterFactory::class,
             'Jobs/JobboardSearch' => \Gastro24\Factory\Form\JobboardSearchFactory::class,
             'LocationSelect' => \Gastro24\Factory\Form\GeoSelectFactory::class,
             'Gastro24\Form\Login' => \Gastro24\Factory\Form\LoginFactory::class,
@@ -409,6 +420,17 @@ return [
                             ],
                             'may_terminate' => true
                         ]
+                    ],
+                    'register-organization-confirmation' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/auth/register-organization-confirmation/:userId',
+                            'defaults' => [
+                                'controller' => Controller\RegisterConfirmationController::class,
+                                'action' => 'organization'
+                            ]
+                        ],
+                        'may_terminate' => true
                     ],
                     'saved-jobs' => [
                         'type' => 'Literal',
