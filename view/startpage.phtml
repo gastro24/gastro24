@@ -37,7 +37,7 @@ $this->headTitle($this->translate('Home'));
     <link rel="stylesheet" type="text/css" href="<?= $this->basePath('dist/css/core.min.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
     <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('modules/Gastro24/g24-startpage.css')) ?>">
-    <title>Jobbörse Gastrojob24 - Gastronomie Jobs & Hotel Jobs</title> 
+    <title>Jobbörse Gastrojob24 ▷ Gastronomie Jobs & Hotel Jobs Schweiz</title> 
     <meta name="description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Stellen bei Gastrojob24.ch - der #1 Gastronomie & Hotellerie Jobbörse der Schweiz.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
@@ -63,7 +63,55 @@ $this->headTitle($this->translate('Home'));
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
-    
+    <style>
+     .login-link {
+	width: auto!important;
+}
+
+.login-link:hover {
+	text-decoration: none;
+	color: #1e69a3;
+}
+
+.login-link:focus {
+	text-decoration: none;
+}
+
+.login-link span {
+	font-size: 15px;
+	padding-left: 15px;
+}
+
+.login-icon-top::before {
+	content: " ";
+	display: block;
+	width: 7px;
+	height: 7px;
+	position: absolute;
+	top: 10px;
+	left: 14px;
+	border: 1px solid;
+	border-radius: 100%;
+}
+
+.login-icon-top::after {
+	content: " ";
+	display: block;
+	width: 15px;
+	height: 7px;
+	position: absolute;
+	top: 20px;
+	left: 10px;
+	border: 1px solid;
+	border-bottom: none;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+.nav-recruiting .btn-danger {
+    margin-right: 15px;
+}
+    </style>
     
  <!-- Google Tag Manager -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125791873-1"></script>
@@ -98,7 +146,9 @@ $this->headTitle($this->translate('Home'));
                                    class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Gratis Einzelinserat schalten</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a title="Anmelden" href="#" class="login-link nav-link text-reset _dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i></a>
+                                <a title="Anmelden" href="#" class="login-link nav-link text-reset _dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-expanded="false"><i class="login-icon-top"></i>
+                                  <span>Anmelden</span>
+                                </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="nav-item">
                                         <?= $this->partial('partials/login-popup.phtml', ['device' => 'desktop']); ?>
@@ -471,7 +521,7 @@ $this->headTitle($this->translate('Home'));
                 <div class="col-md-12">
                     <div class="tab_container">
                         <input id="tab1" type="radio" name="tabs" checked>
-                        <label for="tab1"><span class="hidden-xs">Jobs nach </span>Bereiche</label>
+                        <label for="tab1"><span class="hidden-xs">Jobs nach </span>Bereich</label>
 
                         <input id="tab2" type="radio" name="tabs">
                         <label for="tab2"><span class="hidden-xs">Beliebte </span>Städte</label>
@@ -705,14 +755,14 @@ $this->headTitle($this->translate('Home'));
                 <div class="col-md-12">
                     <div class="row content-teaser">
                         <div class="col-md-3 col-sm-4">
-                            <h2>Auf der Suche nach dem Traumjob?</h2>
+                            <h2>Warum Gastrojob24 die richtige Wahl ist</h2>
                         </div>
                         <div class="col-md-9 col-sm-8">
                             
 <p>Sie arbeiten bereits im Gastgewerbe oder möchten gerne in diese Branche einsteigen? Finden Sie jetzt Ihren Traumjob im Hotel, Restaurant, Gastronomie und Freizeit auf Gastrojob24.ch. Durchsuchen Sie aktuell <?= $this->gastroJobCount() ?> Stellen im Gastgewerbe und bewerben Sie sich auf Stellenangebote bei namhaften Unternehmen. Gastrojob24.ch ist die führende Schweizer Gastronomie Jobbörse, die Ihre Jobsuche schnell, einfach und erfolgreich macht!</p>
 <p class="collapse-textbox collapse">In der Schweiz arbeiten ca. 220'000 Menschen im Gastgewerbe – vor allem in Restaurants und Hotels – und ist somit der sechstgrösste Arbeitgeber der Schweiz. Mehr als ein Drittel der Beschäftigten arbeiten in Teilzeit. 8'000 Personen absolvieren eine Lehre. Das Gastgewerbe ist noch eine relativ junge Branche: 60% der Beschäftigten sind unter 40 Jahre alt, im Vergleich dazu sind es in der Gesamtwirtschaft 51%. Im Gastgewerbe arbeiten viele junge Migrantinnen und Migranten im jungen Alter und immer mehr Personen aus Deutschland. Das Gastgewerbe generiert jährlich einen Umsatz von 22 Milliarden Franken. Einer langfristigen beruflichen Zukunft und erfolgreichen Karriere im Gastgewerbe steht demzufolge nichts mehr im Weg. Unzählige Perspektiven und Aufstiegschancen, abwechslungsreiche Aufgaben und die Möglichkeit auch als Quereinsteiger einen Karrieresprung zu machen, machen das Gastgewerbe so attraktiv. <a title="Traumjob finden" href="/de/jobs?clear=1">Jetzt Traumjob finden.</a></p>
-<p class="collapse-textbox collapse">Jeden Tag helfen wir Stellensuchenden dabei, ihren Traumjob in der Gastronomie zu finden - und das seit 2008. Auf Gastrojob24.ch finden Jobsuchende attraktive Angebote, die häufig exklusiv bei uns veröffentlicht werden - beste Aussichten für Bewerber, den Traumjob zu finden.</p>
-<p class="collapse-textbox collapse">Unsere Mission lautet: Unternehmen und Fachkräfte durch einen erstklassigen Online-Service schnell und unkompliziert zusammenzuführen. </p>
+<p class="collapse-textbox collapse">Jeden Tag helfen wir Stellensuchenden dabei, ihren Traumjob in der Gastronomie zu finden - und das seit 2008. Auf Gastrojob24.ch finden Jobsuchende attraktive Angebote, die häufig exklusiv nur bei uns veröffentlicht werden - beste Aussichten also für Bewerber, den Traumjob zu finden.</p>
+<p class="collapse-textbox collapse"><strong>Unsere Mission lautet: Unternehmen und Fachkräfte durch einen erstklassigen für alle zugänglichen Online-Job-Service rasch und unkompliziert zusammenzuführen. Jeden Tag arbeiten wir daran, unseren Service noch etwas besser zu machen!</strong></p>
 
 
                         </div>

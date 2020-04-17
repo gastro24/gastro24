@@ -23,7 +23,7 @@ $deviceCss = ($this->device) ?? 'mobile';
 <div class="yamm-content login-form-<?= $deviceCss ?>">
     <div class="row">
         <div class="col-md-12">
-            <strong class="reveal-form-title"><i class="fa fa-lock"></i> Anmelden</strong>
+            <strong class="reveal-form-title"><i class="fa fa-lock"></i> Arbeitgeber-Login</strong>
             <?= $this->form($loginForm); ?>
             <?php if (!isset($this->allowResetPassword) || $this->allowResetPassword == true): ?>
                 <p>
