@@ -18,7 +18,22 @@ class SimpleRegisterInputFilter extends InputFilter
 {
     public function __construct()
     {
-        $factory = new Factory();
+        $this->add(
+            array(
+                'name' => 'email',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'EmailAddress',
+                        'options' => array(),
+                    ),
+                ),
+            )
+        );
 
         $this->add(
             array(
@@ -72,7 +87,7 @@ class SimpleRegisterInputFilter extends InputFilter
                 ),
                 'validators' => array(
                     new NotEmpty(),
-                    new StringLength(array('min' => 3, 'max' => 50))
+                    new StringLength(array('min' => 6, 'max' => 50))
                 ),
             )
         );
@@ -86,7 +101,7 @@ class SimpleRegisterInputFilter extends InputFilter
                 ),
                 'validators' => array(
                     new NotEmpty(),
-                    new StringLength(array('min' => 3, 'max' => 50)),
+                    new StringLength(array('min' => 6, 'max' => 50)),
                     new Identical('password'),
                 ),
             )

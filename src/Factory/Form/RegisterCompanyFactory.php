@@ -22,7 +22,7 @@ class RegisterCompanyFactory implements FactoryInterface
         /**
          * @var $filter SimpleRegisterInputFilter
          */
-        //$filter = $container->get('Gastro24\Form\Filter\SimpleRegisterInputFilter');
+        $filter = $container->get('Gastro24\Form\Filter\CompanyRegisterInputFilter');
 
         /* @var $config CaptchaOptions */
         //$config = $container->get('Auth/CaptchaOptions');
@@ -34,7 +34,7 @@ class RegisterCompanyFactory implements FactoryInterface
 
         $form = new RegisterCompanyForm($formManager, null);
         $form->setAttribute('id', 'registration-company-form');
-        //$form->setInputfilter($filter);
+        $form->setInputfilter($filter);
 
         return $form;
     }

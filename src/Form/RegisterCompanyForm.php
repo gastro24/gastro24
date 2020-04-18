@@ -73,7 +73,7 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
 
         $this->add(
             array(
-                'type'       => 'text',
+                'type'       => 'Zend\Form\Element\Tel',
                 'name'       => RegistrationFormOptions::FIELD_PHONE,
                 'options'    => [
                     'label' => /*@translate*/ 'Phone',
@@ -81,7 +81,8 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
                 'attributes' => [
                     'placeholder' => '+41 78 123 4567',
                     'required' => false,
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'pattern' => '^[0-9-+\s()]*$'
                 ],
             )
         );
