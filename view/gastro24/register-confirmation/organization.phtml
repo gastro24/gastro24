@@ -33,7 +33,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-4">
-                                <?php echo $this->formLabel($this->form->get('email'), 'Konbtakt E-Mail Adresse'); ?>
+                                <?php echo $this->formLabel($this->form->get('email'), 'Kontakt E-Mail Adresse'); ?>
                                 <?php echo $this->formEmail($this->form->get('email')); ?>
                             </div>
                             <div class="col-md-4">
@@ -59,11 +59,11 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-md-6">
-                                        <?php echo $this->formLabel($this->form->get('firstname'), 'Vorname'); ?>
+                                        <?php echo $this->formLabel($this->form->get('firstname'), $this->translate('Firstname')); ?>
                                         <?php echo $this->formText($this->form->get('firstname')); ?>
                                     </div>
                                     <div class="col-md-6">
-                                        <?php echo $this->formLabel($this->form->get('lastname'), 'Nachname'); ?>
+                                        <?php echo $this->formLabel($this->form->get('lastname'), $this->translate('Lastname')); ?>
                                         <?php echo $this->formText($this->form->get('lastname')); ?>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                 <h5>Rechnungsadresse</h5>
                                 <div class="row form-group">
                                     <div class="col-md-9">
-                                        <?php echo $this->formLabel($this->form->get('street'), 'Straße'); ?>
+                                        <?php echo $this->formLabel($this->form->get('street'), $this->translate('Street')); ?>
                                         <?php echo $this->formText($this->form->get('street')); ?>
                                     </div>
                                     <div class="col-md-3">
@@ -86,11 +86,11 @@
                                         <?php echo $this->formText($this->form->get('postalCode')); ?>
                                     </div>
                                     <div class="col-md-5">
-                                        <?php echo $this->formLabel($this->form->get('city'), 'Stadt'); ?>
+                                        <?php echo $this->formLabel($this->form->get('city'), $this->translate('City')); ?>
                                         <?php echo $this->formText($this->form->get('city')); ?>
                                     </div>
                                     <div class="col-md-4">
-                                        <?php echo $this->formLabel($this->form->get('country'), 'Land'); ?>
+                                        <?php echo $this->formLabel($this->form->get('country'), $this->translate('Country')); ?>
                                         <?php echo $this->formSelect($this->form->get('country')); ?>
                                     </div>
                                 </div>

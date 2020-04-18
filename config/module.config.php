@@ -72,6 +72,7 @@ return [
     'service_manager' => [
         'invokables' => [
             'Gastro24\Form\Filter\SimpleRegisterInputFilter' => 'Gastro24\Form\Filter\SimpleRegisterInputFilter',
+            'Gastro24\Form\Filter\CompanyRegisterInputFilter' => 'Gastro24\Form\Filter\CompanyRegisterInputFilter',
         ],
         'factories' => [
             'Auth/Dependency/Manager' => 'Gastro24\Factory\Dependency\ManagerFactory',
