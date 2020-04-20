@@ -2,6 +2,7 @@
 
 namespace Gastro24;
 
+use Gastro24\Listener\SettingsChangedListener;
 use Gastro24\View\Helper\IsCrawlerJob;
 use Jobs\Controller\TemplateController;
 use Jobs\Entity\Status;
@@ -117,12 +118,14 @@ class Module implements AssetProviderInterface
             
             $sharedManager->attach(
                 'Applications',
-                MvcEvent::EVENT_DISPATCH,$listener,
+                MvcEvent::EVENT_DISPATCH,
+                $listener,
                 -2 /*postDispatch, but before most of the other zf2 listener*/
             );
             $sharedManager->attach(
             	'CamMediaintown',
-	            MvcEvent::EVENT_DISPATCH,$listener,
+	            MvcEvent::EVENT_DISPATCH,
+                $listener,
 	            -2);
 
             $eventManager->attach(MvcEvent::EVENT_ROUTE, function(MvcEvent $event) {
@@ -277,6 +280,16 @@ class Module implements AssetProviderInterface
                     'params'     => ['module' => 'Orders'],
                 ];
                 $navigation->addPage($page);
+
+                $jobPage = [
+                    'label'      => 'Inserieren',
+                    'order'      => -11,
+                    'route'      => 'lang/jobs/manage',
+                    'router'     => $e->getRouter(),
+                    'action'     => 'edit',
+                ];
+                $navigation->addPage($jobPage);
+
             }, 5);
         }
 

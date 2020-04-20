@@ -92,16 +92,6 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 <?php if (!$this->noHeader):?>
     <header id="header" role="banner" class="hidden-xs" data-saved-jobs="<?=$savedJobsCount?>">
         <div class="container">
-            <?php if ($this->auth('role') === Auth\Entity\User::ROLE_RECRUITER) : ?>
-                <div class="row">
-                    <div class="col-12 text-right header-link">
-                        <a class="link--inverted"
-                           href="<?php echo $this->url('lang/jobs/manage', array('action' => 'edit'), true) ?>">
-                            Stellenanzeige anlegen
-                        </a>
-                    </div>
-                </div>
-            <?php endif ?>
             <div class="row">
                 <div class="navbar-header col-md-4">
                     <a class="logo" title="Gastrojob24" href="<?php echo $this->basepath('/' . $this->params('lang')) ?>">
@@ -112,10 +102,7 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
                     <?php if ('guest' == $this->auth('role')): ?>
                         <ul class="pull-right navbar-nav nav-recruiting">
                             <li class="nav-item">
-                                <?php if ($this->auth('role') === Auth\Entity\User::ROLE_RECRUITER) : ?>
-                                    <a title="Stellenanzeige anlegen" href="<?php echo $this->url('lang/jobs/manage', array('action' => 'edit'), true) ?>"
-                                       class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Stellenanzeige anlegen</a>
-                                <?php else : ?>
+                                <?php if ($this->auth('role') !== Auth\Entity\User::ROLE_RECRUITER) : ?>
                                     <a title="Gratis Einzelinserat schalten" href="<?= $this->url('stellenanzeigen-schalten') ?>"
                                        class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Gratis Einzelinserat schalten</a>
                                 <?php endif ?>

@@ -92,6 +92,7 @@ return [
             'Gastro24\Validator\IframeEmbeddableUri' => InvokableFactory::class,
             Listener\DeleteJob::class => Listener\DeleteJobFactory::class,
             Listener\GoogleIndexApi::class => Listener\GoogleIndexApiFactory::class,
+            Listener\SettingsChangedListener::class => \Gastro24\Factory\Listener\SettingsChangedListenerFactory::class,
             Listener\JobDeletedListener::class => [Listener\JobDeletedListener::class,'factory'],
             'Gastro24\Form\ForgotPasswordPopup' => \Gastro24\Factory\Form\ForgotPasswordPopupFactory::class,
             'Auth/Adapter/UserLogin' => Factory\Service\UserAdapterFactory::class,
@@ -279,6 +280,7 @@ return [
              'gastro24/mail/single-job-pending' => __DIR__ . '/../view/mail/single-job-pending.phtml',
              'gastro24/mail/single-job-accepted' => __DIR__ . '/../view/mail/single-job-accepted.phtml',
              'gastro24/mail/abo-created' => __DIR__ . '/../view/mail/abo-created.phtml',
+             'gastro24/mail/invoice-address-changed' => __DIR__ . '/../view/mail/invoice-address-changed.phtml',
              'auth/mail/new-registration.en' => __DIR__ . '/../view/mail/new-registration.en.phtml',
              'auth/mail/new-registration' => __DIR__ . '/../view/mail/new-registration.phtml',
              'auth/mail/user-confirmed.en' => __DIR__ . '/../view/mail/user-confirmed.en.phtml',
@@ -645,7 +647,7 @@ return [
 
         'Jobs/JobContainer/Events' => [ 'listeners' => [
             Listener\ValidateUserProduct::class => [ 'ValidateJob', true ],
-            Listener\InjectUserProductInfo::class => [ \Core\Form\Event\FormEvent::EVENT_INIT, true ],
+            //Listener\InjectUserProductInfo::class => [ \Core\Form\Event\FormEvent::EVENT_INIT, true ],
         ]],
 
         'Jobs/Events' => [ 'listeners' => [
@@ -676,5 +678,9 @@ return [
         'Core/File/Events' => [ 'listeners' => [
             Listener\DeleteTemplateImage::class => [ \Core\Listener\Events\FileEvent::EVENT_DELETE, true ]
         ]],
+    ],
+
+    'listeners' => [
+        Listener\SettingsChangedListener::class
     ],
 ];
