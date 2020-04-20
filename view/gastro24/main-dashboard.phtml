@@ -4,7 +4,7 @@ $user = $this->auth()->getUser();
 
 <?php if (!$this->hasAutomaticJobActivation($user) && $user->getRole() != 'admin') : ?>
     <div class="alert alert-danger">
-        <?= $this->translate('Ihr Stellenanzeigen werden nach Zahlungseingang sofort veröffentlicht.') ?>
+        <?= $this->translate('Ihre Stellenanzeigen werden erst nach Zahlungseingang veröffentlicht.') ?>
     </div>
 <?php endif; ?>
 <?php if ($this->showAutomaticJobActivationHint($user) && $user->getRole() != 'admin') : ?>

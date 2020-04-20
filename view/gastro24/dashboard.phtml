@@ -16,14 +16,16 @@ $productWrapper = $user->getAttachedEntity(\Gastro24\Entity\UserProduct::class);
 if (!$productWrapper) { return; }
 
 $product = $productWrapper->getProduct();
-$name    = str_replace('Gastro24\Entity\Product\\', '', get_class($product));
+// HINT: currently only 1 package
+//$name    = str_replace('Gastro24\Entity\Product\\', '', get_class($product));
+$name = 'Flatrate für 12 Monate (CHF 595.-)';
 $jobDraftsCount = $this->gastroJobDraftsCount($user);
 $inactiveJobCount = $product->getInactiveJobCount();
 $activeJobCount = $product->getJobCount();
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Ihr Produkt: <?=$name?></h3>
+        <h3 class="panel-title">Ihr gewähltes Produkt: <?=$name?></h3>
     </div>
 
     <table class="table table-striped">

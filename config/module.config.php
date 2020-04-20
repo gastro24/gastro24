@@ -645,7 +645,7 @@ return [
 
         'Jobs/JobContainer/Events' => [ 'listeners' => [
             Listener\ValidateUserProduct::class => [ 'ValidateJob', true ],
-            Listener\InjectUserProductInfo::class => [ \Core\Form\Event\FormEvent::EVENT_INIT, true ],
+            //Listener\InjectUserProductInfo::class => [ \Core\Form\Event\FormEvent::EVENT_INIT, true ],
         ]],
 
         'Jobs/Events' => [ 'listeners' => [

@@ -213,7 +213,7 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
                 'options'    => [
                     'label'         => /*@translate */ 'Country',
                     'value_options' => [
-                        'swiss'   => /*@translate */ 'Schweiz',
+                        'Schweiz'   => /*@translate */ 'Schweiz',
                     ]
                 ],
                 'attributes' => [
