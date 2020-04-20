@@ -105,7 +105,7 @@ class Register extends BaseRegisterService
             $mail->confirmationlink = $confirmationLink;
             $mail->siteName         = $siteName;
             $mail->setTemplate('mail/register');
-            $mail->setSubject('your registration on %s', $siteName);
+            $mail->setSubject('E-Mail Adresse verifizieren');
             $mail->setTo($userEmail);
             $mailService->send($mail);
         }
