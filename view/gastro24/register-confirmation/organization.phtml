@@ -6,6 +6,10 @@
     .registration-company-form label {
         font-weight: normal;
     }
+    .register-form-error {
+        padding: 5px 15px;
+        margin-bottom: 5px;
+    }
 </style>
 <div class="row">
     <div class="col-md-12">
@@ -22,6 +26,10 @@
                             </div>
                         </div>
                         <div class="row form-group">
+                            <div class="col-md-12">
+                                <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                    ->setMessageCloseString('</div>')->render($this->form->get('organizationName')); ?>
+                            </div>
                             <div class="col-md-6">
                                 <?php echo $this->formLabel($this->form->get('organizationName'), 'Firmenname'); ?>
                                 <?php echo $this->formText($this->form->get('organizationName')); ?>
@@ -32,6 +40,18 @@
                             </div>
                         </div>
                         <div class="row form-group">
+                            <div class="col-md-4">
+                                <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                    ->setMessageCloseString('</div>')->render($this->form->get('email')); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                    ->setMessageCloseString('</div>')->render($this->form->get('phone')); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                    ->setMessageCloseString('</div>')->render($this->form->get('vat')); ?>
+                            </div>
                             <div class="col-md-4">
                                 <?php echo $this->formLabel($this->form->get('email'), 'Kontakt E-Mail Adresse'); ?>
                                 <?php echo $this->formEmail($this->form->get('email')); ?>
@@ -58,6 +78,12 @@
                                     </div>
                                 </div>
                                 <div class="row form-group">
+                                    <div class="col-md-12">
+                                        <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                            ->setMessageCloseString('</div>')->render($this->form->get('firstname')); ?>
+                                        <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                            ->setMessageCloseString('</div>')->render($this->form->get('lastname')); ?>
+                                    </div>
                                     <div class="col-md-6">
                                         <?php echo $this->formLabel($this->form->get('firstname'), $this->translate('Firstname')); ?>
                                         <?php echo $this->formText($this->form->get('firstname')); ?>
@@ -72,6 +98,10 @@
                                 <h5>Rechnungsadresse</h5>
                                 <div class="row form-group">
                                     <div class="col-md-9">
+                                        <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                            ->setMessageCloseString('</div>')->render($this->form->get('street')); ?>
+                                    </div>
+                                    <div class="col-md-9">
                                         <?php echo $this->formLabel($this->form->get('street'), $this->translate('Street')); ?>
                                         <?php echo $this->formText($this->form->get('street')); ?>
                                     </div>
@@ -81,6 +111,12 @@
                                     </div>
                                 </div>
                                 <div class="row form-group">
+                                    <div class="col-md-12">
+                                        <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">PLZ: ')
+                                            ->setMessageCloseString('</div>')->render($this->form->get('postalCode')); ?>
+                                        <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                            ->setMessageCloseString('</div>')->render($this->form->get('city')); ?>
+                                    </div>
                                     <div class="col-md-3">
                                         <?php echo $this->formLabel($this->form->get('postalCode'), 'PLZ'); ?>
                                         <?php echo $this->formText($this->form->get('postalCode')); ?>
