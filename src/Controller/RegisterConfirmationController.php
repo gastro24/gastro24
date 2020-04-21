@@ -133,7 +133,7 @@ class RegisterConfirmationController extends AbstractActionController
             else {
                 $this->notification()->danger(/*@translate*/ 'Please fill form correctly');
 
-                return $this->redirect()->toRoute('lang/register-organization-confirmation', ['userId' => $userId]);
+                return $viewModel;
             }
         }
         else {

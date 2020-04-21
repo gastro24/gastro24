@@ -352,6 +352,11 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
         width: 100%;
     }
 
+    .register-form-error {
+        padding: 5px 15px;
+        margin-bottom: 5px;
+    }
+
     @media (min-width: 768px) {
         .promote-container {
             max-width: 780px;
@@ -435,11 +440,22 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
                         <?php echo $this->form()->openTag($form); ?>
                         <div class="row form-group">
                             <div class="col-md-12">
+                                <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                    ->setMessageCloseString('</div>')->render($this->form->get('email')); ?>
+                            </div>
+                            <div class="col-md-12">
                                 <?php echo $this->formLabel($this->form->get('email'), 'E-Mail Adresse'); ?>
                                 <?php echo $this->formEmail($this->form->get('email')); ?>
                             </div>
                         </div>
                         <div class="row form-group">
+                            <div class="col-md-12">
+                                <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                    ->setMessageCloseString('</div>')->render($this->form->get('password')); ?>
+
+                                <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                    ->setMessageCloseString('</div>')->render($this->form->get('password2')); ?>
+                            </div>
                             <div class="col-md-6">
                                 <?php echo $this->formLabel($this->form->get('password'), 'Passwort wählen'); ?>
                                 <?php echo $this->formPassword($this->form->get('password')); ?>
@@ -452,6 +468,12 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
                         </div>
                      
                         <div class="row form-group">
+                            <div class="col-md-12">
+                                <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                    ->setMessageCloseString('</div>')->render($this->form->get('firstname')); ?>
+                                <?php echo $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                                    ->setMessageCloseString('</div>')->render($this->form->get('lastname')); ?>
+                            </div>
                             <div class="col-md-6">
                                 <?php echo $this->formLabel($this->form->get('firstname'), 'Vorname'); ?>
                                 <?php echo $this->formText($this->form->get('firstname')); ?>
