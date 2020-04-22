@@ -285,15 +285,71 @@ $this->headTitle($this->translate('Home'));
                             <div class="carousel-inner">
                                 <!-- begin carousel -->
                                 
+                                  <div class="item active">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="recommended-box">
+                                            <div class="recommended-box-inner">
+                                                <div class="recommended-box-jobtitle">
+                                                    <a title="Hilfskoch / Koch (m/w)" href="/de/jobs/hilfskoch---koch--m-w--5e9fe0da3c050f46633763d3.html">
+                                                        <span class="block-ellipsis">
+                                                            Hilfskoch / Koch (m/w)
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8 col-lg-9 col-xs-8 ">
+                                                        <ul class="short-details">
+                                                            <li class="location">
+                                                                <span>Erlenbach</span>
+                                                            </li>
+                                                            <li class="company">
+                                                                <span class="">Bamboo Erlenbach</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="recommended-box-company-logo-container ">
+                                                        <img rel="preload" as="image" src="/file/Gastro24.TemplateImage/5e9fdf553c050f45737d8ff5/Bamboo+Logo+weisser+Hintergrund.jpg">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="recommended-hero " style="background-image: url(/file/Gastro24.TemplateImage/5e9fe0af3c050f45737d8ff8/Sugi+in+action.jpg)"></div>
+                                                </div>
+                                            </div>
+                                            <div class="recommended-box-actions clearfix">
+                                                <div class="col-xs-4 pull-left">
+                                                    <a href="/de/jobs/hilfskoch---koch--m-w--5e9fe0da3c050f46633763d3.html" class="view-btn btn">
+                                                        Bewerben
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-xs-4 save-job pull-right">
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5da815e53c050f205567afb2'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             
-                                <div class="item active">
+                                <div class="item">
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="recommended-box">
                                             <div class="recommended-box-inner">
                                                 <div class="recommended-box-jobtitle">
                                                     <a title="Koch mit Eidg. Fähigkeitszeugnis" href="/de/jobs/koch-mit-eidg--faehigkeitszeugnis-5e982e653c050f739d651629.html">
                                                         <span class="block-ellipsis">
-                                                            Koch mit Eidg. Fähigkeitszeugnis
+                                                            Koch mit eidg. Fähigkeitszeugnis
                                                         </span>
                                                     </a>
                                                 </div>
