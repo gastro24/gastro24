@@ -47,7 +47,6 @@ $this->headTitle($this->translate('Home'));
     <meta property="og:image" content="https://www.gastrojob24.ch/modules/Gastro24/gastro-logo-fb.png" />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:type" content="website" />
-
     <script>
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
 
@@ -212,7 +211,6 @@ $this->headTitle($this->translate('Home'));
                             <li><a class="navbar-item-anchor" title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
                         </ul>
                     </div>
-
                     <div class="favorite-icon pull-right">
                         <?php
                         $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
