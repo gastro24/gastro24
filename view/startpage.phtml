@@ -142,8 +142,8 @@ $this->headTitle($this->translate('Home'));
                     <?php if ('guest' == $this->auth('role')) : ?>
                         <ul class="pull-right navbar-nav nav-recruiting">
                             <li class="nav-item">
-                                <a title="Gratis Einzelinserat schalten" href="<?= $this->url('stellenanzeigen-schalten') ?>"
-                                   class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Gratis Einzelinserat schalten</a>
+                                <a title="Inserieren" href="<?= $this->url('stellenanzeigen-schalten') ?>"
+                                   class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Inserieren</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a title="Anmelden" href="#" class="login-link nav-link text-reset _dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-expanded="false"><i class="login-icon-top"></i>
@@ -189,9 +189,9 @@ $this->headTitle($this->translate('Home'));
                                     <span class="icon-bar bottom-bar"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="<?= $this->url('stellenanzeigen-schalten') ?>">Gratis Einzelinserat schalten</a></li>
+                                    <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="<?= $this->url('stellenanzeigen-schalten') ?>">Inserieren</a></li>
                                     <li><a title="Jobs" href="/de/jobs?clear=1">Jobs</a></li>
-                                    <li><a title="Für Arbeitgeber" href="/de/auth/register?pt=plus">Für Arbeitgeber</a></li>
+                                    <li><a title="Abo für Unternehmen" href="/de/auth/register?pt=plus">Abo für Unternehmen</a></li>
                                     <li><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
                                     <li><a title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
                                 </ul>
