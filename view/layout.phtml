@@ -103,8 +103,8 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
                         <ul class="pull-right navbar-nav nav-recruiting">
                             <li class="nav-item">
                                 <?php if ($this->auth('role') !== Auth\Entity\User::ROLE_RECRUITER) : ?>
-                                    <a title="Gratis Einzelinserat schalten" href="<?= $this->url('stellenanzeigen-schalten') ?>"
-                                       class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Gratis Einzelinserat schalten</a>
+                                    <a title="Inserieren" href="<?= $this->url('stellenanzeigen-schalten') ?>"
+                                       class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Inserieren</a>
                                 <?php endif ?>
                             </li>
                             <li class="nav-item dropdown">
