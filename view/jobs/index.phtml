@@ -118,7 +118,6 @@ $noJobsMessage = $this->translate('No jobs found.');
 <?php if ($jobs instanceof \Solr\FacetsProviderInterface): $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.facets.js'))); endif; ?>
 
 <?php echo $this->flashMessenger()->render('default', array('alert', 'alert-success')) ?>
-
 <div class="row">
 
     <div class="col-md-12">
