@@ -315,7 +315,7 @@ if (count($jobs)): ?>
                                                     }
                                                     elseif ($job->getTemplateValues()->getHtml()) {
                                                         $preview = $job->getTemplateValues()->getHtml();
-                                                        $preview = str_replace(['<li>', '<strong>', '</p>', '</h2>', '<b>', '<u>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>','<div>'], ' ', $preview);
+                                                        $preview = str_replace(['<li>', '<strong>', '</strong>', '</u>', '</p>', '</h2>', '<b>', '<u>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>','<div>'], ' ', $preview);
                                                         $preview = substr(strip_tags($preview), 0 , 215);
                                                     }
                                                     if ($preview) {
