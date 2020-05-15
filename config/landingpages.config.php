@@ -34,7 +34,13 @@
 
 $options = [
     
-   
+      'tourismus' => [
+          'id' => 1709,
+		  'query' => [ 'q' => 'Tourismus'],
+		   'tab' => '',
+		   'panel' => '',
+          'text' => 'Tourismus Jobs'
+       ],
      'food' => [
           'id' => 1648,
 		  'query' => [ 'q' => 'Food'],
