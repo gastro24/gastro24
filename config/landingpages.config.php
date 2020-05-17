@@ -34,7 +34,7 @@
 
 $options = [
     
-      'tourismus' => [
+      'touristik' => [
           'id' => 1709,
 		  'query' => [ 'q' => 'Tourismus'],
 		   'tab' => '',
