@@ -6,7 +6,6 @@
 User-agent: *
 # Exclude Special Areas
 Disallow: */dashboard
-Disallow: */admin
 Disallow: */settings
 Disallow: */view
 Disallow: */apply
