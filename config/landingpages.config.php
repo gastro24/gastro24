@@ -75,7 +75,7 @@ $options = [
     
       'campingplatz' => [
           'id' => 1724,
-		  'query' => [ 'q' => 'Canpingplatz'],
+		  'query' => [ 'q' => 'Camping'],
 		  'tab' => '',
 		  'panel' => '',
           'text' => 'Campingplatz Jobs'
