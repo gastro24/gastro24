@@ -33,6 +33,61 @@
 
 
 $options = [
+     
+        'seilbahn' => [
+          'id' => 1714,
+		  'query' => [ 'q' => 'Seilbahn'],
+		  'tab' => '',
+		   'panel' => '',
+          'text' => 'Seilbahn Jobs'
+       ],
+         'reiseberatung' => [
+          'id' => 1716,
+		  'query' => [ 'q' => 'Reiseberatung'],
+		  'tab' => '',
+		  'panel' => '',
+          'text' => 'Reiseberatung Jobs'
+       ],
+    
+      'reisebuero' => [
+          'id' => 1718,
+		  'query' => [ 'q' => 'Reisebüro'],
+		  'tab' => '',
+		  'panel' => '',
+          'text' => 'Reisebüro Jobs'
+       ],
+    
+      'gaestebetreuung' => [
+          'id' => 1720,
+		  'query' => [ 'q' => 'Gästebetreuung'],
+		  'tab' => '',
+		  'panel' => '',
+          'text' => 'Gästebetreuung Jobs'
+       ],
+    
+      'reiseleitung' => [
+          'id' => 1722,
+		  'query' => [ 'q' => 'Reiseleitung'],
+		  'tab' => '',
+		  'panel' => '',
+          'text' => 'Reiseleitung Jobs'
+       ],
+    
+      'campingplatz' => [
+          'id' => 1724,
+		  'query' => [ 'q' => 'Canpingplatz'],
+		  'tab' => '',
+		  'panel' => '',
+          'text' => 'Campingplatz Jobs'
+       ],
+    
+      'kreuzfahrtschiff' => [
+          'id' => 1727,
+		  'query' => [ 'q' => 'kreuzfahrt'],
+		  'tab' => '',
+		  'panel' => '',
+          'text' => 'Kreuzfahrtschiff Jobs'
+       ],
     
       'touristik' => [
           'id' => 1709,
