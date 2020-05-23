@@ -6,21 +6,9 @@
  * @license MIT
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
- 
-// meta data
-$this->headTitle($this->metaTitle);
-$this->headMeta()->setName('description', $this->translate($this->metaDescription))
-    ->setProperty('og:title', $this->metaOgTitle)
-    ->setProperty('og:description', 'Jetzt bewerben auf die Stelle &quot;' . $job->getTitle() . '&quot; bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz.')
-    ->setProperty('og:url', $this->jobUrl($job, ['linkOnly' => true, 'absolute' => true]))
-    ->setProperty('og:image', 'https://www.gastrojob24.ch/modules/Gastro24/gastro-logo-fb.png')
-    ->setProperty('og:locale', 'de_DE')
-    ->setProperty('og:type', 'website')
-    ->setAutoEscape(false);
+
 $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
 $this->headMeta()->setName('robots', 'noindex,follow');
-
-
 // check for preview
 $routeParams = $this->params()->fromRoute();
 $preview = false;
