@@ -216,7 +216,7 @@ if (count($jobs)): ?>
                                 $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true, 'absolute' => true ]);
                             ?>
  <!-- begin card-->
-<div class="card">
+<div class="card box__job-favorite">
   <?php
     $logoUrl = null;
     if (is_object($org) && is_object($org->getImage()) && $org->getImage()->getUri()) {
