@@ -235,7 +235,63 @@ if (count($jobs)): ?>
                                     <h2><a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?></a></h2>
                                      <?php } ?>
                                      
-                                     
+                                <div class="card__job-info">
+                                    <div class="card__job-empname-label">  
+                                    <?php if ($org): ?>
+                                      <?= $orgName ?>
+                                     <?php else: ?>
+                                      <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
+                                     <?php endif ?>
+                                   </div>
+                                  <div class="card__job-location">
+                                      
+                                       <?php
+                                       $location = $job->getLocations()->last();
+                                         if ($location == '') {
+                                              $locationString = $this->translate('Swiss');
+                                          }
+                                        elseif ($location) {
+                                           $locationString = $location->getCity() ? $location->getCity() :
+                                          preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                             }
+                                         else {
+                                          $locationString = preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                                             }
+                                           ?>
+                                    <?=$locationString ?>
+    
+                                  </div>
+                                 </div>
+                                 <div class="card__job-snippet-logo">
+                                   <p class="card__job-snippet" dir="auto">
+                                                  <?php
+                                                    $preview = null;
+                                                    if ($job->getTemplateValues()->getIntroduction()) {
+                                                        $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 215);
+                                                    }
+                                                    elseif ($job->getTemplateValues()->getHtml()) {
+                                                        $preview = $job->getTemplateValues()->getHtml();
+                                                        $preview = str_replace(['<li>', '<strong>', '</strong>', '</u>', '</p>', '</h2>', '<b>', '<u>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>','<div>'], ' ', $preview);
+                                                        $preview = substr(strip_tags($preview), 0 , 215);
+                                                    }
+                                                    if ($preview) {
+                                                        $preview = str_replace('<p>', '', $preview);
+                                                        $preview = str_replace('</p>', '', $preview);
+                                                        $preview   = implode(' ', explode(' ', $preview, -1));
+                                                        $preview .= ' ... ';
+                                                    }
+                                                ?>
+                                                <?= $preview ?>
+                                   </p>
+                                </div>
+                               <div class="card_job-short-info ">
+        							<ul>
+        							   <li class="new">Neu</li>	
+        							   <li class="type">vor 2 Tagen </li>
+        							   <li class="contract">Vollzeit </li>
+        							  
+        							</ul>
+							    </div>                               
                                </div>
                             </div><!-- end card -->
                             
