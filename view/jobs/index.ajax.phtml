@@ -227,11 +227,16 @@ if (count($jobs)): ?>
                                    else { ?>
                                      <a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><img class="job-logo" alt="<?= $orgName ?>" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" /></a>
                                    <?php } ?>
-                                   
-                                   
-                                   
-                                   
-                            
+                               <div class="card__job-content box__action-buttons">
+                                  <?php if($jobHasExternLink) { ?>
+                                    <h2><a rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?> <i class="fa fa-external-link"></i></a></h2>
+                                      <?php }
+                                      else { ?>
+                                    <h2><a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?></a></h2>
+                                     <?php } ?>
+                                     
+                                     
+                               </div>
                             </div><!-- end card -->
                             
                             
