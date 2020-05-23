@@ -286,204 +286,32 @@ if (count($jobs)): ?>
                                 </div>
                                <div class="card_job-short-info ">
         							<ul>
-        							   <li class="new">Neu</li>	
-        							   <li class="type">vor 2 Tagen </li>
-        							   <li class="contract">Vollzeit </li>
-        							  
-        							</ul>
-							    </div>                               
-                               </div>
-                            </div><!-- end card -->
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            <div class="col-md-12 col-sm-6 col-xs-12">
-                                <div class="featured-image-box">
-                                    <?php
-                                        // check for newer than 24 hoursj
+                                      <?php
+                                        // check for newer than 24 hours
                                         $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
                                         $dayDiff = $today->diff($jobDate);
                                         if ($dayDiff->days < 1) {
-                                            echo '<div class="corner"><span>NEU</span></div>';
+                                            echo '<li class="new">Neu</li>';
                                         }
                                     ?>
-
-                                    <div class="content-area">
-                                        <div class="top-cnt">
-                                            <div class="box__job-favorite">
-                                                <h2>
-                                                    <?php if($jobHasExternLink) { ?>
-                                                        <a title="<?=strip_tags($job->getTitle())?>" rel="nofollow noopener sponsored" target="_blank"
-                                                           href="<?=$href?>"><?=strip_tags($job->getTitle())?>
-                                                           <i class="fa fa-external-link"></i>
-                                                        </a>
-                                                    <?php }
-                                                    else { ?>
-                                                        <a title="<?=strip_tags($job->getTitle())?>"
-                                                           href="<?=$href?>"><?=strip_tags($job->getTitle())?>
-                                                        </a>
-                                                    <?php } ?>
-                                                </h2>
-                                            </div>
-                                            <div class="box__job-short-info">
-                                                <ul>
-                                                    <li class="location">
-                                                        <!-- location -->
-                                                        <?php
-                                                        $location = $job->getLocations()->last();
-                                                        if ($location == '') {
-                                                            $locationString = $this->translate('Swiss');
-                                                        }
-                                                        elseif ($location) {
-                                                            $locationString = $location->getCity() ? $location->getCity() :
-                                                                preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                                                        }
-                                                        else {
-                                                            $locationString = preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                                                        }
-                                                        ?>
-                                                        <?=$locationString ?>
-                                                        <!-- end location -->
-                                                    </li>
-                                                    <li class="company">
-                                                        <!-- company name -->
-                                                        <?php if ($org && !$orgIsDisabled): ?>
-                                                            <a title="Jobs <?= $this->organizationName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
-                                                        <?php else: ?>
-                                                            <strong><?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?></strong>
-                                                        <?php endif ?>
-                                                        <!-- end company name -->
-                                                    </li>
-                                                    <li class="type">
-                                                        <!-- type of contract -->
-                                                        <?php
-                                                        $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
-                                                        <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
-                                                        <!-- end type of contract -->
-                                                    </li>
-                                                    <li class="date">
-                                                        <!-- published date -->
-                                                        <span><?= $this->publishDateFormatter($job) ?></span>
-                                                        <!-- end published date -->
-                                                    </li>
-                                                    <!-- HINT: some jobs has invalid industries, therefore check for empty string -->
+        							   
+        							   <li class="type"><?= $this->publishDateFormatter($job) ?></li>
+        							   <li class="contract"><?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                                        <?=$typeOfContract; ?></li>
+        							   <!-- HINT: some jobs has invalid industries, therefore check for empty string -->
                                                     <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
                                                         <li class="industries">
                                                             <?= $industries->__toString(); ?>
                                                         </li>
                                                     <?php endif; ?>
-                                                </ul>
-                                                <div class="wrapper__right">
-                                                    <div class="wrapper__logo">
-                                                        <?php
-                                                            $logoUrl = null;
-                                                            if (is_object($org) && is_object($org->getImage()) && $org->getImage()->getUri()) {
-                                                                $logoUrl = $this->basePath($this->organizationImageCache->getUri($org->getImage(true)));
-                                                            }
-                                                            if ($template && ($logo = $template->getLogo())) {
-                                                                $logoUrl = $this->basePath($logo->getUri());
-                                                            }
-                                                        ?>
-                                                        <?php if(!$jobHasExternLink) : ?>
-                                                            <a title="<?=strip_tags($job->getTitle())?>" target="_blank"
-                                                               href="<?=$href?>">
-                                                                <img loading="lazy" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" alt="<?= $orgName ?>" />
-                                                            </a>
-                                                        <?php else : ?>
-                                                            <img loading="lazy" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" alt="<?= $orgName ?>" />
-                                                        <?php endif; ?>
-
-                                                    </div>
-                                                </div>
-                                          </div>
-
-                                   <div class="row">
-                                       <div class="col-xs-12 col-md-10">
-                                            <p class="preview-text">
-                                               
-                                                <?php
-                                                    $preview = null;
-                                                    if ($job->getTemplateValues()->getIntroduction()) {
-                                                        $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 215);
-                                                    }
-                                                    elseif ($job->getTemplateValues()->getHtml()) {
-                                                        $preview = $job->getTemplateValues()->getHtml();
-                                                        $preview = str_replace(['<li>', '<strong>', '</strong>', '</u>', '</p>', '</h2>', '<b>', '<u>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>','<div>'], ' ', $preview);
-                                                        $preview = substr(strip_tags($preview), 0 , 215);
-                                                    }
-                                                    if ($preview) {
-                                                        $preview = str_replace('<p>', '', $preview);
-                                                        $preview = str_replace('</p>', '', $preview);
-                                                        $preview   = implode(' ', explode(' ', $preview, -1));
-                                                        $preview .= ' ... ';
-                                                    }
-                                                ?>
-                                                <?= $preview ?>
-   
-                                            </p>
-                                        </div>
-                                    <div class="col-xs-12 col-md-2">
-                                        
-                                         <div class="box__action-buttons">
-                                                <!-- share button -->
-                                                <?php if(!$jobHasExternLink) : ?>
-                                                    <div id="shareMail<?= $index ?>" class="hidden shareMail"
-                                                         data-url="<?=$href?>" data-title="<?=strip_tags($job->getTitle())?>"></div>
-                                                    <div id="shareWhatsapp<?= $index ?>" class="visible-sm visible-xs shareWhatsapp"
-                                                         data-url="<?=$href?>" data-title="<?=strip_tags($job->getTitle())?>"></div>
-                                                <?php endif; ?>
-                                                <!-- end share button -->
-
-                                                <?php if(!$jobHasExternLink) : ?>
-                                                    <!-- favorite button -->
-                                                    <?php if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
-                                                        <button type="button" class="btn btn-default saved"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
-                                                            <span><?=$this->translate('Marked')?></span>
-                                                        </button>
-                                                    <?php else : ?>
-                                                        <button type="button" class="pull-right btn btn-default"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
-                                                            <span><?=$this->translate('Mark')?></span>
-                                                        </button>
-                                                    <?php endif ?>
-                                                    <!-- end favorite button -->
-                                                <?php endif; ?>
-                                            </div>
-
-                                   </div>
-                                  </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        							</ul>
+							    </div>                               
+                               </div>
+                            </div><!-- end card -->
                             
-                            
-                            
-                            
-                            
-
                             <?php if ($index == 1) : ?>
                                 <!-- box after second job -->
-                               <div id="form-jobsbymail-subscribe-form" class="form-jobsbymail-subscribe-form-desktop col-md-12 col-sm-6 col-xs-12">
-                                    <div class="featured-image-box">
-                                        <h2>Täglich neue Jobs per E-Mail erhalten?</h2>
-                                        <p>Lassen Sie sich automatisch informieren, sobald für dieses Suchergebnis neue Stellen online sind.</p>
-                                        <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-                                    </div>
-                                </div>
+                               
                             <?php endif ?>
                             <?php if ($index == 2) : ?>
                                 <!-- box after third job -->
