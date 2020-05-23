@@ -64,7 +64,6 @@ class JsonLdProvider implements JsonLdProviderInterface
                 'logo' => $this->getLogo()
             ],
             'jobLocation' => $this->getLocations($this->job->getLocations()),
-            'postalCode' => $location->getPostalCode(),
             'employmentType' => $this->job->getClassifications()->getEmploymentTypes()->getValues(),
             'validThrough' => $dateEnd
         ];
