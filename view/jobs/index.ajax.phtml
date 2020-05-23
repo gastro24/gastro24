@@ -233,6 +233,23 @@ if (count($jobs)): ?>
   <a class="job-logo-link" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><img class="job-logo" alt="<?= $orgName ?>" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" /></a>
   <?php } ?>
   <div class="card__job-content box__action-buttons">
+      
+          <?php if(!$jobHasExternLink) : ?>
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="pull-right btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
+                                                <?php endif; ?>
+      
     <?php if($jobHasExternLink) { ?>
     <h2><a rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?> <i class="fa fa-external-link"></i></a></h2>
     <?php }
@@ -338,23 +355,19 @@ if (count($jobs)): ?>
 								</div>
                  <?php endif ?>
                 
+
+              <?php if (count($this->jobs)):?>   
+                <div class="to-top-link">
+                    <a id="scroll-to-top" href="#top"><span class="fa fa-chevron-up"></span> nach oben</a>
+                </div>
+                 <?php endif ?>
+                
             </div>
             <?=$hasFacets ? '</div>' : '' ?>
 <?php endif ?>
 
- <?php if (count($this->jobs)):?>
- 
-         <div class="row">
-            <div class="col-md-12">
-                <div class="to-top-link">
-                    <a id="scroll-to-top" href="#top"><span class="fa fa-chevron-up"></span> nach oben</a>
-                </div>
-            </div>
-          </div>
-         
-        
-   <?php endif ?>
- 
+
+
         </div>
     </div>
 </div>
