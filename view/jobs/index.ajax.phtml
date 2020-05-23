@@ -81,10 +81,6 @@ if (count($jobs)): ?>
         ]); ?>
         <!-- breadcrumbs -->
 
-        <div class="page-title">
-             <span><?=$this->jobs->getTotalItemCount() ?> </span>
-            <h1><?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer für '.$searchTerm.' Jobs' : 'Leider keine passenden Jobs gefunden'); ?></h1>
-        </div>
 
         <div class="row job-results-container">
             <div class="col-md-12 container__date-filter">
@@ -189,13 +185,7 @@ if (count($jobs)): ?>
                       <a class="btn gastro-btn-secondary job-alert pull-right" data-toggle="modal" data-target="#job-by-mail-subscribe-modal"><i class="fa fa-bell"></i> Job-Alarm erstellen</a>
                    </div>
                 </div>
-                
-                
-                
-                
-                
-                <div class="row">
-                    <div class="row-eq-height">
+        
                         <?php
                             // get date difference
                             $today = new DateTime();
@@ -221,6 +211,42 @@ if (count($jobs)): ?>
                                 }
                                 $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true, 'absolute' => true ]);
                             ?>
+         <!-- begin card--><div class="card">
+                                   <?php
+                                        $logoUrl = null;
+                                        if (is_object($org) && is_object($org->getImage()) && $org->getImage()->getUri()) {
+                                         $logoUrl = $this->basePath($this->organizationImageCache->getUri($org->getImage(true)));
+                                            }
+                                         if ($template && ($logo = $template->getLogo())) {
+                                         $logoUrl = $this->basePath($logo->getUri());
+                                         }
+                                    ?>
+                                  <?php if($jobHasExternLink) { ?>
+                                     <a rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><img class="job-logo" alt="<?= $orgName ?>" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" /></a>
+                                   <?php }
+                                   else { ?>
+                                     <a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><img class="job-logo" alt="<?= $orgName ?>" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" /></a>
+                                   <?php } ?>
+                                   
+                                   
+                                   
+                                   
+                            
+                            </div><!-- end card -->
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             <div class="col-md-12 col-sm-6 col-xs-12">
                                 <div class="featured-image-box">
                                     <?php
@@ -382,6 +408,11 @@ if (count($jobs)): ?>
                                     </div>
                                 </div>
                             </div>
+                            
+                            
+                            
+                            
+                            
 
                             <?php if ($index == 1) : ?>
                                 <!-- box after second job -->
@@ -398,8 +429,11 @@ if (count($jobs)): ?>
 
                             <?php endif ?>
                         <?php endforeach?>
-                    </div>
-                </div>
+                   
+                   
+                   
+                   
+                   
              
                 <!-- pagination -->
                    <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
