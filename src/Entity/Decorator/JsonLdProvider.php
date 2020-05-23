@@ -107,11 +107,12 @@ class JsonLdProvider implements JsonLdProviderInterface
                     '@type' => 'Place',
                     'address' => [
                         '@type' => 'PostalAddress',
-                        'streetAddress' => $location->getStreetname() . ' ' . $location->getStreetnumber(),
-                        'postalCode' => $location->getPostalCode(),
+                        //'streetAddress' => $location->getStreetname() . ' ' . $location->getStreetnumber(),
+                        //'postalCode' => $location->getPostalCode(),
                         'addressLocality' => $location->getCity(),
-                        'addressCountry' => $location->getCountry(),
-                        'addressRegion' => $location->getRegion(),
+                        //'addressCountry' => $location->getCountry(),
+                        //'addressRegion' => $location->getRegion(),
+                        'addressRegion' => $location->getCity(),
                     ]
                 ]
             );
