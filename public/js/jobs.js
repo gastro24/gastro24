@@ -143,7 +143,7 @@
                 var saveButton = $(this);
                 var saveText = saveButton.data('text-save');
                 var savedText = saveButton.data('text-saved');
-                var jobLink = $(this).parent().parent().parent().parent().find('.box__job-favorite h2 > a').attr('href');
+                var jobLink = $(this).parent().parent().parent().find('.box__job-favorite h2 > a').attr('href');
                 var jobId = jobLink.split('-').pop().replace('.html', '');
                 var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
 
