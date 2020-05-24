@@ -31,7 +31,7 @@ foreach ($publishFacetsDayValues as $facetPublishDay) {
 ?>
 
 
-<select id="jobDateFilter" name="jobDateFilter" data-searchbox="-1" style=" overflow:auto;" size="5">
+<select id="jobDateFilter" name="jobDateFilter" data-searchbox="-1">
     <option class="date-filter-option" value="all" <?php if($this->dateFilterValue == '') echo 'selected'; ?>>Alle</option>
     <?php if ($showLast24Hours): ?>
         <option class="date-filter-option" value="1440" <?php if($this->dateFilterValue == '1440') echo 'selected'; ?>>neuer als 24 h</option>
