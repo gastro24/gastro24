@@ -30,12 +30,6 @@ foreach ($publishFacetsDayValues as $facetPublishDay) {
 }
 ?>
 
-<div >
-    
-    <div class="filter-links">
-         <label> <input type="checkbox" name="" value="all" <?php if($this->dateFilterValue == '') echo 'selected'; ?> class="facet-checkbox date-filter-option">Alle</label>
-    </div>
-</div>
 
 <select id="jobDateFilter" name="jobDateFilter" data-searchbox="-1" >
     <option class="date-filter-option" value="all" <?php if($this->dateFilterValue == '') echo 'selected'; ?>>Alle</option>
