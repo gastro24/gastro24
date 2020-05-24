@@ -346,7 +346,7 @@ if (count($jobs)): ?>
                 <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
 							<div class="row">
                               <div class="col-md-12" id="infobox-<?=$this->params()->fromRoute('term') ?>">
-                                <div class="featured-image-box similarjob">
+                                <div class="card similarjob">
                                    <?= $parts[1] ?>
                                     <?php if (51 == $query): echo $this->landingpages(); endif; ?>
                                     
