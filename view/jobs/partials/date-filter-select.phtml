@@ -31,12 +31,6 @@ foreach ($publishFacetsDayValues as $facetPublishDay) {
 ?>
 
 
-<div id="jobDateFilter">  
-<label><input type="radio" class="date-filter-option" value="all" <?php if($this->dateFilterValue == '') echo 'checked'; ?> class="facet-checkbox">Alle </label>
-
-</div>
-   
-
 <select id="jobDateFilter" name="jobDateFilter" data-searchbox="-1">
     <option class="date-filter-option" value="all" <?php if($this->dateFilterValue == '') echo 'selected'; ?>>Alle</option>
     <?php if ($showLast24Hours): ?>
