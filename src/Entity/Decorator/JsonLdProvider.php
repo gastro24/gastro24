@@ -44,7 +44,7 @@ class JsonLdProvider implements JsonLdProviderInterface
         $dateEnd = $dateEnd ? $dateEnd->format('Y-m-d H:i:s') : null;
         if (!$dateEnd) {
             $dateEnd = new \DateTime($dateStart);
-            $dateEnd->add(new \DateInterval("P180D"));
+            $dateEnd->add(new \DateInterval("P30D"));
             $dateEnd = $dateEnd->format('Y-m-d H:i:s');
         }
         $array=[
@@ -111,7 +111,7 @@ class JsonLdProvider implements JsonLdProviderInterface
                         'postalCode' => $location->getPostalCode(),
                         'addressLocality' => $location->getCity(),
                         'addressCountry' => $location->getCountry(),
-                        'addressRegion' => $location->getRegion(),
+                        'addressRegion' => $location->getCity(),
                     ]
                 ]
             );

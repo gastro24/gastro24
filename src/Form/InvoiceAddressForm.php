@@ -11,6 +11,7 @@
 namespace Gastro24\Form;
 
 use Core\Entity\Hydrator\EntityHydrator;
+use Core\Form\Element\InfoCheckbox;
 use Core\Form\Form;
 use Core\Form\SummaryForm;
 use Core\Form\ViewPartialProviderInterface;
@@ -22,6 +23,8 @@ use Orders\Form\InvoiceAddressFieldset;
 use Zend\Form\Fieldset;
 use Zend\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
 use Zend\Http\PhpEnvironment\Request;
+use Zend\InputFilter\Input;
+use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Stdlib\ArrayUtils;
 
@@ -38,6 +41,31 @@ class InvoiceAddressForm extends Form
     public function init()
     {
         $this->add([
+            'type' => InvoiceAddressFieldset::class,
+            'options' => [
+                'input_filter_spec' => [
+                    'gender' => [
+                        'required' => false,
+                        'allow_empty' => true
+                    ],
+                    'phonenumber' => [
+                        'filters' => [
+                            ['name' => 'StringTrim'],
+                        ],
+                        'validators' => [
+                            ['name' => 'regex', 'options' => [
+                                'pattern' => '~^[0-9 /\+]*$~',
+                                'message' => 'Es sind nur Ziffern, "/" und "+" erlaubt',
+                                'translatorTextDomain' => 'Gastro24',
+                            ]],
+                        ],
+                    ],
+                ],
+            ]
+        ]);
+
+        $invoiceAddressFieldset = $this->get('invoiceAddress');
+        $this->add([
                 'type'       => 'text',
                 'name'       => 'firstname',
                 'options'    => array(
@@ -49,7 +77,6 @@ class InvoiceAddressForm extends Form
                 ],
             ]
         );
-
         $this->add([
                 'type'       => 'text',
                 'name'       => 'lastname',
@@ -63,44 +90,9 @@ class InvoiceAddressForm extends Form
                 ],
             ]
         );
-
-        $this->add([
-            'type' => InvoiceAddressFieldset::class,
-        ]);
-
-        $this->get('invoiceAddress')->remove('gender');
-        $this->get('invoiceAddress')->get('company')
-            ->setAttribute('class', 'form-control')
-            ->setAttribute('required', true)
-            ->setName('invoiceAddress[company]');
-
-        $this->get('invoiceAddress')->get('street')
-            ->setAttribute('class', 'form-control')
-            ->setAttribute('required', true)
-            ->setName('invoiceAddress[street]');
-
-        $this->get('invoiceAddress')->get('zipCode')
-            ->setAttribute('class', 'form-control')
-            ->setAttribute('required', true)
-            ->setName('invoiceAddress[zipCode]');
-
-        $this->get('invoiceAddress')->get('city')
-            ->setAttribute('class', 'form-control')
-            ->setAttribute('required', true)
-            ->setName('invoiceAddress[city]');
-
-        $this->get('invoiceAddress')->get('region')
-            ->setAttribute('class', 'form-control')
-            ->setName('invoiceAddress[region]');
-
-        $this->get('invoiceAddress')->get('email')
-            ->setAttribute('class', 'form-control')
-            ->setAttribute('required', true)
-            ->setName('invoiceAddress[email]');
-
         $this->add([
             'type' => 'radio',
-            'name' => 'genderRadio',
+            'name' => 'gender',
             'options' => [
                 'label'         => /*@translate */ 'Salutation',
                 'value_options' => [
@@ -114,7 +106,6 @@ class InvoiceAddressForm extends Form
                 'class' => 'form-control'
             ],
         ]);
-
         $this->add([
             'type' => 'text',
             'name' => 'phonenumber',
@@ -126,9 +117,38 @@ class InvoiceAddressForm extends Form
             ],
         ]);
 
+        $invoiceAddressFieldset->remove('gender');
+        $invoiceAddressFieldset->get('company')
+            ->setAttribute('class', 'form-control')
+            ->setAttribute('required', true)
+            ->setName('invoiceAddress[company]');
+
+        $invoiceAddressFieldset->get('street')
+            ->setAttribute('class', 'form-control')
+            ->setAttribute('required', true)
+            ->setName('invoiceAddress[street]');
+
+        $invoiceAddressFieldset->get('zipCode')
+            ->setAttribute('class', 'form-control')
+            ->setAttribute('required', true)
+            ->setName('invoiceAddress[zipCode]');
+
+        $invoiceAddressFieldset->get('city')
+            ->setAttribute('class', 'form-control')
+            ->setAttribute('required', true);
+
+        $invoiceAddressFieldset->get('region')
+            ->setAttribute('class', 'form-control')
+            ->setName('invoiceAddress[region]');
+
+        $invoiceAddressFieldset->get('email')
+            ->setAttribute('class', 'form-control')
+            ->setAttribute('required', true)
+            ->setName('invoiceAddress[email]');
+
         $this->add(
             array(
-                'type' => 'infoCheckBox',
+                'type' => InfoCheckbox::class,
                 'name' => 'termsAccepted',
                 'options' => array(
                     'long_label' => /*@translate*/ 'Ich erkläre mich mit den %s (AGB) von Gastrojob24 einverstanden',
@@ -168,10 +188,11 @@ class InvoiceAddressForm extends Form
             'name' => 'otherAddress',
             'type' => InvoiceAddressFieldset::class,
         ]);
+        /** @var InvoiceAddressFieldset $otherAddressFieldset */
         $otherAddressFieldset = $this->get('otherAddress');
-        $otherAddressFieldset->add([
+        $this->add([
             'type'       => 'text',
-            'name'       => 'firstname',
+            'name'       => 'firstname-other-address',
             'options'    => array(
                 'label' => /*@translate*/ 'Vorname',
             ),
@@ -180,9 +201,9 @@ class InvoiceAddressForm extends Form
                 'class' => 'form-control'
             ],
         ]);
-        $otherAddressFieldset->add([
+        $this->add([
             'type'       => 'text',
-            'name'       => 'lastname',
+            'name'       => 'lastname-other-address',
             'options'    => array(
                 'label' => /*@translate*/ 'Name',
             ),
@@ -192,10 +213,8 @@ class InvoiceAddressForm extends Form
             ],
         ]);
         $otherAddressFieldset->remove('gender');
-        $otherAddressFieldset->get('company')
-            ->setAttribute('class', 'form-control')
-            ->setAttribute('required', true)
-            ->setName('otherAddress[company]');
+        $otherAddressFieldset->remove('company');
+        $otherAddressFieldset->remove('email');
 
         $otherAddressFieldset->get('street')
             ->setAttribute('class', 'form-control')
@@ -216,14 +235,9 @@ class InvoiceAddressForm extends Form
             ->setAttribute('class', 'form-control')
             ->setName('otherAddress[region]');
 
-        $otherAddressFieldset->get('email')
-            ->setAttribute('class', 'form-control')
-            ->setAttribute('required', true)
-            ->setName('otherAddress[email]');
-
-        $otherAddressFieldset->add([
+        $this->add([
             'type' => 'radio',
-            'name' => 'genderRadio',
+            'name' => 'gender-other-address',
             'options' => [
                 'label'         => /*@translate */ 'Salutation',
                 'value_options' => [
@@ -237,9 +251,9 @@ class InvoiceAddressForm extends Form
                 'class' => 'form-control'
             ],
         ]);
-        $otherAddressFieldset->add(
+        $this->add(
             array(
-                'type' => 'infoCheckBox',
+                'type' => InfoCheckbox::class,
                 'name' => 'toggleOtherAddress',
                 'options' => array(
                     'long_label' => /*@translate*/ 'Abweichende Rechnungsadresse',
@@ -249,6 +263,25 @@ class InvoiceAddressForm extends Form
                 ),
             )
         );
+
+//        $inputSpec = $otherAddressFieldset->getInputFilterSpecification();
+//        $inputSpec['genderRadio'] = [
+//            'required' => false,
+//            'allow_empty' => true
+//        ];
+//        $inputSpec['toggleOtherAddress'] = [
+//            'required' => false,
+//            'allow_empty' => true
+//        ];
+//        $invoiceAddressInputFilter = new InputFilter();
+//        $invoiceAddressInputFilter->add([
+//            'required' => false,
+//            'allow_empty' => true
+//        ], 'genderRadio');
+
+
+//        $this->attachInputFilterDefaults($this->getInputFilterSpecificationForIncoiceAddress(), $invoiceAddressFieldset);
+//        $this->attachInputFilterDefaults($this->getInputFilterSpecificationForOtherAddress(), $otherAddressFieldset);
     }
 
     public function isValid()
@@ -270,6 +303,10 @@ class InvoiceAddressForm extends Form
     public function getInputFilterSpecification()
     {
         return [
+//            'gender' => [
+//                'required' => false,
+//                'allow_empty' => true
+//            ],
             'phonenumber' => [
                 'filters' => [
                     ['name' => 'StringTrim'],

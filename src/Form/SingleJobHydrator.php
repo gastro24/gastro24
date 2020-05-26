@@ -51,22 +51,22 @@ class SingleJobHydrator implements HydratorInterface
 
     public function hydrate(array $data, $object)
     {
-        /* @var \Jobs\Entity\Job $object */
-        if ('html' == $data['mode']) {
-            $link = $object->getLink();
-            if ('.pdf' == substr($link, -4)) {
-                @unlink('public/' . $link);
-            }
-            $object->setLink('');
-            $object->getTemplateValues()->setIntroduction($data['introduction']);
-            $object->getTemplateValues()->setDescription($data['description']);
-            $object->getTemplateValues()->setBenefits($data['benefits']);
-            $object->getTemplateValues()->position = $data['position'];
-            $object->getTemplateValues()->setRequirements($data['requirements']);
-
-        } else {
-            $object->setLink('uri' == $data['mode'] ? $data['uri'] : (isset($_POST['pdf_uri']) ? $_POST['pdf_uri'] : $data['pdf']));
-        }
+//        /* @var \Jobs\Entity\Job $object */
+//        if ('html' == $data['mode']) {
+//            $link = $object->getLink();
+//            if ('.pdf' == substr($link, -4)) {
+//                @unlink('public/' . $link);
+//            }
+//            $object->setLink('');
+//            $object->getTemplateValues()->setIntroduction($data['introduction']);
+//            $object->getTemplateValues()->setDescription($data['description']);
+//            $object->getTemplateValues()->setBenefits($data['benefits']);
+//            $object->getTemplateValues()->position = $data['position'];
+//            $object->getTemplateValues()->setRequirements($data['requirements']);
+//
+//        } else {
+//            $object->setLink('uri' == $data['mode'] ? $data['uri'] : (isset($_POST['pdf_uri']) ? $_POST['pdf_uri'] : $data['pdf']));
+//        }
 
         $template = $object->getAttachedEntity('gastro24-template');
         $repository = $this->repositories->get(TemplateImage::class);
@@ -75,12 +75,12 @@ class SingleJobHydrator implements HydratorInterface
             $this->repositories->store($template);
             $object->addAttachedEntity($template, 'gastro24-template');
         }
-        if (isset($_POST['details']['logo_id'])) {
-            $file = $repository->find($_POST['details']['logo_id']);
+        if (isset($data['logo_id'])) {
+            $file = $repository->find($data['logo_id']);
             $template->setLogo($file);
         }
-        if (isset($_POST['details']['image_id'])) {
-            $file = $repository->find($_POST['details']['image_id']);
+        if (isset($data['bannerImage_id'])) {
+            $file = $repository->find($data['bannerImage_id']);
             $template->setImage($file);
         }
 

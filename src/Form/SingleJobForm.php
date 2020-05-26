@@ -269,67 +269,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 ),
             )
         );
-
-
-
-//        $this->add([
-//            'name' => 'details',
-//            'type' => JobDetails::class,
-//            'options' => [
-//                'label' => 'Details',
-//            ],
-//        ]);
     }
-
-//    public function init()
-//    {
-//        $this->setIsDescriptionsEnabled(true);
-//        $this->setDescription('Hier können Sie ein Einzelinserat aufgeben');
-//        $this->setAttribute('class', $this->getAttribute('class') . ' file-upload');
-//        $this->setAttribute('id', 'createsinglejob');
-//
-//
-//
-
-
-
-
-
-
-
-//
-//
-//        $this->add([
-//            'type' => 'Orders/InvoiceAddressFieldset',
-//            'options' => [
-//                'label' => /*@translate */ 'Kontaktadresse',
-//            ],
-//        ]);
-//
-
-
-//        $this->add([
-//            'type' => 'DefaultButtonsFieldset',
-//            'name' => 'buttons',
-//            'options' => [
-//                'save_label' => 'Weiter zur Vorschau',
-//            ]
-//        ]);
-//
-//        $detailsFieldset = $this->get('details');
-//        $detailsFieldset->remove('pdf');
-//        $detailsFieldset->remove('mode');
-//        $detailsFieldset->add([
-//            'type' => 'hidden',
-//            'name' => 'mode',
-//            'attributes' => [ 'value' => 'html' ],
-//        ]);
-//        $this->get('invoiceAddress')->remove('vatId');
-//
-//        $classificationFieldset = $this->get('classifications');
-//        $classificationFieldset->remove('professions');
-//        $classificationFieldset->remove('industries');
-//    }
 
     public function getInputFilterSpecification()
     {

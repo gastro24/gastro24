@@ -37,9 +37,11 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
 if ($this->isIntern):
      $this->headMeta()->setName('robots', 'index,follow');
 elseif(!$this->isIntern && !$this->isEmbeddable):
-      $this->headMeta()->setName('robots', 'noindex,nofollow');
+      $this->headMeta()->setName('robots', 'noindex,follow');
+elseif(!$this->isIntern && $this->isEmbeddable):
+      $this->headMeta()->setName('robots', 'noindex,follow');
 elseif($isCoopJobWithWrongLink):
-    $this->headMeta()->setName('robots', 'noindex,nofollow');
+    $this->headMeta()->setName('robots', 'noindex,follow');
 endif;
 
 // organisation values

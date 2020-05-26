@@ -119,9 +119,9 @@
         </div>
         <div class="row form-group">
             <div class="col-md-11 gender-field">
-                <?= $this->formLabel($this->invoiceAddressForm->get('genderRadio'), 'Anrede'); ?>
+                <?= $this->formLabel($this->invoiceAddressForm->get('gender'), 'Anrede'); ?>
                 <div class="radioBoxes" style="display: flex;">
-                    <?= $this->formRadio($this->invoiceAddressForm->get('genderRadio')); ?>
+                    <?= $this->formRadio($this->invoiceAddressForm->get('gender')); ?>
                 </div>
             </div>
         </div>
@@ -179,32 +179,26 @@
             <h2>Abweichende Rechnungsadresse</h2>
             <div class="row form-group">
                 <div class="col-md-11">
-                    <?= $this->formElement($otherAddressFieldset->get('toggleOtherAddress')); ?>
+                    <?= $this->formElement($this->invoiceAddressForm->get('toggleOtherAddress')); ?>
                 </div>
             </div>
             <div class="otherAddressForm">
                 <div class="row form-group">
                     <div class="col-md-5">
-                        <?= $this->formLabel($otherAddressFieldset->get('firstname'), 'Vorname'); ?>
-                        <?= $this->formText($otherAddressFieldset->get('firstname')); ?>
+                        <?= $this->formLabel($this->invoiceAddressForm->get('firstname-other-address'), 'Vorname'); ?>
+                        <?= $this->formText($this->invoiceAddressForm->get('firstname-other-address')); ?>
                     </div>
                     <div class="col-md-6">
-                        <?= $this->formLabel($otherAddressFieldset->get('lastname'), 'Name'); ?>
-                        <?= $this->formText($otherAddressFieldset->get('lastname')); ?>
+                        <?= $this->formLabel($this->invoiceAddressForm->get('lastname-other-address'), 'Name'); ?>
+                        <?= $this->formText($this->invoiceAddressForm->get('lastname-other-address')); ?>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-11 gender-field">
-                        <?= $this->formLabel($otherAddressFieldset->get('genderRadio'), 'Anrede'); ?>
+                        <?= $this->formLabel($this->invoiceAddressForm->get('gender-other-address'), 'Anrede'); ?>
                         <div class="radioBoxes" style="display: flex;">
-                            <?= $this->formRadio($otherAddressFieldset->get('genderRadio')); ?>
+                            <?= $this->formRadio($this->invoiceAddressForm->get('gender-other-address')); ?>
                         </div>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-11">
-                        <?= $this->formLabel($otherAddressFieldset->get('company'), 'Unternehmen'); ?>
-                        <?= $this->formText($otherAddressFieldset->get('company')); ?>
                     </div>
                 </div>
                 <div class="row form-group">

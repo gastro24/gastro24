@@ -17,6 +17,7 @@ use Core\Entity\Tree\Node;
 use Core\Form\Hydrator\Strategy\TreeSelectStrategy;
 use Gastro24\Entity\Template;
 use Gastro24\Entity\TemplateImage;
+use Gastro24\Form\SingleJobHydrator;
 use Jobs\Entity\AtsMode;
 use Jobs\Entity\Classifications;
 use Jobs\Entity\Location;
@@ -35,23 +36,16 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
  */
 class CreateSingleJob extends AbstractPlugin
 {
-
-    private $jobRepository;
-    private $orderRepository;
-    private $templateImageRepository;
+    private $repositories;
     private $orderOptions;
     private $mailer;
 
     public function __construct(
-        \Jobs\Repository\Job $jobRepository,
-        \Orders\Repository\Orders $orderRespository,
-        $templateImageRepository,
+        $repositories,
         \Orders\Options\ModuleOptions $orderOptions,
         \Core\Mail\MailService $mailer
     ) {
-        $this->jobRepository = $jobRepository;
-        $this->orderRepository = $orderRespository;
-        $this->templateImageRepository = $templateImageRepository;
+        $this->repositories = $repositories;
         $this->orderOptions = $orderOptions;
         $this->mailer  = $mailer;
     }
@@ -66,8 +60,10 @@ class CreateSingleJob extends AbstractPlugin
 
     private function createJob($values)
     {
+        $jobRepository= $this->repositories->get('Jobs');
+        $templateImageRepository = $this->repositories->get('Gastro24/TemplateImage');
         /* @var \Jobs\Entity\Job $job */
-        $job = $this->jobRepository->create();
+        $job = $jobRepository->create();
         $job->setCompany($values['company']);
 //        if ('html' == $values['details']['mode']) {
 //            $job->getTemplateValues()->setIntroduction($values['details']['introduction']);
@@ -107,13 +103,21 @@ class CreateSingleJob extends AbstractPlugin
         $job->setTermsAccepted($values['termsAccepted']);
         $job->setClassifications($values['classifications']);
 
-        // save employment type
-//        $hydrator = new EntityHydrator();
-//        $job = $hydrator->hydrate($values, $job);
-
-//        $job = $this->employmentTypesHydrator->hydrate($values, $job);
-//        $this->jobRepository->getDocumentManager()->persist($job->getClassifications()->getEmploymentTypes()->getItems()->last()->getParent());
-//        $this->jobRepository->getDocumentManager()->flush($job->getClassifications()->getEmploymentTypes()->getItems()->last()->getParent());
+        // get logo and banner reference
+        $template = $job->getAttachedEntity('gastro24-template');
+        if (!$template) {
+            $template = new Template();
+            $this->repositories->store($template);
+            $job->addAttachedEntity($template, 'gastro24-template');
+        }
+        if (isset($data['logo_id'])) {
+            $file = $templateImageRepository->find($data['logo_id']);
+            $template->setLogo($file);
+        }
+        if (isset($data['bannerImage_id'])) {
+            $file = $templateImageRepository->find($data['bannerImage_id']);
+            $template->setImage($file);
+        }
 
         $locations = new ArrayCollection();
         foreach ($values['locations'] as $locStr) {
@@ -146,7 +150,7 @@ class CreateSingleJob extends AbstractPlugin
             $job->setDatePublishStart(new \DateTime($values['publishDate']));
         }
 
-        $this->jobRepository->store($job);
+        $jobRepository->store($job);
 
         return $job;
     }
@@ -189,31 +193,53 @@ class CreateSingleJob extends AbstractPlugin
             ]
         ));
 
+        $values['invoiceAddress']['name'] = $values['firstname'] . ' ' . $values['lastname'];
+
+        $mailVars = [
+            'job' => $job,
+            'order' => $order,
+            'invoice' => $values['invoiceAddress'],
+            'applicationOption' => $applicationOption,
+            'applicationOptionData' => $applicationOptionData,
+            'companyWebsite' => $values['companyWebsite'],
+            'companyDescription' => $values['companyDescription'],
+        ];
+        if (isset($values['otherAddress'])) {
+            $mailVars['otherAddress'] = $values['otherAddress'];
+            $mailVars['otherAddress']['name'] = $values['firstname-other-address'] . ' ' . $values['lastname-other-address'];
+        }
+
         $this->mailer->send($this->mailer->get(
             'Gastro24/SingleJobMail',
             [
                 'template' => 'gastro24/mail/single-job-created',
                 'admin'    => true,
                 'subject'  => 'Eine Einzelanzeige wurde erstellt.',
-                'vars'     => [
-                    'job' => $job,
-                    'order' => $order,
-                    'applicationOption' => $applicationOption,
-                    'applicationOptionData' => $applicationOptionData,
-                    'companyWebsite' => $values['companyWebsite'],
-                    'companyDescription' => $values['companyDescription'],
-                ],
+                'vars'     => $mailVars,
             ]
         ));
     }
 
     private function createOrder(\Jobs\Entity\Job $job, $values)
     {
+        $orderRepository = $this->repositories->get('Orders');
         $invoiceAddress = new InvoiceAddress();
         foreach ($values['invoiceAddress'] as $setter => $value) {
             $invoiceAddress->{"set$setter"}($value);
         }
         $invoiceAddress->setName($values['firstname'] . ' ' . $values['lastname']);
+        $invoiceAddress->setGender($values['gender']);
+
+        // overwrite invoice address
+        if (isset($values['otherAddress']) && count($values['otherAddress'])) {
+            $invoiceAddress->setName($values['firstname-other-address'] . ' ' . $values['lastname-other-address']);
+            $invoiceAddress->setGender($values['gender-other-address']);
+            $invoiceAddress->setStreet($values['otherAddress']['street']);
+            $invoiceAddress->setCountry($values['otherAddress']['country']);
+            $invoiceAddress->setRegion($values['otherAddress']['region']);
+            $invoiceAddress->setZipCode($values['otherAddress']['zipCode']);
+            $invoiceAddress->setCity($values['otherAddress']['city']);
+        }
 
         $snapshotBuilder = new Builder();
         $snapshot = $snapshotBuilder->build($job);
@@ -237,8 +263,8 @@ class CreateSingleJob extends AbstractPlugin
             'products' => $products,
         ];
 
-        $order = $this->orderRepository->create($data);
-        $this->orderRepository->store($order);
+        $order = $orderRepository->create($data);
+        $orderRepository->store($order);
 
         return $order;
     }

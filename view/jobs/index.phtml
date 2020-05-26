@@ -62,8 +62,8 @@ $noJobsMessage = $this->translate('No jobs found.');
             var html = $('#jobs-list-container').find('.pagination-content').html();
 
             if ('' === html.trim()) { $tabbar.hide(); }
-
-            $('#jobDateFilter').each($.fn.form.initSelect);
+           
+             $('#jobDateFilter').each($.fn.form.initSelect);
 
             $('#jobs-list-container ul.pagination a, link[rel="prev"], link[rel="next"]').each(function() {
                 var $a = $(this),
