@@ -112,7 +112,7 @@ class JsonLdProvider implements JsonLdProviderInterface
                     'addressRegion' => $location->getCity(),
                 ]
             ];
-            if (isset($coords->getCoordinates()[0])) {
+            if ($coords && isset($coords->getCoordinates()[0])) {
                 $placeArray['geo']  = [
                     '@type' => 'GeoCoordinates',
                     'latitude' => $coords->getCoordinates()[0],
