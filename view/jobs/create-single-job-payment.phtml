@@ -1,0 +1,269 @@
+<style>
+    iframe {
+        background-color:#fff;
+        height:1800px;
+        overflow:auto;
+        width: 1px;
+        min-width: 100%;
+    }
+    #single-job-address-form label,
+    #single-job-form label {
+        font-weight: normal;
+    }
+
+    #single-job-address-form input[type="radio"] {
+        height: 20px;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        width: 35px;
+        float: left;
+    }
+    .gender-field .radioBoxes {
+        width: 30%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .gender-field .radioBoxes label{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    #single-job-address-form .otherAddressForm {
+        display: none;
+    }
+</style>
+<?php if ($this->isSuccess): ?>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <?=$this->alert()->success('Inserat erfolgreich angelegt.');?>
+                <p class="lead">Vielen Dank.</p>
+                <p>Ihr Einzelinserat wurde angelegt. Nach der Prüfung wird das Inserat freigeschaltet.</p>
+        </div>
+    </div>
+<?php elseif ($this->isError): ?>
+    <div class="panel panel-default">
+        <div class="panel-body">
+                <?=$this->alert()->danger('Inserat anlegen fehlgeschlagen');?>
+            <p class="lead">Das Inserat konnte nicht angelegt werden.</p>
+            <p>Es ist ein Fehler aufgetreten. Versuchen Sie es <a href="">erneut</a> ...</p>
+        </div>
+    </div>
+<?php else: ?>
+    <!-- breadcrumbs -->
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="hidden-xs breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/">
+                            <span itemprop="name">Home</span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/lg/stellenanzeigen-schalten">
+                            <span itemprop="name">Inserieren</span>
+                        </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <span itemprop="name">Einzelinserat</span>
+                        <meta itemprop="position" content="3">
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- end breadcrumbs -->
+
+    <!-- Header & Pricing -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="page-title">
+                <h1>Einzelinserat erfassen</h1>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="pull-right">
+                <div class="page-title">
+                    <div>Preis</div>
+                    <div>Einzelinserat: CHF <em class="total">0</em>.- </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ende --->
+
+    <div class="form-container">
+    <!-- begin form -->
+    <?= $this->form()->openTag($this->invoiceAddressForm); ?>
+    <?php
+        $invoiceAddressFieldset = $this->invoiceAddressForm->get('invoiceAddress');
+    ?>
+    <!-- section main -->
+    <div class="section-body">
+        <?php if ($this->payment) : ?>
+            <h2>Zahlung erfolgt auf Rechnung</h2>
+        <?php else: ?>
+            <h2>Ihre Kontaktdaten</h2>
+        <?php endif; ?>
+        <div class="row form-group">
+            <div class="col-md-5">
+                <?= $this->formLabel($this->invoiceAddressForm->get('firstname'), 'Vorname'); ?>
+                <?= $this->formText($this->invoiceAddressForm->get('firstname')); ?>
+            </div>
+            <div class="col-md-6">
+                <?= $this->formLabel($this->invoiceAddressForm->get('lastname'), 'Name'); ?>
+                <?= $this->formText($this->invoiceAddressForm->get('lastname')); ?>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-11 gender-field">
+                <?= $this->formLabel($this->invoiceAddressForm->get('genderRadio'), 'Anrede'); ?>
+                <div class="radioBoxes" style="display: flex;">
+                    <?= $this->formRadio($this->invoiceAddressForm->get('genderRadio')); ?>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formLabel($invoiceAddressFieldset->get('company'), 'Unternehmen'); ?>
+                <?= $this->formText($invoiceAddressFieldset->get('company')); ?>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formLabel($invoiceAddressFieldset->get('street'), 'Strasse / Nr.'); ?>
+                <?= $this->formText($invoiceAddressFieldset->get('street')); ?>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formLabel($invoiceAddressFieldset->get('zipCode'), 'PLZ'); ?>
+                <?= $this->formText($invoiceAddressFieldset->get('zipCode')); ?>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formLabel($invoiceAddressFieldset->get('city'), 'Ort'); ?>
+                <?= $this->formText($invoiceAddressFieldset->get('city')); ?>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formLabel($invoiceAddressFieldset->get('region'), 'Land'); ?>
+                <?= $this->formText($invoiceAddressFieldset->get('region')); ?>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formLabel($invoiceAddressFieldset->get('email'), 'E-Mail'); ?>
+                <?= $this->formEmail($invoiceAddressFieldset->get('email')); ?>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formLabel($this->invoiceAddressForm->get('phonenumber'), 'Telefon'); ?>
+                <?= $this->formText($this->invoiceAddressForm->get('phonenumber')); ?>
+            </div>
+        </div>
+    </div>
+    <!-- end section main -->
+
+    <!-- section different invoice address -->
+    <?php if ($this->payment) : ?>
+        <?php
+            $otherAddressFieldset = $this->invoiceAddressForm->get('otherAddress');
+        ?>
+        <div class="section-body">
+            <h2>Abweichende Rechnungsadresse</h2>
+            <div class="row form-group">
+                <div class="col-md-11">
+                    <?= $this->formElement($otherAddressFieldset->get('toggleOtherAddress')); ?>
+                </div>
+            </div>
+            <div class="otherAddressForm">
+                <div class="row form-group">
+                    <div class="col-md-5">
+                        <?= $this->formLabel($otherAddressFieldset->get('firstname'), 'Vorname'); ?>
+                        <?= $this->formText($otherAddressFieldset->get('firstname')); ?>
+                    </div>
+                    <div class="col-md-6">
+                        <?= $this->formLabel($otherAddressFieldset->get('lastname'), 'Name'); ?>
+                        <?= $this->formText($otherAddressFieldset->get('lastname')); ?>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-11 gender-field">
+                        <?= $this->formLabel($otherAddressFieldset->get('genderRadio'), 'Anrede'); ?>
+                        <div class="radioBoxes" style="display: flex;">
+                            <?= $this->formRadio($otherAddressFieldset->get('genderRadio')); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-11">
+                        <?= $this->formLabel($otherAddressFieldset->get('company'), 'Unternehmen'); ?>
+                        <?= $this->formText($otherAddressFieldset->get('company')); ?>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-11">
+                        <?= $this->formLabel($otherAddressFieldset->get('street'), 'Strasse / Nr.'); ?>
+                        <?= $this->formText($otherAddressFieldset->get('street')); ?>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-11">
+                        <?= $this->formLabel($otherAddressFieldset->get('zipCode'), 'PLZ'); ?>
+                        <?= $this->formText($otherAddressFieldset->get('zipCode')); ?>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-11">
+                        <?= $this->formLabel($otherAddressFieldset->get('city'), 'Ort'); ?>
+                        <?= $this->formText($otherAddressFieldset->get('city')); ?>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-11">
+                        <?= $this->formLabel($otherAddressFieldset->get('region'), 'Land'); ?>
+                        <?= $this->formText($otherAddressFieldset->get('region')); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <!-- end section different invoice address -->
+
+    <!-- section agb -->
+    <div class="section-body">
+        <h2>Allgemeine Geschäftsbedingungen</h2>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formElement($this->invoiceAddressForm->get('termsAccepted')); ?>
+            </div>
+        </div>
+    </div>
+    <!-- end section agb -->
+
+    <!-- section buttons -->
+    <div class="section-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="btn-toolbar">
+                    <a type="button" href="<?= $this->url('lang/jobs/single') ?>" class="cam-btn-reset"
+                            title="Zurück">&laquo; Zurück
+                    </a>
+                    <?= $this->formButton()->openTag($this->invoiceAddressForm->get('submit')); ?>
+                    <div class="default">Einzelinserat schalten</div>
+                    <?= $this->formButton()->closeTag(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end section buttons -->
+
+    <?= $this->form()->closeTag($this->invoiceAddressForm); ?>
+    <!-- end form -->
+<?php endif; ?>

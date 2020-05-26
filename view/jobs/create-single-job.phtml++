@@ -1,0 +1,223 @@
+<?php
+/**
+ * YAWIK
+ *
+ * @filesource
+ * @license MIT
+ * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
+ */
+
+$this->headTitle('Kostenlos Einzelinserat aufgeben');
+$publishDate = $this->dateFormat(new DateTime(), 'medium', 'none');
+$image = isset($this->details['image']['entity']) ? $this->details['image']['entity'] : null;
+
+$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
+$hasBanner = false;
+if (isset($this->details['image_url'])) {
+    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($this->details['image_url']));
+    $hasBanner = true;
+}
+$logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->details['logo_url']) :
+    $this->basePath('modules/Gastro24/images/no-company-logo.png');
+?>
+<style>
+    iframe {
+        background-color:#fff;
+        height:1800px;
+        overflow:auto;
+        width: 1px;
+        min-width: 100%;
+    }
+</style>
+<?php if (!$this->isProcessed):?>
+   <h1><?= $this->translate('Einzelinserat'); ?></h1>
+   <hr />
+ <?php endif?>
+
+<?php if ($this->isProcessed):?>
+
+    <div class="row job-navigation">
+        <div class="col-md-3">
+            <a title="Zurück zur Eingabe" href="/de/job/single" class="btn btn-default btn-block no-margin">
+                <i class="fa fa-chevron-left"></i> Zurück zur Eingabe</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel__job-detail">
+                <!-- Bannerbild -->
+                <?php if ($hasBanner): ?>
+                    <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
+                <?php endif; ?>
+                <!-- End Bannerbild -->
+
+                    <div class="panel-body">
+                        <!-- company logo and job title-->
+                        <?php if ($hasBanner): ?>
+                            <div class="teaser__job-detail">
+                                <div itemprop="logo">
+                                    <div class="wrapper__logo">
+                                        <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
+                                    </div>
+                                </div>
+                                <h1><?=$this->title?></h1>
+                            </div>
+                        <?php endif; ?>
+                        <?php if (!$hasBanner): ?>
+                            <h1 class="no-banner"><?=$this->title?></h1>
+                        <?php endif; ?>
+                        <!-- end company logo and job title-->
+
+                        <div class="job-short-info <?php if(!$hasBanner) echo 'no-banner' ?>">
+                            <ul>
+                                <li class="location">
+                                    <!-- location -->
+                                    <?php
+                                        $locationString = '';
+                                        foreach ($this->locations as $loc) {
+                                            $location = new \Jobs\Entity\Location($loc);
+                                            $locationString .= ' ' . $location->getCity() . ',';
+                                        }
+                                        $locationString = rtrim($locationString, ",");
+                                        echo $locationString;
+                                    ?>
+                                    <!-- end location -->
+                                </li>
+                                <li class="company">
+                                    <!-- company name -->
+                                    <strong><?=$this->invoiceAddress['company']?></strong>
+                                    <!-- end company name -->
+                                </li>
+                                <li class="type">
+                                    <!-- type of contract -->
+                                    <?php
+                                    $typeOfContract = ucfirst($this->classifications->getEmploymentTypes()->__toString()) ?: 'Vollzeit'; ?>
+                                    <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
+                                    <!-- end type of contract -->
+                                </li>
+                                <li class="date">
+                                    <!-- published date -->
+                                    <span><?= $publishDate ?></span>
+                                    <!-- end published date -->
+                                </li>
+                            </ul>
+
+                            <div class="wrapper__right">
+                                <?php if (!$hasBanner): ?>
+                                    <div class="wrapper__logo">
+                                        <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+                        <hr class="job-details-devider"/>
+
+                        <!-- apply button -->
+                        <div class="button-job-apply text-center">
+                            <a style="background-color: #d9534f;border-color: #d43f3a" class="btn btn-primary"
+                               href="?do=complete">Einzelinserat jetzt schalten</a>
+                        </div>
+                        <!-- end apply button -->
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                                <!-- job content -->
+                                <?php if ($this->html): ?>
+                                    <div class="position">
+                                        <?=$this->html?>
+                                    </div>
+                                <?php else: ?>
+                                    <!-- introduction -->
+                                    <div class="introduction">
+                                        <?=$this->details['introduction']?>
+                                    </div>
+
+                                    <!-- position -->
+                                    <div class="position">
+                                        <?=$this->details['position']?>
+                                    </div>
+
+                                    <!-- requirements -->
+                                    <div class="position">
+                                        <?=$this->details['requirements']?>
+                                    </div>
+
+                                    <!-- qualifications -->
+                                    <div class="position">
+                                        <?php if(isset($this->details['qualifications'])): ?>
+                                            <?=$this->details['qualifications']?>
+                                        <?php endif; ?>
+                                    </div>
+
+                                    <!-- benefits -->
+                                    <div class="position">
+                                        <?=$this->details['benefits']?>
+                                    </div>
+                                <?php endif; ?>
+                                <!-- end job content -->
+
+                                <!-- company description -->
+                                <p><?=$this->details['description']?></p>
+                                <!-- end company description -->
+                            </div>
+                        </div>
+
+                        <!-- apply button -->
+                        <div class="button-job-apply text-center">
+                            <a style="background-color: #d9534f;border-color: #d43f3a" class="btn btn-primary"
+                               href="?do=complete">Einzelinserat jetzt schalten</a>
+                        </div>
+                        <!-- end apply button -->
+
+                        <hr class="job-details-devider"/>
+
+                        <!-- share buttons -->
+    <!--                    <div>Diesen Job teilen: </div>-->
+    <!--                    <div id="share" class="pull-left round-shares"></div>-->
+    <!--                    <div class="clearfix"></div>-->
+                        <!-- end share buttons -->
+
+                        <h3><?= $this->translate('Kontaktadresse') ?></h3>
+                        <address>
+                            <?=$this->invoiceAddress['company']?><br>
+                            <?=$this->invoiceAddress['name']?> ( <?=$this->link($this->invoiceAddress['email']) ?> )<br>
+                            <?=$this->invoiceAddress['street']?> <?=$this->invoiceAddress['houseNumber']?><br>
+                            <?=$this->invoiceAddress['zipCode']?> <?=$this->invoiceAddress['city']?><br>
+                            <?=$this->invoiceAddress['region'] ?><br /><?=$this->invoiceAddress['country']?>
+                        </address>
+                    </div>
+                 </div>
+        </div>
+    </div>
+
+<?php elseif ($this->isSuccess): ?>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <?=$this->alert()->success('Inserat erfolgreich angelegt.');?>
+            <p class="lead">Vielen Dank.</p>
+            <p>Ihr Einzelinserat wurde angelegt. Nach der Prüfung wird das Inserat freigeschaltet.</p>
+
+<?php elseif ($this->isError): ?>
+
+            <?=$this->alert()->danger('Inserat anlegen fehlgeschlagen');?>
+            <p class="lead">Das Inserat konnte nicht angelegt werden.</p>
+            <p>Es ist ein Fehler aufgetreten. Versuchen Sie es <a href="">erneut</a> ...</p>
+        </div>
+   </div>
+
+<?php else: ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <?=$this->form($this->form->setAttribute('data-handle-by', 'native'))?>
+            </div>
+        </div>
+    </div>
+<?php endif ?>
+
+
+

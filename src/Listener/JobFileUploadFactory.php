@@ -15,23 +15,21 @@ use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
- * Factory for \Gastro24\Listener\JobDetailFileUpload
+ * Factory for \Gastro24\Listener\JobFileUpload
  * 
  * @author Mathias Gelhausen <gelhausen@cross-solution.de>
  * @todo write test  
  */
-class JobDetailFileUploadFactory implements FactoryInterface
+class JobFileUploadFactory implements FactoryInterface
 {
-    
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $form = $container->get('forms')->get(JobDetailsForm::class);
-        $form->setName('details');
+        $formElementManager = $container->get('forms');
 
         $repository = $container->get('repositories')->get('Gastro24/TemplateImage');
         $jobRepository = $container->get('repositories')->get('Jobs');
 
-        $service = new JobDetailFileUpload($form, $repository, $jobRepository);
+        $service = new JobFileUpload($formElementManager, $repository, $jobRepository);
         
         return $service;    
     }

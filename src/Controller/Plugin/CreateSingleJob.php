@@ -68,40 +68,52 @@ class CreateSingleJob extends AbstractPlugin
     {
         /* @var \Jobs\Entity\Job $job */
         $job = $this->jobRepository->create();
-        $job->setCompany($values['invoiceAddress']['company']);
-        if ('html' == $values['details']['mode']) {
-            $job->getTemplateValues()->setIntroduction($values['details']['introduction']);
-            $job->getTemplateValues()->setDescription($values['details']['description']);
-            $job->getTemplateValues()->setQualifications($values['details']['qualifications']);
-            $job->getTemplateValues()->set('position', $values['details']['position']);
-            $job->getTemplateValues()->set('enableApply', $values['enableApply']);
-            $job->getTemplateValues()->setRequirements($values['details']['requirements']);
-            $job->getTemplateValues()->setBenefits($values['details']['benefits']);
-            $template = new Template();
-            $this->jobRepository->getDocumentManager()->persist($template);
-            $this->jobRepository->getDocumentManager()->flush($template);
-
-            if (isset($values['details']['image_id'])) {
-                $image = $this->templateImageRepository->find($values['details']['image_id']);
-                $template->setImage($image);
-            }
-            if (isset($values['details']['logo_id'])) {
-                $logo = $this->templateImageRepository->find($values['details']['logo_id']);
-                $template->setLogo($logo);
-            }
-            $job->addAttachedEntity($template, 'gastro24-template');
-
+        $job->setCompany($values['company']);
+//        if ('html' == $values['details']['mode']) {
+//            $job->getTemplateValues()->setIntroduction($values['details']['introduction']);
+//            $job->getTemplateValues()->setDescription($values['details']['description']);
+//            $job->getTemplateValues()->setQualifications($values['details']['qualifications']);
+//            $job->getTemplateValues()->set('position', $values['details']['position']);
+//            $job->getTemplateValues()->setRequirements($values['details']['requirements']);
+//            $job->getTemplateValues()->setBenefits($values['details']['benefits']);
+//            $template = new Template();
+//            $this->jobRepository->getDocumentManager()->persist($template);
+//            $this->jobRepository->getDocumentManager()->flush($template);
+//
+//            if (isset($values['details']['image_id'])) {
+//                $image = $this->templateImageRepository->find($values['details']['image_id']);
+//                $template->setImage($image);
+//            }
+//            if (isset($values['details']['logo_id'])) {
+//                $logo = $this->templateImageRepository->find($values['details']['logo_id']);
+//                $template->setLogo($logo);
+//            }
+//            $job->addAttachedEntity($template, 'gastro24-template');
+//
+//        }
+        if (isset($values['companyDescription'])) {
+            $job->getTemplateValues()->set('companyDescription', $values['companyDescription']);
         }
-        $job->setLink($values['details']['uri']);
-        $job->setTitle($values['title']);
+        if (isset($values['position'])) {
+            $job->getTemplateValues()->set('position', $values['position']);
+        }
+        if (isset($values['pdf_uri'])) {
+            $job->setLink($values['pdf_uri']);
+        }
+
+        $job->getTemplateValues()->set('companyWebsite', $values['companyWebsite']);
+        $job->setTitle($values['jobTitle']);
         $job->setStatus(Status::CREATED);
         $job->setTermsAccepted($values['termsAccepted']);
+        $job->setClassifications($values['classifications']);
 
         // save employment type
-        $hydrator = new EntityHydrator();
-        $job = $hydrator->hydrate($values, $job);
-        $this->jobRepository->getDocumentManager()->persist($job->getClassifications()->getEmploymentTypes()->getItems()->last()->getParent());
-        $this->jobRepository->getDocumentManager()->flush($job->getClassifications()->getEmploymentTypes()->getItems()->last()->getParent());
+//        $hydrator = new EntityHydrator();
+//        $job = $hydrator->hydrate($values, $job);
+
+//        $job = $this->employmentTypesHydrator->hydrate($values, $job);
+//        $this->jobRepository->getDocumentManager()->persist($job->getClassifications()->getEmploymentTypes()->getItems()->last()->getParent());
+//        $this->jobRepository->getDocumentManager()->flush($job->getClassifications()->getEmploymentTypes()->getItems()->last()->getParent());
 
         $locations = new ArrayCollection();
         foreach ($values['locations'] as $locStr) {
@@ -110,11 +122,28 @@ class CreateSingleJob extends AbstractPlugin
         }
         $job->setLocations($locations);
 
-        if ($values['invoiceAddress']['email']) {
-            $job->setAtsMode(new AtsMode(AtsMode::MODE_EMAIL, $values['invoiceAddress']['email']));
-            $job->setContactEmail($values['invoiceAddress']['email']);
-        } else {
-            $job->setAtsMode(new AtsMode(AtsMode::MODE_NONE));
+        switch ($values['enableOnlineApplication']) {
+            case 'applicationMail':
+                //get email and cc
+                $emailAddress = (isset($values['applicationEmail'])) ? $values['applicationEmail'] : $values['invoiceAddress']['email'];
+                $job->setAtsMode(new AtsMode(AtsMode::MODE_EMAIL, $emailAddress));
+                $job->setContactEmail($emailAddress);
+                break;
+            case 'directLink':
+                // set directlink
+                $applyUri = $values['applicationUri'];
+                $job->setUriApply($applyUri);
+                break;
+            case 'noOnlineApplication':
+                $job->setAtsMode(new AtsMode(AtsMode::MODE_NONE));
+                break;
+            default:
+                $job->setAtsMode(new AtsMode(AtsMode::MODE_NONE));
+                break;
+        }
+
+        if ($values['publishDate']) {
+            $job->setDatePublishStart(new \DateTime($values['publishDate']));
         }
 
         $this->jobRepository->store($job);
@@ -124,13 +153,34 @@ class CreateSingleJob extends AbstractPlugin
 
     private function sendMails($job, $order, $values)
     {
+        $applicationOptionData = [];
+        switch ($values['enableOnlineApplication']) {
+            case 'applicationMail':
+                $applicationOption = 'E-Mail Adresse für Bewerbungen';
+                $applicationOptionData = [
+                    'E-Mail' => $values['applicationEmail'],
+                ];
+                break;
+            case 'directLink':
+                $applicationOption = 'Direktlink zum Bewerberformular';
+                $applicationOptionData = [
+                    'Link' => $values['applicationUri'],
+                ];
+                break;
+            case 'noOnlineApplication':
+                $applicationOption = 'Keine Online-Bewerbung';
+                break;
+            default:
+                $applicationOption = 'Keine Online-Bewerbung';
+                break;
+        }
 
         $this->mailer->send($this->mailer->get(
             'Gastro24/SingleJobMail',
             [
                 'template' => 'gastro24/mail/single-job-pending',
                 'email'    => $values['invoiceAddress']['email'],
-                'name'     => $values['invoiceAddress']['name'],
+                'name'     => $values['firstname'] . ' ' . $values['lastname'],
                 'subject'  => 'Ihre Anzeige wartet auf Freischaltung.',
                 'vars'     => [
                     'job' => $job,
@@ -148,10 +198,13 @@ class CreateSingleJob extends AbstractPlugin
                 'vars'     => [
                     'job' => $job,
                     'order' => $order,
+                    'applicationOption' => $applicationOption,
+                    'applicationOptionData' => $applicationOptionData,
+                    'companyWebsite' => $values['companyWebsite'],
+                    'companyDescription' => $values['companyDescription'],
                 ],
             ]
         ));
-
     }
 
     private function createOrder(\Jobs\Entity\Job $job, $values)
@@ -160,10 +213,11 @@ class CreateSingleJob extends AbstractPlugin
         foreach ($values['invoiceAddress'] as $setter => $value) {
             $invoiceAddress->{"set$setter"}($value);
         }
+        $invoiceAddress->setName($values['firstname'] . ' ' . $values['lastname']);
 
         $snapshotBuilder = new Builder();
         $snapshot = $snapshotBuilder->build($job);
-        $snapshot->setOrganizationName($values['invoiceAddress']['company']);
+        $snapshot->setOrganizationName($values['company']);
         $products = new ArrayCollection();
 
         $product = new Product();
@@ -172,8 +226,6 @@ class CreateSingleJob extends AbstractPlugin
                 ->setQuantity(1);
 
         $products->add($product);
-
-
         $data = [
             'type' => OrderInterface::TYPE_JOB,
             'taxRate' => $this->orderOptions->getTaxRate(),

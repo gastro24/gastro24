@@ -141,6 +141,8 @@ $industries = $job->getClassifications()->getIndustries();
                     <!-- company name -->
                     <?php if ($org && !$orgIsDisabled): ?>
                         <a title="Jobs <?= $this->organizationName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
+                    <?php elseif ($job->getTemplateValues()->get('companyWebsite')) : ?>
+                        <a title="Website <?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>"><?= $orgName ?></a>
                     <?php else: ?>
                         <strong><?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?></strong>
                     <?php endif ?>
@@ -245,6 +247,13 @@ $industries = $job->getClassifications()->getIndustries();
                     <?php endif;?>
                 <?php endif; ?>
                 <!-- end job content -->
+
+                <!-- position -->
+                <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+                    <div class="position">
+                        <?= $this->job->getTemplateValues()->get('companyDescription'); ?>
+                    </div>
+                <?php endif;?>
 
                 <!-- company description -->
                 <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>

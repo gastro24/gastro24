@@ -1,0 +1,591 @@
+<?php
+// set default page title
+$this->headTitle($this->translate('Gastrojob24'))->setSeparator(' - ')->setAutoEscape(false);
+
+// set default keywords
+$this->headMeta()->setCharset("utf-8");
+$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
+
+$this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
+$this->headLink()->prependStylesheet($this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')))
+    ->prependStylesheet($this->basePath('dist/css/core.min.css'));
+
+$lang = $this->params('lang');
+?>
+
+<?php echo $this->doctype(); ?>
+<html lang="<?php echo $this->params('lang') ?>">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-32x32.png')?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-16x16.png')?>">
+    <link rel="shortcut icon" type="image/ico" href="<?=$this->basepath('modules/Gastro24/favicons/favicon.ico')?>">
+    <meta name="msapplication-TileColor" content="#2e5b93">
+    <meta name="theme-color" content="#2e5b93">
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headMeta() ?>
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headStyle() ?>
+    <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
+
+    <script>
+        var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
+    </script>
+    
+    <link rel="preconnect" href="https://www.google.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125791873-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-125791873-1');
+      gtag('config', 'AW-980688466');
+
+    </script>
+    <!-- End Google Tag Manager -->
+    
+</head>
+
+<style>
+
+    .back-button {
+        padding: 8px 16px !important;
+        margin-top: 2px;
+    }
+    .navbar {
+        position: relative;
+        height: 52px;
+        margin-bottom: 0;
+        border: none;
+    }
+    .help-header {
+        line-height: 52px;
+        height: 52px;
+        padding-right: 10px;
+        padding-left: 10px;
+        display: inline-block;
+        color: #fff;
+    }
+    .help-header a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+
+        .navbar-brand>img {
+
+            left: 5px;
+        }
+        .page-title {
+            float:left;
+        } .envelope-icon {
+              width: 46px;
+              position: absolute;
+              right: 0;
+              height: 52px;
+              text-align: center;
+              line-height: 52px;
+          }
+        .envelope-icon a {
+            color: #A5B0BB;
+            font-size: 18px;
+            display: block;
+            height: 52px;
+            line-height: 52px;
+            cursor: pointer;
+        }
+        .envelope-icon a:hover {
+            color: #fff;
+        }
+    }
+
+    .section-body {
+        padding: 18px 30px;
+        background-color: #FFFFFF;
+        margin-bottom: 20px;
+    }
+    .tooltip-insert {
+        position: relative;
+        cursor: pointer;
+        font-size: 18px;
+        display: inline-block;
+        margin-top: 25px;
+    }
+    .tooltip-insert span {
+        visibility: hidden;
+        width: 300px;
+        background-color: rgba(0,0,0,0.75);
+        color: #fff;
+        text-align: left;
+        border-radius: 4px;
+        padding: 10px 10px;
+        position: absolute;
+        font-size: 16px;
+        font-weight: 300;
+        z-index: 9;
+        top: -1em;
+        left: 100%;
+        line-height: 24px;
+        margin-left: 1em;
+        opacity: 0;
+        transition: opacity 1s;
+    }
+    .tooltip-insert span::after {
+        content: "";
+        position: absolute;
+        top: 1.5em;
+        right: 100%;
+        margin-top: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent black transparent transparent;
+    }
+    .tooltip-insert input {
+        display: none;
+    }
+    .tooltip-insert input:checked+span {
+        visibility: visible;
+        opacity: 1;
+    }
+    span.required-mark {
+        color: red;
+        padding-left: 3px;
+    }
+    .post h3 {
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: normal;
+        margin-bottom: 10px;
+        color:#000;
+    }
+    .post h3 .total, .post h3 .currency {
+        font-weight: bold;
+    }
+    .application-radio {
+        z-index: 100;
+        float: left;
+        width: 2.5%;
+        padding-top: 21px;
+        padding-right: 20px;
+    }
+    .application-input {
+        position: static !important;
+        width: 88.5%;
+    }
+    div.mce-edit-area {
+        padding-right: 1px;
+    }
+    div.add_box {
+        margin-bottom:30px;
+    }
+    div.add_box > div {
+        border-radius: 4px;
+        background: #f2f2f2;
+        padding:10px;
+        min-height:160px;
+    }
+    p.add_price {
+        text-align: right;
+        font-weight: 700;
+    }
+    div.add_box h3 {
+        display: inline;
+    }
+    div.add_box p {
+        margin-top: 10px;
+    }
+    div.add_box h3 {
+        font-weight: 300;
+        font-size:16px;
+    }
+
+    .modal-dialog {
+        width: 1170px;
+        /*height: 500px;*/
+        /*min-height: 500px;*/
+    }
+    .modal-content {
+        height: 100%;
+    }
+    .modal-body {
+        overflow: scroll;
+    }
+
+    .apply-checkbox,
+    .terms-checkbox,
+    .toggle-address-checkbox,
+    div.add_box input[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        transition: all 0.15s ease-out 0s;
+        background: #fff;
+        border: 1px solid #cacaca;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        outline: none;
+        width: 20px;
+        height: 20px;
+    }
+
+    .apply-checkbox::before,
+    .terms-checkbox::before,
+    .toggle-address-checkbox::before,
+    div.add_box input[type="checkbox"]::before {
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        font-size: 16px;
+        text-align: center;
+        line-height: 18px;
+        color: #fff;
+        content: '✓';
+    }
+
+    .apply-checkbox:checked,
+    .terms-checkbox:checked,
+    .toggle-address-checkbox:checked,
+    div.add_box input[type="checkbox"]:checked {
+        background: green
+    }
+
+    .apply-checkbox,
+    .toggle-address-checkbox,
+    .terms-checkbox {
+        position: relative!important;
+        margin-right: 12px!important;
+        margin-top: 0px!important;
+    }
+
+    .textarea-link-text,
+    .pdf-upload,
+    .embed-container,
+    #iframePdf,
+    #iframeDirectLink,
+    #single-job-preview-modal .banner,
+    #single-job-preview-modal .teaser__job-detail{
+        display: none;
+    }
+
+    #single-job-preview-modal .apply-button-group {
+        justify-content: center;
+    }
+
+    .application-radio input[type="radio"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        transition: all 0.15s ease-out 0s;
+        background: #fff;
+        border: 1px solid #cacaca;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        outline: none;
+        width: 20px;
+        height: 20px;
+        margin:0;
+    }		.application-radio input[type="radio"]::before {
+                 height: 20px;
+                 width: 20px;
+                 display: inline-block;
+                 font-size: 16px;
+                 text-align: center;
+                 line-height: 18px;
+                 color: #fff;
+                 content: '✓';
+             }
+    .application-radio input[type="radio"]:checked {
+        background: green
+    }
+
+</style>
+
+<body id="top">
+    <header id="header" role="banner" class="hidden-xs">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header col-md-4">
+                    <a class="logo" title="Gastrojob24" href="/">
+                        <img src="https://www.gastrojob24.ch/modules/Gastro24/gastrojob24_blue.svg" alt="Gastrojob24 Logo">
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <ul class="pull-right navbar-nav nav-recruiting">
+                        <li class="nav-item">
+                            <a title="Abo für Unternehmen" href="/de/auth/register" class="back-button btn btn-default nav-link text-white text-decoration-none">Premium Job-Abo für Unternehmen</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <nav class="navbar-home navbar search-form-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <a class="visible-xs navbar-brand" href="/lg/stellenanzeigen-schalten">
+                        <img src="https://www.gastrojob24.ch/modules/Gastro24/gastrojob24_white.svg" alt="Gastrojob24 Schweiz" class="menu-logo">
+                    </a>
+                    <!-- menu --->
+                    <div class="help-header pull-right hidden-xs">
+                        <span>Fragen? <a href="mailto:info@gastrojob24.ch">Kontaktieren</a> Sie uns!</span>
+                    </div>
+                    <div class="envelope-icon pull-right visible-xs">
+                        <a href="mailto:info@gastrojob24.ch" class="fa fa-envelope"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="content">
+        <div class="container">
+            <!-- dynamic content -->
+            <?php echo $this->content; ?>
+            <!-- end dynamic content -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="text-center facebook" title="Gastrojob24.ch bei Facebook" href="https://www.facebook.com/gastrojob24.ch/" target="_blank" rel="ugc"><i class="fa fa-facebook"></i></a>
+                </div>
+                <div class="col-md-12">
+                    <ul class="footer-link">
+                        <li><a title="Kontakt" href="/de/contact.html">Kontakt</a></li>
+                        <li><a title="Impressum" href="/de/impressum.html">Impressum</a></li>
+                        <li><a title="Datenschutz" href="/de/datenschutz.html">Datenschutz</a></li>
+                        <li><a title="AGB" href="/de/agb.html">AGB</a></li>
+                        <li>&copy; 2020 Alle Rechte vorbehalten</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <?php
+        $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/create-single-job.js'))
+            ->appendFile($this->basePath('dist/js/blueimp-file-upload.min.js'))
+            ->appendFile($this->basePath('modules/Gastro24/js/jobpdfupload.js'))
+            ->appendFile($this->basePath('modules/Core/js/core.forms.js'))
+            ->appendFile($this->basepath('modules/Core/js/core.spinnerbutton.js'))
+            ->appendFile($this->basepath('modules/Core/js/forms.descriptions.js'));
+
+        $langScript = 'dist/locales/' . $lang . '.js';
+        echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
+            ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+            ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
+            ->appendFile($this->basePath($langScript));
+
+        echo $this->configHeadScript()->setAutoEscape(false);
+    ?>
+
+    <!-- lazy loaded javascript -->
+    <!-- TODO: check integration -->
+<!--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.1/tinymce.min.js"></script>-->
+
+    <!-- iframe resizer -->
+    <?php $this->configHeadScript()->appendScript('iFrameResize({ log: false }, "#iframeDirectLink")'); ?>
+    <!-- end iframe resizer -->
+    <script type="text/javascript">
+        (function($) {
+            $('.add_box').find('input').click(function() {
+                var total = 0;
+                $('.add_box').find('input:checked').each(function(index, item) {
+                    total += parseFloat($(item).attr('data-value'));
+                });
+                $('.total').text(total);
+            });
+
+            $('.pdf-link').click(function(e) {
+                e.preventDefault();
+                $('.pdf-link-text').hide('slow');
+                $('.positionTextarea').hide('slow');
+                $('.pdf-upload').show('slow');
+                $('.textarea-link-text').show('slow');
+                $('#single-job-form input[name="pdf_uri"]').attr('required', 'required');
+                $('#single-job-form div[name="position"]').removeAttr("required");
+
+            });
+
+            $('.textarea-link').click(function(e) {
+                e.preventDefault();
+                $('.pdf-link-text').show('slow');
+                $('.positionTextarea').show('slow');
+                $('.pdf-upload').hide('slow');
+                $('.textarea-link-text').hide('slow');
+                $('#single-job-form input[name="pdf_uri"]').removeAttr("required");
+                $('#single-job-form div[name="position"]').attr('required', 'required');
+            });
+
+            $('#single-job-address-form .toggle-address-checkbox').click(function(e) {
+                $('#single-job-address-form .otherAddressForm').toggle('slow');
+            });
+
+            $('#single-job-form input[name="jobTitle"]').on('change', function() {
+                $("#single-job-preview-modal .panel-body h1").text($(this).val())
+            });
+
+            $('#single-job-form .locationsSelect select').on( 'select2:close', function(event) {
+                $("#single-job-preview-modal .job-short-info .location").html('');
+                var locations = $(this).val();
+                $.each(locations, function (key, value) {
+                    var valuesObj = jQuery.parseJSON(value);
+                    var city = valuesObj.city;
+                    $("#single-job-preview-modal .job-short-info .location").append(city);
+                })
+            });
+
+            $('#single-job-form .employmentTypesSelect select').on( 'select2:close', function(event) {
+                $("#single-job-preview-modal .job-short-info .type").html('');
+
+                $(this).parent().find('.select2-container .select2-selection__choice').each(function() {
+                    var spanTitle = $(this).attr('title');
+                    var typeOfContractSpan = $('<span>').addClass('yk-contract yk-vollzeit').text(spanTitle);
+
+                    $("#single-job-preview-modal .job-short-info .type").append(typeOfContractSpan);
+                });
+            });
+
+            $('#single-job-form input[name="bannerImage"]').on('change', function() {
+                var inputElem = $(this);
+                if ((inputElem.length > 0) && inputElem[0].files && inputElem[0].files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#single-job-preview-modal .banner").css('background-image', 'url(' + e.target.result + ')');
+                    }
+                    reader.readAsDataURL(inputElem[0].files[0]);
+                }
+            });
+
+            $('#single-job-form input[name="logo"]').on('change', function() {
+                var inputElem = $(this);
+                if ((inputElem.length > 0) && inputElem[0].files && inputElem[0].files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#single-job-preview-modal .wrapper__logo img").attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(inputElem[0].files[0]);
+                }
+            });
+
+            $('#single-job-form input[name="company"]').on('change', function() {
+                $("#single-job-preview-modal .job-short-info .company strong").text($(this).val())
+            });
+
+            $('#single-job-form input[name="publishDate"]').on('change', function() {
+                var dateValue = $(this).val();
+                var formattedDate;
+
+                if (dateValue) {
+                    formattedDate = new Date(dateValue);
+                }
+                else {
+                    formattedDate = new Date();
+                }
+
+                var month =  formattedDate.getMonth();
+                month += 1;  // JavaScript months are 0-11
+                var dateString = ('0' + formattedDate.getDate()).substr(-2,2) + '.' +
+                    ('0' + month).substr(-2,2) + '.' + formattedDate.getFullYear();
+                $("#single-job-preview-modal .job-short-info .date span").text(dateString)
+            });
+
+            $('#single-job-form textarea[name="companyDescription"]').on('change', function() {
+                $("#single-job-preview-modal .companyDescription").text($(this).val())
+            });
+
+            $('#single-job-address-form button[type="submit"]').on('click', function(e) {
+                //e.preventDefault();
+                var otherAddressCheckbox = $('#single-job-address-form .toggle-address-checkbox');
+
+                if (!otherAddressCheckbox.attr('checked')) {
+                    $('.otherAddressForm input').each(function() {
+                        $(this).removeAttr("required");
+                    })
+                }
+                $('#single-job-address-form').submit();
+            })
+
+            $('.single-job-preview-modal-button').on('click', function (e) {
+                e.preventDefault();
+
+                // set text
+                $("#single-job-preview-modal .position").html($('#single-job-form input[name="position"]').val());
+
+                var bannerInfo = $('.bannerImage-field .file-info'),
+                    logoInfo = $('.logo-field .file-info');
+
+                // workaround because click event for file-delete is prevented in jobpdfupload.js
+                if (bannerInfo.length > 0) {
+                    //has banner
+                    $("#single-job-preview-modal .banner").show();
+                    $("#single-job-preview-modal .teaser__job-detail").show();
+                    $("#single-job-preview-modal h1.no-banner").hide();
+                    $("#single-job-preview-modal .wrapper__right").hide();
+                }
+                else {
+                    // no banner
+                    $("#single-job-preview-modal .banner").hide();
+                    $("#single-job-preview-modal .teaser__job-detail").hide();
+                    $("#single-job-preview-modal h1.no-banner").show();
+                    $("#single-job-preview-modal .wrapper__right").show();
+                }
+
+                // check for logo
+                if (logoInfo.length < 1) {
+                    $("#single-job-preview-modal .wrapper__logo img").attr('src', '/modules/Gastro24/images/no-company-logo.png');
+                }
+
+                // check directLink
+                // var applicationChoice = $('#single-job-form input[name="enableOnlineApplication"]:checked').val();
+                // if (applicationChoice == 'directLink') {
+                //     var directLink = $('#single-job-form input[name="applicationUri"]').val();
+                //     console.log(directLink);
+                //     $("#single-job-preview-modal .embed-container #iframeDirectLink").attr('src', directLink);
+                //     $("#single-job-preview-modal .embed-container").show();
+                //     $("#single-job-preview-modal .embed-container #iframeDirectLink").show();
+                //     $("#single-job-preview-modal .html-container").hide();
+                // }
+
+                var pdfFileLink = $('.pdf-upload input[name="pdf_uri"]');
+                var positionTextarea = $("#single-job-form .positionTextarea");
+                console.log(!positionTextarea.is(":visible"))
+                if (pdfFileLink.length > 0 && !positionTextarea.is(":visible")) {
+                    console.log('show pdf')
+                    $("#single-job-preview-modal .embed-container #iframePdf").attr('src', pdfFileLink.val());
+                    $("#single-job-preview-modal .embed-container").show();
+                    $("#single-job-preview-modal .embed-container #iframePdf").show();
+                    $("#single-job-preview-modal .html-container").hide();
+                }
+                else if (positionTextarea.is(":visible")) {
+                    $("#single-job-preview-modal .embed-container").hide();
+                    $("#single-job-preview-modal .html-container").show();
+                }
+            });
+        })(jQuery);
+    </script>
+
+</body>
+</html>

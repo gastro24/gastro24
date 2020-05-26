@@ -1,19 +1,9 @@
-<?php
-
-$showButton = true;
-if (!is_null($this->job->getTemplateValues()->get('enableApply'))) {
-    $showButton = filter_var($this->job->getTemplateValues()->get('enableApply', FILTER_VALIDATE_BOOLEAN));
-}
-?>
-
-<?php if ($showButton) : ?>
-    <?php if($this->preview || $this->isExpired): ?>
-        <div class="button-job-apply text-center">
-            <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
-        </div>
-    <?php else: ?>
-        <div class="button-job-apply text-center">
-            <?=$this->gastroApplyUrl($this->job);?>
-        </div>
-    <?php endif; ?>
+<?php if($this->preview || $this->isExpired): ?>
+    <div class="button-job-apply text-center">
+        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+    </div>
+<?php else: ?>
+    <div class="button-job-apply text-center">
+        <?=$this->gastroApplyUrl($this->job);?>
+    </div>
 <?php endif; ?>
