@@ -32,7 +32,6 @@ class JsonLdProvider implements JsonLdProviderInterface
         $this->job = $job;
     }
 
-
     public function toJsonLd()
     {
         $organization = $this->job->getOrganization();
@@ -101,20 +100,26 @@ class JsonLdProvider implements JsonLdProviderInterface
     {
         $array=[];
         foreach ($locations as $location) { /* @var \Core\Entity\LocationInterface $location */
-            array_push(
-                $array,
-                [
-                    '@type' => 'Place',
-                    'address' => [
-                        '@type' => 'PostalAddress',
-                        'streetAddress' => $location->getStreetname() . ' ' . $location->getStreetnumber(),
-                        'postalCode' => $location->getPostalCode(),
-                        'addressLocality' => $location->getCity(),
-                        'addressCountry' => $location->getCountry(),
-                        'addressRegion' => $location->getCity(),
-                    ]
+            $coords = $location->getCoordinates();
+            $placeArray = [
+                '@type' => 'Place',
+                'address' => [
+                    '@type' => 'PostalAddress',
+                    'streetAddress' => $location->getStreetname() . ' ' . $location->getStreetnumber(),
+                    'postalCode' => $location->getPostalCode(),
+                    'addressLocality' => $location->getCity(),
+                    'addressCountry' => 'CH',
+                    'addressRegion' => $location->getCity(),
                 ]
-            );
+            ];
+            if ($coords && isset($coords->getCoordinates()[0])) {
+                $placeArray['geo']  = [
+                    '@type' => 'GeoCoordinates',
+                    'latitude' => $coords->getCoordinates()[0],
+                    'longitude' => $coords->getCoordinates()[1]
+                ];
+            }
+            array_push($array, $placeArray);
         }
         return $array;
     }
