@@ -57,14 +57,24 @@ $sessionData = unserialize($session->data);
     
     
     
+
+
+@media (max-width: 768px) {
+    
+  .positionTextarea .tooltip-insert span {
+    right: 0;
+    left: 0;
+}
+  .positionTextarea .tooltip-insert span::after {
+ display:none;
+}    
+
 .tooltip-insert span {
     top: 25px;
     right: 5px;
+    left:auto;
     margin-left: 0;
 }
-
-@media (max-width: 768px) {
-
 .tooltip-insert span::after {
     top: 0;
     right: 0px;
@@ -324,7 +334,7 @@ $sessionData = unserialize($session->data);
                     <input type="checkbox" name="addons[]" data-value="95" value="addon_startpage">
                     &nbsp;&nbsp;
                     <h3>Auf Startseite anzeigen</h3>
-                    <p>Ihre Stellenanzeige wird für die ganze Laufzeit auf der Startseite, direkt unterhalb der Suchformulars prominent angezeigt.</p>
+                    <p>Ihre Stellenanzeige wird für die ganze Laufzeit auf der Startseite, direkt unterhalb des Suchformulars prominent angezeigt.</p>
                     <p class="add_price"><span class="price_add_1">95 </span> CHF</p>
                 </div>
             </div>
