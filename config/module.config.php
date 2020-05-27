@@ -158,7 +158,6 @@ return [
         'factories' => [
             JobDetailsHydrator::class => JobDetailsHydratorFactory::class,
             \Gastro24\Entity\Hydrator\OrderHydrator::class => \Gastro24\Entity\Hydrator\OrderHydratorFactory::class,
-            \Gastro24\Form\SingleJobHydrator::class => \Gastro24\Form\SingleJobHydratorFactory::class,
         ],
     ],
 

@@ -7,7 +7,6 @@ use CompanyRegistration\Options\RegistrationFormOptions;
 use Gastro24\Form\Filter\SimpleRegisterInputFilter;
 use Gastro24\Form\SimpleRegisterForm;
 use Gastro24\Form\SingleJobForm;
-use Gastro24\Form\SingleJobHydrator;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
@@ -21,12 +20,6 @@ class SingleJobFormFactory implements FactoryInterface
 
     public function __invoke( ContainerInterface $container, $requestedName, array $options = null )
     {
-        /**
-         * @var $filter SimpleRegisterInputFilter
-         */
-        //$filter = $container->get('Gastro24\Form\Filter\SimpleRegisterInputFilter');
-        $hydrator = $container->get('HydratorManager')->get(SingleJobHydrator::class);
-
         /* @var $config CaptchaOptions */
         //$config = $container->get('Auth/CaptchaOptions');
 
@@ -37,7 +30,6 @@ class SingleJobFormFactory implements FactoryInterface
         //$formOptions = $container->get('CompanyRegistration/RegistrationFormOptions');
 
         $form = new SingleJobForm($formManager, $formOptions, null);
-        $form->setHydrator($hydrator);
         $form->setAttribute('id', 'single-job-form');
         //$form->setInputfilter($filter);
 

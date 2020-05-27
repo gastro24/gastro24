@@ -11,15 +11,8 @@
 namespace Gastro24\Controller\Plugin;
 
 use Core\Entity\Collection\ArrayCollection;
-use Core\Entity\Hydrator\EntityHydrator;
-use Core\Entity\Tree\EmbeddedLeafs;
-use Core\Entity\Tree\Node;
-use Core\Form\Hydrator\Strategy\TreeSelectStrategy;
 use Gastro24\Entity\Template;
-use Gastro24\Entity\TemplateImage;
-use Gastro24\Form\SingleJobHydrator;
 use Jobs\Entity\AtsMode;
-use Jobs\Entity\Classifications;
 use Jobs\Entity\Location;
 use Jobs\Entity\Status;
 use Orders\Entity\InvoiceAddress;
@@ -28,12 +21,6 @@ use Orders\Entity\Product;
 use Orders\Entity\Snapshot\Job\Builder;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
-/**
- * ${CARET}
- * 
- * @author Mathias Gelhausen <gelhausen@cross-solution.de>
- * @todo write test 
- */
 class CreateSingleJob extends AbstractPlugin
 {
     private $repositories;
