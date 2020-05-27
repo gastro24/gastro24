@@ -263,25 +263,6 @@ class InvoiceAddressForm extends Form
                 ),
             )
         );
-
-//        $inputSpec = $otherAddressFieldset->getInputFilterSpecification();
-//        $inputSpec['genderRadio'] = [
-//            'required' => false,
-//            'allow_empty' => true
-//        ];
-//        $inputSpec['toggleOtherAddress'] = [
-//            'required' => false,
-//            'allow_empty' => true
-//        ];
-//        $invoiceAddressInputFilter = new InputFilter();
-//        $invoiceAddressInputFilter->add([
-//            'required' => false,
-//            'allow_empty' => true
-//        ], 'genderRadio');
-
-
-//        $this->attachInputFilterDefaults($this->getInputFilterSpecificationForIncoiceAddress(), $invoiceAddressFieldset);
-//        $this->attachInputFilterDefaults($this->getInputFilterSpecificationForOtherAddress(), $otherAddressFieldset);
     }
 
     public function isValid()
@@ -303,10 +284,6 @@ class InvoiceAddressForm extends Form
     public function getInputFilterSpecification()
     {
         return [
-//            'gender' => [
-//                'required' => false,
-//                'allow_empty' => true
-//            ],
             'phonenumber' => [
                 'filters' => [
                     ['name' => 'StringTrim'],

@@ -562,22 +562,9 @@ $lang = $this->params('lang');
                     $("#single-job-preview-modal .wrapper__logo img").attr('src', '/modules/Gastro24/images/no-company-logo.png');
                 }
 
-                // check directLink
-                // var applicationChoice = $('#single-job-form input[name="enableOnlineApplication"]:checked').val();
-                // if (applicationChoice == 'directLink') {
-                //     var directLink = $('#single-job-form input[name="applicationUri"]').val();
-                //     console.log(directLink);
-                //     $("#single-job-preview-modal .embed-container #iframeDirectLink").attr('src', directLink);
-                //     $("#single-job-preview-modal .embed-container").show();
-                //     $("#single-job-preview-modal .embed-container #iframeDirectLink").show();
-                //     $("#single-job-preview-modal .html-container").hide();
-                // }
-
                 var pdfFileLink = $('.pdf-upload input[name="pdf_uri"]');
                 var positionTextarea = $("#single-job-form .positionTextarea");
-                console.log(!positionTextarea.is(":visible"))
                 if (pdfFileLink.length > 0 && !positionTextarea.is(":visible")) {
-                    console.log('show pdf')
                     $("#single-job-preview-modal .embed-container #iframePdf").attr('src', pdfFileLink.val());
                     $("#single-job-preview-modal .embed-container").show();
                     $("#single-job-preview-modal .embed-container #iframePdf").show();

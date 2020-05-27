@@ -37,8 +37,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
      */
     private $gastroOptions;
 
-//    private $defaultPartial = 'gastro24/form/create-single-job';
-
     public function __construct(FormElementManager $formManager, $gastroOptions, $name = 'single-job-form')
     {
         parent::__construct($name, []);
@@ -62,7 +60,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             'attributes' => [
                 'required' => true,
                 'class' => 'form-control',
-//                'id' => 'csj-title'
             ]
         ]);
 
@@ -78,7 +75,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'multiple' => true,
                 'data-placeholder' => '',
                 'data-width' => '100%',
-//                'class' => 'form-control',
                 'id' => 'csj-locations',
             ],
         ]);
@@ -123,9 +119,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             'attributes' => [
                 'required' => true,
                 'class' => 'form-control',
-//                'data-toggle' => 'description',
-//                'data-target' => 'details-position',
-//                'style' => 'min-height: 20rem;',
             ],
         ]);
 
@@ -139,7 +132,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             'attributes' => [
                 'class' => 'form-control',
                 'id' => 'pdf',
-                //'id' => 'csj-pdf',
             ],
         ]);
 
@@ -164,7 +156,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             'attributes' => [
                 'placeholder' => 'https://',
                 'class' => 'form-control',
-                //'id' => 'csj-uri',
             ]
         ]);
 
@@ -219,7 +210,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'placeholder' => 'https://',
                 'required' => false,
                 'class' => 'form-control',
-                //'id' => 'csj-uri',
             ]
         ]);
 
