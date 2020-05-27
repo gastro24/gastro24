@@ -54,6 +54,23 @@ $sessionData = unserialize($session->data);
         flex-direction: row;
         align-items: center;
     }
+    
+    
+    
+.tooltip-insert span {
+    top: 25px;
+    right: 5px;
+    margin-left: 0;
+}
+
+@media (max-width: 768px) {
+
+.tooltip-insert span::after {
+    top: 0;
+    right: 0px;
+    margin-top: -5px;
+}
+}
 </style>
 <!-- breadcrumbs -->
 <div class="row">
