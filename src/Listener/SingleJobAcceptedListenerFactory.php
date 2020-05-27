@@ -24,9 +24,11 @@ class SingleJobAcceptedListenerFactory implements FactoryInterface
     
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
+        $repositories = $container->get('repositories');
+        $jobsRepository = $repositories->get('Jobs');
         $orders  = $container->get('repositories')->get('Orders');
         $mailer  = $container->get('Core/MailService');
-        $service = new SingleJobAcceptedListener($orders, $mailer);
+        $service = new SingleJobAcceptedListener($orders, $mailer, $jobsRepository);
         
         return $service;    
     }

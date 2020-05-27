@@ -360,6 +360,8 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                                 <!-- company name -->
                                 <?php if ($org && !$orgIsDisabled): ?>
                                     <a title="Jobs <?= ($org->getOrganizationName()) ? $org->getOrganizationName()->getName() : $orgName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
+                                <?php elseif ($job->getTemplateValues()->get('companyWebsite')) : ?>
+                                    <a title="Website <?= ($org && $org->getOrganizationName()) ? $org->getOrganizationName()->getName() : $orgName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>"><?= $orgName ?></a>
                                 <?php else: ?>
                                     <strong><?= ($org && $org->getOrganizationName()) ? $org->getOrganizationName()->getName() : $orgName ?></strong>
                                 <?php endif ?>

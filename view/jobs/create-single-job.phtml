@@ -20,6 +20,9 @@ if (isset($this->details['image_url'])) {
 }
 $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->details['logo_url']) :
     $this->basePath('modules/Gastro24/images/no-company-logo.png');
+
+$session = new \Zend\Session\Container('Gastro24_SingleJobData');
+$sessionData = unserialize($session->data);
 ?>
 <style>
     iframe {
@@ -29,195 +32,477 @@ $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->det
         width: 1px;
         min-width: 100%;
     }
+    #single-job-address-form label,
+    #single-job-form label {
+        font-weight: normal;
+    }
+
+    #single-job-address-form input[type="radio"] {
+        height: 20px;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        width: 35px;
+        float: left;
+    }
+    .gender-field .radioBoxes {
+        width: 30%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .gender-field .radioBoxes label{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 </style>
-<?php if (!$this->isProcessed):?>
-   <h1><?= $this->translate('Einzelinserat'); ?></h1>
-   <hr />
- <?php endif?>
+<!-- breadcrumbs -->
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="hidden-xs breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="/">
+                        <span itemprop="name">Home</span>
+                    </a>
+                    <meta itemprop="position" content="1">
+                </li>
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                    <a itemprop="item" href="/lg/stellenanzeigen-schalten">
+                        <span itemprop="name">Inserieren</span>
+                    </a>
+                    <meta itemprop="position" content="2">
+                </li>
+                <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                    <span itemprop="name">Einzelinserat</span>
+                    <meta itemprop="position" content="3">
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- end breadcrumbs -->
 
-<?php if ($this->isProcessed):?>
-
-    <div class="row job-navigation">
-        <div class="col-md-3">
-            <a title="Zurück zur Eingabe" href="/de/job/single" class="btn btn-default btn-block no-margin">
-                <i class="fa fa-chevron-left"></i> Zurück zur Eingabe</a>
+<!-- Header & Pricing -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="page-title">
+            <h1>Einzelinserat erfassen</h1>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default panel__job-detail">
-                <!-- Bannerbild -->
-                <?php if ($hasBanner): ?>
-                    <div class="banner" style="background-image: url(<?= $imageServerUrl ?>)"></div>
-                <?php endif; ?>
-                <!-- End Bannerbild -->
-
-                    <div class="panel-body">
-                        <!-- company logo and job title-->
-                        <?php if ($hasBanner): ?>
-                            <div class="teaser__job-detail">
-                                <div itemprop="logo">
-                                    <div class="wrapper__logo">
-                                        <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
-                                    </div>
-                                </div>
-                                <h1><?=$this->title?></h1>
-                            </div>
-                        <?php endif; ?>
-                        <?php if (!$hasBanner): ?>
-                            <h1 class="no-banner"><?=$this->title?></h1>
-                        <?php endif; ?>
-                        <!-- end company logo and job title-->
-
-                        <div class="job-short-info <?php if(!$hasBanner) echo 'no-banner' ?>">
-                            <ul>
-                                <li class="location">
-                                    <!-- location -->
-                                    <?php
-                                        $locationString = '';
-                                        foreach ($this->locations as $loc) {
-                                            $location = new \Jobs\Entity\Location($loc);
-                                            $locationString .= ' ' . $location->getCity() . ',';
-                                        }
-                                        $locationString = rtrim($locationString, ",");
-                                        echo $locationString;
-                                    ?>
-                                    <!-- end location -->
-                                </li>
-                                <li class="company">
-                                    <!-- company name -->
-                                    <strong><?=$this->invoiceAddress['company']?></strong>
-                                    <!-- end company name -->
-                                </li>
-                                <li class="type">
-                                    <!-- type of contract -->
-                                    <?php
-                                    $typeOfContract = ucfirst($this->classifications->getEmploymentTypes()->__toString()) ?: 'Vollzeit'; ?>
-                                    <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
-                                    <!-- end type of contract -->
-                                </li>
-                                <li class="date">
-                                    <!-- published date -->
-                                    <span><?= $publishDate ?></span>
-                                    <!-- end published date -->
-                                </li>
-                            </ul>
-
-                            <div class="wrapper__right">
-                                <?php if (!$hasBanner): ?>
-                                    <div class="wrapper__logo">
-                                        <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <hr class="job-details-devider"/>
-
-                        <!-- apply button -->
-                        <div class="button-job-apply text-center">
-                            <a style="background-color: #d9534f;border-color: #d43f3a" class="btn btn-primary"
-                               href="?do=complete">Einzelinserat jetzt schalten</a>
-                        </div>
-                        <!-- end apply button -->
-
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-                                <!-- job content -->
-                                <?php if ($this->html): ?>
-                                    <div class="position">
-                                        <?=$this->html?>
-                                    </div>
-                                <?php else: ?>
-                                    <!-- introduction -->
-                                    <div class="introduction">
-                                        <?=$this->details['introduction']?>
-                                    </div>
-
-                                    <!-- position -->
-                                    <div class="position">
-                                        <?=$this->details['position']?>
-                                    </div>
-
-                                    <!-- requirements -->
-                                    <div class="position">
-                                        <?=$this->details['requirements']?>
-                                    </div>
-
-                                    <!-- qualifications -->
-                                    <div class="position">
-                                        <?php if(isset($this->details['qualifications'])): ?>
-                                            <?=$this->details['qualifications']?>
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <!-- benefits -->
-                                    <div class="position">
-                                        <?=$this->details['benefits']?>
-                                    </div>
-                                <?php endif; ?>
-                                <!-- end job content -->
-
-                                <!-- company description -->
-                                <p><?=$this->details['description']?></p>
-                                <!-- end company description -->
-                            </div>
-                        </div>
-
-                        <!-- apply button -->
-                        <div class="button-job-apply text-center">
-                            <a style="background-color: #d9534f;border-color: #d43f3a" class="btn btn-primary"
-                               href="?do=complete">Einzelinserat jetzt schalten</a>
-                        </div>
-                        <!-- end apply button -->
-
-                        <hr class="job-details-devider"/>
-
-                        <!-- share buttons -->
-    <!--                    <div>Diesen Job teilen: </div>-->
-    <!--                    <div id="share" class="pull-left round-shares"></div>-->
-    <!--                    <div class="clearfix"></div>-->
-                        <!-- end share buttons -->
-
-                        <h3><?= $this->translate('Kontaktadresse') ?></h3>
-                        <address>
-                            <?=$this->invoiceAddress['company']?><br>
-                            <?=$this->invoiceAddress['name']?> ( <?=$this->link($this->invoiceAddress['email']) ?> )<br>
-                            <?=$this->invoiceAddress['street']?> <?=$this->invoiceAddress['houseNumber']?><br>
-                            <?=$this->invoiceAddress['zipCode']?> <?=$this->invoiceAddress['city']?><br>
-                            <?=$this->invoiceAddress['region'] ?><br /><?=$this->invoiceAddress['country']?>
-                        </address>
-                    </div>
-                 </div>
-        </div>
-    </div>
-
-<?php elseif ($this->isSuccess): ?>
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <?=$this->alert()->success('Inserat erfolgreich angelegt.');?>
-            <p class="lead">Vielen Dank.</p>
-            <p>Ihr Einzelinserat wurde angelegt. Nach der Prüfung wird das Inserat freigeschaltet.</p>
-
-<?php elseif ($this->isError): ?>
-
-            <?=$this->alert()->danger('Inserat anlegen fehlgeschlagen');?>
-            <p class="lead">Das Inserat konnte nicht angelegt werden.</p>
-            <p>Es ist ein Fehler aufgetreten. Versuchen Sie es <a href="">erneut</a> ...</p>
-        </div>
-   </div>
-
-<?php else: ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <?=$this->form($this->form->setAttribute('data-handle-by', 'native'))?>
+    <div class="col-md-6">
+        <div class="pull-right">
+            <div class="page-title">
+                <div>Preis</div>
+                <div>Einzelinserat: CHF <em class="total">0</em>.- </div>
             </div>
         </div>
     </div>
-<?php endif ?>
+</div>
+<!-- Ende --->
+
+<!-- Form -->
+<div class="form-container">
+    <!-- begin form -->
+    <?= $this->form()->openTag($form); ?>
+
+    <!-- section main -->
+    <div class="section-body">
+        <h2>Stellenbeschreibung</h2>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('jobTitle')); ?>
+            </div>
+            <div class="col-md-11">
+                <?= $this->formLabel($this->form->get('jobTitle'), 'Stellentitel'); ?>
+                <?= $this->formText($this->form->get('jobTitle')); ?>
+            </div>
+        </div>
+        <div class="row controls controls-row form-group">
+            <div class="col-md-12">
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('locations')); ?>
+
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('employmentTypes')); ?>
+            </div>
+            <div class="col-md-6 locationsSelect">
+                <?= $this->formLabel($this->form->get('locations'), 'Arbeitsort'); ?>
+                <?= $this->formElement($this->form->get('locations')); ?>
+            </div>
+
+            <div class="col-md-5 employmentTypesSelect">
+                <?= $this->formLabel($this->form->get('employmentTypes'), 'Beschäftigungsart'); ?>
+                <?= $this->formElement($this->form->get('employmentTypes')); ?>
+            </div>
+        </div>
+        <div class="row form-group positionTextarea">
+            <div class="col-md-12">
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('position')); ?>
+            </div>
+            <div class="col-md-11">
+                <?= $this->formLabel($this->form->get('position'), 'Stellenbeschreibung'); ?>
+                <?= $this->formElement($this->form->get('position')); ?>
+            </div>
+            <div class="col-md-1">
+                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
+                    <input type="checkbox">
+                    <span>Beschreiben Sie die Stellenanzeige mit so vielen Details wie möglich. Sie können Text ausschneiden und in dieses Feld einfügen. HTML und Nicht-Standard-Zeichen werden nicht unterstützt. Beispiele für Informationen, die enthalten sein sollten:<br /><br /><ul><li>Einleitung zu Ihrer Stellenanzeige.</li><li>Mehr über die erforderlichen Fähigkeiten. </li><li>Weitere Anforderungen wie Ausbildung und/oder jahrelange Erfahrung.</li><li>Weitere Angebote kostenlose Unterkunft, Zustupf an die Weiterbildung, etc.</li></ul></span>
+                </label>
+            </div>
+        </div>
+        <div class="row form-group pdf-link-text">
+            <div class="col-md-12">
+                <p>oder <a style="text-decoration:underline;" class="pdf-link" href="#">PDF-Inserat erfassen</a></p>
+            </div>
+        </div>
+        <div class="row form-group pdf-upload" id="pdf-span">
+            <div class="col-md-11">
+                <?= $this->formLabel($this->form->get('pdf'), 'Stellenbeschreibung als PDF<span class="required-mark">*</span>'); ?>
+                <?= $this->formElement($this->form->get('pdf')); ?>
+            </div>
+        </div>
+        <div class="row form-group textarea-link-text">
+            <div class="col-md-12">
+                <p>oder <a style="text-decoration:underline;" class="textarea-link" href="#">Text eingeben</a></p>
+            </div>
+        </div>
+
+    </div>
+    <!-- end section main -->
+
+    <!-- section application -->
+    <div class="section-body">
+        <h2>Bewerbung</h2>
+        <div class="row">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 application-radio">
+                <input type="radio" value="applicationMail" name="enableOnlineApplication"
+                    <?php if ($sessionData['enableOnlineApplication'] == 'applicationMail') echo 'checked' ?> />
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 application-input">
+                <div class="form-group">
+                    <?= $this->formLabel($this->form->get('applicationEmail'), 'E-Mail Adresse für Bewerbungen'); ?>
+                    <?= $this->formEmail($this->form->get('applicationEmail')); ?>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
+                    <input type="checkbox">
+                    <span>Bitte geben Sie die E-Mail Adresse(n) ein, an die Bewerbungen gesendet werden sollen.</span>
+                </label>
+
+
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 application-radio">
+                <input type="radio" value="directLink" name="enableOnlineApplication"
+                    <?php if ($sessionData['enableOnlineApplication'] == 'directLink') echo 'checked' ?> />
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 application-input">
+                <?= $this->formLabel($this->form->get('applicationUri'), 'Direktlink zum Bewerberformular'); ?>
+                <?= $this->formUrl($this->form->get('applicationUri')); ?>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
+                    <input type="checkbox">
+                    <span>Sofern Sie auf Ihrer Website ein Bewerbungsformular haben, können Sie die Internet-Adresse hier eingeben. Bewerber werden dann direkt weitergeleitet.</span>
+                </label>
+            </div>
+        </div>
+        <div class="row" style="margin-top:15px;">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 application-radio" style="padding-top:0px" >
+                <input type="radio" value="noOnlineApplication" name="enableOnlineApplication"
+                    <?php if($sessionData['enableOnlineApplication'] == 'noOnlineApplication') echo 'checked' ?> />
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 application-input">
+                <div>
+                    Keine Online-Bewerbung. Bitte geben Sie unbedingt eine alternative Kontaktmöglichkeit für Bewerber an.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end section application -->
+
+    <!-- section company details -->
+    <div class="section-body">
+        <h2>Firmendaten</h2>
+        <div class="row form-group">
+            <div class="col-md-11">
+                <?= $this->formLabel($this->form->get('company'), 'Unternehmensname'); ?>
+                <?= $this->formText($this->form->get('company')); ?>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 bannerImage-field" id="bannerImage-span">
+                <?= $this->formLabel($this->form->get('bannerImage'), 'Bannerbild'); ?>
+                <?= $this->formElement($this->form->get('bannerImage')); ?>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
+                    <input type="checkbox">
+                    <span>Ein Bild sagt mehr als 1000 Worte: Mit einem zusätzlichen Bannerbild noch mehr
+                        Aufmerksamkeit generieren. Das Bannerbild erscheint zuoberst im Kopfbereich Ihrer Stellenanzeige.
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6 logo-field" id="logo-span">
+                <?= $this->formLabel($this->form->get('logo'), 'Unternehmenslogo'); ?>
+                <?= $this->formElement($this->form->get('logo')); ?>
+            </div>
+            <div class="col-md-5">
+                <?= $this->formLabel($this->form->get('companyWebsite'), 'Unternehmenswebsite'); ?>
+                <?= $this->formUrl($this->form->get('companyWebsite')); ?>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                <?= $this->formLabel($this->form->get('companyDescription'), 'Unternehmensinformation'); ?>
+                <?= $this->formTextarea($this->form->get('companyDescription')); ?>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
+                    <input type="checkbox">
+                    <span>Hier können Sie weitere Informationen zu Ihrem Unternehmen hinterlegen die Bewerber interessieren könnten.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- end section company details -->
+
+    <!-- section publication and addons -->
+    <div class="section-body">
+        <h2>Publikation</h2>
+        <div class="row form-group">
+            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+                    <?= $this->formLabel($this->form->get('publishDate'), 'Gewünschtes Aufschaltdatum'); ?>
+                    <?= $this->formElement($this->form->get('publishDate')); ?>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
+                    <input type="checkbox">
+                    <span>Nach unserer persönlichen Kontrolle geht Ihre Anzeige innert 24h oder zu dem von Ihnen definierten Zeitpunkt online.</span>
+                </label>
+            </div>
+        </div>
+
+        <h3>Besetzen Sie Ihre Stellen schneller mit Zusatz-Optionen für mehr Reichweite</h3>
+
+        <div class="row">
+            <div class="add_box add_left col-md-4">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="15" value="addon_renewal">
+                    &nbsp;&nbsp;
+                    <h3>Verlängerung 90 Tage</h3>
+                    <p>Ihre Stellenanzeige bleibt ab Ihrem gewünschtem Aufschaltdatum anstatt 30 Tage, insgesamt 120 Tage online.</p>
+                    <p class="add_price"><span class="price_add_1">15 </span> CHF</p>
+                </div>
+            </div>
+            <div class="add_box add_left col-md-4">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="95" value="addon_startpage">
+                    &nbsp;&nbsp;
+                    <h3>Auf Startseite anzeigen</h3>
+                    <p>Ihre Stellenanzeige wird für die ganze Laufzeit auf der Startseite, direkt unterhalb dem Suchformular prominent angezeigt.</p>
+                    <p class="add_price"><span class="price_add_1">95 </span> CHF</p>
+                </div>
+            </div>
+            <div class="add_box add_left col-md-4">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="55" value="addon_top_result">
+                    &nbsp;&nbsp;
+                    <h3>Top-Resultat</h3>
+                    <p>Ihr Stellenanzeige erscheint bei relevanten Suchanfragen zuoberst vor allen anderen Suchresultaten.</p>
+                    <p class="add_price"><span class="price_add_1">55 </span> CHF</p>
+                </div>
+            </div>
+            <div class="add_box add_left col-md-4">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="15" value="addon_highlight">
+                    &nbsp;&nbsp;
+                    <h3>Farbliche Hervorhebung</h3>
+                    <p>Ihre Stellenanzeige wird farblich in den Suchresultaten hervorgehoben und besser wahrgenommen.</p>
+                    <p class="add_price"><span class="price_add_1">15 </span> CHF</p>
+                </div>
+            </div>
+            <div class="add_box add_left col-md-4">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="150" value="addon_facebook">
+                    &nbsp;&nbsp;
+                    <h3>Zusätzliche Facebook Werbung</h3>
+                    <p>Wir promoten Ihr Stelleninserat in der relevanten Zielgruppe und Region auf Facebook. Sie erhalten im Anschluss ein Reporting.</p>
+                    <p class="add_price"><span class="price_add_1">150 </span> CHF</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="post">
+            <h3>Einzelinserat: <span class="currency">CHF</span> <span class="total">0</span>.-</h3>
+        </div>
+    </div>
+    <!-- end section publication and addons -->
+
+    <!-- section buttons -->
+    <div class="section-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="btn-toolbar">
+                    <button type="button" class="cam-btn-reset single-job-preview-modal-button" data-title="Vorschau anzeigen"
+                            data-toggle="modal" data-target="#single-job-preview-modal"
+                            title="Vorschau anzeigen">
+                        Vorschau anzeigen
+                    </button>
+
+<!--                        <button type="reset" name="buttons[cancel]" id="buttons-cancel" -->
+<!--                                class="cam-btn-reset" value="Cancel">Vorschau anzeigen</button>-->
+                    <?= $this->formButton()->openTag($this->form->get('submit')); ?>
+                    <div class="default">Weiter &raquo; </div>
+                    <?= $this->formButton()->closeTag(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end section buttons -->
+
+    <?= $this->form()->closeTag($form); ?>
+    <!-- end form -->
+</div>
+<!-- End Form -->
+
+<!-- Modal Box for Single Job Preview -->
+<div class="modal fade" id="single-job-preview-modal" tabindex="-1" role="dialog" aria-labelledby="singleJobLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="singleJobModalLabel">Vorschau</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default panel__job-detail">
+                            <!-- Bannerbild -->
+                                <div class="banner"></div>
+                            <!-- End Bannerbild -->
+
+                            <div class="panel-body">
+                                <!-- company logo and job title-->
+                                <div class="teaser__job-detail">
+                                    <div itemprop="logo">
+                                        <div class="wrapper__logo">
+                                            <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
+                                        </div>
+                                    </div>
+                                    <h1><?=$this->jobTitle?></h1>
+                                </div>
+                                <h1 class="no-banner"><?=$this->jobTitle?></h1>
+                                <!-- end company logo and job title-->
+
+                                <div class="job-short-info <?php if(!$hasBanner) echo 'no-banner' ?>">
+                                    <ul>
+                                        <li class="location">
+                                            <!-- location -->
+                                            <?php
+                                            $locationString = '';
+                                            foreach ($this->locations as $loc) {
+                                                $location = new \Jobs\Entity\Location($loc);
+                                                $locationString .= ' ' . $location->getCity() . ',';
+                                            }
+                                            $locationString = rtrim($locationString, ",");
+                                            echo $locationString;
+                                            ?>
+                                            <!-- end location -->
+                                        </li>
+                                        <li class="company">
+                                            <!-- company name -->
+                                            <strong><?= $this->company ?></strong>
+                                            <!-- end company name -->
+                                        </li>
+                                        <li class="type">
+                                            <!-- type of contract -->
+                                            <?php
+                                            foreach ($this->employmentTypes as $employmentType) {
+                                                $typeOfContract = ucfirst($employmentType) ?: 'Vollzeit';
+                                                echo '<span class="yk-contract yk-<?=$typeOfContract?>">' . $typeOfContract . '</span>';
+                                            }
+                                            ?>
+                                            <!-- end type of contract -->
+                                        </li>
+                                        <li class="date">
+                                            <!-- published date -->
+                                            <span><?= $publishDate ?></span>
+                                            <!-- end published date -->
+                                        </li>
+                                    </ul>
+
+                                    <div class="wrapper__right">
+                                        <?php if (!$hasBanner): ?>
+                                            <div class="wrapper__logo">
+                                                <img src="<?= $logoImageUrl ?>" alt="<?= $this->company?>">
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
+                                <hr class="job-details-devider"/>
+
+                                <div class="first apply-button-group">
+                                    <!-- apply button -->
+                                    <div class="button-job-apply text-center">
+                                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                                    </div>
+                                    <!-- end apply button -->
+                                </div>
+
+                                <div class="embed-container">
+                                    <div class="frame-content">
+                                        <div id="preload" class="loading hidden text-center">
+                                            <div class="spinner">
+                                                <div class="bounce1"></div>
+                                                <div class="bounce2"></div>
+                                                <div class="bounce3"></div>
+                                            </div>
+                                            <p>Das Inserat wird geladen, bitte haben Sie einem Moment Geduld</p>
+                                        </div>
+                                        <iframe style="height:122rem" id="iframePdf" src=""></iframe>
+                                        <iframe style="height:2500px" id="iframeDirectLink" src=""></iframe>
+                                    </div>
+                                </div>
+
+                                <div class="row html-container">
+                                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+
+                                        <!-- position -->
+                                        <div class="position">
+                                            <?= $this->position ?>
+                                        </div>
+
+                                        <!-- companyDescription -->
+                                        <div class="companyDescription">
+                                            <?= $this->companyDescription ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="apply-button-group">
+                                    <!-- apply button -->
+                                    <div class="button-job-apply text-center">
+                                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                                    </div>
+                                    <!-- end apply button -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

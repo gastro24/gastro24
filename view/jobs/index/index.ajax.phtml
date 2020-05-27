@@ -48,7 +48,12 @@ if (count($this->jobs)):
                         echo $displayName
 
                         ?>)
-                    <?php endif ?></td>
+                    <?php endif ?>
+
+                    <?php if ($job->getTemplateValues()->get('publishDate')):?>
+                        <span>Gewünschtes Aufschaltdatum: <?= $job->getTemplateValues()->get('publishDate') ?></span>
+                    <?php endif ?>
+                </td>
 
                 <td>
                     <?php if ($isSnapshot): ?><span class="label label-warning"><?=$this->translate('Changed')?></span><?php

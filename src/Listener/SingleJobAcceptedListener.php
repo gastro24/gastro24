@@ -22,11 +22,13 @@ class SingleJobAcceptedListener
 {
     private $orders;
     private $mailer;
+    protected $jobsRepository;
 
-    public function __construct(\Orders\Repository\Orders $orders, \Core\Mail\MailService $mailer)
+    public function __construct(\Orders\Repository\Orders $orders, \Core\Mail\MailService $mailer, $jobsRepository)
     {
         $this->orders = $orders;
         $this->mailer = $mailer;
+        $this->jobsRepository = $jobsRepository;
     }
 
     public  function __invoke(JobEvent $event)
@@ -39,6 +41,12 @@ class SingleJobAcceptedListener
         $order = $this->orders->findByJobId($job->getId());
 
         if (!$order) { return; }
+
+        // check for publishDat in future#
+        if ($job->getTemplateValues()->get('publishDate')) {
+            $job->setDatePublishStart(new \DateTime($job->getTemplateValues()->get('publishDate')));
+            $this->jobsRepository->store($job);
+        }
 
         $invoice = $order->getInvoiceAddress();
 

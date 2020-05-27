@@ -74,6 +74,38 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                                                         <td><?= $this->translate("Companyname") ?></td>
                                                                                         <td><?= $job->getCompany() ?></td>
                                                                                     </tr>
+                                                                                    <tr>
+                                                                                        <td>Unternehmenswebsite</td>
+                                                                                        <td><?= $this->companyWebsite ?></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>Unternehmensinformation</td>
+                                                                                        <td><?= $this->companyDescription ?></td>
+                                                                                    </tr>
+                                                                                </table>
+
+                                                                                <br><br>
+                                                                                <h2>Bewerbungsoptionen</h2>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>gewählte Option: </td>
+                                                                                        <td><?= $this->applicationOption ?></td>
+                                                                                    </tr>
+                                                                                    <?php foreach ($this->applicationOptionData as $key => $value) : ?>
+                                                                                        <tr>
+                                                                                            <td><?= $key ?></td>
+                                                                                            <td><?= $value ?></td>
+                                                                                        </tr>
+                                                                                    <?php endforeach; ?>
+                                                                                </table>
+
+                                                                                <br><br>
+                                                                                <h2>Publikation</h2>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td>Gewünschtes Aufschaltdatum: </td>
+                                                                                        <td><?php if ($job->getTemplateValues()->get('publishDate')) echo $job->getTemplateValues()->get('publishDate') ?></td>
+                                                                                    </tr>
                                                                                 </table>
 
                                                                                 <br><br>
@@ -86,15 +118,15 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><?= $this->translate("Name") ?></td>
-                                                                                        <td><?= $invoice->getName() ?></td>
+                                                                                        <td><?= $this->invoice['name'] ?></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td>Adresse</td>
-                                                                                        <td><?= $invoice->getStreet() ?> <?=$invoice->getHouseNumber()?>
+                                                                                        <td><?= $this->invoice['street'] ?>
                                                                                             <br>
-                                                                                            <?= $invoice->getZipCode() ?> <?= $invoice->getCity() ?>
+                                                                                            <?= $this->invoice['zipCode'] ?> <?= $this->invoice['city'] ?>
                                                                                             <br>
-                                                                                            <?=$invoice->getRegion() ? $invoice->getRegion() . ', ' : '' ?> <?=$invoice->getCountry() ?>
+                                                                                            <?= $this->invoice['region'] . ', ' . $this->invoice['country'] ?>
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
@@ -102,6 +134,37 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                                                         <td><?=$this->link($invoice->getEmail())?></td>
                                                                                     </tr>
                                                                                 </table>
+
+                                                                                <?php if ($this->otherAddress) : ?>
+                                                                                    <br><br>
+                                                                                    <h2>Abweichende Rechnungsanschrift</h2>
+
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <td><?= $this->translate("Name") ?></td>
+                                                                                            <td><?= $this->otherAddress['name'] ?></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Adresse</td>
+                                                                                            <td><?= $this->otherAddress['street'] ?>
+                                                                                                <br>
+                                                                                                <?= $this->otherAddress['zipCode']?> <?= $this->otherAddress['city'] ?>
+                                                                                                <br>
+                                                                                                <?=$this->otherAddress['region'] . ', ' . $this->otherAddress['country'] ?>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                <?php endif; ?>
+
+                                                                                <?php if ($this->addons) : ?>
+                                                                                    <br><br>
+                                                                                    <h2>Gebuchte Zusatz-Optionen</h2>
+                                                                                    <ul>
+                                                                                        <?php foreach ($this->addons as $addonData) : ?>
+                                                                                        <li><?= $addonData['name'] ?> (<?= $addonData['price'] ?> CHF)</li>
+                                                                                        <?php endforeach; ?>
+                                                                                    </ul>
+                                                                                <?php endif; ?>
 
 
                                                                                 <?php
@@ -113,7 +176,7 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                                                 ?>
 
                                                                                 <?php $total = 0; ?>
-
+                                                                                <br><br>
                                                                                 <?php if (empty($job->getPortals())) : ?>
                                                                                     <?php echo $this->translate('no Portal chosen') ?>
                                                                                 <?php else: ?>

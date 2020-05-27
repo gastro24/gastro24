@@ -72,6 +72,7 @@ return [
     'service_manager' => [
         'invokables' => [
             'Gastro24\Form\Filter\SimpleRegisterInputFilter' => 'Gastro24\Form\Filter\SimpleRegisterInputFilter',
+            'Gastro24\Form\Filter\SingleJobFormInputFilter' => 'Gastro24\Form\Filter\SingleJobFormInputFilter',
             'Gastro24\Form\Filter\CompanyRegisterInputFilter' => 'Gastro24\Form\Filter\CompanyRegisterInputFilter',
         ],
         'factories' => [
@@ -84,7 +85,7 @@ return [
             Listener\VoidListener::class => InvokableFactory::class,
             Listener\CreateJobOrder::class => Listener\CreateJobOrderFactory::class,
             Listener\SingleJobAcceptedListener::class => Listener\SingleJobAcceptedListenerFactory::class,
-            Listener\JobDetailFileUpload::class => Listener\JobDetailFileUploadFactory::class,
+            Listener\JobFileUpload::class => Listener\JobFileUploadFactory::class,
             Listener\DeleteTemplateImage::class => Listener\DeleteTemplateImageFactory::class,
             Listener\AutoApproveChangedJobs::class => Listener\AutoApproveChangedJobsFactory::class,
             Listener\ExpiredJobListener::class => Listener\ExpiredJobListenerFactory::class,
@@ -112,7 +113,7 @@ return [
         'factories' => [
             Controller\WordpressPageController::class => Factory\Controller\WordpressPageControllerFactory::class,
             Controller\RedirectExternalJobs::class => Controller\RedirectExternalJobsFactory::class,
-            Controller\CreateSingleJob::class => Factory\Controller\CreateSingleJobFactory::class,
+            Controller\CreateSingleJobController::class => Factory\Controller\CreateSingleJobFactory::class,
             Controller\LpStellenanzeigen::class => InvokableFactory::class,
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
             Controller\RegisterConfirmationController::class => Factory\Controller\RegisterConfirmationControllerFactory::class,
@@ -139,9 +140,11 @@ return [
             Filter\PdfFileUri::class => Filter\PdfFileUriFactory::class,
             Filter\OrganizationJobsListQuery::class => InvokableFactory::class,
             'Gastro24/Paginator/JobsSimilarPaginationQuery' => 'Gastro24\Paginator\JobsSimilarPaginationQueryFactory',
+            Filter\JobBoardPaginationQuery::class => Factory\Filter\JobBoardPaginationQueryFactory::class,
         ],
         'aliases' => [
             'Organizations/ListJobQuery' => Filter\OrganizationJobsListQuery::class,
+            'Solr/Jobs/PaginationQuery' => Filter\JobBoardPaginationQuery::class,
         ]
     ],
 
@@ -155,6 +158,7 @@ return [
         'factories' => [
             JobDetailsHydrator::class => JobDetailsHydratorFactory::class,
             \Gastro24\Entity\Hydrator\OrderHydrator::class => \Gastro24\Entity\Hydrator\OrderHydratorFactory::class,
+            \Gastro24\Form\SingleJobHydrator::class => \Gastro24\Form\SingleJobHydratorFactory::class,
         ],
     ],
 
@@ -296,6 +300,9 @@ return [
              'gastro24/jobs/view-intern' => __DIR__ . '/../view/jobs/view-intern.phtml',
              'gastro24/job/dashboard' => __DIR__ . '/../view/jobs/index/dashboard.phtml',
              'gastro24/create-single-job/index' => __DIR__ . '/../view/jobs/create-single-job.phtml',
+             'gastro24/create-single-job/payment' => __DIR__ . '/../view/jobs/create-single-job-payment.phtml',
+             'gastro24/create-single-job/success' => __DIR__ . '/../view/jobs/create-single-job-success.phtml',
+             'gastro24/create-single-job/failed' => __DIR__ . '/../view/jobs/create-single-job-failed.phtml',
              'gastro24/form/create-single-job' => __DIR__ . '/../view/jobs/create-single-job-form.phtml',
              'gastro24/form/job-details-fieldset' => __DIR__ . '/../view/jobs/job-details-fieldset.phtml',
              'gastro24/dashboard' => __DIR__ . '/../view/gastro24/dashboard.phtml',
@@ -350,7 +357,8 @@ return [
             'Jobs/ClassificationsFieldset'  => 'Gastro24\Form\ClassificationsFieldset',
         ],
         'factories' => [
-            Form\CreateSingleJobForm::class => InvokableFactory::class,
+            Form\SingleJobForm::class => \Gastro24\Factory\Form\SingleJobFormFactory::class,
+            Form\InvoiceAddressForm::class => \Gastro24\Factory\Form\InvoiceAddressFormFactory::class,
             Form\UserProductInfo::class => InvokableFactory::class,
             Form\InvoiceAddressSettingsFieldset::class => \Settings\Form\Factory\SettingsFieldsetFactory::class,
             Form\OrdersSettingsFieldset::class => \Settings\Form\Factory\SettingsFieldsetFactory::class,
@@ -481,8 +489,41 @@ return [
                                 'options' => [
                                     'route' => '/single',
                                     'defaults' => [
-                                        'controller' => Controller\CreateSingleJob::class,
+                                        'controller' => Controller\CreateSingleJobController::class,
                                         'action' => 'index',
+                                    ],
+                                    'may_terminate' => true,
+                                ],
+                            ],
+                            'single-payment' => [
+                                'type' => 'Segment',
+                                'options' => [
+                                    'route' => '/single-payment[/:show]',
+                                    'defaults' => [
+                                        'controller' => Controller\CreateSingleJobController::class,
+                                        'action' => 'payment',
+                                    ],
+                                    'may_terminate' => true,
+                                ],
+                            ],
+                            'single-success' => [
+                                'type' => 'Literal',
+                                'options' => [
+                                    'route' => '/single-success',
+                                    'defaults' => [
+                                        'controller' => Controller\CreateSingleJobController::class,
+                                        'action' => 'success',
+                                    ],
+                                    'may_terminate' => true,
+                                ],
+                            ],
+                            'single-failed' => [
+                                'type' => 'Literal',
+                                'options' => [
+                                    'route' => '/single-failed',
+                                    'defaults' => [
+                                        'controller' => Controller\CreateSingleJobController::class,
+                                        'action' => 'failed',
                                     ],
                                     'may_terminate' => true,
                                 ],
@@ -669,7 +710,7 @@ return [
 
         'Core/Ajax/Events' => [ 'listeners' => [
             Listener\DeleteJob::class => ['jobs.delete', true],
-            Listener\JobDetailFileUpload::class  => [
+            Listener\JobFileUpload::class  => [
                 'events' => ['jobdetailsupload', 'jobdetailsdelete' => 'deletePdfFile'],
                 'lazy'   => true
             ],

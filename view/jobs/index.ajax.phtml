@@ -176,8 +176,8 @@ if (count($jobs)): ?>
         </div>
        </div>
             <div class="col-md-9">
-                
-                
+
+
                 <div class="row">
                    <div class="col-md-9">
                       <div class="page-title">
@@ -189,7 +189,7 @@ if (count($jobs)): ?>
                        <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
                    </div>
                 </div>
-        
+
                         <?php
                             // get date difference
                             $today = new DateTime();
@@ -233,7 +233,7 @@ if (count($jobs)): ?>
   <a class="job-logo-link" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><img class="job-logo" alt="<?= $orgName ?>" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" /></a>
   <?php } ?>
   <div class="card__job-content box__action-buttons">
-      
+
           <?php if(!$jobHasExternLink) : ?>
                                                     <!-- favorite button -->
                                                     <?php if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
@@ -249,7 +249,7 @@ if (count($jobs)): ?>
                                                     <?php endif ?>
                                                     <!-- end favorite button -->
                                                 <?php endif; ?>
-      
+
     <?php if($jobHasExternLink) { ?>
     <h2><a rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?> <i class="fa fa-external-link"></i></a></h2>
     <?php }
@@ -257,7 +257,7 @@ if (count($jobs)): ?>
     <h2><a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?></a></h2>
     <?php } ?>
     <div class="card__job-info">
-      <div class="card__job-empname-label">  
+      <div class="card__job-empname-label">
         <?php if ($org): ?>
         <?= $orgName ?>
         <?php else: ?>
@@ -335,7 +335,7 @@ if (count($jobs)): ?>
 <!-- box after third job -->
 <?php endif ?>
 <?php endforeach?>
-                   
+
              
                 <!-- pagination -->
                    <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
@@ -356,12 +356,12 @@ if (count($jobs)): ?>
                  <?php endif ?>
                 
 
-              <?php if (count($this->jobs)):?>   
+              <?php if (count($this->jobs)):?>
                 <div class="to-top-link">
                     <a id="scroll-to-top" href="#top"><span class="fa fa-chevron-up"></span> nach oben</a>
                 </div>
                  <?php endif ?>
-                
+
             </div>
             <?=$hasFacets ? '</div>' : '' ?>
 <?php endif ?>
