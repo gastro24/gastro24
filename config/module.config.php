@@ -140,9 +140,11 @@ return [
             Filter\PdfFileUri::class => Filter\PdfFileUriFactory::class,
             Filter\OrganizationJobsListQuery::class => InvokableFactory::class,
             'Gastro24/Paginator/JobsSimilarPaginationQuery' => 'Gastro24\Paginator\JobsSimilarPaginationQueryFactory',
+            Filter\JobBoardPaginationQuery::class => Factory\Filter\JobBoardPaginationQueryFactory::class,
         ],
         'aliases' => [
             'Organizations/ListJobQuery' => Filter\OrganizationJobsListQuery::class,
+            'Solr/Jobs/PaginationQuery' => Filter\JobBoardPaginationQuery::class,
         ]
     ],
 

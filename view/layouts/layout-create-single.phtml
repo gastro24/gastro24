@@ -170,17 +170,7 @@ $lang = $this->params('lang');
     .post h3 .total, .post h3 .currency {
         font-weight: bold;
     }
-    .application-radio {
-        z-index: 100;
-        float: left;
-        width: 2.5%;
-        padding-top: 21px;
-        padding-right: 20px;
-    }
-    .application-input {
-        position: static !important;
-        width: 88.5%;
-    }
+
     div.mce-edit-area {
         padding-right: 1px;
     }
@@ -311,6 +301,20 @@ $lang = $this->params('lang');
              }
     .application-radio input[type="radio"]:checked {
         background: green
+    }
+
+    @media (min-width: 992px) {
+        .application-radio {
+            z-index: 100;
+            float: left;
+            width: 2.5%;
+            padding-top: 21px;
+            padding-right: 20px;
+        }
+        .application-input {
+            position: static !important;
+            width: 88.5%;
+        }
     }
 
 </style>

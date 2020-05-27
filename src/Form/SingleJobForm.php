@@ -350,7 +350,9 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'filters' => [
                     [
                         'name' => \Core\Filter\File\Resize::class,
-                        'options' => $this->gastroOptions->getLogoSize(),
+                        'options' => [
+                            'max-width' => 150,
+                        ],
                     ],
                     [
                         'name' => \Core\Filter\File\Entity::class,
@@ -376,7 +378,10 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'filters' => [
                     [
                         'name' => \Core\Filter\File\Resize::class,
-                        'options' => $this->gastroOptions->getImageSize(),
+                        'options' => [
+                            'width' => 1200,
+                            'height' => 300
+                        ],
                     ],
                     [
                         'name' => \Core\Filter\File\Entity::class,

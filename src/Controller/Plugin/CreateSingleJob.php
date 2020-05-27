@@ -87,6 +87,9 @@ class CreateSingleJob extends AbstractPlugin
 //            $job->addAttachedEntity($template, 'gastro24-template');
 //
 //        }
+        if (isset($values['publishDate'])) {
+            $job->getTemplateValues()->set('publishDate', $values['publishDate']);
+        }
         if (isset($values['companyDescription'])) {
             $job->getTemplateValues()->set('companyDescription', $values['companyDescription']);
         }
@@ -146,10 +149,6 @@ class CreateSingleJob extends AbstractPlugin
                 break;
         }
 
-        if ($values['publishDate']) {
-            $job->setDatePublishStart(new \DateTime($values['publishDate']));
-        }
-
         $jobRepository->store($job);
 
         return $job;
@@ -204,9 +203,15 @@ class CreateSingleJob extends AbstractPlugin
             'companyWebsite' => $values['companyWebsite'],
             'companyDescription' => $values['companyDescription'],
         ];
+
         if (isset($values['otherAddress'])) {
             $mailVars['otherAddress'] = $values['otherAddress'];
             $mailVars['otherAddress']['name'] = $values['firstname-other-address'] . ' ' . $values['lastname-other-address'];
+        }
+
+        // HINT: for first implementation, just send plain text in email
+        if (isset($values['addons'])) {
+            $mailVars['addons'] = $this->buildAddonsArray($values['addons']);
         }
 
         $this->mailer->send($this->mailer->get(
@@ -218,6 +223,42 @@ class CreateSingleJob extends AbstractPlugin
                 'vars'     => $mailVars,
             ]
         ));
+    }
+
+    private function buildAddonsArray($addons)
+    {
+        $data = [
+            'addon_renewal' => [
+                'name' => 'Verlängerung 90 Tage',
+                'price' => 15,
+            ],
+            'addon_startpage' => [
+                'name' => 'Auf Startseite anzeigen',
+                'price' => 95,
+            ],
+            'addon_top_result' => [
+                'name' => 'Top-Resultat',
+                'price' => 55,
+            ],
+            'addon_highlight' => [
+                'name' => 'Farbliche Hervorhebung',
+                'price' => 15,
+            ],
+            'addon_facebook' => [
+                'name' => 'Zusätzliche Facebook Werbung',
+                'price' => 150,
+            ],
+        ];
+        $preparedData = [];
+
+        foreach ($addons as $key => $name) {
+            $preparedData[] = [
+                'name' => $data[$name]['name'],
+                'price' => $data[$name]['price']
+            ];
+        }
+
+        return $preparedData;
     }
 
     private function createOrder(\Jobs\Entity\Job $job, $values)

@@ -176,17 +176,17 @@ $sessionData = unserialize($session->data);
     <div class="section-body">
         <h2>Bewerbung</h2>
         <div class="row">
-            <div class="col-md-1 application-radio">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 application-radio">
                 <input type="radio" value="applicationMail" name="enableOnlineApplication"
                     <?php if ($sessionData['enableOnlineApplication'] == 'applicationMail') echo 'checked' ?> />
             </div>
-            <div class="col-md-10 application-input">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 application-input">
                 <div class="form-group">
                     <?= $this->formLabel($this->form->get('applicationEmail'), 'E-Mail Adresse für Bewerbungen'); ?>
                     <?= $this->formEmail($this->form->get('applicationEmail')); ?>
                 </div>
             </div>
-            <div class="col-md-1">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Bitte geben Sie die E-Mail Adresse(n) ein, an die Bewerbungen gesendet werden sollen.</span>
@@ -196,15 +196,15 @@ $sessionData = unserialize($session->data);
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-1 application-radio">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 application-radio">
                 <input type="radio" value="directLink" name="enableOnlineApplication"
                     <?php if ($sessionData['enableOnlineApplication'] == 'directLink') echo 'checked' ?> />
             </div>
-            <div class="col-md-10 application-input">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 application-input">
                 <?= $this->formLabel($this->form->get('applicationUri'), 'Direktlink zum Bewerberformular'); ?>
                 <?= $this->formUrl($this->form->get('applicationUri')); ?>
             </div>
-            <div class="col-md-1">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Sofern Sie auf Ihrer Website ein Bewerbungsformular haben, können Sie die Internet-Adresse hier eingeben. Bewerber werden dann direkt weitergeleitet.</span>
@@ -212,22 +212,16 @@ $sessionData = unserialize($session->data);
             </div>
         </div>
         <div class="row" style="margin-top:15px;">
-            <div class="col-md-1 application-radio" style="padding-top:0px" >
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 application-radio" style="padding-top:0px" >
                 <input type="radio" value="noOnlineApplication" name="enableOnlineApplication"
                     <?php if($sessionData['enableOnlineApplication'] == 'noOnlineApplication') echo 'checked' ?> />
             </div>
-            <div class="col-md-10 application-input">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 application-input">
                 <div>
                     Keine Online-Bewerbung. Bitte geben Sie unbedingt eine alternative Kontaktmöglichkeit für Bewerber an.
                 </div>
             </div>
         </div>
-
-<!--            <div class="row form-group">-->
-<!--                <div class="col-md-11" >-->
-<!--                    --><?//= $this->formElement($this->form->get('enableOnlineApplication')); ?>
-<!--                </div>-->
-<!--            </div>-->
     </div>
     <!-- end section application -->
 
@@ -242,11 +236,11 @@ $sessionData = unserialize($session->data);
         </div>
 
         <div class="row form-group">
-            <div class="col-md-11 bannerImage-field" id="bannerImage-span">
+            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 bannerImage-field" id="bannerImage-span">
                 <?= $this->formLabel($this->form->get('bannerImage'), 'Bannerbild'); ?>
                 <?= $this->formElement($this->form->get('bannerImage')); ?>
             </div>
-            <div class="col-md-1">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Ein Bild sagt mehr als 1000 Worte: Mit einem zusätzlichen Bannerbild noch mehr
@@ -266,11 +260,11 @@ $sessionData = unserialize($session->data);
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                 <?= $this->formLabel($this->form->get('companyDescription'), 'Unternehmensinformation'); ?>
                 <?= $this->formTextarea($this->form->get('companyDescription')); ?>
             </div>
-            <div class="col-md-1">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Hier können Sie weitere Informationen zu Ihrem Unternehmen hinterlegen die Bewerber interessieren könnten.</span>
@@ -284,11 +278,11 @@ $sessionData = unserialize($session->data);
     <div class="section-body">
         <h2>Publikation</h2>
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                     <?= $this->formLabel($this->form->get('publishDate'), 'Gewünschtes Aufschaltdatum'); ?>
                     <?= $this->formElement($this->form->get('publishDate')); ?>
             </div>
-            <div class="col-md-1">
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Nach unserer persönlichen Kontrolle geht Ihre Anzeige innert 24h oder zu dem von Ihnen definierten Zeitpunkt online.</span>

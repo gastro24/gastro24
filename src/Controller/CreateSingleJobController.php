@@ -73,24 +73,6 @@ class CreateSingleJobController extends AbstractActionController
             }
 
             return $this->redirect()->toRoute('lang/jobs/single-payment');
-            //return $values;
-
-            //return $this->process();
-
-
-//            $postData = $this->getRequest()->getPost()->toArray();
-//            $filesData = $this->getRequest()->getFiles()->toArray();
-//
-//            if (count($postData['addons'])) {
-//                //TODO show payment page
-//                return [
-//                    'payment' => true,
-//                    'form' => $this->form,
-//                ];
-//            }
-//
-//            $values = $this->process($postData, $filesData);
-//            return $this->complete();
         }
 
         // prefill form
@@ -105,85 +87,11 @@ class CreateSingleJobController extends AbstractActionController
             $this->form->setData($values);
         }
 
-//        if ('complete' == $request->getQuery('do')) {
-//            return $this->complete();
-//        }
-
         return [
             'locations' => [],
             'employmentTypes' => [],
             'form' => $this->form,
         ];
-    }
-
-    private function process()
-    {
-        $data = array_merge_recursive($this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray());
-//        $data = array_merge_recursive($postData, $filesData);
-        $this->form->setData($data);
-
-        // check for pdf or position - remove required filter for excluded
-//        if ($postData['position']) {
-//            //$this->form->get('pdf')->get
-//        }
-
-        if (!$this->form->isValid()) {
-            return [
-                'valid' => false,
-                'form' => $this->form,
-            ];
-        }
-
-        $values = $this->form->getData();
-
-//        switch ($postData['enableOnlineApplication']) {
-//            case 'applicationMail':
-//                //get email and cc
-//                break;
-//            case 'directLink':
-//                // set directlink
-//                break;
-//            case 'noOnlineApplication':
-//                // no online application
-//                break;
-//            default:
-//                break;
-//        }
-
-        //$values = $this->form->getData();
-        $values = $data;
-
-//        if ($values['pdf']) {
-//            $serverUrl = new ServerUrl();
-//            $basePath  = $this->getRequest()->getBasePath();
-//            $values['pdf'] = $serverUrl('/' . $basePath . str_replace('public/', '', $values['pdf']['tmp_name']));
-//        }
-//
-//        if (isset($data['details']['logo_id'])) {
-//            $values['details']['logo_id'] = $data['details']['logo_id'];
-//            $values['details']['logo_url'] = $data['details']['logo_url'];
-//        }
-//
-//        if (isset($data['details']['image_id'])) {
-//            $values['details']['image_id'] = $data['details']['image_id'];
-//            $values['details']['image_url'] = $data['details']['image_url'];
-//        }
-
-        $hydrator = $this->form->getEmploymentTypesHydrator();
-        $employmentTypes = $hydrator->hydrateValue('employmentTypes', $values['employmentTypes']);
-
-        $classifications = new Classifications();
-        $classifications->setEmploymentTypes($employmentTypes);
-        $values['classifications'] = $classifications;
-
-        $session = new Container('Gastro24_SingleJobData');
-        $session->data = serialize($data);
-        $session->values = serialize($values);
-
-        $values['isProcessed'] = true;
-        $values['invoiceAddressForm'] = $this->form;
-
-        return $values;
     }
 
     public function paymentAction()
@@ -199,7 +107,9 @@ class CreateSingleJobController extends AbstractActionController
             $this->invoiceAddressForm->setData($data);
 
             // remove validation for other address if not checked
-            if (!$data['toggleOtherAddress']) {
+            if (!isset($data['toggleOtherAddress'])) {
+                $this->invoiceAddressForm->remove('gender-other-address');
+                $this->invoiceAddressForm->remove('toggleOtherAddress');
                 $this->invoiceAddressForm->remove('otherAddress');
             }
 
@@ -274,32 +184,5 @@ class CreateSingleJobController extends AbstractActionController
         $this->layout()->setTerminal(true)->setTemplate('layouts/layout-create-single');
         return [];
     }
-
-//    private function complete()
-//    {
-//        $session = new Container('Gastro24_SingleJobData');
-//        $values  = $session->values;
-//
-//        if (!$values) {
-//            return $this->redirect()->toRoute('lang/jobs/single');
-//        }
-//
-//        $plugin = $this->plugin(Plugin\CreateSingleJob::class);
-//
-//        try {
-//            $plugin(unserialize($values));
-//        } catch (\Exception $e) {
-//            return [
-//                'isError' => true,
-//            ];
-//        }
-//
-//        $session->exchangeArray([]);
-//
-//        return [
-//            'isSuccess' => true
-//        ];
-//
-//    }
 
 }

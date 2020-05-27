@@ -104,7 +104,7 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                                                 <table>
                                                                                     <tr>
                                                                                         <td>Gewünschtes Aufschaltdatum: </td>
-                                                                                        <td><?php if ($job->getDatePublishStart()) echo $job->getDatePublishStart()->format('d.m.Y') ?></td>
+                                                                                        <td><?php if ($job->getTemplateValues()->get('publishDate')) echo $job->getTemplateValues()->get('publishDate') ?></td>
                                                                                     </tr>
                                                                                 </table>
 
@@ -156,6 +156,16 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                                                     </table>
                                                                                 <?php endif; ?>
 
+                                                                                <?php if ($this->addons) : ?>
+                                                                                    <br><br>
+                                                                                    <h2>Gebuchte Zusatz-Optionen</h2>
+                                                                                    <ul>
+                                                                                        <?php foreach ($this->addons as $addonData) : ?>
+                                                                                        <li><?= $addonData['name'] ?> (<?= $addonData['price'] ?> CHF)</li>
+                                                                                        <?php endforeach; ?>
+                                                                                    </ul>
+                                                                                <?php endif; ?>
+
 
                                                                                 <?php
                                                                                 /**
@@ -166,7 +176,7 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                                                 ?>
 
                                                                                 <?php $total = 0; ?>
-
+                                                                                <br><br>
                                                                                 <?php if (empty($job->getPortals())) : ?>
                                                                                     <?php echo $this->translate('no Portal chosen') ?>
                                                                                 <?php else: ?>

@@ -205,14 +205,6 @@ class JobFileUpload
         $this->singleJobForm->setData($data);
         $this->singleJobForm->setValidationGroup([$name]);
 
-//        return [
-//            'valid' => true,
-//            'content' => '
-//                    <span>' . $data[$name]['name'] . '</span>'
-//                . '<a href="#" class="file-delete btn btn-default btn-xs">
-//                    <span class="yk-icon yk-icon-minus"></span></a>'
-//        ];
-
         if ($this->singleJobForm->isValid()) {
             $values = $this->singleJobForm->getData();
             /** @var TemplateImage $file */
@@ -234,14 +226,11 @@ class JobFileUpload
             ];
         }
 
-//        $values = $this->singleJobForm->getData();
-//        if (isset($values[$name]['entity']) && !empty($values[$name]['entity'])) {
-//            $this->repository->getDocumentManager()->remove($values[$name]['entity']);
-//        }
-//
-//        return [
-//            'valid' => false,
-//            'errors' => $this->singleJobForm->getMessages()
-//        ];
+        $values = $this->singleJobForm->getData();
+        if (isset($values[$name]['entity']) && !empty($values[$name]['entity'])) {
+            $this->repository->getDocumentManager()->remove($values[$name]['entity']);
+        }
+
+        return ['valid' => false, 'errors' => $this->singleJobForm->getMessages() ];
     }
 }
