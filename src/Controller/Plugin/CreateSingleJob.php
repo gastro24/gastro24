@@ -100,12 +100,12 @@ class CreateSingleJob extends AbstractPlugin
             $this->repositories->store($template);
             $job->addAttachedEntity($template, 'gastro24-template');
         }
-        if (isset($data['logo_id'])) {
-            $file = $templateImageRepository->find($data['logo_id']);
+        if (isset($values['logo_id'])) {
+            $file = $templateImageRepository->find($values['logo_id']);
             $template->setLogo($file);
         }
-        if (isset($data['bannerImage_id'])) {
-            $file = $templateImageRepository->find($data['bannerImage_id']);
+        if (isset($values['bannerImage_id'])) {
+            $file = $templateImageRepository->find($values['bannerImage_id']);
             $template->setImage($file);
         }
 
@@ -175,6 +175,7 @@ class CreateSingleJob extends AbstractPlugin
                 'vars'     => [
                     'job' => $job,
                     'invoice' => $order->getInvoiceAddress(),
+                    'lastname' => $values['lastname'],
                 ],
             ]
         ));

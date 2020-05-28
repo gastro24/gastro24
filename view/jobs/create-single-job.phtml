@@ -93,7 +93,7 @@ $sessionData = unserialize($session->data);
         <div class="pull-right">
             <div class="page-title">
                 <div>Preis</div>
-                <div>Einzelinserat: CHF <em class="total">0</em>.- </div>
+                <div>Einzelinserat: CHF <em class="total"><?= $sessionData['totalPrice'] ?></em>.- </div>
             </div>
         </div>
     </div>
@@ -160,6 +160,7 @@ $sessionData = unserialize($session->data);
         <div class="row form-group pdf-upload" id="pdf-span">
             <div class="col-md-11">
                 <?= $this->formLabel($this->form->get('pdf'), 'Stellenbeschreibung als PDF<span class="required-mark">*</span>'); ?>
+                <div id="pdf-errors" class="errors"></div>
                 <?= $this->formElement($this->form->get('pdf')); ?>
             </div>
         </div>
@@ -214,7 +215,7 @@ $sessionData = unserialize($session->data);
         <div class="row" style="margin-top:15px;">
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 application-radio" style="padding-top:0px" >
                 <input type="radio" value="noOnlineApplication" name="enableOnlineApplication"
-                    <?php if($sessionData['enableOnlineApplication'] == 'noOnlineApplication') echo 'checked' ?> />
+                    <?php if(!isset($sessionData['enableOnlineApplication'])|| ($sessionData['enableOnlineApplication'] == 'noOnlineApplication')) echo 'checked' ?> />
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 application-input">
                 <div>
@@ -280,7 +281,7 @@ $sessionData = unserialize($session->data);
         <div class="row form-group">
             <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                     <?= $this->formLabel($this->form->get('publishDate'), 'Gewünschtes Aufschaltdatum'); ?>
-                    <?= $this->formElement($this->form->get('publishDate')); ?>
+                    <?= $this->formDatePicker($this->form->get('publishDate')); ?>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
@@ -295,7 +296,8 @@ $sessionData = unserialize($session->data);
         <div class="row">
             <div class="add_box add_left col-md-4">
                 <div>
-                    <input type="checkbox" name="addons[]" data-value="15" value="addon_renewal">
+                    <input type="checkbox" name="addons[]" data-value="15" value="addon_renewal"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_renewal', $sessionData['addons']) !== false)) echo 'checked' ?> >
                     &nbsp;&nbsp;
                     <h3>Verlängerung 90 Tage</h3>
                     <p>Ihre Stellenanzeige bleibt ab Ihrem gewünschtem Aufschaltdatum anstatt 30 Tage, insgesamt 120 Tage online.</p>
@@ -304,7 +306,8 @@ $sessionData = unserialize($session->data);
             </div>
             <div class="add_box add_left col-md-4">
                 <div>
-                    <input type="checkbox" name="addons[]" data-value="95" value="addon_startpage">
+                    <input type="checkbox" name="addons[]" data-value="95" value="addon_startpage"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_startpage', $sessionData['addons']) !== false)) echo 'checked' ?>>
                     &nbsp;&nbsp;
                     <h3>Auf Startseite anzeigen</h3>
                     <p>Ihre Stellenanzeige wird für die ganze Laufzeit auf der Startseite, direkt unterhalb dem Suchformular prominent angezeigt.</p>
@@ -313,7 +316,8 @@ $sessionData = unserialize($session->data);
             </div>
             <div class="add_box add_left col-md-4">
                 <div>
-                    <input type="checkbox" name="addons[]" data-value="55" value="addon_top_result">
+                    <input type="checkbox" name="addons[]" data-value="55" value="addon_top_result"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_top_result', $sessionData['addons']) !== false)) echo 'checked' ?>>
                     &nbsp;&nbsp;
                     <h3>Top-Resultat</h3>
                     <p>Ihr Stellenanzeige erscheint bei relevanten Suchanfragen zuoberst vor allen anderen Suchresultaten.</p>
@@ -322,7 +326,8 @@ $sessionData = unserialize($session->data);
             </div>
             <div class="add_box add_left col-md-4">
                 <div>
-                    <input type="checkbox" name="addons[]" data-value="15" value="addon_highlight">
+                    <input type="checkbox" name="addons[]" data-value="15" value="addon_highlight"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_highlight', $sessionData['addons']) !== false)) echo 'checked' ?>>
                     &nbsp;&nbsp;
                     <h3>Farbliche Hervorhebung</h3>
                     <p>Ihre Stellenanzeige wird farblich in den Suchresultaten hervorgehoben und besser wahrgenommen.</p>
@@ -331,7 +336,8 @@ $sessionData = unserialize($session->data);
             </div>
             <div class="add_box add_left col-md-4">
                 <div>
-                    <input type="checkbox" name="addons[]" data-value="150" value="addon_facebook">
+                    <input type="checkbox" name="addons[]" data-value="150" value="addon_facebook"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_facebook', $sessionData['addons']) !== false)) echo 'checked' ?>>
                     &nbsp;&nbsp;
                     <h3>Zusätzliche Facebook Werbung</h3>
                     <p>Wir promoten Ihr Stelleninserat in der relevanten Zielgruppe und Region auf Facebook. Sie erhalten im Anschluss ein Reporting.</p>
@@ -341,10 +347,12 @@ $sessionData = unserialize($session->data);
         </div>
         <hr />
         <div class="post">
-            <h3>Einzelinserat: <span class="currency">CHF</span> <span class="total">0</span>.-</h3>
+            <h3>Einzelinserat: <span class="currency">CHF</span> <span class="total"><?= $sessionData['totalPrice'] ?></span>.-</h3>
         </div>
     </div>
     <!-- end section publication and addons -->
+
+    <?= $this->formHidden($this->form->get('totalPrice')); ?>
 
     <!-- section buttons -->
     <div class="section-body">
@@ -375,125 +383,112 @@ $sessionData = unserialize($session->data);
 
 <!-- Modal Box for Single Job Preview -->
 <div class="modal fade" id="single-job-preview-modal" tabindex="-1" role="dialog" aria-labelledby="singleJobLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="singleJobModalLabel">Vorschau</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default panel__job-detail">
-                            <!-- Bannerbild -->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="singleJobModalLabel">Vorschau</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default panel__job-detail">
+                                <!-- Bannerbild -->
                                 <div class="banner"></div>
-                            <!-- End Bannerbild -->
+                                <!-- End Bannerbild -->
 
-                            <div class="panel-body">
-                                <!-- company logo and job title-->
-                                <div class="teaser__job-detail">
-                                    <div itemprop="logo">
-                                        <div class="wrapper__logo">
-                                            <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
-                                        </div>
-                                    </div>
-                                    <h1><?=$this->jobTitle?></h1>
-                                </div>
-                                <h1 class="no-banner"><?=$this->jobTitle?></h1>
-                                <!-- end company logo and job title-->
-
-                                <div class="job-short-info <?php if(!$hasBanner) echo 'no-banner' ?>">
-                                    <ul>
-                                        <li class="location">
-                                            <!-- location -->
-                                            <?php
-                                            $locationString = '';
-                                            foreach ($this->locations as $loc) {
-                                                $location = new \Jobs\Entity\Location($loc);
-                                                $locationString .= ' ' . $location->getCity() . ',';
-                                            }
-                                            $locationString = rtrim($locationString, ",");
-                                            echo $locationString;
-                                            ?>
-                                            <!-- end location -->
-                                        </li>
-                                        <li class="company">
-                                            <!-- company name -->
-                                            <strong><?= $this->company ?></strong>
-                                            <!-- end company name -->
-                                        </li>
-                                        <li class="type">
-                                            <!-- type of contract -->
-                                            <?php
-                                            foreach ($this->employmentTypes as $employmentType) {
-                                                $typeOfContract = ucfirst($employmentType) ?: 'Vollzeit';
-                                                echo '<span class="yk-contract yk-<?=$typeOfContract?>">' . $typeOfContract . '</span>';
-                                            }
-                                            ?>
-                                            <!-- end type of contract -->
-                                        </li>
-                                        <li class="date">
-                                            <!-- published date -->
-                                            <span><?= $publishDate ?></span>
-                                            <!-- end published date -->
-                                        </li>
-                                    </ul>
-
-                                    <div class="wrapper__right">
-                                        <?php if (!$hasBanner): ?>
+                                <div class="panel-body">
+                                    <!-- company logo and job title-->
+                                    <div class="teaser__job-detail">
+                                        <div itemprop="logo">
                                             <div class="wrapper__logo">
-                                                <img src="<?= $logoImageUrl ?>" alt="<?= $this->company?>">
+                                                <img src="<?= $logoImageUrl ?>" alt="<?= $this->organizationName?>">
                                             </div>
-                                        <?php endif; ?>
+                                        </div>
+                                        <h1><?= $sessionData['jobTitle'] ?></h1>
                                     </div>
-                                </div>
+                                    <h1 class="no-banner"><?= $sessionData['jobTitle'] ?></h1>
+                                    <!-- end company logo and job title-->
 
-                                <hr class="job-details-devider"/>
+                                    <div class="job-short-info <?php if(!$hasBanner) echo 'no-banner' ?>">
+                                        <ul>
+                                            <li class="location">
+                                                <!-- location -->
+                                                <?php
+                                                $locationString = '';
+                                                foreach ($sessionData['locations'] as $loc) {
+                                                    $location = new \Jobs\Entity\Location($loc);
+                                                    $locationString .= ' ' . $location->getCity() . ',';
+                                                }
+                                                $locationString = rtrim($locationString, ",");
+                                                echo $locationString;
+                                                ?>
+                                                <!-- end location -->
+                                            </li>
+                                            <li class="company">
+                                                <!-- company name -->
+                                                <strong><?= $sessionData['company'] ?></strong>
+                                                <!-- end company name -->
+                                            </li>
+                                            <li class="type">
+                                                <!-- type of contract -->
+                                                <?php
+                                                $typesArray = [];
+                                                foreach ($sessionData['employmentTypes'] as $employmentType) {
+                                                    $typesArray[] = ucfirst($employmentType) ?: 'Vollzeit';
+                                                }
+                                                $typesString = implode(', ', $typesArray);
+                                                echo $typesString;
+                                                ?>
+                                                <!-- end type of contract -->
+                                            </li>
+                                            <li class="date">
+                                                <!-- published date -->
+                                                <span><?= $publishDate ?></span>
+                                                <!-- end published date -->
+                                            </li>
+                                        </ul>
 
-                                <div class="first apply-button-group">
-                                    <!-- apply button -->
-                                    <div class="button-job-apply text-center">
-                                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                                        <div class="wrapper__right">
+                                            <?php if (!$hasBanner): ?>
+                                                <div class="wrapper__logo">
+                                                    <img src="<?= $logoImageUrl ?>" alt="<?= $this->company?>">
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
-                                    <!-- end apply button -->
-                                </div>
 
-                                <div class="embed-container">
-                                    <div class="frame-content">
-                                        <div id="preload" class="loading hidden text-center">
-                                            <div class="spinner">
-                                                <div class="bounce1"></div>
-                                                <div class="bounce2"></div>
-                                                <div class="bounce3"></div>
+                                    <hr class="job-details-devider"/>
+
+                                    <div class="embed-container">
+                                        <div class="frame-content">
+                                            <div id="preload" class="loading hidden text-center">
+                                                <div class="spinner">
+                                                    <div class="bounce1"></div>
+                                                    <div class="bounce2"></div>
+                                                    <div class="bounce3"></div>
+                                                </div>
+                                                <p>Das Inserat wird geladen, bitte haben Sie einem Moment Geduld</p>
                                             </div>
-                                            <p>Das Inserat wird geladen, bitte haben Sie einem Moment Geduld</p>
-                                        </div>
-                                        <iframe style="height:122rem" id="iframePdf" src=""></iframe>
-                                        <iframe style="height:2500px" id="iframeDirectLink" src=""></iframe>
-                                    </div>
-                                </div>
-
-                                <div class="row html-container">
-                                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-
-                                        <!-- position -->
-                                        <div class="position">
-                                            <?= $this->position ?>
-                                        </div>
-
-                                        <!-- companyDescription -->
-                                        <div class="companyDescription">
-                                            <?= $this->companyDescription ?>
+                                            <iframe style="height:122rem" id="iframePdf" src=""></iframe>
+                                            <iframe style="height:2500px" id="iframeDirectLink" src=""></iframe>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="apply-button-group">
-                                    <!-- apply button -->
-                                    <div class="button-job-apply text-center">
-                                        <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
+                                    <div class="row html-container">
+                                        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+
+                                            <!-- position -->
+                                            <div class="position">
+                                                <?= $this->position ?>
+                                            </div>
+
+                                            <!-- companyDescription -->
+                                            <div class="companyDescription">
+                                                <?= $this->companyDescription ?>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- end apply button -->
                                 </div>
                             </div>
                         </div>
@@ -502,7 +497,7 @@ $sessionData = unserialize($session->data);
             </div>
         </div>
     </div>
-</div>
+
 
 
 

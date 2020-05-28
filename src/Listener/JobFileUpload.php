@@ -121,7 +121,7 @@ class JobFileUpload
                 'valid' => true,
                 'content' => '
                 <a href="' . $values['pdf']['uri'] . '" target="_blank">' . basename($values['pdf']['uri']) . '</a>
-                <a href="?ajax=jobdetailsdelete&file=' .basename($values['pdf']['uri']). '" class="file-delete btn btn-default btn-xs">
+                <a href="?ajax=jobdetailsdelete&file=' . basename($values['pdf']['uri']) . '" class="file-delete btn btn-default btn-xs">
         <span class="yk-icon yk-icon-minus"></span>
     </a>
     <input type="hidden" value="' . $values['pdf']['uri'] . '" name="pdf_uri">'
