@@ -230,7 +230,7 @@ class CreateSingleJob extends AbstractPlugin
             ],
             'addon_highlight' => [
                 'name' => 'Farbliche Hervorhebung',
-                'price' => 15,
+                'price' => 25,
             ],
             'addon_facebook' => [
                 'name' => 'Zusätzliche Facebook Werbung',

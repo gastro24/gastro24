@@ -54,6 +54,33 @@ $sessionData = unserialize($session->data);
         flex-direction: row;
         align-items: center;
     }
+
+
+
+
+
+@media (max-width: 768px) {
+
+  .positionTextarea .tooltip-insert span {
+    right: 0;
+    left: 0;
+}
+  .positionTextarea .tooltip-insert span::after {
+ display:none;
+}
+
+.tooltip-insert span {
+    top: 25px;
+    right: 5px;
+    left:auto;
+    margin-left: 0;
+}
+.tooltip-insert span::after {
+    top: 0;
+    right: 0px;
+    margin-top: -5px;
+}
+}
 </style>
 <!-- breadcrumbs -->
 <div class="row">
@@ -310,7 +337,7 @@ $sessionData = unserialize($session->data);
                         <?php if (isset($sessionData['addons']) && (in_array('addon_startpage', $sessionData['addons']) !== false)) echo 'checked' ?>>
                     &nbsp;&nbsp;
                     <h3>Auf Startseite anzeigen</h3>
-                    <p>Ihre Stellenanzeige wird für die ganze Laufzeit auf der Startseite, direkt unterhalb dem Suchformular prominent angezeigt.</p>
+                    <p>Ihre Stellenanzeige wird für die ganze Laufzeit auf der Startseite, direkt unterhalb des Suchformulars prominent angezeigt.</p>
                     <p class="add_price"><span class="price_add_1">95 </span> CHF</p>
                 </div>
             </div>
@@ -326,12 +353,12 @@ $sessionData = unserialize($session->data);
             </div>
             <div class="add_box add_left col-md-4">
                 <div>
-                    <input type="checkbox" name="addons[]" data-value="15" value="addon_highlight"
+                    <input type="checkbox" name="addons[]" data-value="25" value="addon_highlight"
                         <?php if (isset($sessionData['addons']) && (in_array('addon_highlight', $sessionData['addons']) !== false)) echo 'checked' ?>>
                     &nbsp;&nbsp;
                     <h3>Farbliche Hervorhebung</h3>
-                    <p>Ihre Stellenanzeige wird farblich in den Suchresultaten hervorgehoben und besser wahrgenommen.</p>
-                    <p class="add_price"><span class="price_add_1">15 </span> CHF</p>
+                    <p>Ihre Stellenanzeige wird farblich in den Suchresultaten hervorgehoben und dadurch besser wahrgenommen.</p>
+                    <p class="add_price"><span class="price_add_1">25 </span> CHF</p>
                 </div>
             </div>
             <div class="add_box add_left col-md-4">
