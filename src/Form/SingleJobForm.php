@@ -112,6 +112,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'no-submit' => true,
                 'editor' => [
                     'inline' => false,
+                    'paste_as_text' => true,
                     'language' => 'de',
                     'language_url' => '/modules/Core/js/tinymce-lang/de.js'
                 ]
@@ -234,13 +235,21 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'disable_capable' => [
                     'description' => /*@translate*/ 'Ask the applicant about the earliest starting date.',
                 ],
+                'startDate' => 'now'
             ],
             'attributes' => [
-                'data-date-format' => 'yyyy-mm-dd',
+                'data-date-format' => 'dd/m/yyyy',
                 'data-language' => 'de',
-                'class' => 'form-control datepicker'
+                'class' => 'form-control'
             ]
         ]);
+
+        $this->add(
+            [
+                'type'       => 'hidden',
+                'name'       => 'totalPrice',
+            ]
+        );
 
         $this->add(
             array(

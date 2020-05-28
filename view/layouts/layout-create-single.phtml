@@ -81,6 +81,18 @@ $lang = $this->params('lang');
 
     @media (max-width: 768px) {
 
+        #single-job-preview-modal {
+            width: 100vw;
+            height: 90vh;
+        }
+        #single-job-preview-modal .modal-dialog {
+            width: 95%;
+            height: 95%;
+        }
+        #single-job-preview-modal .modal-dialog .modal-body{
+            margin-bottom: 15px;
+        }
+
         .navbar-brand>img {
 
             left: 5px;
@@ -273,6 +285,7 @@ $lang = $this->params('lang');
         justify-content: center;
     }
 
+    .summary-options input[type="checkbox"],
     .application-radio input[type="radio"] {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -289,21 +302,36 @@ $lang = $this->params('lang');
         width: 20px;
         height: 20px;
         margin:0;
-    }		.application-radio input[type="radio"]::before {
-                 height: 20px;
-                 width: 20px;
-                 display: inline-block;
-                 font-size: 16px;
-                 text-align: center;
-                 line-height: 18px;
-                 color: #fff;
-                 content: '✓';
-             }
+    }
+    .summary-options  input[type="checkbox"]::before,
+    .application-radio input[type="radio"]::before {
+         height: 20px;
+         width: 20px;
+         display: inline-block;
+         font-size: 16px;
+         text-align: center;
+         line-height: 18px;
+         color: #fff;
+         content: '✓';
+     }
+
+    .summary-options  input[type="checkbox"]:disabled,
+    .summary-options  input[type="checkbox"]:checked {
+        background: #A5B0BB;
+        cursor: default;
+    }
+
     .application-radio input[type="radio"]:checked {
         background: green
     }
 
     @media (min-width: 992px) {
+        .summary-options {
+            z-index: 100;
+            float: left;
+            width: 2.5%;
+            padding-right: 20px;
+        }
         .application-radio {
             z-index: 100;
             float: left;
@@ -311,6 +339,7 @@ $lang = $this->params('lang');
             padding-top: 21px;
             padding-right: 20px;
         }
+        .summary-options-values,
         .application-input {
             position: static !important;
             width: 88.5%;
@@ -420,6 +449,7 @@ $lang = $this->params('lang');
                     total += parseFloat($(item).attr('data-value'));
                 });
                 $('.total').text(total);
+                $('#single-job-form input[name="totalPrice"]').val(total);
             });
 
             $('.pdf-link').click(function(e) {
@@ -443,6 +473,13 @@ $lang = $this->params('lang');
                 $('#single-job-form div[name="position"]').attr('required', 'required');
             });
 
+            $('div#pdf-span').on('gastroUploadFailed', function(e) {
+                console.log('pdf errors');
+                $('.pdf-upload').show('slow');
+                $('.pdf-upload #pdf').show('slow');
+            });
+
+
             $('#single-job-address-form .toggle-address-checkbox').click(function(e) {
                 $('#single-job-address-form .otherAddressForm').toggle('slow');
             });
@@ -464,8 +501,11 @@ $lang = $this->params('lang');
             $('#single-job-form .employmentTypesSelect select').on( 'select2:close', function(event) {
                 $("#single-job-preview-modal .job-short-info .type").html('');
 
-                $(this).parent().find('.select2-container .select2-selection__choice').each(function() {
+                $(this).parent().find('.select2-container .select2-selection__choice').each(function(index, elem) {
                     var spanTitle = $(this).attr('title');
+                    if (index > 0) {
+                        spanTitle = ', ' + spanTitle;
+                    }
                     var typeOfContractSpan = $('<span>').addClass('yk-contract yk-vollzeit').text(spanTitle);
 
                     $("#single-job-preview-modal .job-short-info .type").append(typeOfContractSpan);
@@ -497,6 +537,24 @@ $lang = $this->params('lang');
             $('#single-job-form input[name="company"]').on('change', function() {
                 $("#single-job-preview-modal .job-short-info .company strong").text($(this).val())
             });
+
+            // $('#single-job-form .input-group.date').on('click', function() {
+            //     console.log('datepicker clicked');
+            //     var dateToday = new Date();
+            //     var dates = $(this).datepicker({
+            //         defaultDate: "+1w",
+            //         changeMonth: true,
+            //         minDate: dateToday,
+            //         onSelect: function(selectedDate) {
+            //             var option = this.id == "from" ? "minDate" : "maxDate",
+            //                 instance = $(this).data("datepicker"),
+            //                 date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+            //             dates.not(this).datepicker("option", option, date);
+            //         }
+            //     });
+            // });
+
+
 
             $('#single-job-form input[name="publishDate"]').on('change', function() {
                 var dateValue = $(this).val();

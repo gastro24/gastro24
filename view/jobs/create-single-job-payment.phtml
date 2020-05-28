@@ -1,3 +1,7 @@
+<?php
+    $session = new \Zend\Session\Container('Gastro24_SingleJobData');
+    $sessionData = unserialize($session->data);
+?>
 <style>
     iframe {
         background-color:#fff;
@@ -87,7 +91,7 @@
             <div class="pull-right">
                 <div class="page-title">
                     <div>Preis</div>
-                    <div>Einzelinserat: CHF <em class="total">0</em>.- </div>
+                    <div>Einzelinserat: CHF <em class="total"><?= $this->totalPrice ?></em>.- </div>
                 </div>
             </div>
         </div>
@@ -169,6 +173,24 @@
         </div>
     </div>
     <!-- end section main -->
+
+    <!-- section list addons -->
+    <?php if ($this->payment) : ?>
+        <div class="section-body">
+            <h2>Gewählte Zusatz-Optionen</h2>
+            <?php foreach ($this->formattedAddons as $addon ) : ?>
+                <div class="row form-group">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
+                        <input type="checkbox" disabled="disabled" checked="checked">
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
+                        <span><?= $addon['name'] . ' - ' . $addon['price'] . ' CHF' ?></span>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <!-- end section list addons -->
 
     <!-- section different invoice address -->
     <?php if ($this->payment) : ?>

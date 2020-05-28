@@ -11,15 +11,8 @@
 namespace Gastro24\Controller\Plugin;
 
 use Core\Entity\Collection\ArrayCollection;
-use Core\Entity\Hydrator\EntityHydrator;
-use Core\Entity\Tree\EmbeddedLeafs;
-use Core\Entity\Tree\Node;
-use Core\Form\Hydrator\Strategy\TreeSelectStrategy;
 use Gastro24\Entity\Template;
-use Gastro24\Entity\TemplateImage;
-use Gastro24\Form\SingleJobHydrator;
 use Jobs\Entity\AtsMode;
-use Jobs\Entity\Classifications;
 use Jobs\Entity\Location;
 use Jobs\Entity\Status;
 use Orders\Entity\InvoiceAddress;
@@ -28,12 +21,6 @@ use Orders\Entity\Product;
 use Orders\Entity\Snapshot\Job\Builder;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
-/**
- * ${CARET}
- * 
- * @author Mathias Gelhausen <gelhausen@cross-solution.de>
- * @todo write test 
- */
 class CreateSingleJob extends AbstractPlugin
 {
     private $repositories;
@@ -113,12 +100,12 @@ class CreateSingleJob extends AbstractPlugin
             $this->repositories->store($template);
             $job->addAttachedEntity($template, 'gastro24-template');
         }
-        if (isset($data['logo_id'])) {
-            $file = $templateImageRepository->find($data['logo_id']);
+        if (isset($values['logo_id'])) {
+            $file = $templateImageRepository->find($values['logo_id']);
             $template->setLogo($file);
         }
-        if (isset($data['bannerImage_id'])) {
-            $file = $templateImageRepository->find($data['bannerImage_id']);
+        if (isset($values['bannerImage_id'])) {
+            $file = $templateImageRepository->find($values['bannerImage_id']);
             $template->setImage($file);
         }
 
@@ -188,6 +175,7 @@ class CreateSingleJob extends AbstractPlugin
                 'vars'     => [
                     'job' => $job,
                     'invoice' => $order->getInvoiceAddress(),
+                    'lastname' => $values['lastname'],
                 ],
             ]
         ));
@@ -242,7 +230,7 @@ class CreateSingleJob extends AbstractPlugin
             ],
             'addon_highlight' => [
                 'name' => 'Farbliche Hervorhebung',
-                'price' => 15,
+                'price' => 25,
             ],
             'addon_facebook' => [
                 'name' => 'Zusätzliche Facebook Werbung',

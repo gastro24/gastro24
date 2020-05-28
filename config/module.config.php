@@ -158,7 +158,6 @@ return [
         'factories' => [
             JobDetailsHydrator::class => JobDetailsHydratorFactory::class,
             \Gastro24\Entity\Hydrator\OrderHydrator::class => \Gastro24\Entity\Hydrator\OrderHydratorFactory::class,
-            \Gastro24\Form\SingleJobHydrator::class => \Gastro24\Form\SingleJobHydratorFactory::class,
         ],
     ],
 
@@ -172,6 +171,7 @@ return [
         'invokables' => [
             'formcheckbox' => \Gastro24\Factory\View\Helper\FormCheckbox::class,
             'searchForm' => \Gastro24\View\Helper\SearchForm::class,
+            'formDatePicker' => \Gastro24\Form\View\Helper\FormDatePicker::class,
         ],
         'factories' => [
             WordpressApi\View\Helper\WordpressContent::class => WordpressApi\Factory\View\Helper\WordpressContentFactory::class,

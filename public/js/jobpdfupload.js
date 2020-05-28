@@ -68,6 +68,10 @@
                         } else {
                             $context.find('.file-working').hide();
                             $form.form('displayErrors', $form, data.result.errors);
+                            console.log('pdf failed');
+                            console.log($context);
+                            $context.trigger('gastroUploadFailed');
+                            console.log('trigger event');
                         }
                    },
                    fail: function (e, data)

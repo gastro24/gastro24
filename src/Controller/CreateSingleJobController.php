@@ -99,6 +99,9 @@ class CreateSingleJobController extends AbstractActionController
         /* @var \Zend\Http\PhpEnvironment\Request $request */
         $request = $this->getRequest();
         $this->layout()->setTerminal(true)->setTemplate('layouts/layout-create-single');
+        $session = new Container('Gastro24_SingleJobData');
+        $mainValues = unserialize($session->values);
+        $mainData = unserialize($session->data);
 
         $hasAddons = $this->params()->fromRoute('show');
 
@@ -126,9 +129,7 @@ class CreateSingleJobController extends AbstractActionController
                     'invoiceAddressForm' => $this->invoiceAddressForm,
                 ];
             }
-            $session = new Container('Gastro24_SingleJobData');
-            $mainValues = unserialize($session->values);
-            $mainData = unserialize($session->data);
+
             $session->data = serialize(array_merge_recursive($mainValues, $data));
             $session->values = serialize(array_merge_recursive($mainData, $this->invoiceAddressForm->getData()));
 
@@ -163,14 +164,50 @@ class CreateSingleJobController extends AbstractActionController
 
         if ($hasAddons == 'options') {
             return [
+                'formattedAddons' => $this->getFormattedAddons($mainData['addons']),
                 'payment' => true,
                 'invoiceAddressForm' => $this->invoiceAddressForm,
+                'totalPrice' => $mainValues['totalPrice']
             ];
         }
 
         return [
             'invoiceAddressForm' => $this->invoiceAddressForm,
+            'totalPrice' => $mainValues['totalPrice']
         ];
+    }
+
+    private function getFormattedAddons($addonNames)
+    {
+        $formattedData = [];
+        $data = [
+            'addon_renewal' => [
+                'name' => 'Verlängerung 90 Tage',
+                'price' => 15,
+            ],
+            'addon_startpage' => [
+                'name' => 'Auf Startseite anzeigen',
+                'price' => 95,
+            ],
+            'addon_top_result' => [
+                'name' => 'Top-Resultat',
+                'price' => 55,
+            ],
+            'addon_highlight' => [
+                'name' => 'Farbliche Hervorhebung',
+                'price' => 25,
+            ],
+            'addon_facebook' => [
+                'name' => 'Zusätzliche Facebook Werbung',
+                'price' => 150,
+            ],
+        ];
+
+        foreach ($addonNames as $addonKey) {
+            $formattedData[] = $data[$addonKey];
+        }
+
+        return $formattedData;
     }
 
     public function successAction()
