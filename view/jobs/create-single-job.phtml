@@ -171,12 +171,12 @@ $sessionData = unserialize($session->data);
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('employmentTypes')); ?>
             </div>
-            <div class="col-md-6 locationsSelect">
+            <div class="col-md-6 locationsSelect form-group">
                 <?= $this->formLabel($this->form->get('locations'), 'Arbeitsort'); ?>
                 <?= $this->formElement($this->form->get('locations')); ?>
             </div>
 
-            <div class="col-md-5 employmentTypesSelect">
+            <div class="col-md-5 employmentTypesSelect form-group">
                 <?= $this->formLabel($this->form->get('employmentTypes'), 'Beschäftigungsart'); ?>
                 <?= $this->formElement($this->form->get('employmentTypes')); ?>
             </div>
@@ -296,7 +296,7 @@ $sessionData = unserialize($session->data);
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-6 logo-field" id="logo-span">
+            <div class="col-md-6 logo-field form-group" id="logo-span">
                 <?= $this->formLabel($this->form->get('logo'), 'Unternehmenslogo'); ?>
                 <?= $this->formElement($this->form->get('logo')); ?>
             </div>
