@@ -83,11 +83,13 @@ class CreateSingleJob extends AbstractPlugin
         if (isset($values['position'])) {
             $job->getTemplateValues()->set('position', $values['position']);
         }
+        if (isset($values['companyWebsite'])) {
+            $job->getTemplateValues()->set('companyWebsite', $values['companyWebsite']);
+        }
         if (isset($values['pdf_uri'])) {
             $job->setLink($values['pdf_uri']);
         }
 
-        $job->getTemplateValues()->set('companyWebsite', $values['companyWebsite']);
         $job->setTitle($values['jobTitle']);
         $job->setStatus(Status::CREATED);
         $job->setTermsAccepted($values['termsAccepted']);
@@ -188,7 +190,7 @@ class CreateSingleJob extends AbstractPlugin
             'invoice' => $values['invoiceAddress'],
             'applicationOption' => $applicationOption,
             'applicationOptionData' => $applicationOptionData,
-            'companyWebsite' => $values['companyWebsite'],
+            'companyWebsite' => $values['companyWebsite'] ?? '',
             'companyDescription' => $values['companyDescription'],
         ];
 

@@ -120,7 +120,16 @@ $sessionData = unserialize($session->data);
         <div class="pull-right">
             <div class="page-title">
                 <div>Preis</div>
-                <div>Einzelinserat: CHF <em class="total"><?= $sessionData['totalPrice'] ?? '0' ?></em>.- </div>
+                <div>Einzelinserat: CHF <em class="total">
+                    <?php
+                        if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
+                            echo $sessionData['totalPrice'];
+                        }
+                        else {
+                            echo '0';
+                        }
+                    ?>
+                </em>.- </div>
             </div>
         </div>
     </div>
@@ -377,7 +386,16 @@ $sessionData = unserialize($session->data);
         </div>
         <hr />
         <div class="post">
-            <h3>Einzelinserat: <span class="currency">CHF</span> <span class="total"><?= $sessionData['totalPrice'] ?? 0 ?></span>.-</h3>
+            <h3>Einzelinserat: <span class="currency">CHF</span> <span class="total">
+                <?php
+                    if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
+                        echo $sessionData['totalPrice'];
+                    }
+                    else {
+                        echo '0';
+                    }
+                ?>
+            </span>.-</h3>
         </div>
     </div>
     <!-- end section publication and addons -->
