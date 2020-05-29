@@ -120,7 +120,7 @@ $sessionData = unserialize($session->data);
         <div class="pull-right">
             <div class="page-title">
                 <div>Preis</div>
-                <div>Einzelinserat: CHF <em class="total"><?= $sessionData['totalPrice'] ?></em>.- </div>
+                <div>Einzelinserat: CHF <em class="total"><?= $sessionData['totalPrice'] ?? '0' ?></em>.- </div>
             </div>
         </div>
     </div>
@@ -308,6 +308,9 @@ $sessionData = unserialize($session->data);
         <div class="row form-group">
             <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
                     <?= $this->formLabel($this->form->get('publishDate'), 'Gewünschtes Aufschaltdatum'); ?>
+                    <?php if($this->publishDateError): ?>
+                        <div style="color: red; margin: 10px 0;">* Das gewünschte Aufschaltdatum sollte in der Zukunft liegen</div>
+                    <?php endif; ?>
                     <?= $this->formDatePicker($this->form->get('publishDate')); ?>
             </div>
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
@@ -374,7 +377,7 @@ $sessionData = unserialize($session->data);
         </div>
         <hr />
         <div class="post">
-            <h3>Einzelinserat: <span class="currency">CHF</span> <span class="total"><?= $sessionData['totalPrice'] ?></span>.-</h3>
+            <h3>Einzelinserat: <span class="currency">CHF</span> <span class="total"><?= $sessionData['totalPrice'] ?? 0 ?></span>.-</h3>
         </div>
     </div>
     <!-- end section publication and addons -->

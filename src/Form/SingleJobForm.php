@@ -235,7 +235,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'disable_capable' => [
                     'description' => /*@translate*/ 'Ask the applicant about the earliest starting date.',
                 ],
-                'startDate' => 'now'
+                'format' => 'd/m/Y'
             ],
             'attributes' => [
                 'data-date-format' => 'dd/m/yyyy',

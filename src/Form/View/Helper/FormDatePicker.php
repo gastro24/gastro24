@@ -58,8 +58,12 @@ class FormDatePicker extends BaseFormDatePicker
         /*
          *
          */
-        $markup = '<div class="input-group date">%s<div data-toggle="description" data-target="%s" class="input-group-addon datepicker-group" onClick="$(this).parent().find(\':input\').datepicker({startDate: \'now\'}, \'show\')">' .
+//        $markup = '<div class="input-group date">%s<div data-toggle="description" data-target="%s" class="input-group-addon datepicker-group" onClick="$(this).parent().find(\':input\').datepicker(\'show\')">' .
+//            '<i class="fa fa-calendar"></i></div></div><div class="checkbox"></div>';
+
+        $markup = '<div class="input-group date">%s<div data-toggle="description" data-target="%s" class="input-group-addon" onClick="$(this).parent().find(\':input\').datepicker(\'show\')">' .
             '<i class="fa fa-calendar"></i></div></div><div class="checkbox"></div>';
+
 
         $markup = sprintf(
             $markup,

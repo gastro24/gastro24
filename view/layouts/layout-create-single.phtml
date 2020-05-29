@@ -557,11 +557,11 @@ $lang = $this->params('lang');
 
 
             $('#single-job-form input[name="publishDate"]').on('change', function() {
-                var dateValue = $(this).val();
+                var dateValue = $(this).val().split('/');
                 var formattedDate;
 
                 if (dateValue) {
-                    formattedDate = new Date(dateValue);
+                    formattedDate = new Date(dateValue[2] + '-' + dateValue[1] + '-' + dateValue[0]);
                 }
                 else {
                     formattedDate = new Date();

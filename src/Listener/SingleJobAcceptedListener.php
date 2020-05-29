@@ -44,7 +44,9 @@ class SingleJobAcceptedListener
 
         // check for publishDat in future#
         if ($job->getTemplateValues()->get('publishDate')) {
-            $job->setDatePublishStart(new \DateTime($job->getTemplateValues()->get('publishDate')));
+            // convert to valid date format
+            list($day, $month, $year) = explode('/', $job->getTemplateValues()->get('publishDate'));
+            $job->setDatePublishStart(new \DateTime($year . '-' . $month . '-' . $day));
             $this->jobsRepository->store($job);
         }
 
