@@ -541,24 +541,6 @@ $lang = $this->params('lang');
                 $("#single-job-preview-modal .job-short-info .company strong").text($(this).val())
             });
 
-            // $('#single-job-form .input-group.date').on('click', function() {
-            //     console.log('datepicker clicked');
-            //     var dateToday = new Date();
-            //     var dates = $(this).datepicker({
-            //         defaultDate: "+1w",
-            //         changeMonth: true,
-            //         minDate: dateToday,
-            //         onSelect: function(selectedDate) {
-            //             var option = this.id == "from" ? "minDate" : "maxDate",
-            //                 instance = $(this).data("datepicker"),
-            //                 date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
-            //             dates.not(this).datepicker("option", option, date);
-            //         }
-            //     });
-            // });
-
-
-
             $('#single-job-form input[name="publishDate"]').on('change', function() {
                 var dateValue = $(this).val().split('/');
                 var formattedDate;
