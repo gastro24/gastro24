@@ -49,6 +49,19 @@ class CreateSingleJobController extends AbstractActionController
         if ($request->isPost()) {
             $data = array_merge_recursive($this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray());
             $this->form->setData($data);
+            // !!! WORKAROUND: can be removed if datepicker only allows future dates
+            if(isset($data['publishDate'])) {
+                list($day, $month, $year) = explode('/', $data['publishDate']);
+                $tmpDate = new \DateTime($year . '-' . $month . '-' . $day);
+                $today = new \DateTime();
+                if ($tmpDate < $today) {
+                    return [
+                        'valid' => false,
+                        'form' => $this->form,
+                        'publishDateError' => true,
+                    ];
+                }
+            }
             if (!$this->form->isValid()) {
                 return [
                     'valid' => false,
