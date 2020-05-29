@@ -209,7 +209,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             ],
             'attributes' => [
                 'placeholder' => 'https://',
-                'required' => false,
                 'class' => 'form-control',
             ]
         ]);

@@ -91,7 +91,16 @@
             <div class="pull-right">
                 <div class="page-title">
                     <div>Preis</div>
-                    <div>Einzelinserat: CHF <em class="total"><?= $this->totalPrice ?></em>.- </div>
+                    <div>Einzelinserat: CHF <em class="total">
+    <?php
+        if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
+            echo $sessionData['totalPrice'];
+        }
+        else {
+            echo '0';
+        }
+     ?>
+    </em>.- </div>
                 </div>
             </div>
         </div>
