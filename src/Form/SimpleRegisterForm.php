@@ -104,7 +104,7 @@ class SimpleRegisterForm extends Form implements RegisterFormInterface
             'name' => 'button',
             'attributes' => array(
                 'type' => 'submit',
-                'value' => /*@translate*/ 'Schritt 1: Als Arbeitgeber registrieren',
+                'value' => /*@translate*/ 'Schritt 2: Firmendaten',
                 'class' => 'btn btn-primary registration-button'
             ),
         ]);

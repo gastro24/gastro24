@@ -1,6 +1,7 @@
 <?php
 // set default page title
-$this->headTitle($this->translate('Gastrojob24'))->setSeparator(' - ')->setAutoEscape(false);
+//$this->headTitle($this->translate('Gastrojob24'))->setSeparator(' - ')->setAutoEscape(false);
+
 
 // set default keywords
 $this->headMeta()->setCharset("utf-8");
@@ -17,12 +18,14 @@ $lang = $this->params('lang');
 <html lang="<?php echo $this->params('lang') ?>">
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-32x32.png')?>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?=$this->basepath('modules/Gastro24/favicons/favicon-16x16.png')?>">
-    <link rel="shortcut icon" type="image/ico" href="<?=$this->basepath('modules/Gastro24/favicons/favicon.ico')?>">
-    <meta name="msapplication-TileColor" content="#2e5b93">
-    <meta name="theme-color" content="#2e5b93">
-    <?php echo $this->headTitle() ?>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Jobinserat publizieren - 30 Tage kostenlos ausschreiben | Gastrojob24</title>
+    <meta name="description" content="Publizieren Sie Ihr Inserat auf Gastrojob24 kostenlos während 30 Tagen und erreichen Sie tausende Stellensuchende aus der Gastronomie. Jetzt inserieren!">
+    
     <?php echo $this->headMeta() ?>
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>

@@ -1,6 +1,6 @@
 <?php
 
-$this->headTitle($this->translate("Flatrate Job Jahresabo - Jetzt registrieren"));
+$this->headTitle($this->translate("Job-Abo für Unternehmen - 12 Monate Flatrate für CHF 595"));
 $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/registration.js'));
 $registerLandingpage = "https://www.gastrojob24.ch/de/auth/register";
 $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandingpage));
@@ -8,6 +8,11 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
 ?>
 <style>
     /*only for register page */
+    
+    #simple-register-form label {
+        
+        font-weight:300;
+    }
 
     a.link--blue {
         color:#1e69a3;
@@ -22,9 +27,9 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
 
         margin-bottom: 10px;
         color: #0b2235;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 30px;
-        font-weight: bold;
+        font-weight: 300;
     }
 
 
@@ -42,8 +47,6 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
         -moz-border-radius: 4px;
         border-radius: 4px;
     }
-
-
 
     .advantage-box {
 
@@ -354,6 +357,71 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
         padding: 5px 15px;
         margin-bottom: 5px;
     }
+    
+    .steps-form {
+	display: table;
+	width: 100%;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.steps-form .steps-row {
+	display: table-row;
+}
+
+.steps-form .steps-row:before {
+	top: 19px;
+	bottom: 0;
+	position: absolute;
+	content: " ";
+	width: 68%;
+	left: 16%;
+	height: 1px;
+	background-color: #1e69a3;
+}
+
+.steps-form .steps-row .steps-step {
+	display: table-cell;
+	width: 33.333333%;
+	text-align: center;
+	position: relative;
+}
+
+.steps-form .steps-row .steps-step p {
+	margin-top: 0.5rem;
+}
+
+.steps-form .steps-row .steps-step button[disabled] {
+	opacity: 1 !important;
+	filter: alpha(opacity=100) !important;
+}
+
+.steps-form .steps-row .steps-step .btn-circle {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	padding: 9px 0;
+	font-size: 14px;
+	line-height: 1.428571429;
+	border-radius: 100%;
+	margin-top: 0;
+}
+
+.btn-indigo {
+	color: #fff;
+	background: #1e69a3;
+}
+
+.steps-form .btn[disabled] {
+	opacity: 1;
+	color: #1e69a3;
+	border: 1px solid #1e69a3;
+}
+
+.steps-step.active p {
+	font-weight: bold;
+}
+
 
     @media (min-width: 768px) {
         .promote-container {
@@ -415,15 +483,36 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
                 </li>
                 <li class="breadcrumb-item" itemprop="itemListElement" itemscope=""
                     itemtype="http://schema.org/ListItem">
-                    <span itemprop="name">Abo für Unternehmen</span>
+                    <span itemprop="name">Job-Abo für Unternehmen</span>
                     <meta itemprop="position" content="3">
                 </li>
             </ol>
         </nav>
-        <div class="page-title">
-            <h1>Mehr Job-Reichweite mit einem Abo für Unternehmen</h1>
+        
+        
+        <div class="page-title text-center">
+            <h1>Mehr Job-Reichweite mit einem Abo für Ihr Unternehmen</h1>
         </div>
+        
+   <div class="steps-form">
+      <div class="steps-row setup-panel">
+        <div class="steps-step active">
+          <span type="button" class="btn btn-indigo btn-circle">1</span>
+          <p>Schritt 1: Persönliches Arbeitgeber-Login erstellen</p>
+        </div>
+        <div class="steps-step">
+          <span type="button" class="btn btn-default btn-circle" disabled="disabled">2</span>
+          <p>Schritt 2: Firmendaten</p>
+        </div>
+        <div class="steps-step">
+          <span type="button" class="btn btn-default btn-circle" disabled="disabled">3</span>
+          <p>Fertig</p>
+        </div>
+      </div>
     </div>
+    
+    
+</div>
 
     <div class="col-md-6">
         <?php if ($this->successMessage) : ?>
@@ -436,7 +525,7 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
 
         <div class="panel panel-info">
             <div class="panel-body">
-                <h2>In 2 Schritten zum ersten Job-Inserat</h2>
+                <h2>Arbeitgeber-Login erstellen</h2>
                 <div id="form-registration" class="form-container">
                     <div class="form-content">
 
@@ -522,6 +611,7 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
 Ausserdem können Sie während 12 Monaten folgende Gastrojob24-Services exklusiv in Anspruch nehmen:</p>
 
                 <ul class="ecom-list">
+                    <li class="ecom-list__item ecom-list__item--checked">Bezahlung auf Rechnung mit 60 Tage Geld zurück Garantie</li>
                     <li class="ecom-list__item ecom-list__item--checked">Unlimitiert Jobs schalten (Flatrate)</li>
                     <li class="ecom-list__item ecom-list__item--checked">Ihre Jobs erscheinen in oberen Positionen in den Suchresultaten</li>
                     <li class="ecom-list__item ecom-list__item--checked">Permanente Logo-Platzierung auf der Startseite</li>

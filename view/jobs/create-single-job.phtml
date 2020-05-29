@@ -25,71 +25,133 @@ $session = new \Zend\Session\Container('Gastro24_SingleJobData');
 $sessionData = unserialize($session->data);
 ?>
 <style>
-    iframe {
-        background-color:#fff;
-        height:1800px;
-        overflow:auto;
-        width: 1px;
-        min-width: 100%;
-    }
-    #single-job-address-form label,
-    #single-job-form label {
-        font-weight: normal;
-    }
+ 
+iframe {
+	background-color: #fff;
+	height: 1800px;
+	overflow: auto;
+	width: 1px;
+	min-width: 100%;
+}
 
-    #single-job-address-form input[type="radio"] {
-        height: 20px;
-        box-shadow: none;
-        -webkit-box-shadow: none;
-        width: 35px;
-        float: left;
-    }
-    .gender-field .radioBoxes {
-        width: 30%;
-        display: flex;
-        justify-content: space-between;
-    }
-    .gender-field .radioBoxes label{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
+#single-job-address-form label,
+#single-job-form label {
+	font-weight: normal;
+}
 
+#single-job-address-form input[type="radio"] {
+	height: 20px;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	width: 35px;
+	float: left;
+}
 
+.gender-field .radioBoxes {
+	width: 30%;
+	display: flex;
+	justify-content: space-between;
+}
 
+.gender-field .radioBoxes label {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
 
+.steps-form {
+	display: table;
+	width: 100%;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.steps-form .steps-row {
+	display: table-row;
+}
+
+.steps-form .steps-row:before {
+	top: 19px;
+	bottom: 0;
+	position: absolute;
+	content: " ";
+	width: 68%;
+	left: 16%;
+	height: 1px;
+	background-color: #1e69a3;
+}
+
+.steps-form .steps-row .steps-step {
+	display: table-cell;
+	width: 33.333333%;
+	text-align: center;
+	position: relative;
+}
+
+.steps-form .steps-row .steps-step p {
+	margin-top: 0.5rem;
+}
+
+.steps-form .steps-row .steps-step button[disabled] {
+	opacity: 1 !important;
+	filter: alpha(opacity=100) !important;
+}
+
+.steps-form .steps-row .steps-step .btn-circle {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	padding: 9px 0;
+	font-size: 14px;
+	line-height: 1.428571429;
+	border-radius: 100%;
+	margin-top: 0;
+}
+
+.btn-indigo {
+	color: #fff;
+	background: #1e69a3;
+}
+
+.steps-form .btn[disabled] {
+	opacity: 1;
+	color: #1e69a3;
+	border: 1px solid #1e69a3;
+}
+
+.steps-step.active p {
+	font-weight: bold;
+}
 
 @media (max-width: 768px) {
-
-  .positionTextarea .tooltip-insert span {
-    right: 0;
-    left: 0;
+	.positionTextarea .tooltip-insert span {
+		right: 0;
+		left: 0;
+	}
+	.positionTextarea .tooltip-insert span::after {
+		display: none;
+	}
+	.tooltip-insert span {
+		top: 25px;
+		right: 5px;
+		left: auto;
+		margin-left: 0;
+	}
+	.tooltip-insert span::after {
+		top: 0;
+		right: 0px;
+		margin-top: -5px;
+	}
 }
-  .positionTextarea .tooltip-insert span::after {
- display:none;
-}
-
-.tooltip-insert span {
-    top: 25px;
-    right: 5px;
-    left:auto;
-    margin-left: 0;
-}
-.tooltip-insert span::after {
-    top: 0;
-    right: 0px;
-    margin-top: -5px;
-}
-}
-
 
 @media (max-width: 468px) {
-
-  .section-body {
-      
-      padding:12px;
-  }
+	.section-body {
+		padding: 12px;
+	}
 }
+
+
+
 </style>
 <!-- breadcrumbs -->
 <div class="row">
@@ -120,12 +182,12 @@ $sessionData = unserialize($session->data);
 
 <!-- Header & Pricing -->
 <div class="row">
-    <div class="col-md-6">
-        <div class="page-title">
+    <div class="col-md-12">
+        <div class="page-title text-center">
             <h1>Einzelinserat erfassen</h1>
         </div>
     </div>
-    <div class="col-md-6">
+    <!--<div class="col-md-6">
         <div class="pull-right">
             <div class="page-title hidden-xs">
                 <div>Preis</div>
@@ -141,7 +203,27 @@ $sessionData = unserialize($session->data);
                 </em>.- </div>
             </div>
         </div>
+    </div>-->
+     <div class="steps-form">
+      <div class="steps-row setup-panel">
+        <div class="steps-step active">
+          <span type="button" class="btn btn-indigo btn-circle">1</span>
+          <p>Schritt 1: Job-Details</p>
+        </div>
+        <div class="steps-step">
+          <span type="button" class="btn btn-default btn-circle" disabled="disabled">2</span>
+          <p>Schritt 2: Kontaktdaten</p>
+        </div>
+        <div class="steps-step">
+          <span type="button" class="btn btn-default btn-circle" disabled="disabled">3</span>
+          <p>Fertig</p>
+        </div>
+      </div>
     </div>
+    
+    
+    
+    
 </div>
 <!-- Ende --->
 
@@ -152,7 +234,7 @@ $sessionData = unserialize($session->data);
 
     <!-- section main -->
     <div class="section-body">
-        <h2>Stellenbeschreibung</h2>
+        <h2>Stellendetails</h2>
         <div class="row form-group">
             <div class="col-md-11">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
@@ -171,12 +253,12 @@ $sessionData = unserialize($session->data);
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('employmentTypes')); ?>
             </div>
-            <div class="col-md-6 locationsSelect">
+            <div class="col-md-6 locationsSelect form-group">
                 <?= $this->formLabel($this->form->get('locations'), 'Arbeitsort'); ?>
                 <?= $this->formElement($this->form->get('locations')); ?>
             </div>
 
-            <div class="col-md-5 employmentTypesSelect">
+            <div class="col-md-5 employmentTypesSelect form-group">
                 <?= $this->formLabel($this->form->get('employmentTypes'), 'Beschäftigungsart'); ?>
                 <?= $this->formElement($this->form->get('employmentTypes')); ?>
             </div>
@@ -296,7 +378,7 @@ $sessionData = unserialize($session->data);
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-6 logo-field" id="logo-span">
+            <div class="col-md-6 logo-field form-group" id="logo-span">
                 <?= $this->formLabel($this->form->get('logo'), 'Unternehmenslogo'); ?>
                 <?= $this->formElement($this->form->get('logo')); ?>
             </div>
@@ -425,7 +507,7 @@ $sessionData = unserialize($session->data);
 <!--                        <button type="reset" name="buttons[cancel]" id="buttons-cancel" -->
 <!--                                class="cam-btn-reset" value="Cancel">Vorschau anzeigen</button>-->
                     <?= $this->formButton()->openTag($this->form->get('submit')); ?>
-                    <div class="default">Weiter &raquo; </div>
+                    <div class="default">Schritt 2: Kontaktdaten &raquo; </div>
                     <?= $this->formButton()->closeTag(); ?>
                 </div>
             </div>
