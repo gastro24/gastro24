@@ -1,4 +1,3 @@
-
 <!DOCTYPE html><html lang="de">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     
@@ -42,7 +41,7 @@
 					
 					doc.getPage(1).then(page => {
 					   var myCanvas = document.getElementById("my_canvas");
-					   var Context = myCanvas.getContext("2d");
+					   var context = myCanvas.getContext("2d");
 					   
 					   var viewport = page.getViewport(1);
 					   myCanvas.width = viewport.width;
