@@ -415,15 +415,13 @@
 				  <script>
 				 
 				  pdfjsLib.getDocument("https://www.gastrojob24.ch/static/Jobs/job_5ecf5625bb4ec3_85009318.pdf").then(doc => {
-				    console.log("This file has " + doc._pdfInfo.numPages + " pages");
+				    //console.log("This file has " + doc._pdfInfo.numPages + " pages");
 					
 					doc.getPage(1).then(page => {
 					   var myCanvas = document.getElementById("my_canvas");
 					   var context = myCanvas.getContext("2d");
 					   
 					   var viewport = page.getViewport(1);
-					    var scale = container.clientWidth / viewport.width;
-                      viewport = page.getViewport(scale);
 					   myCanvas.width = viewport.width;
 					   myCanvas.height = viewport.height;
 					   
