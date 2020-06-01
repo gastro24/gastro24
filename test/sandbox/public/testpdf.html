@@ -421,7 +421,9 @@
 					   var myCanvas = document.getElementById("my_canvas");
 					   var context = myCanvas.getContext("2d");
 					   
-					   var viewport = page.getViewport(2);
+					   var viewport = page.getViewport(1);
+					    var scale = container.clientWidth / viewport.width;
+                      viewport = page.getViewport(scale);
 					   myCanvas.width = viewport.width;
 					   myCanvas.height = viewport.height;
 					   
