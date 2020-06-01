@@ -330,39 +330,7 @@
         <!-- not intern and embedded -->
         
          
-		 <canvas id="my_canvas"></canvas>
-				  <script>
-				 
-				  pdfjsLib.getDocument("https://www.gastrojob24.ch/static/Jobs/job_5ed4a6768ba830_20180975.pdf").then(doc => {
-				    console.log("This file has " + doc._pdfInfo.numPages + " pages");
-					
-					doc.getPage(1).then(page => {
-					   var myCanvas = document.getElementById("my_canvas");
-					   var context = myCanvas.getContext("2d");
-					   
-					   var viewport = page.getViewport(1);
-					   myCanvas.width = viewport.width;
-					   myCanvas.height = viewport.height;
-					   
-					   page.render({
-					     canvasContext: context,
-						 viewport: viewport
-					   });
-					   
-					   var renderTask = page.render(renderContext);
-                    renderTask.promise.then(function () {
-                        console.log('Page rendered');
-                    });
-				  
-				  
-				     });
-				  
-				  
-				  });
-				  
-				  
-				  
-				  </script>
+		 
 		 
 		 <!-- ende -->
 
@@ -440,8 +408,39 @@
 			      
 		
 			   
-			   
-			   
+			   <canvas id="my_canvas"></canvas>
+				  <script>
+				 
+				  pdfjsLib.getDocument("https://www.gastrojob24.ch/static/Jobs/job_5ed4a6768ba830_20180975.pdf").then(doc => {
+				    console.log("This file has " + doc._pdfInfo.numPages + " pages");
+					
+					doc.getPage(1).then(page => {
+					   var myCanvas = document.getElementById("my_canvas");
+					   var context = myCanvas.getContext("2d");
+					   
+					   var viewport = page.getViewport(1);
+					   myCanvas.width = viewport.width;
+					   myCanvas.height = viewport.height;
+					   
+					   page.render({
+					     canvasContext: context,
+						 viewport: viewport
+					   });
+					   
+					   var renderTask = page.render(renderContext);
+                    renderTask.promise.then(function () {
+                        console.log('Page rendered');
+                    });
+				  
+				  
+				     });
+				  
+				  
+				  });
+				  
+				  
+				  
+				  </script>
 			   
 			   
 			   
