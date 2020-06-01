@@ -406,9 +406,12 @@
                
 			   
 			      
-		
+		    <div class="row">
+			  <div class="col-md-8 col-md-offset-2">
+			   <canvas style="width:100%" id="my_canvas"></canvas>
 			   
-			   <canvas id="my_canvas"></canvas>
+			  </div>
+			 </div>
 				  <script>
 				 
 				  pdfjsLib.getDocument("https://www.gastrojob24.ch/static/Jobs/job_5ecf5625bb4ec3_85009318.pdf").then(doc => {
@@ -418,7 +421,7 @@
 					   var myCanvas = document.getElementById("my_canvas");
 					   var context = myCanvas.getContext("2d");
 					   
-					   var viewport = page.getViewport(1);
+					   var viewport = page.getViewport(1.5);
 					   myCanvas.width = viewport.width;
 					   myCanvas.height = viewport.height;
 					   
