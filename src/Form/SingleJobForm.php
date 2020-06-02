@@ -234,13 +234,14 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'disable_capable' => [
                     'description' => /*@translate*/ 'Ask the applicant about the earliest starting date.',
                 ],
-                'format' => 'd/m/Y'
+                'format' => 'd/m/Y',
+                'minDate' => 0
             ],
             'attributes' => [
                 'data-date-format' => 'dd/m/yyyy',
                 'data-language' => 'de',
                 'class' => 'form-control',
-                //'id' => 'datepicker-publishDate'
+                'id' => 'datepicker-publishDate'
             ]
         ]);
 
@@ -378,8 +379,8 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                     [
                         'name' => \Core\Filter\File\Resize::class,
                         'options' => [
-                            'width' => 1200,
-                            'height' => 300
+                            'max-width' => 1200,
+                            'max-height' => 300
                         ],
                     ],
                     [
