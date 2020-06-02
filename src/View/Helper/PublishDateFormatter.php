@@ -24,8 +24,8 @@ class PublishDateFormatter extends AbstractHelper
         $today = new DateTime();
         $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
         // workaround for timezone hours difference
-//        $time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '-02:00');
-//        $jobDate->setTimestamp($time);
+        $time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '-02:00');
+        $jobDate->setTimestamp($time);
 
         $dayDiff = $today->diff($jobDate);
         if ($dayDiff->days >= 1 && $dayDiff->days < 2) {
