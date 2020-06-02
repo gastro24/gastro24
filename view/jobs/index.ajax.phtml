@@ -288,6 +288,11 @@ if (count($jobs)): ?>
           if ($job->getTemplateValues()->getIntroduction()) {
               $preview = substr(strip_tags($job->getTemplateValues()->getIntroduction()), 0 , 215);
           }
+          elseif($job->getTemplateValues()->get('position')) {
+              $preview = $job->getTemplateValues()->get('position');
+              $preview = str_replace(['<li>', '<strong>', '</strong>', '</u>', '</p>', '</h2>', '<b>', '<u>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>','<div>'], ' ', $preview);
+              $preview = substr(strip_tags($preview), 0 , 215);
+          }
           elseif ($job->getTemplateValues()->getHtml()) {
               $preview = $job->getTemplateValues()->getHtml();
               $preview = str_replace(['<li>', '<strong>', '</strong>', '</u>', '</p>', '</h2>', '<b>', '<u>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>','<div>'], ' ', $preview);
