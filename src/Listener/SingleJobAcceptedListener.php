@@ -44,13 +44,9 @@ class SingleJobAcceptedListener
 
         // check for publishDat in future#
         if ($job->getTemplateValues()->get('publishDate')) {
-            // workaround for timezone hours difference
-            list($day, $month, $year) = explode('/', $job->getTemplateValues()->get('publishDate'));
-            $jobDate = new \DateTime($year . '-' . $month . '-' . $day);
-            $time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '-00:00');
-            $jobDate->setTimestamp($time);
             // convert to valid date format
-            $job->setDatePublishStart($jobDate);
+            list($day, $month, $year) = explode('/', $job->getTemplateValues()->get('publishDate'));
+            $job->setDatePublishStart(new \DateTime($year . '-' . $month . '-' . $day));
             $this->jobsRepository->store($job);
         }
 
