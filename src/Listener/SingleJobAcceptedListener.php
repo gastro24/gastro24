@@ -47,6 +47,7 @@ class SingleJobAcceptedListener
             // convert to valid date format
             list($day, $month, $year) = explode('/', $job->getTemplateValues()->get('publishDate'));
             $job->setDatePublishStart(new \DateTime($year . '-' . $month . '-' . $day));
+            $job->changeStatus(Status::ACTIVE, 'single job was activated.');
             $this->jobsRepository->store($job);
         }
 
