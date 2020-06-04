@@ -189,7 +189,7 @@ return [
             View\Helper\ShowAutomaticJobActivationHint::class => View\Helper\ShowAutomaticJobActivationHintFactory::class,
             View\Helper\HydrateOrderObject::class => View\Helper\HydrateOrderObjectFactory::class,
             View\Helper\JsonLd::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
-            View\Helper\PublishDateFormatter::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+            View\Helper\PublishDateFormatter::class => View\Helper\PublishDateFormatterFactory::class,
             View\Helper\PopupForm::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
             View\Helper\JobDraftsCount::class => View\Helper\JobDraftsCountFactory::class,
         ],
