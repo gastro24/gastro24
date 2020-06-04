@@ -4,7 +4,6 @@ namespace Gastro24\View\Helper;
 
 use DateTime;
 use Jobs\Entity\Job;
-use Organizations\Entity\Organization;
 use Zend\Form\View\Helper\AbstractHelper;
 
 /**
@@ -14,6 +13,13 @@ use Zend\Form\View\Helper\AbstractHelper;
  */
 class PublishDateFormatter extends AbstractHelper
 {
+    private $jobsRepository;
+
+    public function __construct($jobsRepository)
+    {
+        $this->jobsRepository = $jobsRepository;
+    }
+
     /**
      * @param Job $org
      * @return bool
@@ -22,10 +28,13 @@ class PublishDateFormatter extends AbstractHelper
     {
         // get date difference
         $today = new DateTime();
-        $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
-        // workaround for timezone hours difference
-//        $time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '-02:00');
-//        $jobDate->setTimestamp($time);
+        if ($job instanceof \Solr\Entity\JobProxy) {
+            $jobObject = $this->jobsRepository->find($job->getId());
+            $jobDate = $jobObject->getDatePublishStart() ?? $jobObject->getDateCreated();
+        }
+        else {
+            $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
+        }
 
         $dayDiff = $today->diff($jobDate);
         if ($dayDiff->days >= 1 && $dayDiff->days < 2) {

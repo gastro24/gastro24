@@ -194,8 +194,10 @@ if (count($jobs)): ?>
                             // get date difference
                             $today = new DateTime();
                         ?>
+
                         <?php foreach ($jobs as $index => $job): ?>
                             <?php
+                                /** @var Solr\Entity\JobProxy $job */
                                 $org = $job->getOrganization();
                                 $hasJobTemplate = $this->gastroJobTemplate($org);
                                 $isIntern = (!$job->getLink() || $hasJobTemplate);
