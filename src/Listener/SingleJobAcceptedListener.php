@@ -10,6 +10,7 @@
 /** */
 namespace Gastro24\Listener;
 
+use Jobs\Entity\Status;
 use Jobs\Listener\Events\JobEvent;
 
 /**
