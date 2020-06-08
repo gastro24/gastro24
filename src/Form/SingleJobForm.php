@@ -240,6 +240,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             'attributes' => [
                 'data-date-format' => 'dd/m/yyyy',
                 'data-language' => 'de',
+                'data-date-start-date' => date('d/n/Y'),
                 'class' => 'form-control',
                 'id' => 'datepicker-publishDate'
             ]
