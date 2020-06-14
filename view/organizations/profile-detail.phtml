@@ -1,7 +1,12 @@
 <?php
 $this->headTitle("Jobs ".$this->organization->getName());
-$this->headScript()->appendFile($this->basePath('modules/Core/js/core.pagination-container.js'));
-$this->headScript()->appendFile($this->basePath('modules/Core/js/core.pagination.js'));
+
+$this->headScript()->appendFile($this->basepath('/modules/Core/js/core.pagination-container.js'))
+    ->appendFile($this->basePath('modules/Core/js/core.pagination-container.js'))
+    ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
+?>
+
+
 /* @var \Organizations\Entity\Organization $organization */
 $contact = $organization->getContact();
 
