@@ -176,7 +176,7 @@ if (count($jobs)): ?>
 
                 <div class="row">
                    <div class="col-md-9">
-                      <div class="page-title">
+                      <div class="pull-left page-title">
                          <span><?=$this->jobs->getTotalItemCount() ?> </span>
                           <h1><?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer für '.$searchTerm.' Jobs' : 'Leider keine passenden Jobs gefunden'); ?></h1>
                       </div>
