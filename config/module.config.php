@@ -125,6 +125,7 @@ return [
             'Core/File'    => Factory\Controller\FileControllerFactory::class,
             Controller\JobController::class => [Controller\JobController::class,'factory'],
             Controller\ForgotPasswordPopupController::class => Factory\Controller\ForgotPasswordPopupControllerFactory::class,
+            'Organizations/Index' => Factory\Controller\OrganizationsIndexControllerFactory::class,
         ],
     ],
 
@@ -355,6 +356,11 @@ return [
             'Applications/Attributes' => Form\Applications\Attributes::class, // only needed until YAWIK fixed error
             'Auth/Login' => 'Gastro24\Form\Login',
             'Jobs/ClassificationsFieldset'  => 'Gastro24\Form\ClassificationsFieldset',
+            'Organizations/Form' => 'Gastro24\Form\Organizations\Organizations',
+            'Organizations/OrganizationsContactFieldset' => 'Gastro24\Form\Organizations\OrganizationsContactFieldset',
+            'Organizations/OrganizationsDescriptionFieldset' => 'Gastro24\Form\Organizations\OrganizationsDescriptionFieldset',
+            'Gastro24/Organizations/OrganizationsSocialForm' => 'Gastro24\Form\Organizations\OrganizationsSocialForm',
+            'Gastro24/Organizations/OrganizationsSocialFieldset' => 'Gastro24\Form\Organizations\OrganizationsSocialFieldset',
         ],
         'factories' => [
             Form\SingleJobForm::class => \Gastro24\Factory\Form\SingleJobFormFactory::class,

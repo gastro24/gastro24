@@ -204,7 +204,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             'type' => 'Url',
             'name' => 'companyWebsite',
             'options' => [
-                'label' => /*@translate*/ 'Unternemenswebsite',
+                'label' => /*@translate*/ 'Unternehmenswebsite',
                 'rowClass' => 'csj-uri-wrapper'
             ],
             'attributes' => [
