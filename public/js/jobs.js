@@ -93,11 +93,9 @@
                 .on('click.jobboard', '.internal-apply-link', onInternalApplyLinkClicked)
                 .on('click.jobboard', '.external-apply-link, .no-apply-link', onApplyLinkClicked);
 
-
             onPagiantorLoaded();
 
         } else {
-            
             $('a.internal-apply-link').click(onInternalApplyLinkClicked);
             $('a.external-apply-link, a.no-apply-link').click(onApplyLinkClicked);
         }
@@ -137,6 +135,41 @@
                 }
             });
         });
+
+        $('.profile-detail .box__action-buttons button').click(function() {
+            var saveButton = $(this);
+            var saveText = saveButton.data('text-save');
+            var savedText = saveButton.data('text-saved');
+            var jobLink = $(this).parent().find('h2 > a').attr('href');
+            var jobId = jobLink.split('-').pop().replace('.html', '');
+            var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
+
+            // call ajax, add link to session list
+            $.ajax({
+                url : '/' + lang + '/job/' + jobId + '/save',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    id: jobId,
+                    action: updateMethod,
+                },
+                success : function(data) {
+
+                    // update translated text
+                    if (updateMethod == 'remove') {
+                        saveButton.removeClass('saved').find('span').html(saveText);
+                        decrementBadgeCount();
+                    }
+                    else {
+                        saveButton.addClass('saved').find('span').html(savedText);
+                        incrementBadgeCount();
+                    }
+                },
+                error : function(error) {
+                    console.log('Error while saving job');
+                }
+            });
+        })
 
         $container.on('yk-paginator-container:loaded.gastro24 g24-jobs:init', function(ev) {
             $('.box__action-buttons button').click(function() {
