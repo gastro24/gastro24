@@ -11,5 +11,7 @@ use Core\Form\SummaryForm;
  */
 class OrganizationsSocialForm extends SummaryForm
 {
-    protected $baseFieldset = 'Gastro24/Organizations/OrganizationsSocialFieldset';
+    protected $baseFieldset = 'Gastro24\Form\Organizations\OrganizationsSocialFieldset';
+
+    protected $displayMode = self::DISPLAY_SUMMARY;
 }

@@ -158,6 +158,8 @@ return [
     'hydrators' => [
         'factories' => [
             JobDetailsHydrator::class => JobDetailsHydratorFactory::class,
+            \Gastro24\Form\Organizations\Hydrator\OrganizationDescriptionHydrator::class => \Gastro24\Factory\Form\Hydrator\OrganizationDescriptionHydratorFactory::class,
+            \Gastro24\Form\Organizations\Hydrator\OrganizationSocialHydrator::class => \Gastro24\Factory\Form\Hydrator\OrganizationSocialHydratorFactory::class,
             \Gastro24\Entity\Hydrator\OrderHydrator::class => \Gastro24\Entity\Hydrator\OrderHydratorFactory::class,
         ],
     ],
@@ -358,9 +360,7 @@ return [
             'Jobs/ClassificationsFieldset'  => 'Gastro24\Form\ClassificationsFieldset',
             'Organizations/Form' => 'Gastro24\Form\Organizations\Organizations',
             'Organizations/OrganizationsContactFieldset' => 'Gastro24\Form\Organizations\OrganizationsContactFieldset',
-            'Organizations/OrganizationsDescriptionFieldset' => 'Gastro24\Form\Organizations\OrganizationsDescriptionFieldset',
             'Gastro24/Organizations/OrganizationsSocialForm' => 'Gastro24\Form\Organizations\OrganizationsSocialForm',
-            'Gastro24/Organizations/OrganizationsSocialFieldset' => 'Gastro24\Form\Organizations\OrganizationsSocialFieldset',
         ],
         'factories' => [
             Form\SingleJobForm::class => \Gastro24\Factory\Form\SingleJobFormFactory::class,
@@ -377,6 +377,8 @@ return [
             'LocationSelect' => \Gastro24\Factory\Form\GeoSelectFactory::class,
             'Gastro24\Form\Login' => \Gastro24\Factory\Form\LoginFactory::class,
             'Gastro24\Form\ForgotPasswordPopup' => \Gastro24\Factory\Form\ForgotPasswordPopupFactory::class,
+            'Gastro24\Form\Organizations\OrganizationsDescriptionFieldset' => \Gastro24\Factory\Form\OrganizationsDescriptionFieldsetFactory::class,
+            'Gastro24\Form\Organizations\OrganizationsSocialFieldset' => \Gastro24\Factory\Form\OrganizationsSocialFieldsetFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,

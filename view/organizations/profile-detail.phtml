@@ -30,6 +30,13 @@ $logoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 if($organization->getImages()->notEmpty('images')) {
     $logoUrl = $this->basePath($this->organizationImageCache->getUri($organization->getImages()->get('thumbnail')));
 }
+
+$bannerUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
+
+$organizationAdditionalRepo = $this->services('repositories')
+    ->get(\Gastro24\Entity\OrganizationAdditional::class);
+/** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
+$organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($organization->getId());
 ?>
 
 <style>
@@ -472,9 +479,11 @@ if($organization->getImages()->notEmpty('images')) {
         <div class="col-md-9">
             <div class="info-card">
                 <h2>Portrait</h2>
-                <div class="yt-video embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/MwOlaYlHM0Q" allowfullscreen></iframe>
-                </div>
+                <?php if($organizationAdditional) : ?>
+                    <div class="yt-video embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="<?= $organizationAdditional->getVideoLink() ?>" allowfullscreen></iframe>
+                    </div>
+                <?php endif; ?>
                 <div class="jsDRpn collapse-textbox">
                     <p><?= $organization->getdescription()?></p>
                 </div>
@@ -507,15 +516,16 @@ if($organization->getImages()->notEmpty('images')) {
 
                 <div class="meta-adress">
                     <a href="tel:" rel="nofollow"><?= $contact->getPhone() ?></a>
-                    <a href="" rel="nofollow">[Website]</a>
+                    <a href="<?= $contact->getWebsite() ?>" rel="nofollow"><?= $contact->getWebsite() ?></a>
                 </div>
                 <div class="social-media-company-profile">
-                    <a href=""> <i class="fa fa-facebook-square"></i>
-                    </a> <a href=""><i class="fa fa-linkedin-square"></i></a>
-                    <a href=""> <i class="fa fa-twitter-square"></i>
-                    </a>	<a href=""><i class="fa fa-instagram"></i></a>
-                    <a href="">	<i class="fa fa-youtube-square"></i>
-                    </a>
+                    <?php if($organizationAdditional) : ?>
+                        <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>"> <i class="fa fa-facebook-square"></i></a>
+                        <a href="<?= $organizationAdditional->getSocials()->getLinkedin() ?>"><i class="fa fa-linkedin-square"></i></a>
+                        <a href="<?= $organizationAdditional->getSocials()->getTwitter() ?>"> <i class="fa fa-twitter-square"></i></a>
+                        <a href="<?= $organizationAdditional->getSocials()->getInstagram() ?>"><i class="fa fa-instagram"></i></a>
+                        <a href="<?= $organizationAdditional->getSocials()->getYoutube() ?>">	<i class="fa fa-youtube-square"></i></a>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="iframe-container">

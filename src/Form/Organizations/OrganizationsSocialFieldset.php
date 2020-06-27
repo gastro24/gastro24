@@ -6,8 +6,6 @@ use Core\Entity\Hydrator\EntityHydrator;
 use Zend\Form\Fieldset;
 
 /**
- * OrganizationsSocialFieldset.php
- *
  * @author Stefanie Drost <contact@stefaniedrost.com>
  */
 class OrganizationsSocialFieldset extends Fieldset
@@ -21,13 +19,9 @@ class OrganizationsSocialFieldset extends Fieldset
         return $this->hydrator;
     }
 
-
-    /**
-     *
-     */
     public function init()
     {
-        $this->setName('organization-socials');
+        $this->setName('socials');
 
         $this->add([
             'type' => 'Url',
@@ -107,4 +101,14 @@ class OrganizationsSocialFieldset extends Fieldset
     {
         return array();
     }
+
+    /**
+     * a required method to overwrite the generic method to make the binding of the entity work
+     * @param object $object
+     * @return bool
+     */
+//    public function allowObjectBinding($object)
+//    {
+//        return $object instanceof OrganizationSocials;
+//    }
 }

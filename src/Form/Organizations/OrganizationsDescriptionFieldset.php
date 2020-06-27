@@ -11,16 +11,11 @@ use Organizations\Form\OrganizationsDescriptionFieldset as BaseOrganizationsDesc
  */
 class OrganizationsDescriptionFieldset extends BaseOrganizationsDescriptionFieldset
 {
-    /**
-     * @inheritDoc
-     */
     public function init()
     {
-        $this->setName('organization-description');
-
         $this->add([
             'type' => 'Url',
-            'name' => 'videolink',
+            'name' => 'videoLink',
             'options' => [
                 'label' => /*@translate*/ 'Video Link',
                 'rowClass' => 'csj-uri-wrapper'
@@ -32,15 +27,6 @@ class OrganizationsDescriptionFieldset extends BaseOrganizationsDescriptionField
             ]
         ]);
 
-        $this->add(
-            array(
-                'name' => 'description',
-                'type' => 'textarea',
-                'options' => array(
-                    'label' => /* @translate */ 'Description'
-                )
-            )
-        );
-
+        parent::init();
     }
 }
