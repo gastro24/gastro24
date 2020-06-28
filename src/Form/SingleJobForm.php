@@ -1,27 +1,14 @@
 <?php
-/**
- * YAWIK
- *
- * @filesource
- * @license MIT
- * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
- */
-  
-/** */
+
 namespace Gastro24\Form;
 
 use Core\Entity\Hydrator\EntityHydrator;
 use Core\Form\Form;
-use Core\Form\ViewPartialProviderInterface;
-use Core\Form\ViewPartialProviderTrait;
 use Gastro24\Filter\PdfFileUri;
 use Jobs\Entity\Category;
 use Jobs\Entity\Location;
-use Zend\Form\Fieldset;
 use Zend\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
-use Zend\Http\PhpEnvironment\Request;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\ArrayUtils;
 
 class SingleJobForm extends Form implements InputFilterProviderInterface
 {

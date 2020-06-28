@@ -40,6 +40,12 @@ class OrganizationAdditional implements EntityInterface, IdentifiableEntityInter
      */
     protected $socials;
 
+    /**
+     * @ODM\ReferenceOne(targetDocument="\Gastro24\Entity\TemplateImage", storeAs="id")
+     * @var TemplateImage
+     */
+    protected $banner;
+
 
     /**
      * @return string
@@ -113,6 +119,30 @@ class OrganizationAdditional implements EntityInterface, IdentifiableEntityInter
         }
 
         return $this->socials;
+    }
+
+    /**
+     * @return TemplateImage
+     */
+    public function getBanner()
+    {
+        return $this->banner;
+    }
+
+    /**
+     * @param TemplateImage $image
+     *
+     * @return self
+     */
+    public function setBanner(TemplateImage $image)
+    {
+        $this->banner = $image;
+
+        return $this;
+    }
+
+    public function clearBanner() {
+        $this->banner = null;
     }
 
 }

@@ -3,13 +3,12 @@
 namespace Gastro24\Form\Organizations;
 
 use Organizations\Form\OrganizationsContactFieldset as BaseOrganizationsContactFieldset;
+use Zend\InputFilter\InputFilterProviderInterface;
 
 /**
- * OrganizationsContactFieldset.php
- *
  * @author Stefanie Drost <contact@stefaniedrost.com>
  */
-class OrganizationsContactFieldset extends BaseOrganizationsContactFieldset
+class OrganizationsContactFieldset extends BaseOrganizationsContactFieldset implements InputFilterProviderInterface
 {
 
     /**
@@ -29,10 +28,19 @@ class OrganizationsContactFieldset extends BaseOrganizationsContactFieldset
             'attributes' => [
                 'data-placeholder' => 'https://',
                 'placeholder' => 'https://',
-                //'class' => 'form-control',
             ]
         ]);
 
         $this->remove('fax');
+    }
+
+    public function getInputFilterSpecification()
+    {
+        return [
+            'website' => [
+                'required' => false,
+                'allow_empty' => true
+            ]
+        ];
     }
 }

@@ -87,6 +87,7 @@ return [
             Listener\SingleJobAcceptedListener::class => Listener\SingleJobAcceptedListenerFactory::class,
             Listener\JobFileUpload::class => Listener\JobFileUploadFactory::class,
             Listener\DeleteTemplateImage::class => Listener\DeleteTemplateImageFactory::class,
+            Listener\DeleteBannerImageReference::class => \Gastro24\Factory\Listener\DeleteBannerImageReferenceFactory::class,
             Listener\AutoApproveChangedJobs::class => Listener\AutoApproveChangedJobsFactory::class,
             Listener\ExpiredJobListener::class => Listener\ExpiredJobListenerFactory::class,
             Listener\AutomaticJobApproval::class => Listener\AutomaticJobApprovalFactory::class,
@@ -161,6 +162,7 @@ return [
             \Gastro24\Form\Organizations\Hydrator\OrganizationDescriptionHydrator::class => \Gastro24\Factory\Form\Hydrator\OrganizationDescriptionHydratorFactory::class,
             \Gastro24\Form\Organizations\Hydrator\OrganizationSocialHydrator::class => \Gastro24\Factory\Form\Hydrator\OrganizationSocialHydratorFactory::class,
             \Gastro24\Entity\Hydrator\OrderHydrator::class => \Gastro24\Entity\Hydrator\OrderHydratorFactory::class,
+            'Organizations/Hydrator/Banner' => \Gastro24\Factory\Form\Hydrator\OrganizationBannerHydratorFactory::class,
         ],
     ],
 
@@ -326,6 +328,7 @@ return [
              'organizations/profile/detail' => __DIR__ . '/../view/organizations/profile-detail.phtml',
              'organizations/profile/detail.ajax' => __DIR__ . '/../view/organizations/profile-detail.ajax.phtml',
              'organizations/profile/disabled' => __DIR__ . '/../view/organizations/profile-disabled.phtml',
+             'organizations/index/edit' => __DIR__ . '/../view/organizations/index/form.phtml',
              'organizations/mail/invite-employee.phtml' => __DIR__ . '/../view/mail/invite-employee.phtml',
              'settings/index/index' => __DIR__ . '/../view/settings/index.phtml',
          ],
@@ -379,11 +382,20 @@ return [
             'Gastro24\Form\ForgotPasswordPopup' => \Gastro24\Factory\Form\ForgotPasswordPopupFactory::class,
             'Gastro24\Form\Organizations\OrganizationsDescriptionFieldset' => \Gastro24\Factory\Form\OrganizationsDescriptionFieldsetFactory::class,
             'Gastro24\Form\Organizations\OrganizationsSocialFieldset' => \Gastro24\Factory\Form\OrganizationsSocialFieldsetFactory::class,
+            'Organizations/Banner' => \Gastro24\Factory\Form\OrganizationBannerImageFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
             'Orders/SettingsFieldset' => Form\OrdersSettingsFieldset::class,
         ]
+    ],
+
+    'form_elements_config' => [
+        'file_upload_factories' => [
+            'organization_banner_image' => [
+                'hydrator' => 'Organizations/Hydrator/Banner',
+            ],
+        ],
     ],
 
     'mails' => [
@@ -725,7 +737,8 @@ return [
         ]],
 
         'Core/File/Events' => [ 'listeners' => [
-            Listener\DeleteTemplateImage::class => [ \Core\Listener\Events\FileEvent::EVENT_DELETE, true ]
+            Listener\DeleteTemplateImage::class => [ \Core\Listener\Events\FileEvent::EVENT_DELETE, true ],
+            Listener\DeleteBannerImageReference::class => [ \Core\Listener\Events\FileEvent::EVENT_DELETE, true ]
         ]],
     ],
 

@@ -4,11 +4,12 @@ namespace Gastro24\Form\Organizations;
 
 use Core\Entity\Hydrator\EntityHydrator;
 use Zend\Form\Fieldset;
+use Zend\InputFilter\InputFilterProviderInterface;
 
 /**
  * @author Stefanie Drost <contact@stefaniedrost.com>
  */
-class OrganizationsSocialFieldset extends Fieldset
+class OrganizationsSocialFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function getHydrator()
     {
@@ -28,12 +29,11 @@ class OrganizationsSocialFieldset extends Fieldset
             'name' => 'facebook',
             'options' => [
                 'label' => /*@translate*/ 'Facebook Profil',
-                'rowClass' => 'csj-uri-wrapper'
+                'rowClass' => 'csj-uri-wrapper',
             ],
             'attributes' => [
                 'data-placeholder' => 'https://',
                 'placeholder' => 'https://',
-                //'class' => 'form-control',
             ]
         ]);
 
@@ -47,7 +47,6 @@ class OrganizationsSocialFieldset extends Fieldset
             'attributes' => [
                 'data-placeholder' => 'https://',
                 'placeholder' => 'https://',
-                //'class' => 'form-control',
             ]
         ]);
 
@@ -61,7 +60,6 @@ class OrganizationsSocialFieldset extends Fieldset
             'attributes' => [
                 'data-placeholder' => 'https://',
                 'placeholder' => 'https://',
-                //'class' => 'form-control',
             ]
         ]);
 
@@ -75,7 +73,6 @@ class OrganizationsSocialFieldset extends Fieldset
             'attributes' => [
                 'data-placeholder' => 'https://',
                 'placeholder' => 'https://',
-                //'class' => 'form-control',
             ]
         ]);
 
@@ -89,26 +86,33 @@ class OrganizationsSocialFieldset extends Fieldset
             'attributes' => [
                 'data-placeholder' => 'https://',
                 'placeholder' => 'https://',
-                //'class' => 'form-control',
             ]
         ]);
     }
 
-    /**
-     * @return array
-     */
     public function getInputFilterSpecification()
     {
-        return array();
+        return [
+            'facebook' => [
+                'required' => false,
+                'allow_empty' => true
+            ],
+            'linkedin' => [
+                'required' => false,
+                'allow_empty' => true
+            ],
+            'youtube' => [
+                'required' => false,
+                'allow_empty' => true
+            ],
+            'instagram' => [
+                'required' => false,
+                'allow_empty' => true
+            ],
+            'twitter' => [
+                'required' => false,
+                'allow_empty' => true
+            ],
+        ];
     }
-
-    /**
-     * a required method to overwrite the generic method to make the binding of the entity work
-     * @param object $object
-     * @return bool
-     */
-//    public function allowObjectBinding($object)
-//    {
-//        return $object instanceof OrganizationSocials;
-//    }
 }

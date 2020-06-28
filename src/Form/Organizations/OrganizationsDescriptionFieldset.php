@@ -3,13 +3,12 @@
 namespace Gastro24\Form\Organizations;
 
 use Organizations\Form\OrganizationsDescriptionFieldset as BaseOrganizationsDescriptionFieldset;
+use Zend\InputFilter\InputFilterProviderInterface;
 
 /**
- * OrganizationsDescriptionFieldset.php
- *
  * @author Stefanie Drost <contact@stefaniedrost.com>
  */
-class OrganizationsDescriptionFieldset extends BaseOrganizationsDescriptionFieldset
+class OrganizationsDescriptionFieldset extends BaseOrganizationsDescriptionFieldset implements InputFilterProviderInterface
 {
     public function init()
     {
@@ -23,10 +22,19 @@ class OrganizationsDescriptionFieldset extends BaseOrganizationsDescriptionField
             'attributes' => [
                 'data-placeholder' => 'https://www.youtube.com/embed/123xyz',
                 'placeholder' => 'https://www.youtube.com/embed/123xyz',
-                //'class' => 'form-control',
             ]
         ]);
 
         parent::init();
+    }
+
+    public function getInputFilterSpecification()
+    {
+        return [
+            'videoLink' => [
+                'required' => false,
+                'allow_empty' => true
+            ]
+        ];
     }
 }

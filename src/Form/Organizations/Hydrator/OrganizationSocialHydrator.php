@@ -42,7 +42,6 @@ class OrganizationSocialHydrator extends EntityHydrator
     public function hydrate(array $data, $object)
     {
         if (count($data)) {
-
             /** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
             $organizationAdditional = $this->organizationAdditionalRepository->findOneByOrganizationId($object->getId());
 

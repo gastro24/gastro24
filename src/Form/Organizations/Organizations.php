@@ -6,8 +6,6 @@ use Organizations\Form\Organizations as BaseOrganizationsForm;
 use Organizations\Form\OrganizationsProfileForm;
 
 /**
- * Organizations.php
- *
  * @author Stefanie Drost <contact@stefaniedrost.com>
  */
 class Organizations extends BaseOrganizationsForm
@@ -35,13 +33,14 @@ class Organizations extends BaseOrganizationsForm
                 ),
 
                 'organizationBanner' => array(
-                    'type' => 'Organizations/Image',
-                    'property' => 'images',
+                    'type' => 'Organizations/Banner',
+                    'property' => true,
                     'use_files_array' => true,
 
                     'options' => [
                         'label' => /*@translate*/ 'Bannerbild',
-                    ]
+                        'enable_descriptions' => false,
+                    ],
                 ),
 
                 'locationForm' => array(
@@ -82,7 +81,6 @@ class Organizations extends BaseOrganizationsForm
                         'label' => /*@translate*/ 'Profile Setting',
                     ]
                 ]
-
             )
         );
     }
