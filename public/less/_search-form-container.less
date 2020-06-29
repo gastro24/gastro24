@@ -7,12 +7,7 @@ body {
   }
 }
 
-.organizations-profile-detail {
-  > #jobs-list-filter-wrapper{
 
-   display:none!important;
-  }
-}
 
 body {
   &.home,
@@ -41,13 +36,25 @@ body {
     .search-form-container {
        background-color: #fff;
     }
+    
+.organizations-profile-detail {
+  > #jobs-list-filter-wrapper{
+
+   display:none;
+  }
+}
 }
 
 @media (max-width: 768px) {
 .search-form-container {
     background-color:#404040;
 }
+.organizations-profile-detail {
+  > #jobs-list-filter-wrapper{
 
+   display:block;
+  }
+}
 .navbar-search-container-mobile {
     background-color: #fff;
 }
