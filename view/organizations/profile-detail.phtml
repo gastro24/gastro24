@@ -1,7 +1,7 @@
 <?php
 //$this->headTitle("Jobs ".$this->organization->getName());
 
-$this->headTitle($this->organization->getName().": ".$this->jobs->getTotalItemCount()."verfügbare Jobs");
+$this->headTitle($this->organization->getName().": ".$this->jobs->getTotalItemCount()." verfügbare Jobs");
 
 
 
@@ -52,6 +52,34 @@ if ($organizationAdditional && $organizationAdditional->getBanner()) {
         background-image: url(<?= $bannerUrl ?>);
     }
 <?php $this->headStyle()->captureEnd() ?>
+
+<script type="application/ld+json">
+ { "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "<?= $organization->getName()?>",
+ "url": "<?= $contact->getWebsite() ?>",
+ "logo": "<?= $logoUrl ?>",
+ "description": "<?= $organization->getdescription()?>",
+ "address": {
+ "@type": "PostalAddress",
+ "streetAddress": "<?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?>",
+ "addressLocality": "<?= $contact->getCity() ?>",
+ "postalCode": "<?= $contact->getPostalcode() ?>",
+ "addressCountry": "<?= $contact->getCountry() ?>"
+ },
+ "contactPoint": {
+ "@type": "ContactPoint",
+ "contactType": "Human Resource",
+ "telephone": "[<?= $contact->getPhone() ?>]"
+ },
+ "sameAs": [ 
+ "<?= $organizationAdditional->getSocials()->getFacebook() ?>",
+ "<?= $organizationAdditional->getSocials()->getLinkedin() ?>",
+ "<?= $organizationAdditional->getSocials()->getTwitter() ?>",
+ "<?= $organizationAdditional->getSocials()->getInstagram() ?>",
+ "<?= $organizationAdditional->getSocials()->getYoutube() ?>"
+ ]}
+</script>
 
 <style>
     .meta-adress {
