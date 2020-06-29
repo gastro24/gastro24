@@ -1,8 +1,10 @@
 <?php
 //$this->headTitle("Jobs ".$this->organization->getName());
 
-$this->headTitle($this->organization->getName().": <?= $jobsCount ?> verfügbare Jobs");
+$this->headTitle($this->organization->getName().": ".$this->jobs->$jobsCount()."verfügbare Jobs");
 
+
+$this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
 
 
 
@@ -452,7 +454,7 @@ if ($organizationAdditional && $organizationAdditional->getBanner()) {
                     </div>
                 <?php endif; ?>
                 <div class="jsDRpn collapse-textbox">
-                    <p><?= nl2br($organization->getdescription()) ?></p>
+                    <p><?= $organization->getdescription()?></p>
                 </div>
                 <div class="iMNdyq tab-readmore text-center">
                     <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-textbox">
