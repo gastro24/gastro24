@@ -4,8 +4,6 @@
 $this->headTitle($this->organization->getName().": ".$this->jobs->$jobsCount()."verfügbare Jobs");
 
 
-$this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
-
 
 
 $this->headScript()->appendFile($this->basepath('/modules/Core/js/core.pagination-container.js'))
