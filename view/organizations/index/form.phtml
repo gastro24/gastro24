@@ -1,0 +1,29 @@
+<?php
+/**
+ * {{rtd: Renders the formular for editing organizations}}
+ */
+$organizationAdditionalRepo = $this->services('repositories')
+    ->get(\Gastro24\Entity\OrganizationAdditional::class);
+/** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
+$organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($this->form->getEntity()->getId());
+if (!$organizationAdditional) {
+    $organizationAdditional = new \Gastro24\Entity\OrganizationAdditional();
+    $organizationAdditional->setOrganizationId($this->form->getEntity()->getId());
+}
+$this->form->get('organizationBanner')->setObject($organizationAdditional);
+
+?>
+<h1><?php echo $this->translate('Organization')?></h1>
+
+<?php echo $this->formContainer($this->form); ?>
+
+<?php $this->headScript()->captureStart()?>
+(function(){
+    /* WORKAROUND: can not change class of fieldset without description */
+    $(function () {
+        $('#form-organizationLogo .form-content').addClass("panel panel-default panel-body");
+        $('#form-organizationBanner .form-content').addClass("panel panel-default panel-body");
+    });
+})();
+<?php $this->headScript()->captureEnd() ?>
+

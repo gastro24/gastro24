@@ -5,8 +5,6 @@ $this->headScript()->appendFile($this->basepath('/modules/Core/js/core.paginatio
     ->appendFile($this->basePath('modules/Core/js/core.pagination-container.js'))
     ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')));
 
-
-
 /* @var \Organizations\Entity\Organization $organization */
 $contact = $organization->getContact();
 
@@ -27,132 +25,438 @@ $container->fromCompanyProfile = true;
 $container->companyName = $organization->getName();
 $container->companyId = $organization->getId();
 
+// get org logo
+$logoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
+if($organization->getImages()->notEmpty('images')) {
+    $logoUrl = $this->basePath($this->organizationImageCache->getUri($organization->getImages()->get('thumbnail')));
+}
+
+$bannerUrl = $this->basePath('/modules/Gastro24/hero_md_8.webp');
+
+$organizationAdditionalRepo = $this->services('repositories')
+    ->get(\Gastro24\Entity\OrganizationAdditional::class);
+/** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
+$organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($organization->getId());
+if ($banner = $organizationAdditional->getBanner()) {
+    $bannerUrl = $this->basePath($banner->getUri());
+}
 ?>
+
+<?php $this->headStyle()->captureStart() ?>
+    .company-bg-image:before {
+        background-image: url(<?= $bannerUrl ?>);
+    }
+<?php $this->headStyle()->captureEnd() ?>
+
 <style>
-    
-main .nav>li>a {
-     position: relative;
-    display: block;
-    padding: 15px 5px;
-    margin-left: 15px;
-}
+    .meta-adress {
+        margin-top:16px;
+        margin-bottom:16px;
 
-main .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-    /* color: #555; */
-    background-color: #fff;
-    border-bottom: 2px solid #ddd;
-    border-bottom-color: #243b84;
-    cursor: default;
-    border-top:none;
-     border-left:none;
-      border-right:none;
-}
-main .nav-tabs>li>a:hover {
-    border-color: transparent;
-}
+    }
 
-.organizationtitle {
-    
-    border-bottom: 1px solid #dcdfe2;
-    padding: 0 15px;
-    background-color: #f5f5f5;
-    padding-bottom: 15px;
-    padding-top: 15px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-}
+    .meta-adress a {
+        display:block;
+        text-decoration:underline;
+    }
+    .social-media-company-profile {
+        margin-top:16px;
+
+    }
+    .social-media-company-profile a {
+        color:#b1b1b1;
+        font-size: 16px;
+        margin-right: 5px;
+
+    }
+    .social-media-company-profile a:hover {
+        color:#000;
+    }
+
+    .yt-video {
+        margin-bottom:20px;
+    }
+
+    .company-link {
+        color: rgb(71, 60, 60);
+        text-decoration:underline;
+    }
+
+    @media (min-width: 992px) {
+        .company-description-wrapper .row>.col-md-3 {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 5px;
+            padding-left: 0
+        }
+    }
+
+    .jsDRpn {
+        max-height: 70px;
+        overflow: hidden;
+    }
+
+    .jsDRpn.in {
+        padding-bottom: 24px;
+        max-height: 100%!important;
+    }
+
+    .jsDRpn.collapse {
+        display: block!important;
+        height: 100%!important;
+    }
+
+    .iMNdyq {
+        margin-top: -24px;
+        padding-top: 24px;
+        position: relative;
+        background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 40%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    .iMNdyq.in {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .company-description-wrapper address {
+        color: rgb(118, 115, 125);
+        margin-bottom: 0px;
+    }
+
+    .company-description-wrapper .info-card h2 {
+        display: block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .content {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: auto!important;
+    }
+
+    .content:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        height: 400px;
+        right: 0;
+        top: 0px;
+        bottom: -40px;
+        filter: blur(20px);
+        background-position: center center;
+        position: absolute;
+        overflow: hidden;
+        botton: -20px;
+        transform: scale(1.1);
+    }
+
+    .company-bg-image {
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        position: relative;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        height: 530px;
+        overflow: hidden;
+    }
+
+    .company-bg-image:before {
+        display: block;
+        position: absolute;
+        top: -45px;
+        bottom: -45px;
+        left: -35px;
+        right: -35px;
+        content: "";
+        background-size: cover;
+        background-position: center center;
+        filter: blur(25px);
+    }
+
+    .company-profile-wrapper {
+        left: 0;
+        right: 0;
+        top: 50px;
+        position: absolute;
+    }
+
+    main#content {
+        padding-top: 0;
+    }
+
+    .jgArSS {
+        background-size: cover;
+        height: 300px;
+        background-position: center center;
+    }
+
+    .company-profile-image {
+        background-color: #fff;
+        display: flex;
+        padding: 20px 30px;
+    }
+
+    .company-profile-image h1 {
+        margin-top: 0px;
+        padding-right: 95px;
+    }
+
+    .info-card {
+        background: white;
+        padding: 20px 30px;
+        margin-bottom: 16px;
+        margin-top: 32px;
+
+    }
+
+    .info-card:first-child {
+        margin-top: 0px;
+    }
+
+    .job-logo-wrapper {
+        height: 150px;
+        display: inline-block;
+        width: 150px;
+        padding: 5px;
+        background-color: #fff;
+        margin-right: 20px;
+        box-shadow: 0 0 6px #ccc;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        margin-top: -70px;
+        line-height: 140px;
+        border-radius: 4px;
+    }
+
+    .job-logo-wrapper img {
+        width: 100%;
+        display: inline-table;
+        vertical-align: middle;
+    }
+
+    .job-info-wrapper {
+        position: relative;
+        width: calc(100% - 175px);
+        display: inline-block;
+    }
+
+    .job-info-wrapper .address-short {
+        font-size: 16px;
+        color: rgb(118, 115, 125);
+    }
+
+    .info-card h2 {
+        font-size: 18px;
+        margin-top: 0;
+        margin-right: 25px;
+        margin-bottom: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 24px;
+    }
+
+    .iframe-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        /* ratio 16x9 */
+        height: 0;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+    }
+
+    .iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
 
+    /* ratio 4x3 */
 
+    .iframe-container.ratio4x3 {
+        padding-bottom: 75%;
+    }
+
+    .breadcrumb {
+        margin-top: 10px;
+    }
+
+    .job-count-badge {
+        display: inline;
+        padding: 7px 10px;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        background-color: #60a5d1;
+        top: 0;
+        right: 0;
+        position: absolute;
+        border-radius: 4px;
+    }
+
+    @media (max-width:991px) {
+        .jgArSS {
+            height: 250px;
+        }
+        .company-profile-wrapper {
+            top: 25px;
+        }
+        .company-bg-image {
+            height: 435px;
+        }
+    }
+
+    @media (max-width:768px) {
+        .company-description-wrapper .info-card:first-child {
+            margin-top: 20px;
+        }
+        .jgArSS {
+            height: 200px;
+        }
+        .company-bg-image {
+            height: 385px;
+        }
+        .job-logo-wrapper {
+            height: 115px;
+            margin-top: -50px;
+            width: 115px;
+            line-height: 105px;
+        }
+        .job-info-wrapper {
+            width: calc(100% - 135px);
+        }
+        .company-profile-image h1 {
+            font-size: 24px;
+            line-height: 28px;
+            padding-right: 85px;
+        }
+        .company-profile-image {
+            padding: 15px 20px;
+        }
+    }
+
+    @media (max-width:510px) {
+        .company-profile-image h1 {
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .jgArSS {
+            height: 150px;
+        }
+        .company-bg-image {
+            height: 300px;
+        }
+        .job-logo-wrapper {
+            height: 90px;
+            margin-top: -40px;
+            width: 90px;
+            line-height: 80px;
+        }
+        .company-profile-image h1 {
+            font-size: 20px;
+            line-height: 28px;
+        }
+        .job-info-wrapper {
+            width: calc(100% - 110px);
+        }
+    }
+
+    @media (max-width:468px) {
+        .info-card {
+
+            padding: 15px;
+
+        }
+    }
 </style>
 
-<div class="row">
-    <div class="col-md-12">
-       <div class="panel panel-default">
-           <div class="panel-body">
-               <div class="row">
-                <div class="col-md-2">
-                    <div style="margin-top:20px">
-                        
-                        <?php if($organization->getImages()->notEmpty('images')): ?>
-                          <img src="<?php echo $this->basePath($this->organizationImageCache->getUri($organization->getImages()->get('thumbnail'))) ?>">
-                            <?php else: ?>
-                             <span class="yk-icon fa-file-image-o fa-5x"></span>
-                           <?php endif;?>
-                    </div>
- 
-                </div>
-                
-                 <div class="col-md-10">
-                      <h1 style="font-weight:700;"><?php echo $organization->getName()?></h1>
-                      <p><?php echo $contact->getPostalcode()?> <?php echo $contact->getCity()?> </p>
-                 </div>
-               </div>   
-           </div>
-           
-           <div style="border-top: 1px solid #dcdfe2;">
-               
-                  <ul class="nav nav-tabs" style="border-bottom:1px solid transparent">
-			         <li>
-                       <a href="#profil" data-toggle="tab">Firmenprofil</a>
-		             </li>
-			         <li class="active">
-			            <a href="#jobs" data-toggle="tab">Jobs <span class="badge" style="background-color: #243b84;"><?=$this->jobs->getTotalItemCount()?></span></a>
-		           	</li>
-		           	 <li>
-			            <a href="#rating" data-toggle="tab">Bewertung abgeben</a>
-		           	</li>
-		           	
-		          </ul>
- 
-           </div>
-           
-       </div>
-       <div class="tab-content ">
-
-           <!-- profile header -->
-            <div class="tab-pane row" id="profil">
-                <div class="col-md-8">
-                    <?php if($organization->getdescription()): ?>
-                        <div class="panel panel-default">
-                            <h4 class="organizationtitle">Über uns</h4>
-                            <div class="panel-body">
-                                <p><?php echo $organization->getdescription()?></p>
-                            </div>
-                        </div>
-                    <?php endif;?>
-
-
-                    <?php if($contact->getStreet()): ?>
-                        <div class="panel panel-default">
-                            <h4 class="organizationtitle">Adresse</h4>
-                            <div class="panel-body">
-                                <address style="margin-bottom:0px;">
-                                    <?php echo $contact->getStreet()?> <?php echo $contact->getHouseNumber()?><br/>
-                                    <?php echo $contact->getPostalcode()?> <?php echo $contact->getCity()?> <br/>
-                                    <?php if ($contact->getCountry()): ?><?php echo $contact->getCountry()?><br/> <?php endif ?>
-                                    <?php if ($contact->getPhone()): ?><?php echo is_null($contact->getPhone()) ? "":"Telefon: ".$contact->getPhone()."<br/>" ?><?php endif ?>
-                                    <?php if ($contact->getFax()): ?><?php echo is_null($contact->getFax()) ? "":"Fax: ".$contact->getFax()."<br/>" ?><?php endif ?>
-                                </address>
-                            </div>
-                        </div>
-                    <?php endif;?>
-
-
-                    <?php if($contact->getStreet()): ?>
-                        <div class="panel panel-default">
-                            <h4 class="organizationtitle">Standort</h4>
-                            <iframe width="100%" height="450" src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                            </iframe>
-                            
-                     
-                        </div>
-                    <?php endif;?>
-              </div>
+<!-- Begin Organization Profile -->
+<div class="" style="position:relative;">
+    <div class="company-bg-image"></div>
+    <div class="company-profile-wrapper">
+        <div class="jgArSS" style="background-image: url(<?= $bannerUrl?>);"></div>
+        <div class="company-profile-image">
+            <span class="job-logo-wrapper">
+				<img class="job-logo" alt="Logo <?= $organization->getName()?>" src="<?= $logoUrl ?>">
+			</span>
+            <div class="job-info-wrapper">
+                <h1><?= $organization->getName()?></h1>
+                <span class="address-short">
+                    <?php
+                        $orgAddressString = $contact->getStreet() . ' ' . $contact->getHouseNumber() . ', ' .
+                        $contact->getPostalcode() . ' ' . $contact->getCity();
+                        $jobsCount = $this->jobs->getTotalItemCount();
+                    ?>
+                    <?= $orgAddressString ?></span>
+                <span class="job-count-badge"><?= $jobsCount ?>
+                    <?php if ($jobsCount == 1) : ?>
+                        <span class="hidden-sm hidden-xs">verfügbarer</span> Job
+                    <?php else : ?>
+                        <span class="hidden-sm hidden-xs">verfügbare</span> Jobs
+                    <?php endif; ?>
+                </span>
             </div>
-           <!-- end profile header -->
+        </div>
+    </div>
+</div>
+<div class="company-description-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="hidden-xs breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/"> <span itemprop="name">Home</span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span>
+                        </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/de/organizations/profile"> <span itemprop="name">Firmen</span>
+                        </a>
+                        <meta itemprop="position" content="3">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"> <span itemprop="name"><?= $organization->getName()?></span>
+                        <meta itemprop="position" content="4">
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-9">
+            <div class="info-card">
+                <h2>Portrait</h2>
+                <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
+                    <div class="yt-video embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="<?= $organizationAdditional->getVideoLink() ?>" allowfullscreen></iframe>
+                    </div>
+                <?php endif; ?>
+                <div class="jsDRpn collapse-textbox">
+                    <p><?= $organization->getdescription()?></p>
+                </div>
+                <div class="iMNdyq tab-readmore text-center">
+                    <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-textbox">
+                        <p class="collapse-textbox tab-more collapse in" aria-expanded="true"> <span class="fa fa-chevron-down"></span> Mehr</p>
+                        <p class="collapse-textbox tab-less collapse" aria-expanded="false" style="height: 0px;"> <span class="fa fa-chevron-up"></span> Weniger</p>
+                    </button>
+                </div>
+            </div>
 
-           <!-- active jobs -->
+            <!-- active jobs -->
             <div class="tab-pane active" id="jobs">
                 <div id="jobs-list-container" class="pagination-container">
                     <div class="pagination-content">
@@ -160,18 +464,46 @@ main .nav-tabs>li>a:hover {
                     </div>
                 </div>
             </div>
-           <!-- end active jobs -->
+            <!-- end active jobs -->
+        </div>
+        <div class="col-md-3">
+            <div class="info-card" style="margin-bottom:0px;">
+                <h2>Kontakt</h2>
+                <address>
+                    <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
+                    <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
+                    <?= $contact->getCountry() ?>
+                </address>
 
-           <!-- rating -->
-            <div class="tab-pane" id="rating">
-                <div class="panel panel-default">
-                    <h4 class="organizationtitle">Bewerten Sie diesen Arbeitgeber</h4>
-                    <div class="panel-body">
-                        <p>Bald können Sie <?php echo $organization->getName()?> hier bewerten.</p>
-                    </div>
+                <div class="meta-adress">
+                    <a href="tel:" rel="nofollow"><?= $contact->getPhone() ?></a>
+                    <a href="<?= $contact->getWebsite() ?>" rel="nofollow"><?= $contact->getWebsite() ?></a>
+                </div>
+                <div class="social-media-company-profile">
+                    <?php if($organizationAdditional && $organizationAdditional->getSocials()) : ?>
+                        <?php if($organizationAdditional->getSocials()->getFacebook()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>" target="_blank"> <i class="fa fa-facebook-square"></i></a>
+                        <?php endif; ?>
+                        <?php if($organizationAdditional->getSocials()->getLinkedin()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getLinkedin() ?>" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+                        <?php endif; ?>
+                        <?php if($organizationAdditional->getSocials()->getTwitter()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getTwitter() ?>" target="_blank"> <i class="fa fa-twitter-square"></i></a>
+                        <?php endif; ?>
+                        <?php if($organizationAdditional->getSocials()->getInstagram()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getInstagram() ?>" target="_blank"><i class="fa fa-instagram"></i></a>
+                        <?php endif; ?>
+                        <?php if($organizationAdditional->getSocials()->getYoutube()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getYoutube() ?>" target="_blank">	<i class="fa fa-youtube-square"></i></a>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
-           <!-- end rating -->
+            <div class="iframe-container">
+                <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+            </div>
         </div>
-  </div> 
+    </div>
 </div>
+<!-- End Organization Profile -->
+
