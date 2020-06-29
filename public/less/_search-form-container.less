@@ -6,6 +6,14 @@ body {
    /*display:none */
   }
 }
+
+.organizations-profile-detail {
+  > #jobs-list-filter-wrapper{
+
+   display:none!important;
+  }
+}
+
 body {
   &.home,
   &.gastro24-controller-redirectexternaljobs-index,
@@ -14,8 +22,7 @@ body {
     > #jobs-list-filter-wrapper{
       display: block;
 
-      &.searchform-preview,
-       &.organizations-profile-detail {
+      &.searchform-preview {
         display: none;
       }
     }
