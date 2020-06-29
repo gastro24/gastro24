@@ -1,5 +1,10 @@
 <?php
-$this->headTitle("Jobs ".$this->organization->getName());
+//$this->headTitle("Jobs ".$this->organization->getName());
+
+$this->headTitle($this->organization->getName().": <?= $jobsCount ?> verfügbare Jobs");
+
+
+
 
 $this->headScript()->appendFile($this->basepath('/modules/Core/js/core.pagination-container.js'))
     ->appendFile($this->basePath('modules/Core/js/core.pagination-container.js'))
@@ -478,7 +483,7 @@ if ($organizationAdditional && $organizationAdditional->getBanner()) {
                 </address>
 
                 <div class="meta-adress">
-                    <a href="tel:" rel="nofollow"><?= $contact->getPhone() ?></a>
+                    <a href="tel:<?= $contact->getPhone() ?>" rel="nofollow"><?= $contact->getPhone() ?></a>
                     <a href="<?= $contact->getWebsite() ?>" rel="nofollow"><?= $contact->getWebsite() ?></a>
                 </div>
                 <div class="social-media-company-profile">
