@@ -440,7 +440,7 @@ if ($banner = $organizationAdditional->getBanner()) {
         <div class="col-md-9">
             <div class="info-card">
                 <h2>Portrait</h2>
-                <?php if($organizationAdditional) : ?>
+                <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
                     <div class="yt-video embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="<?= $organizationAdditional->getVideoLink() ?>" allowfullscreen></iframe>
                     </div>
@@ -482,19 +482,19 @@ if ($banner = $organizationAdditional->getBanner()) {
                 <div class="social-media-company-profile">
                     <?php if($organizationAdditional && $organizationAdditional->getSocials()) : ?>
                         <?php if($organizationAdditional->getSocials()->getFacebook()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>"> <i class="fa fa-facebook-square"></i></a>
+                            <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>" target="_blank"> <i class="fa fa-facebook-square"></i></a>
                         <?php endif; ?>
                         <?php if($organizationAdditional->getSocials()->getLinkedin()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getLinkedin() ?>"><i class="fa fa-linkedin-square"></i></a>
+                            <a href="<?= $organizationAdditional->getSocials()->getLinkedin() ?>" target="_blank"><i class="fa fa-linkedin-square"></i></a>
                         <?php endif; ?>
                         <?php if($organizationAdditional->getSocials()->getTwitter()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getTwitter() ?>"> <i class="fa fa-twitter-square"></i></a>
+                            <a href="<?= $organizationAdditional->getSocials()->getTwitter() ?>" target="_blank"> <i class="fa fa-twitter-square"></i></a>
                         <?php endif; ?>
                         <?php if($organizationAdditional->getSocials()->getInstagram()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getInstagram() ?>"><i class="fa fa-instagram"></i></a>
+                            <a href="<?= $organizationAdditional->getSocials()->getInstagram() ?>" target="_blank"><i class="fa fa-instagram"></i></a>
                         <?php endif; ?>
                         <?php if($organizationAdditional->getSocials()->getYoutube()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getYoutube() ?>">	<i class="fa fa-youtube-square"></i></a>
+                            <a href="<?= $organizationAdditional->getSocials()->getYoutube() ?>" target="_blank">	<i class="fa fa-youtube-square"></i></a>
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>

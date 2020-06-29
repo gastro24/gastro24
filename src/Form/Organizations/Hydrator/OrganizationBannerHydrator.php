@@ -3,6 +3,7 @@
 namespace Gastro24\Form\Organizations\Hydrator;
 
 use Core\Entity\Hydrator\EntityHydrator;
+use Core\Entity\PermissionsInterface;
 use Gastro24\Entity\OrganizationAdditional;
 use Gastro24\Entity\TemplateImage;
 
@@ -15,12 +16,15 @@ class OrganizationBannerHydrator extends EntityHydrator
 
     private $templateImagesRepository;
 
-    public function __construct($organizationAdditionalRepository, $templateImagesRepository)
+    private $currentUser;
+
+    public function __construct($organizationAdditionalRepository, $templateImagesRepository, $currentUser)
     {
         parent::__construct();
         $this->init();
         $this->organizationAdditionalRepository  = $organizationAdditionalRepository;
         $this->templateImagesRepository  = $templateImagesRepository;
+        $this->currentUser  = $currentUser;
     }
 
     public function extract($object)
@@ -65,6 +69,7 @@ class OrganizationBannerHydrator extends EntityHydrator
         $bannerImage->setFile($file)
             ->setName($data['name'])
             ->setType($data['type']);
+        $bannerImage->getPermissions()->grant($this->currentUser, PermissionsInterface::PERMISSION_CHANGE);
 
         $this->organizationAdditionalRepository->getDocumentManager()->persist($bannerImage);
         $this->organizationAdditionalRepository->getDocumentManager()->flush($bannerImage);

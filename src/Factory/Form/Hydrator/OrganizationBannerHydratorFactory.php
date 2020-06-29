@@ -11,14 +11,15 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 /**
  * @author Stefanie Drost <contact@stefaniedrost.com>
  */
-class OrganizationBannerHydratorFactory implements FactoryInterface //extends ImageSetHydratorFactory //implements FactoryInterface
+class OrganizationBannerHydratorFactory implements FactoryInterface
 {
     public function __invoke( ContainerInterface $container, $requestedName, array $options = null )
     {
         $repositories = $container->get('repositories');
+        $currentUser = $container->get('AuthenticationService')->getUser();
         $organizationAdditionalRepository  = $repositories->get(OrganizationAdditional::class);
         $templateImagesRepository  = $repositories->get(TemplateImage::class);
-        $hydrator = new OrganizationBannerHydrator($organizationAdditionalRepository, $templateImagesRepository);
+        $hydrator = new OrganizationBannerHydrator($organizationAdditionalRepository, $templateImagesRepository, $currentUser);
 
         return $hydrator;
     }
