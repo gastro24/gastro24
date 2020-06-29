@@ -52,7 +52,7 @@ else {
             <div class="navbar-collapse" id="meta-navigation">
                 
 <?php if (!$this->auth()->isLoggedIn()):?>
-  <ul id="menu" class="nav navbar-nav2">
+  <ul id="menu" class="nav navbar-nav2 visible-xs">
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="icon-bar top-bar"></span>
@@ -60,26 +60,9 @@ else {
             <span class="icon-bar bottom-bar"></span>
         </a>
         <ul class="dropdown-menu">
+            <li><a title="Jobs" href="/de/jobs?clear=1">Für Jobsuchende</a></li>
+            <li><a title="Für Arbeitgeber" href="/de/auth/register">Für Unternehmen</a></li>
             <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="/lg/stellenanzeigen-schalten">Inserieren</a></li>
-            <li><a title="Jobs" href="/de/jobs?clear=1">Jobs</a></li>
-            <li><a title="Für Arbeitgeber" href="/de/auth/register?pt=plus">Abo für Unternehmen</a></li>
-            <li><a title="Kontakt" href="/de/contact.html">Kontakt</a></li>
-            <li><a title="Über uns" href="/de/ueber-uns.html">Über uns</a></li>
-            <li class="abstand dropdown dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown2">Jobs nach Bereich</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/de/jobs/housekeeping.html" title="Hauswirtschaft Jobs">Hauswirtschaft Jobs</a></li>
-                    <li><a href="/de/jobs/kueche.html" title="Küche Jobs">Küche Jobs</a></li>
-                    <li><a href="/de/jobs/service.html" title="Service Jobs">Service Jobs</a></li>
-                    <li><a href="/de/jobs/hotel.html" title="Hotel Jobs">Hotel Jobs</a></li>
-                    <li><a href="/de/jobs/administration-verkauf.html" title="Administration Jobs">Administration Jobs</a></li>
-                    <li><a href="/de/jobs/food.html" title="Food Jobs">Food Jobs</a></li>
-                    <li><a title="Teilzeit Jobs" href="/de/jobs/teilzeit.html">Teilzeit Jobs</a></li>
-                    <li><a title="Management Jobs" href="/de/jobs/manager.html">Management Jobs</a></li>
-                    <li><a href="/de/jobs/lehrstellen-gastronomie.html" title="Lehrstellen">Lehrstellen</a></li>
-                    <li><a title="Tourismus Jobs" href="/de/jobs/touristik.html">Tourismus Jobs</a></li>
-                </ul>
-         </li>
       </li>
     </ul>
   </li>
