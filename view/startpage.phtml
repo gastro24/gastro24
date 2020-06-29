@@ -180,7 +180,7 @@ $this->headTitle($this->translate('Home'));
             </div>
         </div>
     </header>
-    <nav class="navbar-home search-form-container">
+    <nav class="navbar-home search-form-container visible-xs">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -193,11 +193,17 @@ $this->headTitle($this->translate('Home'));
                                     <span class="icon-bar bottom-bar"></span>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    
+                                      <li class="nav-item">
+                                        <a title="Für Jobsuchende" href="/de/jobs?clear=1" class="navigation-link-norm text-white">Für Jobsuchende</a>
+                                     </li>
+                                     <li class="nav-item">	   
+                                       <a title="Für Jobsuchende" href="/de/auth/register" class="navigation-link-norm text-white">Für Unternehmen</a>
+                                      </li>
                                     <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="<?= $this->url('stellenanzeigen-schalten') ?>">Inserieren</a></li>
-                                    <li><a title="Jobs" href="/de/jobs?clear=1">Jobs</a></li>
-                                    <li><a title="Abo für Unternehmen" href="/de/auth/register?pt=plus">Abo für Unternehmen</a></li>
-                                    <li><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
-                                    <li><a title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
+                     
+                     
+                             
                                 </ul>
                             </li>
                         <ul>
