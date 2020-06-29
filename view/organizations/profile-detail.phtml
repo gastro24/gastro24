@@ -438,6 +438,7 @@ if ($organizationAdditional && $organizationAdditional->getBanner()) {
             </nav>
         </div>
         <div class="col-md-9">
+            <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
             <div class="info-card">
                 <h2>Portrait</h2>
                 <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
@@ -455,6 +456,7 @@ if ($organizationAdditional && $organizationAdditional->getBanner()) {
                     </button>
                 </div>
             </div>
+            <?php endif; ?>
 
             <!-- active jobs -->
             <div class="tab-pane active" id="jobs">

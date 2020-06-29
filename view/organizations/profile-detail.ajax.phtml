@@ -71,20 +71,30 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
             $isIntern = (!$job->getLink() || $hasJobTemplate);
             $isEmbeddable = $this->gastroIsEmbeddable($job->getLink());
             $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+            $template = $job->getAttachedEntity('gastro24-template');
 
              if (is_object($job->getOrganization()) && is_object($job->getOrganization()->getOrganizationName()) && $job->getOrganization()->getOrganizationName()->getName()) {
                  $orgName =  $job->getOrganization()->getOrganizationName()->getName();
              }
+
+            $logoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
+            if (is_object($org) && is_object($org->getImage()) && $org->getImage()->getUri()) {
+                $logoUrl = $this->basePath($this->organizationImageCache->getUri($org->getImages()->get('thumbnail')));
+            }
+            if ($template && ($logo = $template->getLogo())) {
+                $logoUrl = $this->basePath($logo->getUri());
+            }
          ?>
+
+        <?php
+
+        ?>
          <!-- begin card -->
          <div class="card box__job-favorite profile-detail">
              <a class="job-logo-link" title="<?= $job->getTitle()?>" href="<?=$this->jobUrl($job, ['linkOnly' => true, 'absolute' => true]) ?>">
-                 <img class="job-logo" alt="<?= $orgName ?>"
-                      src="https://www.gastrojob24.ch/static/Organizations/Image/3/9/5e0487e73c050f598c774793.png">
+                 <img class="job-logo" alt="<?= $orgName ?>" src="<?= $logoUrl ?>">
              </a>
              <div class="card__job-content box__action-buttons">
-
-
                  <?php if(!$jobHasExternLink) : ?>
                      <!-- favorite button -->
                      <?php if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
