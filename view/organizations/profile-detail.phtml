@@ -37,8 +37,8 @@ $organizationAdditionalRepo = $this->services('repositories')
     ->get(\Gastro24\Entity\OrganizationAdditional::class);
 /** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
 $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($organization->getId());
-if ($banner = $organizationAdditional->getBanner()) {
-    $bannerUrl = $this->basePath($banner->getUri());
+if ($organizationAdditional && $organizationAdditional->getBanner()) {
+    $bannerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
 }
 ?>
 
