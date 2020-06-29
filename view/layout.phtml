@@ -97,12 +97,19 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
             <div class="row">
                 <div class="navbar-header col-md-4">
                     <a class="logo" title="Gastrojob24" href="<?php echo $this->basepath('/' . $this->params('lang')) ?>">
-                        <img src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_blue.svg') ?>" alt="Gastrojob24 Logo">
+                        <img src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_white.svg') ?>" alt="Gastrojob24 Logo">
                     </a>
                 </div>
                 <div class="col-md-8">
                     <?php if ('guest' == $this->auth('role')): ?>
                         <ul class="pull-right navbar-nav nav-recruiting">
+                            
+                          <li class="nav-item">
+                              <a title="Für Jobsuchende" href="/de/jobs?clear=1" class="navigation-link-norm text-white">Für Jobsuchende</a>
+                            </li>
+                           <li class="nav-item">	   
+                              <a title="Für Jobsuchende" href="/de/auth/register" class="navigation-link-norm text-white">Für Unternehmen</a>
+                           </li>
                             <li class="nav-item">
                                 <?php if ($this->auth('role') !== Auth\Entity\User::ROLE_RECRUITER) : ?>
                                     <a title="Inserieren" href="<?= $this->url('stellenanzeigen-schalten') ?>"
