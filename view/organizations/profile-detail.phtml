@@ -447,7 +447,7 @@ if ($organizationAdditional && $organizationAdditional->getBanner()) {
                     </div>
                 <?php endif; ?>
                 <div class="jsDRpn collapse-textbox">
-                    <p><?= $organization->getdescription()?></p>
+                    <p><?= nl2br($organization->getdescription()) ?></p>
                 </div>
                 <div class="iMNdyq tab-readmore text-center">
                     <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-textbox">
