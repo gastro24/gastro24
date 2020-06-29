@@ -1,7 +1,7 @@
 <?php
 //$this->headTitle("Jobs ".$this->organization->getName());
 
-$this->headTitle($this->organization->getName().": ".$this->organization->$jobsCount()."verfügbare Jobs");
+$this->headTitle($this->organization->getName().": ".$this->jobs->getTotalItemCount()."verfügbare Jobs");
 
 
 
