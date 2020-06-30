@@ -45,6 +45,27 @@ $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($
 if ($organizationAdditional && $organizationAdditional->getBanner()) {
     $bannerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
 }
+
+$jsonLdSocialsString = '';
+if ($organizationAdditional && $organizationAdditional->getSocials()) {
+    if ($organizationAdditional->getSocials()->getFacebook()) {
+        $jsonLdSocialsString .= '"' . $organizationAdditional->getSocials()->getFacebook() . '",';
+    }
+    if ($organizationAdditional->getSocials()->getLinkedin()) {
+        $jsonLdSocialsString .= '"' . $organizationAdditional->getSocials()->getLinkedin() . '",';
+    }
+    if ($organizationAdditional->getSocials()->getTwitter()) {
+        $jsonLdSocialsString .= '"' . $organizationAdditional->getSocials()->getTwitter() . '",';
+    }
+    if ($organizationAdditional->getSocials()->getInstagram()) {
+        $jsonLdSocialsString .= '"' . $organizationAdditional->getSocials()->getInstagram() . '",';
+    }
+    if ($organizationAdditional->getSocials()->getYoutube()) {
+        $jsonLdSocialsString .= '"' . $organizationAdditional->getSocials()->getYoutube() . '",';
+    }
+
+    $jsonLdSocialsString = rtrim($jsonLdSocialsString, ',');
+}
 ?>
 
 <?php $this->headStyle()->captureStart() ?>
@@ -54,7 +75,8 @@ if ($organizationAdditional && $organizationAdditional->getBanner()) {
 <?php $this->headStyle()->captureEnd() ?>
 
 <script type="application/ld+json">
- { "@context": "https://schema.org",
+ {
+ "@context": "https://schema.org",
  "@type": "Organization",
  "name": "<?= $organization->getName()?>",
  "url": "<?= $contact->getWebsite() ?>",
@@ -72,14 +94,10 @@ if ($organizationAdditional && $organizationAdditional->getBanner()) {
  "contactType": "Human Resource",
  "telephone": "[<?= $contact->getPhone() ?>]"
  },
- "sameAs": [ 
- "<?= $organizationAdditional->getSocials()->getFacebook() ?>",
- "<?= $organizationAdditional->getSocials()->getLinkedin() ?>",
- "<?= $organizationAdditional->getSocials()->getTwitter() ?>",
- "<?= $organizationAdditional->getSocials()->getInstagram() ?>",
- "<?= $organizationAdditional->getSocials()->getYoutube() ?>"
- ]}
+ "sameAs": [<?= $jsonLdSocialsString ?>]
+ }
 </script>
+
 
 <style>
     .meta-adress {
