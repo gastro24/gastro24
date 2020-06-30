@@ -110,6 +110,14 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
                            <li class="nav-item">	   
                               <a title="Für Jobsuchende" href="/de/auth/register" class="navigation-link-norm text-white">Für Unternehmen</a>
                            </li>
+                           
+                            <li class="nav-item">	   
+                              <a data-toggle="tooltip" data-placement="bottom" title="Merkliste" href="/de/saved-jobs" class="link__saved-jobs empty navigation-link-norm text-white">Merkliste</a>
+                           </li>
+                           
+                           
+                           
+                           
                             <li class="nav-item">
                                 <?php if ($this->auth('role') !== Auth\Entity\User::ROLE_RECRUITER) : ?>
                                     <a title="Inserieren" href="<?= $this->url('stellenanzeigen-schalten') ?>"
