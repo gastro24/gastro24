@@ -109,9 +109,7 @@ class RegisterConfirmationController extends AbstractActionController
 
                         $this->notification()->success('Sie haben sich erfolgreich als Arbeitgeber registriert und können nun Ihre erste Stellenanzeige erfassen.');
 
-                        return $this->redirect()->toRoute('lang/jobs/manage', ['action' => 'edit']);
-
-
+                        return $this->redirect()->toRoute('lang/my-organization', ['action' => 'edit']);
                     } else {
                         // this branch is obsolete unless we do decide not to use an exception anymore, whenever something goes wrong with the user
                         $this->notification()->danger(/*@translate*/ 'User can not be created');
