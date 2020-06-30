@@ -59,10 +59,12 @@
 
     function incrementBadgeCount()
     {
-        var badge = $('nav .link__saved-jobs span');
+        //var badge = $('nav .link__saved-jobs span');
+        var badge = $('.nav-recruiting .link__saved-jobs span');
         if (!badge.length) {
             var badge = $('<span>').addClass('badge badge-light').html('0');
-            $('nav .link__saved-jobs').removeClass('empty').prepend(badge);
+           // $('nav .link__saved-jobs').removeClass('empty').prepend(badge);
+            $('.nav-recruiting .link__saved-jobs').removeClass('empty').prepend(badge);
         }
 
         var oldValue = badge.html();
@@ -81,7 +83,8 @@
 
         if (!newValue) {
             badge.remove();
-            $('nav .link__saved-jobs').addClass('empty');
+            //$('nav .link__saved-jobs').addClass('empty');
+            $('.nav-recruiting .link__saved-jobs').addClass('empty');
         }
     }
 
