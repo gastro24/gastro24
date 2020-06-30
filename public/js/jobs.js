@@ -74,7 +74,7 @@
 
     function decrementBadgeCount()
     {
-        var badge = $('nav .link__saved-jobs span');
+        var badge = $('.nav-recruiting .link__saved-jobs span');
         var oldValue = parseInt(badge.html());
         if (oldValue > 0) {
             var newValue = oldValue - 1;
