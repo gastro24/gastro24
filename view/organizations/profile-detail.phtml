@@ -452,7 +452,7 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
      
       
             <li>
-               <a class="navbar-item-anchor" href="#jobs-list-container">Jobs (<?= $jobsCount ?>) </a>
+               <a class="navbar-item-anchor" href="#jobs-list-container">Jobs (<?= $this->jobs->getTotalItemCount() ?>) </a>
             </li>
 
          </ul>
