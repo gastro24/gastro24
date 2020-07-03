@@ -105,6 +105,21 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
      
      scroll-behavior: smooth;
    }
+  .full-width-bar-vw {
+      
+    background: #fff;
+    width: 100vw;
+    position: relative;
+    left:50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+  }
+  .full-width-bar-vw {
+      
+      padding-left:15px;
+  }
 
     .meta-adress {
         margin-top:16px;
@@ -442,7 +457,7 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
 <!-- Begin Organization Profile -->
 
 <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
-<div id="navbar-home-site-links">
+<div id="navbar-home-site-links" class="full-width-bar-vw">
    <div class="container">
       <div class="row">
          <ul>
