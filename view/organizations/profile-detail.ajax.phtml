@@ -113,7 +113,7 @@ $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
 
                  <h2>
                      <a title="<?= $job->getTitle()?>"
-                        href="<?=$this->jobUrl($job, ['linkOnly' => true, 'absolute' => true]) ?>"><?= $job->getTitle()?></a>
+                        href="<?=$this->jobUrl($job, ['linkOnly' => true, 'absolute' => true]) ?>"><?= ucfirst($job->getTitle())?></a>
                  </h2>
                  <div class="card__job-info">
                      <div class="card__job-empname-label"><?= $orgName ?></div>
