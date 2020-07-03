@@ -88,6 +88,15 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
   
     <!-- End Google Tag Manager -->
     
+<?php if ($this->auth()->isLoggedIn()):?>
+
+<!-- Start of  Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=2d241515-52bd-4381-8955-1cd82d61cf71"> </script>
+<!-- End of  Zendesk Widget script -->
+
+
+<?php endif ?>
+    
 </head>
 <body class="<?= $routeClass ?>" id="top">
 
