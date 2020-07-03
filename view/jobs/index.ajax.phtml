@@ -252,7 +252,7 @@ if (count($jobs)): ?>
     <h2><a rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?> <i class="fa fa-external-link"></i></a></h2>
     <?php }
       else { ?>
-    <h2><a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?></a></h2>
+    <h2><a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=ucfirst(strip_tags($job->getTitle()))?></a></h2>
     <?php } ?>
     <div class="card__job-info">
       <div class="card__job-empname-label">
