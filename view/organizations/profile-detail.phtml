@@ -2,7 +2,8 @@
 //$this->headTitle("Jobs ".$this->organization->getName());
 
 $this->headTitle($this->organization->getName().": ".$this->jobs->getTotalItemCount()." verfügbare Jobs");
-$this->headMeta()->setName('description', $this->organization->getName()."test : ".$this->jobs->getTotalItemCount()." verfügbare Jobs");
+$this->headMeta()->setName('description', "Firmenprofil von ".$this->organization->getName().", ".$this->$contact->getStreet()." ".$this->$contact->getHouseNumber()."in ".$this->$contact->getCity() );
+
 
 
 
