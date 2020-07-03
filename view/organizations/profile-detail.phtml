@@ -100,6 +100,11 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
 
 
 <style>
+   html {
+     
+     scroll-behavior: smooth;
+   }
+
     .meta-adress {
         margin-top:16px;
         margin-bottom:16px;
@@ -434,6 +439,28 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
 </style>
 
 <!-- Begin Organization Profile -->
+
+<?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
+<div id="navbar-home-site-links">
+   <div class="container">
+      <div class="row">
+         <ul>
+   
+            <li>
+               <a class="navbar-item-anchor" href="#portrait">Portrait</a>
+            </li>
+     
+        <?php if($jobsCount >= 1) : ?>
+            <li>
+               <a class="navbar-item-anchor" href="#jobs-list-container">Jobs (<?= $jobsCount ?>) </a>
+            </li>
+       <?php endif; ?>
+         </ul>
+      </div>
+   </div>
+</div>
+<?php endif; ?>  
+ 
 <div class="" style="position:relative;">
     <div class="company-bg-image"></div>
     <div class="company-profile-wrapper">
@@ -490,7 +517,7 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
         </div>
         <div class="col-md-9">
             <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
-            <div class="info-card">
+            <div class="info-card" id="portrait">
                 <h2>Portrait</h2>
                 <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
                     <div class="yt-video embed-responsive embed-responsive-16by9">
