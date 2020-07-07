@@ -5,7 +5,7 @@ namespace Gastro24\Factory\Form;
 use Gastro24\Form\Organizations\Hydrator\OrganizationDescriptionHydrator;
 use Gastro24\Form\Organizations\OrganizationsDescriptionFieldset;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * @author Stefanie Drost <contact@stefaniedrost.com>

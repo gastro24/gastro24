@@ -4,7 +4,7 @@ namespace Gastro24\Factory\Controller;
 
 use Gastro24\Controller\FileController;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * FileControllerFactory.php

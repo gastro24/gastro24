@@ -3,7 +3,7 @@
 namespace Gastro24\Controller;
 
 use SolrRestApiClient\Api\Client\Domain\Synonym\SynonymCollection;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 /**
  * SuggestJobs.php
@@ -30,10 +30,10 @@ class SuggestJobs extends AbstractActionController
 
     public function indexAction()
     {
-        /* @var \Zend\Http\PhpEnvironment\Request $request */
+        /* @var \Laminas\Http\PhpEnvironment\Request $request */
         $request = $this->getRequest();
 
-        /* @var \Zend\Http\PhpEnvironment\Response $response */
+        /* @var \Laminas\Http\PhpEnvironment\Response $response */
         $response = $this->getResponse();
         $response->getHeaders()->addHeaderLine( 'Content-Type', 'application/json' );
         $searchTerm = $request->getQuery('q');

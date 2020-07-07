@@ -3,7 +3,7 @@
 namespace Gastro24\View\Helper;
 
 use Organizations\Entity\Organization;
-use Zend\Form\View\Helper\AbstractHelper;
+use Laminas\Form\View\Helper\AbstractHelper;
 
 /**
  * IsCrawlerJob.php

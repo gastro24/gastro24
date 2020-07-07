@@ -10,7 +10,7 @@
 /** */
 namespace Gastro24\ContactForm\Options;
 
-use Zend\Stdlib\AbstractOptions;
+use Laminas\Stdlib\AbstractOptions;
 
 /**
  * ${CARET}

@@ -3,7 +3,7 @@
 namespace Gastro24\Options;
 
 use Core\Repository\RepositoryService;
-use Zend\Stdlib\AbstractOptions;
+use Laminas\Stdlib\AbstractOptions;
 
 /**
  * ConsoleDeleteJobs.php

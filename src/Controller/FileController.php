@@ -15,11 +15,11 @@ class FileController extends BaseFileController
 {
 
     /**
-     * @return \Zend\Http\PhpEnvironment\Response
+     * @return \Laminas\Http\PhpEnvironment\Response
      */
     public function indexAction()
     {
-        /* @var \Zend\Http\PhpEnvironment\Response $response */
+        /* @var \Laminas\Http\PhpEnvironment\Response $response */
         $response = $this->getResponse();
         /* @var \Core\Entity\FileEntity $file */
         $file     = $this->getFile();

@@ -10,7 +10,7 @@
 /** */
 namespace Gastro24\Controller\Plugin;
 
-use Zend\Mvc\Controller\Plugin\Url as ZfUrl;
+use Laminas\Mvc\Controller\Plugin\Url as ZfUrl;
 
 /**
  * ${CARET}

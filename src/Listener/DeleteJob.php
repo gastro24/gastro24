@@ -7,7 +7,7 @@ use Core\Listener\Events\AjaxEvent;
 use Gastro24\Entity\Product\AbstractProduct;
 use Gastro24\Entity\UserProduct;
 use Jobs\Repository\Job;
-use Zend\Permissions\Acl\AclInterface;
+use Laminas\Permissions\Acl\AclInterface;
 
 /**
  * DeleteJob.php
@@ -33,7 +33,7 @@ class DeleteJob
     /**
      * ACL service
      *
-     * @var \Zend\Permissions\Acl\AclInterface
+     * @var \Laminas\Permissions\Acl\AclInterface
      */
     private $acl;
 

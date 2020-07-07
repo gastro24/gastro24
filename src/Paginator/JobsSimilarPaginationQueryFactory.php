@@ -5,7 +5,7 @@ namespace Gastro24\Paginator;
 use Interop\Container\ContainerInterface;
 use Solr\Filter\JobBoardPaginationQuery;
 use Solr\Options\ModuleOptions;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * JobsSimilarPaginationQueryFactory.php

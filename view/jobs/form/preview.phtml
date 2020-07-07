@@ -40,7 +40,7 @@ $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png')
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 $hasBanner = $template && ($image = $template->getImage());
 if ($hasBanner) {
-    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $serverUrl = new \Laminas\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
 }
 else {

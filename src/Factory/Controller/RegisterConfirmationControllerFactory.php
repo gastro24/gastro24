@@ -5,9 +5,9 @@ namespace Gastro24\Factory\Controller;
 use Auth\Repository\User;
 use Gastro24\Controller\RegisterConfirmationController;
 use Interop\Container\ContainerInterface;
-use Zend\Log\LoggerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Log\LoggerInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * RegisterConfirmationControllerFactory.php

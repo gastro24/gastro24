@@ -4,7 +4,7 @@ namespace Gastro24\Factory\Listener;
 
 use Gastro24\Listener\SettingsChangedListener;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * SettingsChangedListenerFactory.php

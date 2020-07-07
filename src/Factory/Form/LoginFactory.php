@@ -4,8 +4,11 @@ namespace Gastro24\Factory\Form;
 use Auth\Form\LoginInputFilter;
 use Gastro24\Form\Login;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\Exception\ServiceNotFoundException;
+use Interop\Container\Exception\ContainerException;
 
 /**
  * LoginFactory.php

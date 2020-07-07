@@ -3,8 +3,8 @@
 namespace Gastro24\Form\View\Helper;
 
 use \Core\Form\View\Helper\FormDatePicker as BaseFormDatePicker;
-use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\FormText;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\View\Helper\FormText;
 
 /**
  * FormDatePicker.php
@@ -16,11 +16,11 @@ class FormDatePicker extends BaseFormDatePicker
 
     public function render(ElementInterface $element = null)
     {
-        /* @var \Zend\View\Renderer\PhpRenderer $view */
+        /* @var \Laminas\View\Renderer\PhpRenderer $view */
         $view = $this->getView();
-        /* @var \Zend\View\Helper\HeadScript $headScript */
+        /* @var \Laminas\View\Helper\HeadScript $headScript */
         $headScript = $view->plugin('headscript');
-        /* @var \Zend\View\Helper\BasePath $basePath */
+        /* @var \Laminas\View\Helper\BasePath $basePath */
 
         $basePath = $view->plugin('basePath');
         $params   = $view->plugin('params'); /* @var \Core\View\Helper\Params $params */

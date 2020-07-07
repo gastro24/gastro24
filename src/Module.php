@@ -9,11 +9,11 @@ use Jobs\Entity\Status;
 use Yawik\Composer\AssetProviderInterface;
 use Core\ModuleManager\ModuleConfigLoader;
 use Gastro24\Options\Landingpages;
-use Zend\Console\Console;
-use Zend\Http\Response;
-use Zend\Mvc\MvcEvent;
-use Zend\Session\Container;
-use Zend\Stdlib\Parameters;
+use Laminas\Console\Console;
+use Laminas\Http\Response;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Session\Container;
+use Laminas\Stdlib\Parameters;
 
 /**
  * Bootstrap class of our demo skin
@@ -45,7 +45,7 @@ class Module implements AssetProviderInterface
     {
 
         return array(
-            'Zend\Loader\StandardAutoloader' => array(
+            'Laminas\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/../src',
                 ),
@@ -208,7 +208,7 @@ class Module implements AssetProviderInterface
                         foreach ($map as $term => $spec) {
                             if (isset($spec['q'])) { $spec['q'] = strtolower($spec['q']); }
                             if ($spec === $query) {
-                                /* \Zend\Http\PhpEnvironment\Response $response */
+                                /* \Laminas\Http\PhpEnvironment\Response $response */
                                 $url = $event->getRouter()->assemble(['q' => $term, 'format' => 'html'], ['name' => 'lang/landingPage']);
                                 $response = $event->getResponse();
                                 $response->getHeaders()->addHeaderLine('Location', $url);
@@ -250,7 +250,7 @@ class Module implements AssetProviderInterface
 
                 $viewModel = $e->getViewModel();
                 if (!$viewModel->getVariable('jobs')) {
-                    /** @var \Zend\Paginator\Paginator $paginator */
+                    /** @var \Laminas\Paginator\Paginator $paginator */
                     $paginator = call_user_func($paginatorFactory, 'Jobs/Board', [], [
                         'q',
                         'count' => 10,
@@ -298,7 +298,7 @@ class Module implements AssetProviderInterface
 
     }
 
-    public function getConsoleUsage(\Zend\Console\Adapter\AdapterInterface $console)
+    public function getConsoleUsage(\Laminas\Console\Adapter\AdapterInterface $console)
     {
         return [
             'Expire jobs',
@@ -322,7 +322,7 @@ class Module implements AssetProviderInterface
             //$lang = $options->isDetectLanguage() ? $this->detectLanguage($e):$options->getDefaultLanguage();
             $langUri = rtrim("$basePath/de$origUri", '/');
 
-            /* \Zend\Http\PhpEnvironment\Response $response */
+            /* \Laminas\Http\PhpEnvironment\Response $response */
             //$url = $e->getRouter()->assemble([], ['name' => 'lang']);
             $response = $e->getResponse();
             $response->getHeaders()->addHeaderLine('Location', $langUri);
@@ -338,7 +338,7 @@ class Module implements AssetProviderInterface
             //$lang = $options->isDetectLanguage() ? $this->detectLanguage($e):$options->getDefaultLanguage();
             $langUri = rtrim("$basePath/de$origUri", '/');
 
-            /* \Zend\Http\PhpEnvironment\Response $response */
+            /* \Laminas\Http\PhpEnvironment\Response $response */
             //$url = $e->getRouter()->assemble([], ['name' => 'lang']);
             $response = $e->getResponse();
             $response->getHeaders()->addHeaderLine('Location', $langUri);
@@ -358,7 +358,7 @@ class Module implements AssetProviderInterface
         $response = $e->getResponse();
         $viewModel = $e->getViewModel();
 
-        if (get_class($response) === \Zend\Console\Response::class ) {
+        if (get_class($response) === \Laminas\Console\Response::class ) {
             return;
         }
 

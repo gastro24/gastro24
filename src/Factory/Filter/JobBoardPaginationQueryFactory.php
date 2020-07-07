@@ -6,7 +6,7 @@ use Gastro24\Filter\JobBoardPaginationQuery;
 use Interop\Container\ContainerInterface;
 use \Solr\Factory\Filter\JobBoardPaginationQueryFactory as BaseFactory;
 use Solr\Options\ModuleOptions;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * JobBoardPaginationQueryFactory.php

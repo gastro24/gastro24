@@ -4,8 +4,8 @@ namespace Gastro24\View\Helper;
 
 use Core\Form\View\Helper\SearchForm as BaseSearchFormHelper;
 use Core\Form\ViewPartialProviderInterface;
-use Zend\Form\Element\Hidden;
-use Zend\Form\FormInterface;
+use Laminas\Form\Element\Hidden;
+use Laminas\Form\FormInterface;
 
 /**
  * SearchForm.php

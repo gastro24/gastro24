@@ -5,9 +5,12 @@ namespace Gastro24\Factory\Service;
 use Gastro24\Service\RegisterConfirmation;
 use Auth\Repository;
 use Interop\Container\ContainerInterface;
-use Zend\Authentication\AuthenticationService;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Authentication\AuthenticationService;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\Exception\ContainerException;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\Exception\ServiceNotFoundException;
 
 /**
  * RegisterFactory.php

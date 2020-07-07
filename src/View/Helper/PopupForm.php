@@ -4,7 +4,7 @@ namespace Gastro24\View\Helper;
 
 use Core\Form\DescriptionAwareFormInterface;
 use Core\Form\View\Helper\Form;
-use Zend\Form\FormInterface;
+use Laminas\Form\FormInterface;
 
 /**
  * PopupForm.php
@@ -23,12 +23,12 @@ class PopupForm extends Form
      * @param string $layout
      * @param array $parameter
      * @uses renderBare()
-     * @see \Zend\Form\View\Helper\Form::render()
+     * @see \Laminas\Form\View\Helper\Form::render()
      * @return string
      */
     public function render(FormInterface $form, $layout = self::LAYOUT_HORIZONTAL, $parameter = array())
     {
-        /* @var $renderer \Zend\View\Renderer\PhpRenderer */
+        /* @var $renderer \Laminas\View\Renderer\PhpRenderer */
         $formContent = $this->renderBare($form, $layout, $parameter);
         $renderer    = $this->getView();
 

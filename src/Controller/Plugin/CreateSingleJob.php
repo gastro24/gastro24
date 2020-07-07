@@ -19,7 +19,7 @@ use Orders\Entity\InvoiceAddress;
 use Orders\Entity\OrderInterface;
 use Orders\Entity\Product;
 use Orders\Entity\Snapshot\Job\Builder;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 class CreateSingleJob extends AbstractPlugin
 {
@@ -258,11 +258,10 @@ class CreateSingleJob extends AbstractPlugin
         foreach ($values['invoiceAddress'] as $setter => $value) {
             $invoiceAddress->{"set$setter"}($value);
         }
-        $invoiceAddress->setName($values['firstname'] . ' ' . $values['lastname']);
         $invoiceAddress->setGender($values['gender']);
 
         // overwrite invoice address
-        if (isset($values['otherAddress']) && count($values['otherAddress'])) {
+        if (isset($values['otherAddress']) && !empty($values['otherAddress']['street']) && count($values['otherAddress'])) {
             $invoiceAddress->setName($values['firstname-other-address'] . ' ' . $values['lastname-other-address']);
             $invoiceAddress->setGender($values['gender-other-address']);
             $invoiceAddress->setStreet($values['otherAddress']['street']);

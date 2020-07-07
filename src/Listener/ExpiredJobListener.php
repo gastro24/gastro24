@@ -23,14 +23,14 @@ class ExpiredJobListener
     private $mailer;
 
     /**
-     * @var \Zend\Log\Logger
+     * @var \Laminas\Log\Logger
      */
     private $logger;
 
     public function __construct(
         RepositoryService $repositories,
         \Core\Mail\MailService $mailer,
-        \Zend\Log\Logger $logger
+        \Laminas\Log\Logger $logger
     ) {
         $this->repositories = $repositories;
         $this->mailer = $mailer;

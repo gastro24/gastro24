@@ -8,10 +8,10 @@ use Interop\Container\ContainerInterface;
 use Jobs\Entity\StatusInterface;
 use Jobs\Listener\Events\JobEvent;
 use MongoDB\BSON\ObjectId;
-use Zend\Log\LoggerInterface;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\ProgressBar\Adapter\Console as ConsoleAdapter;
-use Zend\ProgressBar\ProgressBar;
+use Laminas\Log\LoggerInterface;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\ProgressBar\Adapter\Console as ConsoleAdapter;
+use Laminas\ProgressBar\ProgressBar;
 
 /**
  * JobsConsoleController.php

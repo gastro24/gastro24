@@ -12,7 +12,7 @@ namespace Gastro24\Controller;
 
 use Gastro24\Options\CompanyTemplatesMap;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Factory for \Gastro24\Controller\RedirectExternalJobs

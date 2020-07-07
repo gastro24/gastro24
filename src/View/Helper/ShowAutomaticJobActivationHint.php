@@ -2,7 +2,7 @@
 
 namespace Gastro24\View\Helper;
 
-use Zend\Form\View\Helper\AbstractHelper;
+use Laminas\Form\View\Helper\AbstractHelper;
 
 /**
  * ShowAutomaticJobActivationHint.php

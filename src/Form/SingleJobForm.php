@@ -7,8 +7,8 @@ use Core\Form\Form;
 use Gastro24\Filter\PdfFileUri;
 use Jobs\Entity\Category;
 use Jobs\Entity\Location;
-use Zend\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
-use Zend\InputFilter\InputFilterProviderInterface;
+use Laminas\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
+use Laminas\InputFilter\InputFilterProviderInterface;
 
 class SingleJobForm extends Form implements InputFilterProviderInterface
 {
@@ -390,7 +390,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
     public function isValid()
     {
         // Workaround: otherwise setData sets hasValidation to false again
-        return \Zend\Form\Form::isValid();
+        return \Laminas\Form\Form::isValid();
     }
 
     public function getHydrator()

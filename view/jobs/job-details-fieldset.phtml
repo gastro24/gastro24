@@ -7,7 +7,7 @@
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
 
-use Zend\Form\Element\Hidden;
+use Laminas\Form\Element\Hidden;
 
 $fieldset = $this->element;
 $mode = $fieldset->get('mode');
@@ -124,7 +124,7 @@ $modeLabels = $mode->getOption('labels');
         <div class="fieldset-content">
 
             <!-- job creation - all modes:  html, pdf, link -->
-            <?php if (!$mode instanceof Zend\Form\Element\Hidden): ?>
+            <?php if (!$mode instanceof Laminas\Form\Element\Hidden): ?>
                 <div class="controls controls-row form-group">
                     <div class="col-md-3 yk-label">&nbsp;</div>
                     <div class="col-md-9">

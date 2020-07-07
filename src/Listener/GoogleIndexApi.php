@@ -20,7 +20,7 @@ class GoogleIndexApi
     private $jobUrlHelper;
 
     /**
-     * @var \Zend\Log\Logger
+     * @var \Laminas\Log\Logger
      */
     private $logger;
     private $configPath;

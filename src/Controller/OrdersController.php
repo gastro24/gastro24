@@ -10,11 +10,11 @@ use Jobs\Entity\JobSnapshot;
 use Jobs\Entity\JobSnapshotStatus;
 use Jobs\Entity\Status;
 use Jobs\Listener\Events\JobEvent;
-use Zend\EventManager\EventInterface;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
-use Zend\View\Model\ViewModel;
+use Laminas\EventManager\EventInterface;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Laminas\View\Model\ViewModel;
 use Orders\Controller\ListController as BaseController;
 
 /**

@@ -12,7 +12,7 @@ namespace Gastro24\WordpressApi\Listener;
 
 use Gastro24\WordpressApi\Filter\PageIdMap;
 use Gastro24\WordpressApi\Service\WordpressClient;
-use Zend\EventManager\EventInterface;
+use Laminas\EventManager\EventInterface;
 
 /**
  * ${CARET}

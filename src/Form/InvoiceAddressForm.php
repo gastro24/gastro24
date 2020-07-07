@@ -20,13 +20,13 @@ use Gastro24\Filter\PdfFileUri;
 use Jobs\Entity\Category;
 use Jobs\Entity\Location;
 use Orders\Form\InvoiceAddressFieldset;
-use Zend\Form\Fieldset;
-use Zend\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
-use Zend\Http\PhpEnvironment\Request;
-use Zend\InputFilter\Input;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Form\Fieldset;
+use Laminas\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
+use Laminas\Http\PhpEnvironment\Request;
+use Laminas\InputFilter\Input;
+use Laminas\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Stdlib\ArrayUtils;
 
 class InvoiceAddressForm extends Form
 {
@@ -268,7 +268,7 @@ class InvoiceAddressForm extends Form
     public function isValid()
     {
         // Workaround: otherwise setData sets hasValidation to false again
-        return \Zend\Form\Form::isValid();
+        return \Laminas\Form\Form::isValid();
     }
 
     public function getHydrator()

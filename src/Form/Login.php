@@ -3,7 +3,7 @@
 namespace Gastro24\Form;
 
 use Core\Form\Form;
-use Zend\Form\Fieldset;
+use Laminas\Form\Fieldset;
 
 /**
  * LoginForm.php

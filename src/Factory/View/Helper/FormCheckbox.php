@@ -2,15 +2,16 @@
 
 namespace Gastro24\Factory\View\Helper;
 
-use Zend\Form\Element\Checkbox as CheckboxElement;
-use Zend\Form\ElementInterface;
+use Laminas\Form\Element\Checkbox as CheckboxElement;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
 
 /**
  * FormCheckbox.php
  *
  * @author Stefanie Drost <contact@stefaniedrost.com>
  */
-class FormCheckbox extends \Zend\Form\View\Helper\FormCheckbox
+class FormCheckbox extends \Laminas\Form\View\Helper\FormCheckbox
 {
     /** @var bool  */
     protected $labelAfterBox = false;
@@ -27,7 +28,7 @@ class FormCheckbox extends \Zend\Form\View\Helper\FormCheckbox
     {
         if (! $element instanceof CheckboxElement) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s requires that the element is of type Zend\Form\Element\Checkbox',
+                '%s requires that the element is of type Laminas\Form\Element\Checkbox',
                 __METHOD__
             ));
         }

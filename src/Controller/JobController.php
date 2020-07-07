@@ -11,11 +11,11 @@ use Jobs\Entity\Status;
 use Jobs\Form\AdminJobEdit;
 use Jobs\Form\Element\StatusSelect;
 use Jobs\Listener\Events\JobEvent;
-use Zend\Form\FormElementManager\FormElementManagerTrait;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Session\Container;
-use Zend\View\Model\JsonModel;
-use Zend\View\Model\ViewModel;
+use Laminas\Form\FormElementManager\FormElementManagerTrait;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Session\Container;
+use Laminas\View\Model\JsonModel;
+use Laminas\View\Model\ViewModel;
 
 /**
  * JobController.php
@@ -127,7 +127,7 @@ class JobController extends AbstractActionController implements ContainerAwareIn
     public function dashboardAction()
     {
         $repositories = $this->repositories;
-        /* @var $request \Zend\Http\Request */
+        /* @var $request \Laminas\Http\Request */
         $request     = $this->getRequest();
         $params      = $request->getQuery();
         $isRecruiter = $this->Acl()->isRole(User::ROLE_RECRUITER);
@@ -197,9 +197,9 @@ class JobController extends AbstractActionController implements ContainerAwareIn
      */
     public function saveJobAction()
     {
-        /* @var $request \Zend\Http\Request */
+        /* @var $request \Laminas\Http\Request */
         $request     = $this->getRequest();
-        /* @var \Zend\Http\PhpEnvironment\Response $response */
+        /* @var \Laminas\Http\PhpEnvironment\Response $response */
         $response = $this->getResponse();
 
         $jobId = $this->params()->fromRoute('id');

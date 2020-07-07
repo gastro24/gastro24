@@ -4,7 +4,7 @@ namespace Gastro24\Factory\Form;
 
 use Gastro24\Form\InvoiceAddressForm;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * InvoiceAddressFormFactory.php

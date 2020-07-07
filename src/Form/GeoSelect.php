@@ -26,7 +26,7 @@ class GeoSelect extends Select implements HeadscriptProviderInterface, HydratorS
     ];
 
     /**
-     * @var \Zend\View\Helper\Asset
+     * @var \Laminas\View\Helper\Asset
      */
     private $assetHelper;
 
@@ -42,7 +42,7 @@ class GeoSelect extends Select implements HeadscriptProviderInterface, HydratorS
     public function setValue($value)
     {
         $attrValue = is_array($value)
-            ? \Zend\Json\Json::encode($value)
+            ? \Laminas\Json\Json::encode($value)
             : $value;
 
         $this->setAttribute('data-val', $attrValue);
@@ -78,7 +78,7 @@ class GeoSelect extends Select implements HeadscriptProviderInterface, HydratorS
             try {
                 $resourceUrl = $this->assetHelper->__invoke($script);
             }
-            catch (\Zend\View\Exception\InvalidArgumentException $e) {
+            catch (\Laminas\View\Exception\InvalidArgumentException $e) {
                 $resourceUrl = $script;
             }
             $scripts[] = $resourceUrl;

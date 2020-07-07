@@ -12,8 +12,8 @@ namespace Gastro24\WordpressApi\View\Helper;
 
 use Gastro24\WordpressApi\Filter\PageIdMap;
 use Gastro24\WordpressApi\Service\WordpressClient;
-use Zend\Stdlib\ArrayUtils;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * ${CARET}

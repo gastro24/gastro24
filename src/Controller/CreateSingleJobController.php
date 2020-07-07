@@ -16,10 +16,10 @@ use Core\Form\Hydrator\Strategy\TreeSelectStrategy;
 use Gastro24\Form\InvoiceAddressForm;
 use Jobs\Entity\Classifications;
 use Orders\Entity\InvoiceAddress;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Session\Container;
-use Zend\View\Helper\ServerUrl;
-use Zend\View\Model\JsonModel;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Session\Container;
+use Laminas\View\Helper\ServerUrl;
+use Laminas\View\Model\JsonModel;
 
 class CreateSingleJobController extends AbstractActionController
 {
@@ -41,7 +41,7 @@ class CreateSingleJobController extends AbstractActionController
 
     public function indexAction()
     {
-        /* @var \Zend\Http\PhpEnvironment\Request $request */
+        /* @var \Laminas\Http\PhpEnvironment\Request $request */
         $request = $this->getRequest();
         $session = new Container('Gastro24_SingleJobData');
         $this->layout()->setTemplate('layouts/layout-create-single');
@@ -109,17 +109,21 @@ class CreateSingleJobController extends AbstractActionController
 
     public function paymentAction()
     {
-        /* @var \Zend\Http\PhpEnvironment\Request $request */
+        /* @var \Laminas\Http\PhpEnvironment\Request $request */
         $request = $this->getRequest();
         $this->layout()->setTerminal(true)->setTemplate('layouts/layout-create-single');
         $session = new Container('Gastro24_SingleJobData');
         $mainValues = unserialize($session->values);
         $mainData = unserialize($session->data);
+        // prefill company name from first step
+        $this->invoiceAddressForm->setData(['invoiceAddress' => ['company' => $mainValues['company']]]);
 
         $hasAddons = $this->params()->fromRoute('show');
 
         if ($request->isPost()) {
             $data = array_merge_recursive($this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray());
+            $data['name'] = $data['firstname'] . ' ' . $data['lastname'];
+            $data['invoiceAddress']['name'] = $data['firstname'] . ' ' . $data['lastname'];
             $this->invoiceAddressForm->setData($data);
 
             // remove validation for other address if not checked

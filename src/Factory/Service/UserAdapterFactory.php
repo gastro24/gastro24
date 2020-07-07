@@ -3,9 +3,12 @@
 namespace Gastro24\Factory\Service;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use Gastro24\Service\Adapter\User;
+use Interop\Container\Exception\ContainerException;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\Exception\ServiceNotFoundException;
 
 /**
  * UserAdapterFactory.php
@@ -54,7 +57,7 @@ class UserAdapterFactory implements FactoryInterface
      *
      * @param ServiceLocatorInterface $serviceLocator
      * @return \Auth\Adapter\User
-     * @see \Zend\ServiceManager\FactoryInterface::createService()
+     * @see \Laminas\ServiceManager\FactoryInterface::createService()
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

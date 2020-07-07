@@ -4,7 +4,7 @@ namespace Gastro24\View\Helper;
 
 use Gastro24\Options\CompanyTemplatesMap;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * JobTemplateFactory.php

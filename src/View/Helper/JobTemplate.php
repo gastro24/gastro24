@@ -3,7 +3,7 @@
 namespace Gastro24\View\Helper;
 
 use Gastro24\Options\CompanyTemplatesMap;
-use Zend\Form\View\Helper\AbstractHelper;
+use Laminas\Form\View\Helper\AbstractHelper;
 
 /**
  * JobTemplate.php

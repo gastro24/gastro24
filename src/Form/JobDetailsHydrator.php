@@ -13,7 +13,7 @@ namespace Gastro24\Form;
 use Gastro24\Entity\Template;
 use Gastro24\Entity\TemplateImage;
 use Jobs\Entity\JobSnapshot;
-use Zend\Hydrator\HydratorInterface;
+use Laminas\Hydrator\HydratorInterface;
 
 /**
  * ${CARET}

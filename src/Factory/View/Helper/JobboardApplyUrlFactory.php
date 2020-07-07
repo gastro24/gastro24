@@ -12,7 +12,7 @@ namespace Gastro24\Factory\View\Helper;
 
 use Gastro24\View\Helper\JobboardApplyUrl;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Factory for \Gastro24\View\Helper\JobboardApplyUrl

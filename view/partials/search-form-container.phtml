@@ -1,5 +1,5 @@
 <?php
-$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
 $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
 
 if ($this->clear || !$this->filterForm) {

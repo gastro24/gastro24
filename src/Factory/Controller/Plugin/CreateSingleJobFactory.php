@@ -12,7 +12,7 @@ namespace Gastro24\Factory\Controller\Plugin;
 
 use Gastro24\Controller\Plugin\CreateSingleJob;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 
 /**

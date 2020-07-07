@@ -6,8 +6,8 @@ use Auth\Entity\User;
 use Auth\Listener\Events\AuthEvent;
 use Auth\Service\Exception\UserAlreadyExistsException;
 use Auth\Service\Register as BaseRegisterService;
-use Zend\InputFilter\InputFilterInterface;
-use Zend\Mvc\Controller\Plugin\Url;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\Mvc\Controller\Plugin\Url;
 use Core\Controller\Plugin\Mailer;
 
 /**

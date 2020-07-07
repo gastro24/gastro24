@@ -18,7 +18,7 @@ $notifications = $this->partial('core/notifications');
 
 // set default page title
 $this->headTitle($this->translate('Gastrojob24'))->setSeparator(' | ')->setAutoEscape(false);
-$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
 $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
 
 $this->headTitle($this->translate('Home'));
