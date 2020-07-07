@@ -115,6 +115,8 @@ class CreateSingleJobController extends AbstractActionController
         $session = new Container('Gastro24_SingleJobData');
         $mainValues = unserialize($session->values);
         $mainData = unserialize($session->data);
+        // prefill company name from first step
+        $this->invoiceAddressForm->setData(['invoiceAddress' => ['company' => $mainValues['company']]]);
 
         $hasAddons = $this->params()->fromRoute('show');
 

@@ -564,9 +564,11 @@ iframe {
                                                 <!-- location -->
                                                 <?php
                                                 $locationString = '';
-                                                foreach ($sessionData['locations'] as $loc) {
-                                                    $location = new \Jobs\Entity\Location($loc);
-                                                    $locationString .= ' ' . $location->getCity() . ',';
+                                                if (isset($sessionData['locations'])) {
+                                                    foreach ($sessionData['locations'] as $loc) {
+                                                        $location = new \Jobs\Entity\Location($loc);
+                                                        $locationString .= ' ' . $location->getCity() . ',';
+                                                    }
                                                 }
                                                 $locationString = rtrim($locationString, ",");
                                                 echo $locationString;
@@ -582,8 +584,10 @@ iframe {
                                                 <!-- type of contract -->
                                                 <?php
                                                 $typesArray = [];
-                                                foreach ($sessionData['employmentTypes'] as $employmentType) {
-                                                    $typesArray[] = ucfirst($employmentType) ?: 'Vollzeit';
+                                                if (isset($sessionData['employmentTypes'])) {
+                                                    foreach ($sessionData['employmentTypes'] as $employmentType) {
+                                                        $typesArray[] = ucfirst($employmentType) ?: 'Vollzeit';
+                                                    }
                                                 }
                                                 $typesString = implode(', ', $typesArray);
                                                 echo $typesString;
