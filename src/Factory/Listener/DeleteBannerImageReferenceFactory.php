@@ -5,7 +5,7 @@ namespace Gastro24\Factory\Listener;
 use Gastro24\Entity\OrganizationAdditional;
 use Gastro24\Listener\DeleteBannerImageReference;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * DeleteBannerImageReferenceFactory.php

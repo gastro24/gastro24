@@ -10,7 +10,7 @@
 namespace Gastro24\ContactForm;
 
 use Gastro24\ContactForm\View\Helper\SetSubject;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 $options = [
     // defaults to $config['core_options']['system_message_email']

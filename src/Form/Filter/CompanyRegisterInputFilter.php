@@ -2,12 +2,12 @@
 
 namespace Gastro24\Form\Filter;
 
-use Zend\InputFilter\Factory;
-use Zend\InputFilter\InputFilter;
-use Zend\Validator\Digits;
-use Zend\Validator\Identical;
-use Zend\Validator\NotEmpty;
-use Zend\Validator\StringLength;
+use Laminas\InputFilter\Factory;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Validator\Digits;
+use Laminas\Validator\Identical;
+use Laminas\Validator\NotEmpty;
+use Laminas\Validator\StringLength;
 
 /**
  * CompanyRegisterInputFilter.php

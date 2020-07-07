@@ -14,14 +14,14 @@ $image = isset($this->details['image']['entity']) ? $this->details['image']['ent
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 $hasBanner = false;
 if (isset($this->details['image_url'])) {
-    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $serverUrl = new \Laminas\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($this->details['image_url']));
     $hasBanner = true;
 }
 $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->details['logo_url']) :
     $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
-$session = new \Zend\Session\Container('Gastro24_SingleJobData');
+$session = new \Laminas\Session\Container('Gastro24_SingleJobData');
 $sessionData = unserialize($session->data);
 ?>
 <style>

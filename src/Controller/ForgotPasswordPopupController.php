@@ -5,7 +5,7 @@ namespace Gastro24\Controller;
 use Auth\Service\ForgotPassword;
 use Core\Controller\AbstractCoreController;
 use Gastro24\Form\ForgotPasswordPopup;
-use Zend\Log\LoggerInterface;
+use Laminas\Log\LoggerInterface;
 
 /**
  * ForgotPasswordPopupController.php
@@ -46,7 +46,7 @@ class ForgotPasswordPopupController extends AbstractCoreController
 
     public function indexAction()
     {
-        /** @var \Zend\Http\Request $request */
+        /** @var \Laminas\Http\Request $request */
         $request = $this->getRequest();
         $referer = $request->getHeader('referer');
         try {

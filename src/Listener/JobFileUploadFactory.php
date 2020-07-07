@@ -12,7 +12,7 @@ namespace Gastro24\Listener;
 
 use Gastro24\Form\JobDetailsForm;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Factory for \Gastro24\Listener\JobFileUpload

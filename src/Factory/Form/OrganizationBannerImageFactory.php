@@ -4,7 +4,7 @@ namespace Gastro24\Factory\Form;
 
 use Core\Form\FileUploadFactory;
 use Gastro24\Entity\OrganizationAdditional;
-use Zend\Stdlib\AbstractOptions;
+use Laminas\Stdlib\AbstractOptions;
 
 /**
  * OrganizationBannerImageFactory.php

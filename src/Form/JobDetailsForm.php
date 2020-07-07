@@ -12,8 +12,8 @@ namespace Gastro24\Form;
 
 use Core\Form\HeadscriptProviderInterface;
 use Core\Form\SummaryForm;
-use Zend\Http\PhpEnvironment\Request;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Http\PhpEnvironment\Request;
+use Laminas\Stdlib\ArrayUtils;
 
 /**
  * ${CARET}
@@ -64,7 +64,7 @@ class JobDetailsForm extends SummaryForm implements HeadscriptProviderInterface
 
     public function isValid()
     {
-        $isValid = \Zend\Form\Form::isValid();
+        $isValid = \Laminas\Form\Form::isValid();
         if ($isValid) {
             $this->setRenderMode(self::RENDER_SUMMARY);
         }

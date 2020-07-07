@@ -12,7 +12,7 @@ namespace Gastro24\ContactForm\Controller;
 
 use Gastro24\ContactForm\Form\ContactForm;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Factory for \Gastro24\ContactForm\Controller\ContactFormController

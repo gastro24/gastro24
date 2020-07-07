@@ -10,8 +10,8 @@
 /** */
 namespace Gastro24\WordpressApi\Filter;
 
-use Zend\Filter\Exception;
-use Zend\Filter\FilterInterface;
+use Laminas\Filter\Exception;
+use Laminas\Filter\FilterInterface;
 
 /**
  * ${CARET}

@@ -4,7 +4,7 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));
 
 
-$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
 $savedJobs = ($savedJobsContainer->jobs) ? $savedJobsContainer->jobs : [];
 
 $jobsRepo = $this->services('repositories')->get('Jobs');

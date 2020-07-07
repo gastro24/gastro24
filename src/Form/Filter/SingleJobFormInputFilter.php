@@ -3,11 +3,11 @@
 namespace Gastro24\Form\Filter;
 
 use Auth\Entity\User;
-use Zend\InputFilter\Factory;
-use Zend\InputFilter\InputFilter;
-use Zend\Validator\Identical;
-use Zend\Validator\NotEmpty;
-use Zend\Validator\StringLength;
+use Laminas\InputFilter\Factory;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Validator\Identical;
+use Laminas\Validator\NotEmpty;
+use Laminas\Validator\StringLength;
 
 /**
  * SingleJobFormInputFilter.php
@@ -82,8 +82,8 @@ class SingleJobFormInputFilter extends InputFilter
                 'name' => 'password',
                 'required' => true,
                 'filters' => array(
-                    array('name' => '\Zend\Filter\StringTrim'),
-                    array('name' => '\Zend\Filter\StripTags'),
+                    array('name' => '\Laminas\Filter\StringTrim'),
+                    array('name' => '\Laminas\Filter\StripTags'),
                 ),
                 'validators' => array(
                     new NotEmpty(),
@@ -97,7 +97,7 @@ class SingleJobFormInputFilter extends InputFilter
                 'name' => 'password2',
                 'required' => true,
                 'filters' => array(
-                    array('name' => '\Zend\Filter\StringTrim'),
+                    array('name' => '\Laminas\Filter\StringTrim'),
                 ),
                 'validators' => array(
                     new NotEmpty(),

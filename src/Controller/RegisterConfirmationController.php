@@ -5,9 +5,9 @@ namespace Gastro24\Controller;
 use Auth\Service\Exception\UserNotFoundException;
 use Core\Factory\ContainerAwareInterface;
 use Gastro24\Form\RegisterCompanyForm;
-use Zend\Log\LoggerInterface;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use Laminas\Log\LoggerInterface;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\ViewModel;
 use Core\Entity\PermissionsInterface;
 use Organizations\Entity\OrganizationReference;
 
@@ -57,7 +57,7 @@ class RegisterConfirmationController extends AbstractActionController
 
     public function organizationAction()
     {
-        /** @var \Zend\Http\Request $request */
+        /** @var \Laminas\Http\Request $request */
         $request = $this->getRequest();
         $userId = $this->params()->fromRoute('userId', null);
         $userRepository = $this->repositories->get('Auth/User');

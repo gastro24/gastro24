@@ -11,8 +11,8 @@
 namespace Gastro24\Validator;
 
 use Interop\Container\ContainerInterface;
-use Zend\Validator\AbstractValidator;
-use Zend\Validator\ValidatorInterface;
+use Laminas\Validator\AbstractValidator;
+use Laminas\Validator\ValidatorInterface;
 
 /**
  * ${CARET}

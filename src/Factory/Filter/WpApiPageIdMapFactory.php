@@ -13,7 +13,7 @@ namespace Gastro24\Factory\Filter;
 use Gastro24\Options\Landingpages;
 use Gastro24\WordpressApi\Filter\PageIdMap;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * ${CARET}

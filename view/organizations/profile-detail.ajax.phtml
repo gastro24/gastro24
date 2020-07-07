@@ -1,7 +1,7 @@
 <?php
 $hasFacets = $jobs instanceof \Solr\FacetsProviderInterface;
 $today = new DateTime();
-$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
 ?>
 <?php if ($hasFacets):?>
     <?php

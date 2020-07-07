@@ -13,9 +13,9 @@ namespace Gastro24\WordpressApi\Factory\Service;
 use Gastro24\WordpressApi\Service\WordpressClient;
 use Gastro24\WordpressApi\Service\WordpressClientPluginManager;
 use Interop\Container\ContainerInterface;
-use Zend\Cache\StorageFactory;
-use Zend\Http\Client;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\Cache\StorageFactory;
+use Laminas\Http\Client;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * ${CARET}

@@ -10,7 +10,7 @@ use Gastro24\Form\OrdersSettingsFieldset;
 use Gastro24\Options\Landingpages;
 use Jobs\Listener\Events\JobEvent;
 use SimpleImport\Entity\Crawler;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 Module::$isLoaded = true;
 
@@ -193,9 +193,9 @@ return [
             View\Helper\HasAutomaticJobActivation::class => View\Helper\HasAutomaticJobActivationFactory::class,
             View\Helper\ShowAutomaticJobActivationHint::class => View\Helper\ShowAutomaticJobActivationHintFactory::class,
             View\Helper\HydrateOrderObject::class => View\Helper\HydrateOrderObjectFactory::class,
-            View\Helper\JsonLd::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+            View\Helper\JsonLd::class => \Laminas\ServiceManager\Factory\InvokableFactory::class,
             View\Helper\PublishDateFormatter::class => View\Helper\PublishDateFormatterFactory::class,
-            View\Helper\PopupForm::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+            View\Helper\PopupForm::class => \Laminas\ServiceManager\Factory\InvokableFactory::class,
             View\Helper\JobDraftsCount::class => View\Helper\JobDraftsCountFactory::class,
         ],
         'aliases' => [
@@ -231,11 +231,11 @@ return [
         ],
         'headscript' => [
             'lang/jobs/manage' => [
-                [\Zend\View\Helper\HeadScript::SCRIPT, ';(function($) { $(function() { $("#sf-general-portalForm").hide(); }); })(jQuery);'],
+                [\Laminas\View\Helper\HeadScript::SCRIPT, ';(function($) { $(function() { $("#sf-general-portalForm").hide(); }); })(jQuery);'],
             ],
-            [\Zend\View\Helper\HeadScript::SCRIPT, ';(function($) { $(function() { $("#jobs-list-filter").find("button[type=\'reset\']").text("X"); }); })(jQuery);'],
+            [\Laminas\View\Helper\HeadScript::SCRIPT, ';(function($) { $(function() { $("#jobs-list-filter").find("button[type=\'reset\']").text("X"); }); })(jQuery);'],
             'lang/applications/detail' => [
-                [\Zend\View\Helper\HeadScript::SCRIPT, ';(function($) { $(function() { $("button[data-target=\'#cam-move-application\']").hide(); }); })(jQuery);'],
+                [\Laminas\View\Helper\HeadScript::SCRIPT, ';(function($) { $(function() { $("button[data-target=\'#cam-move-application\']").hide(); }); })(jQuery);'],
             ],
         ],
     ],

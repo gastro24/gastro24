@@ -3,8 +3,8 @@
 namespace Gastro24\Form\Organizations;
 
 use Core\Entity\Hydrator\EntityHydrator;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
 
 /**
  * @author Stefanie Drost <contact@stefaniedrost.com>

@@ -4,8 +4,8 @@ namespace Gastro24\Controller;
 
 use Auth\Entity\UserInterface;
 use Auth\Service\Exception\UserAlreadyExistsException;
-use Zend\Stdlib\AbstractOptions;
-use Zend\View\Model\ViewModel;
+use Laminas\Stdlib\AbstractOptions;
+use Laminas\View\Model\ViewModel;
 
 /**
  * RegisterController.php
@@ -42,7 +42,7 @@ class RegisterController extends \CompanyRegistration\Controller\RegistrationCon
      */
     public function indexAction()
     {
-        /* @var $request \Zend\Http\Request */
+        /* @var $request \Laminas\Http\Request */
         $request                  = $this->getRequest();
         $registerService          = $this->authRegisterService;
         $logger                   = $this->logger;

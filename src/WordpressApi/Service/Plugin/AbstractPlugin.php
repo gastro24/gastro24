@@ -11,7 +11,7 @@
 namespace Gastro24\WordpressApi\Service\Plugin;
 
 use Gastro24\WordpressApi\Service\WordpressClientInterface;
-use Zend\Http\Request;
+use Laminas\Http\Request;
 
 /**
  * ${CARET}

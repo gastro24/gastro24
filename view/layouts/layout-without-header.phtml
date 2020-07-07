@@ -39,7 +39,7 @@ $this->headLink()->prependStylesheet($this->basePath($this->asset('dist/css/jque
 $this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials.css'))
     ->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css'));
 
-$savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+$savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
 $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
 ?>
 

@@ -15,11 +15,11 @@ use Gastro24\Options\CompanyTemplatesMap;
 use Gastro24\Session\VisitedJobsContainer;
 use Jobs\Entity\Job;
 use Jobs\Entity\Status;
-use Zend\Http\PhpEnvironment\Response;
-use Zend\I18n\Translator\TranslatorInterface;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Session\Container;
-use Zend\View\Model\ViewModel;
+use Laminas\Http\PhpEnvironment\Response;
+use Laminas\I18n\Translator\TranslatorInterface;
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Session\Container;
+use Laminas\View\Model\ViewModel;
 
 /**
  * ${CARET}
@@ -64,7 +64,7 @@ class RedirectExternalJobs extends AbstractActionController
 
     public function indexAction()
     {
-        /* @var \Zend\Http\Request $request */
+        /* @var \Laminas\Http\Request $request */
         $request = $this->getRequest();
         /* @var Response $response */
         $response = $this->getResponse();

@@ -11,7 +11,7 @@
 namespace Gastro24\Form;
 
 use Jobs\Entity\Category;
-use Zend\Form\Fieldset;
+use Laminas\Form\Fieldset;
 use Core\Entity\Hydrator\EntityHydrator;
 
 /**

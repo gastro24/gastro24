@@ -3,7 +3,7 @@
 namespace Gastro24\Form\Organizations;
 
 use Organizations\Form\OrganizationsDescriptionFieldset as BaseOrganizationsDescriptionFieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
+use Laminas\InputFilter\InputFilterProviderInterface;
 
 /**
  * @author Stefanie Drost <contact@stefaniedrost.com>

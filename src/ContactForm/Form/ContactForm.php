@@ -13,7 +13,7 @@ namespace Gastro24\ContactForm\Form;
 use Core\Form\CustomizableFieldsetInterface;
 use Core\Form\CustomizableFieldsetTrait;
 use Core\Form\Form;
-use Zend\InputFilter\InputFilterProviderInterface;
+use Laminas\InputFilter\InputFilterProviderInterface;
 
 /**
  * ${CARET}
@@ -73,7 +73,7 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
         ]);
         
            $this->add([
-            'type' => 'Zend\Form\Element\Select',
+            'type' => 'Laminas\Form\Element\Select',
             'name' => 'crawler',
             'options' => [
                 'label' => 'Job-Crawler',
@@ -87,7 +87,7 @@ class ContactForm extends Form implements InputFilterProviderInterface, Customiz
         ]);
         
             $this->add([
-            'type' => 'Zend\Form\Element\Select',
+            'type' => 'Laminas\Form\Element\Select',
             'name' => 'laufzeit',
             'options' => [
                 'label' => 'Laufzeit',

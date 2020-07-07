@@ -26,7 +26,7 @@
         <?php endif; ?>
     <?php endif ?>
     <?php
-    $switchUserSession = new \Zend\Session\Container(\Auth\Controller\Plugin\UserSwitcher::SESSION_NAMESPACE);
+    $switchUserSession = new \Laminas\Session\Container(\Auth\Controller\Plugin\UserSwitcher::SESSION_NAMESPACE);
     if ($switchUserSession->isSwitchedUser): ?>
         <li class="divider"></li>
         <li><a id="su-clear-link" href="<?=$this->url(

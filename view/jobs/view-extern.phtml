@@ -55,7 +55,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
 $isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
 
 // pagination values
-$container = new \Zend\Session\Container('gastro24_jobboardcontainer');
+$container = new \Laminas\Session\Container('gastro24_jobboardcontainer');
 $lastSearchQuery = $container->landingPageSearchQuery;
 $searchTerm = $container->searchTerm;
 $hasSession = count($container->getArrayCopy());
@@ -79,7 +79,7 @@ if (!$this->isIntern && $this->isEmbeddable) {
     $hasBanner = $template && ($image = $template->getImage());
     $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_blue.svg');
     if ($hasBanner) {
-        $serverUrl = new \Zend\View\Helper\ServerUrl();
+        $serverUrl = new \Laminas\View\Helper\ServerUrl();
         $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
     }
 }

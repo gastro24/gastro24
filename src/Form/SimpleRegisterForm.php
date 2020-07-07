@@ -6,7 +6,7 @@ use Auth\Entity\User;
 use Auth\Form\RegisterFormInterface;
 use CompanyRegistration\Options\RegistrationFormOptions;
 use Core\Form\Form;
-use Zend\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
+use Laminas\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
 
 /**
  * SimpleRegisterForm.php
@@ -29,7 +29,7 @@ class SimpleRegisterForm extends Form implements RegisterFormInterface
         $this->setAttribute('class', 'simple-registration-form');
 
         $this->add([
-                'type' => 'Zend\Form\Element\Email',
+                'type' => 'Laminas\Form\Element\Email',
                 'name' => RegistrationFormOptions::FIELD_EMAIL,
                 'options' => array(
                     'label' => /*@translate*/ 'E-Mail Adresse',
@@ -43,7 +43,7 @@ class SimpleRegisterForm extends Form implements RegisterFormInterface
         );
 
         $this->add([
-                'type' => 'Zend\Form\Element\Password',
+                'type' => 'Laminas\Form\Element\Password',
                 'name' => 'password',
                 'options' => array(
                     'label' => /* @translate */ 'Password',
@@ -57,7 +57,7 @@ class SimpleRegisterForm extends Form implements RegisterFormInterface
         );
 
         $this->add([
-                'type' => 'Zend\Form\Element\Password',
+                'type' => 'Laminas\Form\Element\Password',
                 'name' => 'password2',
                 'options' => array(
                     'label' => /* @translate */ 'Retype password',

@@ -11,10 +11,8 @@
 namespace Gastro24\WordpressApi\Service;
 
 use Gastro24\WordpressApi\Service\Plugin;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\Exception;
-use Zend\ServiceManager\Exception\RuntimeException;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 /**
  * ${CARET}

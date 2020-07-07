@@ -5,7 +5,7 @@ namespace Gastro24\Form;
 use Auth\Form\RegisterFormInterface;
 use CompanyRegistration\Options\RegistrationFormOptions;
 use Core\Form\Form;
-use Zend\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
+use Laminas\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
 
 /**
  * RegisterCompanyForm.php
@@ -58,7 +58,7 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
 
         $this->add(
             array(
-                'type' => 'Zend\Form\Element\Email',
+                'type' => 'Laminas\Form\Element\Email',
                 'name' => 'email',
                 'options' => array(
                     'label' => /*@translate*/ 'E-Mail Adresse',
@@ -73,7 +73,7 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
 
         $this->add(
             array(
-                'type'       => 'Zend\Form\Element\Tel',
+                'type'       => 'Laminas\Form\Element\Tel',
                 'name'       => RegistrationFormOptions::FIELD_PHONE,
                 'options'    => [
                     'label' => /*@translate*/ 'Phone',
@@ -104,7 +104,7 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
         $this->add(
             [
                 'name'       => RegistrationFormOptions::FIELD_GENDER,
-                'type'       => 'Zend\Form\Element\Select',
+                'type'       => 'Laminas\Form\Element\Select',
                 'options'    => [
                     'label'         => /*@translate */ 'Salutation',
                     'value_options' => [
@@ -209,7 +209,7 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
         $this->add(
             [
                 'name'       => 'country',
-                'type'       => 'Zend\Form\Element\Select',
+                'type'       => 'Laminas\Form\Element\Select',
                 'options'    => [
                     'label'         => /*@translate */ 'Country',
                     'value_options' => [

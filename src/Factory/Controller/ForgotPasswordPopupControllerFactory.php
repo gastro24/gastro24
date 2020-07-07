@@ -6,12 +6,12 @@ use Auth\Controller\ForgotPasswordController;
 use Gastro24\Controller\ForgotPasswordPopupController;
 use Gastro24\Form\ForgotPasswordPopup;
 use Interop\Container\ContainerInterface;
-use Zend\Log\LoggerInterface;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Mvc\Controller\ControllerManager;
+use Laminas\Log\LoggerInterface;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\Exception\ServiceNotFoundException;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\Mvc\Controller\ControllerManager;
 
 /**
  * ForgotPasswordPopupControllerFactory.php

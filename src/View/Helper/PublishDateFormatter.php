@@ -4,7 +4,7 @@ namespace Gastro24\View\Helper;
 
 use DateTime;
 use Jobs\Entity\Job;
-use Zend\Form\View\Helper\AbstractHelper;
+use Laminas\Form\View\Helper\AbstractHelper;
 
 /**
  * PublishDateFormatter.php

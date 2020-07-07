@@ -13,9 +13,9 @@ namespace Gastro24\Listener;
 use Auth\AuthenticationService as AuthenticationService;
 use Core\Mail\MailService;
 use Core\Options\ModuleOptions;
-use Zend\EventManager\Event;
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
+use Laminas\EventManager\Event;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\ListenerAggregateInterface;
 
 class SettingsChangedListener implements ListenerAggregateInterface
 {

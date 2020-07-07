@@ -51,13 +51,12 @@ if (count($jobs)): ?>
                 ->setAutoEscape(false);
         }
 
-        $container = new \Zend\Session\Container('gastro24_jobboardcontainer');
+        $container = new \Laminas\Session\Container('gastro24_jobboardcontainer');
         $container->fromCompanyProfile = false;
         $container->searchTerm = $searchTerm;
 
-        $savedJobsContainer = new \Zend\Session\Container('gastro24_savedjobs');
+        $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
         $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
-        $jobsRepo = $this->services('repositories')->get('Jobs');
     ?>
     <?php if ($hasFacets):
         if ($this->params()->fromRoute('isLandingPage')):?>
@@ -200,11 +199,11 @@ if (count($jobs)): ?>
                                 $isEmbeddable = $this->gastroIsEmbeddable($job->getLink());
                                 $jobHasExternLink = (!$isIntern && !$isEmbeddable);
                                 $industries = $job->getClassifications()->getIndustries();
+                                $template = $job->getAttachedEntity('gastro24-template');
                                 $orgName = $this->jobOrganizationName($job);
-
-                                // TODO: remove workaround with repo after yawik/solr Update
-                                $jobObject = $jobsRepo->find($job->getId());
-                                $template = $jobObject->getAttachedEntity('gastro24-template');
+                                // TODO: move to config
+                                $additionalCardCss = ($org && $org->getOrganizationName() &&
+                                    ($org->getOrganizationName()->getName() == 'Hotel & Restaurant Chartreuse AG')) ? 'topjob' : '';
 
                                 $isExpired = ($job->getStatus()) ? $job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
                                 $orgIsDisabled = false;
@@ -214,7 +213,7 @@ if (count($jobs)): ?>
                                 $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true, 'absolute' => true ]);
                             ?>
  <!-- begin card-->
-<div class="card box__job-favorite">
+<div class="<?= $additionalCardCss ?> card box__job-favorite">
   <?php
     $logoUrl = null;
     if (is_object($org) && is_object($org->getImage()) && $org->getImage()->getUri()) {

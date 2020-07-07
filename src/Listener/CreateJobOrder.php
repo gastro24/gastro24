@@ -20,7 +20,7 @@ use Orders\Entity\OrderInterface;
 use Orders\Entity\Product;
 use Orders\Entity\Snapshot\Job\Builder;
 use Orders\Entity\InvoiceAddress;
-use Zend\Session\Container;
+use Laminas\Session\Container;
 
 /**
  * ${CARET}
@@ -46,7 +46,7 @@ class CreateJobOrder
     /**
      *
      *
-     * @var \Zend\Filter\FilterInterface
+     * @var \Laminas\Filter\FilterInterface
      */
     protected $priceFilter;
 
@@ -79,6 +79,7 @@ class CreateJobOrder
         $org = $job->getOrganization()->isHiringOrganization() ? $job->getOrganization()->getParent() : $job->getOrganization();
         $user = $org->getUser();
         $productWrapper = $user->getAttachedEntity(UserProduct::class);
+        $existingOrder = null;
 
         if ($productWrapper) {
 
@@ -87,24 +88,21 @@ class CreateJobOrder
 
             $product->setName(str_replace('Gastro24\Entity\Product\\', '', get_class($userProduct)))
                     ->setQuantity(1);
-
             $products->add($product);
+
+            $criteria = [
+                '$and' => [
+                    ['type' => OrderInterface::TYPE_JOB],
+                    ['invoiceAddress.email' => $invoiceAddress->getEmail()],
+                    ['products' => [
+                        '$elemMatch' => [
+                            'name' => $product->getName()
+                        ]
+                    ]]
+                ]
+            ];
+            $existingOrder = $this->orderRepository->findBy($criteria);
         }
-
-        $existingOrder = null;
-
-        $criteria = [
-            '$and' => [
-                ['type' => OrderInterface::TYPE_JOB],
-                ['invoiceAddress.email' => $invoiceAddress->getEmail()],
-                ['products' => [
-                    '$elemMatch' => [
-                        'name' => $product->getName()
-                    ]
-                ]]
-            ]
-        ];
-        $existingOrder = $this->orderRepository->findBy($criteria);
 
         // check if abo order already exists
         if (!$existingOrder) {

@@ -10,7 +10,7 @@
 /** */
 namespace Gastro24\WordpressApi\Service;
 
-use Zend\Http\Request;
+use Laminas\Http\Request;
 
 /**
  * ${CARET}

@@ -24,7 +24,7 @@ elseif (isset($queryGet['page']) && $queryGet['page'] > 1) {
 }
 
 // reset searchQuery in session
-$container = new \Zend\Session\Container('gastro24_jobboardcontainer');
+$container = new \Laminas\Session\Container('gastro24_jobboardcontainer');
 $container->landingPageSearchQuery = null;
 $container->fromCompanyProfile = true;
 $container->companyName = $organization->getName();

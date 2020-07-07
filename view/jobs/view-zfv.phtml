@@ -42,7 +42,7 @@ $isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \
 $hasBanner = $template && ($image = $template->getImage());
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 if ($hasBanner) {
-    $serverUrl = new \Zend\View\Helper\ServerUrl();
+    $serverUrl = new \Laminas\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
 }
 

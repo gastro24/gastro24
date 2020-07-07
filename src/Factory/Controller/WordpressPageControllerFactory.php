@@ -13,7 +13,7 @@ namespace Gastro24\Factory\Controller;
 use Gastro24\Controller\WordpressPageController;
 use Gastro24\WordpressApi\Service\WordpressClient;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Factory for \Gastro24\Controller\WordpressPageController

@@ -17,8 +17,8 @@ use Gastro24\Entity\TemplateImage;
 use Gastro24\Form\JobDetailsForm;
 use Gastro24\Form\SingleJobForm;
 use Jobs\Entity\Job;
-use Zend\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
+use Laminas\Stdlib\ArrayUtils;
 
 /**
  * ${CARET}

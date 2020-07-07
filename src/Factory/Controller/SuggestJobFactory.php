@@ -12,7 +12,7 @@ namespace Gastro24\Factory\Controller;
 
 use Gastro24\Controller\SuggestJobs;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Solr\Options\ModuleOptions;
 
 /**

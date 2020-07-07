@@ -7,7 +7,7 @@ use CompanyRegistration\Options\RegistrationFormOptions;
 use Gastro24\Form\Filter\SimpleRegisterInputFilter;
 use Gastro24\Form\SimpleRegisterForm;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * SimpleRegisterFactory.php

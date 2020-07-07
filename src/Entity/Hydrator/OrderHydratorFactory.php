@@ -4,7 +4,7 @@ namespace Gastro24\Entity\Hydrator;
 
 use Gastro24\Entity\JobActivation;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * OrderHydratorFactory.php

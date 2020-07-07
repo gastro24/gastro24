@@ -14,7 +14,7 @@ use Gastro24\Controller\CreateSingleJobController;
 use Gastro24\Form\InvoiceAddressForm;
 use Gastro24\Form\SingleJobForm;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Factory for \Gastro24\Controller\CreateSingleJobController

@@ -14,7 +14,7 @@ use Gastro24\WordpressApi\Filter\PageIdMap;
 use Gastro24\WordpressApi\Listener\WordpressContentSnippet;
 use Gastro24\WordpressApi\Service\WordpressClient;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 /**
  * ${CARET}

@@ -4,7 +4,7 @@ namespace Gastro24\View\Helper;
 
 use Gastro24\Entity\Decorator\JsonLdProvider;
 use Jobs\Entity\JobInterface;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * JsonLd.php
