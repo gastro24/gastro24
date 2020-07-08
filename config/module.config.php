@@ -637,6 +637,7 @@ return [
         'factories' => [
             // replace Jobs/Board paginator with this paginator
             'Gastro24/Jobs/Similar' => 'Gastro24\Paginator\JobsSimilarPaginatorFactory',
+            'Solr/Jobs/Board'   => 'Gastro24\Paginator\JobsBoardPaginatorFactory',
         ]
     ],
 
