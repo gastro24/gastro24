@@ -15,9 +15,6 @@ class JobBoardPaginationQuery extends BaseQuery
     {
         // show only jobs, where publishDate not in future
         $query->addFilterQuery('datePublishStart:[* TO NOW]');
-        //TODO: read from config
-        $organizationName = 'Hotel & Restaurant Chartreuse AG';
-        $query->addParam('bq', 'organizationName:(' . $organizationName . ')^10');
         parent::createQuery($params, $query, $facets);
     }
 }
