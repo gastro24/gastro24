@@ -143,7 +143,6 @@ if (count($jobs)): ?>
                     $atLeastOneTotalActive = false;
                     foreach ($facets as $facetName => $facetValues):?>
                 <?php $facetOptionsCounter = 0; ?>
-                <?php //if($facetName == 'datePublishStart') continue; ?>
                 <?php if(count($facetValues)>0): $atLeastOneActive = false; $facetsList = []; ob_start();?>
                 <div id="facets-box-<?=$facetName?>" class="panel panel-default">
                     <div class="panel-heading">
