@@ -70,6 +70,22 @@ module.exports = function(grunt) {
                   {
                       src: moduleDir+'/js/index-main.js',
                       dest: moduleDir+'/js/index-main.min.js',
+                  },
+                  {
+                      src: [
+                          nodeModulesPath + "/tinymce/tinymce.js",
+                          nodeModulesPath + "/tinymce/themes/modern/theme.js",
+                          nodeModulesPath + "/tinymce/plugins/autolink/plugin.js",
+                          nodeModulesPath + "/tinymce/plugins/lists/plugin.js",
+                          nodeModulesPath + "/tinymce/plugins/advlist/plugin.js",
+                          nodeModulesPath + "/tinymce/plugins/visualblocks/plugin.js",
+                          nodeModulesPath + "/tinymce/plugins/code/plugin.js",
+                          nodeModulesPath + "/tinymce/plugins/fullscreen/plugin.js",
+                          nodeModulesPath + "/tinymce/plugins/contextmenu/plugin.js",
+                          nodeModulesPath + "/tinymce/plugins/paste/plugin.js",
+                          nodeModulesPath + "/tinymce/plugins/link/plugin.js",
+                      ],
+                      dest: targetDir+"/dist/js/tinymce.js"
                   }
               ]
           },
