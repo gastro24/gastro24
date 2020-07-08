@@ -185,9 +185,9 @@ class Module implements AssetProviderInterface
                         }
                     }
 
-                    $dateFilterValue = $query->get('dateFilter');
-                    if ($dateFilterValue && $dateFilterValue != 'all') {
-                        $publishStartFilter = strtotime('-' . $dateFilterValue . ' minutes');
+                    $dateFilterValue = $query->get('publishDateFilter');
+                    if ($dateFilterValue && key($dateFilterValue) != 'all') {
+                        $publishStartFilter = strtotime('-' . key($dateFilterValue) . ' minutes');
                         $query->set('publishedSince', date('Y-m-d H:i:s', $publishStartFilter));
                     }
 
