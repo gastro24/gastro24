@@ -463,7 +463,7 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
          <ul>
    
             <li>
-               <a class="navbar-item-anchor" href="#portrait">Firmenportrait</a>
+               <a class="navbar-item-anchor" href="#portrait">Portrait</a>
             </li>
      
       
@@ -534,7 +534,7 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
         <div class="col-md-9">
             <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
             <div class="info-card" id="portrait">
-                <h2>Portrait</h2>
+                <h2>Firmenportrait</h2>
                 <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
                     <div class="yt-video embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="<?= $organizationAdditional->getVideoLink() ?>" allowfullscreen></iframe>
