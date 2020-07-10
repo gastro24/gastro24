@@ -325,6 +325,8 @@ return [
              'orders/list/index' => __DIR__ . '/../view/gastro24/orders/index.phtml',
              'orders/list/index.ajax' => __DIR__ . '/../view/gastro24/orders/index.ajax.phtml',
              'orders/view/index' => __DIR__ . '/../view/gastro24/orders/modal.phtml',
+             'organizations/profile/index' => __DIR__ . '/../view/organizations/profile/index.phtml',
+             'organizations/profile/index.ajax' => __DIR__ . '/../view/organizations/profile/index.ajax-detail.phtml',
              'organizations/profile/detail' => __DIR__ . '/../view/organizations/profile-detail.phtml',
              'organizations/profile/detail.ajax' => __DIR__ . '/../view/organizations/profile-detail.ajax.phtml',
              'organizations/profile/disabled' => __DIR__ . '/../view/organizations/profile-disabled.phtml',
