@@ -76,14 +76,7 @@ if ('-' == $sort{0}) {
         echo isset($nameEntity)?$nameEntity->getName():'**** DRAFT ****';
     ?>
       </a>
-      <?php if ($organization->isHiringOrganization()): $parent = $organization->getParent(); ?>
-          <br><small><?php echo sprintf(
-                $this->translate('Hiring organization of <strong>%s</strong>'),
-                '<a href="' . $this->url('lang/organizations/profileDetail',
-                                         array('id' => $parent->getId())) . '?clear=1">' . $parent->getOrganizationName()->getName() . '</a>'
-          );?></small>
-
-        <?php endif ?>
+    
   </td>
   <td>
       <?php echo $organization->getContact()->getPostalcode();?>
