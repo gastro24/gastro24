@@ -5,12 +5,12 @@
 <?php if (!$this->isExpired) : ?>
     <?php if (isset($savedJobsContainer->jobs[$this->jobId])) : ?>
         <button type="button" class="btn btn-default saved <?= $this->buttonCss?>"
-                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="<?= $this->jobId ?>">
             <span class="hidden-xs"><?=$this->translate('Marked')?></span>
         </button>
     <?php else : ?>
         <button type="button" class="btn btn-default <?= $this->buttonCss?>"
-                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="<?= $this->jobId ?>">
             <span class="hidden-xs"><?=$this->translate('Mark')?></span>
         </button>
     <?php endif ?>

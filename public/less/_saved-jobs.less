@@ -1,6 +1,9 @@
 /* BEGIN FAVORITE BADGE */
 .link {
   &__saved-jobs {
+    display: inline-block;
+    vertical-align: middle;
+
     &:before {
       color: #ecba45;
       font-family: "FontAwesome";
@@ -14,13 +17,7 @@
     }
 
     &.empty {
-      &:before {
-        color: @g24-grey-blue;
-        font-family: "FontAwesome";
-        font-size: 2rem;
-        content: "\f006";
-        padding-right: 5px;
-      }
+      display: none;
     }
 
     .badge {
@@ -365,6 +362,8 @@
 }
 
 @media(max-width: @screen-sm) {
+
+
   .box {
     &__job {
       .badge-expired,
@@ -401,6 +400,23 @@
 }
 
 @media(max-width: @screen-xs) {
+  .link {
+    &__saved-jobs {
+      &.empty {
+        display: inline-block;
+        vertical-align: middle;
+
+        &:before {
+          color: @g24-grey-blue;
+          font-family: "FontAwesome";
+          font-size: 2rem;
+          content: "\f006";
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+
   .box {
     &__action-buttons {
       button {

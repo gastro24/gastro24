@@ -120,13 +120,24 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
                               <a title="Für Unternehmen" href="/de/auth/register" class="navigation-link-norm text-white">Für Unternehmen</a>
                            </li>
                            
-                            <li class="nav-item">	   
-                              <a title="Merkliste" href="/de/saved-jobs" class="navigation-link-norm text-white">Merkliste <span class="link__saved-jobs empty" 
-                              data-toggle="tooltip" data-placement="bottom"></span> </a>
+                            <li class="nav-item">
+                                <?php
+                                $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
+                                    sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
+                                ?>
+                              <a title="Merkliste" href="<?= $this->url('lang/saved-jobs', [], true) ?>"
+                                 class="navigation-link-norm text-white">Merkliste
+                                  <?php if($savedJobsCount): ?>
+                                  <div class="link__saved-jobs">
+                                      <span class="badge badge-light" data-toggle="tooltip" data-placement="bottom" title="<?= $tooltip ?>">
+                                          <?= $savedJobsCount ?>
+                                      </span>
+                                  </div>
+                                  <?php else: ?>
+                                      <div class="link__saved-jobs empty"></div>
+                                  <?php endif; ?>
+                              </a>
                            </li>
-                           
-                           
-                           
                            
                             <li class="nav-item">
                                 <?php if ($this->auth('role') !== Auth\Entity\User::ROLE_RECRUITER) : ?>

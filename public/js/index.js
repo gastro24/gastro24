@@ -20,13 +20,13 @@
         });
 
         // add saved jobs badge
-        var savedJobsCount = $('header').data('saved-jobs');
-
-        if (savedJobsCount > 0) {
-            var savedJobsIcon = $('nav .link__saved-jobs');
-            var badge = $('<span>').addClass('badge badge-light').html(savedJobsCount);
-            savedJobsIcon.removeClass('empty').prepend(badge);
-        }
+        // var savedJobsCount = $('header').data('saved-jobs');
+        //
+        // if (savedJobsCount > 0) {
+        //     var savedJobsIcon = $('nav .link__saved-jobs');
+        //     var badge = $('<span>').addClass('badge badge-light').html(savedJobsCount);
+        //     savedJobsIcon.removeClass('empty').prepend(badge);
+        // }
     });
 
 })(jQuery); 

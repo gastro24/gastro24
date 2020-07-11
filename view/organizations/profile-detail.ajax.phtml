@@ -99,12 +99,12 @@ $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
                      <!-- favorite button -->
                      <?php if (isset($savedJobsContainer->jobs[$job->getId()])) : ?>
                          <button type="button" class="btn btn-default saved"
-                                 data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                 data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="<?= $job->getId() ?>">
                              <span><?=$this->translate('Marked')?></span>
                          </button>
                      <?php else : ?>
                          <button type="button" class="pull-right btn btn-default"
-                                 data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                 data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="<?= $job->getId() ?>">
                              <span><?=$this->translate('Mark')?></span>
                          </button>
                      <?php endif ?>

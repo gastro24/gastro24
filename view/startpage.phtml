@@ -142,9 +142,23 @@ $this->headTitle($this->translate('Home'));
                            <li class="nav-item">	   
                               <a title="Für Unternehmen" href="/de/auth/register" class="navigation-link-norm text-white">Für Unternehmen</a>
                            </li>
-                           <li class="nav-item">	   
-                              <a title="Merkliste" href="/de/saved-jobs" class="navigation-link-norm text-white">Merkliste <span class="link__saved-jobs empty" 
-                              data-toggle="tooltip" data-placement="bottom"></span> </a>
+                           <li class="nav-item">
+                               <?php
+                               $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
+                                   sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
+                               ?>
+                               <a title="Merkliste" href="<?= $this->url('lang/saved-jobs', [], true) ?>"
+                                  class="navigation-link-norm text-white">Merkliste
+                                   <?php if($savedJobsCount): ?>
+                                       <div class="link__saved-jobs">
+                                          <span class="badge badge-light" data-toggle="tooltip" data-placement="bottom" title="<?= $tooltip ?>">
+                                              <?= $savedJobsCount ?>
+                                          </span>
+                                       </div>
+                                   <?php else: ?>
+                                       <div class="link__saved-jobs empty"></div>
+                                   <?php endif; ?>
+                               </a>
                            </li>
                             <li class="nav-item">
                                 <a title="Inserieren" href="<?= $this->url('stellenanzeigen-schalten') ?>"
@@ -228,8 +242,18 @@ $this->headTitle($this->translate('Home'));
                         $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
                             sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
                         ?>
-                        <a class="link__saved-jobs empty" href="<?=$this->url('lang/saved-jobs', [], true)?>"
-                           data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>"></a>
+                        <a href="<?=$this->url('lang/saved-jobs', [], true)?>"
+                           data-toggle="tooltip" data-placement="bottom" title="<?=$tooltip?>">
+                            <?php if($savedJobsCount): ?>
+                                <div class="link__saved-jobs">
+                                  <span class="badge badge-light" data-toggle="tooltip" data-placement="bottom" title="<?= $tooltip ?>">
+                                      <?= $savedJobsCount ?>
+                                  </span>
+                                </div>
+                            <?php else: ?>
+                                <div class="link__saved-jobs empty"></div>
+                            <?php endif; ?>
+                        </a>
                     </div>
                     <div class="login-icon pull-right visible-xs" data-toggle="dropdown" aria-expanded="false">
                         <span class="fa fa-user"></span>
@@ -334,14 +358,14 @@ $this->headTitle($this->translate('Home'));
 
                                                 <div class="col-xs-4 save-job pull-right">
                                                     <!-- favorite button -->
-                                                    <?php if (isset($savedJobsContainer->jobs['5da815e53c050f205567afb2'])) : ?>
+                                                    <?php if (isset($savedJobsContainer->jobs['5eef4313126fad180b0e2433'])) : ?>
                                                         <button type="button" class="btn btn-default saved"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5eef4313126fad180b0e2433">
                                                             <span><?=$this->translate('Marked')?></span>
                                                         </button>
                                                     <?php else : ?>
                                                         <button type="button" class="btn btn-default"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5eef4313126fad180b0e2433">
                                                             <span><?=$this->translate('Mark')?></span>
                                                         </button>
                                                     <?php endif ?>
@@ -391,14 +415,14 @@ $this->headTitle($this->translate('Home'));
 
                                                 <div class="col-xs-4 save-job pull-right">
                                                     <!-- favorite button -->
-                                                    <?php if (isset($savedJobsContainer->jobs['5da815e53c050f205567afb2'])) : ?>
+                                                    <?php if (isset($savedJobsContainer->jobs['5efcb33e70482a6d7807e256'])) : ?>
                                                         <button type="button" class="btn btn-default saved"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5efcb33e70482a6d7807e256">
                                                             <span><?=$this->translate('Marked')?></span>
                                                         </button>
                                                     <?php else : ?>
                                                         <button type="button" class="btn btn-default"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5efcb33e70482a6d7807e256">
                                                             <span><?=$this->translate('Mark')?></span>
                                                         </button>
                                                     <?php endif ?>
@@ -448,14 +472,14 @@ $this->headTitle($this->translate('Home'));
 
                                                 <div class="col-xs-4 save-job pull-right">
                                                     <!-- favorite button -->
-                                                    <?php if (isset($savedJobsContainer->jobs['5da815e53c050f205567afb2'])) : ?>
+                                                    <?php if (isset($savedJobsContainer->jobs['5ee740d4fde249144e0575a6'])) : ?>
                                                         <button type="button" class="btn btn-default saved"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5ee740d4fde249144e0575a6">
                                                             <span><?=$this->translate('Marked')?></span>
                                                         </button>
                                                     <?php else : ?>
                                                         <button type="button" class="btn btn-default"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5ee740d4fde249144e0575a6">
                                                             <span><?=$this->translate('Mark')?></span>
                                                         </button>
                                                     <?php endif ?>
@@ -504,14 +528,14 @@ $this->headTitle($this->translate('Home'));
                                                 </div>
                                                 <div class="col-xs-4 save-job pull-right">
                                                     <!-- favorite button -->
-                                                    <?php if (isset($savedJobsContainer->jobs['5e2085513c050f1c8e66f9f3'])) : ?>
+                                                    <?php if (isset($savedJobsContainer->jobs['5ee5eda6afd70f6bba063ea3'])) : ?>
                                                         <button type="button" class="btn btn-default saved"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5ee5eda6afd70f6bba063ea3">
                                                             <span><?=$this->translate('Marked')?></span>
                                                         </button>
                                                     <?php else : ?>
                                                         <button type="button" class="btn btn-default"
-                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>">
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5ee5eda6afd70f6bba063ea3">
                                                             <span><?=$this->translate('Mark')?></span>
                                                         </button>
                                                     <?php endif ?>
@@ -894,38 +918,51 @@ $this->headTitle($this->translate('Home'));
             // carousel on startpage
             function incrementBadgeCount()
             {
-                var badge = $('nav .link__saved-jobs span');
+                var badge = $('.nav-recruiting .link__saved-jobs span');
+                var searchFormBadge = $('.search-form-container .link__saved-jobs span');
                 if (!badge.length) {
                     var badge = $('<span>').addClass('badge badge-light').html('0');
-                    $('nav .link__saved-jobs').removeClass('empty').prepend(badge);
+                    $('.nav-recruiting .link__saved-jobs').removeClass('empty').prepend(badge);
+                }
+
+                if (!searchFormBadge.length) {
+                    var searchFormBadge = $('<span>').addClass('badge badge-light').html('0');
+                    $('.search-form-container .link__saved-jobs').removeClass('empty').prepend(searchFormBadge);
                 }
 
                 var oldValue = badge.html();
                 var newValue = parseInt(oldValue) + 1;
                 badge.html(newValue);
+
+                var oldSearchFormBadgeValue = searchFormBadge.html();
+                var newSearchFormBadgeValue = parseInt(oldSearchFormBadgeValue) + 1;
+                searchFormBadge.html(newSearchFormBadgeValue);
             }
 
             function decrementBadgeCount()
             {
-                var badge = $('nav .link__saved-jobs span');
+                var badge = $('.nav-recruiting .link__saved-jobs span');
+                var searchFormBadge = $('.search-form-container .link__saved-jobs span');
                 var oldValue = parseInt(badge.html());
                 if (oldValue > 0) {
                     var newValue = oldValue - 1;
                     badge.html(newValue);
+                    searchFormBadge.html(newValue);
                 }
 
                 if (!newValue) {
+                    searchFormBadge.remove();
                     badge.remove();
-                    $('nav .link__saved-jobs').addClass('empty');
+                    $('.search-form-container .link__saved-jobs').addClass('empty');
+                    $('.nav-recruiting .link__saved-jobs').addClass('empty');
                 }
             }
 
-            $('.recommended-box .recommended-box-actions button').click(function() {
-                var saveButton = $(this);
+            function markJob(saveButton)
+            {
                 var saveText = saveButton.data('text-save');
                 var savedText = saveButton.data('text-saved');
-                var jobLink = $(this).parent().parent().parent().find('.recommended-box-jobtitle > a').attr('href');
-                var jobId = jobLink.split('-').pop().replace('.html', '');
+                var jobId = saveButton.data('job');
                 var updateMethod = (saveButton.hasClass('saved')) ? 'remove' : 'save';
 
                 // call ajax, add link to session list
@@ -948,11 +985,18 @@ $this->headTitle($this->translate('Home'));
                             saveButton.addClass('saved').find('span').html(savedText);
                             incrementBadgeCount();
                         }
+                        console.debug(data)
                     },
                     error : function(error) {
                         console.log('Error while saving job');
                     }
                 });
+            }
+
+
+            $('.recommended-box .recommended-box-actions button').click(function() {
+                var saveButton = $(this);
+                markJob(saveButton);
             });
         });
     </script>
