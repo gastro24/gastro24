@@ -179,12 +179,14 @@ $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs)
 <?php endif ?>
 
 <!-- search form container -->
-<?= $this->partial('partials/search-form-container.phtml', [
-    'jobs' => $this->jobs,
-    'filterForm' => $this->filterForm,
-    'cssClass' => $preview ? 'searchform-preview' : '',
-]); ?>
+<?php if ('guest' == $this->auth('role')): ?>
+    <?= $this->partial('partials/search-form-container.phtml', [
+        'jobs' => $this->jobs,
+        'filterForm' => $this->filterForm,
+        'cssClass' => $preview ? 'searchform-preview' : '',
+    ]); ?>
 <!-- end search form container -->
+<?php endif; ?>
 
 <main id="content" class="<?= $routeClass ?>">
    <div class="container">
