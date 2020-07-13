@@ -81,7 +81,7 @@ if ('-' == $sort{0}) {
   <td>
       <?php echo $organization->getContact()->getPostalcode();?>
       <?php echo $organization->getContact()->getCity();?>
-       <?php echo $this->jobs->getTotalItemCount(); ?>
+       <?php echo $organization->jobs->getTotalItemCount(); ?>
   </td>
   <td>
       <?php echo $organization->getContact()->getStreet();?>
