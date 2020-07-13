@@ -12,8 +12,11 @@ if (!$organizationAdditional) {
 }
 $this->form->get('organizationBanner')->setObject($organizationAdditional);
 
+$orgName = $this->form->getEntity()->getOrganizationName();
 ?>
-<h1><?php echo $this->translate('Organization')?></h1>
+<h1>
+    <?php echo sprintf($this->translate('Fügen Sie Mitarbeiter zu "%s" hinzu'), $orgName ? $orgName->getName() : '&lt;unnamed organization&gt;'); ?>
+</h1>
 
 <?php echo $this->formContainer($this->form); ?>
 
