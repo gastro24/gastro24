@@ -1,5 +1,8 @@
 <?php
-$this->headTitle($this->translate("Alle Firmenprofile"));
+$this->headTitle($this->translate("Alle Firmenprofile auf einen Blick"));
+$this->headMeta()->setName('description', "Suchen Sie einen Arbeitgeber, die Ihnen mehr bietet? Firmenbeschreibungen, Videos und spannende Jobs: Lernen Sie zukünftige Arbeitgeber kennen.");
+$jobsOrga = $this->serverUrl() . "/de/organizations/profile";
+$this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsOrga));
 $this->headScript()->appendFile($this->basepath('modules/Core/js/core.pagination.js'));
 $this->headScript()->appendFile($this->basepath('modules/Core/js/core.pagination-container.js'));
 ?>
