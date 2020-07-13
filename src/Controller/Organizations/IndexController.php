@@ -5,9 +5,13 @@ use Laminas\Form\FormElementManager\FormElementManagerV3Polyfill;
 use Laminas\I18n\Translator\TranslatorInterface;
 use Organizations\Controller\IndexController as BaseIndexController;
 use Organizations\Repository;
-use Gastro24\Form\Organizations\Organizations;
 
-
+/**
+ * @method \Acl\Controller\Plugin\Acl acl()
+ * @method \Core\Controller\Plugin\PaginationParams paginationParams()
+ * @method \Core\Controller\Plugin\CreatePaginator paginator(string $repositoryName, array $defaultParams = array(), bool $usePostParams = false)
+ * @method \Auth\Controller\Plugin\Auth auth()
+ */
 class IndexController extends BaseIndexController
 {
     /**
