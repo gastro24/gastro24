@@ -10,12 +10,18 @@ if (!$organizationAdditional) {
     $organizationAdditional = new \Gastro24\Entity\OrganizationAdditional();
     $organizationAdditional->setOrganizationId($this->form->getEntity()->getId());
 }
-$this->form->get('organizationBanner')->setObject($organizationAdditional);
-
+$actionParam = $this->params('id');
+if($actionParam !== '__my__') {
+    $this->form->get('organizationBanner')->setObject($organizationAdditional);
+}
 $orgName = $this->form->getEntity()->getOrganizationName();
 ?>
 <h1>
-    <?php echo sprintf($this->translate('Fügen Sie Mitarbeiter zu "%s" hinzu'), $orgName ? $orgName->getName() : '&lt;unnamed organization&gt;'); ?>
+    <?php if($actionParam == '__my__'): ?>
+        <?= sprintf($this->translate('Fügen Sie Mitarbeiter zu "%s" hinzu'), $orgName ? $orgName->getName() : '&lt;unnamed organization&gt;'); ?>
+    <?php else: ?>
+        <?= $this->translate('Firmenprofil'); ?>
+    <?php endif; ?>
 </h1>
 
 <?php echo $this->formContainer($this->form); ?>

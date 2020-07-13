@@ -1,17 +1,12 @@
 <?php
+namespace Gastro24\Factory\Controller\Organizations;
 
-namespace Gastro24\Factory\Controller;
-
+use Gastro24\Controller\Organizations\IndexController;
 use Gastro24\Form\Organizations\Organizations;
 use Interop\Container\ContainerInterface;
-use Organizations\Controller\IndexController;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
-/**
- * OrganizationsIndexControllerFactory.php
- *
- * @author Stefanie Drost <contact@stefaniedrost.com>
- */
-class OrganizationsIndexControllerFactory
+class IndexControllerFactory implements FactoryInterface
 {
     /**
      * Create a IndexController controller
