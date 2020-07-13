@@ -239,7 +239,7 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
             'name' => 'button',
             'attributes' => array(
                 'type' => 'submit',
-                'value' => /*@translate*/ 'Speichern',
+                'value' => /*@translate*/ 'Speichern und kostenpflichtig Abo abschliessen' ,
                 'class' => 'btn btn-primary registration-button pull-right'
             ),
         ]);
