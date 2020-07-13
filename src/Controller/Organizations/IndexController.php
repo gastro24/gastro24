@@ -89,6 +89,7 @@ class IndexController extends BaseIndexController
                 ->disableForm('locationForm')
                 ->disableForm('socialsForm')
                 ->disableForm('descriptionForm')
+                ->disableForm('workflowSettings')
                 ->disableForm('profileSettings');
         }
         return $container;

@@ -9,7 +9,8 @@
  */
 ?>
 <?php $switchUserSession = new \Laminas\Session\Container(\Auth\Controller\Plugin\UserSwitcher::SESSION_NAMESPACE);
-$lang = isset($this->lang)?$this->lang:$this->params('lang'); ?>
+$defaultLang = is_null($this->params('lang')) ? "en":$this->params('lang');
+$lang = isset($this->lang)?$this->lang:$defaultLang; ?>
 <ul id="yk-login-info" style="margin-left:-15px;" class="nav navbar-nav  navbar-collapse collapse navbar-right">
     <li class="dropdown">
 
@@ -56,13 +57,16 @@ $lang = isset($this->lang)?$this->lang:$this->params('lang'); ?>
                 </button></strong>
             </div>
             <div class="modal-body">
-                <form id="su-form" action="<?=$this->url('lang/user-switch', [], [], true)?>" method="get" class="form-horizontal"><select id="su-user-list" name="id" class="form-control"></select></form>
+                <form id="su-form" action="<?=$this->url('lang/user-switch', [], [], true)?>" method="get" class="form-horizontal">
+                <select id="su-user-list" data-autoinit="false" name="id" class="form-control"></select></form>
 
                 <?php $this->headScript()->captureStart() ?>
                     $('#su-form').submit(function(e) {
-                    var $form = $(e.target);
-                    $.get($form.attr('action'), $form.serialize(), function() { window.location.reload(); });
-                    return false;
+                       var $form = $(e.target);
+                       var data = $form.serialize();
+                       data.ref = encodeURIComponent(window.location.href);
+                            $.get($form.attr('action'), data, function() { window.location.reload(); });
+                        return false;
                     });
 
                     $('#su-user-list').select2({
@@ -74,16 +78,16 @@ $lang = isset($this->lang)?$this->lang:$this->params('lang'); ?>
                             dataType: 'json',
                             delay: 200,
                             data: function(params) {
-                            return { "do": "list", q: params.term, page: params.page };
-                        },
-                        processResults: function(data, params) {
-                            params.page = params.page || 1;
-                            return {
-                                results: data.items,
-                                pagination: {
-                                    more: params.page * 20 < data.total
-                                }
-                            };
+                                return { "do": "list", q: params.term, page: params.page };
+                            },
+                            processResults: function(data, params) {
+                                params.page = params.page || 1;
+                                return {
+                                    results: data.items,
+                                    pagination: {
+                                        more: params.page * 20 < data.total
+                                    }
+                                };
                             }
                         },
                         templateResult: function(data) {

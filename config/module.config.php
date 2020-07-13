@@ -332,7 +332,7 @@ return [
              'organizations/profile/detail' => __DIR__ . '/../view/organizations/profile-detail.phtml',
              'organizations/profile/detail.ajax' => __DIR__ . '/../view/organizations/profile-detail.ajax.phtml',
              'organizations/profile/disabled' => __DIR__ . '/../view/organizations/profile-disabled.phtml',
-             'organizations/mail/invite-employee.phtml' => __DIR__ . '/../view/mail/invite-employee.phtml',
+             'organizations/mail/invite-employee' => __DIR__ . '/../view/mail/invite-employee.phtml',
              'settings/index/index' => __DIR__ . '/../view/settings/index.phtml',
          ],
 

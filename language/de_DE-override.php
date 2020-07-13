@@ -70,4 +70,6 @@ return [
     'Week' => 'Woche',
     'Month' => 'Monat',
     'Year' => 'Jahr',
+
+    'Invitation to join the team of %s' => 'Einladung in das Team von %s',
 ];
