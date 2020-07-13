@@ -29,7 +29,11 @@ return [
     'Back to search' => 'Zurück',
     'Previous Job' => 'Vorheriger Job',
     'Next Job' => 'Nächster Job',
-    'Your company logo will be used as default.' => 'Als Standard wird Ihr Unternehmenslogo genutzt.',
+
+    // Job Form
+    'Please choose a descriptive title and a location for your job posting ' => 'Bitte wählen Sie einen aussagekräftigen Anzeigentitel und den Arbeitsort.',
+    'Please choose the name of the hiring organization. The selected name defines the template of the job opening.' => 'Bitte wählen Sie Ihre Firma aus. Das ausgewählte Firma definiert das verlinkte Firmenprofil (sofern eines hinterlegt ist).',
+    'Your company logo will be used as default.' => 'Als Standard wird das Logo aus dem Firmenprofil genutzt. Sie können es aber hier überschreiben.',
     'Your company description will be used as default.' => 'Als Standard wird Ihre Unternehmensbeschreibung genutzt.',
     'Organization Name' => 'Name des Unternehmens',
     'Enable online application' => 'Bewerbungen per E-Mail empfangen',

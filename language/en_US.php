@@ -35,7 +35,7 @@ return [
     'Voriger Job' => 'Previous Job',
     'Nächster Job' => 'Next Job',
 
-    'Als Standard wird Ihr Unternehmenslogo genutzt.' => 'Your company logo will be used as default.',
+    'Als Standard wird das Logo aus dem Firmenprofil genutzt. Sie können es aber hier überschreiben.' => 'Your company logo will be used as default.',
     'Als Standard wird Ihre Unternehmensbeschreibung genutzt.' => 'Your company description will be used as default.',
     'Organization Name' => 'Company name',
     'Bewerbungen online empfangen' => 'Enable online application',
