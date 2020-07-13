@@ -17,7 +17,14 @@ $lang = isset($this->lang)?$this->lang:$this->params('lang'); ?>
 
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <?php if ($switchUserSession->isSwitchedUser): ?> [<?=$this->translate('switched')?>]<?php endif ?>
-                (<?= $this->translate($this->acl()->getUser()->getRole())?>)
+                <?php
+                    if($this->acl()->getUser()->getOrganization() &&
+                        ($this->acl()->getUser()->getId() == $this->acl()->getUser()->getOrganization()->getUser()->getId())){
+                        echo '(' . $this->translate('Eigentümer') . ')';
+                    } else {
+                        echo '(' . $this->translate($this->acl()->getUser()->getRole()) . ')';
+                    }
+                ?>
                 <strong><?= $this->auth('info')->getDisplayName()?></strong>
                 <b class="caret"></b>
             </a>
