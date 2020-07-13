@@ -327,6 +327,7 @@ return [
              'orders/view/index' => __DIR__ . '/../view/gastro24/orders/modal.phtml',
              'gastro24/organizations/index/edit' => __DIR__ . '/../view/organizations/index/form.phtml',
              'gastro24/organizations/index/index' => __DIR__ . '/../vendor/yawik/organizations/view/organizations/index/index.phtml',
+             'gastro24/organizations/index/index.ajax' => __DIR__ . '/../vendor/yawik/organizations/view/organizations/index/index.ajax.phtml',
              'organizations/profile/index' => __DIR__ . '/../view/organizations/profile/index.phtml',
              'organizations/profile/index.ajax' => __DIR__ . '/../view/organizations/profile/index.ajax.phtml',
              'organizations/profile/detail' => __DIR__ . '/../view/organizations/profile-detail.phtml',
@@ -386,6 +387,7 @@ return [
             'Gastro24\Form\Organizations\OrganizationsDescriptionFieldset' => \Gastro24\Factory\Form\OrganizationsDescriptionFieldsetFactory::class,
             'Gastro24\Form\Organizations\OrganizationsSocialFieldset' => \Gastro24\Factory\Form\OrganizationsSocialFieldsetFactory::class,
             'Organizations/Banner' => \Gastro24\Factory\Form\OrganizationBannerImageFactory::class,
+            'Jobs/Job' => Factory\Form\Jobs\JobFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
