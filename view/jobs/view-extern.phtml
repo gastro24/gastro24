@@ -75,20 +75,40 @@ else {
 
 // banner image
 if (!$this->isIntern && $this->isEmbeddable) {
-    $template = $this->job->getAttachedEntity('gastro24-template');
-    $hasBanner = $template && ($image = $template->getImage());
+    // check for banner
+    // default banner
     $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_blue.svg');
-    if ($hasBanner) {
+    // banner from org
+    if ($org) {
+        $organizationAdditionalRepo = $this->services('repositories')->get(\Gastro24\Entity\OrganizationAdditional::class);
+        /** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
+        $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($org->getId());
+        if ($organizationAdditional && $organizationAdditional->getBanner()) {
+            $imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
+            $hasBanner = true;
+        }
+    }
+    // banner from job
+    $template = $this->job->getAttachedEntity('gastro24-template');
+    $jobBanner = $template && ($image = $template->getImage());
+    if ($jobBanner) {
         $serverUrl = new \Laminas\View\Helper\ServerUrl();
         $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+        $hasBanner = true;
     }
 }
 
 // get logo url
-$defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
-$logoUrl = $this->gastroLogoUri($this->job);
-if (!$logoUrl) {
-    $logoUrl = $defaultLogoUrl;
+$organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
+$logoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
+// get org logo as default
+$org = $this->job->getOrganization();
+if($org && $org->getImages()->notEmpty('images')) {
+    $logoUrl = $this->basePath($organizationImageCache->getUri($org->getImages()->get('thumbnail')));
+}
+$jobLogoUrl = $this->gastroLogoUri($this->job);
+if ($jobLogoUrl) {
+    $logoUrl = $jobLogoUrl;
 }
 
 // check for newer than 24 hours
@@ -131,6 +151,14 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
     ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'))
     ->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
 ?>
+<?php if ($preview): ?>
+    <?php $this->headStyle()->captureStart() ?>
+    .container {
+    min-width: 100%;
+    padding: 0;
+    }
+    <?php $this->headStyle()->captureEnd() ?>
+<?php endif; ?>
 
 <!-- prev / next navigation -->
 <?php if (!$preview) : ?>
@@ -216,6 +244,9 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
             #preload {
             background-color:#fff;
             padding:100px 15px;
+            }
+            .embed-container {
+                margin-bottom: 50px;
             }
             .frame-content {
             width: 100%;
@@ -437,6 +468,19 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                             <?php endif; ?>
                         </div>
                     </div>
+
+                    <!-- company description -->
+                    <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+                        <div class="position">
+                            <?= $this->job->getTemplateValues()->get('companyDescription'); ?>
+                        </div>
+                    <?php endif;?>
+
+                    <?php if ($this->job->getTemplateValues()->getDescription()): ?>
+                        <p><?= $this->job->getTemplateValues()->getDescription(); ?></p>
+                    <?php else: ?>
+                        <p><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>
+                    <?php endif;?>
 
                     <div class="apply-button-group">
                         <!-- share button -->

@@ -237,41 +237,19 @@ $industries = $job->getClassifications()->getIndustries();
                         <?=$this->html?>
                     </div>
                 <?php else: ?>
-                    <!-- introduction -->
-                    <div class="introduction">
-                        <?= $this->job->getTemplateValues()->getIntroduction();?>
-                    </div>
-
                     <!-- position -->
                     <div class="position">
                         <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
                     </div>
-
-                    <!-- requirements -->
-                    <div class="position">
-                        <?php if($this->benefits): ?>
-                         <!--   <div><b><?=$this->labelRequirements?></b></div> -->
-                        <?php endif;?>
-                        <?=$this->requirements;?>
-                    </div>
-
-                    <!-- qualifications -->
-                    <?php if ($this->qualifications): ?>
-                        <div class="position">
-                            <!--  <div><b>Qualifikation</b></div> -->
-                            <?=$this->qualifications;?>
-                        </div>
-                    <?php endif;?>
-
-                    <!-- benefits -->
-                    <?php if ($this->benefits): ?>
-                        <div class="position">
-                           <!--   <div><b><?=$this->labelBenefits?></b></div>-->
-                            <?=$this->benefits;?>
-                        </div>
-                    <?php endif;?>
                 <?php endif; ?>
                 <!-- end job content -->
+
+                <!-- company description -->
+                <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+                    <div class="position">
+                        <?= $this->job->getTemplateValues()->get('companyDescription'); ?>
+                    </div>
+                <?php endif;?>
 
                 <!-- company description -->
                 <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>

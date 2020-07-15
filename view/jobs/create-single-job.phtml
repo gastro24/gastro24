@@ -35,7 +35,9 @@ iframe {
 	width: 1px;
 	min-width: 100%;
 }
-
+.embed-container {
+    margin-bottom: 50px;
+}
 #single-job-address-form label,
 #single-job-form label {
 	font-weight: normal;
@@ -629,18 +631,16 @@ iframe {
                                         </div>
                                     </div>
 
-                                    <div class="row html-container">
-                                        <div class="col-md-8 col-md-offset-2">
-
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="row html-container">
                                             <!-- position -->
                                             <div class="position">
                                                 <?= $this->position ?>
                                             </div>
-
-                                            <!-- companyDescription -->
-                                            <div class="companyDescription">
-                                                <?= $this->companyDescription ?>
-                                            </div>
+                                        </div>
+                                        <!-- companyDescription -->
+                                        <div class="companyDescription">
+                                            <?= $this->companyDescription ?>
                                         </div>
                                     </div>
                                 </div>
