@@ -39,7 +39,7 @@
         $htmlBox =  $form.find('#csj-mode-html-span input');
         $uriInput = $form.find('.csj-uri-wrapper');
         $pdfInput = $form.find('.csj-pdf-wrapper');
-        $htmlInput = $form.find('.csj-html-wrapper');
+        $htmlInput = $form.find('.csj-html-input');
         toggleInputs();
         $('#csj-mode-uri-span, #csj-mode-pdf-span, #csj-mode-html-span').click(toggleInputs);
         $('#description-descriptionForm-details .cam-description').hide();

@@ -63,5 +63,7 @@ return [
     'Sichtbare Profile' => 'Profiles',
     'Profil hinzufügen' => 'Insert',
 
-    'Einladung in das Team von %s' => 'Invitation to join the team of %s'
+    'Einladung in das Team von %s' => 'Invitation to join the team of %s',
+
+    'Laden Sie Mitarbeiter per E-Mail ein.' => 'Invite an employee via email address.'
 ];

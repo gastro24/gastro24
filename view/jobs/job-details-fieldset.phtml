@@ -56,7 +56,6 @@ $modeLabels = $mode->getOption('labels');
                 </div>
                 <div class="panel-body" style="text-align: center">
                     <?php
-                    $test = $fieldset->get('logo');
                     if ($logo = $fieldset->get('logo')):?>
                         <img style="width:auto; max-height: 100px;" src="<?=$this->basePath($logo->getValue());?>">
                     <?php endif ?>
@@ -93,16 +92,6 @@ $modeLabels = $mode->getOption('labels');
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Beschreibung des Unternehmens</h3>
-                </div>
-                <div class="panel-body">
-                    <?=$fieldset->get('description')->getValue()?>
-                </div>
-            </div>
-        </div>
         <?php endif ?>
     </div>
 
@@ -214,9 +203,7 @@ $modeLabels = $mode->getOption('labels');
                 echo $input;
             ?>
 
-
             <?=$this->formRow($fieldset->get('position')); ?>
-            <?=$this->formRow($fieldset->get('description'))?>
 
         </div>
     </fieldset>

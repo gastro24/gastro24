@@ -78,4 +78,6 @@ return [
     'Invitation to join the team of %s' => 'Einladung in das Team von %s',
     'Profiles' => 'Sichtbare Profile',
     'Insert' => 'Profil hinzufügen',
+
+    'Invite an employee via email address.' => 'Laden Sie Mitarbeiter per E-Mail ein.'
 ];

@@ -114,6 +114,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
                 //'label' => $this->gastroOptions->getLabel('image'),
                 // WORKAROUND: options are not read in staging environment, I assume that image might be reserved word
                 'label' => /* @translate */ 'Bannerbild (ideal 1200x300)',
+                'description' => /* @translate */ 'Als Standard wird das Bannerbild aus dem Firmenprofil genutzt. Sie können es aber hier überschreiben.'
             ]
         ]);
 
@@ -187,24 +188,21 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
 //            ],
 //        ]);
 
-        $this->add([
-            'type' => 'textarea',
-            'name' => 'description',
-            'options' => [
-                'description' => /* @translate */ 'Your company description will be used as default.',
-                'label' => $this->gastroOptions->getLabel('description'),
-                'rowClass' => 'csj-html-input',
-                'no-submit' => true,
-            ],
-            'attributes' => [
-                'data-toggle' => 'description',
-                'data-target' => 'details-description',
-                'style' => 'height: 150px;',
-            ],
-        ]);
-
-
-
+//        $this->add([
+//            'type' => 'textarea',
+//            'name' => 'description',
+//            'options' => [
+//                'description' => /* @translate */ 'Your company description will be used as default.',
+//                'label' => $this->gastroOptions->getLabel('description'),
+//                'rowClass' => 'csj-html-input',
+//                'no-submit' => true,
+//            ],
+//            'attributes' => [
+//                'data-toggle' => 'description',
+//                'data-target' => 'details-description',
+//                'style' => 'height: 150px;',
+//            ],
+//        ]);
     }
 
     public function getInputFilterSpecification()
