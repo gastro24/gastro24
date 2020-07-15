@@ -108,12 +108,12 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <header id="header" role="banner" class="hidden-xs" data-saved-jobs="<?=$savedJobsCount?>">
         <div class="container">
             <div class="row">
-                <div class="navbar-header col-md-4">
+                <div class="navbar-header col-md-2">
                     <a class="logo" title="Gastrojob24" href="<?php echo $this->basepath('/' . $this->params('lang')) ?>">
                         <img src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_white.svg') ?>" alt="Gastrojob24 Logo">
                     </a>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <?php if ('guest' == $this->auth('role')): ?>
                         <ul class="pull-right navbar-nav nav-recruiting">
                             
@@ -186,14 +186,12 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 <?php endif ?>
 
 <!-- search form container -->
-<?php if ('guest' == $this->auth('role')): ?>
-    <?= $this->partial('partials/search-form-container.phtml', [
-        'jobs' => $this->jobs,
-        'filterForm' => $this->filterForm,
-        'cssClass' => $preview ? 'searchform-preview' : '',
-    ]); ?>
+<?= $this->partial('partials/search-form-container.phtml', [
+    'jobs' => $this->jobs,
+    'filterForm' => $this->filterForm,
+    'cssClass' => $preview ? 'searchform-preview' : '',
+]); ?>
 <!-- end search form container -->
-<?php endif; ?>
 
 <main id="content" class="<?= $routeClass ?>">
    <div class="container">
@@ -210,6 +208,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
         ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
         ->appendFile($this->basePath($langScript))
+        ->appendFile($this->basePath('dist/js/tinymce.js'))
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
 
     echo $this->configHeadScript()->setAutoEscape(false);

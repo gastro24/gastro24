@@ -69,40 +69,10 @@ $modeLabels = $mode->getOption('labels');
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Einleitung zu Ihrer Stellenanzeige</h3>
-                    </div>
-                    <div class="panel-body">
-                        <?=$fieldset->get('introduction')->getValue()?>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Tätigkeit</h3>
+                        <h3 class="panel-title">Stellenbeschreibung</h3>
                     </div>
                     <div class="panel-body">
                         <?=$fieldset->get('position')->getValue()?>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Anforderungen</h3>
-                    </div>
-                    <div class="panel-body">
-                        <?=$fieldset->get('requirements')->getValue()?>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Wir bieten (zusätzliche Information)</h3>
-                    </div>
-                    <div class="panel-body">
-                        <?=$fieldset->get('benefits')->getValue()?>
                     </div>
                 </div>
             </div>
@@ -228,13 +198,9 @@ $modeLabels = $mode->getOption('labels');
             ?>
 
 
-            <div class="csj-html-wrapper">
-                <?=$this->formRow($fieldset->get('introduction')); ?>
-                <?=$this->formRow($fieldset->get('position')); ?>
-                <?=$this->formRow($fieldset->get('requirements')); ?>
-                <?=$this->formRow($fieldset->get('benefits')); ?>
-                <?=$this->formRow($fieldset->get('description'))?>
-            </div>
+            <?=$this->formRow($fieldset->get('position')); ?>
+            <?=$this->formRow($fieldset->get('description'))?>
+
         </div>
     </fieldset>
 

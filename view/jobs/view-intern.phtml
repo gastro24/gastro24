@@ -66,6 +66,15 @@ if ($dayDiff->days < 1) {
 
 $industries = $job->getClassifications()->getIndustries();
 ?>
+<?php if ($preview): ?>
+    <?php $this->headStyle()->captureStart() ?>
+        .container {
+            min-width: 100%;
+            padding: 0;
+        }
+    <?php $this->headStyle()->captureEnd() ?>
+<?php endif; ?>
+
 <?=$this->jsonLd($this->job)?>
 
   <div class="panel panel-default panel__job-detail">
@@ -206,58 +215,33 @@ $industries = $job->getClassifications()->getIndustries();
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <!-- job content -->
-                <div id="job_content">
+                <p id="job_content">
                 <?php if ($this->html): ?>
                     <div class="position">
                         <?=$this->html?>
                     </div>
                 <?php else: ?>
-                    <!-- introduction -->
-                    <div class="introduction">
-                        <?= $this->job->getTemplateValues()->getIntroduction();?>
-                    </div>
-
-                    <!-- position -->
+                    <!-- position / job description -->
                     <div class="position">
                         <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
                     </div>
 
-                    <!-- requirements -->
-                    <div class="position">
-                        <?php if($this->benefits): ?>
-                            <!--<div><b><?=$this->labelRequirements?></b></div>-->
-                        <?php endif;?>
-                        <?=$this->requirements;?>
-                    </div>
-
-                    <!-- qualifications -->
-                    <?php if ($this->qualifications): ?>
-                        <div class="position">
-                           <!-- <div><b>Qualifikation</b></div>-->
-                            <?=$this->qualifications;?>
-                        </div>
-                    <?php endif;?>
-
-                    <!-- benefits -->
-                    <?php if ($this->benefits): ?>
-                        <div class="position">
-                          <!--  <div><b><?=$this->labelBenefits?></b></div>-->
-                            <?=$this->benefits;?>
-                        </div>
-                    <?php endif;?>
                 <?php endif; ?>
                 <!-- end job content -->
 
-                <!-- position -->
+                <!-- company description -->
                 <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
                     <div class="position">
                         <?= $this->job->getTemplateValues()->get('companyDescription'); ?>
                     </div>
                 <?php endif;?>
 
-                <!-- company description -->
-                <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>
-                <!-- end company description -->
+                <?php if ($this->job->getTemplateValues()->getDescription()): ?>
+                    <p><?= $this->job->getTemplateValues()->getDescription(); ?></p>
+                <?php else: ?>
+                    <p><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>
+                <?php endif;?>
+
                 <!-- company address -->
                 <div itemscope itemtype="http://schema.org/Organization">
                     <strong itemprop="name">
@@ -272,7 +256,6 @@ $industries = $job->getClassifications()->getIndustries();
                         <?php if ($this->fax): ?>Fax: <?=$this->fax?></span><br /><?php endif ?>
                     </address>
                     <?php endif?>
-                </div>
                 </div>
                 <!-- end company address -->
             </div>

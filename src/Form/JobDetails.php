@@ -117,72 +117,78 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             ]
         ]);
 
-        $this->add([
-            'type' => 'TextEditor',
-            'name' => 'introduction',
-            'options' => [
-                'description' => 'Geben Sie eine Einleitung zu der beworbenen Stelle ein.',
-                'label' => $this->gastroOptions->getLabel('introduction'),
-                'rowClass' => 'csj-html-input',
-                'no-submit' => true,
-            ],
-            'attributes' => [
-                'data-toggle' => 'description',
-                'data-target' => 'details-introduction',
-                'style' => 'height: auto;',
-            ],
-        ]);
+//        $this->add([
+//            'type' => 'TextEditor',
+//            'name' => 'introduction',
+//            'options' => [
+//                'description' => 'Geben Sie eine Einleitung zu der beworbenen Stelle ein.',
+//                'label' => $this->gastroOptions->getLabel('introduction'),
+//                'rowClass' => 'csj-html-input',
+//                'no-submit' => true,
+//            ],
+//            'attributes' => [
+//                'data-toggle' => 'description',
+//                'data-target' => 'details-introduction',
+//                'style' => 'height: auto;',
+//            ],
+//        ]);
 
         $this->add([
             'type' => 'TextEditor',
             'name' => 'position',
             'options' => [
-                'description' => 'Geben Sie die Beschreibung der beworbenen Stelle ein.',
-                'label' => $this->gastroOptions->getLabel('position'),
+                //'description' => 'Geben Sie die Beschreibung der beworbenen Stelle ein.',
+                'label' => /*@translate*/ $this->gastroOptions->getLabel('position'),
                 'rowClass' => 'csj-html-input',
                 'no-submit' => true,
+                'editor' => [
+                    'inline' => true,
+                    'paste_as_text' => true,
+                    'language' => 'de',
+                    'language_url' => '/modules/Core/js/tinymce-lang/de.js'
+                ]
             ],
             'attributes' => [
                 'data-toggle' => 'description',
                 'data-target' => 'details-position',
-                'style' => 'height: auto;',
+                'style' => 'min-height: 200px;',
             ],
         ]);
 
-        $this->add([
-            'type' => 'TextEditor',
-            'name' => 'requirements',
-            'options' => [
-                'description' => 'Geben Sie die Anforderungen an die Bewerber an.',
-                'label' => $this->gastroOptions->getLabel('requirements'),
-                'rowClass' => 'csj-html-input',
-                'no-submit' => true,
-            ],
-            'attributes' => [
-                'data-toggle' => 'description',
-                'data-target' => 'details-requirements',
-                'style' => 'height: auto;',
-            ],
-        ]);
+//        $this->add([
+//            'type' => 'TextEditor',
+//            'name' => 'requirements',
+//            'options' => [
+//                'description' => 'Geben Sie die Anforderungen an die Bewerber an.',
+//                'label' => $this->gastroOptions->getLabel('requirements'),
+//                'rowClass' => 'csj-html-input',
+//                'no-submit' => true,
+//            ],
+//            'attributes' => [
+//                'data-toggle' => 'description',
+//                'data-target' => 'details-requirements',
+//                'style' => 'height: auto;',
+//            ],
+//        ]);
+
+//        $this->add([
+//            'type' => 'TextEditor',
+//            'name' => 'benefits',
+//            'options' => [
+//                'description' => 'Geben Sie an, was Ihre Firma zusätzlich bietet.',
+//                'label' => $this->gastroOptions->getLabel('benefits'),
+//                'rowClass' => 'csj-html-input',
+//                'no-submit' => true,
+//            ],
+//            'attributes' => [
+//                'data-toggle' => 'description',
+//                'data-target' => 'details-benefits',
+//                'style' => 'height: auto;',
+//            ],
+//        ]);
 
         $this->add([
-            'type' => 'TextEditor',
-            'name' => 'benefits',
-            'options' => [
-                'description' => 'Geben Sie an, was Ihre Firma zusätzlich bietet.',
-                'label' => $this->gastroOptions->getLabel('benefits'),
-                'rowClass' => 'csj-html-input',
-                'no-submit' => true,
-            ],
-            'attributes' => [
-                'data-toggle' => 'description',
-                'data-target' => 'details-benefits',
-                'style' => 'height: auto;',
-            ],
-        ]);
-
-        $this->add([
-            'type' => 'TextEditor',
+            'type' => 'textarea',
             'name' => 'description',
             'options' => [
                 'description' => /* @translate */ 'Your company description will be used as default.',
@@ -193,7 +199,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             'attributes' => [
                 'data-toggle' => 'description',
                 'data-target' => 'details-description',
-                'style' => 'height: auto;',
+                'style' => 'height: 150px;',
             ],
         ]);
 

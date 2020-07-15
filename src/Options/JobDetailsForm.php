@@ -31,7 +31,7 @@ class JobDetailsForm extends AbstractOptions
         'logo' => 'Unternehmenslogo (max. 350x150)',
         'image' => 'Bannerbild (ideal 1200px * 300px)',
         'introduction' => 'Einleitung zu Ihrer Stellenanzeige',
-        'position' => 'Tätigkeit',
+        'position' => 'Stellenbeschreibung',
         'requirements' => 'Anforderungen',
         'benefits' => 'Wir bieten (zusätzliche Information)',
         'description' => 'Beschreibung des Unternehmens',
