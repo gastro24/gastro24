@@ -13,5 +13,8 @@ class Job extends BaseJobForm
     {
         parent::init();
         $this->get('general')->disableForm('salaryForm');
+        $this->get('general')->disableForm('customerNote');
+        $this->get('general')->get('nameForm')->setLabel('Firmenprofil');
+        $this->get('general')->get('nameForm')->get('jobCompanyName')->get('companyId')->setLabel('Firmenprofil auswählen');
     }
 }
