@@ -35,20 +35,38 @@ $replaceImage = function($str) use ($template, $basePathHelper)
 $isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
-// check for banner
-$hasBanner = $template && ($image = $template->getImage());
-$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
-if ($hasBanner) {
-    $serverUrl = new \Laminas\View\Helper\ServerUrl();
-    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
-}
-
 // organisation values
+$organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
 $org = $this->job->getOrganization();
 $orgIsDisabled = false;
 $orgName = $this->jobOrganizationName($this->job);
 if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting())) ) {
     $orgIsDisabled = true;
+}
+// get org logo as default
+if($org && $org->getImages()->notEmpty('images')) {
+    $defaultLogoUrl = $this->basePath($organizationImageCache->getUri($org->getImages()->get('thumbnail')));
+}
+
+// check for banner
+// default banner
+$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
+// banner from org
+if ($org) {
+    $organizationAdditionalRepo = $this->services('repositories')->get(\Gastro24\Entity\OrganizationAdditional::class);
+    /** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
+    $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($org->getId());
+    if ($organizationAdditional && $organizationAdditional->getBanner()) {
+        $imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
+        $hasBanner = true;
+    }
+}
+// banner from job
+$jobBanner = $template && ($image = $template->getImage());
+if ($jobBanner) {
+    $serverUrl = new \Laminas\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+    $hasBanner = true;
 }
 
 // check for newer than 24 hours
@@ -102,9 +120,16 @@ $industries = $job->getClassifications()->getIndustries();
                 <!-- End New Badge -->
                 <div itemprop="logo">
                     <div class="wrapper__logo">
-                        <img src="<?= $template && ($logo = $template->getLogo())
-                            ? $this->basePath($logo->getUri())
-                            : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
+                        <?php
+                            $wrapperLogoUrl = $defaultLogoUrl;
+                            if ($template && ($logo = $template->getLogo())) {
+                                $wrapperLogoUrl = $this->basePath($logo->getUri());
+                            }
+                            else {
+                                $wrapperLogoUrl = $defaultLogoUrl;
+                            }
+                        ?>
+                        <img src="<?= $wrapperLogoUrl ?>" alt="<?= $this->organizationName ?>">
                     </div>
                 </div>
                 <h1><?=$this->job->getTitle()?></h1>

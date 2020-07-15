@@ -40,7 +40,7 @@ else {
         // prevent duplicated forms
         if ($(window).width() > 767) {
             '<?php if ('guest' !== $this->auth('role')): ?>'
-                $('.navbar').remove();
+                $('body > .navbar').remove();
             '<?php endif; ?>'
             $('.navbar-search-container-mobile .search-form').remove();
         }
