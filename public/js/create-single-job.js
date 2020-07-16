@@ -42,7 +42,7 @@
         $htmlInput = $form.find('.csj-html-input');
         toggleInputs();
         $('#csj-mode-uri-span, #csj-mode-pdf-span, #csj-mode-html-span').click(toggleInputs);
-        $('#description-descriptionForm-details .cam-description').hide();
+        //$('#description-descriptionForm-details .cam-description').hide();
 
         // show info text for organization logo and description
         $('#details-logo-desc, #details-description-desc').show();
