@@ -79,5 +79,8 @@ return [
     'Profiles' => 'Sichtbare Profile',
     'Insert' => 'Profil hinzufügen',
 
-    'Invite an employee via email address.' => 'Laden Sie Mitarbeiter per E-Mail ein.'
+    'Invite an employee via email address.' => 'Laden Sie Mitarbeiter per E-Mail ein.',
+    'If you want to post job openings for your customers, you have to %sadd them%s in the organizations menu.' =>
+    'Wenn Sie Stellenanzeigen unter einem weiteren Firmenprofil erstellen möchten, müssen Sie dieses zuerst %shier%s erstellen.'
+
 ];

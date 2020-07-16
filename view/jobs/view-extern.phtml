@@ -469,18 +469,13 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                         </div>
                     </div>
 
-                    <!-- company description -->
+                    <!-- company description of single job -->
                     <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
                         <div class="position">
                             <?= $this->job->getTemplateValues()->get('companyDescription'); ?>
                         </div>
                     <?php endif;?>
-
-                    <?php if ($this->job->getTemplateValues()->getDescription()): ?>
-                        <p><?= $this->job->getTemplateValues()->getDescription(); ?></p>
-                    <?php else: ?>
-                        <p><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>
-                    <?php endif;?>
+                    <!-- end company description of single job -->
 
                     <div class="apply-button-group">
                         <!-- share button -->

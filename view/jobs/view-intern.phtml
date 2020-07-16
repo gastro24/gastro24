@@ -254,35 +254,13 @@ $industries = $job->getClassifications()->getIndustries();
                 <?php endif; ?>
                 <!-- end job content -->
 
-                <!-- company description -->
+                <!-- company description of single job -->
                 <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
                     <div class="position">
                         <?= $this->job->getTemplateValues()->get('companyDescription'); ?>
                     </div>
                 <?php endif;?>
-
-                <?php if ($this->job->getTemplateValues()->getDescription()): ?>
-                    <p><?= $this->job->getTemplateValues()->getDescription(); ?></p>
-                <?php else: ?>
-                    <p><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>
-                <?php endif;?>
-
-                <!-- company address -->
-                <div itemscope itemtype="http://schema.org/Organization">
-                    <strong itemprop="name">
-                        <?= $this->organizationName?>
-                    </strong><br/>
-                    <?php if ($this->street || $this->postalCode || $this->city || $this->phone):?>
-                    <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                        <?php if ($this->street): ?><span itemprop="streetAddress"><?=$this->street?></span><br><?php endif ?>
-                        <?php if ($this->postalCode): ?><span itemprop="postalCode"><?=$this->postalCode?></span><?php endif ?>
-                        <?php if ($this->city): ?><span itemprop="addressLocality"><?=$this->city?></span><br /><?php endif ?>
-                        <?php if ($this->phone): ?>Telefon: <span itemprop="telephone"><?=$this->phone?></span><br /><?php endif ?>
-                        <?php if ($this->fax): ?>Fax: <?=$this->fax?></span><br /><?php endif ?>
-                    </address>
-                    <?php endif?>
-                </div>
-                <!-- end company address -->
+                <!-- end company description of single job -->
             </div>
         </div>
 
