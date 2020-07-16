@@ -143,7 +143,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
                 'rowClass' => 'csj-html-input',
                 'no-submit' => true,
                 'editor' => [
-                    'inline' => true,
+                    'inline' => false,
                     'paste_as_text' => true,
                     'language' => 'de',
                     'language_url' => '/modules/Core/js/tinymce-lang/de.js'
