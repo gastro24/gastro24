@@ -44,31 +44,29 @@ $this->headScript()->appendFile($this->basepath('modules/Core/js/core.pagination
   
         <h1>Meine aktiven Firmenprofile</h1>
 
-          <div class="row">
-              <div class="col-md-8 col-sm-12">
-                  <p>Wenn ein Firmenprofil hier in der Liste erscheint, ist es für Suchmaschinen und für Nutzer auffindbar.
-                      <br><br>
-                      Um die Sichtbarkeit zu ändern, klicken Sie bitte <a style="text-decoration:underline;" href="/de/organizations">hier</a> und wählen Sie das entsprechende Firmenprofil aus der Liste aus. Anschliessend können Sie unter <strong>Einstellungen Firmenprofile</strong> den Status anpassen.
-                </p>
-              </div>
-          </div>
-
           <nav class="navbar yk-toolbar">
               <?php echo $this->searchForm($this->form) ?>
           </nav>
+
+         <div class="row">
+              <div class="col-md-12">
+                  <div class="alert alert-info">
+                     <p>Wenn ein Firmenprofil hier in der Liste erscheint, ist es für Suchmaschinen und für Nutzer auffindbar.
+                      <br>
+                      Um die Sichtbarkeit zu ändern, klicken Sie bitte <a style="text-decoration:underline;" href="/de/organizations">hier</a> und wählen Sie das entsprechende Firmenprofil aus der Liste aus. Anschliessend können Sie unter <strong>Einstellungen Firmenprofile</strong> den Status anpassen.
+                </p>
+                 </div>
+              </div>
+          </div>
 <?php endif ?>
-
-
-
-
 
 <div id="organizations-list-container"
      class="pagination-container"
      data-uri="<?php echo $this->url('lang/organizations/profile', array(), array('q' => $this->params()->fromQuery()), true)?>">
 
-    <div class="pagination-message alert alert-info">
+    <!--<div class="pagination-message alert alert-info">
         <?php echo $this->translate('No organization found matching your criteria.') ?>
-    </div>
+    </div>-->
 
     <div class="pagination-content">
         <?php echo $this->render('organizations/profile/index.ajax.phtml')?>
