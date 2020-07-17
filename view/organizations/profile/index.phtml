@@ -6,59 +6,67 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsOrga));
 $this->headScript()->appendFile($this->basepath('modules/Core/js/core.pagination.js'));
 $this->headScript()->appendFile($this->basepath('modules/Core/js/core.pagination-container.js'));
 ?>
-<div class="row">
- <div class="col-md-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/"> <span itemprop="name">Home</span>
-                        </a>
-                        <meta itemprop="position" content="1">
-                    </li>
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span>
-                        </a>
-                        <meta itemprop="position" content="2">
-                    </li>
-                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"> <span itemprop="name">Firmen</span>
-                        <meta itemprop="position" content="3">
-                    </li>
-                   
-                </ol>
-            </nav>
-    </div>
-  </div>  
-  
-  
-  
-
 
 <?php if (!$this->auth()->isLoggedIn()):?>
 
-<h1>Meine Firmen</h1>
+  <div class="row">
+      <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                  <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                      <a itemprop="item" href="/"> <span itemprop="name">Home</span>
+                      </a>
+                      <meta itemprop="position" content="1">
+                  </li>
+                  <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                      <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span>
+                      </a>
+                      <meta itemprop="position" content="2">
+                  </li>
+                  <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"> <span itemprop="name">Firmen</span>
+                      <meta itemprop="position" content="3">
+                  </li>
 
-<nav class="navbar yk-toolbar" >
-    <?php echo $this->searchForm($this->form) ?>
-</nav>
-
-<?php else: ?>
-
+              </ol>
+          </nav>
+      </div>
+  </div>
+  
+  
 <h1>Firmen suchen</h1>
 
 <nav class="navbar yk-toolbar" >
     <?php echo $this->searchForm($this->form) ?>
 </nav>
 
+
+<?php else: ?> 
+  
+        <h1>Meine aktiven Firmenprofile</h1>
+
+          <nav class="navbar yk-toolbar">
+              <?php echo $this->searchForm($this->form) ?>
+          </nav>
+
+         <div class="row">
+              <div class="col-md-12">
+                  <div class="alert alert-info">
+                     <p>Wenn ein Firmenprofil hier in der Liste erscheint, ist es für Suchmaschinen und für Nutzer auffindbar.
+                      <br>
+                      Um die Sichtbarkeit zu ändern, klicken Sie bitte <a style="text-decoration:underline;" href="/de/organizations">hier</a> und wählen Sie das entsprechende Firmenprofil aus der Liste aus. Anschliessend können Sie unter <strong>Einstellungen Firmenprofile</strong> den Status anpassen.
+                </p>
+                 </div>
+              </div>
+          </div>
 <?php endif ?>
 
 <div id="organizations-list-container"
      class="pagination-container"
-     data-uri="<?php echo $this->url('lang/organizations/profile', array(), array('q' => $this->params()->fromQuery()), true)?>"
->
+     data-uri="<?php echo $this->url('lang/organizations/profile', array(), array('q' => $this->params()->fromQuery()), true)?>">
 
-    <div class="pagination-message alert alert-info">
+    <!--<div class="pagination-message alert alert-info">
         <?php echo $this->translate('No organization found matching your criteria.') ?>
-    </div>
+    </div>-->
 
     <div class="pagination-content">
         <?php echo $this->render('organizations/profile/index.ajax.phtml')?>
