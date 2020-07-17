@@ -250,25 +250,26 @@ $industries = $job->getClassifications()->getIndustries();
             <div class="col-md-8 col-md-offset-2">
                 <!-- job content -->
                 <div id="job_content">
-                <?php if ($this->html): ?>
-                    <div class="position">
-                        <?=$this->html?>
-                    </div>
-                <?php else: ?>
-                    <!-- position / job description -->
-                    <div class="position">
-                        <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
-                    </div>
-                <?php endif; ?>
-                <!-- end job content -->
+                    <?php if ($this->html): ?>
+                        <div class="position">
+                            <?=$this->html?>
+                        </div>
+                    <?php else: ?>
+                        <!-- position / job description -->
+                        <div class="position">
+                            <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
+                        </div>
+                    <?php endif; ?>
+                    <!-- end job content -->
 
-                <!-- company description of single job -->
-                <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
-                    <div class="position">
-                        <?= $this->job->getTemplateValues()->get('companyDescription'); ?>
-                    </div>
-                <?php endif;?>
-                <!-- end company description of single job -->
+                    <!-- company description of single job -->
+                    <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+                        <div class="position">
+                            <?= $this->job->getTemplateValues()->get('companyDescription'); ?>
+                        </div>
+                    <?php endif;?>
+                    <!-- end company description of single job -->
+                </div>
             </div>
         </div>
 
