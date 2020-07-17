@@ -203,11 +203,11 @@ class CreateSingleJobController extends AbstractActionController
                 'price' => 15,
             ],
             'addon_startpage' => [
-                'name' => 'Auf Startseite anzeigen',
+                'name' => 'Top-Listing Homepage',
                 'price' => 95,
             ],
             'addon_top_result' => [
-                'name' => 'Top-Resultat',
+                'name' => 'Top-Listing Suche',
                 'price' => 55,
             ],
             'addon_highlight' => [
@@ -215,7 +215,7 @@ class CreateSingleJobController extends AbstractActionController
                 'price' => 25,
             ],
             'addon_facebook' => [
-                'name' => 'Zusätzliche Facebook Werbung',
+                'name' => 'Social Media Werbung',
                 'price' => 150,
             ],
         ];
