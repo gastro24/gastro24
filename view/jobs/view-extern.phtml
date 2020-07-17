@@ -389,9 +389,9 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
                             </li>
                             <li class="company">
                                 <!-- company name -->
-                                <?php if ($org && !$orgIsDisabled): ?>
+                                <?php if ($org && !$orgIsDisabled && !$preview): ?>
                                     <a title="Jobs <?= ($org->getOrganizationName()) ? $org->getOrganizationName()->getName() : $orgName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
-                                <?php elseif ($job->getTemplateValues()->get('companyWebsite')) : ?>
+                                <?php elseif (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
                                     <a title="Website <?= ($org && $org->getOrganizationName()) ? $org->getOrganizationName()->getName() : $orgName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>"><?= $orgName ?></a>
                                 <?php else: ?>
                                     <strong><?= ($org && $org->getOrganizationName()) ? $org->getOrganizationName()->getName() : $orgName ?></strong>

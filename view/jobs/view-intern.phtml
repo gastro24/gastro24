@@ -173,9 +173,9 @@ $industries = $job->getClassifications()->getIndustries();
                 </li>
                 <li class="company">
                     <!-- company name -->
-                    <?php if ($org && !$orgIsDisabled): ?>
+                    <?php if ($org && !$orgIsDisabled && !$preview): ?>
                         <a title="Jobs <?= $this->organizationName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
-                    <?php elseif ($job->getTemplateValues()->get('companyWebsite')) : ?>
+                    <?php elseif (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
                         <a title="Website <?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>"><?= $orgName ?></a>
                     <?php else: ?>
                         <strong><?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?></strong>
@@ -250,7 +250,6 @@ $industries = $job->getClassifications()->getIndustries();
                     <div class="position">
                         <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
                     </div>
-
                 <?php endif; ?>
                 <!-- end job content -->
 
@@ -337,5 +336,3 @@ $industries = $job->getClassifications()->getIndustries();
     });
 '); ?>
 <!-- end socials -->
-
-

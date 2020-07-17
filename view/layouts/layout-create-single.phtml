@@ -421,7 +421,7 @@ $lang = $this->params('lang');
     </footer>
 
     <?php
-        $this->headScript()->appendFile($this->basePath('modules/Gastro24/js/create-single-job.js'))
+        $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/create-single-job.js')))
             ->appendFile($this->basePath('dist/js/blueimp-file-upload.min.js'))
             ->appendFile($this->basePath('dist/js/tinymce.js'))
             ->appendFile($this->basePath('modules/Gastro24/js/jobpdfupload.js'))

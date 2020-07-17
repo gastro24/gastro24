@@ -16,7 +16,7 @@ $preview = false;
 if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     $preview = true;
 }
-
+$isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
 $template = $this->job->getAttachedEntity('gastro24-template');
 $basePathHelper = $this->plugin('basePath');
 $replaceImage = function($str) use ($template, $basePathHelper)
@@ -32,26 +32,41 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     return str_replace('#image#', $imageHtml, $str);
 };
 
-$logoUrl = $this->uriLogo;
-if ($template && ($logo = $template->getLogo())) {
-    $logoUrl = $this->basePath($logo->getUri());
-}
-
-$isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
-// check for banner
-$hasBanner = $template && ($image = $template->getImage());
-$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
-if ($hasBanner) {
-    $serverUrl = new \Laminas\View\Helper\ServerUrl();
-    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
-}
+$defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
 // organisation values
+$organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
 $org = $this->job->getOrganization();
 $orgIsDisabled = false;
 $orgName = $this->jobOrganizationName($this->job);
 if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
     $orgIsDisabled = true;
+}
+
+// get org logo as default
+if($org && $org->getImages()->notEmpty('images')) {
+    $defaultLogoUrl = $this->basePath($organizationImageCache->getUri($org->getImages()->get('thumbnail')));
+}
+
+// check for banner
+// default banner
+$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
+// banner from org
+if ($org) {
+    $organizationAdditionalRepo = $this->services('repositories')->get(\Gastro24\Entity\OrganizationAdditional::class);
+    /** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
+    $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($org->getId());
+    if ($organizationAdditional && $organizationAdditional->getBanner()) {
+        $imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
+        $hasBanner = true;
+    }
+}
+// banner from job
+$jobBanner = $template && ($image = $template->getImage());
+if ($jobBanner) {
+    $serverUrl = new \Laminas\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+    $hasBanner = true;
 }
 
 // check for newer than 24 hours
@@ -69,6 +84,15 @@ if ($dayDiff->days < 1) {
 
 $industries = $job->getClassifications()->getIndustries();
 ?>
+<?php if ($preview): ?>
+    <?php $this->headStyle()->captureStart() ?>
+        .container {
+            min-width: 100%;
+            padding: 0;
+        }
+    <?php $this->headStyle()->captureEnd() ?>
+<?php endif; ?>
+
 <?=$this->jsonLd($this->job)?>
   <style>
 
@@ -130,10 +154,18 @@ $industries = $job->getClassifications()->getIndustries();
                     <div class="corner"><span>NEU</span></div>
                 <?php endif; ?>
                 <!-- End New Badge -->
-
                 <div itemprop="logo">
                     <div class="wrapper__logo">
-                        <img src="<?= $logoUrl ?>" alt="<?= $this->organizationName?>">
+                        <?php
+                            $wrapperLogoUrl = $defaultLogoUrl;
+                            if ($template && ($logo = $template->getLogo())) {
+                                $wrapperLogoUrl = $this->basePath($logo->getUri());
+                            }
+                            else {
+                                $wrapperLogoUrl = $defaultLogoUrl;
+                            }
+                        ?>
+                        <img src="<?= $wrapperLogoUrl ?>" alt="<?= $this->organizationName ?>">
                     </div>
                 </div>
                 <h1><?=$this->job->getTitle()?></h1>
@@ -168,7 +200,7 @@ $industries = $job->getClassifications()->getIndustries();
                 </li>
                 <li class="company">
                     <!-- company name -->
-                    <?php if ($org && !$orgIsDisabled): ?>
+                    <?php if ($org && !$orgIsDisabled && !$preview): ?>
                         <a title="Jobs <?= $this->organizationName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
                     <?php else: ?>
                         <strong><?= $this->organizationName ?></strong>
@@ -193,11 +225,12 @@ $industries = $job->getClassifications()->getIndustries();
                     </li>
                 <?php endif; ?>
             </ul>
-
             <div class="wrapper__right">
                 <?php if (!$hasBanner): ?>
                     <div class="wrapper__logo">
-                        <img src="<?= $logoUrl ?>" alt="<?= $this->organizationName?>">
+                        <img src="<?= $template && ($logo = $template->getLogo())
+                            ? $this->basePath($logo->getUri())
+                            : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
                     </div>
                 <?php endif; ?>
             </div>
@@ -237,40 +270,20 @@ $industries = $job->getClassifications()->getIndustries();
                         <?=$this->html?>
                     </div>
                 <?php else: ?>
-                    <!-- position -->
+                    <!-- position / job description -->
                     <div class="position">
                         <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
                     </div>
                 <?php endif; ?>
                 <!-- end job content -->
 
-                <!-- company description -->
+                <!-- company description of single job -->
                 <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
                     <div class="position">
                         <?= $this->job->getTemplateValues()->get('companyDescription'); ?>
                     </div>
                 <?php endif;?>
-
-                <!-- company description -->
-                <p ><?=($org = $this->job->getOrganization()) && ($desc = $org->getDescription()) ? $desc : '' ?></p>
-                <!-- end company description -->
-                <!-- company address -->
-                <div itemscope itemtype="http://schema.org/Organization">
-                    <strong itemprop="name">
-                        <?= $this->organizationName?>
-                    </strong><br/>
-                    <?php if ($this->street || $this->postalCode || $this->city || $this->phone):?>
-                        <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                            <?php if ($this->street): ?><span itemprop="streetAddress"><?=$this->street?></span><br><?php endif ?>
-                            <?php if ($this->postalCode): ?><span itemprop="postalCode"><?=$this->postalCode?></span><?php endif ?>
-                            <?php if ($this->city): ?><span itemprop="addressLocality"><?=$this->city?></span><br /><?php endif ?>
-                            <?php if ($this->phone): ?>Telefon: <span itemprop="telephone"><?=$this->phone?></span><br /><?php endif ?>
-                            <?php if ($this->fax): ?>Fax: <?=$this->fax?></span><br /><?php endif ?>
-                        </address>
-                    <?php endif?>
-                </div>
-                </div>
-                <!-- end company address -->
+                <!-- end company description of single job -->
             </div>
         </div>
 
@@ -296,10 +309,8 @@ $industries = $job->getClassifications()->getIndustries();
             ]); ?>
             <!-- end favorite button -->
         </div>
-        
-        
-        
-   <!-- share buttons -->
+
+        <!-- share buttons -->
         <div class="text-center">Diesen Job teilen: </div>
         <div id="share" class="text-center round-shares"></div>
         <div class="clearfix"></div>

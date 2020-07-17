@@ -117,7 +117,18 @@ $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
                  </h2>
                  <div class="card__job-info">
                      <div class="card__job-empname-label"><?= $orgName ?></div>
-                     <div class="card__job-location"><?= $job->getLocation() ?></div>
+                     <div class="card__job-location">
+                         <?php //TODO: workaround to hide coordinates ?>
+                         <?php
+                            if(strpos($job->getLocation(), "(") !== false) {
+                                $locationString = substr($job->getLocation(), 0, strpos($job->getLocation(), "("));
+                            }
+                            else {
+                                $locationString = $job->getLocation();
+                            }
+                         ?>
+                         <?= $locationString;  ?>
+                     </div>
                  </div>
                  <div class="card__job-snippet-logo">
                      <p class="card__job-snippet" dir="auto">

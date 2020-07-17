@@ -9,7 +9,7 @@
 
 $id = $this->element->getEntity()->getId();
 $lang = $this->params('lang');
-$this->headScript()->appendFile($this->basePath('modules/Gastro24/js/create-single-job.js'));
+$this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/create-single-job.js')));
 
 ?>
 <h3><?php echo $this->translate("Job details")?></h3>
