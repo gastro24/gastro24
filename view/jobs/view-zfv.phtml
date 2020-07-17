@@ -32,25 +32,41 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     return str_replace('#image#', $imageHtml, $str);
 };
 
-$logoUrl = $this->uriLogo;
-if ($template && ($logo = $template->getLogo())) {
-    $logoUrl = $this->basePath($logo->getUri());
-}
-
-// check for banner
-$hasBanner = $template && ($image = $template->getImage());
-$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
-if ($hasBanner) {
-    $serverUrl = new \Laminas\View\Helper\ServerUrl();
-    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
-}
+$defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
 
 // organisation values
+$organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
 $org = $this->job->getOrganization();
 $orgIsDisabled = false;
 $orgName = $this->jobOrganizationName($this->job);
 if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
     $orgIsDisabled = true;
+}
+
+// get org logo as default
+if($org && $org->getImages()->notEmpty('images')) {
+    $defaultLogoUrl = $this->basePath($organizationImageCache->getUri($org->getImages()->get('thumbnail')));
+}
+
+// check for banner
+// default banner
+$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
+// banner from org
+if ($org) {
+    $organizationAdditionalRepo = $this->services('repositories')->get(\Gastro24\Entity\OrganizationAdditional::class);
+    /** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
+    $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($org->getId());
+    if ($organizationAdditional && $organizationAdditional->getBanner()) {
+        $imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
+        $hasBanner = true;
+    }
+}
+// banner from job
+$jobBanner = $template && ($image = $template->getImage());
+if ($jobBanner) {
+    $serverUrl = new \Laminas\View\Helper\ServerUrl();
+    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+    $hasBanner = true;
 }
 
 // check for newer than 24 hours
@@ -68,6 +84,15 @@ if ($dayDiff->days < 1) {
 
 $industries = $job->getClassifications()->getIndustries();
 ?>
+<?php if ($preview): ?>
+    <?php $this->headStyle()->captureStart() ?>
+        .container {
+            min-width: 100%;
+            padding: 0;
+        }
+    <?php $this->headStyle()->captureEnd() ?>
+<?php endif; ?>
+
 <?=$this->jsonLd($this->job)?>
   <style>
 
@@ -129,10 +154,18 @@ $industries = $job->getClassifications()->getIndustries();
                     <div class="corner"><span>NEU</span></div>
                 <?php endif; ?>
                 <!-- End New Badge -->
-
                 <div itemprop="logo">
                     <div class="wrapper__logo">
-                        <img src="<?= $logoUrl ?>" alt="<?= $this->organizationName?>">
+                        <?php
+                            $wrapperLogoUrl = $defaultLogoUrl;
+                            if ($template && ($logo = $template->getLogo())) {
+                                $wrapperLogoUrl = $this->basePath($logo->getUri());
+                            }
+                            else {
+                                $wrapperLogoUrl = $defaultLogoUrl;
+                            }
+                        ?>
+                        <img src="<?= $wrapperLogoUrl ?>" alt="<?= $this->organizationName ?>">
                     </div>
                 </div>
                 <h1><?=$this->job->getTitle()?></h1>
@@ -192,11 +225,12 @@ $industries = $job->getClassifications()->getIndustries();
                     </li>
                 <?php endif; ?>
             </ul>
-
             <div class="wrapper__right">
                 <?php if (!$hasBanner): ?>
                     <div class="wrapper__logo">
-                        <img src="<?= $logoUrl ?>" alt="<?= $this->organizationName?>">
+                        <img src="<?= $template && ($logo = $template->getLogo())
+                            ? $this->basePath($logo->getUri())
+                            : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
                     </div>
                 <?php endif; ?>
             </div>
@@ -236,7 +270,7 @@ $industries = $job->getClassifications()->getIndustries();
                         <?=$this->html?>
                     </div>
                 <?php else: ?>
-                    <!-- position -->
+                    <!-- position / job description -->
                     <div class="position">
                         <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
                     </div>
@@ -275,10 +309,8 @@ $industries = $job->getClassifications()->getIndustries();
             ]); ?>
             <!-- end favorite button -->
         </div>
-        
-        
-        
-   <!-- share buttons -->
+
+        <!-- share buttons -->
         <div class="text-center">Diesen Job teilen: </div>
         <div id="share" class="text-center round-shares"></div>
         <div class="clearfix"></div>
