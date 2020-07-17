@@ -145,6 +145,7 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
                 'editor' => [
                     'inline' => false,
                     'paste_as_text' => true,
+                    'height' => '480',
                     'language' => 'de',
                     'language_url' => '/modules/Core/js/tinymce-lang/de.js'
                 ]
@@ -152,7 +153,6 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             'attributes' => [
                 'data-toggle' => 'description',
                 'data-target' => 'details-position',
-                'style' => 'min-height: 200px;',
             ],
         ]);
 
