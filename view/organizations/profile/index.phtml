@@ -29,11 +29,27 @@ $this->headScript()->appendFile($this->basepath('modules/Core/js/core.pagination
     </div>
   </div>  
   
+  
+  
+
+
+<?php if (!$this->auth()->isLoggedIn()):?>
+
+<h1>Meine Firmen</h1>
+
+<nav class="navbar yk-toolbar" >
+    <?php echo $this->searchForm($this->form) ?>
+</nav>
+
+<?php else: ?>
+
 <h1>Firmen suchen</h1>
 
 <nav class="navbar yk-toolbar" >
     <?php echo $this->searchForm($this->form) ?>
 </nav>
+
+<?php endif ?>
 
 <div id="organizations-list-container"
      class="pagination-container"
