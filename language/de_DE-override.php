@@ -32,7 +32,7 @@ return [
 
     // Job Form
     'Please choose a descriptive title and a location for your job posting ' => 'Bitte wählen Sie einen aussagekräftigen Anzeigentitel und den Arbeitsort.',
-    'Please choose the name of the hiring organization. The selected name defines the template of the job opening.' => 'Bitte wählen Sie Ihre Firma aus. Das ausgewählte Firma definiert das verlinkte Firmenprofil (sofern eines hinterlegt ist).',
+    'Please choose the name of the hiring organization. The selected name defines the template of the job opening.' => 'Bitte wählen Sie Ihre Firma aus. Ihre Auswahl definiert das verlinkte Firmenprofil (sofern diese Option im Firmenprofi eingestellt ist).',
     'Your company logo will be used as default.' => 'Als Standard wird das Logo aus dem Firmenprofil genutzt. Sie können es aber hier überschreiben.',
     'Your company description will be used as default.' => 'Als Standard wird Ihre Unternehmensbeschreibung genutzt.',
     'Organization Name' => 'Name des Unternehmens',
@@ -76,8 +76,8 @@ return [
     'Year' => 'Jahr',
 
     'Invitation to join the team of %s' => 'Einladung in das Team von %s',
-    'Profiles' => 'Sichtbare Profile',
-    'Insert' => 'Profil hinzufügen',
+    'Profiles' => 'Aktive Firmenprofile',
+    'Insert' => 'Firmenprofil hinzufügen',
 
     'Invite an employee via email address.' => 'Laden Sie Mitarbeiter per E-Mail ein.',
     'If you want to post job openings for your customers, you have to %sadd them%s in the organizations menu.' =>
