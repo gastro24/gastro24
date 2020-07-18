@@ -7,7 +7,7 @@
 namespace Gastro24\Dependency;
 
 use Auth\Dependency\Manager as AuthDependencyManager;
-use Auth\Entity\User;
+use Auth\Entity\UserInterface;
 
 /**
  *
@@ -18,15 +18,12 @@ class Manager extends AuthDependencyManager
 {
 
     /**
-     * @param User $user
-     * @param Router $router
-     * @return \Laminas\EventManager\ResponseCollection
+     * @inheritDoc
      */
-    public function removeItems(User $user)
+    public function removeItems(UserInterface $user)
     {
         // removal of standard users are not allowed in the demo
         return
-            in_array($user->getLogin(), ['demo', 'applicant', 'admin'])
-            ? false : parent::removeItems($user);
+            in_array($user->getLogin(), ['admin']) ? false : parent::removeItems($user);
     }
 }
