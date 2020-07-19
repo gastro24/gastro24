@@ -32,7 +32,7 @@ return [
 
     // Job Form
     'Please choose a descriptive title and a location for your job posting ' => 'Bitte wählen Sie einen aussagekräftigen Anzeigentitel und den Arbeitsort.',
-    'Please choose the name of the hiring organization. The selected name defines the template of the job opening.' => 'Bitte wählen Sie Ihre Firma aus. Ihre Auswahl definiert das verlinkte Firmenprofil (sofern diese Option im Firmenprofi eingestellt ist).',
+    'Please choose the name of the hiring organization. The selected name defines the template of the job opening.' => 'Bitte wählen Sie Ihre Firma aus. Ihre Auswahl definiert das verlinkte Firmenprofil (sofern diese Option im Firmenprofil eingestellt ist).',
     'Your company logo will be used as default.' => 'Als Standard wird das Logo aus dem Firmenprofil genutzt. Sie können es aber hier überschreiben.',
     'Your company description will be used as default.' => 'Als Standard wird Ihre Unternehmensbeschreibung genutzt.',
     'Organization Name' => 'Name des Unternehmens',
