@@ -52,15 +52,14 @@ if($org && $org->getImages()->notEmpty('images')) {
 // default banner
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 // banner from org
-if ($org) {
+/*if ($org) {
     $organizationAdditionalRepo = $this->services('repositories')->get(\Gastro24\Entity\OrganizationAdditional::class);
-    /** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
     $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($org->getId());
     if ($organizationAdditional && $organizationAdditional->getBanner()) {
         $imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
         $hasBanner = true;
     }
-}
+}*/
 // banner from job
 $jobBanner = $template && ($image = $template->getImage());
 if ($jobBanner) {
