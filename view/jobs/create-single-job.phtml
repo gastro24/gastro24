@@ -447,6 +447,17 @@ iframe {
                     <p class="add_price"><span class="price_add_1">15 </span> CHF</p>
                 </div>
             </div>-->
+            
+             <div class="add_box add_left col-md-4">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="150" value="addon_facebook"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_facebook', $sessionData['addons']) !== false)) echo 'checked' ?>>
+                    &nbsp;&nbsp;
+                    <h3>Social Media Werbung</h3>
+                    <p>Publikation auf Facebook & Instagram (inkl. CHF 50.- Ads-Budget). Sie erhalten im Anschluss ein Reporting.</p>
+                    <p class="add_price"><span class="price_add_1">150 </span> CHF</p>
+                </div>
+            </div>
             <div class="add_box add_left col-md-4">
                 <div>
                     <input type="checkbox" name="addons[]" data-value="95" value="addon_startpage"
@@ -477,16 +488,7 @@ iframe {
                     <p class="add_price"><span class="price_add_1">25 </span> CHF</p>
                 </div>
             </div>-->
-            <div class="add_box add_left col-md-4">
-                <div>
-                    <input type="checkbox" name="addons[]" data-value="150" value="addon_facebook"
-                        <?php if (isset($sessionData['addons']) && (in_array('addon_facebook', $sessionData['addons']) !== false)) echo 'checked' ?>>
-                    &nbsp;&nbsp;
-                    <h3>Social Media Werbung</h3>
-                    <p>Publikation auf Facebook & Instagram (inkl. CHF 50.- Ads-Budget). Sie erhalten im Anschluss ein Reporting.</p>
-                    <p class="add_price"><span class="price_add_1">150 </span> CHF</p>
-                </div>
-            </div>
+           
         </div>
         <hr />
         <div class="post">
