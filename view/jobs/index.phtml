@@ -142,7 +142,7 @@ $noJobsMessage = $this->translate('No jobs found.');
                 <?php $this->headScript()->captureStart();?>
                     (function($) {
                         $(function() {
-                            $('#form-jobsbymail-subscribe-form').find('button.btn-info').hide().click()
+                            $('.job-alert').hide().click()
                                 .end().find('#job-by-mail-subscribe-label').html('Informiert werden, sobald Jobs zu Ihrer Suchanfrage verfügbar sind.');
                             $('#jobs-list-container').data('container').$message.show();
                         });
