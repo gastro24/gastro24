@@ -48,6 +48,7 @@ if($org && $org->getImages()->notEmpty('images')) {
 }
 
 // check for banner
+$hasBanner = false;
 // default banner
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 // banner from org
