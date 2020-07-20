@@ -677,6 +677,13 @@ return [
         ],
         Landingpages::class => [],
         Options\JobDetailsForm::class => [],
+        Options\TopJobsOptions::class => [[
+            'organizations' => [
+                /* organization name => boost param */
+                'Hotel & Restaurant Chartreuse AG' => 10,
+                'Landgasthaus Rössli' => 10,
+            ],
+        ]],
         Options\CompanyTemplatesMap::class => [[
             /* Firmen-Id => View-Template-Name */
             'map' => [

@@ -3,6 +3,7 @@
 namespace Gastro24\Factory\Filter;
 
 use Gastro24\Filter\JobBoardPaginationQuery;
+use Gastro24\Options\TopJobsOptions;
 use Interop\Container\ContainerInterface;
 use \Solr\Factory\Filter\JobBoardPaginationQueryFactory as BaseFactory;
 use Solr\Options\ModuleOptions;
@@ -18,9 +19,11 @@ class JobBoardPaginationQueryFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         /* @var ModuleOptions $options */
-        $options = $container->get('Solr/Options/Module');
+        $solrOptions = $container->get('Solr/Options/Module');
+        /** @var TopJobsOptions $topJobsOptions */
+        $topJobsOptions = $container->get(TopJobsOptions::class);
 
-        $filter = new JobBoardPaginationQuery($options);
+        $filter = new JobBoardPaginationQuery($solrOptions, $topJobsOptions);
         return $filter;
     }
 
