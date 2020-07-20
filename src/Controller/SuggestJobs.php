@@ -40,14 +40,15 @@ class SuggestJobs extends AbstractActionController
         $host = $this->moduleOptions->getHostname();
         $port = $this->moduleOptions->getPort();
         $jobsPath = $this->moduleOptions->getJobsPath() . '/';
+        $authArray = [
+            'auth' => [$this->moduleOptions->getUsername(), $this->moduleOptions->getPassword()]
+        ];
 
         $factory = new \SolrRestApiClient\Common\Factory();
-        $repository = $factory->getSynonymRepository($host,$port,$jobsPath);
+        $repository = $factory->getSynonymRepository($host,$port,$jobsPath, [$this->moduleOptions->getUsername(), $this->moduleOptions->getPassword()]);
 
         /** @var SynonymCollection $data */
-        $data = $repository->getAll('german', [
-            'auth' => [$this->moduleOptions->getUsername(), $this->moduleOptions->getPassword()]
-        ]);
+        $data = $repository->getAll('german', $authArray);
         $collection = $data->toArray();
         $results = [];
 
