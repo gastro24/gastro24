@@ -34,29 +34,6 @@ $options = $this->services('Core/Options');
 $defaultCurrencyCode = $options->defaultCurrencyCode;
 $defaultTaxRate = $options->defaultTaxRate;
 
-$template = $job->getAttachedEntity('gastro24-template');
-
-$defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
-$imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
-$hasBanner = $template && ($image = $template->getImage());
-if ($hasBanner) {
-    $serverUrl = new \Laminas\View\Helper\ServerUrl();
-    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
-}
-else {
-    if ($job->getLink()) {
-        $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_blue.svg');
-    }
-}
-
-// organisation values
-$org = $job->getOrganization();
-$orgIsDisabled = false;
-$orgName = $this->jobOrganizationName($job);
-if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
-    $orgIsDisabled = true;
-}
-
 ?>
 <style>
     #form-jobs-form-preview .panel__job-detail .panel-body{

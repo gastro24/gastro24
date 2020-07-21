@@ -90,12 +90,16 @@ if (!$this->isIntern && $this->isEmbeddable) {
         }
     }
     // banner from job
+    /** @var \Gastro24\Entity\Template $template */
     $template = $this->job->getAttachedEntity('gastro24-template');
     $jobBanner = $template && ($image = $template->getImage());
     if ($jobBanner) {
         $serverUrl = new \Laminas\View\Helper\ServerUrl();
         $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
         $hasBanner = true;
+    }
+    if ($template && $template->getHideBanner()) {
+        $hasBanner = false;
     }
 }
 

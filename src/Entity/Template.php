@@ -43,6 +43,14 @@ class Template implements EntityInterface, IdentifiableEntityInterface
     private $image;
 
     /**
+     * hide banner on job template or not
+     *
+     * @var boolean
+     * @ODM\Field(type="boolean")
+     */
+    private $hideBanner;
+
+    /**
      * @return TemplateImage
      */
     public function getLogo()
@@ -83,6 +91,26 @@ class Template implements EntityInterface, IdentifiableEntityInterface
     public function setImage(TemplateImage $image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideBanner()
+    {
+        return $this->hideBanner;
+    }
+
+    /**
+     * @param bool $hideBanner
+     *
+     * @return self
+     */
+    public function setHideBanner($hideBanner)
+    {
+        $this->hideBanner = $hideBanner;
 
         return $this;
     }

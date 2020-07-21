@@ -118,6 +118,17 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
             ]
         ]);
 
+        $this->add(
+            array(
+                'type' => 'infoCheckBox',
+                'name' => 'hideBanner',
+                'options' => array(
+                    'label' => '',
+                    'long_label' => 'Kein Bannerbild verwenden'
+                ),
+            )
+        );
+
 //        $this->add([
 //            'type' => 'TextEditor',
 //            'name' => 'introduction',

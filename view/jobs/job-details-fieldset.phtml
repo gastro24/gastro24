@@ -68,7 +68,7 @@ $modeLabels = $mode->getOption('labels');
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Banner</h3>
+                    <h3 class="panel-title">Banner <?= $fieldset->get('hideBanner')->getValue() ? ' (deaktiviert)': '' ?></h3>
                 </div>
                 <div class="panel-body" style="text-align: center">
                     <?php
@@ -202,6 +202,14 @@ $modeLabels = $mode->getOption('labels');
                 }
                 echo $input;
             ?>
+
+            <div class="controls controls-row form-group" style="margin-top: -15px; margin-bottom: 30px;">
+                <div class="col-md-3 yk-label">
+                </div>
+                <div class="col-md-9">
+                    <?=$this->formElement($fieldset->get('hideBanner')); ?>
+                </div>
+            </div>
 
             <?=$this->formRow($fieldset->get('position')); ?>
 

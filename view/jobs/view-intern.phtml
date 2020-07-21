@@ -17,6 +17,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     $preview = true;
 }
 
+/** @var \Gastro24\Entity\Template $template */
 $template = $this->job->getAttachedEntity('gastro24-template');
 $basePathHelper = $this->plugin('basePath');
 $replaceImage = function($str) use ($template, $basePathHelper)
@@ -68,6 +69,9 @@ if ($jobBanner) {
     $serverUrl = new \Laminas\View\Helper\ServerUrl();
     $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
     $hasBanner = true;
+}
+if ($template->getHideBanner()) {
+    $hasBanner = false;
 }
 
 // check for newer than 24 hours

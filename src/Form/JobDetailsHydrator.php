@@ -45,21 +45,24 @@ class JobDetailsHydrator implements HydratorInterface
             $mode = 'html';
         }
 
+        /** @var Template $template */
         $template = $object->getAttachedEntity('gastro24-template');
         $image    = $template && ($image = $template->getImage()) ? $image->getUri() : null;
         $logo    = $template && ($logo = $template->getLogo()) ? $logo->getUri() : null;
+        $hideBanner = $template ? $template->getHideBanner() : false;
 
         return [
             'mode' => $mode,
             'uri' => $mode == 'uri' ? $link : '',
             'pdf' => $mode == 'pdf' ? $link : '',
-            'description' => $object->getTemplateValues()->getDescription(),
-            'introduction' => $object->getTemplateValues()->getIntroduction(),
-            'benefits' => $object->getTemplateValues()->getBenefits(),
+//            'description' => $object->getTemplateValues()->getDescription(),
+//            'introduction' => $object->getTemplateValues()->getIntroduction(),
+//            'benefits' => $object->getTemplateValues()->getBenefits(),
             'position' => $object->getTemplateValues()->get('position'),
-            'requirements' => $object->getTemplateValues()->getRequirements(),
+//            'requirements' => $object->getTemplateValues()->getRequirements(),
             'image' => $image,
             'logo' => $logo,
+            'hideBanner' => $hideBanner,
         ];
     }
 
@@ -72,11 +75,11 @@ class JobDetailsHydrator implements HydratorInterface
                 @unlink('public/' . $link);
             }
             $object->setLink('');
-            $object->getTemplateValues()->setIntroduction($data['introduction']);
-            $object->getTemplateValues()->setDescription($data['description']);
-            $object->getTemplateValues()->setBenefits($data['benefits']);
+//            $object->getTemplateValues()->setIntroduction($data['introduction']);
+//            $object->getTemplateValues()->setDescription($data['description']);
+//            $object->getTemplateValues()->setBenefits($data['benefits']);
             $object->getTemplateValues()->position = $data['position'];
-            $object->getTemplateValues()->setRequirements($data['requirements']);
+//            $object->getTemplateValues()->setRequirements($data['requirements']);
 
         } else {
             $object->setLink('uri' == $data['mode'] ? $data['uri'] : (isset($_POST['pdf_uri']) ? $_POST['pdf_uri'] : $data['pdf']));
@@ -97,6 +100,7 @@ class JobDetailsHydrator implements HydratorInterface
             $file = $repository->find($_POST['details']['image_id']);
             $template->setImage($file);
         }
+        $template->setHideBanner($_POST['details']['hideBanner']);
 
         return $object;
     }
