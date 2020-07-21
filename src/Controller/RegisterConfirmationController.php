@@ -98,12 +98,15 @@ class RegisterConfirmationController extends AbstractActionController
 
                         // save organization
                         $organizationName = $registerCompanyForm->get('organizationName')->getValue();
-                        $organization = $this->createOrganization($organizationName, $user);
+                        //TODO: workaround because user info has no houseNumber
+                        $houseNumber = $registerCompanyForm->get('houseNumber')->getValue();
+                        $organization = $this->createOrganization($organizationName, $user, $houseNumber);
 
                         // save invoice address
                         $vatId = $registerCompanyForm->get('vat')->getValue();
                         $representative = $registerCompanyForm->get('representative')->getValue();
-                        $invoiceAddress = $this->createInvoiceAddress($user, $vatId, $representative);
+                        //TODO: workaround because user info has no houseNumber
+                        $invoiceAddress = $this->createInvoiceAddress($user, $vatId, $houseNumber, $representative);
 
                         $this->registerService->proceedCompanyRegisteredMail($user, $organization, $invoiceAddress);
 
@@ -157,7 +160,7 @@ class RegisterConfirmationController extends AbstractActionController
         return $this->redirect()->toRoute('lang/register');
     }
 
-    private function createOrganization($organizationName, $user)
+    private function createOrganization($organizationName, $user, $houseNumber)
     {
         $organizationRepository = $this->repositories->get('Organizations/Organization');
         $info = $user->getInfo();
@@ -168,6 +171,7 @@ class RegisterConfirmationController extends AbstractActionController
         $organization->getContact()->setPostalcode($info->getPostalCode());
         $organization->getContact()->setCity($info->getCity());
         $organization->getContact()->setStreet($info->getStreet());
+        $organization->getContact()->setHouseNumber($houseNumber);
         $organization->getContact()->setCountry($info->getCountry());
         //$organization->getContact()->setHouseNumber($registerCompanyForm->get('houseNumber')->getValue());
 
@@ -183,7 +187,7 @@ class RegisterConfirmationController extends AbstractActionController
         return $organization;
     }
 
-    private function createInvoiceAddress($user, $vatId, $representative = null)
+    private function createInvoiceAddress($user, $vatId, $houseNumber, $representative = null)
     {
         $info = $user->getInfo();
         $settings = $user->getSettings('Orders');
@@ -197,7 +201,7 @@ class RegisterConfirmationController extends AbstractActionController
         $invoiceAddress->setName($invoiceName);
 
         $invoiceAddress->setStreet($info->getStreet());
-        $invoiceAddress->setHouseNumber($info->getHouseNumber());
+        $invoiceAddress->setHouseNumber($houseNumber);
         $invoiceAddress->setZipCode($info->getPostalCode());
         $invoiceAddress->setCity($info->getCity());
         $invoiceAddress->setCountry($info->getCountry());

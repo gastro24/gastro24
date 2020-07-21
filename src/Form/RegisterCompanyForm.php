@@ -166,6 +166,18 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
             )
         );
 
+        $this->add([
+            'type'    => 'text',
+            'name'    => 'houseNumber',
+            'options' => [
+                'label' => /*@translate*/ 'house number',
+            ],
+            'attributes' => [
+                'required' => true,
+                'class' => 'form-control'
+            ],
+        ]);
+
         $this->add(
             array(
                 'type'       => 'text',
