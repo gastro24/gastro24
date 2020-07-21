@@ -70,7 +70,7 @@ if ($jobBanner) {
     $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
     $hasBanner = true;
 }
-if ($template->getHideBanner()) {
+if ($template && $template->getHideBanner()) {
     $hasBanner = false;
 }
 
