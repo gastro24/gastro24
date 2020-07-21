@@ -38,6 +38,10 @@ class JobBoardPaginationQuery extends BaseQuery
             $query->addBoostQuery('organizationName', '"' . $organizationName . '"', $boostParam);
         }
 
+        foreach($this->topJobsOptions->getJobs() as $jobId => $boostParam) {
+            $query->addBoostQuery('id', '"' . $jobId . '"', $boostParam);
+        }
+
         parent::createQuery($params, $query, $facets);
     }
 }

@@ -14,8 +14,11 @@ if (count($jobs)): ?>
     </div>
 
     <?php
+        /** @var \Gastro24\Options\TopJobsOptions $topJobOptions */
         $topJobOptions = $this->services(\Gastro24\Options\TopJobsOptions::class);
         $topJobsOrganizations = $topJobOptions->getOrganizationNames();
+        $topJobsIds = $topJobOptions->getJobIds();
+
         $hasFacets = $jobs instanceof \Solr\FacetsProviderInterface;
         $queryGet = $this->params()->fromQuery();
         unset($queryGet['clear']);
@@ -221,8 +224,9 @@ if (count($jobs)): ?>
                                 $industries = $job->getClassifications()->getIndustries();
                                 $template = $job->getAttachedEntity('gastro24-template');
                                 $orgName = $this->jobOrganizationName($job);
-                                // TODO: move to config
-                                $additionalCardCss = (in_array($orgName, $topJobsOrganizations) !== false) ? 'topjob' : '';
+                                /* mark as topjob */
+                                $additionalCardCss = ((in_array($orgName, $topJobsOrganizations) !== false) ||
+                                    (in_array($job->getId(), $topJobsIds) !== false)) ? 'topjob' : '';
 
                                 $isExpired = ($job->getStatus()) ? $job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
                                 $orgIsDisabled = false;

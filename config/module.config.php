@@ -683,6 +683,9 @@ return [
                 'Hotel & Restaurant Chartreuse AG' => 10,
                 'Landgasthaus Rössli' => 10,
             ],
+            'jobs' => [
+                /* jobId => boost param */
+            ],
         ]],
         Options\CompanyTemplatesMap::class => [[
             /* Firmen-Id => View-Template-Name */
