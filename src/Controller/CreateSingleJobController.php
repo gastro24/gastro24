@@ -85,7 +85,8 @@ class CreateSingleJobController extends AbstractActionController
                 return $this->redirect()->toRoute('lang/jobs/single-payment', ['show' => 'options']);
             }
 
-            return $this->redirect()->toRoute('lang/jobs/single-payment');
+            //kostenlos --> return $this->redirect()->toRoute('lang/jobs/single-payment');
+            return $this->redirect()->toRoute('lang/jobs/single-payment', ['show' => 'options']);
         }
 
         // prefill form
