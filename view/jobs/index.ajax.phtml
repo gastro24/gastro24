@@ -96,7 +96,7 @@ padding-right: 10px;
 }
 
 .topjob .fa-star span {
-font-family:sans-serif:
+font-family:sans-serif;
 }
 .topjob h2>a {
 color: #000;
@@ -360,7 +360,7 @@ color: #000;
     </div>
     <div class="card_job-short-info ">
       <ul>
-         <li class="fa fa-star">Top-Listing</li>
+         <li class="fa fa-star"><span>Top-Listing</span></li>
         <?php
           // check for newer than 24 hours
           $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
