@@ -686,9 +686,10 @@ return [
             'jobs' => [
                 /* jobId => boost param */
                 
-                '5efcb33e70482a6d7807e256' => 20,
-                '5f0f4215a1b897209d375de4' => 15,
-                '5ef364906231dc02791547f3' => 10,
+                '5efcb33e70482a6d7807e256' => 25,
+                '5f0f4215a1b897209d375de4' => 20,
+                '5ef364906231dc02791547f3' => 15,
+                '5f0b09fcb38efc50757837f3' => 10,
             ],
         ]],
         Options\CompanyTemplatesMap::class => [[
