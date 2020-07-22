@@ -7,7 +7,7 @@
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
 
-$this->headTitle('Kostenlos Einzelinserat aufgeben');
+$this->headTitle('Jetzt Einzelinserat schalten');
 $publishDate = $this->dateFormat(new DateTime(), 'medium', 'none');
 $image = isset($this->details['image']['entity']) ? $this->details['image']['entity'] : null;
 
@@ -197,7 +197,7 @@ iframe {
 <div class="row">
     <div class="col-md-12">
         <div style="max-width:100%;float:none;" class="page-title text-center">
-            <h1><span class="hidden-xs">Einzelinserat erfassen – </span>30 Tage kostenlos inserieren</h1>
+            <h1><span class="hidden-xs">Einzelinserat erfassen</h1>
         </div>
     </div>
     <!--<div class="col-md-6">
@@ -498,10 +498,9 @@ iframe {
                         echo $sessionData['totalPrice'];
                     }
                     else {
-                        echo '0';
+                        echo '29';
                     }
-                ?>
-            </span>.-</h3>
+                ?></span>.-</h3>
         </div>
     </div>
     <!-- end section publication and addons -->
