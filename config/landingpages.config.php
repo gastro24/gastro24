@@ -324,7 +324,8 @@ $options = [
 		  'query' => [ 'q' => 'Saucier'],
 		  'tab' => 'Jobs von A - Z',
 		  'panel' => '',
-          'text' => 'Saucier Jobs'
+          'text' => 'Saucier Jobs',
+          'parent' => 'kueche'
        ],
     
     'concierge' => [
@@ -364,7 +365,8 @@ $options = [
 		  'query' => [ 'q' => 'Casserolier'],
 		   'tab' => 'Jobs von A - Z',
 		     'panel' => '',
-          'text' => 'Casserolier Jobs'
+          'text' => 'Casserolier Jobs',
+          'parent' => 'kueche'
        ],
     
     'kuechenhilfe' => [
@@ -372,7 +374,8 @@ $options = [
 		  'query' => [ 'q' => 'Küchenhilfe'],
 		   'tab' => 'Jobs von A - Z',
 		     'panel' => '',
-          'text' => 'Küchenhilfe Jobs'
+          'text' => 'Küchenhilfe Jobs',
+          'parent' => 'kueche'
        ],
       'betriebsleitung' => [
           'id' => 1424,
@@ -394,7 +397,8 @@ $options = [
 		  'query' => [ 'q' => 'Alleinkoch'],
 		    'panel' => '',
 		   'tab' => 'Jobs von A - Z',
-          'text' => 'Alleinkoch Jobs'
+          'text' => 'Alleinkoch Jobs',
+          'parent' => 'kueche'
      ],
        'allrounder' => [
           'id' => 1405,
@@ -472,7 +476,8 @@ $options = [
 		  'query' => [ 'q' => 'Sushi Koch'],
 		   'tab' => 'Jobs von A - Z',
 		       'panel' => '',
-          'text' => 'Sushi Koch Jobs'
+          'text' => 'Sushi Koch Jobs',
+          'parent' => 'kueche'
      ],
     
       'ferienaushilfe' => [
@@ -539,7 +544,8 @@ $options = [
 		  'query' => [ 'q' => 'Commis de Cuisine'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Commis de Cuisine Jobs'
+          'text' => 'Commis de Cuisine Jobs',
+          'parent' => 'kueche'
      ],
      'studenten' => [
           'id' => 1218,
@@ -583,14 +589,16 @@ $options = [
 		  'query' => [ 'q' => 'Hilfskoch'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Hilfskoch Jobs'
+          'text' => 'Hilfskoch Jobs',
+          'parent' => 'kueche'
      ],
     'alleinkoch' => [
           'id' => 171,
 		  'query' => [ 'q' => 'Alleinkoch'],
 		   'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Alleinkoch Jobs'
+          'text' => 'Alleinkoch Jobs',
+          'parent' => 'kueche'
      ],
     
     'baecker' => [
@@ -612,14 +620,16 @@ $options = [
 		  'query' => [ 'q' => 'Diätkoch'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Diätkoch Jobs'
+          'text' => 'Diätkoch Jobs',
+          'parent' => 'kueche'
      ],
      'entremetier' => [
           'id' => 936,
 		  'query' => [ 'q' => 'Entremetier'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Entremetier Jobs'
+          'text' => 'Entremetier Jobs',
+          'parent' => 'kueche'
      ],
       'filialleiter' => [
           'id' => 235,
@@ -633,7 +643,8 @@ $options = [
 		  'query' => [ 'q' => 'Garde Manger'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Garde Manger Jobs'
+          'text' => 'Garde Manger Jobs',
+          'parent' => 'kueche'
      ],
       'hotelfachmann' => [
           'id' => 205,
@@ -647,7 +658,8 @@ $options = [
 		  'query' => [ 'q' => 'Jungkoch'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Jungkoch Jobs'
+          'text' => 'Jungkoch Jobs',
+          'parent' => 'kueche'
      ],
      'koch' => [
           'id' => 167,
@@ -683,7 +695,8 @@ $options = [
 		  'query' => [ 'q' => 'Patissier'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Patissier Jobs'
+          'text' => 'Patissier Jobs',
+          'parent' => 'kueche'
      ],
      'restauration' => [
           'id' => 189,
@@ -712,7 +725,8 @@ $options = [
 		  'query' => [ 'q' => 'Küchenchef'],
 		   'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Küchenchef Jobs'
+          'text' => 'Küchenchef Jobs',
+          'parent' => 'kueche'
      ],
      
      'sous-chef' => [
@@ -720,28 +734,32 @@ $options = [
 		  'query' => [ 'q' => 'Sous Chef'],
 		   'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Sous Chef Jobs'
+          'text' => 'Sous Chef Jobs',
+          'parent' => 'kueche'
      ],
        'systemgastronomie' => [
           'id' => 1045,
 		  'query' => [ 'q' => 'Systemgastronomie'],
 		   'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Systemgastronomie Jobs'
+          'text' => 'Systemgastronomie Jobs',
+          'parent' => 'kueche'
      ],
        'chef-de-partie' => [
           'id' => 1052,
 		  'query' => [ 'q' => 'Chef de Partie'],
 		   'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Chef de Partie Jobs'
+          'text' => 'Chef de Partie Jobs',
+          'parent' => 'kueche'
      ],
       'tournant' => [
           'id' => 1048,
 		  'query' => [ 'q' => 'Tournant'],
 		   'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Tournant Jobs'
+          'text' => 'Tournant Jobs',
+          'parent' => 'kueche'
      ],
       'servicemitarbeiter' => [
           'id' => 1096,
@@ -755,7 +773,8 @@ $options = [
 		  'query' => [ 'q' => 'Pizzaiolo'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Pizzaiolo Jobs'
+          'text' => 'Pizzaiolo Jobs',
+          'parent' => 'kueche'
      ],
 	 'rezeptionistin' => [
           'id' => 219,
