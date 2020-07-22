@@ -153,7 +153,7 @@ $options = [
 		  'query' => [ 'q' => 'Küche'],
 		   'tab' => '',
 		   'panel' => '',
-          'text' => 'Küche Jobs'
+          'text' => 'Küche Jobs',
        ],
   
      'hausdame' => [
@@ -654,7 +654,8 @@ $options = [
 		  'query' => [ 'q' => 'Koch'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Koch Jobs'
+          'text' => 'Koch Jobs',
+         'parent' => 'kueche'
      ],
      'lebensmitteltechnologe' => [
           'id' => 183,

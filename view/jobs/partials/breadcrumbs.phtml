@@ -1,3 +1,8 @@
+<?php
+    /** @var \Gastro24\Options\Landingpages $landingpagesOptions */
+    $landingpagesOptions = $this->services(\Gastro24\Options\Landingpages::class);
+?>
+
 <?php if ($this->searchTerm) { ?>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
@@ -7,24 +12,40 @@
                 </a>
                 <meta itemprop="position" content="1"/>
             </li>
-            
-    
+
+
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/de/jobs?clear=1">
                     <span itemprop="name">Jobs</span>
                 </a>
                 <meta itemprop="position" content="2"/>
             </li>
-            
-            
-     <?php if ($this->params()->fromRoute('isLandingPage')) : ?>
-            <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
-                itemtype="http://schema.org/ListItem" aria-current="page">
-                
-                <span itemprop="name"> <?= $this->searchTerm ?></span>
-                <meta itemprop="position" content="3"/>
-            </li>
-        <?php endif; ?>
+
+
+            <?php if ($this->params()->fromRoute('isLandingPage')) : ?>
+                <!-- build parent breadcrumbs -->
+                <?php
+                    $mainTerm = $this->searchTerm;
+                    $content = 3;
+                    $parentsBreadcrumbHtml = '';
+                    while ($parentTermData = $landingpagesOptions->getParentByTerm($mainTerm)) {
+                        $breadcrumbHtml = '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">' .
+                            '<a itemprop="item" href="' . $this->url('lang/landingPage', ['q' => $parentTermData['searchTerm'], 'format' => 'html' ], true) . '">' .
+                                '<span itemprop="name">' . $parentTermData['parent']['query']['q'] . '</span></a>' .
+                            '<meta itemprop="position" content="' . $content . '"/></li>';
+                        $content++;
+                        $mainTerm = $parentTermData['parent']['query']['q'];
+                        $parentsBreadcrumbHtml = $breadcrumbHtml . $parentsBreadcrumbHtml;
+                    }
+                    echo $parentsBreadcrumbHtml;
+                ?>
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
+                    itemtype="http://schema.org/ListItem" aria-current="page">
+
+                    <span itemprop="name"> <?= $this->searchTerm ?></span>
+                    <meta itemprop="position" content="<?= $content ?>"/>
+                </li>
+            <?php endif; ?>
         </ol>
     </nav>
 <?php } else if ($this->hasRegion) { ?>

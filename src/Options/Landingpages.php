@@ -29,8 +29,13 @@ class Landingpages extends AbstractOptions
     
     private $companies = [];
 
+    private $options = [];
+
+    private $parentQueries = [];
+
     public function setFromArray($options)
     {
+        $this->options = $options;
         $idMap = [];
         $queryMap = [];
         $tabs = [];
@@ -60,12 +65,21 @@ class Landingpages extends AbstractOptions
             if (isset($spec['tab']) && isset($spec['panel'])) {
                 $tabs[ $spec[ 'tab' ] ][ $spec[ 'panel' ] ][] = [$term, $spec[ 'text' ]];
             }
-            
-            
+
+            if (isset($spec['parent'])) {
+                $identifier = isset($spec['query']['q']) ? $spec['query']['q'] : $term;
+                $this->parentQueries[$identifier] = $spec['parent'];
+            }
 
         }
 
-        return parent::setFromArray(['idMap' => $idMap, 'queryMap' => $queryMap, 'tabs' => $tabs, 'companies' => $companies ]);
+        return parent::setFromArray([
+            'idMap' => $idMap,
+            'queryMap' => $queryMap,
+            'tabs' => $tabs,
+            'companies' => $companies,
+            'parentQueries' => $this->parentQueries
+        ]);
     }
 
     /**
@@ -159,6 +173,35 @@ class Landingpages extends AbstractOptions
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getParentQueries()
+    {
+        return $this->parentQueries;
+    }
 
+    /**
+     * @param array $parentQueries
+     *
+     * @return self
+     */
+    public function setParentQueries($parentQueries)
+    {
+        $this->parentQueries = $parentQueries;
 
+        return $this;
+    }
+
+    public function getParentByTerm($term)
+    {
+        if (isset($this->parentQueries[$term])) {
+            return [
+                'searchTerm' => $this->parentQueries[$term],
+                'parent' => $this->options[$this->parentQueries[$term]]
+            ];
+        }
+
+        return null;
+    }
 }
