@@ -450,7 +450,8 @@ $options = [
 		  'query' => [ 'q' => 'Marketing'],
 		   'tab' => 'Jobs von A - Z',
 		       'panel' => '',
-          'text' => 'Marketing Jobs'
+          'text' => 'Marketing Jobs',
+          'parent' => 'administration-verkauf'
      ],
 
      'verkauf' => [
