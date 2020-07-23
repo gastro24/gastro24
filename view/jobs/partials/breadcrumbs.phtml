@@ -15,7 +15,7 @@
 
 
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                <a itemprop="item" href="/de/jobs?clear=1">
+                <a title="Jobs" itemprop="item" href="/de/jobs?clear=1">
                     <span itemprop="name">Jobs</span>
                 </a>
                 <meta itemprop="position" content="2"/>
@@ -30,7 +30,7 @@
                     $parentsBreadcrumbHtml = '';
                     while ($parentTermData = $landingpagesOptions->getParentByTerm($mainTerm)) {
                         $breadcrumbHtml = '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">' .
-                            '<a itemprop="item" href="' . $this->url('lang/landingPage', ['q' => $parentTermData['searchTerm'], 'format' => 'html' ], true) . '">' .
+                            '<a title="' . $parentTermData['parent']['query']['q'] . '" itemprop="item" href="' . $this->url('lang/landingPage', ['q' => $parentTermData['searchTerm'], 'format' => 'html' ], true) . '">' .
                                 '<span itemprop="name">' . $parentTermData['parent']['query']['q'] . '</span></a>' .
                             '<meta itemprop="position" content="' . $content . '"/></li>';
                         $content++;
