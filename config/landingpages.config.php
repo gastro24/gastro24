@@ -161,7 +161,8 @@ $options = [
 		  'query' => [ 'q' => 'Hausdame'],
 		   'tab' => '',
 		   'panel' => '',
-          'text' => 'Hausdame Jobs'
+          'text' => 'Hausdame Jobs',
+          'parent' => 'housekeeping'
        ],
   
   'zimmerreinigung' => [
@@ -169,7 +170,8 @@ $options = [
 		  'query' => [ 'q' => 'Zimmerreinigung'],
 		   'tab' => '',
 		   'panel' => '',
-          'text' => 'Zimmerreinigung Jobs'
+          'text' => 'Zimmerreinigung Jobs',
+          'parent' => 'housekeeping'
        ],
   
     'reinigungskraft' => [
@@ -177,7 +179,8 @@ $options = [
 		  'query' => [ 'q' => 'Reinigung'],
 		   'tab' => '',
 		   'panel' => '',
-          'text' => 'Reinigungskraft Jobs'
+          'text' => 'Reinigungskraft Jobs',
+          'parent' => 'housekeeping'
        ],
     
     'housekeeping' => [
@@ -341,7 +344,8 @@ $options = [
 		  'query' => [ 'q' => 'Barmaid'],
 		  'tab' => 'Jobs von A - Z',
 		  'panel' => '',
-          'text' => 'Barmaid Jobs'
+          'text' => 'Barmaid Jobs',
+          'parent' => 'service'
        ],
       
        'schichtleiter' => [
@@ -412,7 +416,8 @@ $options = [
 		  'query' => [ 'q' => 'Chef de Service'],
 		   'tab' => 'Jobs von A - Z',
 		       'panel' => '',
-          'text' => 'Chef de Service Jobs'
+          'text' => 'Chef de Service Jobs',
+          'parent' => 'service'
      ],
 
     'fitness' => [
@@ -437,7 +442,8 @@ $options = [
 		  'query' => [ 'q' => 'Restaurationsfachmann'],
 		   'tab' => 'Jobs von A - Z',
 		       'panel' => '',
-          'text' => 'Restaurationsfachmann Jobs'
+          'text' => 'Restaurationsfachmann Jobs',
+          'parent' => 'service'
      ],
     'marketing-sales' => [
           'id' => 1327,
@@ -516,7 +522,8 @@ $options = [
 		  'query' => [ 'q' => 'Gouvernante'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Gouvernante Jobs'
+          'text' => 'Gouvernante Jobs',
+          'parent' => 'housekeeping'
      ],
      'kaeser-in' => [
           'id' => 1264,
@@ -560,7 +567,8 @@ $options = [
 		  'query' => [ 'q' => 'Chef de Bar'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Chef de Bar Jobs'
+          'text' => 'Chef de Bar Jobs',
+          'parent' => 'service'
      ],
     
     'general-manager' => [
@@ -613,7 +621,8 @@ $options = [
 		  'query' => [ 'q' => 'Chef de Rang'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Chef de Rang Jobs'
+          'text' => 'Chef de Rang Jobs',
+          'parent' => 'service'
      ],
      'diaetkoch' => [
           'id' => 159,
@@ -703,21 +712,25 @@ $options = [
 		  'query' => [ 'q' => 'Restauration'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Restaurationsfachfrau Jobs'
+          'text' => 'Restaurationsfachfrau Jobs',
+          'parent' => 'service'
      ], 
       'servicemitarbeiterin' => [
           'id' => 191,
 		  'query' => [ 'q' => 'Servicemitarbeiterin'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Servicemitarbeiterin Jobs'
+          'text' => 'Servicemitarbeiterin Jobs',
+          'parent' => 'service',
+          
      ],
       'zimmermaedchen' => [
           'id' => 215,
 		  'query' => [ 'q' => 'Zimmermädchen'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Zimmermädchen Jobs'
+          'text' => 'Zimmermädchen Jobs',
+          'parent' => 'housekeeping'
      ],
      
      'kuechenchef' => [
@@ -766,7 +779,8 @@ $options = [
 		  'query' => [ 'q' => 'Servicemitarbeiter'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Servicemitarbeiter Jobs'
+          'text' => 'Servicemitarbeiter Jobs',
+          'parent' => 'service'
      ],
 	 'pizzaiolo' => [
           'id' => 1098,
@@ -795,7 +809,8 @@ $options = [
 		  'query' => [ 'q' => 'Restaurant Manager'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Restaurant Manager Jobs'
+          'text' => 'Restaurant Manager Jobs',
+          'parent' => 'service'
      ],
 	 'ernaehrungsberater' => [
           'id' => 181,
@@ -809,21 +824,24 @@ $options = [
 		  'query' => [ 'q' => 'Barkeeper'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Barkeeper Jobs'
+          'text' => 'Barkeeper Jobs',
+          'parent' => 'service'
      ],
 	  'barista' => [
           'id' => 197,
 		  'query' => [ 'q' => 'Barista'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Barista Jobs'
+          'text' => 'Barista Jobs',
+          'parent' => 'service'
      ], 
 	  'sommelier' => [
           'id' => 201,
 		  'query' => [ 'q' => 'Sommelier'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Sommelier Jobs'
+          'text' => 'Sommelier Jobs',
+          'parent' => 'service'
      ],
 	 
 	  'assistant' => [
