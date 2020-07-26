@@ -10,24 +10,70 @@
  */
 ?>
 <footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <a class="text-center facebook" title="Gastrojob24.ch bei Facebook"
-                   href="https://www.facebook.com/gastrojob24.ch/" target="_blank"
-                   rel="ugc"><i class="fa fa-facebook"></i>
-                </a>
-            </div>
-            <div class="col-md-12">
-                <ul class="footer-link">
+<div class="container">
+        
+  <div class="row">
+    <div class="col-md-3">
+        <a class="text-center facebook" title="Gastrojob24.ch bei Facebook" href="https://www.facebook.com/gastrojob24.ch/" target="_blank" rel="ugc"><i class="fa fa-facebook"></i></a>
+        <ul class="footer-link">
+            <li>&copy; <?=date('Y')?> Alle Rechte vorbehalten</li>
+            <li>Mit <i class="fa fa-heart"></i> im Thurgau entwickelt </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <div class="col-md-4">
+            <strong>Für Jobsuchende</strong>
+            <ul class="footer-link">
+
+                <li><a title="Küche Jobs" href="/de/jobs/kueche.html">Küche Jobs</a></li>
+                <li><a title="Hauswirtschaft Jobs" href="/de/jobs/housekeeping.html">Hauswirtschaft Jobs</a></li>
+                <li><a title="Service Jobs" href="/de/jobs/service.html">Service Jobs</a></li>
+                <li><a title="Lehrstellen" href="/de/jobs/lehrstellen-gastronomie.html">Lehrstellen</a></li>
+                <li><a title="Administration Jobs" href="/de/jobs/administration-verkauf.html">Administration Jobs</a></li>
+                <li><a title="Hotel Jobs" href="/de/jobs/hotel.html">Hotel Jobs</a></li>
+                <li><a title="Food Jobs" href="/de/jobs/food.html">Food Jobs</a></li>
+                <li><a title="Teilzeit Jobs" href="/de/jobs/teilzeit.html">Teilzeit Jobs</a></li>
+                <li><a title="Management Jobs" href="/de/jobs/manager.html">Management Jobs</a></li>
+                <li><a title="Tourismus Jobs" href="/de/jobs/touristik.html">Tourismus Jobs</a></li>
+                <li><a title="Bäcker Jobs" href="/de/jobs/baecker.html">Bäcker Jobs</a></li>
+                <li><a title="Konditor Confiseur Jobs" href="/de/jobs/konditor-confiseur.html">Konditor Confiseur Jobs</a></li>
+                <li><a title="Metzger Jobs" href="/de/jobs/metzger.html">Metzger Jobs</a></li>
+                <li><a title="Käser Jobs" href="/de/jobs/kaeser-in.html">Käser Jobs</a></li>
+            </ul>
+
+
+        </div>
+
+        <div class="col-md-4">
+
+            <strong>Für Arbeitgeber</strong>
+            <ul class="footer-link">
+                <li><a title="Login" href="/de/login">Login</a></li>
+                <li><a title="Einzelinserat schalten" href="/de/job/single">Einzelinserat schalten</a></li>
+                <li><a title="Flatrate Job-Abo" href="/de/auth/register">Flatrate Job-Abo</a></li>
+                <li><a title="Geld-zurück-Garantie" href="/de/geld-zurueck-garantie.html">60 Tage Geld-zurück-Garantie</a></li>
+                <li><a title="Job-Crawler" href="/de/crawler">Job-Crawler</a></li>
+                <li><a title="Employer Branding" href="/de/branding.html">Employer Branding</a></li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+
+            <strong>Allgemein</strong>
+
+            <ul class="footer-link">
+
                     <li><a title="Kontakt" href="<?= $this->url('lang/wordpress', ['id' => 'contact'], true)?>">Kontakt</a></li>
                     <li><a title="Über uns" href="<?= $this->url('lang/wordpress', ['id' => 'ueber-uns'], true)?>">Über uns</a></li>
                     <li><a title="Impressum" href="<?= $this->url('lang/wordpress', ['id' => 'impressum'], true)?>">Impressum</a></li>
                     <li><a title="Datenschutz" href="<?= $this->url('lang/wordpress', ['id' => 'datenschutz'], true)?>">Datenschutz</a></li>
                     <li><a title="AGB" href="<?= $this->url('lang/wordpress', ['id' => 'agb'], true)?>">AGB</a></li>
-                    <li>&copy; <?=date('Y')?> Alle Rechte vorbehalten</li>
-                </ul>
-            </div>
+
+            </ul>
+
+
         </div>
     </div>
+  </div>
+        
+</div>
 </footer>
