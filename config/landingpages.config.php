@@ -712,7 +712,8 @@ $options = [
 		  'query' => [ 'q' => 'Lebensmitteltechnologe'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Lebensmitteltechnologe Jobs'
+          'text' => 'Lebensmitteltechnologe Jobs',
+           'parent' => 'food'
      ],	
       'metzger' => [
           'id' => 179,
@@ -848,7 +849,8 @@ $options = [
 		  'query' => [ 'q' => 'Ernährungsberater'],
 		   'tab' => 'Jobs von A - Z',
 		    'panel' => '',
-          'text' => 'Ernährungsberater Jobs'
+          'text' => 'Ernährungsberater Jobs',
+          'parent' => 'food'
      ],	
 	 'barkeeper' => [
           'id' => 195,
