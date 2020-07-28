@@ -242,6 +242,7 @@ $options = [
         'query' => [ 'city_MultiString' => ['Horgen' => 1]],
         'tab' => '',
         'panel' => '',
+        'parent' => 'region-zurich'
     ],
      'stadt-kloten' => [
         'text' => 'Kloten',
@@ -249,6 +250,7 @@ $options = [
         'query' => [ 'city_MultiString' => ['Kloten' => 1]],
         'tab' => '',
         'panel' => '',
+        'parent' => 'region-zurich'
     ],
    'stadt-dietikon' => [
         'text' => 'Dietikon',
@@ -256,6 +258,7 @@ $options = [
         'query' => [ 'city_MultiString' => ['Dietikon' => 1]],
         'tab' => '',
         'panel' => '',
+        'parent' => 'region-zurich'
     ],
     
      'stadt-winterthur' => [
@@ -264,6 +267,7 @@ $options = [
         'query' => [ 'city_MultiString' => ['Winterthur' => 1]],
         'tab' => '',
         'panel' => '',
+        'parent' => 'region-zurich'
     ],
     
       'stadt-chur' => [
@@ -288,6 +292,7 @@ $options = [
         'query' => [ 'city_MultiString' => ['Dübendorf' => 1]],
         'tab' => '',
         'panel' => '',
+        'parent' => 'region-zurich'
     ],
     
      'stadt-luzern' => [
@@ -304,6 +309,7 @@ $options = [
         'query' => [ 'city_MultiString' => ['St. Gallen' => 1]],
         'tab' => '',
         'panel' => '',
+        'parent' => 'region-st-gallen'
     ],
      'stadt-basel' => [
         'text' => 'Stadt Basel',
@@ -319,6 +325,7 @@ $options = [
         'query' => [ 'city_MultiString' => ['Zürich' => 1]],
         'tab' => '',
         'panel' => '',
+        'parent' => 'region-zurich'
     ],
 
     
@@ -1076,8 +1083,8 @@ $options = [
         'text' => 'Zürich',
         'id' => 368,
         'query' => [ 'region_MultiString' => ['Zürich' => 1]],
-        'tab' => 'Jobs nach Kanton',
-        'panel' => 'Schweiz',
+        'tab' => '',
+        'panel' => '',
     ],
 	'region-tessin' => [
         'text' => 'Tessin',
@@ -1093,8 +1100,9 @@ $options = [
         'text' => 'Stadt Zürich',
         'id' => 2,
         'query' => [ 'city_MultiString' => ['Zürich' => 1]],
-        'tab' => 'Jobs nach Stadt',
-        'panel' => 'Städte Deutschschweiz',
+        'tab' => '',
+        'panel' => '',
+        'parent' => 'region-zurich'
     ],
     'stadt-genf' => [
         'text' => 'Stadt Genf',
