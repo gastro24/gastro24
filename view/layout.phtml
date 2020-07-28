@@ -63,7 +63,13 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headMeta() ?>
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
- 
+
+    <!-- job json ld -->
+    <?php if($this->job): ?>
+        <?= $this->jsonLd($this->job); ?>
+    <?php endif; ?>
+    <!-- job json ld -->
+
     <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
 
     <?php if ($this->params()->fromRoute('isLandingPage')):?>
@@ -200,10 +206,11 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 </main>
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
-<!-- lazy loaded javascript -->
+<!-- lazy loaded javascript-->
 <?php
     $langScript = 'dist/locales/' . $lang . '.js';
-    echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
+    echo $this->inlineScript()->setAutoEscape(false)
+        ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
         ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
         ->appendFile($this->basePath($langScript))

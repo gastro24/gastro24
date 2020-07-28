@@ -126,6 +126,9 @@ iframe {
 .steps-step.active p {
 	font-weight: bold;
 }
+.link--add-location:hover {
+    cursor: pointer;
+}
 
 @media (max-width: 768px) {
 	.positionTextarea .tooltip-insert span {
@@ -258,20 +261,42 @@ iframe {
                 <?= $this->formText($this->form->get('jobTitle')); ?>
             </div>
         </div>
+        <div class="row controls controls-row form-group row--locations">
+            <div class="col-md-12">
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('locationZipCode_1')); ?>
+
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('location_1')); ?>
+
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('locationStreet_1')); ?>
+            </div>
+            <div class="col-md-2 location-zip-code form-group">
+                <?= $this->formLabel($this->form->get('locationZipCode_1'), 'PLZ'); ?>
+                <?= $this->formElement($this->form->get('locationZipCode_1')); ?>
+            </div>
+            <div class="col-md-4 location-select form-group">
+                <?= $this->formLabel($this->form->get('location_1'), 'Arbeitsort'); ?>
+                <?= $this->formElement($this->form->get('location_1')); ?>
+            </div>
+            <div class="col-md-5 location-street form-group">
+                <?= $this->formLabel($this->form->get('locationStreet_1'), 'Strasse'); ?>
+                <?= $this->formElement($this->form->get('locationStreet_1')); ?>
+            </div>
+        </div>
+
+        <div class="row controls controls-row form-group">
+            <div class="col-md-12">
+                <p class="link--add-location"><i class="fa fa-plus"></i> Weiteren Arbeitsort hinzufügen</p>
+            </div>
+        </div>
         <div class="row controls controls-row form-group">
             <div class="col-md-12">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
-                    ->setMessageCloseString('</div>')->render($this->form->get('locations')); ?>
-
-                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('employmentTypes')); ?>
             </div>
-            <div class="col-md-6 locationsSelect form-group">
-                <?= $this->formLabel($this->form->get('locations'), 'Arbeitsort'); ?>
-                <?= $this->formElement($this->form->get('locations')); ?>
-            </div>
-
-            <div class="col-md-5 employmentTypesSelect form-group">
+            <div class="col-md-11 employmentTypesSelect form-group">
                 <?= $this->formLabel($this->form->get('employmentTypes'), 'Beschäftigungsart'); ?>
                 <?= $this->formElement($this->form->get('employmentTypes')); ?>
             </div>

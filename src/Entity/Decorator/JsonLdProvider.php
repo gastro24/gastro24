@@ -7,6 +7,7 @@ use Jobs\Entity\JobInterface;
 use Jobs\Entity\JsonLdProviderInterface;
 use Jobs\Entity\TemplateValuesInterface;
 use Laminas\Json\Json;
+use Orders\Entity\InvoiceAddressInterface;
 
 /**
  * Decorates a job with implementing a toJsonLd method.
@@ -25,15 +26,22 @@ class JsonLdProvider implements JsonLdProviderInterface
     private $job;
 
     /**
+     * @var \Orders\Entity\InvoiceAddress
+     */
+    private $invoiceAddress;
+
+    /**
      * @param JobInterface $job
      */
-    public function __construct(JobInterface $job)
+    public function __construct(JobInterface $job, $invoiceAddress)
     {
         $this->job = $job;
+        $this->invoiceAddress = $invoiceAddress;
     }
 
     public function toJsonLd()
     {
+        /** @var \Organizations\Entity\Organization $organization */
         $organization = $this->job->getOrganization();
         $organizationName = $organization ? $organization->getOrganizationName()->getName() : $this->job->getCompany();
 
@@ -60,16 +68,48 @@ class JsonLdProvider implements JsonLdProviderInterface
             'hiringOrganization' => [
                 '@type' => 'Organization',
                 'name' => $organizationName,
-                'logo' => $this->getLogo()
+                'logo' => $this->getLogo(),
+                'address' => $this->getOrganizationAddress()
             ],
             'jobLocation' => $this->getLocations($this->job->getLocations()),
             'employmentType' => $this->job->getClassifications()->getEmploymentTypes()->getValues(),
             'validThrough' => $dateEnd
         ];
 
+        if ($companyWebsite = $this->job->getTemplateValues()->get('companyWebsite')) {
+            $array['hiringOrganization']['sameAs'] = $companyWebsite;
+        }
+
         $array += $this->generateSalary();
 
         return Json::encode($array);
+    }
+
+    /**
+     * @return array
+     */
+    private function getOrganizationAddress()
+    {
+        /** @var \Organizations\Entity\Organization $organization */
+        $organization = $this->job->getOrganization();
+        // single job
+        if (!$organization) {
+            return [
+                '@type' => 'PostalAddress',
+                'streetAddress' => $this->invoiceAddress->getStreet() . ' ' . $this->invoiceAddress->getHouseNumber(),
+                'postalCode' => $this->invoiceAddress->getZipCode(),
+                'addressLocality' => $this->invoiceAddress->getCity(),
+                'addressCountry' => 'CH',
+            ];
+        }
+
+        return [
+            '@type' => 'PostalAddress',
+            'streetAddress' => $organization->getContact()->getStreet() . ' ' . $organization->getContact()->getHouseNumber(),
+            'postalCode' => $organization->getContact()->getPostalcode(),
+            'addressLocality' => $organization->getContact()->getCity(),
+            'addressCountry' => 'CH',
+        ];
     }
 
     /**
@@ -143,14 +183,12 @@ class JsonLdProvider implements JsonLdProviderInterface
                 $description .= sprintf("<p>%s</p>", $jobDescription);
             }
 
-            $description .= sprintf("<h1>%s</h1>", $values->getTitle());
-
             if ($introduction = $values->getIntroduction()){
                 $description .= sprintf("<p>%s</p>", $introduction);
             }
 
             if ($position = $values->get('position')) {
-                $description .= sprintf("<h3>Position</h3><p>%s</p>", $position);
+                $description .= $position;
             }
 
             if ($requirements = $values->getRequirements()) {
@@ -171,7 +209,21 @@ class JsonLdProvider implements JsonLdProviderInterface
 
     private function generateSalary()
     {
-        $salary = $this->job->getSalary();
+        // set fix values for now
+        return [
+            'baseSalary' => [
+                '@type' => 'MonetaryAmount',
+                'currency' => 'CHF',
+                'value' => [
+                    '@type' => 'QuantitiveValue',
+                    'minValue' => 'None',
+                    'maxValue' => 'None',
+                    'unitText' => 'YEAR'
+                ],
+            ],
+        ];
+
+        /*$salary = $this->job->getSalary();
 
         if (!$salary || null === $salary->getValue()) {
             return [];
@@ -187,6 +239,6 @@ class JsonLdProvider implements JsonLdProviderInterface
                     'unitText' => $salary->getUnit()
                 ],
             ],
-        ];
+        ];*/
     }
 }

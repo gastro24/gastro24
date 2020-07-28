@@ -168,6 +168,7 @@ class RedirectExternalJobs extends AbstractActionController
             $model->setVariable('isIntern', true);
             // restore application models' template
             $appModel->setTemplate($appTemplate);
+            $appModel->setVariable('job', $job);
         } else {
             $visitedJobsContainer = new VisitedJobsContainer();
             $isVisited            = $this->params()->fromRoute('isPreview') ? false : $visitedJobsContainer->isVisited($job);

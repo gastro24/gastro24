@@ -98,9 +98,7 @@ $industries = $job->getClassifications()->getIndustries();
     <?php $this->headStyle()->captureEnd() ?>
 <?php endif; ?>
 
-<?=$this->jsonLd($this->job)?>
-
-  <div class="panel panel-default panel__job-detail">
+<div class="panel panel-default panel__job-detail">
 
       <!-- New Badge -->
       <?php if (!$hasBanner && $newerThanDay): ?>

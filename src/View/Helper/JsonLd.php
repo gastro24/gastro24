@@ -20,6 +20,16 @@ class JsonLd extends AbstractHelper
     private $job;
 
     /**
+     * @var \Orders\Repository\Orders
+     */
+    private $ordersRepository;
+
+    public function __construct($ordersRepository)
+    {
+        $this->ordersRepository = $ordersRepository;
+    }
+
+    /**
      * Print the JSON-LD representation of a job.
      *
      * Wraps it in <script type="application/ld+json"> tag
@@ -36,7 +46,14 @@ class JsonLd extends AbstractHelper
             return '';
         }
 
-        $jsonLdProvider = new JsonLdProvider($job);
+        // TODO: order should be placed diretly after abo was created
+        // currently after first job was created
+        $order = $this->ordersRepository->findByJobId($job->getId());
+        $invoiceAddress = null;
+        if ($order) {
+            $invoiceAddress = $order->getInvoiceAddress();
+        }
+        $jsonLdProvider = new JsonLdProvider($job, $invoiceAddress);
 
         return '<script type="application/ld+json">'
             . $jsonLdProvider->toJsonLd()

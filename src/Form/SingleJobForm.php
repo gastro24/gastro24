@@ -51,19 +51,43 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
         ]);
 
         $this->add([
+            'type' => 'text',
+            'name' => 'locationStreet_1',
+            'options' => [
+                'label' => /*@translate*/ 'street',
+            ],
+            'attributes' => [
+                'required' => true,
+                'class' => 'form-control',
+            ]
+        ]);
+
+        $this->add([
             'type' => 'LocationSelect',
-            'name' => 'locations',
+            'name' => 'location_1',
             'options' => [
                 'label' => 'Ort',
                 'location_entity' => Location::class
             ],
             'attributes' => [
                 'required' => true,
-                'multiple' => true,
+                'multiple' => false,
                 'data-placeholder' => '',
                 'data-width' => '100%',
-                'id' => 'csj-locations',
+                'id' => 'csj-location-1',
             ],
+        ]);
+
+        $this->add([
+            'type' => 'text',
+            'name' => 'locationZipCode_1',
+            'options' => [
+                'label' => /*@translate*/ 'PLZ',
+            ],
+            'attributes' => [
+                'required' => true,
+                'class' => 'form-control',
+            ]
         ]);
 
         $types = $this->formManager->get(
@@ -76,6 +100,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'name' => 'employmentTypes',
                 'options' => [
                     'label' => /*@translate*/ 'Employment Types',
+                    'labelWidth' => '12',
                     'description' => /*@translate*/ 'Manage the employment types you want to assign to jobs.',
                 ],
                 'attributes' => [
@@ -265,7 +290,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             'jobTitle' => [
                 'required' => true,
             ],
-            'locations' => [
+            'location_1' => [
                 'required' => true,
             ],
             'employmentTypes' => [

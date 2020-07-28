@@ -430,6 +430,27 @@ $lang = $this->params('lang');
     <!-- end iframe resizer -->
     <script type="text/javascript">
         (function($) {
+            $('.link--add-location').click(function() {
+                var newRow = $('.row--locations').last().clone();
+                var index = parseInt(newRow.find('.location-zip-code label').attr('for').replace("locationZipCode_", ""));
+                index += 1;
+
+                newRow.find('.location-zip-code label').attr('for', 'locationZipCode_' + index);
+                newRow.find('.location-zip-code input').attr('name', 'locationZipCode_' + index).val('');
+                newRow.find('.location-street label').attr('for', 'locationStreet_' + index);
+                newRow.find('.location-street input').attr('name', 'locationStreet_' + index).val('');
+                newRow.find('.location-select label').attr('for', 'csj-location-' + index);
+
+                var geoSelect = $('<select>').attr('data-autoinit', false).attr('data-clear-on-reset', true)
+                    .attr('class', 'geoselect').attr('name', 'location_' + index);
+                newRow.find('.location-select select').remove();
+                newRow.find('.location-select span').remove();
+                geoSelect.insertAfter(newRow.find('.location-select label'));
+                newRow.find('.location-select select').geoSelect();
+
+                newRow.insertAfter('.row--locations:last');
+            });
+
             $('.add_box').find('input').click(function() {
                 var total = 29;
                 $('.add_box').find('input:checked').each(function(index, item) {

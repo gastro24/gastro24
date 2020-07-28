@@ -112,10 +112,22 @@ class CreateSingleJob extends AbstractPlugin
         }
 
         $locations = new ArrayCollection();
-        foreach ($values['locations'] as $locStr) {
-            $loc = new Location($locStr);
+        $locIndex = 1;
+        while (isset($values['location_' . $locIndex])) {
+            $loc = new Location($values['location_' . $locIndex]);
+
+            // loc has no zipCode
+            if (empty($loc->getPostalCode())) {
+                $loc->setPostalCode($values['locationZipCode_' . $locIndex]);
+            }
+            if (empty($loc->getStreetname())) {
+                $loc->setStreetname($values['locationStreet_' . $locIndex]);
+            }
+
             $locations->add($loc);
+            $locIndex++;
         }
+
         $job->setLocations($locations);
 
         switch ($values['enableOnlineApplication']) {

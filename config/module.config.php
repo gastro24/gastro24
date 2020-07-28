@@ -193,7 +193,7 @@ return [
             View\Helper\HasAutomaticJobActivation::class => View\Helper\HasAutomaticJobActivationFactory::class,
             View\Helper\ShowAutomaticJobActivationHint::class => View\Helper\ShowAutomaticJobActivationHintFactory::class,
             View\Helper\HydrateOrderObject::class => View\Helper\HydrateOrderObjectFactory::class,
-            View\Helper\JsonLd::class => \Laminas\ServiceManager\Factory\InvokableFactory::class,
+            View\Helper\JsonLd::class => Factory\View\Helper\JsonLdFactory::class,
             View\Helper\PublishDateFormatter::class => View\Helper\PublishDateFormatterFactory::class,
             View\Helper\PopupForm::class => \Laminas\ServiceManager\Factory\InvokableFactory::class,
             View\Helper\JobDraftsCount::class => View\Helper\JobDraftsCountFactory::class,
