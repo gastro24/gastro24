@@ -85,7 +85,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'label' => /*@translate*/ 'PLZ',
             ],
             'attributes' => [
-                'required' => true,
                 'class' => 'form-control',
             ]
         ]);
