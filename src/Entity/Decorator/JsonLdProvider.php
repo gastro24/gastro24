@@ -215,7 +215,7 @@ class JsonLdProvider implements JsonLdProviderInterface
                 '@type' => 'MonetaryAmount',
                 'currency' => 'CHF',
                 'value' => [
-                    '@type' => 'QuantitiveValue',
+                    '@type' => 'QuantitativeValue',
                     'minValue' => 'None',
                     'maxValue' => 'None',
                     'unitText' => 'YEAR'
