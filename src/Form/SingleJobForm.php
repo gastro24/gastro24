@@ -58,6 +58,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             ],
             'attributes' => [
                 'required' => true,
+                'id' => 'locationStreet_1',
                 'class' => 'form-control',
             ]
         ]);

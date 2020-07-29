@@ -261,6 +261,13 @@ iframe {
                 <?= $this->formText($this->form->get('jobTitle')); ?>
             </div>
         </div>
+        <div class="row controls controls-row form-group location-hint" style="display: none;">
+            <div class="col-md-12">
+                <div class="alert alert-danger register-form-error" >
+                    <i class="fa fa-info-circle"></i> Bitte geben Sie einen Arbeitsort und eine Strasse ein.
+                </div>
+            </div>
+        </div>
         <div class="row controls controls-row form-group row--locations">
             <div class="col-md-12">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')

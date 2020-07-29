@@ -433,16 +433,27 @@ $lang = $this->params('lang');
             $('.link--add-location').click(function() {
                 var newRow = $('.row--locations').last().clone();
                 var index = parseInt(newRow.find('.location-zip-code label').attr('for').replace("locationZipCode_", ""));
+
+                // check for empty location
+                var lastLocationValue = $('#csj-location-' + index).val();
+                var lastLocationStreetValue = $('#locationStreet_' + index).val();
+                if(!lastLocationValue || !lastLocationStreetValue) {
+                    $('.location-hint').show();
+                    return;
+                }
+                $('.location-hint').hide();
                 index += 1;
 
                 newRow.find('.location-zip-code label').attr('for', 'locationZipCode_' + index);
-                newRow.find('.location-zip-code input').attr('name', 'locationZipCode_' + index).val('');
+                newRow.find('.location-zip-code input').attr('name', 'locationZipCode_' + index)
+                    .attr('id', 'locationZipCode_' + index).val('');
                 newRow.find('.location-street label').attr('for', 'locationStreet_' + index);
-                newRow.find('.location-street input').attr('name', 'locationStreet_' + index).val('');
+                newRow.find('.location-street input').attr('name', 'locationStreet_' + index)
+                    .attr('id', 'locationStreet_' + index).val('');
                 newRow.find('.location-select label').attr('for', 'csj-location-' + index);
 
                 var geoSelect = $('<select>').attr('data-autoinit', false).attr('data-clear-on-reset', true)
-                    .attr('class', 'geoselect').attr('name', 'location_' + index);
+                    .attr('class', 'geoselect').attr('name', 'location_' + index).attr('id', 'csj-location-' + index);
                 newRow.find('.location-select select').remove();
                 newRow.find('.location-select span').remove();
                 geoSelect.insertAfter(newRow.find('.location-select label'));
