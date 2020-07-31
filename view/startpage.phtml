@@ -322,8 +322,64 @@ $this->headTitle($this->translate('Home'));
                         <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav" data-ride="carousel" data-interval="4500">
                             <div class="carousel-inner">
                                 <!-- begin carousel -->
+                                  <div class="item active">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="recommended-box">
+                                            <div class="recommended-box-inner">
+                                                <div class="recommended-box-jobtitle">
+                                                    <a title="Koch/Köchin" href="/de/jobs/koch-koechin-5f22f7bcfe9a4e55e4219136.html">
+                                                        <span class="block-ellipsis">
+                                                           Koch/Köchin
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8 col-lg-9 col-xs-8 ">
+                                                        <ul class="short-details">
+                                                            <li class="location">
+                                                                <span>Ligerz</span>
+                                                            </li>
+                                                            <li class="company">
+                                                                <span class="">Restaurant Kreuz & See Bistro Ligerz</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="recommended-box-company-logo-container ">
+                                                        <img rel="preload" as="image" src="/file/Gastro24.TemplateImage/5f22f736fe9a4e55e4219132/238FCB09-6AF4-4756-9E5E-AFE70734B8B5.jpeg">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="recommended-hero " style="background-image: url(/modules/Gastro24/images/bg_placeholder_gray.svg)"></div>
+                                                </div>
+                                            </div>
+                                            <div class="recommended-box-actions clearfix">
+                                                <div class="col-xs-4 pull-left">
+                                                    <a href="/de/jobs/koch-koechin-5f22f7bcfe9a4e55e4219136.html" class="view-btn btn">
+                                                        Bewerben
+                                                    </a>
+                                                </div>
+
+                                                <div class="col-xs-4 save-job pull-right">
+                                                    <!-- favorite button -->
+                                                    <?php if (isset($savedJobsContainer->jobs['5eef4313126fad180b0e2433'])) : ?>
+                                                        <button type="button" class="btn btn-default saved"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5eef4313126fad180b0e2433">
+                                                            <span><?=$this->translate('Marked')?></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="btn btn-default"
+                                                                data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="5eef4313126fad180b0e2433">
+                                                            <span><?=$this->translate('Mark')?></span>
+                                                        </button>
+                                                    <?php endif ?>
+                                                    <!-- end favorite button -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 
-                                <div class="item active">
+                                <div class="item">
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="recommended-box">
                                             <div class="recommended-box-inner">
