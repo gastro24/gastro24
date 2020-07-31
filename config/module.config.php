@@ -685,7 +685,7 @@ return [
             ],
             'jobs' => [
                 /* jobId => boost param */
-                 
+                '5f22859dc133e6583e7a09d3' => 50,
                 '5f21c0c07b1934338a4d4e96' => 40,
                 '5dc30ed23c050f38af24d042' => 30,
                 '5efcb33e70482a6d7807e256' => 25,
