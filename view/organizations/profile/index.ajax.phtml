@@ -81,7 +81,7 @@ if ('-' == $sort{0}) {
               return $job->getStatus() && ($job->getStatus()->getName() == \Jobs\Entity\Status::ACTIVE);
           });
       ?>
-      <p><?= $activeJobs->count() ?> aktive Jobs</p>
+      <p><?= $activeJobs->count() == 1 ? $activeJobs->count() . ' aktiver Job' : $activeJobs->count() . ' aktive Jobs' ?></p>
   </td>
   <td>
       <?php echo $organization->getContact()->getPostalcode();?>

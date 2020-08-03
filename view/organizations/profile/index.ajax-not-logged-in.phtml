@@ -43,7 +43,7 @@
 
             </p>
         </div>
-        <p><?= $activeJobs->count() ?> aktive Jobs</p>
+        <p><?= $activeJobs->count() == 1 ? $activeJobs->count() . ' aktiver Job' : $activeJobs->count() . ' aktive Jobs' ?></p>
         <!--<div class="card_job-short-info ">
       <ul>
         <li class="new"></li>        
