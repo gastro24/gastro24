@@ -77,11 +77,11 @@ if ('-' == $sort{0}) {
     ?>
       </a>
       <?php
-          $activeJobs = $organization->getJobs()->filter(function(\Jobs\Entity\Job $job) {
-              return $job->getStatus() && ($job->getStatus()->getName() == \Jobs\Entity\Status::ACTIVE);
-          });
+          $paginators = $this->services('Core/PaginatorService');
+          $jobPaginator = $paginators->get('Jobs/Admin', ['companyId' => $organization->getId(), 'status' => \Jobs\Entity\Status::ACTIVE]);
+          $activeJobCount = $jobPaginator->getTotalItemCount();
       ?>
-      <p><?= $activeJobs->count() == 1 ? $activeJobs->count() . ' aktiver Job' : $activeJobs->count() . ' aktive Jobs' ?></p>
+      <p><?= $activeJobCount == 1 ? $activeJobCount . ' aktiver Job' : $activeJobCount . ' aktive Jobs' ?></p>
   </td>
   <td>
       <?php echo $organization->getContact()->getPostalcode();?>
