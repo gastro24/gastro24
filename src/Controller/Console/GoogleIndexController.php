@@ -119,6 +119,40 @@ class GoogleIndexController extends AbstractActionController
                 }
             }
         }
+
+        // single jobs with publish date in future
+        $singleJobsQuery = $this->getSingleJobsQuery($fromDate, $toDate);
+        $singleJobs = $jobsRepo->findBy($singleJobsQuery);
+        foreach ($singleJobs as $job) {
+            if ($this->jobHasRedirectOrLink($job)) {
+                return;
+            }
+
+            $jobUrl = $this->jobUrlHelper->__invoke(
+                $job,
+                [
+                    'linkOnly'=> true,
+                    'absolute' => true,
+                ],
+                [
+                    'lang' => 'de'
+                ]
+            );
+            //HINT: workaround to get base url
+            $jobUrl = str_replace('http://', 'https://www.gastrojob24.ch', $jobUrl);
+
+            // DEV Mode
+            if (!file_exists($this->configPath . GoogleIndexApi::AUTH_FILE)) {
+                $this->logger->info('DEV MODE: GOOGLE INDEX API: Single job with publish date in future. Send ' .
+                    GoogleIndexApi::GOOGLE_API_UPDATED_TYPE . ' for ' . $jobUrl);
+                return;
+            }
+            else {
+                $this->logger->info('GOOGLE INDEX API: Single job with publish date in future. Send ' .
+                    GoogleIndexApi::GOOGLE_API_UPDATED_TYPE . ' for ' . $jobUrl);
+                $response = $this->sendGoogleRequest($jobUrl);
+            }
+        }
     }
 
     private function getCrawlerJobsQuery($fromDate, $toDate)
@@ -134,6 +168,23 @@ class GoogleIndexController extends AbstractActionController
                 ['dateCreated.date' => ['$lt' => $toDate]],
                 ['dateCreated.date' => ['$gt' => $fromDate]],
                 ['$or' => $orArray]
+            ]
+        ];
+    }
+
+    /**
+     * Single jobs has publish date set in template values
+     * @param $fromDate
+     * @param $toDate
+     * @return \array[][][]
+     */
+    private function getSingleJobsQuery($fromDate, $toDate)
+    {
+        return [
+            '$and' => [
+                ['datePublishStart.date' => ['$lte' => $toDate]],
+                ['datePublishStart.date' => ['$gte' => $fromDate]],
+                ['templateValues._freeValues.publishDate' => ['$exists' => true]],
             ]
         ];
     }
@@ -161,5 +212,27 @@ class GoogleIndexController extends AbstractActionController
         $this->logger->info('Google Indexing API : successful.', ['latestUpdate' => $response->getUrlNotificationMetadata()->getLatestUpdate()]);
 
         return $response;
+    }
+
+    private function jobHasRedirectOrLink($job)
+    {
+        $hasJobTemplate = $this->jobTemplateHelper->__invoke($job->getOrganization());
+        $isIntern = (!$job->getLink() || $hasJobTemplate);
+        $isEmbeddable = $this->jobTemplateHelper->__invoke($job->getLink());
+        $jobHasExternLink = (!$isIntern && !$isEmbeddable);
+
+        if ($hasJobTemplate) {
+            return false;
+        }
+
+        if (!$isIntern) {
+            return true;
+        }
+
+        if ($jobHasExternLink) {
+            return true;
+        }
+
+        return false;
     }
 }

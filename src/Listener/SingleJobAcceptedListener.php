@@ -43,7 +43,7 @@ class SingleJobAcceptedListener
 
         if (!$order) { return; }
 
-        // check for publishDat in future#
+        // check for publishDat in future
         if ($job->getTemplateValues()->get('publishDate')) {
             // convert to valid date format
             list($day, $month, $year) = explode('/', $job->getTemplateValues()->get('publishDate'));

@@ -126,6 +126,21 @@ class GoogleIndexApi
             return;
         }
 
+        // check if publish date is in future
+        if ($job->getTemplateValues()->get('publishDate')) {
+            // convert to valid date format
+            list($day, $month, $year) = explode('/', $job->getTemplateValues()->get('publishDate'));
+            $today = new \DateTime();
+            $today->setTime(0, 0, 0);
+            $publishDate = new \DateTime($year . '-' . $month . '-' . $day);
+            $publishDate->setTime(0, 0, 0);
+            $diff = $today->diff($publishDate);
+            if ($diff->days >= 1) {
+                $this->logger->info('INFO GOOGLE INDEX API: Publish date in future (Job ID: ' . $job->getId());
+                return;
+            }
+        }
+
         $jobUrl = $this->jobUrlHelper->__invoke(
             $job,
             [
