@@ -76,7 +76,12 @@ if ('-' == $sort{0}) {
         echo isset($nameEntity)?$nameEntity->getName():'**** DRAFT ****';
     ?>
       </a>
-      <p><?= $organization->getJobs()->count() ?> aktive Jobs</p>
+      <?php
+          $activeJobs = $organization->getJobs()->filter(function(\Jobs\Entity\Job $job) {
+              return $job->getStatus() && ($job->getStatus()->getName() == \Jobs\Entity\Status::ACTIVE);
+          });
+      ?>
+      <p><?= $activeJobs->count() ?> aktive Jobs</p>
   </td>
   <td>
       <?php echo $organization->getContact()->getPostalcode();?>

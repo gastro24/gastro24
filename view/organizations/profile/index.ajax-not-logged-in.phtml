@@ -1,5 +1,10 @@
 <?php foreach ($this->organizations as $organization): /* @var $organization \Organizations\Entity\Organization */?>
 
+<?php
+    $activeJobs = $organization->getJobs()->filter(function(\Jobs\Entity\Job $job) {
+        return $job->getStatus() && ($job->getStatus()->getName() == \Jobs\Entity\Status::ACTIVE);
+    });
+?>
 <div class=" card box__job-favorite">
     <a class="job-logo-link" title="<?php
         $nameEntity = $organization->getOrganizationName();
@@ -38,7 +43,7 @@
 
             </p>
         </div>
-        <p><?= $organization->getJobs()->count() ?> aktive Jobs</p>
+        <p><?= $activeJobs->count() ?> aktive Jobs</p>
         <!--<div class="card_job-short-info ">
       <ul>
         <li class="new"></li>        
