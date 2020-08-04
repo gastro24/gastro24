@@ -1,3 +1,5 @@
+<div class="row">
+
 <?php foreach ($this->organizations as $organization): /* @var $organization \Organizations\Entity\Organization */?>
 
 <?php
@@ -5,6 +7,7 @@
     $jobPaginator = $paginators->get('Jobs/Admin', ['companyId' => $organization->getId(), 'status' => \Jobs\Entity\Status::ACTIVE]);
     $activeJobCount = $jobPaginator->getTotalItemCount();
 ?>
+<div class="col-xs-12 col-sm-6 col-md-4 ">
 <div class=" card box__job-favorite">
     <a class="job-logo-link" title="<?php
         $nameEntity = $organization->getOrganizationName();
@@ -44,24 +47,13 @@
             </p>
         </div>
         <p><?= $activeJobCount == 1 ? $activeJobCount . ' aktiver Job' : $activeJobCount . ' aktive Jobs' ?></p>
-        <!--<div class="card_job-short-info ">
-      <ul>
-        <li class="new"></li>        
-		<li class="type"></li>
-        <li class="contract"></li>
-
-
-
-
-       </ul>
-    </div>-->
     </div>
+  </div>
 </div>
-
 
 <?php endforeach?>
 
-
+</div>
 
 
 <?php echo $this->paginationControl($this->organizations, 'Sliding', 'pagination-control',
