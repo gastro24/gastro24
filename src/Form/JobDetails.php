@@ -214,6 +214,31 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
 //                'style' => 'height: 150px;',
 //            ],
 //        ]);
+
+        $this->add([
+            'type' => 'Url',
+            'name' => 'companyWebsite',
+            'options' => [
+                'label' => /*@translate*/ 'Unternehmenswebsite',
+                //'rowClass' => 'csj-uri-wrapper'
+            ],
+            'attributes' => [
+                'placeholder' => 'https://',
+                'class' => 'form-control',
+            ]
+        ]);
+
+        $this->add([
+            'type' => 'textarea',
+            'name' => 'companyDescription',
+            'options' => [
+                'label' => $this->gastroOptions->getLabel('description'),
+            ],
+            'attributes' => [
+                'class' => 'form-control',
+                'style' => 'display: block; width: 100%;height: 150px;',
+            ],
+        ]);
     }
 
     public function getInputFilterSpecification()
@@ -313,6 +338,14 @@ class JobDetails extends Fieldset implements InputFilterProviderInterface, ViewP
                         ],
                     ],
                 ],
+            ],
+            'companyDescription' => [
+                'required' => false,
+                'allow_empty' => false
+            ],
+            'companyWebsite' => [
+                'required' => false,
+                'allow_empty' => true
             ],
         ];
 

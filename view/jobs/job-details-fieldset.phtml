@@ -93,6 +93,29 @@ $modeLabels = $mode->getOption('labels');
                 </div>
             </div>
         <?php endif ?>
+
+        <?php if ($this->acl()->isRole(\Auth\Entity\User::ROLE_ADMIN)): ?>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Unternehmenswebsite</h3>
+                    </div>
+                    <div class="panel-body">
+                        <?=$fieldset->get('companyWebsite')->getValue()?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Beschreibung des Unternehmens</h3>
+                    </div>
+                    <div class="panel-body">
+                        <?=$fieldset->get('companyDescription')->getValue()?>
+                    </div>
+                </div>
+            </div>
+        <?php endif ?>
     </div>
 
 <?php else: ?>
@@ -212,7 +235,10 @@ $modeLabels = $mode->getOption('labels');
             </div>
 
             <?=$this->formRow($fieldset->get('position')); ?>
-
+            <?php if ($this->acl()->isRole(\Auth\Entity\User::ROLE_ADMIN)) : ?>
+                <?=$this->formRow($fieldset->get('companyWebsite')); ?>
+                <?=$this->formRow($fieldset->get('companyDescription')); ?>
+            <?php endif; ?>
         </div>
     </fieldset>
 

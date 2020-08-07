@@ -59,6 +59,8 @@ class JobDetailsHydrator implements HydratorInterface
 //            'introduction' => $object->getTemplateValues()->getIntroduction(),
 //            'benefits' => $object->getTemplateValues()->getBenefits(),
             'position' => $object->getTemplateValues()->get('position'),
+            'companyWebsite' => $object->getTemplateValues()->get('companyWebsite'),
+            'companyDescription' => $object->getTemplateValues()->get('companyDescription'),
 //            'requirements' => $object->getTemplateValues()->getRequirements(),
             'image' => $image,
             'logo' => $logo,
@@ -79,6 +81,8 @@ class JobDetailsHydrator implements HydratorInterface
 //            $object->getTemplateValues()->setDescription($data['description']);
 //            $object->getTemplateValues()->setBenefits($data['benefits']);
             $object->getTemplateValues()->position = $data['position'];
+            $object->getTemplateValues()->companyWebsite = $data['companyWebsite'];
+            $object->getTemplateValues()->companyDescription = $data['companyDescription'];
 //            $object->getTemplateValues()->setRequirements($data['requirements']);
 
         } else {
