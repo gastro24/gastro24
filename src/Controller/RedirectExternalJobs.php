@@ -265,7 +265,7 @@ class RedirectExternalJobs extends AbstractActionController
         $title = trim($job->getTitle(), '"');
         $orgName = ($job->getOrganization()) ? $job->getOrganization()->getOrganizationName()->getName() : $job->getCompany();
         $locations = $job->getLocations()->toArray();
-        $contract = $job->getClassifications()->getEmploymentTypes();
+        $contract = $job->getClassifications()->getEmploymentTypes() ?:'Vollzeit';
 
         if (count($locations) > 0) {
             $cities = [];
@@ -280,13 +280,13 @@ class RedirectExternalJobs extends AbstractActionController
         elseif (count($locations) == 0) {
             //return 'Auf der Suche nach dem Traumjob? Jetzt bewerben auf die Stelle &quot;' . $title . '&quot; bei ' . $orgName . '.';
             
-            return 'Auf der Suche nach dem Traumjob? ' . $orgName . 'sucht: '. $title . '. Anstellung: '. $contract . '. Jetzt bewerben!';
+            return 'Auf der Suche nach dem Traumjob? ' . $orgName . ' sucht: '. $title . '. Anstellung: '. $contract . '. Jetzt bewerben!';
             
         }
 
         //$description = 'Auf der Suche nach dem Traumjob? Jetzt bewerben auf die Stelle &quot;' . $title . '&quot; in ' . $citiesString . ' bei ' . $orgName . '.';
         
-        $description = 'Auf der Suche nach dem Traumjob? ' . $orgName . 'sucht: '. $title . ' in ' . $citiesString . '. Anstellung: '. $contract . '. Jetzt bewerben!';
+        $description = 'Auf der Suche nach dem Traumjob? ' . $orgName . ' sucht: '. $title . ' in ' . $citiesString . '. Anstellung: '. $contract . '. Jetzt bewerben!';
         
         
 
