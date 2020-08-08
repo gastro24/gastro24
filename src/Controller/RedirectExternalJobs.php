@@ -217,14 +217,17 @@ class RedirectExternalJobs extends AbstractActionController
             $city = $location->getCity();
 
             if (!$city) {
-                return $job->getTitle() . 'bei ' . $orgName;
+                return 'Offene Stelle als '. $job->getTitle() . 'bei ' . $orgName;
+                
             }
         }
         elseif (count($locations) == 0) {
-            return $job->getTitle() . ' bei ' . $orgName;
+            return 'Offene Stelle als '. $job->getTitle() . ' bei ' . $orgName;
         }
         //$title = $job->getTitle() .' bei ' . $orgName . ' in ' . $city ;
-        $title = $job->getTitle() .' in ' . $city . ' bei ' . $orgName ;
+        //$title = $job->getTitle() .' in ' . $city . ' bei ' . $orgName ;
+        
+        $title = 'Offene Stelle als '.  $job->getTitle().' in ' . $city . ' bei ' . $orgName;
 
         return $title;
     }
@@ -262,6 +265,7 @@ class RedirectExternalJobs extends AbstractActionController
         $title = trim($job->getTitle(), '"');
         $orgName = ($job->getOrganization()) ? $job->getOrganization()->getOrganizationName()->getName() : $job->getCompany();
         $locations = $job->getLocations()->toArray();
+        $contract = $job->getClassifications()->getEmploymentTypes();
 
         if (count($locations) > 0) {
             $cities = [];
@@ -274,10 +278,17 @@ class RedirectExternalJobs extends AbstractActionController
 
         }
         elseif (count($locations) == 0) {
-            return 'Auf der Suche nach dem Traumjob? Jetzt bewerben auf die Stelle &quot;' . $title . '&quot; bei ' . $orgName . '.';
+            //return 'Auf der Suche nach dem Traumjob? Jetzt bewerben auf die Stelle &quot;' . $title . '&quot; bei ' . $orgName . '.';
+            
+            return 'Auf der Suche nach dem Traumjob? ' . $orgName . 'sucht: '. $title . '. Anstellung: '. $contract . '. Jetzt bewerben!';
+            
         }
 
-        $description = 'Auf der Suche nach dem Traumjob? Jetzt bewerben auf die Stelle &quot;' . $title . '&quot; in ' . $citiesString . ' bei ' . $orgName . '.';
+        //$description = 'Auf der Suche nach dem Traumjob? Jetzt bewerben auf die Stelle &quot;' . $title . '&quot; in ' . $citiesString . ' bei ' . $orgName . '.';
+        
+        $description = 'Auf der Suche nach dem Traumjob? ' . $orgName . 'sucht: '. $title . ' in ' . $citiesString . '. Anstellung: '. $contract . '. Jetzt bewerben!';
+        
+        
 
         return $description;
     }
