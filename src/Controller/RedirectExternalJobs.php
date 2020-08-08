@@ -265,7 +265,7 @@ class RedirectExternalJobs extends AbstractActionController
         $title = trim($job->getTitle(), '"');
         $orgName = ($job->getOrganization()) ? $job->getOrganization()->getOrganizationName()->getName() : $job->getCompany();
         $locations = $job->getLocations()->toArray();
-        $contract = $job->getClassifications()->getEmploymentTypes() ?:'Vollzeit';
+        $contract = $job->getClassifications()->getEmploymentTypes()>__toString() ?:'Vollzeit';
 
         if (count($locations) > 0) {
             $cities = [];
