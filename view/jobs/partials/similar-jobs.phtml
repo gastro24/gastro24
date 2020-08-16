@@ -59,6 +59,8 @@
                     
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="job-box">
+                  <!--   <a class="job-logo-link" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><img class="job-logo" alt="<?= $orgName ?>" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" /></a> -->
+
                             <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $jobHref ?>">
                                 <?=strip_tags($similarJob->getTitle())?>
                             </a>
