@@ -1,42 +1,25 @@
-<!-- btn btn-default btn-block company-jobs-btn --->
-  <?php if (!$hasBanner): ?>
-      <!-- no banner -->
-<?php endif; ?>
-
-
-<div class="job-navigation">
-    <div class="" style="float:left;padding:0 15px">
-        <?php if($this->hasSession) : ?>
-            <a title="<?= $this->backTitle ?>"
-               href="<?= $this->lastSearchQueryUrl ?>"
-               class="">
-                <i class="fa fa-chevron-left"></i> <?= $this->backTitle ?>
-            </a>
-        <?php else: ?>
-            <a title="<?= $this->translate('Back to search') ?>"
-               href="/de/jobs?clear=1"
-               class="">
-                <i class="fa fa-chevron-left"></i> <?= $this->backTitle ?>
-            </a>
-        <?php endif; ?>
-    </div>
-    <div class="" style="float:right;padding:0 15px">
-        <span <?php if(!$this->prevJob || !$this->nextJob) echo 'class="reverse"' ?>>
-            <?php if($this->prevJob) : ?>
-                <a title="<?= $this->prevJob->getTitle() ?>"
-                   href="<?= $this->jobUrl($this->prevJob, ['linkOnly' => true ]) ?>"
-                   class="btn btn-default">
-                <i class="fa fa-chevron-left"></i><span class="hidden-xs"><?= $this->translate('Previous Job') ?></span>
-            </a>
+<div id="navbar-home-site-links" class="<?php if(!$hasBanner) echo 'no-banner' ?> full-width-bar-vw">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"> 
+          <ul class="pull-left">
+            <li>
+              <?php if($this->hasSession) : ?>
+                 <a class="navbar-item-anchor" title="<?= $this->backTitle ?>" href="<?= $this->lastSearchQueryUrl ?>"><i class="fa fa-angle-left"></i> zurück</a>
+             <?php else: ?>
+                 <a class="navbar-item-anchor" title="<?= $this->translate('Back to search') ?>" href="/de/jobs?clear=1"><i class="fa fa-angle-left"></i> zurück</a>
+             <?php endif; ?>
+            </li>
+          </ul>
+          <ul class="pull-right job-pagination">
+           <?php if($this->prevJob) : ?>
+               <li><a class="navbar-item-anchor" title="<?= $this->prevJob->getTitle() ?>" href="<?= $this->jobUrl($this->prevJob, ['linkOnly' => true ]) ?>"></a><i class="fa fa-arrow-left"></i> </a></li>
             <?php endif; ?>
-
             <?php if($this->nextJob) : ?>
-                <a title="<?= $this->nextJob->getTitle() ?>"
-                   href="<?= $this->jobUrl($this->nextJob, ['linkOnly' => true ]) ?>"
-                   class="btn btn-default">
-           <span class="hidden-xs"> <?= $this->translate('Next Job') ?></span><i class="fa fa-chevron-right right-align"></i>
-            </a>
+                <li><a class="navbar-item-anchor" title="<?= $this->nextJob->getTitle() ?>" href="<?= $this->jobUrl($this->nextJob, ['linkOnly' => true ]) ?>"></a><i class="fa fa-arrow-right"></i> </a></li>
             <?php endif; ?>
-        </span>
+        </ul>
     </div>
+  </div>
+ </div>
 </div>
