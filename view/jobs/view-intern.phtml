@@ -120,22 +120,13 @@ $industries = $job->getClassifications()->getIndustries();
                 
                 <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
                     
-                <p>
-                  <?=$typeOfContract; ?> 
-                  
-                  bei 
-                  
-                  <?php if ($org && !$orgIsDisabled && !$preview): ?>
+                <p><?=$typeOfContract; ?> bei <?php if ($org && !$orgIsDisabled && !$preview): ?>
                         <a title="<?= $this->organizationName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
                     <?php elseif (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
                         <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>"><?= $orgName ?></a>
                     <?php else: ?>
                         <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
-                    <?php endif ?>
-                    
-                    in 
-                    
-                <?php
+                    <?php endif ?> in <?php
                     $location = $job->getLocations()->current();
                     if ($location == '') {
                         echo $this->translate('Swiss');
@@ -290,8 +281,7 @@ $industries = $job->getClassifications()->getIndustries();
                             
       </div>
   <div class="iframe-container">
-     <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20
-     <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>+<?php
+     <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>+<?php
                     $location = $job->getLocations()->current();
                     if ($location == '') {
                         echo $this->translate('Swiss');
