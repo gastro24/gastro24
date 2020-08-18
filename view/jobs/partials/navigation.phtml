@@ -13,10 +13,10 @@
           </ul>
           <ul class="pull-right job-pagination">
            <?php if($this->prevJob) : ?>
-               <li><a class="navbar-item-anchor" title="<?= $this->prevJob->getTitle() ?>" href="<?= $this->jobUrl($this->prevJob, ['linkOnly' => true ]) ?>"></a><i class="fa fa-arrow-left"></i> </a></li>
+               <li><a class="navbar-item-anchor" title="<?= $this->prevJob->getTitle() ?>" href="<?= $this->jobUrl($this->prevJob, ['linkOnly' => true ]) ?>"><i class="fa fa-arrow-left"></i> </a></li>
             <?php endif; ?>
             <?php if($this->nextJob) : ?>
-                <li><a class="navbar-item-anchor" title="<?= $this->nextJob->getTitle() ?>" href="<?= $this->jobUrl($this->nextJob, ['linkOnly' => true ]) ?>"></a><i class="fa fa-arrow-right"></i> </a></li>
+                <li><a class="navbar-item-anchor" title="<?= $this->nextJob->getTitle() ?>" href="<?= $this->jobUrl($this->nextJob, ['linkOnly' => true ]) ?>"><i class="fa fa-arrow-right"></i> </a></li>
             <?php endif; ?>
         </ul>
     </div>
