@@ -156,12 +156,12 @@ $industries = $job->getClassifications()->getIndustries();
                         'job' => $this->job,
                           ]); 
                         ?>
-                      <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                    <!--  <?= $this->partial('jobs/partials/favorite-button.phtml', [
                         'jobId' => $job->getId(),
                         'isExpired' => $isExpired,
                         'buttonCss' => 'favorite-button',
                       ]); 
-                      ?>
+                      ?>-->
                   </div>
                 
              <?php if ($newerThanDay): ?>
@@ -193,7 +193,7 @@ $industries = $job->getClassifications()->getIndustries();
                         </ol>
                   </nav>
             </div>
-        </div>
+        
 
  <div class="col-md-9">
   <div class="info-card">
@@ -208,7 +208,7 @@ $industries = $job->getClassifications()->getIndustries();
    <div class="details-list-content"><span class="title">Branche</span><span class="value">Gastronomie / Lebensmittel / Tourismus</span></div>
 </li>
   <li ><i class="fa fa-angle-right"></i>
-   <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?></span></div>
+   <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
 </li>
 
 </li>
@@ -281,7 +281,7 @@ $industries = $job->getClassifications()->getIndustries();
                         ?>
                     </address>
                         
-                    <?php if (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
+                    <?php if ($org && !$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
                      <div class="meta-adress">
                         <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></a>
                       </div>
@@ -307,6 +307,9 @@ $industries = $job->getClassifications()->getIndustries();
  </div>
 <!-- end col-md-3 -->
 </div>
+
+
+ </div>
 
 <!-- end company-description-wrapper -->
 </div>
