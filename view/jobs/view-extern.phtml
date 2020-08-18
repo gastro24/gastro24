@@ -166,7 +166,20 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
 <?php endif; ?>
 
 <?php if (!$preview) : ?>
-  <style>
+  
+
+    <?php echo $this->partial('jobs/partials/navigation.phtml', [
+        'hasSession' => $hasSession,
+        'backTitle' => $backTitle,
+        'lastSearchQueryUrl' => $lastSearchQueryUrl,
+        'prevJob' => $this->prevJob,
+        'nextJob' => $this->nextJob,
+    ]);
+    ?>
+<?php endif; ?>
+<style>
+    
+    <style>
       
 .apply-detail {
 
@@ -684,16 +697,9 @@ main#content {
   
 </style>
 
+</style>
 
-    <?php echo $this->partial('jobs/partials/navigation.phtml', [
-        'hasSession' => $hasSession,
-        'backTitle' => $backTitle,
-        'lastSearchQueryUrl' => $lastSearchQueryUrl,
-        'prevJob' => $this->prevJob,
-        'nextJob' => $this->nextJob,
-    ]);
-    ?>
-<?php endif; ?>
+
 
 <div class="row">
     <div class="col-md-12">
