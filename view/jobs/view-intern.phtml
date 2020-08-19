@@ -158,6 +158,9 @@ $industries = $job->getClassifications()->getIndustries();
              <?php if ($newerThanDay): ?>
                  <span class="apply-info-new"><i class="fa fa-clock-o"></i> Gehören Sie zu den ersten 3 Bewerbern.</span>
             <?php endif; ?>
+            
+             <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
+
 
       </div>
     </div>
