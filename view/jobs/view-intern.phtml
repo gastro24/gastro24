@@ -275,7 +275,7 @@ $industries = $job->getClassifications()->getIndustries();
                         ?>
                     </address>
                         
-                    <?php if ($org && !$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
+                    <?php if (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
                      <div class="meta-adress">
                         <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></a>
                       </div>
