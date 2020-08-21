@@ -1054,7 +1054,7 @@ main#content {
 
 
 
-                   <?php if (!$preview && $this->isIntern): ?>
+                   <?php if (!$preview): ?>
                         <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
                     <?php endif; ?>
 
