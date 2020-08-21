@@ -248,9 +248,13 @@ $industries = $job->getClassifications()->getIndustries();
   </div>
   
   
+     <?php if (!$preview): ?>
+            <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
+      <?php endif; ?>
+  
     <?php if (!$preview && !$isExpired): ?>  
             <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
-         <?php endif; ?>
+     <?php endif; ?>
   
 <!-- end col-md-9 -->
  </div>
