@@ -261,6 +261,19 @@ $industries = $job->getClassifications()->getIndustries();
                     <h2>Firmenadresse</h2>
                         <address>
                         <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
+                        
+                        <?= (!empty($this->$organization->getContact()->getStreet(). ' ' . $organization->getContact()->getHouseNumber()))  ?><br />
+                        
+                        
+                       <!-- <?= (!empty($this->$organization->getContact()->getPostalcode(). ' ' .$organization->getContact()->getCity()))?> -->
+                        
+         
+                        
+                        
+                        
+                        
+                        
+                        
                           <?php
                           $location = $job->getLocations()->current();
                             if ($location == '') {
