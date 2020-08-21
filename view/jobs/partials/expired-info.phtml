@@ -1,9 +1,5 @@
 <?php if ($this->isExpired) : ?>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-warning expired-info">
-                <?= $this->translate('Diese Stellenanzeige ist nicht mehr verfügbar') ?>
-            </div>
-        </div>
-    </div>
+  <span class="alert-info">
+      <i class="fa fa-info-circle"></i> Diese Stellenanzeige ist nicht mehr aktuell       
+   </span>
 <?php endif; ?>
