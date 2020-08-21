@@ -111,10 +111,16 @@ $industries = $job->getClassifications()->getIndustries();
                              $wrapperLogoUrl = $defaultLogoUrl;
                         }
                    ?>
-                      
+                   
+                   
+          <?php if (!$wrapperLogoUrl): ?>             
              <span class="job-logo-wrapper">
                  <img class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
               </span>
+           <?php endif; ?>  
+           
+           
+              
            <div class="job-info-wrapper">
                 <h1><?=$this->job->getTitle()?></h1>
                 
