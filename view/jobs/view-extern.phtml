@@ -38,8 +38,6 @@ if ($this->isIntern):
      $this->headMeta()->setName('robots', 'index,follow');
 elseif(!$this->isIntern && !$this->isEmbeddable):
       $this->headMeta()->setName('robots', 'noindex,follow');
-elseif(!$this->isIntern && $this->isEmbeddable):
-     $this->headMeta()->setName('robots', 'noindex,follow');
 elseif($isCoopJobWithWrongLink):
     $this->headMeta()->setName('robots', 'noindex,follow');
 endif;
