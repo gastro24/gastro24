@@ -4,29 +4,30 @@
     $similarJobTitle = $this->translate('Weitere Jobs') . ' von ' . $companyName;
 ?>
 <?php if (count($similarCompanyJobs)) : ?>
-<div class="grey-description-container similar-jobs">
-    <div class="content">
-        <div class="headline"><h2 style="margin-top: 5px; margin-bottom: 20px;font-size: 20px;color: #000;"><?= $similarJobTitle ?></h2></div>
-            <div class="row">
+
+<h2 style="margin-bottom:15px;"><?= $similarJobTitle ?></h2>
+
+
                 <?php
                 /* @var Solr\Entity\JobProxy $similarJob */
                 foreach ($similarCompanyJobs as $index => $similarJob):  ?>
                     
-                   <?php if (($index + 1) % 4 == 0) 
-                  //      echo '</div><div class="row">';
-                    ?>
-                    
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="job-box">
-                            <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $this->jobUrl($similarJob, ['linkOnly' => true ]) ?>">
-                                <?=strip_tags($similarJob->getTitle())?>
-                            </a>
+            
+       <div class="card box__job-favorite profile-detail">
+            <a class="job-logo-link" title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $this->jobUrl($similarJob, ['linkOnly' => true ]) ?>">
+                <img class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
+            </a>
+            <div class="card__job-content box__action-buttons">
+            
+            
 
-                            <div class="job-short-info">
-                                <ul>
-                                    <li class="location">
-                                        <!-- location -->
-                                        <?php
+                <h2>
+                    <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $this->jobUrl($similarJob, ['linkOnly' => true ]) ?>"><?=strip_tags($similarJob->getTitle())?></a>
+                </h2>
+                <div class="card__job-info">
+                    <div class="card__job-empname-label"><?= $this->organizationName ?></div>
+                    <div class="card__job-location">
+                      <?php
                                             $location = $similarJob->getLocations()->last();
                                             if ($location == '') {
                                                 echo $this->translate('Swiss');
@@ -38,22 +39,24 @@
                                             else {
                                                 echo (string) $similarJob->getLocation();
                                             }
-                                         ?>
-                                        <!-- end location -->
-                                    </li>
-                                    <li class="type">
-                                        <!-- type of contract -->
-                                        <?php
-                                        $typeOfContract = $similarJob->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
-                                        <span class="yk-contract yk-<?=$typeOfContract?>"><?=$typeOfContract; ?></span>
-                                        <!-- end type of contract -->
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                          ?>
                     </div>
-                <?php endforeach; ?>
+                </div>
+                <div class="card__job-snippet-logo">
+                    <p class="card__job-snippet" dir="auto">
+                    </p>
+                </div>
+                <div class="card_job-short-info">
+                    <ul>
+                        <li class="type"><?= $this->publishDateFormatter($job) ?></li>
+                        <li class="contract"><?php $typeOfContract = $similarJob->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                         <?=$typeOfContract; ?></li>
+                    </ul>
+                </div>
             </div>
-    </div>
-</div>
+          </div>
+            
+            
+        
+         <?php endforeach; ?>
 <?php endif; ?>
