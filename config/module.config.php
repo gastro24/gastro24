@@ -684,7 +684,7 @@ return [
                 'Landgasthaus Rössli' => 10,
             ],
             'jobs' => [
-                /* jobId => boost param *
+                /* jobId => boost param */
             
             
                 '5f3d4223caac2c52d0063304' => 70,
