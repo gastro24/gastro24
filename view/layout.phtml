@@ -222,15 +222,6 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 <!-- end lazy loaded javascript -->
 <script>
     $(document).ready(function() {
-        $('ul.dropdown-menu [data-toggle=dropdown2]').on('click', function(event) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            $(this).parent().siblings().removeClass('open');
-            $(this).parent().siblings().toggleClass('reveal');
-            $(this).parent().toggleClass('open');
-        });
-
         $(document).on('click', function(e) {
             var $trigger = $('.dropdown-menu');
             if($trigger !== e.target && !$trigger.has(e.target).length) {
