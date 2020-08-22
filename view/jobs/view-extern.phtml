@@ -839,7 +839,7 @@ main#content {
                 </ul>
 
 
-                <h2>Stellenbeschreibung</h2>
+                 <h2>Stellenbeschreibung</h2>
 
                 <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
                 <div class="position">
@@ -865,6 +865,8 @@ main#content {
                             //console.log("This file has " + doc._pdfInfo.numPages + " pages");
                     
                             doc.getPage(1).then(page => {
+                                
+                                var DPI = 72; // increase to improve quality
                                 var myCanvas = document.getElementById("my_canvas");
                                 var context = myCanvas.getContext("2d");
                     
