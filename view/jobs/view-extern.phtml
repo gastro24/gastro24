@@ -895,7 +895,7 @@ main#content {
 
           
                   <?php else: ?>
-                      <iframe style="height:1500px;width:100%;" src="<?=$link?>"></iframe>
+                      <iframe defer style="height:1500px;width:100%;" src="<?=$link?>"></iframe>
             <?php endif; ?>
             
             
@@ -946,7 +946,7 @@ main#content {
 
             </div>
             <div class="iframe-container">
-                <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>+<?php
+                <iframe defer src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>+<?php
                     $location = $job->getLocations()->current();
                     if ($location == '') {
                         echo $this->translate('Swiss');
