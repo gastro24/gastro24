@@ -168,6 +168,8 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
 <?php if (!$preview) : ?>
 
     <?php echo $this->partial('jobs/partials/navigation.phtml', [
+        
+        'hasBanner' => $hasBanner,
         'hasSession' => $hasSession,
         'backTitle' => $backTitle,
         'lastSearchQueryUrl' => $lastSearchQueryUrl,
