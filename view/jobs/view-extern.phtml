@@ -153,9 +153,16 @@ endif;
 
 $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'))
-    ->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
 ?>
 
+<?php if ($preview): ?>
+    <?php $this->headStyle()->captureStart() ?>
+    .container {
+    min-width: 100%;
+    padding: 0;
+    }
+    <?php $this->headStyle()->captureEnd() ?>
+<?php endif; ?>
 
 
 <?php if (!$preview) : ?>
