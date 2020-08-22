@@ -961,7 +961,18 @@ main#content {
 <!-- end view PDF / External -->
         
                   
-    
+      <?php $this->configHeadScript()->appendScript('
+      
+       $(window).resize(function() {
+            $(".company-bg-image").height($(".company-profile-wrapper:not(.no-banner)").height());
+
+        });
+
+        $(window).trigger("resize");
+      
+           
+          ');  
+        ?>
 
 
 
