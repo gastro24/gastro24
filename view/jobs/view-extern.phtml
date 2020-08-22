@@ -716,20 +716,10 @@ main#content {
         <div class="jgArSS" style="background-image: url(<?= $imageServerUrl ?>);"></div>
         <div class="company-profile-image">
 
-            <?php
-                  $wrapperLogoUrl = $defaultLogoUrl;
-                     if ($template && ($logo = $template->getLogo())) {
-                            $wrapperLogoUrl = $this->basePath($logo->getUri());
-                        }
-                      else {
-                             $wrapperLogoUrl = $defaultLogoUrl;
-                        }
-                   ?>
-
 
             <?php if ($logo): ?>
             <span class="job-logo-wrapper">
-                <img class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
+                <img class="job-logo" alt="<?= $orgName?>" src="<?= $logoUrl ?>" />
             </span>
             <?php endif; ?>
 
@@ -890,13 +880,10 @@ main#content {
                     
                     </script>
              
-             
-             
-             
-             
+
           
                   <?php else: ?>
-                      <iframe style="height:2500px" id="iframe4" src="<?=$link?>"></iframe>
+                      <iframe style="height:1500px" style="width:100%" src="<?=$link?>"></iframe>
             <?php endif; ?>
             
             
