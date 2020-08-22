@@ -150,21 +150,15 @@ endif;
 
 $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'))
+    ->appendFile('https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js')
     ->appendFile($this->basePath('/dist/js/iframeResizer.js'))
     ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'))
     ->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
 ?>
-<?php if ($preview): ?>
-    <?php $this->headStyle()->captureStart() ?>
-    .container {
-    min-width: 100%;
-    padding: 0;
-    }
-    <?php $this->headStyle()->captureEnd() ?>
-<?php endif; ?>
+
+
 
 <?php if (!$preview) : ?>
-  
 
     <?php echo $this->partial('jobs/partials/navigation.phtml', [
         'hasSession' => $hasSession,
@@ -695,8 +689,6 @@ main#content {
 
 </style>
 
-
-
 <div class="row">
     <div class="col-md-12">
        
@@ -706,6 +698,12 @@ main#content {
         <?php endif ?>
 
       <!-- end view-intern --> 
+       
+       <!-- view PDF / External --> 
+        
+        
+        
+       <!-- end view PDF / External -->
         
         
         
