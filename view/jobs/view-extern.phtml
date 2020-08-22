@@ -38,9 +38,6 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
 if ($this->isIntern):
      $this->headMeta()->setName('robots', 'index,follow');
      // intern HTML
-elseif(!$this->isIntern && $this->isEmbeddable && strpos($link, '.pdf') !== true):
-      $this->headMeta()->setName('robots', 'noindex,follow');
-      // External Websites
 elseif(!$this->isIntern && !$this->isEmbeddable):
       $this->headMeta()->setName('robots', 'noindex,follow');
      // External Redirects
@@ -702,35 +699,284 @@ main#content {
 
       <!-- end view-intern --> 
        
-       <!-- view PDF / External --> 
-        <?php if (!$this->isIntern && $this->isEmbeddable):?>
+<!-- view PDF / External --> 
+<?php if (!$this->isIntern && $this->isEmbeddable):?>
         
-        
-        
-        
-            PDF / External
-        
-        
-        
-        
-        
-        
-        
-                  <?php if (!$preview): ?>
-                        <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
-                    <?php endif; ?>
+<?php if ($hasBanner): ?>
+<style>
+    .company-bg-image:before {
+        background-image: url(<?= $imageServerUrl ?>);
+    }
+</style>
+<?php endif; ?>
+
+<div class="<?php if(!$hasBanner) echo 'no-banner' ?>" style="position:relative;">
+    <div style="height:482.5px" class="company-bg-image"></div>
+    <div class="<?php if(!$hasBanner) echo 'no-banner' ?> company-profile-wrapper">
+        <div class="jgArSS" style="background-image: url(<?= $imageServerUrl ?>);"></div>
+        <div class="company-profile-image">
+
+            <?php
+                  $wrapperLogoUrl = $defaultLogoUrl;
+                     if ($template && ($logo = $template->getLogo())) {
+                            $wrapperLogoUrl = $this->basePath($logo->getUri());
+                        }
+                      else {
+                             $wrapperLogoUrl = $defaultLogoUrl;
+                        }
+                   ?>
 
 
-                  
-                    <?php if (!$preview): ?>
-                        <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
-                    <?php endif; ?>
-        
-         <?php endif ?>
-       <!-- end view PDF / External -->
+            <?php if ($logo): ?>
+            <span class="job-logo-wrapper">
+                <img class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
+            </span>
+            <?php endif; ?>
+
+
+
+            <div class="job-info-wrapper">
+                <h1><?=$this->job->getTitle()?></h1>
+
+                <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+
+                <p><?=$typeOfContract; ?> bei <?php if ($org && !$orgIsDisabled && !$preview): ?>
+                    <a title="<?= $this->organizationName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
+                    <?php elseif (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
+                    <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>"><?= $orgName ?></a>
+                    <?php else: ?>
+                    <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
+                    <?php endif ?> in <?php
+                    $location = $job->getLocations()->current();
+                    if ($location == '') {
+                        echo $this->translate('Swiss');
+                    }
+                    elseif ($location) {
+                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    else {
+                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    ?>
+                </p>
+
+                <div class="apply-wrapper">
+                    <?= $this->partial('jobs/partials/apply-button.phtml', [
+                        'preview' => $preview,
+                        'isExpired' => $isExpired,
+                        'job' => $this->job,
+                          ]); 
+                        ?>
+                    <!--  <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                        'jobId' => $job->getId(),
+                        'isExpired' => $isExpired,
+                        'buttonCss' => 'favorite-button',
+                      ]); 
+                      ?>-->
+                </div>
+
+                <?php if ($newerThanDay): ?>
+                <span class="apply-info-new"><i class="fa fa-clock-o"></i> Gehören Sie zu den ersten 3 Bewerbern.</span>
+                <?php endif; ?>
+
+                <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="company-description-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/"> <span itemprop="name">Home</span></a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span></a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <span itemprop="name"><?=$this->job->getTitle()?></span>
+                        <meta itemprop="position" content="3">
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+
+        <div class="col-md-9">
+            <div class="info-card" style="margin-bottom:0px;">
+                <h2>Kurz & knapp</h2>
+                <ul class="details-list-horizontal">
+
+
+                    <li><i class="fa fa-angle-right"></i>
+                        <div class="details-list-content"><span class="title">Datum der Veröffentlichung</span><span class="value"><?= $this->publishDateFormatter($job) ?></span></div>
+                    </li>
+                    <li><i class="fa fa-angle-right"></i>
+                        <div class="details-list-content"><span class="title">Branche</span><span class="value">Gastronomie / Lebensmittel / Tourismus</span></div>
+                    </li>
+                    <li><i class="fa fa-angle-right"></i>
+                        <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
+                    </li>
+
+                    </li>
+                    <li><i class="fa fa-angle-right"></i>
+                        <div class="details-list-content"><span class="title">Arbeitsort</span><span class="value"><?php
+                    $location = $job->getLocations()->current();
+                    if ($location == '') {
+                        echo $this->translate('Swiss');
+                    }
+                    elseif ($location) {
+                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    else {
+                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    ?></span></div>
+                    </li>
+
+                </ul>
+
+
+
+
+                <h2>Stellenbeschreibung</h2>
+
+                <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+                <div class="position">
+                    <p><?= $this->job->getTemplateValues()->get('companyDescription'); ?></p>
+                </div>
+                <?php endif;?>
+
+                <!-- end info-card -->
+            </div>
+             <?php if(strpos($link, '.pdf') !== false): ?>
+                   <canvas style="width:100%" id="my_canvas"></canvas>
+                   	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js"></script>
+                    <script>
+                    
+                        pdfjsLib.getDocument("<?=$link?>").then(doc => {
+                            //console.log("This file has " + doc._pdfInfo.numPages + " pages");
+                    
+                            doc.getPage(1).then(page => {
+                                var myCanvas = document.getElementById("my_canvas");
+                                var context = myCanvas.getContext("2d");
+                    
+                                var viewport = page.getViewport(2);
+                                myCanvas.width = viewport.width;
+                                myCanvas.height = viewport.height;
+                    
+                                page.render({
+                                    canvasContext: context,
+                                    viewport: viewport
+                                });
+                    
+                                var renderTask = page.render(renderContext);
+                                renderTask.promise.then(function() {
+                                    //console.log('Page rendered');
+                                });
+                    
+                    
+                            });
+                    
+                    
+                        });
+                    
+                    </script>
+             
+             
+             
+             
+             
+          
+                  <?php else: ?>
+                      <iframe style="height:2500px" id="iframe4" src="<?=$link?>"></iframe>
+            <?php endif; ?>
+            
+            
+            
+
+
+            <?php if (!$preview): ?>
+            <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
+            <?php endif; ?>
+
+            <?php if (!$preview && !$isExpired): ?>
+            <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
+            <?php endif; ?>
+
+            <!-- end col-md-9 -->
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="info-card" style="margin-bottom:0px;">
+                <h2>Firmenadresse</h2>
+                <address>
+                    <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
+
+
+                    <?php
+                          $location = $job->getLocations()->current();
+                            if ($location == '') {
+                                echo $this->translate('Swiss');
+                            }
+                            elseif ($location) {
+                                echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                            }
+                            else {
+                                echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                            }
+                        ?>
+                </address>
+
+                <?php if (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
+                <!-- <div class="meta-adress">
+                        <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></a>
+                      </div>-->
+
+
+                <?php endif ?>
+
+
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>+<?php
+                    $location = $job->getLocations()->current();
+                    if ($location == '') {
+                        echo $this->translate('Swiss');
+                    }
+                    elseif ($location) {
+                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    else {
+                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    ?>+Schweiz&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                </iframe>
+            </div>
+            <!-- end col-md-3 -->
+        </div>
+
+
+    </div>
+
+    <!-- end company-description-wrapper -->
+</div>
+ 
+<?php endif ?>
+<!-- end view PDF / External -->
         
                   
     
+
+
 
     </div>
 </div>
