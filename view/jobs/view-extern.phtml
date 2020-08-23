@@ -871,17 +871,13 @@ main#content {
                         
                                 var myCanvas = document.getElementById("my_canvas");
                                 var context = myCanvas.getContext("2d");
-                    
                                 var viewport = page.getViewport(1.2);
-                                
-
                                  myCanvas.width = viewport.width;
                                  myCanvas.height = viewport.height;
                     
                                 page.render({
                                     canvasContext: context,
-                                    viewport: viewport,
-                                    transform: [resolution, 0, 0, resolution, 0, 0]
+                                    viewport: viewport
 
                                 });
                     
