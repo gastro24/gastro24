@@ -872,13 +872,22 @@ main#content {
                                 var myCanvas = document.getElementById("my_canvas");
                                 var context = myCanvas.getContext("2d");
                     
-                                var viewport = page.getViewport(2);
-                                myCanvas.width = viewport.width;
-                                myCanvas.height = viewport.height;
+                                var viewport = page.getViewport(1.5);
+                                
+                                
+                                 var resolution =  2 ; 
+                                 myCanvas.height = resolution*viewport.height;
+                                 myCanvas.width = resolution*viewport.width;
+                                 myCanvas.style.height = viewport.height;
+                                 myCanvas.style.width = viewport.width;
+                                 //myCanvas.width = viewport.width;
+                                 //myCanvas.height = viewport.height;
                     
                                 page.render({
                                     canvasContext: context,
-                                    viewport: viewport
+                                    viewport: viewport,
+                                    transform: [resolution, 0, 0, resolution, 0, 0]
+
                                 });
                     
                                 var renderTask = page.render(renderContext);
