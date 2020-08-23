@@ -228,7 +228,7 @@ $industries = $job->getClassifications()->getIndustries();
 
 <?php if ($this->html): ?>
         <div class="position">
-           <?=strip_tags($this->html, "<b><strong><p><ul><li>")?>
+           <?=strip_tags($this->html)?>
        </div>
      <?php else: ?>
         <div class="position">
