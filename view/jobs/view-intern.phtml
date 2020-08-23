@@ -236,7 +236,7 @@ $industries = $job->getClassifications()->getIndustries();
 
  <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
         <div class="position">
-                    <p><?= $this->job->getTemplateValues()->get('companyDescription'); ?></p> 
+            <p><?= nl2br($this->job->getTemplateValues()->get('companyDescription')); ?></p> 
        </div>
   <?php endif;?>
 
