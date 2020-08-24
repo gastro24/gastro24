@@ -52,13 +52,13 @@ class JobboardApplyUrl extends AbstractHelper
             $url  = $this->urlHelper->__invoke($route, $params);
             $class = 'internal-apply-link';
             $text = 'Jetzt bewerben';
-            $pdflink = '.pdf' == substr($job->getLink(), -4) ?$job->getLink() : null;
+            //$pdflink = '.pdf' == substr($job->getLink(), -4) ?$job->getLink() : null;
 
         } else {
             $url = $ats->getUri();
             $class = 'external-apply-link';
             $text = 'Jetzt bewerben';
-            $pdflink = '.pdf' == substr($job->getLink(), -4) ?$job->getLink() : null;
+            //$pdflink = '.pdf' == substr($job->getLink(), -4) ?$job->getLink() : null;
         }
 
         if ($pdflink) {
