@@ -269,20 +269,18 @@ $industries = $job->getClassifications()->getIndustries();
 <div class="col-md-3">
      <div class="info-card" style="margin-bottom:0px;">
                     <h2>Firmenadresse</h2>
-                        <address>
+                    <address>
                         <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
-                      <?php
-                          $location = $job->getLocations()->current();
-                          if ($location == '') {
-                              echo $this->translate('Swiss');
-                          }
-                          elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
-                              echo $location->getStreetname() . '<br>';
-                              echo $location->getPostalcode() . '' . $location->getCity();
-                          }
-                          else {
-                              echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                          }
+                        <?php
+                            $location = $job->getLocations()->current();
+                            if ($location == '') {
+                                echo $this->translate('Swiss');
+                            } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
+                                echo $location->getStreetname() . '<br>';
+                                echo $location->getPostalcode() . '' . $location->getCity();
+                            } else {
+                                echo preg_replace('~\(.*?\)$~', '', (string)$job->getLocation());
+                            }
                         ?>
                     </address>
                         
