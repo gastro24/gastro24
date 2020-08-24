@@ -955,19 +955,25 @@ main#content {
 
             </div>
             <div class="iframe-container">
-                <iframe defer src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>+<?php
-                    $location = $job->getLocations()->current();
-                    if ($location == '') {
-                        echo $this->translate('Swiss');
-                    }
-                    elseif ($location) {
-                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                    }
-                    else {
-                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                    }
-                    ?>+Schweiz&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                </iframe>
+                <?php
+                $googleMapsString = '';
+                $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $orgName ;
+                $googleMapsString .= '+';
+
+                $location = $job->getLocations()->current();
+                if ($location == '') {
+                    $googleMapsString .= 'Schweiz';
+                }
+                elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
+                    $googleMapsString .= $location->getStreetname() . '+' . $location->getCity() . '+' . $location->getPostalcode() . '+Schweiz';
+                }
+                else {
+                    $googleMapsString .= preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                }
+                ?>
+
+                <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= $googleMapsString ?>&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
             </div>
             <!-- end col-md-3 -->
         </div>
