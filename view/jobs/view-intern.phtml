@@ -271,19 +271,18 @@ $industries = $job->getClassifications()->getIndustries();
                     <h2>Firmenadresse</h2>
                         <address>
                         <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
-                        
-                      
-                          <?php
+                      <?php
                           $location = $job->getLocations()->current();
-                            if ($location == '') {
-                                echo $this->translate('Swiss');
-                            }
-                            elseif ($location) {
-                                echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                            }
-                            else {
-                                echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                            }
+                          if ($location == '') {
+                              echo $this->translate('Swiss');
+                          }
+                          elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
+                              echo $location->getStreetname() . '<br>';
+                              echo $location->getPostalcode() . '' . $location->getCity();
+                          }
+                          else {
+                              echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                          }
                         ?>
                     </address>
                         
