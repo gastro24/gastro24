@@ -7,8 +7,6 @@
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
 
-$this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
-$this->headMeta()->setName('robots', 'noindex,follow');
 
 // check for preview
 $routeParams = $this->params()->fromRoute();
@@ -107,22 +105,23 @@ $industries = $job->getClassifications()->getIndustries();
         <div class="jgArSS" style="background-image: url(<?= $imageServerUrl ?>);"></div>
           <div class="company-profile-image">
               
-               <?php
-                  $wrapperLogoUrl = $defaultLogoUrl;
-                     if ($template && ($logo = $template->getLogo())) {
-                            $wrapperLogoUrl = $this->basePath($logo->getUri());
-                        }
-                      else {
-                             $wrapperLogoUrl = $defaultLogoUrl;
-                        }
-                   ?>
+                  <?php
+                            $wrapperLogoUrl = $defaultLogoUrl;
+                            if ($template && ($logo = $template->getLogo())) {
+                                $wrapperLogoUrl = $this->basePath($logo->getUri());
+                            }
+                            else {
+                                $wrapperLogoUrl = $defaultLogoUrl;
+                            }
+                        ?>
                    
                    
-          <?php if ($logo): ?>             
+          ¨
+          
              <span class="job-logo-wrapper">
                  <img class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
               </span>
-           <?php endif; ?>  
+        
            
            
               
@@ -328,8 +327,3 @@ $industries = $job->getClassifications()->getIndustries();
 
 <!-- end company-description-wrapper -->
 </div>
-
-
-
-
-
