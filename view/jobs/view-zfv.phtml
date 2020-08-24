@@ -266,7 +266,7 @@ $industries = $job->getClassifications()->getIndustries();
                 <div id="job_content">
                     <?php if ($this->html): ?>
                         <div class="position">
-                            <?=$this->html?>
+                            <?=strip_tags($this->html,"<p><ul><li>")?>
                         </div>
                     <?php else: ?>
                         <!-- position / job description -->
