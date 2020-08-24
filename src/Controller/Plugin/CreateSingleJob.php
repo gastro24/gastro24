@@ -141,10 +141,9 @@ class CreateSingleJob extends AbstractPlugin
                 // set directlink
                 $applyUri = $values['applicationUri'];
                 $job->setUriApply($applyUri);
+                $job->setAtsMode(new AtsMode(AtsMode::MODE_URI, $applyUri));
                 break;
             case 'noOnlineApplication':
-                $job->setAtsMode(new AtsMode(AtsMode::MODE_NONE));
-                break;
             default:
                 $job->setAtsMode(new AtsMode(AtsMode::MODE_NONE));
                 break;
