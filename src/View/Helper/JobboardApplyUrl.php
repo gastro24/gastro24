@@ -62,9 +62,9 @@ class JobboardApplyUrl extends AbstractHelper
         }
 
         if ($pdflink) {
-            $pdflink = ' <a href="' . $pdflink . '" class="btn btn-primary">PDF downloaden</a>';
+         //   $pdflink = ' <a href="' . $pdflink . '" class="btn btn-primary">PDF downloaden</a>';
         }
 
-        return $url?sprintf('<a href="%s" class="btn btn-primary %s">%s</a>%s', $url, $class, $text, $pdflink):'';
+        return $url?sprintf('<a rel="nofollow" href="%s" class="btn btn-primary %s">%s</a>%s', $url, $class, $text, $pdflink):'';
     }
 }
