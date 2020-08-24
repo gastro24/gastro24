@@ -188,9 +188,16 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
 
 
 .apply-wrapper {
-
+    display: flex;
+    flex-direction: row;
     padding: 10px 0;
     float: left;
+}
+
+.apply-wrapper .favorite-button {
+    border-radius: 0;
+    margin-left: 10px;
+    margin-bottom: 0;
 }
 
 .apply-info-new {
@@ -764,12 +771,12 @@ main#content {
                         'job' => $this->job,
                           ]); 
                         ?>
-                    <!--  <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                    <?= $this->partial('jobs/partials/favorite-button.phtml', [
                         'jobId' => $job->getId(),
                         'isExpired' => $isExpired,
                         'buttonCss' => 'favorite-button',
                       ]); 
-                      ?>-->
+                    ?>
                 </div>
 
                 <?php if ($newerThanDay): ?>

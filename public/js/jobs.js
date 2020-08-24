@@ -148,7 +148,7 @@
             });
         }
 
-        $('.box__action-buttons button, .apply-button-group .favorite-button').click(function() {
+        $('.box__action-buttons button, .apply-button-group .favorite-button, .apply-wrapper .favorite-button').click(function() {
             var saveButton = $(this);
             markJob(saveButton);
         });

@@ -153,12 +153,12 @@ $industries = $job->getClassifications()->getIndustries();
                         'job' => $this->job,
                           ]); 
                         ?>
-                    <!--  <?= $this->partial('jobs/partials/favorite-button.phtml', [
+                      <?= $this->partial('jobs/partials/favorite-button.phtml', [
                         'jobId' => $job->getId(),
                         'isExpired' => $isExpired,
                         'buttonCss' => 'favorite-button',
                       ]); 
-                      ?>-->
+                      ?>
                   </div>
                 
              <?php if ($newerThanDay): ?>

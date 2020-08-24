@@ -32,7 +32,6 @@ class JobboardApplyUrl extends AbstractHelper
     {
         $ats = $job->getAtsMode();
 
-
         if ($ats->isDisabled()) {
             $url = $job->getLink();
             $pdflink = null;
