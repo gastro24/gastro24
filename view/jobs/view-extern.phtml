@@ -854,8 +854,9 @@ main#content {
                 </ul>
                 
                <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+               <h2><?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> als Arbeitgeber/in</h2>
                 <div class="position intro">
-                    <p><?= $this->job->getTemplateValues()->get('companyDescription'); ?></p>
+                    <p><?= nl2br($this->job->getTemplateValues()->get('companyDescription')); ?></p>
                 </div>
                 <?php endif;?>
 
