@@ -71,7 +71,7 @@ if ($jobBanner) {
 $newerThanDay = false;
 // get date difference
 $today = new DateTime();
-$jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
+$jobDate = $this->job->getDatePublishStart() ?? $this->job->getDateCreated();
 // workaround - mongodb entity has difference in time
 $time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '+02:00');
 $jobDate->setTimestamp($time);
@@ -80,7 +80,7 @@ if ($dayDiff->days < 1) {
     $newerThanDay = true;
 }
 
-$industries = $job->getClassifications()->getIndustries();
+$industries = $this->job->getClassifications()->getIndustries();
 ?>
 <?php if ($preview): ?>
     <?php $this->headStyle()->captureStart() ?>
@@ -128,24 +128,24 @@ $industries = $job->getClassifications()->getIndustries();
            <div class="job-info-wrapper">
                 <h1><?=$this->job->getTitle()?></h1>
                 
-                <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                <?php $typeOfContract = $this->job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
                     
                 <p><?=$typeOfContract; ?> bei <?php if ($org && !$orgIsDisabled && !$preview): ?>
                         <a title="<?= $this->organizationName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
-                    <?php elseif (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
-                        <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>"><?= $orgName ?></a>
+                    <?php elseif (!$preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
+                        <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>"><?= $orgName ?></a>
                     <?php else: ?>
                         <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
                     <?php endif ?> in <?php
-                    $location = $job->getLocations()->current();
+                    $location = $this->job->getLocations()->current();
                     if ($location == '') {
                         echo $this->translate('Swiss');
                     }
                     elseif ($location) {
-                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
                     }
                     else {
-                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                        echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
                     }
                     ?>
                 </p>
@@ -158,7 +158,7 @@ $industries = $job->getClassifications()->getIndustries();
                           ]); 
                         ?>
                       <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                        'jobId' => $job->getId(),
+                        'jobId' => $this->job->getId(),
                         'isExpired' => $isExpired,
                         'buttonCss' => 'favorite-button',
                       ]); 
@@ -206,7 +206,7 @@ $industries = $job->getClassifications()->getIndustries();
 
 
   <li ><i class="fa fa-angle-right"></i>
-   <div class="details-list-content"><span class="title">Datum der Veröffentlichung</span><span class="value"><?= $this->publishDateFormatter($job) ?></span></div>
+   <div class="details-list-content"><span class="title">Datum der Veröffentlichung</span><span class="value"><?= $this->publishDateFormatter($this->job) ?></span></div>
 </li>
   <li ><i class="fa fa-angle-right"></i>
    <div class="details-list-content"><span class="title">Branche</span><span class="value">Gastronomie / Lebensmittel / Tourismus</span></div>
@@ -218,15 +218,15 @@ $industries = $job->getClassifications()->getIndustries();
 </li>
   <li ><i class="fa fa-angle-right"></i>
    <div class="details-list-content"><span class="title">Arbeitsort</span><span class="value"><?php
-                    $location = $job->getLocations()->current();
+                    $location = $this->job->getLocations()->current();
                     if ($location == '') {
                         echo $this->translate('Swiss');
                     }
                     elseif ($location) {
-                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
                     }
                     else {
-                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                        echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
                     }
                     ?></span></div>
 </li>
@@ -276,22 +276,22 @@ $industries = $job->getClassifications()->getIndustries();
                     <address>
                         <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
                         <?php
-                            $location = $job->getLocations()->current();
+                            $location = $this->job->getLocations()->current();
                             if ($location == '') {
                                 echo $this->translate('Swiss');
                             } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
                                 echo $location->getStreetname() . '<br>';
-                                echo $location->getPostalcode() . '' . $location->getCity();
+                                echo $location->getPostalcode() . ' ' . $location->getCity();
                             } else {
-                                echo preg_replace('~\(.*?\)$~', '', (string)$job->getLocation());
+                                echo preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
                             }
                         ?>
                     </address>
                         
-                    <?php if (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
-                    <!-- <div class="meta-adress">
-                        <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></a>
-                      </div>-->
+                    <?php if (!$preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
+                     <div class="meta-adress">
+                         <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></i></a>
+                      </div>
                      
                      
                      <?php endif ?>
@@ -300,20 +300,20 @@ $industries = $job->getClassifications()->getIndustries();
       </div>
   <div class="iframe-container">
       <?php
-          $googleMapsString = '';
-          $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $orgName ;
-          $googleMapsString .= '+';
+      $googleMapsString = '';
+      $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $orgName ;
+      $googleMapsString .= '+';
 
-          $location = $job->getLocations()->current();
-          if ($location == '') {
-              $googleMapsString .= 'Schweiz';
-          }
-          elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
-              $googleMapsString .= $location->getStreetname() . '+' . $location->getCity() . '+' . $location->getPostalcode() . '+Schweiz';
-          }
-          else {
-              $googleMapsString .= preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-          }
+      $location = $this->job->getLocations()->current();
+      if ($location == '') {
+          $googleMapsString .= 'Schweiz';
+      }
+      elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
+          $googleMapsString .= $location->getStreetname() . '+' . $location->getCity() . '+' . $location->getPostalcode() . '+Schweiz';
+      }
+      else {
+          $googleMapsString .= preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
+      }
       ?>
 
       <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= $googleMapsString ?>&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed"
