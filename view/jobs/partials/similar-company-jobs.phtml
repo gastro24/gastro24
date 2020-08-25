@@ -77,6 +77,29 @@
                 </div>
                 <div class="card__job-snippet-logo">
                     <p class="card__job-snippet" dir="auto">
+                        <?php
+                        $preview = null;
+                        if ($similarJob->getTemplateValues()->getIntroduction()) {
+                            $preview = substr(strip_tags($similarJob->getTemplateValues()->getIntroduction()), 0 , 215);
+                        }
+                        elseif($similarJob->getTemplateValues()->get('position')) {
+                            $preview = $similarJob->getTemplateValues()->get('position');
+                            $preview = str_replace(['<li>', '<strong>', '</strong>', '</u>', '</p>', '</h2>', '<b>', '<u>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>','<div>'], ' ', $preview);
+                            $preview = substr(strip_tags($preview), 0 , 215);
+                        }
+                        elseif ($similarJob->getTemplateValues()->getHtml()) {
+                            $preview = $similarJob->getTemplateValues()->getHtml();
+                            $preview = str_replace(['<li>', '<strong>', '</strong>', '</u>', '</p>', '</h2>', '<b>', '<u>', '</b>', '<br>', '</h4>','</h3>','</span>','<span>','<div>'], ' ', $preview);
+                            $preview = substr(strip_tags($preview), 0 , 215);
+                        }
+                        if ($preview) {
+                            $preview = str_replace('<p>', '', $preview);
+                            $preview = str_replace('</p>', '', $preview);
+                            $preview   = implode(' ', explode(' ', $preview, -1));
+                            $preview .= ' ... ';
+                        }
+                        ?>
+                        <?= $preview ?>
                     </p>
                 </div>
                 <div class="card_job-short-info">
