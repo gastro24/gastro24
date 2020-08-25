@@ -36,8 +36,6 @@ $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0
 $this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
 $this->headLink()->prependStylesheet($this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')))
     ->prependStylesheet($this->basePath('dist/css/core.min.css'));
-$this->headLink()->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials.css'))
-    ->appendStylesheet($this->basePath('/modules/Gastro24/jssocials-1.4.0/dist/jssocials-theme-flat.css'));
 
 $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
 $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
@@ -240,34 +238,6 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
             $('.reset-form-mobile').css('display', 'block');
         });
     });
-
-    (function( $ ) {
-        'use strict';
-
-        $('#jobs-list-container').on('yk-paginator-container:loaded.gastro24 g24-jobs:init', function(ev) {
-            $(".shareMail").each(function() {
-                var link = $(this).data("url");
-                var title = $(this).data("title");
-                $(this).jsSocials({
-                    url: link,
-                    text: title,
-                    showCount: true,
-                    shares: ["email"]
-                });
-            });
-            $(".shareWhatsapp").each(function() {
-                var link = $(this).data("url");
-                var title = $(this).data("title");
-                $(this).jsSocials({
-                    url: link,
-                    text: title,
-                    showLabel: false,
-                    showCount: true,
-                    shares: ["whatsapp"]
-                });
-            });
-        });
-    })( jQuery );
 </script>
 </body>
 </html>
