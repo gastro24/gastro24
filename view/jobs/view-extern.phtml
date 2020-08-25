@@ -852,15 +852,14 @@ main#content {
                     </li>
 
                 </ul>
-
-
-                 <h2>Stellenbeschreibung</h2>
-
-                <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
-                <div class="position">
+                
+               <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+                <div class="position intro">
                     <p><?= $this->job->getTemplateValues()->get('companyDescription'); ?></p>
                 </div>
                 <?php endif;?>
+
+                 <h2>Stellenbeschreibung</h2>
 
                 <!-- end info-card -->
                 
@@ -946,7 +945,7 @@ main#content {
                         }
                         elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
                             echo $location->getStreetname() . '<br>';
-                            echo $location->getPostalcode() . '' . $location->getCity();
+                            echo $location->getPostalcode() . ' ' . $location->getCity();
                         }
                         else {
                             echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
