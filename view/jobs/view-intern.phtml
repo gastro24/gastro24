@@ -230,7 +230,7 @@ $industries = $job->getClassifications()->getIndustries();
 </ul>
 
 <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
-        <div class="position">
+        <div class="position intro">
             <p><?= nl2br($this->job->getTemplateValues()->get('companyDescription')); ?></p> 
        </div>
   <?php endif;?>
@@ -274,7 +274,7 @@ $industries = $job->getClassifications()->getIndustries();
                                 echo $this->translate('Swiss');
                             } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
                                 echo $location->getStreetname() . '<br>';
-                                echo $location->getPostalcode() . '' . $location->getCity();
+                                echo $location->getPostalcode() . ' ' . $location->getCity();
                             } else {
                                 echo preg_replace('~\(.*?\)$~', '', (string)$job->getLocation());
                             }
