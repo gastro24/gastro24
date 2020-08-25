@@ -1,4 +1,6 @@
 <?php
+    $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
+    $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
     $similarJobs = $this->similarJobs($this->job);
 
         $location = $this->job->getLocations()->current();
@@ -10,7 +12,7 @@
             $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $jobLocation . ' und Umgebung';
         }
         else {
-            $jobLocation = preg_replace('~\(.*?\)$~', '', (string)$job->getLocation());
+            $jobLocation = preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
             $similarJobTitle = $this->translate('Ähnliche Jobs') . ' in ' . $jobLocation . ' und Umgebung';
         }
 
@@ -31,37 +33,64 @@
 
                         $jobHref = ($jobHasExternLink) ? $similarJob->getLink() : $this->jobUrl($similarJob, ['linkOnly' => true ]);
                     ?>
+                    <?php
+                    $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
+                    /** @var \Gastro24\Entity\Template $template */
+                    $template = $similarJob->getAttachedEntity('gastro24-template');
+                    $orgName = $this->jobOrganizationName($similarJob);
+                    // get org logo as default
+                    $org = $similarJob->getOrganization();
+
+                    if($org && $org->getImages()->notEmpty('images')) {
+                        $defaultLogoUrl = $this->basePath($organizationImageCache->getUri($org->getImages()->get('thumbnail')));
+                    }
+                    $wrapperLogoUrl = $defaultLogoUrl;
+                    if ($template && ($logo = $template->getLogo())) {
+                        $wrapperLogoUrl = $this->basePath($logo->getUri());
+                    }
+                    else {
+                        $wrapperLogoUrl = $defaultLogoUrl;
+                    }
+                    ?>
                     
                     
         <div class="card box__job-favorite profile-detail">
             <a class="job-logo-link" title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $jobHref ?>">
-                <img class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
+                <img class="job-logo" alt="<?= $orgName ?>" src="<?= $wrapperLogoUrl ?>" />
             </a>
             <div class="card__job-content box__action-buttons">
-            
-            
-
+                <!-- favorite button -->
+                <?php if (isset($savedJobsContainer->jobs[$similarJob->getId()])) : ?>
+                    <button type="button" class="btn btn-default saved"
+                            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="<?= $similarJob->getId() ?>">
+                        <span><?=$this->translate('Marked')?></span>
+                    </button>
+                <?php else : ?>
+                    <button type="button" class="pull-right btn btn-default"
+                            data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="<?= $similarJob->getId() ?>">
+                        <span><?=$this->translate('Mark')?></span>
+                    </button>
+                <?php endif ?>
+                <!-- end favorite button -->
                 <h2>
                     <a title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $jobHref ?>"><?=strip_tags($similarJob->getTitle())?></a>
                 </h2>
                 <div class="card__job-info">
-                    <div class="card__job-empname-label"><?= $this->organizationName ?></div>
+                    <div class="card__job-empname-label"><?= $orgName ?></div>
                     <div class="card__job-location">
-                        
-                                       <?php
-                                            $location = $similarJob->getLocations()->last();
-                                            if ($location == '') {
-                                                echo $this->translate('Swiss');
-                                            }
-                                            elseif ($location) {
-                                                echo $location->getCity() ? $location->getPostalCode() . ' ' . $location->getCity() :
-                                                preg_replace('~\(.*?\)$~', '', (string) $similarJob->getLocation());
-                                            }
-                                            else {
-                                                echo (string) $similarJob->getLocation();
-                                            }
-                                          ?>
-                        
+                       <?php
+                            $location = $similarJob->getLocations()->last();
+                            if ($location == '') {
+                                echo $this->translate('Swiss');
+                            }
+                            elseif ($location) {
+                                echo $location->getCity() ? $location->getPostalCode() . ' ' . $location->getCity() :
+                                preg_replace('~\(.*?\)$~', '', (string) $similarJob->getLocation());
+                            }
+                            else {
+                                echo (string) $similarJob->getLocation();
+                            }
+                          ?>
                     </div>
                 </div>
                 <div class="card__job-snippet-logo">

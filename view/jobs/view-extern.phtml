@@ -955,14 +955,10 @@ main#content {
                 </address>
 
                 <?php if (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
-                <!-- <div class="meta-adress">
-                        <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></a>
-                      </div>-->
-
-
+                <div class="meta-adress">
+                    <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></i></a>
+                  </div>
                 <?php endif ?>
-
-
             </div>
             <div class="iframe-container">
                 <?php
