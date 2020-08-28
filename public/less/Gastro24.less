@@ -1537,12 +1537,27 @@ main ul.column li a {
 
 @media(max-width: @screen-xs) {
 
+    nav[aria-label="breadcrumb"] {
+     display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    overflow-x: auto;
+    text-align: center;
+    -ms-overflow-style: none;
+       height: 35px;
+}
+
+nav[aria-label="breadcrumb"]::-webkit-scrollbar {
+    display: none;
+}
+
+
    .breadcrumb {
     display: flex;
     flex: 1;
     flex-direction: row;
     white-space: nowrap;
-    height: 20px;
+ 
 
    }  
     
