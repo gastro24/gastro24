@@ -287,6 +287,9 @@ $industries = $this->job->getClassifications()->getIndustries();
                         <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></i></a>
                       </div>
                      <?php endif ?>
+
+                    <a rel="nofollow" href="https://www.google.com/maps/dir//<?=+$googleMapsString+?>/"> Wegbeschreibung anzeigen</a>
+
       </div>
   <div class="iframe-container">
       <?php
@@ -306,10 +309,8 @@ $industries = $this->job->getClassifications()->getIndustries();
           }
       ?>
 
-      <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= $googleMapsString ?>&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed"
-              frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 
-             <img src="https://maps.googleapis.com/maps/api/staticmap?autoscale=1&size=600x300&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:1%7C<?= $googleMapsString ?>" />
+<img width="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?=+$googleMapsString+?>&zoom=16&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?=+$googleMapsString+?>" alt="Google Map von <?=+$googleMapsString+?>">
 
              
  </div>
