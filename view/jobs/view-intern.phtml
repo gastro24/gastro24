@@ -288,10 +288,10 @@ $industries = $this->job->getClassifications()->getIndustries();
                       </div>
                      <?php endif ?>
 
-                    <a rel="nofollow" href="https://www.google.com/maps/dir//<?= $googleMapsString ?>/"> Wegbeschreibung anzeigen</a>
+                    
 
-      </div>
-  <div class="iframe-container">
+      </div> 
+  <div class="iframe-container" style="padding-bottom:50%;">
       <?php
           $googleMapsString = '';
           $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $orgName ;
@@ -310,12 +310,19 @@ $industries = $this->job->getClassifications()->getIndustries();
       ?>
 
 
-<img width="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&zoom=16&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>" alt="Google Map von <?= $googleMapsString ?>">
+ <img style="position:absolute;" width="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&zoom=13&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>" alt="Google Map von <?= $googleMapsString ?>">
 
              
  </div>
-<!-- end col-md-3 -->
+<div class="info-card" style="margin-top:0px;">
+ <div class="meta-adress">
+    <a rel="nofollow" href="https://www.google.com/maps/dir//<?= $googleMapsString ?>/"><i class="fa fa-car"></i> Wegbeschreibung anzeigen</a>
+  </div>
 </div>
+
+
+<!-- end col-md-3 -->
+  </div>
 
 
  </div>
