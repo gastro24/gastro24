@@ -113,14 +113,22 @@ $industries = $this->job->getClassifications()->getIndustries();
                    ?>
                    
                    
-          <?php if ($logo): ?>             
+          <?php if ($logo && !$preview): ?>             
              <span class="job-logo-wrapper">
                  <img class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
               </span>
-           <?php endif; ?>  
+
+         <?php elseif ($preview) : ?>    
+             <span class="job-logo-wrapper">
+                      <img src="<?= $template && ($logo = $template->getLogo())
+                            ? $this->basePath($logo->getUri())
+                            : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
+              </span>
+          <?php else: ?>
+         
+
+        <?php endif; ?>  
            
-           
-              
            <div class="job-info-wrapper">
                 <h1><?=$this->job->getTitle()?></h1>
                 
