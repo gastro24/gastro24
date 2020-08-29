@@ -216,7 +216,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
     echo $this->configHeadScript()->setAutoEscape(false);
 
-  <?php else: 
+else: 
 
   $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
@@ -228,7 +228,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
     echo $this->configHeadScript()->setAutoEscape(false);
 
-<?php endif ?>
+endif ?>
 
 <!-- end lazy loaded javascript -->
 <script>
