@@ -999,9 +999,11 @@ main#content {
     <!-- end company-description-wrapper -->
 </div>
 
-<div class="to-top-link">
+<?php if (!$this->auth()->isLoggedIn() && !$preview):?>
+   <div class="to-top-link">
                     <a id="scroll-to-top" href="#top"><span class="fa fa-chevron-up"></span> nach oben</a>
-                </div>
+   </div>
+<?php endif ?>
  
 <?php endif ?>
 <!-- end view PDF / External -->
