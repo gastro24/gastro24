@@ -205,7 +205,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
 <!-- lazy loaded javascript-->
-<?php if (!$this->auth()->isLoggedIn()): ?>	
+<?php if (!$this->auth()->isLoggedIn()): 
     $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
         ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
@@ -216,7 +216,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
     echo $this->configHeadScript()->setAutoEscape(false);
 
-  <?php else: ?>
+  <?php else: 
 
   $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
