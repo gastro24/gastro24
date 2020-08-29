@@ -212,7 +212,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
         ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
         ->appendFile($this->basePath($langScript))
-        ->appendFile($this->basePath('dist/js/tinymce.js'))
+        ->appendFile(<?php if ($this->auth()->isLoggedIn()): $this->basePath('dist/js/tinymce.js') <?php endif ?>)
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
 
     echo $this->configHeadScript()->setAutoEscape(false);
