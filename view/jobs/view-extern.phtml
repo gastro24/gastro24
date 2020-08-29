@@ -180,7 +180,6 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
 <?php endif; ?>
 <style>
 
- html { scroll-behavior: smooth; }
 .intro p {
 
     margin-bottom:20px;
@@ -922,10 +921,6 @@ main#content {
                   <?php else: ?>
                       <iframe defer style="height:1500px;width:100%;" src="<?=$link?>"></iframe>
             <?php endif; ?>
-            
-            
-            
-
 
             <?php if (!$preview): ?>
             <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
