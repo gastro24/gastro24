@@ -205,18 +205,31 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
 <!-- lazy loaded javascript-->
-<?php
+<?php if (!$this->auth()->isLoggedIn()): ?>	
     $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
         ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
         ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
         ->appendFile($this->basePath($langScript))
+        ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
+
+    echo $this->configHeadScript()->setAutoEscape(false);
+
+  <?php else: ?>
+
+  $langScript = 'dist/locales/' . $lang . '.js';
+    echo $this->inlineScript()->setAutoEscape(false)
+        ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
+        ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+        ->appendFile($this->basePath($langScript))
         ->appendFile($this->basePath('dist/js/tinymce.js'))
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
 
     echo $this->configHeadScript()->setAutoEscape(false);
-?>
+
+<?php endif ?>
+
 <!-- end lazy loaded javascript -->
 <script>
     $(document).ready(function() {
