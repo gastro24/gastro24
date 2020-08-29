@@ -31,7 +31,6 @@ if (count($jobs)): ?>
         $dateFilterValue = isset($queryGet['dateFilter']) ? $queryGet['dateFilter'] : '';
 
         $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
-        $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/jssocials-1.4.0/dist/jssocials.js')));
         $description = $wordpress->call('value', ['content.rendered'], '');
         $wordpressTitle = '';
 
