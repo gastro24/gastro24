@@ -940,7 +940,7 @@ main#content {
 
         <div class="col-md-3">
             <div class="info-card" style="margin-bottom:0px;">
-                <h2>Firmenadresse</h2>
+                <h2>Kontakt</h2>
                 <address>
                     <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
                     <?php
@@ -960,7 +960,7 @@ main#content {
 
                 <?php if (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
                 <div class="meta-adress">
-                    <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></i></a>
+                    <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>">zur Website</a>
                   </div>
                 <?php endif ?>
             </div>
