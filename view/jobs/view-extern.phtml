@@ -1000,7 +1000,7 @@ main#content {
     <!-- end company-description-wrapper -->
 </div>
 
-<?php if (!$this->auth()->isLoggedIn() && !$preview):?>
+<?php if (!$this->auth()->isLoggedIn() || !$preview):?>
    <div class="to-top-link">
                     <a id="scroll-to-top" href="#top"><span class="fa fa-chevron-up"></span> nach oben</a>
    </div>
