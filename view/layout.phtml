@@ -224,6 +224,7 @@ else:
         ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
         ->appendFile($this->basePath($langScript))
         ->appendFile($this->basePath('dist/js/tinymce.js'))
+        ->appendFile(($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'))
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
 
     echo $this->configHeadScript()->setAutoEscape(false);
