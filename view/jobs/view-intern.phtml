@@ -266,7 +266,7 @@ $industries = $this->job->getClassifications()->getIndustries();
 
 <div class="col-md-3">
      <div class="info-card" style="margin-bottom:0px;">
-                    <h2>Firmenadresse</h2>
+                    <h2>Kontakt</h2>
                     <address>
                         <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
                         <?php
@@ -310,13 +310,13 @@ $industries = $this->job->getClassifications()->getIndustries();
       ?>
 
 
- <img style="position:absolute;" width="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&language=de&zoom=14&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>+Schweiz" alt="Google Map von <?= $googleMapsString ?>">
+ <img style="position:absolute;" width="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>+Schweiz" alt="Google Map von <?= $googleMapsString ?>">
 
              
  </div>
 <div class="info-card" style="margin-top:0px;">
- <div class="meta-adress">
-   <i class="fa fa-car"></i> <a style="color: #1e69a3; text-decoration: underline; display:inline;" rel="nofollow" href="https://www.google.com/maps/dir//<?= $googleMapsString ?>/">Wegbeschreibung anzeigen</a>
+ <div class="meta-adress" style="margin-top:0px; margin-bottom:0px;">
+   <i class="fa fa-car"></i> <a style="display:inline;" target="_blank" rel="noopener nofollow" href="https://www.google.com/maps/dir//<?= $googleMapsString ?>/">Anfahrt zum Arbeitgeber</a>
   </div>
 </div>
 
