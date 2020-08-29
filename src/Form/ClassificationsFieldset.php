@@ -77,7 +77,7 @@ class ClassificationsFieldset extends Fieldset
                 ],
             ]
         );
-        //$this->add($industries);
+        $this->add($industries);
 
         $types = $formElements->get(
             'Core/Tree/Select',
@@ -103,6 +103,6 @@ class ClassificationsFieldset extends Fieldset
         $hydrator = $this->getHydrator();
 //        $hydrator->addStrategy('professions', $professions->getHydratorStrategy());
         $hydrator->addStrategy('employmentTypes', $types->getHydratorStrategy());
-//        $hydrator->addStrategy('industries', $industries->getHydratorStrategy());
+       $hydrator->addStrategy('industries', $industries->getHydratorStrategy());
     }
 }
