@@ -213,9 +213,22 @@ $industries = $this->job->getClassifications()->getIndustries();
   <li ><i class="fa fa-angle-right"></i>
    <div class="details-list-content"><span class="title">Datum der Veröffentlichung</span><span class="value"><?= $this->publishDateFormatter($this->job) ?></span></div>
 </li>
-  <li ><i class="fa fa-angle-right"></i>
-   <div class="details-list-content"><span class="title">Branche</span><span class="value">Gastronomie / Lebensmittel / Tourismus</span></div>
+
+
+<?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
+ <li ><i class="fa fa-angle-right"></i>
+   <div class="details-list-content"><span class="title">Branche</span><span class="value"><?= $industries->__toString(); ?></span></div>
 </li>
+
+<?php else: ?>
+
+ <li ><i class="fa fa-angle-right"></i>
+   <div class="details-list-content"><span class="title">Branche</span><span class="value">Gastronomie / Tourismus</span></div>
+</li>
+<?php endif; ?>
+
+
+ 
   <li ><i class="fa fa-angle-right"></i>
    <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
 </li>
