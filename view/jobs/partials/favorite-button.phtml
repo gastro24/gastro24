@@ -2,7 +2,7 @@
     $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
 ?>
 
-<?php if (!$this->isExpired || $this->preview) : ?>
+<?php if (!$this->isExpired) : ?>
     <?php if (isset($savedJobsContainer->jobs[$this->jobId])) : ?>
         <button type="button" class="btn btn-default saved <?= $this->buttonCss?>"
                 data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="<?= $this->jobId ?>">
