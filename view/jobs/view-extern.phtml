@@ -785,12 +785,17 @@ main#content {
                         'job' => $this->job,
                           ]); 
                         ?>
-                    <?= $this->partial('jobs/partials/favorite-button.phtml', [
+
+               ?>
+                <?php if (!$preview): ?>
+                     <?= $this->partial('jobs/partials/favorite-button.phtml', [
                         'jobId' => $job->getId(),
                         'isExpired' => $isExpired,
                         'buttonCss' => 'favorite-button',
                       ]); 
                     ?>
+                <?php endif; ?>
+                  
                 </div>
 
                 <?php if ($newerThanDay): ?>
