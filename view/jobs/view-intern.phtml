@@ -161,14 +161,15 @@ $industries = $this->job->getClassifications()->getIndustries();
                         'job' => $this->job,
                           ]); 
                         ?>
+                 <?php if (!$preview): ?>
                       <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                        'preview' => $preview,
                         'jobId' => $this->job->getId(),
                         'isExpired' => $isExpired,
                         'buttonCss' => 'favorite-button',
                       ]); 
                       ?>
                   </div>
+                <?php endif; ?>
                 
              <?php if ($newerThanDay): ?>
                  <span class="apply-info-new"><i class="fa fa-clock-o"></i> Gehören Sie zu den ersten 3 Bewerbern.</span>
