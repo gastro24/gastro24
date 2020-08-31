@@ -5,6 +5,7 @@ namespace Gastro24\Service;
 use Auth\Entity\User;
 use Auth\Listener\Events\AuthEvent;
 use Auth\Service\Exception\UserAlreadyExistsException;
+use Auth\Service\Exception\UserNotFoundException;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\Mvc\Controller\Plugin\Url;
 use Core\Controller\Plugin\Mailer;
@@ -67,9 +68,9 @@ class RegisterConfirmation
 
     public function proceed($userId)
     {
-        $user = $this->userRepository->findOneBy(['id' => $userId], ['allowDeactivated' => true]);
+        $user = $this->userRepository->findOneBy(['id' => $userId, 'isDraft' => true], ['allowDeactivated' => true]);
         if (!$user) {
-            throw new Exception\UserNotFoundException('User cannot be found');
+            throw new UserNotFoundException('User cannot be found');
         }
 
         /* \Auth\Entity\Info */

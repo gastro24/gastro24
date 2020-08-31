@@ -169,6 +169,8 @@ class Register extends BaseRegisterService
             $info->setLastName($lastname);
             $info->setEmailVerified(false);
 
+            //$user->setStatus(\Auth\Entity\Status::INACTIVE);
+            $user->setIsDraft(true);
             $user->setPassword($password);
 
             $userRepository->store($user);

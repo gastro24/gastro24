@@ -62,7 +62,7 @@ class RegisterConfirmationController extends AbstractActionController
         $userId = $this->params()->fromRoute('userId', null);
         $userRepository = $this->repositories->get('Auth/User');
         //$user = $userRepository->find($userId);
-        $user = $userRepository->findOneBy(['id' => $userId], ['allowDeactivated' => true]);
+        $user = $userRepository->findOneBy(['id' => $userId, 'isDraft' => true], ['allowDeactivated' => true]);
 
         if (!$user) {
             $this->notification()->danger(/*@translate*/ 'User cannot be found');
@@ -94,6 +94,7 @@ class RegisterConfirmationController extends AbstractActionController
                         $user->getInfo()->setStreet($registerCompanyForm->get('street')->getValue());
                         $user->getInfo()->setCountry($registerCompanyForm->get('country')->getValue());
                         $user->getInfo()->setGender($registerCompanyForm->get('gender')->getValue());
+                        $user->setIsDraft(false);
                         $this->repositories->store($user);
 
                         // save organization
