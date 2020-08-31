@@ -364,7 +364,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                     [
                         'name' => \Core\Filter\File\Resize::class,
                         'options' => [
-                            'max-width' => 150,
+                            'max-width' => 250,
                         ],
                     ],
                     [
@@ -393,7 +393,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                         'name' => \Core\Filter\File\Resize::class,
                         'options' => [
                             'max-width' => 1200,
-                            'max-height' => 300
+                            'max-height' => 410
                         ],
                     ],
                     [
