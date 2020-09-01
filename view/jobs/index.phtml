@@ -31,15 +31,9 @@ $wordpressTitle = '';
  if (!count($this->jobs) && $this->params()->fromRoute('isLandingPage')) {
 
     $wordpressTitle = $wordpress->call('value', ['title.rendered'], '');
-    $robots = "index,follow";
- } else {
-     $robots = "noindex,follow";
- }
+  
+ } 
 
-// NOINDEX on filteded Landingpages
-//if (!$this->params()->fromRoute('isLandingPage') && $this->params()->fromRoute('isFilteredLandingPage')) {
- //   $robots = substr($robots, 2);
-//}
 
 // set Canonical URL only / jobs entry
 if (304 === $query && !$this->params()->fromRoute('isLandingPage' ))  {
@@ -58,8 +52,6 @@ if (304 === $query && !$this->params()->fromRoute('isLandingPage' ))  {
  }
 
 
-
-$this->headMeta()->setName('robots', $robots);
 $noJobsMessage = $this->translate('No jobs found.');
 ?>
 <?php $this->headScript()->captureStart();?>
