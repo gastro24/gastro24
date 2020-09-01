@@ -25,21 +25,27 @@ $title = $wordpress->call('value', ['meta-fields.title'], '');
 $this->headTitle($title ?: $this->translate('Jobs'));
 $headline = $wordpress->call('value', ['title.rendered'], '');
 $headline = $headline ?: $searchTerm;
-
 $wordpressTitle = '';
 
+// set Canonical URL only / jobs entry
+if (304 === $query && !$this->params()->fromRoute('isLandingPage' ))  {
+    
+    $jobsLandingpage = $this->serverUrl() . "/de/jobs?clear=1";
+    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
 
- 
-
+}
 
 // set Canonical URL only on landingpage entries
  if ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description) ) {
      
-    $jobUrl = $this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
+    $jobUrl = $this->serverUrl() .$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
     $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
 
  }
-$this->headMeta()->setName('robots', $robots);
+
+//$this->headMeta()->setName('robots', $robots);
+
+
 $noJobsMessage = $this->translate('No jobs found.');
 ?>
 <?php $this->headScript()->captureStart();?>
