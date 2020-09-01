@@ -33,7 +33,7 @@ $wordpressTitle = '';
 
 
 // set Canonical URL on Landingpage entry
- if ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description)) ) {
+ if ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description) ) {
      
     $jobUrl = $this->serverUrl() . $this->url('lang/jobboard', [], [], true);
     $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
