@@ -27,29 +27,18 @@ $headline = $wordpress->call('value', ['title.rendered'], '');
 $headline = $headline ?: $searchTerm;
 
 $wordpressTitle = '';
-// set temporarly index,follow without canonical only on landing pages without jobs, because there is an issue with google indexing
- if (!count($this->jobs) && $this->params()->fromRoute('isLandingPage')) {
-     $wordpressTitle = $wordpress->call('value', ['title.rendered'], '');
-   //$jobsLandingpage = "/de/jobs?clear=1";
-   // $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
-    $robots = "index,follow";
- } else {
-     $robots = "noindex,follow";
+
+
+ 
+
+
+// set Canonical URL on Landingpage entry
+ if ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description)) ) {
+     
+    $jobUrl = $this->serverUrl() . $this->url('lang/jobboard', [], [], true);
+    $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
+
  }
-
-if (304 === $query || ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage') && (count($this->jobs) || $description))) {
-    $robots = substr($robots, 2);
-
-    // set canonical link - but not on landing pages
-    if (!$this->params()->fromRoute('isLandingPage')) {
-       // $jobUrl = $this->serverUrl() . $this->url('lang/jobboard', [], [], true);
-      //  $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobUrl), 'PREPEND');
-      
-      $jobsLandingpage = $this->serverUrl() . "/de/jobs?clear=1";
-      $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $jobsLandingpage));
-    }
-}
-
 $this->headMeta()->setName('robots', $robots);
 $noJobsMessage = $this->translate('No jobs found.');
 ?>
