@@ -36,10 +36,6 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
     $isCoopJobWithWrongLink = true;
 }
 
-// set NOINDEX on IFRAMED websites
-if(strpos($link, '.pdf') !== true):
-   $this->headMeta()->setName('robots', 'noindex,follow');
-endif;
 
 if ($this->isIntern):
      $this->headMeta()->setName('robots', 'index,follow');
