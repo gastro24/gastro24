@@ -5,9 +5,8 @@
 #
 User-agent: *
 # Exclude Special Areas
-Disallow: */dashboard
-Disallow: */settings
 Disallow: */view
 Disallow: */apply
-Disallow: */content
+#Special parameters
+Disallow: *?q=*
 Sitemap: https://www.gastrojob24.ch/pro-sitemaps-4112318.php
