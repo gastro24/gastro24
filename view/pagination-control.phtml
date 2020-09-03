@@ -35,7 +35,8 @@ if ($this->pageCount > 1):
                         <?php
 
                         if ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage')) {
-                            $url = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true) . '?page=' . $this->previous;
+                            $url = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
+                            if ($this->previous != 1) { $url .= '?page=' . $this->previous; }
                         } else {
                         $url = $this->url($this->route, ['lang' => $this->lang], ['query' => $query], true); }
                         ?>
@@ -59,7 +60,8 @@ if ($this->pageCount > 1):
                 <?php if (isset($this->next)): $query['page'] = $this->next; ?>
                     <?php
                     if ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage')) {
-                        $url = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true) . '?page=' . $this->next;
+                        $url = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
+                        if ($this->next != 1) { $url .= '?page=' . $this->next; }
                     } else { $url                 =
                         $this->url($this->route, array('lang' => $this->lang), array('query' => $query), true);
                     } ?>
