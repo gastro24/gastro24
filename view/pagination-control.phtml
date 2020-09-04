@@ -34,7 +34,7 @@ if ($this->pageCount > 1):
                     <?php if (isset($this->previous)): $query['page'] = $this->previous; ?>
                         <?php
 
-                        if ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage')) {
+                        if ($this->params()->fromRoute('isLandingPage')) {
                             $url = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
                             if ($this->previous != 1) { $url .= '?page=' . $this->previous; }
                         } else {
@@ -59,7 +59,7 @@ if ($this->pageCount > 1):
                 <?php if ($enableNextButton): ?>
                 <?php if (isset($this->next)): $query['page'] = $this->next; ?>
                     <?php
-                    if ($this->params()->fromRoute('isLandingPage') && !$this->params()->fromRoute('isFilteredLandingPage')) {
+                    if ($this->params()->fromRoute('isLandingPage')) {
                         $url = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
                         if ($this->next != 1) { $url .= '?page=' . $this->next; }
                     } else { $url                 =
