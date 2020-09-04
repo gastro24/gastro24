@@ -17,7 +17,5 @@ public/templates/modern/job.css
 test/sandbox/.env
 test/sandbox/config/autoload/yawik.config.global.php
 
-composer.lock
-
 
 public/g24-startpage.css
