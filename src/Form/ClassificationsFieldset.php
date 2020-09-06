@@ -48,7 +48,7 @@ class ClassificationsFieldset extends Fieldset
                 'name' => 'professions',
                 'options' => [
                     'description' => /*@translate*/ 'Select the professions of the job opening. This allows an applicant to find job openings by a certain profession.',
-                    'label' => /*@translate*/ 'Professions',
+                    'label' => /*@translate*/ 'Qualifikation',
                 ],
                 'attributes' => [
                     'data-width' => '100%',
@@ -56,7 +56,7 @@ class ClassificationsFieldset extends Fieldset
                 ],
             ]
         );
-        //$this->add($professions);
+        $this->add($professions);
 
         $industries = $formElements->get(
             'Core/Tree/Select',
@@ -68,7 +68,7 @@ class ClassificationsFieldset extends Fieldset
                 'allow_select_nodes' => true,
                 'name' => 'industries',
                 'options' => [
-                    'label' => /*@translate*/ 'Industries',
+                    'label' => /*@translate*/ 'Branche',
                     'description' => /*@translate*/ 'Select the industry of the hiring organization. This allows an applicant to search for job opening by industry.',
                 ],
                 'attributes' => [
@@ -101,7 +101,7 @@ class ClassificationsFieldset extends Fieldset
 
 
         $hydrator = $this->getHydrator();
-//        $hydrator->addStrategy('professions', $professions->getHydratorStrategy());
+        $hydrator->addStrategy('professions', $professions->getHydratorStrategy());
         $hydrator->addStrategy('employmentTypes', $types->getHydratorStrategy());
        $hydrator->addStrategy('industries', $industries->getHydratorStrategy());
     }
