@@ -47,7 +47,7 @@ class ClassificationsFieldset extends Fieldset
                 'allow_select_nodes' => true,
                 'name' => 'professions',
                 'options' => [
-                    'description' => /*@translate*/ 'Select the professions of the job opening. This allows an applicant to find job openings by a certain profession.',
+                    'description' => /*@translate*/ 'Bitte wählen Sie die erforderlichen Qualifikationen aus der Liste aus.',
                     'label' => /*@translate*/ 'Qualifikation',
                 ],
                 'attributes' => [
