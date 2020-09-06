@@ -134,6 +134,7 @@ if ($dayDiff->days < 1) {
 
 $link = $this->job->getLink();
 $industries = $job->getClassifications()->getIndustries();
+$qualifications = $this->job->getClassifications()->getProfessions();
 
 //if (!$link) {
 //    $link = $this->jobUrl($job, ['preview' => true, 'linkOnly' => true]);
@@ -852,6 +853,13 @@ main#content {
    <div class="details-list-content"><span class="title">Branche</span><span class="value">Gastronomie / Tourismus</span></div>
 </li>
 <?php endif; ?>
+
+<?php if ($qualifications->getItems()->count() && !$this->isCrawlerJob($org) && $qualifications->__toString() != ""): ?>
+ <li ><i class="fa fa-angle-right"></i>
+   <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
+</li>
+<?php endif; ?>
+
 
                     <li><i class="fa fa-angle-right"></i>
                         <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
