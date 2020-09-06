@@ -231,7 +231,7 @@ $qualifications = $this->job->getClassifications()->getProfessions();
 
 <?php if ($qualifications->getItems()->count() && !$this->isCrawlerJob($org) && $qualifications->__toString() != ""): ?>
  <li ><i class="fa fa-angle-right"></i>
-   <div class="details-list-content"><span class="title">Branche</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
+   <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
 </li>
 <?php endif; ?>
 
