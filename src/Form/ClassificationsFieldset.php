@@ -88,7 +88,7 @@ class ClassificationsFieldset extends Fieldset
                 ],
                 'name' => 'employmentTypes',
                 'options' => [
-                    'label' => /*@translate*/ 'Employment Types',
+                    'label' => /*@translate*/ 'Beschäftigungsart',
                     'description' => /*@translate*/ 'Manage the employment types you want to assign to jobs.',
                 ],
                 'attributes' => [
