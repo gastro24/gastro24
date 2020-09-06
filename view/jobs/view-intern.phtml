@@ -86,6 +86,7 @@ if ($dayDiff->days < 1) {
 }
 
 $industries = $this->job->getClassifications()->getIndustries();
+$qualifications = $this->job->getClassifications()->getProfessions();
 ?>
 
 <?php if ($hasBanner): ?>
@@ -228,9 +229,14 @@ $industries = $this->job->getClassifications()->getIndustries();
 </li>
 <?php endif; ?>
 
+<?php if ($qualifications->getItems()->count() && !$this->isCrawlerJob($org) && $qualifications->__toString() != ""): ?>
+ <li ><i class="fa fa-angle-right"></i>
+   <div class="details-list-content"><span class="title">Branche</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
+</li>
+<?php endif; ?>
 
  
-  <li ><i class="fa fa-angle-right"></i>
+<li ><i class="fa fa-angle-right"></i>
    <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
 </li>
 
