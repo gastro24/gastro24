@@ -17,6 +17,11 @@ if ($this->pageCount > 1):
     $enableNextButton = $currentPage < $this->pageCount;
     $enablePrevButton = $currentPage > 1;
 
+    if ($this->params()->fromRoute('isLandingPage')) {
+        $canonicalUri = $this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
+        if ($currentPage > 1) { $canonicalUri .= '?page=' . $currentPage; }
+        $this->headLink(array('rel' => 'canonical', 'href' => $canonicalUri), 'PREPEND');
+    }
     ?>
     <div class="row">
         <div class="col-md-10 pagination-pages-span">
