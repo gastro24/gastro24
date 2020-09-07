@@ -3,7 +3,6 @@
 @import "_header.less";
 @import "_footer.less";
 @import "_jobs.less";
-@import "_socials.less";
 @import "_search-form-container.less";
 @import "_saved-jobs.less";
 @import "_organizations.less";
@@ -1414,13 +1413,6 @@ main ul.column li a {
 
     }
 
-    .featured-image-box .box__action-buttons button,
-    .featured-image-box .jssocials-share {
-
-
-        margin: 0px;
-    }
-
     .dropdown-menu-mobile {
         margin-top: 0;
     }
@@ -1546,6 +1538,13 @@ main ul.column li a {
 
 @media(max-width: @screen-xs) {
 
+.job-results-container .container__date-filter .container--filter {
+
+    position: absolute;
+    top: -35px;
+    right: 12px;
+}	
+
     nav[aria-label="breadcrumb"] {
      display: flex;
     flex-direction: row;
@@ -1553,12 +1552,13 @@ main ul.column li a {
     overflow-x: auto;
     text-align: center;
     -ms-overflow-style: none;
-       height: 35px;
+    height: 35px;
 }
 
 nav[aria-label="breadcrumb"]::-webkit-scrollbar {
     display: none;
 }
+
 
 
    .breadcrumb {
@@ -1680,10 +1680,8 @@ nav[aria-label="breadcrumb"]::-webkit-scrollbar {
         margin-left: auto
     }
 
-    .jssocials {
-        padding-bottom: 0
-    }
-
+ 
+ 
     .panel__job-detail .panel-body .button-job-apply {
         margin-bottom: 2px
     }

@@ -7,7 +7,6 @@
 @import "_footer.less";
 @import "_search-form-container.less";
 @import "_saved-jobs.less";
-@import "_carousel-startpage.less";
 
  .form-inline.search-form .btn-primary {
             background-color: #1a6ba7!important;
@@ -543,7 +542,7 @@
     
   .full-background {
  
-    background-position: center;
+    background-position: center right;
 
 }
     
@@ -565,12 +564,7 @@
         }
     }
     
-  .carousel-control.right i {
-    right: -8px;
-}
- .carousel-control.left i {
-    left: -8px;
-}
+
     
     .navbar {
         &-nav2 {
@@ -740,16 +734,8 @@
     }
     
     
-  .carousel-control.right i, .carousel-control.left i {
-    margin-top:-15px;
-}
 
-    
- 
- 
-#recommended-jobs h2 {
-      display:none;
-  }
+
 #inspireBanner .inspireContent ul.usp li:not(:first-child)  {
     min-height:50px;
   
@@ -818,7 +804,7 @@
         margin-bottom: 9px;
         margin-top: 13px;
         font-weight: 700;
-        max-width: 70%;
+        max-width: 80%;
     }
 
     .container-search {
@@ -897,6 +883,16 @@
         padding-right: 12px;
         padding-left: 12px;
     }
+
+#recommended-jobs {
+    margin-bottom: 0px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
 }
 
 @media all and (min-width: 768px) {
@@ -1073,3 +1069,7 @@ input[type="file"] {
             opacity: 1;
         }
     }
+
+
+
+/* SLICK CSS */

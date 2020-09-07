@@ -36,6 +36,8 @@ $this->headTitle($this->translate('Home'));
     <link rel="stylesheet" type="text/css" href="<?= $this->basePath('dist/css/core.min.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
     <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('modules/Gastro24/g24-startpage.css')) ?>">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
     <title>Jobbörse Gastrojob24 ▷ Gastronomie Jobs & Hotel Jobs Schweiz</title> 
     <meta name="description" content="Jetzt Traumjob finden aus <?= $this->gastroJobCount() ?> Stellen bei Gastrojob24.ch - der #1 Gastronomie & Hotellerie Jobbörse der Schweiz.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -313,17 +315,57 @@ $this->headTitle($this->translate('Home'));
                 </div>
             </div>
 
+
+
+	      <style>
+			    .center {
+			        display: none;
+			    }
+
+			    .center.slick-initialized {
+			        display: block;
+			    }
+
+			    @media (min-width: 990px) {
+
+			        .center-outer {
+			            height: 325px;
+			        }
+			    }
+			    @media (max-width: 990px) {
+
+			        .center-outer {
+			            height: 300px;
+			        }
+			    }
+			    @media (max-width: 768px) {
+
+			        .center-outer {
+			            height: 275px;
+			        }
+			    }
+			    @media (max-width: 468px) {
+
+			        .center-outer {
+			            height: 255px;
+			        }
+			    }
+
+			</style>
+
             <div id="recommended-jobs">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <h2>Empfohlene Stellenanzeigen</h2>
                         </div>
-                        <div class="carousel carousel-showmanymoveone slide" id="carousel-tilenav" data-ride="carousel" data-interval="4500">
-                            <div class="carousel-inner">
+                     <div class="center-outer">	
+		                 	<div class="center">
+
+
                                 <!-- begin carousel -->
-                                  <div class="item active">
-                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                  <div class="item ">
+                                    <div class="">
                                         <div class="recommended-box">
                                             <div class="recommended-box-inner">
                                                 <div class="recommended-box-jobtitle">
@@ -380,7 +422,7 @@ $this->headTitle($this->translate('Home'));
                                 </div>
                                 
                                   <div class="item">
-                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <div class="">
                                         <div class="recommended-box">
                                             <div class="recommended-box-inner">
                                                 <div class="recommended-box-jobtitle">
@@ -436,7 +478,7 @@ $this->headTitle($this->translate('Home'));
                                     </div>
                                 </div>
                             <div class="item">
-                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <div class="">
                                         <div class="recommended-box">
                                             <div class="recommended-box-inner">
                                                 <div class="recommended-box-jobtitle">
@@ -494,7 +536,7 @@ $this->headTitle($this->translate('Home'));
 
 
                                 <div class="item">
-                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <div class="">
                                         <div class="recommended-box">
                                             <div class="recommended-box-inner">
                                                 <div class="recommended-box-jobtitle">
@@ -551,13 +593,18 @@ $this->headTitle($this->translate('Home'));
                                 </div>
                             
                             
+
+
+
+
+
+                            
                             
                                 <!-- end carousel -->
                             </div>
                         </div>
 
-                        <a class="left carousel-control" href="#carousel-tilenav" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                        <a class="right carousel-control" href="#carousel-tilenav" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+
                     </div>
                 </div>
             </div>
@@ -877,7 +924,7 @@ $this->headTitle($this->translate('Home'));
         $langScript = 'dist/locales/' . $lang . '.js';
         echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
             ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
-            ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
+            //->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
             ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')))
             ->appendFile($this->basePath($langScript));
         echo $this->configHeadScript()->setAutoEscape(false);
@@ -886,23 +933,34 @@ $this->headTitle($this->translate('Home'));
     
     <script>
         $( document ).ready(function() {
-            $('.carousel-showmanymoveone .item').each(function() {
-                var itemToClone = $(this);
-
-                for (var i = 1; i < 3; i++) {
-                    itemToClone = itemToClone.next();
-
-                    // wrap around if at end of item collection
-                    if (!itemToClone.length) {
-                        itemToClone = $(this).siblings(':first');
-                    }
-
-                    // grab item, clone, add marker class, add to collection
-                    itemToClone.children(':first-child').clone()
-                        .addClass("cloneditem-" + (i))
-                        .appendTo($(this));
+         $('.center').slick({
+            centerMode: true,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            centerPadding: '10px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '10px',
+                    slidesToShow: 2
                 }
+                },
+                {
+                breakpoint: 480,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                }
+                }
+            ]
             });
+		
 
             $(document).on('click', function(e) {
                 var $trigger = $('.dropdown-menu');
@@ -1007,5 +1065,6 @@ $this->headTitle($this->translate('Home'));
             });
         });
     </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
  </body>
 </html>

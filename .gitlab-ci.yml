@@ -6,31 +6,42 @@ before_script:
    - mkdir -p ~/.ssh
    - echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts
    - export PATH=$PATH:/usr/local/bin
-   
+
 after_script:
   - killall ssh-agent
   - date
 
 stages:
   - test
+  - staging
   - deploy
-   
-deploy_master:
- stage: deploy
- only: 
-   - master
- script:
-   - dep -vvv deploy
 
-#deploy_staging:
-# stage: deploy
-# except:
-#   - master
-# script:
-#   - dep deploy staging
+deploy_master:
+  stage: deploy
+  environment:
+    name: live/$CI_COMMIT_REF_NAME
+    url: https://$CI_ENVIRONMENT_SLUG.example.com
+  only:
+    - master
+  script:
+    - dep -vvv deploy
+  resource_group: prod
+
+deploy_staging:
+  stage: staging
+  environment:
+    name: staging/$CI_COMMIT_REF_NAME
+    url: https://$CI_ENVIRONMENT_SLUG.example.com
+  except:
+   - master
+  script:
+   - dep deploy staging
+  resource_group: staging
 
 test:
- stage: test
- script:
-   - pgrep ssh-agent
-   - echo "do some tests"
+  stage: test
+  script:
+    - pgrep ssh-agent
+    - echo "do some tests"
+
+
