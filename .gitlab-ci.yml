@@ -35,7 +35,8 @@ deploy_staging:
   except:
    - master
   script:
-   - dep deploy staging
+#   - dep deploy staging
+    - ssh staging.gastrojob24.ch ls -la
   resource_group: staging
 
 test:
