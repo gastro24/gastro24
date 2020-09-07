@@ -13,7 +13,7 @@ if ($this->pageCount > 1):
 
     $query = $this->params()->fromQuery();
 
-    $currentPage = (isset($query['page']) && !is_null($query['page'])) ? $query['page'] : '1';
+    $currentPage = (isset($query['page']) && $query['page']>0) ? $query['page'] : '1';
     $enableNextButton = $currentPage < $this->pageCount;
     $enablePrevButton = $currentPage > 1;
 
@@ -36,14 +36,14 @@ if ($this->pageCount > 1):
                         <?php
 
                         if ($this->params()->fromRoute('isLandingPage')) {
-                            $url = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
-                            if ($this->previous > 1) { $url .= '?page=' . $this->previous; }
+                            $previousUri = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
+                            if ($this->previous > 1) { $previousUri .= '?page=' . $this->previous; }
                         } else {
-                        $url = $this->url($this->route, ['lang' => $this->lang], ['query' => $query], true); }
+                        $previousUri = $this->url($this->route, ['lang' => $this->lang], ['query' => $query], true); }
                         ?>
                         <li class="prev-link"><a title="<?= $this->translate('Back') ?>" href="<?php echo $url ?>"><span fill="currentColor" class="pagination-previous">
 <svg fill="currentColor" data-icon="caret-left" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M12 0L4 8l8 8V0z"></path></svg></span>
-                                <?php $this->headLink(array('rel' => 'prev', 'href' => $url), 'PREPEND'); ?>
+                                <?php $this->headLink(array('rel' => 'prev', 'href' => $previousUri), 'PREPEND'); ?>
                             </a></li>
                     <?php else: ?>
                         <li class="disabled" id="prev-link">
@@ -59,13 +59,13 @@ if ($this->pageCount > 1):
                 <?php if ($enableNextButton): ?>
                     <?php
                     if ($this->params()->fromRoute('isLandingPage')) {
-                        $url = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
-                        if ($this->next != 1) { $url .= '?page=' . $this->next; }
-                    } else { $url                 =
+                        $nextUri = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
+                        if ($this->next != 1) { $nextUri .= '?page=' . $this->next; }
+                    } else { $nextUri                 =
                         $this->url($this->route, array('lang' => $this->lang), array('query' => $query), true);
                     } ?>
 
-                    <li class="next-link"><a title="<?=$this->translate('Next') ?>" href="<?php echo $url ?>"><span fill="currentColor" class="pagination-next">
+                    <li class="next-link"><a title="<?=$this->translate('Next') ?>" href="<?php echo $nextUri ?>"><span fill="currentColor" class="pagination-next">
 <svg fill="currentColor"
 data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M4 0v16l8-8-8-8z"></path></svg></span>
 
@@ -82,3 +82,15 @@ data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 1
         </div>
     </div>
 <?php endif; ?>
+<pre>
+<?php
+var_dump([
+    "canonical" => $canonicalUri,
+    "next" => $nextUri,
+    "prev" => $previousUri,
+    "pageCount" => $this->pageCount,
+    "currentPage" => $currentPage,
+    "query" => $query
+    ]);
+?>
+</pre>
