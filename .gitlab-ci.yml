@@ -17,6 +17,9 @@ stages:
    
 deploy_master:
  stage: deploy
+ environment:
+   name: live/$CI_COMMIT_REF_NAME
+   url: https://$CI_ENVIRONMENT_SLUG.example.com
  only: 
    - master
  script:
