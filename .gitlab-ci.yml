@@ -35,8 +35,7 @@ deploy_staging:
   except:
    - master
   script:
-#   - dep deploy staging
-    - ssh yawik@staging.gastrojob24.ch ls -la
+    - dep deploy staging
   resource_group: staging
 
 test:
