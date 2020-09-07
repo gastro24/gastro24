@@ -35,7 +35,7 @@ deploy_staging:
   except:
    - master
   script:
-    - dep deploy staging
+    - dep deploy --branch=$CI_COMMIT_REF_NAME staging
   resource_group: staging
 
 test:
