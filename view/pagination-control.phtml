@@ -41,7 +41,7 @@ if ($this->pageCount > 1):
                         } else {
                         $previousUri = $this->url($this->route, ['lang' => $this->lang], ['query' => $query], true); }
                         ?>
-                        <li class="prev-link"><a title="<?= $this->translate('Back') ?>" href="<?php echo $url ?>"><span fill="currentColor" class="pagination-previous">
+                        <li class="prev-link"><a title="<?= $this->translate('Back') ?>" href="<?php echo $previousUri ?>"><span fill="currentColor" class="pagination-previous">
 <svg fill="currentColor" data-icon="caret-left" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M12 0L4 8l8 8V0z"></path></svg></span>
                                 <?php $this->headLink(array('rel' => 'prev', 'href' => $previousUri), 'PREPEND'); ?>
                             </a></li>
@@ -90,7 +90,9 @@ var_dump([
     "prev" => $previousUri,
     "pageCount" => $this->pageCount,
     "currentPage" => $currentPage,
-    "query" => $query
+    "query" => $query,
+    'previousPage' => $this->previous,
+    'nextPage' => $this->next,
     ]);
 ?>
 </pre>
