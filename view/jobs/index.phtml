@@ -98,6 +98,42 @@ $noJobsMessage = $this->translate('No jobs found.');
                 $('html, body').animate({ scrollTop: 0 }, 'fast');
             });
 
+            var $relnode = $('#pagination-rel-links');
+            if ($relnode.length) {
+                var reldata = $relnode.data();
+                var $canonical=$('link[rel="canonical"]');
+                if (reldata.href) {
+                    if ($canonical.length) {
+                        $canonical.attr('href', reldata.href);
+                    } else {
+                        $('head').append('<link rel="canonical" href="' + reldata.href + '">');
+                    }
+                } else {
+                    $canonical.remove();
+                }
+
+                var $next=$('link[rel="next"]');
+                if (reldata.next) {
+                    if ($next.length) {
+                        $next.attr('href', reldata.next);
+                    } else {
+                        $('head').append('<link rel="next" href="' + reldata.next + '">');
+                    }
+                } else {
+                    $next.remove();
+                }
+
+                var $prev=$('link[rel="prev"]');
+                if (reldata.prev) {
+                    if ($prev.length) {
+                        $prev.attr('href', reldata.prev);
+                    } else {
+                        $('head').append('<link rel="prev" href="' + reldata.prev + '">');
+                    }
+                } else {
+                    $prev.remove();
+                }
+            }
         }).trigger('g24-jobs:init');
 
         var $jobCount = $('#job-count');

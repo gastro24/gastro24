@@ -69,7 +69,7 @@ if ($this->pageCount > 1):
 <svg fill="currentColor"
 data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M4 0v16l8-8-8-8z"></path></svg></span>
 
-                            <?php $this->headLink(array('rel' => 'next', 'href' => $url), 'PREPEND'); ?>
+                            <?php $this->headLink(array('rel' => 'next', 'href' => $nextUri), 'PREPEND'); ?>
                         </a></li>
                 <?php else: ?>
                     <li class="disabled" id="next-link"><a title="<?=$this->translate('Next') ?>"><span fill="currentColor" class="pagination-next">
@@ -82,17 +82,9 @@ data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 1
         </div>
     </div>
 <?php endif; ?>
-<pre>
-<?php
-var_dump([
-    "canonical" => $canonicalUri,
-    "next" => $nextUri,
-    "prev" => $previousUri,
-    "pageCount" => $this->pageCount,
-    "currentPage" => $currentPage,
-    "query" => $query,
-    'previousPage' => $this->previous,
-    'nextPage' => $this->next,
-    ]);
-?>
-</pre>
+<?php if ($this->params()->fromRoute('isLandingPage')):?>
+    <span id="pagination-rel-links"
+    data-prev="<?=$previousUri?>"
+    data-next="<?=$nextUri?>"
+    data-href="<?=$canonicalUri?>"></span>
+<?php endif ?>
