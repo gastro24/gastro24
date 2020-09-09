@@ -95,12 +95,12 @@ class Module implements AssetProviderInterface
 	            $viewModel  = $event->getViewModel();
 	            $template   = 'layout/application-form';
 	            $controller = $event->getTarget();
-	
+
 	            if ($controller instanceof \Applications\Controller\ApplyController) {
 		            $viewModel->setTemplate($template);
 		            return;
 	            }
-	
+
 	            if ($controller instanceof \Applications\Controller\ManageController
 	                && 'detail' == $event->getRouteMatch()->getParam('action')
 	                && 200 == $event->getResponse()->getStatusCode()
@@ -113,9 +113,9 @@ class Module implements AssetProviderInterface
 			            $viewModel->setTemplate($template);
 		            }
 	            }
-	
+
             };
-            
+
             $sharedManager->attach(
                 'Applications',
                 MvcEvent::EVENT_DISPATCH,
@@ -157,6 +157,7 @@ class Module implements AssetProviderInterface
                             $routeMatch->setParam('isFilteredLandingPage', true);
                             $query = array_merge($origQuery, $query);
                         }
+                        $query['clear'] = 1;
                         $event->getRequest()->setQuery(new Parameters($query));
                     } else {
                         return;

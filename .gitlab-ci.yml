@@ -20,22 +20,22 @@ deploy_master:
   stage: deploy
   environment:
     name: live/$CI_COMMIT_REF_NAME
-    url: https://$CI_ENVIRONMENT_SLUG.example.com
+    url: https://www.gastrojob24.ch
   only:
     - master
   script:
-    - dep -vvv deploy
+    - dep deploy
   resource_group: prod
 
 deploy_staging:
   stage: staging
   environment:
     name: staging/$CI_COMMIT_REF_NAME
-    url: https://$CI_ENVIRONMENT_SLUG.example.com
+    url: https://staging.gastrojob24.ch
   except:
    - master
   script:
-   - dep deploy staging
+    - dep deploy --branch=$CI_COMMIT_REF_NAME staging
   resource_group: staging
 
 test:
