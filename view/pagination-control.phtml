@@ -39,7 +39,10 @@ if ($this->pageCount > 1):
                             $previousUri = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
                             if ($this->previous > 1) { $previousUri .= '?page=' . $this->previous; }
                         } else {
-                        $previousUri = $this->url($this->route, ['lang' => $this->lang], ['query' => $query], true); }
+                            $prevQuery = $query;
+                            $prevQuery['page'] = $this->previous;
+
+                            $previousUri = $this->url($this->route, ['lang' => $this->lang], ['query' => $prevQuery], true); }
                         ?>
                         <li class="prev-link"><a title="<?= $this->translate('Back') ?>" href="<?php echo $previousUri ?>"><span fill="currentColor" class="pagination-previous">
 <svg fill="currentColor" data-icon="caret-left" data-container-transform="translate(4 0)" viewBox="0 0 16 16" width="14px" height="14px"><path d="M12 0L4 8l8 8V0z"></path></svg></span>
@@ -61,8 +64,11 @@ if ($this->pageCount > 1):
                     if ($this->params()->fromRoute('isLandingPage')) {
                         $nextUri = $this->url("lang/landingPage", ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
                         if ($this->next != 1) { $nextUri .= '?page=' . $this->next; }
-                    } else { $nextUri                 =
-                        $this->url($this->route, array('lang' => $this->lang), array('query' => $query), true);
+                    } else {
+                        $nextQuery = $query;
+                        $nextQuery['page'] = $this->next;
+                        $nextUri                 =
+                        $this->url($this->route, array('lang' => $this->lang), array('query' => $nextQuery), true);
                     } ?>
 
                     <li class="next-link"><a title="<?=$this->translate('Next') ?>" href="<?php echo $nextUri ?>"><span fill="currentColor" class="pagination-next">
