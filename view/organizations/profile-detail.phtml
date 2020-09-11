@@ -34,7 +34,7 @@ if($organization->getImages()->notEmpty('images')) {
     $logoUrl = $this->basePath($this->organizationImageCache->getUri($organization->getImages()->get('thumbnail')));
 }
 
-$bannerUrl = $this->basePath('/modules/Gastro24/hero_md_8.webp');
+$bannerUrl = $this->basePath('/modules/Gastro24/images/bg_placeholder_gray.svg');
 
 $organizationAdditionalRepo = $this->services('repositories')
     ->get(\Gastro24\Entity\OrganizationAdditional::class);
