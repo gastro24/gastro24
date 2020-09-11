@@ -74,18 +74,18 @@ if (count($jobs)): ?>
 
 <style>
     
-.card:not(.topjob) .fa-star  {
+.topjob:not(.company-top-job) .fa-star  {
 display:none;
 }
     
-.topjob {
+.topjob:not(.company-top-job) {
 background-color:#fcf8e3;
 box-shadow: 1px 2px 6px 0px #ccc;
 -webkit-box-shadow: 1px 2px 6px 0px #ccc;
 -moz-box-shadow: 1px 2px 6px 0px #ccc;
 }
 
-.topjob .fa-star {
+.topjob:not(.company-top-job) .fa-star {
 background-color: #f4da1e;
 color: #fff;
 padding: 3px 10px;
@@ -93,14 +93,14 @@ padding: 3px 10px;
 -moz-border-radius: 4px;
 border-radius: 4px;
 }
-.topjob .fa-star:before {
+.topjob:not(.company-top-job) .fa-star:before {
 padding-right: 10px;
 }
 
-.topjob .fa-star span {
+.topjob:not(.company-top-job) .fa-star span {
 font-family:sans-serif;
 }
-.topjob h2>a {
+.topjob:not(.company-top-job) h2>a {
 color: #000;
 }
     
@@ -271,7 +271,7 @@ color: #000;
                                 $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true, 'absolute' => true ]);
                             ?>
  <!-- begin card-->
-<div class="<?= $additionalCardCss ?> card box__job-favorite">
+<div class="<?= $additionalCardCss ?> card box__job-favorite <?php if ($org): ?>company-top-job<?php endif ?>">
   <?php
     $logoUrl = null;
     if (is_object($org) && is_object($org->getImage()) && $org->getImage()->getUri()) {
