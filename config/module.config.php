@@ -680,22 +680,14 @@ return [
         Options\TopJobsOptions::class => [[
             'organizations' => [
                 /* organization name => boost param */
-                'Hotel & Restaurant Chartreuse AG' => 10,
-                'Landgasthaus Rössli' => 10,
+                'GST gastro.jobs AG' => 10
             ],
             'jobs' => [
                 /* jobId => boost param */
             
-                '5f424e5d8877df55450feb46' => 75,
-                '5f3d4223caac2c52d0063304' => 70,
-                '5f286f99d7dcba329b29cc83' => 65,
-                '5f240ecac1448b31766658a3' => 55,
-                '5f22859dc133e6583e7a09d3' => 50,
-                '5f21c0c07b1934338a4d4e96' => 40,
-                '5efcb33e70482a6d7807e256' => 25,
-                '5f0f4215a1b897209d375de4' => 20,
-                '5ef364906231dc02791547f3' => 15,
-                '5f0b09fcb38efc50757837f3' => 10,
+                '5f424e5d8877df55450feb46' => 20,
+                '5f3d4223caac2c52d0063304' => 15,
+                '5f0f4215a1b897209d375de4' => 10,
             ],
         ]],
         Options\CompanyTemplatesMap::class => [[
