@@ -74,18 +74,21 @@ if (count($jobs)): ?>
 
 <style>
     
-.topjob:not(.company-top-job) .fa-star  {
+.card:not(.topjob) .fa-star  {
 display:none;
 }
+
     
-.topjob:not(.company-top-job) {
+.topjob:not(.company-top-job),
+.topjob.company-top-job {
 background-color:#fcf8e3;
 box-shadow: 1px 2px 6px 0px #ccc;
 -webkit-box-shadow: 1px 2px 6px 0px #ccc;
 -moz-box-shadow: 1px 2px 6px 0px #ccc;
 }
 
-.topjob:not(.company-top-job) .fa-star {
+.topjob:not(.company-top-job) .fa-star,
+.topjob.company-top-job .fa-star {
 background-color: #f4da1e;
 color: #fff;
 padding: 3px 10px;
@@ -93,14 +96,17 @@ padding: 3px 10px;
 -moz-border-radius: 4px;
 border-radius: 4px;
 }
-.topjob:not(.company-top-job) .fa-star:before {
+.topjob:not(.company-top-job) .fa-star:before,
+.topjob.company-top-job .fa-star:before {
 padding-right: 10px;
 }
 
-.topjob:not(.company-top-job) .fa-star span {
+.topjob:not(.company-top-job) .fa-star span,
+.topjob.company-top-job .fa-star span {
 font-family:sans-serif;
 }
-.topjob:not(.company-top-job) h2>a {
+.topjob:not(.company-top-job) h2>a,
+.topjob.company-top-job h2>a {
 color: #000;
 }
     
