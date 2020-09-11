@@ -1,8 +1,8 @@
 <?php
 //$this->headTitle("Jobs ".$this->organization->getName());
 
-$this->headTitle("Firmenprofil von ".$this->organization->getName().": ".$this->jobs->getTotalItemCount()." verfügbare Jobs");
-$this->headMeta()->setName('description', "Firmenprofil von ".$this->organization->getName() );
+$this->headTitle("Firmenprofil von ".$this->organization->getName() );
+$this->headMeta()->setName('description', "Entdecken Sie das Firmenprofil von ".$this->organization->getName()." mit ".$this->jobs->getTotalItemCount()." verfügbare Jobs. Jetzt passende Stellenanzeige finden!" );
 
 $this->headScript()->appendFile($this->basepath('/modules/Core/js/core.pagination-container.js'))
     ->appendFile($this->basePath('modules/Core/js/core.pagination-container.js'))
