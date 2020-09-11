@@ -1,7 +1,7 @@
 <?php
 //$this->headTitle("Jobs ".$this->organization->getName());
 
-$this->headTitle($this->organization->getName().": ".$this->jobs->getTotalItemCount()." verfügbare Jobs");
+$this->headTitle("Firmenprofil von ".$this->organization->getName().": ".$this->jobs->getTotalItemCount()." verfügbare Jobs");
 $this->headMeta()->setName('description', "Firmenprofil von ".$this->organization->getName() );
 
 $this->headScript()->appendFile($this->basepath('/modules/Core/js/core.pagination-container.js'))
