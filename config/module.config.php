@@ -680,7 +680,7 @@ return [
         Options\TopJobsOptions::class => [[
             'organizations' => [
                 /* organization name => boost param */
-                'GST gastro.jobs AG' => 10
+                'GST gastro.jobs AG' => 5
             ],
             'jobs' => [
                 /* jobId => boost param */
