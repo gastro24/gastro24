@@ -242,12 +242,17 @@ color: #000;
                       <div class="pull-left page-title">
                           
 
-                          <?php if (304 == $query):  echo "<h1>Gastro Jobs suchen und finden</h1>"; else:
+                          <?php if (304 == $query):  echo "<h1>Gastro Jobs suchen und finden</h1>"; endif ?>
 
-                           <span>echo $this->jobs->getTotalItemCount();</span>
-                        <h1>echo $wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer für '.$searchTerm.' Jobs' : 'Leider keine passenden Jobs gefunden'); </h1>
+                          <?php if (!304 == $query):  
+                          <span>echo $this->jobs->getTotalItemCount()</span>
+                          <h1>echo $wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer für '.$searchTerm.' Jobs' : 'Leider keine passenden Jobs gefunden'); </h1>
+                           endif ?>
+
+                           
+                        
                           
-                          endif ?>
+                          
 
                             
                          
