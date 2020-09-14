@@ -44,7 +44,6 @@ class JsonLdProvider implements JsonLdProviderInterface
         /** @var \Organizations\Entity\Organization $organization */
         $organization = $this->job->getOrganization();
         $organizationName = $organization ? $organization->getOrganizationName()->getName() : $this->job->getCompany();
-
         $hiringOrganizationName = $organization ? $organization->getOrganizationName()->getName() : $this->invoiceAddress->getCompany();
 
         $dateStart = $this->job->getDatePublishStart();
