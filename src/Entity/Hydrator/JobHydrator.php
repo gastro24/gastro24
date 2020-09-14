@@ -11,6 +11,7 @@
 namespace Gastro24\Entity\Hydrator;
 
 use Core\Entity\Hydrator\EntityHydrator;
+use Jobs\Entity\AtsMode;
 use Jobs\Entity\JobSnapshot;
 
 /**
@@ -29,6 +30,12 @@ class JobHydrator extends EntityHydrator
 
         if ($template) {
             $data['gastro24-template'] = $template;
+        }
+
+        /** @var AtsMode $atsMode */
+        $atsMode = $data['atsMode'];
+        if ($atsMode && $atsMode->isEmail()) {
+            $data['contactEmail'] = $atsMode->getEmail();
         }
 
         return $data;
