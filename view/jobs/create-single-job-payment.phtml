@@ -205,6 +205,15 @@
         <?php else: ?>
             <h2>Ihre Kontaktdaten</h2>
         <?php endif; ?>
+
+         <div class="row form-group">
+            <div class="col-md-11 gender-field">
+                <?= $this->formLabel($this->invoiceAddressForm->get('gender'), 'Anrede'); ?>
+                <div class="radioBoxes" style="display: flex;">
+                    <?= $this->formRadio($this->invoiceAddressForm->get('gender')); ?>
+                </div>
+            </div>
+        </div>
         <div class="row form-group">
             <div class="col-md-5">
                 <?= $this->formLabel($this->invoiceAddressForm->get('firstname'), 'Vorname'); ?>
@@ -215,14 +224,7 @@
                 <?= $this->formText($this->invoiceAddressForm->get('lastname')); ?>
             </div>
         </div>
-        <div class="row form-group">
-            <div class="col-md-11 gender-field">
-                <?= $this->formLabel($this->invoiceAddressForm->get('gender'), 'Anrede'); ?>
-                <div class="radioBoxes" style="display: flex;">
-                    <?= $this->formRadio($this->invoiceAddressForm->get('gender')); ?>
-                </div>
-            </div>
-        </div>
+      
         <div class="row form-group">
             <div class="col-md-11">
                 <?= $this->formLabel($invoiceAddressFieldset->get('company'), 'Unternehmen'); ?>
