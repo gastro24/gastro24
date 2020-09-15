@@ -277,7 +277,7 @@ color: #000;
                                 $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true, 'absolute' => true ]);
                             ?>
  <!-- begin card-->
-<div class="<?= $additionalCardCss ?> card box__job-favorite <?php if ($topJobsOrganizations): ?>company-top-job<?php endif; ?>">
+<div class="<?= $additionalCardCss ?> card box__job-favorite <?php if ($org): ?>company-top-job<?php endif; ?>">
   <?php
     $logoUrl = null;
     if (is_object($org) && is_object($org->getImage()) && $org->getImage()->getUri()) {
