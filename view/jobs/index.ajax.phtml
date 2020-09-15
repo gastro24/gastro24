@@ -266,7 +266,7 @@ color: #000;
                                 $template = $job->getAttachedEntity('gastro24-template');
                                 $orgName = $this->jobOrganizationName($job);
                                 /* mark as topjob */
-                                $additionalCardCss = ((in_array($orgName, $org, $topJobsOrganizations) !== false) ||
+                                $additionalCardCss = ((in_array($orgName, $topJobsIds) !== false) ||
                                     (in_array($job->getId(), $topJobsIds) !== false)) ? 'topjob' : '';
 
                                 $isExpired = ($job->getStatus()) ? $job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
