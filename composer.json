@@ -69,11 +69,11 @@
         "branch-alias": {
             "dev-develop": "0.32-dev"
         },
+        "deployer": {
+            "include_path": "recipt"
+        },
         "zf": {
             "module": "Gastro24"
         }
-    },
-    "require-dev": {
-        "deployer/recipes": "^6.2"
     }
 }

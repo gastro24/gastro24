@@ -2,7 +2,7 @@
 namespace Deployer;
 
 require 'recipe/zend_framework.php';
-require 'vendor/deployer/recipes/recipe/cachetool.php';
+require 'recipe/cachetool.php';
 
 
 // Project name
