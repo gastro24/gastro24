@@ -72,5 +72,8 @@
         "zf": {
             "module": "Gastro24"
         }
+    },
+    "require-dev": {
+        "deployer/recipes": "^6.2"
     }
 }
