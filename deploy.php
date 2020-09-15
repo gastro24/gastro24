@@ -2,6 +2,7 @@
 namespace Deployer;
 
 require 'recipe/zend_framework.php';
+require 'recipe/cachetool.php';
 
 // Project name
 set('application', 'Gastro24');
@@ -44,6 +45,9 @@ host('staging.gastrojob24.ch')
     ->stage('staging')
     ->multiplexing(false)
     ->set('deploy_path', '/var/www/production');
+
+
+after('deploy:symlink', 'cachetool:clear:opcache');
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
