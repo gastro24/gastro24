@@ -2,7 +2,8 @@
 namespace Deployer;
 
 require 'recipe/zend_framework.php';
-require 'recipe/cachetool.php';
+require 'vendor/deployer/recipes/recipe/cachetool.php';
+
 
 // Project name
 set('application', 'Gastro24');
