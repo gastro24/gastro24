@@ -1165,8 +1165,8 @@ border-top: 1px solid rgba(0, 0, 0, 0.1)
     <!-- lazy loaded javascript -->
     <?php
         $langScript = 'dist/locales/' . $lang . '.js';
-        echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
-            ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+        echo $this->inlineScript()->setAutoEscape(false)//->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
+            //->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
             //->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
             ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')))
             ->appendFile($this->basePath($langScript));
