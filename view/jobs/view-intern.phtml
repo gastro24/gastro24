@@ -23,7 +23,7 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     $image = $template ? $template->getImage() : null;
     if ($image) {
         $imageUri = $basePathHelper($image->getUri());
-        $imageHtml = '<img src="' . $imageUri . '">';
+        $imageHtml = '<img rel="preload" as="image" src="' . $imageUri . '">';
     } else {
         $imageHtml = '';
     }
@@ -116,7 +116,7 @@ $qualifications = $this->job->getClassifications()->getProfessions();
                    
           <?php if ($logo && !$preview): ?>             
              <span class="job-logo-wrapper">
-                 <img class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
+                 <img rel="preload" as="image" class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
               </span>
 
          <?php elseif ($preview) : ?>    
@@ -339,7 +339,7 @@ $qualifications = $this->job->getClassifications()->getProfessions();
       ?>
 
 
- <img style="position:absolute;" width="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>" alt="Google Map von <?= $googleMapsString ?>">
+ <img rel="preload" as="image" style="position:absolute;" width="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>" alt="Google Map von <?= $googleMapsString ?>">
 
              
  </div>
