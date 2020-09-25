@@ -89,6 +89,10 @@ $container->landingPageSearchQuery = null;
 $container->fromCompanyProfile = true;
 $container->companyName = $organization->getName();
 $container->companyId = $organization->getId();
+$organizationAdditionalRepo = $this->services('repositories')
+    ->get(\Gastro24\Entity\OrganizationAdditional::class);
+/** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
+$organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($organization->getId());
 
 ?>
 <?php if ($preview): ?>
