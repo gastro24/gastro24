@@ -81,18 +81,6 @@ if ($dayDiff->days < 1) {
 }
 
 $industries = $this->job->getClassifications()->getIndustries();
-$contact = $organization->getContact();
-
-// reset searchQuery in session
-$container = new \Laminas\Session\Container('gastro24_jobboardcontainer');
-$container->landingPageSearchQuery = null;
-$container->fromCompanyProfile = true;
-$container->companyName = $organization->getName();
-$container->companyId = $organization->getId();
-$organizationAdditionalRepo = $this->services('repositories')
-    ->get(\Gastro24\Entity\OrganizationAdditional::class);
-/** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
-$organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($organization->getId());
 
 ?>
 <?php if ($preview): ?>
@@ -286,11 +274,7 @@ $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($
      <div class="info-card" style="margin-bottom:0px;">
                     <h2>Firmenadresse</h2>
                     <address>
-                   <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
-                    <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
-                    <?= $contact->getCountry() ?>
-                  <hr />
-
+        
 
                         <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
                         <?php
