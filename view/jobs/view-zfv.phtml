@@ -81,6 +81,7 @@ if ($dayDiff->days < 1) {
 }
 
 $industries = $this->job->getClassifications()->getIndustries();
+$contact = $organization->getContact();
 ?>
 <?php if ($preview): ?>
     <?php $this->headStyle()->captureStart() ?>
@@ -273,6 +274,12 @@ $industries = $this->job->getClassifications()->getIndustries();
      <div class="info-card" style="margin-bottom:0px;">
                     <h2>Firmenadresse</h2>
                     <address>
+                   <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
+                    <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
+                    <?= $contact->getCountry() ?>
+                  <hr />
+
+
                         <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
                         <?php
                             $location = $this->job->getLocations()->current();
