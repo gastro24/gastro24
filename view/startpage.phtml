@@ -35,7 +35,7 @@ $this->headTitle($this->translate('Home'));
     <link rel="canonical" href="https://www.gastrojob24.ch" />
     <link rel="preload" as="style" href="<?= $this->basePath('dist/css/core.min.css') ?>" onload="this.rel='stylesheet'">
     <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
-    <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('modules/Gastro24/g24-startpage.css')) ?>">
+    <link rel="preload" as="style" href="<?= $this->basePath($this->asset('modules/Gastro24/g24-startpage.css')) ?>" onload="this.rel='stylesheet'">
     <link rel="preload" href="/dist/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
     <title>Jobbörse Gastrojob24 ▷ Gastronomie Jobs & Hotel Jobs Schweiz</title> 
