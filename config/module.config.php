@@ -680,6 +680,7 @@ return [
         Options\TopJobsOptions::class => [[
             'organizations' => [
                 /* organization name => boost param */
+                'Berghotel Sterna' => 55,
                 'GST gastro.jobs AG' => 5,
             ],
             'jobs' => [
