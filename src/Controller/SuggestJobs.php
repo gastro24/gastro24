@@ -109,7 +109,7 @@ class SuggestJobs extends AbstractActionController
             $finalResults[$word] = [
                 'value' => $word,
                 'id' => $word,
-                'label' => $word
+                'label' => preg_replace("/($searchTerm)/i", sprintf('<strong>$1</strong>'), $word )
             ];
         }
 
