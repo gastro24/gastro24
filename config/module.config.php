@@ -322,6 +322,7 @@ return [
              'auth/password/index' => __DIR__ . '/../view/auth/password/index.phtml',
              'auth/forgot-password/index' => __DIR__ . '/../view/auth/forgot-password/index.phtml',
              'content/applications-privacy-policy' => __DIR__ . '/../view/application-disclaimer.phtml',
+             'content/jobs-publish-on-yawik' => __DIR__ . '/../view/jobs-publish-on-yawik.phtml',
              'orders/list/index' => __DIR__ . '/../view/gastro24/orders/index.phtml',
              'orders/list/index.ajax' => __DIR__ . '/../view/gastro24/orders/index.ajax.phtml',
              'orders/view/index' => __DIR__ . '/../view/gastro24/orders/modal.phtml',
