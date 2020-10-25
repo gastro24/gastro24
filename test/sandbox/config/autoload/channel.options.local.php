@@ -12,7 +12,7 @@
 
 $channel['yawik'] = array(
              
-                'tax' => '0',
+                'tax' => 0,
                 'label' => 'YAWIK',
                 'prices' => [ 'base' => 99, 'list' => 99, 'min'  => 99, ],
                 'headline' => /*@translate*/ 'publish your job on yawik.org for free',
