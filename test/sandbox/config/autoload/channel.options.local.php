@@ -10,16 +10,14 @@
  * here you can add your channels
  */
 
-$channel['yawik'] = array(
+$channel['Social Media Werbung'] = array(
              
-                'tax' => 0,
-                'label' => 'YAWIK',
-                'prices' => [ 'base' => 99, 'list' => 99, 'min'  => 99, ],
-                'headline' => /*@translate*/ 'publish your job on yawik.org for free',
-                'description' => /*@translate*/ 'publish the job for 30 days on %s',
-                'linktext' => /*@translate*/ 'yawik.org',
+                'label' => 'Social Media Werbung',
+                'prices' => [ 'base' => 150, 'list' => 150, 'min'  => 150, ],
+                'headline' => /*@translate*/ 'Publizieren Sie dieses Stelleninserat in Social Media und generieren Sie mehr Reichweite in der Zielgruppe und in der gewünschten Region',
+                'description' => /*@translate*/ 'Publikation auf Facebook & Instagram (inkl. CHF 50.- Ads-Budget). Sie erhalten im Anschluss ein Reporting.',
                 'route' => 'lang/content',
-                'publishDuration' => 60,
+                'publishDuration' => 15,
                 'params' => array(
                     'view' => 'jobs-publish-on-yawik'
                 )
