@@ -85,6 +85,12 @@ if ($this->renderSummary):?>
                             <td class="text-right"><?php echo $this->currencyFormat($total * ( $defaultTaxRate /100)); ?></td>
                         </tr>
                     </tbody>-->
+                    <tbody>
+                        <tr>
+                            <td>ohne MwSt.</td>
+                            <td class="text-right"><?php echo $this->currencyFormat(0); ?></td>
+                        </tr>
+                    </tbody
                     <tfoot>
                         <tr>
                             <th><?php echo $this->translate('Invoice amount') ?></th>
