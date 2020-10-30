@@ -14,7 +14,7 @@ $channel['Social Media Werbung'] = array(
              
                 'label' => 'Social Media Werbung',
                 'prices' => [ 'base' => 150, 'list' => 150, 'min'  => 150, ],
-                'headline' => /*@translate*/ 'Publizieren Sie dieses Stelleninserat in Social Media und generieren Sie mehr Reichweite in der Zielgruppe und in der gewünschten Region',
+                'headline' => /*@translate*/ 'Social Media Werbung buchen und Aufmerksamkeit generieren',
                 'description' => /*@translate*/ 'Publikation auf Facebook & Instagram (inkl. CHF 50.- Ads-Budget). Sie erhalten im Anschluss ein Reporting.',
                 'route' => 'lang/content',
                 'publishDuration' => 15,
