@@ -63,9 +63,9 @@ if (count($jobs)): ?>
         $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
     ?>
     <?php if ($hasFacets):
-        if ($this->params()->fromRoute('isLandingPage')):?>
+        /*if ($this->params()->fromRoute('isLandingPage')):?>
             <span class="facets-url" data-url="<?=$this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true)?>"></span>
-        <?php endif;
+        <?php endif;*/
         /** @var \Gastro24\Paginator\JobsBoardFacets $facets */
         $facets = $jobs->getFacets();
         $activeFacets = $facets->getActiveValues();

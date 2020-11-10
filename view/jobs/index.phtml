@@ -176,10 +176,10 @@ $noJobsMessage = $this->translate('No jobs found.');
         <div id="jobs-list-container" class="pagination-container"
              <?php if (!count($this->jobs)):?>data-message="<strong><?= $noJobsMessage ?></strong>"<?php endif ?>
              data-uri="<?php
-                if ($this->params()->fromRoute('isLandingPage')):
+                /*if ($this->params()->fromRoute('isLandingPage')):
                     echo $this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);
-                else: echo $this->url('lang/jobboard', [], ['query' => $this->params()->fromQuery()], true);
-                endif;?>">
+                else:*/ echo $this->url('lang/jobboard', [], ['query' => $this->params()->fromQuery()], true);
+               /* endif;*/?>">
 
             <?php if (!count($this->jobs)):?>
               <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
