@@ -68,7 +68,7 @@ foreach ($this->jobs as $jobObject) {
     /* @var \Jobs\Entity\Job $jobObject */
     $job = $result->addChild('job');
     $job->addAttribute('id', $jobObject->getId());
-    $job->addChild('description', $jobObject->html());
+    $job->addChild('description', $this->html());
     $job->addChild('title', $jobObject->getTitle());
     $job->addChild('location', $jobObject->getLocation());
     $job->addChild('datePublishStart', $jobObject->getDatePublishStart()?date_format($jobObject->getDatePublishStart(),$dateFormat):"");
