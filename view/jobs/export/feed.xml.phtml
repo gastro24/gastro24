@@ -70,6 +70,7 @@ foreach ($this->jobs as $jobObject) {
     $job->addAttribute('id', $jobObject->getId());
     $job->addChild('title', $jobObject->getTitle());
     $job->addChild('location', $jobObject->getLocation());
+    $job->addChild('xxx', $jobObject->getDescription());
     $job->addChild('datePublishStart', $jobObject->getDatePublishStart()?date_format($jobObject->getDatePublishStart(),$dateFormat):"");
     $job->addChild('datePublishEnd', $jobObject->getDatePublishEnd()?date_format($jobObject->getDatePublishEnd(),$dateFormat):"");
     $job->addChild('dateModified', $jobObject->getDateModified()?date_format($jobObject->getDateModified(),$dateFormat):"");
