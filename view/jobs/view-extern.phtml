@@ -1031,6 +1031,8 @@ main#content {
 
                 <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= $googleMapsString ?>&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed"
                         frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+                         <img rel="preload" as="image" style="position:absolute;" width="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>" alt="Google Map von <?= $googleMapsString ?>">
             </div>
             
 
