@@ -12,91 +12,100 @@
 /**
  * @see http://php.net/manual/de/class.datetime.php#datetime.constants.types
  */
-$dateFormat = \DateTime::W3C;
+$dateFormat = 'd.m.Y';
 
 /* @var Organizations\ImageFileCache\Manager $organizationImageCache */
 $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
 
 /* @var \Laminas\Paginator\Paginator $paginator */
 $paginator = $this->jobs;
+$basePathHelper = $this->plugin('basePath');
 
 /* @todo move this into a view helper */
-$linkNext = $paginator->getCurrentPageNumber()<$paginator->count()?
+$linkNext = $paginator->getCurrentPageNumber() < $paginator->count() ?
     $this->serverUrl($this->basePath($this->url('lang/export',
-                                                [
-                                                    'format'=>'xml',
-                                                    'channel'=> $this->channel
-                                                ],
-                                                [
-                                                    'query'=> [
-                                                        'page' => ($paginator->getCurrentPageNumber()+1)
-                                                    ]
-                                                ]))):'';
+        [
+            'format' => 'xml',
+            'channel' => $this->channel
+        ],
+        [
+            'query' => [
+                'page' => ($paginator->getCurrentPageNumber() + 1)
+            ]
+        ]))) : '';
 
-$linkPrevious = $paginator->getCurrentPageNumber()>1?
+$linkPrevious = $paginator->getCurrentPageNumber() > 1 ?
     $this->serverUrl($this->basePath($this->url('lang/export',
-                                                [
-                                                    'format'=>'xml',
-                                                    'channel'=> $this->channel
-                                                ],
-                                                [
-                                                    'query'=> [
-                                                        'page' => ($paginator->getCurrentPageNumber()-1)
-                                                    ]
-                                                ]))):'';
+        [
+            'format' => 'xml',
+            'channel' => $this->channel
+        ],
+        [
+            'query' => [
+                'page' => ($paginator->getCurrentPageNumber() - 1)
+            ]
+        ]))) : '';
 
-$xmlStr='<jobOpenings>
-    <!--
-    test
-    Documentation http://yawik.readthedocs.io/en/latest/modules/jobs/index.html#xml-feeds
-    -->
-    <head>
-        <totalPagesCount>' . $paginator->count() .'</totalPagesCount>
-        <currentPage>'.$paginator->getCurrentPageNumber() .'</currentPage>
-        <link type="next">'.$linkNext.'</link>
-        <link type="previous">'.$linkPrevious.'</link>
-        <totalJobsCount>' . $paginator->getTotalItemCount() . '</totalJobsCount>
-        <channel>'.$this->channel.'</channel>
-    </head>
-</jobOpenings>';
+$xmlStr='<?xml version="1.0" encoding="utf-8"?><jobs></jobs>';
 
 $xml = simplexml_load_string($xmlStr);
 
-$result = $xml->addChild('jobs');
-
 foreach ($this->jobs as $jobObject) {
+    /** @var \Gastro24\Entity\Template $template */
+    $template = $jobObject->getAttachedEntity('gastro24-template');
+
+    $replaceImage = function($str) use ($template, $basePathHelper)
+    {
+        $image = $template ? $template->getImage() : null;
+        if ($image) {
+            $imageUri = $basePathHelper($image->getUri());
+            $imageHtml = '<img rel="preload" as="image" src="' . $imageUri . '">';
+        } else {
+            $imageHtml = '';
+        }
+
+        return str_replace('#image#', $imageHtml, $str);
+    };
+
     /* @var \Jobs\Entity\Job $jobObject */
-    $job = $result->addChild('job');
+    $job = $xml->addChild('job');
     $job->addAttribute('id', $jobObject->getId());
-    $job->addChild('title', $jobObject->getTitle());
-    $job->addChild('location', $jobObject->getLocation());
-    $job->addChild('xxx', $jobObject->getDescription());
-    $job->addChild('datePublishStart', $jobObject->getDatePublishStart()?date_format($jobObject->getDatePublishStart(),$dateFormat):"");
-    $job->addChild('datePublishEnd', $jobObject->getDatePublishEnd()?date_format($jobObject->getDatePublishEnd(),$dateFormat):"");
-    $job->addChild('dateModified', $jobObject->getDateModified()?date_format($jobObject->getDateModified(),$dateFormat):"");
+    $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]');
+    $job->addChild('name', '<![CDATA[' . $jobObject->getTitle() . ']]');
 
-    $url = $job->addChild('url', htmlspecialchars($this->applyUrl($jobObject,['linkOnly'=>true, 'absolute' => true])));
-    $url->addAttribute('type','application');
-    $url = $job->addChild('url', htmlspecialchars($this->jobUrl($jobObject, ['linkOnly'=>true, 'absolute' => true])));
-    $url->addAttribute('type','job');
+    if ($jobObject->getSalary()->getCurrency()) {
+        $job->addChild('salary', '<![CDATA[' . $jobObject->getSalary()->getValue() . $jobObject->getSalary()->getCurrency() .
+            $jobObject->getSalary()->getUnit() . ']]');
+    }
+    $job->addChild('description', '<![CDATA[' . $replaceImage($jobObject->getTemplateValues()->get('position')) . ']]');
+    $job->addChild('company', '<![CDATA[' . $jobObject->getCompany() . ']]');
 
-    $email = $job->addChild('email', $jobObject->getContactEmail());
-    $email->addAttribute('type','application');
+    $jobTypes = $jobObject->getClassifications()->getEmploymentTypes()->getValues();
+    $jobType = array_pop($jobTypes);
+    $job->addChild('jobtype', '<![CDATA[' . $jobType . ']]');
 
-    $workLocations=$job->addChild('workLocations');
+    $job->addChild('pubdate', $jobObject->getDatePublishStart()?date_format($jobObject->getDatePublishStart(),$dateFormat):"");
+    if ($jobObject->getDatePublishEnd()) {
+        $job->addChild('expire', date_format($jobObject->getDatePublishEnd(),$dateFormat));
+    }
+    $job->addChild('updated', $jobObject->getDateModified()?date_format($jobObject->getDateModified(),$dateFormat):"");
+
+    if ($jobObject->getAtsMode()->isEnabled()) {
+        $job->addChild('email', '<![CDATA[' . $jobObject->getContactEmail() . ']]');
+        $job->addChild('apply_url', '<![CDATA[' . $this->applyUrl($jobObject, ['linkOnly'=>true, 'absolute' => true]) . ']]');
+    }
+    if ($jobObject->getOrganization()) {
+        $job->addChild('phone', '<![CDATA[' . $jobObject->getOrganization()->getContact()->getPhone() . ']]');
+    }
+
+    $regions = [];
+    $countries = [];
     foreach ($jobObject->getLocations() as $locationObject) {
         /* @var \Jobs\Entity\Location $locationObject */
-        $location = $workLocations->addChild('location');
-        $location->addChild('country', $locationObject->getCountry());
-        $location->addChild('city', $locationObject->getCity());
-        $location->addChild('postalcode', $locationObject->getPostalCode());
-        $location->addChild('region', $locationObject->getRegion());
+        $regions[] =  $locationObject->getRegion();
+        $countries[] =  $locationObject->getCountry();
     }
-    $organization = $job->addChild('organization');
-    if (is_object($jobObject->getOrganization())) {
-        $organization->addAttribute('id', $jobObject->getOrganization()->getId() );
-        $organization->addChild('name', $jobObject->getOrganization()->getOrganizationName()->getName());
-        $organization->addChild('logo', (is_object($jobObject->getOrganization()->getImage()) ? $this->serverUrl($this->basePath($organizationImageCache->getUri($jobObject->getOrganization()->getImage()))) : ''));
-    }
+    $job->addChild('region', '<![CDATA[' . implode(',', $regions) . ']]');
+    $job->addChild('country', '<![CDATA[' . implode(',', $countries) . ']]');
 }
 echo $xml->saveXML();
