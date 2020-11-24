@@ -19,6 +19,7 @@ $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager'
 
 /* @var \Laminas\Paginator\Paginator $paginator */
 $paginator = $this->jobs;
+$paginator->setItemCountPerPage(1000);
 $basePathHelper = $this->plugin('basePath');
 
 /* @todo move this into a view helper */
@@ -46,7 +47,18 @@ $linkPrevious = $paginator->getCurrentPageNumber() > 1 ?
             ]
         ]))) : '';
 
-$xmlStr='<?xml version="1.0" encoding="utf-8"?><jobs></jobs>';
+$xmlStr='<?xml version="1.0" encoding="utf-8"?><jobs>
+    <head>
+        <totalPagesCount>' . $paginator->count() .'</totalPagesCount>
+        <currentPage>'.$paginator->getCurrentPageNumber() .'</currentPage>
+        <link type="next">'.$linkNext.'</link>
+        <link type="previous">'.$linkPrevious.'</link>
+        <totalJobsCount>' . $paginator->getTotalItemCount() . '</totalJobsCount>
+        <channel>'.$this->channel.'</channel>
+    </head>
+</jobs>';
+
+/*$xmlStr='<?xml version="1.0" encoding="utf-8"?><jobs></jobs>';*/
 
 $xml = simplexml_load_string($xmlStr);
 
