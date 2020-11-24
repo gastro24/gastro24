@@ -13,6 +13,7 @@ namespace Gastro24\Controller\Plugin;
 use Core\Entity\Collection\ArrayCollection;
 use Gastro24\Entity\Template;
 use Jobs\Entity\AtsMode;
+use Jobs\Entity\Classifications;
 use Jobs\Entity\Location;
 use Jobs\Entity\Status;
 use Orders\Entity\InvoiceAddress;
@@ -93,7 +94,18 @@ class CreateSingleJob extends AbstractPlugin
         $job->setTitle($values['jobTitle']);
         $job->setStatus(Status::CREATED);
         $job->setTermsAccepted($values['termsAccepted']);
-        $job->setClassifications($values['classifications']);
+
+        $classifications = new Classifications();
+        if (isset($values['employmentTypes'])) {
+            $classifications->setEmploymentTypes($values['employmentTypes']);
+        }
+        if (isset($values['industries'])) {
+            $classifications->setIndustries($values['industries']);
+        }
+        if (isset($values['professions'])) {
+            $classifications->setProfessions($values['professions']);
+        }
+        $job->setClassifications($classifications);
 
         // get logo and banner reference
         $template = $job->getAttachedEntity('gastro24-template');

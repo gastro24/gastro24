@@ -301,11 +301,31 @@ iframe {
         <div class="row controls controls-row form-group">
             <div class="col-md-12">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
-                    ->setMessageCloseString('</div>')->render($this->form->get('employmentTypes')); ?>
+                    ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('employmentTypes')); ?>
             </div>
             <div class="col-md-11 employmentTypesSelect form-group">
-                <?= $this->formLabel($this->form->get('employmentTypes'), 'Beschäftigungsart'); ?>
-                <?= $this->formElement($this->form->get('employmentTypes')); ?>
+                <?= $this->formLabel($this->form->get('classifications')->get('employmentTypes'), 'Beschäftigungsart'); ?>
+                <?= $this->formElement($this->form->get('classifications')->get('employmentTypes')); ?>
+            </div>
+        </div>
+        <div class="row controls controls-row form-group">
+            <div class="col-md-12">
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('industries')); ?>
+            </div>
+            <div class="col-md-11 industriesSelect form-group">
+                <?= $this->formLabel($this->form->get('classifications')->get('industries'), 'Branche'); ?>
+                <?= $this->formElement($this->form->get('classifications')->get('industries')); ?>
+            </div>
+        </div>
+        <div class="row controls controls-row form-group">
+            <div class="col-md-12">
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('professions')); ?>
+            </div>
+            <div class="col-md-11 professionsSelect form-group">
+                <?= $this->formLabel($this->form->get('classifications')->get('professions'), 'Qualifikation'); ?>
+                <?= $this->formElement($this->form->get('classifications')->get('professions')); ?>
             </div>
         </div>
         <div class="row form-group positionTextarea">

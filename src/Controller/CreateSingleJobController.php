@@ -48,6 +48,17 @@ class CreateSingleJobController extends AbstractActionController
 
         if ($request->isPost()) {
             $data = array_merge_recursive($this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray());
+
+//            $classifications = new Classifications();
+//            $classifications->setEmploymentTypes($data['employmentTypes']);
+//            $data['classifications'] = $classifications;
+
+            $data['classifications'] = [
+                'employmentTypes' => $data['employmentTypes'],
+                'industries' => $data['industries'],
+                'professions' => $data['professions']
+            ];
+
             $this->form->setData($data);
             // !!! WORKAROUND: can be removed if datepicker only allows future dates
             if(isset($data['publishDate']) && !empty($data['publishDate'])) {
@@ -70,11 +81,14 @@ class CreateSingleJobController extends AbstractActionController
             }
 
             $values = $this->form->getData();
-            $hydrator = $this->form->getEmploymentTypesHydrator();
-            $employmentTypes = $hydrator->hydrateValue('employmentTypes', $values['employmentTypes']);
 
+//            $hydrator = $this->form->getEmploymentTypesHydrator();
+//            $employmentTypes = $hydrator->hydrateValue('employmentTypes', $values['employmentTypes']);
+//
             $classifications = new Classifications();
-            $classifications->setEmploymentTypes($employmentTypes);
+            $classifications->setEmploymentTypes($data['employmentTypes']);
+            $classifications->setIndustries($data['industries']);
+            $classifications->setProfessions($data['professions']);
             $values['classifications'] = $classifications;
 
             $session = new Container('Gastro24_SingleJobData');
@@ -96,7 +110,9 @@ class CreateSingleJobController extends AbstractActionController
             $values['logo'] = isset($values['logo_url']) ? $values['logo_url'] : null;
             $values['image'] = isset($values['image_url']) ? $values['image_url'] : null;
             $values['classifications'] = [
-                'employmentTypes' => $values['classifications']->getEmploymentTypes()->getValues()
+                'employmentTypes' => $values['classifications']->getEmploymentTypes(),
+                'industries' => $values['classifications']->getIndustries(),
+                'professions' => $values['classifications']->getProfessions()
             ];
             $this->form->setData($values);
         }
@@ -159,17 +175,9 @@ class CreateSingleJobController extends AbstractActionController
             $sessionValues = unserialize($session->values);
 
             $plugin = $this->plugin(Plugin\CreateSingleJob::class);
-            // build classification with employment types
-            $hydrator = $this->form->getEmploymentTypesHydrator();
-            $employmentTypes = $hydrator->hydrateValue('employmentTypes', $mainValues['employmentTypes']);
-
-            $classifications = new Classifications();
-            $classifications->setEmploymentTypes($employmentTypes);
-            $values['classifications'] = $classifications;
-            $values = array_merge($values, $sessionValues);
 
             try {
-                $plugin($values);
+                $plugin($sessionValues);
             } catch (\Exception $e) {
                 return $this->redirect()->toRoute('lang/jobs/single-failed');
             }
