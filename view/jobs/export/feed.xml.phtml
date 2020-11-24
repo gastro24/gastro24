@@ -63,6 +63,13 @@ $xmlStr='<?xml version="1.0" encoding="UTF-8"?><jobs>
 $xml = simplexml_load_string($xmlStr);
 
 foreach ($this->jobs as $jobObject) {
+
+    /* @var \Jobs\Entity\Job $jobObject */
+    // skip PDF and external jobs
+    if($jobObject->getLink()) {
+        continue;
+    }
+
     /** @var \Gastro24\Entity\Template $template */
     $template = $jobObject->getAttachedEntity('gastro24-template');
 
@@ -79,7 +86,6 @@ foreach ($this->jobs as $jobObject) {
         return str_replace('#image#', $imageHtml, $str);
     };
 
-    /* @var \Jobs\Entity\Job $jobObject */
     $job = $xml->addChild('job');
     $job->addAttribute('id', $jobObject->getId());
     $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]');
@@ -94,7 +100,7 @@ foreach ($this->jobs as $jobObject) {
 
     $jobTypes = $jobObject->getClassifications()->getEmploymentTypes()->getValues();
     $jobType = array_pop($jobTypes);
-    $job->addChild('jobtype', '<![CDATA[' . $jobType . ']]');
+    $job->addChild('jobtype', '<![CDATA[' . ($jobType ?: 'vollzeit') . ']]');
 
     $job->addChild('pubdate', $jobObject->getDatePublishStart()?date_format($jobObject->getDatePublishStart(),$dateFormat):"");
     if ($jobObject->getDatePublishEnd()) {
@@ -105,6 +111,9 @@ foreach ($this->jobs as $jobObject) {
     if ($jobObject->getAtsMode()->isEnabled()) {
         $job->addChild('email', '<![CDATA[' . $jobObject->getContactEmail() . ']]');
         $job->addChild('apply_url', '<![CDATA[' . $this->applyUrl($jobObject, ['linkOnly'=>true, 'absolute' => true]) . ']]');
+    }
+    else {
+        $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]');
     }
     if ($jobObject->getOrganization()) {
         $job->addChild('phone', '<![CDATA[' . $jobObject->getOrganization()->getContact()->getPhone() . ']]');
