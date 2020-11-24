@@ -49,15 +49,15 @@ class CreateSingleJobController extends AbstractActionController
         if ($request->isPost()) {
             $data = array_merge_recursive($this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray());
 
-//            $classifications = new Classifications();
-//            $classifications->setEmploymentTypes($data['employmentTypes']);
-//            $data['classifications'] = $classifications;
-
             $data['classifications'] = [
                 'employmentTypes' => $data['employmentTypes'],
-                'industries' => $data['industries'],
-                'professions' => $data['professions']
             ];
+            if (isset($data['industries'])) {
+                $data['classifications']['industries'] = $data['industries'];
+            }
+            if (isset($data['professions'])) {
+                $data['professions']['industries'] = $data['professions'];
+            }
 
             $this->form->setData($data);
             // !!! WORKAROUND: can be removed if datepicker only allows future dates
@@ -81,15 +81,7 @@ class CreateSingleJobController extends AbstractActionController
             }
 
             $values = $this->form->getData();
-
-//            $hydrator = $this->form->getEmploymentTypesHydrator();
-//            $employmentTypes = $hydrator->hydrateValue('employmentTypes', $values['employmentTypes']);
-//
-            $classifications = new Classifications();
-            $classifications->setEmploymentTypes($data['employmentTypes']);
-            $classifications->setIndustries($data['industries']);
-            $classifications->setProfessions($data['professions']);
-            $values['classifications'] = $classifications;
+            $values['classifications'] = $data['classifications'];
 
             $session = new Container('Gastro24_SingleJobData');
             $session->data = serialize($data);
@@ -175,6 +167,17 @@ class CreateSingleJobController extends AbstractActionController
             $sessionValues = unserialize($session->values);
 
             $plugin = $this->plugin(Plugin\CreateSingleJob::class);
+
+            $classifications = new Classifications();
+            $classificationsHydrator = $this->form->get('classifications')->getHydrator();
+            $classifications->setEmploymentTypes($classificationsHydrator->hydrateValue('employmentTypes', $mainData['employmentTypes']));
+            if (isset($mainData['industries'])) {
+                $classifications->setIndustries($classificationsHydrator->hydrateValue('industries', $mainData['industries']));
+            }
+            if (isset($mainData['professions'])) {
+                $classifications->setProfessions($classificationsHydrator->hydrateValue('professions', $mainData['professions']));
+            }
+            $sessionValues['classifications'] = $classifications;
 
             try {
                 $plugin($sessionValues);

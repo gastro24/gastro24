@@ -92,47 +92,8 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
 
         $this->add([
             'type' => ClassificationsFieldset::class,
-            'options' => [
-                'input_filter_spec' => [
-                    'employmentTypes' => [
-                        'required' => true,
-                    ],
-                    'industries' => [
-                        'required' => false,
-                        'allow_empty' => true
-                    ],
-                    'professions' => [
-                        'required' => false,
-                        'allow_empty' => true
-                    ],
-                ]
-            ]
         ]);
-
-//        $types = $this->formManager->get(
-//            'Core/Tree/Select',
-//            [
-//                'tree' => [
-//                    'entity' => Category::class,
-//                    'value' => 'employmentTypes',
-//                ],
-//                'name' => 'employmentTypes',
-//                'options' => [
-//                    'label' => /*@translate*/ 'Employment Types',
-//                    'labelWidth' => '12',
-//                    'description' => /*@translate*/ 'Manage the employment types you want to assign to jobs.',
-//                ],
-//                'attributes' => [
-//                    'required' => true,
-//                    'data-width' => '100%',
-//                    'multiple' => true,
-//                ]
-//            ]
-//        );
-//
-//        $this->add($types);
-//        $hydrator = $this->getEmploymentTypesHydrator();
-//        $hydrator->addStrategy('employmentTypes', $types->getHydratorStrategy());
+        $this->get('classifications')->get('employmentTypes')->setAttribute('required', true);
 
         $this->add([
             'type' => 'TextEditor',
@@ -190,8 +151,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'class' => 'form-control',
             ]
         ]);
-
-
 
         $this->add([
             'type'       => 'text',
@@ -313,12 +272,18 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                 'required' => true,
             ],
             'classifications' => [
-                'required' => false,
-                'allow_empty' => true
+                'employmentTypes' => [
+                    'required' => true,
+                ],
+                'industries' => [
+                    'required' => false,
+                    'allow_empty' => true
+                ],
+                'professions' => [
+                    'required' => false,
+                    'allow_empty' => true
+                ],
             ],
-//            'employmentTypes' => [
-//                'required' => true,
-//            ],
             'applicationUri' => [
                 'required' => false,
                 'allow_empty' => true
@@ -431,8 +396,6 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             ],
         ];
 
-
-
         return $spec;
     }
 
@@ -451,14 +414,4 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
 
         return $this->hydrator;
     }
-
-//    public function getEmploymentTypesHydrator()
-//    {
-//        if (!$this->employmentTypesHydrator) {
-//            $this->employmentTypesHydrator = new EntityHydrator();
-//        }
-//
-//        return $this->employmentTypesHydrator;
-//    }
-
 }
