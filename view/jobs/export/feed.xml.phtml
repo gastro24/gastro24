@@ -47,7 +47,7 @@ $linkPrevious = $paginator->getCurrentPageNumber() > 1 ?
             ]
         ]))) : '';
 
-$xmlStr='<?xml version="1.0" encoding="utf-8"?><jobs>
+$xmlStr='<?xml version="1.0" encoding="UTF-8"?><jobs>
     <head>
         <totalPagesCount>' . $paginator->count() .'</totalPagesCount>
         <currentPage>'.$paginator->getCurrentPageNumber() .'</currentPage>
@@ -89,7 +89,7 @@ foreach ($this->jobs as $jobObject) {
         $job->addChild('salary', '<![CDATA[' . $jobObject->getSalary()->getValue() . $jobObject->getSalary()->getCurrency() .
             $jobObject->getSalary()->getUnit() . ']]');
     }
-    $job->addChild('description', '<![CDATA[' . $replaceImage($jobObject->getTemplateValues()->get('position')) . ']]');
+    $job->addChild('description', '<![CDATA[' . htmlspecialchars($replaceImage($jobObject->getTemplateValues()->get('position'))) . ']]');
     $job->addChild('company', '<![CDATA[' . $jobObject->getCompany() . ']]');
 
     $jobTypes = $jobObject->getClassifications()->getEmploymentTypes()->getValues();
