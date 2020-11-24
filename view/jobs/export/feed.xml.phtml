@@ -66,7 +66,7 @@ foreach ($this->jobs as $jobObject) {
 
     /* @var \Jobs\Entity\Job $jobObject */
     // skip PDF and external jobs
-    if($jobObject->getLink()) {
+    if($jobObject->getLink() && !$jobObject->getTemplateValues()->getHtml()) {
         continue;
     }
 
@@ -95,7 +95,8 @@ foreach ($this->jobs as $jobObject) {
         $job->addChild('salary', '<![CDATA[' . $jobObject->getSalary()->getValue() . $jobObject->getSalary()->getCurrency() .
             $jobObject->getSalary()->getUnit() . ']]');
     }
-    $job->addChild('description', '<![CDATA[' . htmlspecialchars($replaceImage($jobObject->getTemplateValues()->get('position'))) . ']]');
+    $jobDescription = $jobObject->getTemplateValues()->getHtml() ?: $jobObject->getTemplateValues()->get('position');
+    $job->addChild('description', '<![CDATA[' . htmlspecialchars($replaceImage($jobDescription)) . ']]');
     $job->addChild('company', '<![CDATA[' . $jobObject->getCompany() . ']]');
 
     $jobTypes = $jobObject->getClassifications()->getEmploymentTypes()->getValues();
@@ -109,8 +110,15 @@ foreach ($this->jobs as $jobObject) {
     $job->addChild('updated', $jobObject->getDateModified()?date_format($jobObject->getDateModified(),$dateFormat):"");
 
     if ($jobObject->getAtsMode()->isEnabled()) {
-        $job->addChild('email', '<![CDATA[' . $jobObject->getContactEmail() . ']]');
-        $job->addChild('apply_url', '<![CDATA[' . $this->applyUrl($jobObject, ['linkOnly'=>true, 'absolute' => true]) . ']]');
+        switch ($jobObject->getAtsMode()->getMode()) {
+            case 'uri':
+                $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($jobObject->getAtsMode()->getUri()) . ']]');
+                break;
+            default:
+                $job->addChild('email', '<![CDATA[' . $jobObject->getContactEmail() . ']]');
+                $job->addChild('apply_url', '<![CDATA[' . $this->applyUrl($jobObject, ['linkOnly'=>true, 'absolute' => true]) . ']]');
+                break;
+        }
     }
     else {
         $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]');
