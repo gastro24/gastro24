@@ -99,7 +99,7 @@ if (!$this->isIntern && $this->isEmbeddable) {
     if ($jobBanner) {
         $serverUrl = new \Laminas\View\Helper\ServerUrl();
        /* $imageServerUrl = $serverUrl($this->basePath($image->getUri()));*/
-        $imageServerUrl = $serverUrl($image->getUri());
+        $imageServerUrl = $image->getUri();
         $hasBanner = true;
     }
     if ($template && $template->getHideBanner()) {
