@@ -65,7 +65,8 @@ if ($org) {
 $jobBanner = $template && ($image = $template->getImage());
 if ($jobBanner) {
     $serverUrl = new \Laminas\View\Helper\ServerUrl();
-    $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+   /* $imageServerUrl = $serverUrl($this->basePath($image->getUri()));*/
+    $imageServerUrl = $serverUrl($image->getUri());
     $hasBanner = true;
 }
 if ($template && $template->getHideBanner()) {
