@@ -24,7 +24,7 @@ $labels = [
     'description' => 'Beschreibung des Unternehmens',
 
     /* Datei-Auswahlfeld für das Bannerbild */
-    'image' => 'Bannerbild (ideal 1200px * 300px)',
+    'image' => 'Bannerbild (ideal 1200px * 400px)',
 
     /* Text-Area für die Stellenbeschreibung */
     'position' => 'Tätigkeit',
