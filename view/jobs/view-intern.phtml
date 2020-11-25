@@ -58,7 +58,7 @@ if ($org) {
     $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($org->getId());
     if ($organizationAdditional && $organizationAdditional->getBanner()) {
         /*$imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());*/
-        *$imageServerUrl = $organizationAdditional->getBanner()->getUri();
+        $imageServerUrl = $organizationAdditional->getBanner()->getUri();
         $hasBanner = true;
     }
 }
