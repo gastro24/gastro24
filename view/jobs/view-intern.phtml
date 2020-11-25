@@ -302,10 +302,19 @@ $qualifications = $this->job->getClassifications()->getProfessions();
                             $location = $this->job->getLocations()->current();
                             if ($location == '') {
                                 echo $this->translate('Swiss');
-                            } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
+                            }
+                            // no street available, get address from organization (only for abo jobs, single has street)
+                            // @see https://gitlab.cross-solution.de/YAWIK/Gastro24/-/issues/587
+                            elseif (!$location->getStreetname()) {
+                                $orgAddress = $this->job->getOrganization()->getContact();
+                                echo $orgAddress->getStreet() . '<br>';
+                                echo $orgAddress->getPostalcode() . ' ' . $orgAddress->getCity();
+                            }
+                            elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
                                 echo $location->getStreetname() . '<br>';
                                 echo $location->getPostalcode() . ' ' . $location->getCity();
-                            } else {
+                            }
+                            else {
                                 echo preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
                             }
                         ?>
