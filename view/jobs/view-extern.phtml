@@ -88,7 +88,7 @@ if (!$this->isIntern && $this->isEmbeddable) {
         /** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
         $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($org->getId());
         if ($organizationAdditional && $organizationAdditional->getBanner()) {
-            $imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
+           $imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
             $hasBanner = true;
         }
     }
@@ -98,7 +98,8 @@ if (!$this->isIntern && $this->isEmbeddable) {
     $jobBanner = $template && ($image = $template->getImage());
     if ($jobBanner) {
         $serverUrl = new \Laminas\View\Helper\ServerUrl();
-        $imageServerUrl = $serverUrl($this->basePath($image->getUri()));
+       /* $imageServerUrl = $serverUrl($this->basePath($image->getUri()));*/
+        $imageServerUrl = $serverUrl($image->getUri());
         $hasBanner = true;
     }
     if ($template && $template->getHideBanner()) {
@@ -752,7 +753,7 @@ main#content {
 <div class="<?php if(!$hasBanner) echo 'no-banner' ?>" style="position:relative;">
     <div style="height:482.5px" class="company-bg-image"></div>
     <div class="<?php if(!$hasBanner) echo 'no-banner' ?> company-profile-wrapper">
-        <div class="jgArSS" style="background-image: url(<?= $imageServerUrl ?>);"></div>
+        <div class="jgArSS" style="background-image: url(https://gastrojob24.gumlet.net<?= $imageServerUrl ?>?mode=crop&width=1200&height=400&quality=75);"></div>
         <div class="company-profile-image">
 
 
