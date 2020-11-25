@@ -19,6 +19,7 @@ $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager'
 
 /* @var \Laminas\Paginator\Paginator $paginator */
 $paginator = $this->jobs;
+$paginator->setItemCountPerPage(1000);
 $basePathHelper = $this->plugin('basePath');
 
 /* @todo move this into a view helper */
@@ -46,11 +47,29 @@ $linkPrevious = $paginator->getCurrentPageNumber() > 1 ?
             ]
         ]))) : '';
 
-$xmlStr='<?xml version="1.0" encoding="utf-8"?><jobs></jobs>';
+$xmlStr='<?xml version="1.0" encoding="UTF-8"?><jobs>
+    <head>
+        <totalPagesCount>' . $paginator->count() .'</totalPagesCount>
+        <currentPage>'.$paginator->getCurrentPageNumber() .'</currentPage>
+        <link type="next">'.$linkNext.'</link>
+        <link type="previous">'.$linkPrevious.'</link>
+        <totalJobsCount>' . $paginator->getTotalItemCount() . '</totalJobsCount>
+        <channel>'.$this->channel.'</channel>
+    </head>
+</jobs>';
+
+/*$xmlStr='<?xml version="1.0" encoding="utf-8"?><jobs></jobs>';*/
 
 $xml = simplexml_load_string($xmlStr);
 
 foreach ($this->jobs as $jobObject) {
+
+    /* @var \Jobs\Entity\Job $jobObject */
+    // skip PDF and external jobs
+    if($jobObject->getLink() && !$jobObject->getTemplateValues()->getHtml()) {
+        continue;
+    }
+
     /** @var \Gastro24\Entity\Template $template */
     $template = $jobObject->getAttachedEntity('gastro24-template');
 
@@ -67,7 +86,6 @@ foreach ($this->jobs as $jobObject) {
         return str_replace('#image#', $imageHtml, $str);
     };
 
-    /* @var \Jobs\Entity\Job $jobObject */
     $job = $xml->addChild('job');
     $job->addAttribute('id', $jobObject->getId());
     $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]');
@@ -77,12 +95,13 @@ foreach ($this->jobs as $jobObject) {
         $job->addChild('salary', '<![CDATA[' . $jobObject->getSalary()->getValue() . $jobObject->getSalary()->getCurrency() .
             $jobObject->getSalary()->getUnit() . ']]');
     }
-    $job->addChild('description', '<![CDATA[' . $replaceImage($jobObject->getTemplateValues()->get('position')) . ']]');
+    $jobDescription = $jobObject->getTemplateValues()->getHtml() ?: $jobObject->getTemplateValues()->get('position');
+    $job->addChild('description', '<![CDATA[' . htmlspecialchars($replaceImage($jobDescription)) . ']]');
     $job->addChild('company', '<![CDATA[' . $jobObject->getCompany() . ']]');
 
     $jobTypes = $jobObject->getClassifications()->getEmploymentTypes()->getValues();
     $jobType = array_pop($jobTypes);
-    $job->addChild('jobtype', '<![CDATA[' . $jobType . ']]');
+    $job->addChild('jobtype', '<![CDATA[' . ($jobType ?: 'vollzeit') . ']]');
 
     $job->addChild('pubdate', $jobObject->getDatePublishStart()?date_format($jobObject->getDatePublishStart(),$dateFormat):"");
     if ($jobObject->getDatePublishEnd()) {
@@ -91,8 +110,18 @@ foreach ($this->jobs as $jobObject) {
     $job->addChild('updated', $jobObject->getDateModified()?date_format($jobObject->getDateModified(),$dateFormat):"");
 
     if ($jobObject->getAtsMode()->isEnabled()) {
-        $job->addChild('email', '<![CDATA[' . $jobObject->getContactEmail() . ']]');
-        $job->addChild('apply_url', '<![CDATA[' . $this->applyUrl($jobObject, ['linkOnly'=>true, 'absolute' => true]) . ']]');
+        switch ($jobObject->getAtsMode()->getMode()) {
+            case 'uri':
+                $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($jobObject->getAtsMode()->getUri()) . ']]');
+                break;
+            default:
+                $job->addChild('email', '<![CDATA[' . $jobObject->getContactEmail() . ']]');
+                $job->addChild('apply_url', '<![CDATA[' . $this->applyUrl($jobObject, ['linkOnly'=>true, 'absolute' => true]) . ']]');
+                break;
+        }
+    }
+    else {
+        $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]');
     }
     if ($jobObject->getOrganization()) {
         $job->addChild('phone', '<![CDATA[' . $jobObject->getOrganization()->getContact()->getPhone() . ']]');
