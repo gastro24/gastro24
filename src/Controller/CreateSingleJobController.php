@@ -193,7 +193,7 @@ class CreateSingleJobController extends AbstractActionController
 
         if ($hasAddons == 'options') {
             return [
-                'formattedAddons' => $this->getFormattedAddons($mainData['addons']),
+                'formattedAddons' => $this->getFormattedAddons($mainData['addons'] ?? []),
                 'payment' => true,
                 'invoiceAddressForm' => $this->invoiceAddressForm,
                 'totalPrice' => $mainValues['totalPrice']
