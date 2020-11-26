@@ -51,8 +51,8 @@ class BaseFieldset extends CoreBaseFieldset
             $hydrator->addStrategy('locations', $locationsStrategy);
 
             $this->setHydrator($hydrator);
-            $this->get('streetname')->setValue($this->getObject()->getLocations()->first()->getStreetname());
-            $this->get('zip')->setValue($this->getObject()->getLocations()->first()->getPostalCode());
+            $this->get('streetname')->setValue(($this->getObject()->getLocations()->first()) ? $this->getObject()->getLocations()->first()->getStreetname() : '');
+            $this->get('zip')->setValue(($this->getObject()->getLocations()->first()) ? $this->getObject()->getLocations()->first()->getPostalCode() : '');
         }
         return $this->hydrator;
     }
