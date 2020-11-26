@@ -29,7 +29,7 @@ class JobDetailsForm extends AbstractOptions
         'uri' => 'Link zum Stelleninserat',
         'pdf' => 'PDF-Datei hochladen',
         'logo' => 'Unternehmenslogo (max. 350x150)',
-        'image' => 'Bannerbild (ideal 1200px * 300px)',
+        'image' => 'Bannerbild (ideal 1200px x 400px)',
         'introduction' => 'Einleitung zu Ihrer Stellenanzeige',
         'position' => 'Stellenbeschreibung',
         'requirements' => 'Anforderungen',
