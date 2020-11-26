@@ -268,57 +268,16 @@ $industries = $job->getClassifications()->getIndustries();
  </div>
 
 
-<div class="col-md-3">
-     <div class="info-card" style="margin-bottom:0px;">
-                    <h2>Firmenadresse</h2>
-                    <address>
-                        <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
-                        <?php
-                            $location = $this->job->getLocations()->current();
-                            if ($location == '') {
-                                echo $this->translate('Swiss');
-                            } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
-                                echo $location->getStreetname() . '<br>';
-                                echo $location->getPostalcode() . ' ' . $location->getCity();
-                            } else {
-                                echo preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
-                            }
-                        ?>
-                    </address>
-                        
-                    <?php if (!$preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
-                     <div class="meta-adress">
-                         <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>">zur Website <i class="fa fa-external-link"></i></a>
-                      </div>
-                     
-                     
-                     <?php endif ?>
-                         
-                            
-      </div>
-  <div class="iframe-container">
-      <?php
-      $googleMapsString = '';
-      $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $orgName ;
-      $googleMapsString .= '+';
-
-      $location = $this->job->getLocations()->current();
-      if ($location == '') {
-          $googleMapsString .= 'Schweiz';
-      }
-      elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
-          $googleMapsString .= $location->getStreetname() . '+' . $location->getCity() . '+' . $location->getPostalcode() . '+Schweiz';
-      }
-      else {
-          $googleMapsString .= preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
-      }
-      ?>
-
-      <iframe src="https://maps.google.com/maps?width=100%&amp;height=450&amp;hl=de&amp;q=1%20<?= $googleMapsString ?>&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed"
-              frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
- </div>
-<!-- end col-md-3 -->
-</div>
+    <!-- sidebar contact and map -->
+    <div class="col-md-3">
+        <?= $this->partial('jobs/partials/contact-sidebar', [
+                'job' =>  $this->job,
+                'orgName' => $orgName,
+                'preview' => $preview
+            ]
+        ); ?>
+    </div>
+    <!-- end col-md-3 -->
 
 
  </div>

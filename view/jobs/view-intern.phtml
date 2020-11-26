@@ -292,76 +292,16 @@ $qualifications = $this->job->getClassifications()->getProfessions();
 <!-- end col-md-9 -->
  </div>
 
-
-<div class="col-md-3">
-     <div class="info-card" style="margin-bottom:0px;">
-                    <h2>Kontakt</h2>
-                    <address>
-                        <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> <br>
-                        <?php
-                            $location = $this->job->getLocations()->current();
-                            if ($location == '') {
-                                echo $this->translate('Swiss');
-                            }
-                            // no street available, get address from organization (only for abo jobs, single has street)
-                            // @see https://gitlab.cross-solution.de/YAWIK/Gastro24/-/issues/587
-                            elseif (!$location->getStreetname()) {
-                                $orgAddress = $this->job->getOrganization()->getContact();
-                                echo $orgAddress->getStreet() . ' ' . $orgAddress->getHouseNumber() . '<br>';
-                                echo $orgAddress->getPostalcode() . ' ' . $orgAddress->getCity();
-                            }
-                            elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
-                                echo $location->getStreetname() . '<br>';
-                                echo $location->getPostalcode() . ' ' . $location->getCity();
-                            }
-                            else {
-                                echo preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
-                            }
-                        ?>
-                    </address>
-                        
-                    <?php if (!$preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
-                        <div class="meta-adress">
-                        <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>">zur Website</a>
-                      </div>
-                     <?php endif ?>
-
-                    
-
-      </div> 
-  <div class="iframe-container" style="padding-bottom:50%;">
-      <?php
-          $googleMapsString = '';
-          $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $orgName ;
-          $googleMapsString .= '+';
-
-          $location = $this->job->getLocations()->current();
-          if ($location == '') {
-              $googleMapsString .= 'Schweiz';
-          }
-          elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
-              $googleMapsString .= $location->getStreetname() . '+' . $location->getCity() . '+' . $location->getPostalcode() . '+Schweiz';
-          }
-          else {
-              $googleMapsString .= preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
-          }
-      ?>
-
-
- <img rel="preload" as="image" style="position:absolute;" width="300" src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>" alt="Google Map von <?= $googleMapsString ?>">
-
-             
- </div>
-<div class="info-card" style="margin-top:0px;">
- <div class="meta-adress" style="margin-top:0px; margin-bottom:0px;">
-   <i class="fa fa-car"></i> <a style="display:inline;" target="_blank" rel="noopener nofollow" href="https://www.google.com/maps/dir//<?= $googleMapsString ?>/">Anfahrt zum Arbeitgeber</a>
-  </div>
-</div>
-
-
-<!-- end col-md-3 -->
-  </div>
-
+    <!-- sidebar contact and map -->
+    <div class="col-md-3">
+        <?= $this->partial('jobs/partials/contact-sidebar', [
+                'job' =>  $this->job,
+                'orgName' => $orgName,
+                'preview' => $preview
+            ]
+        ); ?>
+    </div>
+    <!-- end col-md-3 -->
 
  </div>
 
