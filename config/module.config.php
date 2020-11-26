@@ -391,6 +391,7 @@ return [
             'Gastro24\Form\Organizations\OrganizationsSocialFieldset' => \Gastro24\Factory\Form\OrganizationsSocialFieldsetFactory::class,
             'Organizations/Banner' => \Gastro24\Factory\Form\OrganizationBannerImageFactory::class,
             'Jobs/Job' => Factory\Form\Jobs\JobFactory::class,
+            'Jobs/BaseFieldset'  => \Gastro24\Factory\Form\Jobs\BaseFieldsetFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,
