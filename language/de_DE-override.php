@@ -31,7 +31,7 @@ return [
     'Next Job' => 'Nächster Job',
 
     // Job Form
-    'Please choose a descriptive title and a location for your job posting ' => 'Bitte wählen Sie einen aussagekräftigen Anzeigentitel. <br /><br />Sofern der Arbeitsort von der Adresse abweicht in Ihrem Firmeprofil, können Sie diese hier anpassen.',
+    'Please choose a descriptive title and a location for your job posting ' => 'Bitte wählen Sie einen aussagekräftigen Anzeigentitel. <br /><br />Sofern der Arbeitsort von der Adresse abweicht in Ihrem gewählten Firmenprofil, können Sie diese hier anpassen.',
     'Please choose the name of the hiring organization. The selected name defines the template of the job opening.' => 'Bitte wählen Sie Ihre Firma aus. Ihre Auswahl definiert das verlinkte Firmenprofil (sofern diese Option im Firmenprofil eingestellt ist).',
     'Your company logo will be used as default.' => 'Als Standard wird das Logo aus dem Firmenprofil genutzt. Sie können es aber hier überschreiben.',
     'Your company description will be used as default.' => 'Als Standard wird Ihre Unternehmensbeschreibung genutzt.',
