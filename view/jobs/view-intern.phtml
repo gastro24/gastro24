@@ -120,7 +120,7 @@ $qualifications = $this->job->getClassifications()->getProfessions();
                  <img rel="preload" as="image" class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
               </span>
 
-         <?php elseif ($preview) : ?>    
+         <?php elseif ($logo && $preview) : ?>    
              <span class="job-logo-wrapper">
                       <img src="<?= $template && ($logo = $template->getLogo())
                             ? $this->basePath($logo->getUri())
