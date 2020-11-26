@@ -1,17 +1,26 @@
 <?php
     $location = $this->job->getLocations()->current();
+
+    // no street available, get address from organization (only for abo jobs, single has street)
+    // @see https://gitlab.cross-solution.de/YAWIK/Gastro24/-/issues/587
+    $useCompanyAddress = false;
+    if (!$location->getStreetname()) {
+        $useCompanyAddress = true;
+    }
 ?>
 <div class="info-card" style="margin-bottom:0px;">
-    <h2>Kontakt</h2>
+    <h2><?= ($useCompanyAddress) ? 'Kontakt' : 'Arbeitsort' ?></h2>
     <address>
-        <?= (!empty($this->organizationName)) ? $this->organizationName : $this->orgName ?> <br>
+        <?php
+            if ($useCompanyAddress) {
+                echo (!empty($this->organizationName)) ? $this->organizationName : $this->orgName . '<br>';
+            }
+        ?>
         <?php
             if ($location == '') {
                 echo $this->translate('Swiss');
             }
-            // no street available, get address from organization (only for abo jobs, single has street)
-            // @see https://gitlab.cross-solution.de/YAWIK/Gastro24/-/issues/587
-            elseif (!$location->getStreetname() && $this->job->getOrganization()) {
+            elseif ($useCompanyAddress && $this->job->getOrganization()) {
                 $orgAddress = $this->job->getOrganization()->getContact();
                 echo $orgAddress->getStreet() . ' ' . $orgAddress->getHouseNumber() . '<br>';
                 echo $orgAddress->getPostalcode() . ' ' . $orgAddress->getCity();
@@ -34,15 +43,15 @@
 <div class="iframe-container" style="padding-bottom:50%;">
     <?php
         $googleMapsString = '';
-        $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $this->orgName;
-        $googleMapsString .= '+';
+        if ($useCompanyAddress) {
+            $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $this->orgName;
+            $googleMapsString .= '+';
+        }
 
         if ($location == '') {
             $googleMapsString .= 'Schweiz';
         }
-        // no street available, get address from organization (only for abo jobs, single has street)
-        // @see https://gitlab.cross-solution.de/YAWIK/Gastro24/-/issues/587
-        elseif (!$location->getStreetname() && $this->job->getOrganization()) {
+        elseif ($useCompanyAddress && $this->job->getOrganization()) {
             $orgAddress = $this->job->getOrganization()->getContact();
             $googleMapsString .= $orgAddress->getStreet() . ' ' . $orgAddress->getHouseNumber() . '+' .
                 $orgAddress->getCity() . '+' . $orgAddress->getPostalcode() . '+Schweiz';
