@@ -4,7 +4,7 @@
     // no street available, get address from organization (only for abo jobs, single has street)
     // @see https://gitlab.cross-solution.de/YAWIK/Gastro24/-/issues/587
     $useCompanyAddress = false;
-    if (!$location->getStreetname()) {
+    if ($location && !$location->getStreetname()) {
         $useCompanyAddress = true;
     }
 ?>

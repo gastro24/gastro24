@@ -44,7 +44,8 @@ class JsonLdProvider implements JsonLdProviderInterface
         /** @var \Organizations\Entity\Organization $organization */
         $organization = $this->job->getOrganization();
         $organizationName = $organization ? $organization->getOrganizationName()->getName() : $this->job->getCompany();
-        $hiringOrganizationName = $organization ? $organization->getOrganizationName()->getName() : $this->invoiceAddress->getCompany();
+        $hiringOrganizationName = $organization ? $organization->getOrganizationName()->getName() :
+            (($this->invoiceAddress) ? $this->invoiceAddress->getCompany() : '');
 
         $dateStart = $this->job->getDatePublishStart();
         $dateStart = $dateStart ? $dateStart->format('Y-m-d H:i:s') : null;
@@ -95,6 +96,17 @@ class JsonLdProvider implements JsonLdProviderInterface
         $organization = $this->job->getOrganization();
         // single job
         if (!$organization) {
+            // special case - new complete empty job in admin area
+            if (!$this->invoiceAddress) {
+                return [
+                    '@type' => 'PostalAddress',
+                    'streetAddress' => '',
+                    'postalCode' => '',
+                    'addressLocality' => '',
+                    'addressCountry' => 'CH',
+                ];
+            }
+
             return [
                 '@type' => 'PostalAddress',
                 'streetAddress' => $this->invoiceAddress->getStreet() . ' ' . $this->invoiceAddress->getHouseNumber(),
