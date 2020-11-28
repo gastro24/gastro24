@@ -43,6 +43,11 @@
             <a rel="nofollow" title="<?= $this->organizationName ?>"
                href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>">zur Website</a>
         </div>
+       <?php elseif ($useCompanyAddress && $this->job->getOrganization())):?>
+
+        ba bla
+
+
     <?php endif ?>
 </div>
 <div class="iframe-container" style="padding-bottom:50%;">
