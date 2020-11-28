@@ -46,8 +46,8 @@
        <?php elseif ($useCompanyAddress && $this->job->getOrganization()): ?>
 
          <div class="meta-adress">
-                    <a href="tel:<?= $contact->getPhone() ?>" rel="nofollow"><?= $contact->getPhone() ?></a>
-                    <a href="<?= $contact->getWebsite() ?>" rel="nofollow"><?= $contact->getWebsite() ?></a>
+                    <a href="tel:<?= $orgAddress->getPhone() ?>" rel="nofollow"><?= $orgAddress->getPhone() ?></a>
+                    <a href="<?= $orgAddress->getWebsite() ?>" rel="nofollow"><?= $orgAddress->getWebsite() ?></a>
                 </div>
         
     <?php endif ?>
