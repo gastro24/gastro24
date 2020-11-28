@@ -50,25 +50,6 @@
                     <a href="<?= $orgAddress->getWebsite() ?>" rel="nofollow"><?= $orgAddress->getWebsite() ?></a>
                 </div>
 
-                             <div class="social-media-company-profile">
-                    <?php if($organizationAdditional && $organizationAdditional->getSocials()) : ?>
-                        <?php if($organizationAdditional->getSocials()->getFacebook()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>" target="_blank"> <i class="fa fa-facebook-square"></i></a>
-                        <?php endif; ?>
-                        <?php if($organizationAdditional->getSocials()->getLinkedin()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getLinkedin() ?>" target="_blank"><i class="fa fa-linkedin-square"></i></a>
-                        <?php endif; ?>
-                        <?php if($organizationAdditional->getSocials()->getTwitter()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getTwitter() ?>" target="_blank"> <i class="fa fa-twitter-square"></i></a>
-                        <?php endif; ?>
-                        <?php if($organizationAdditional->getSocials()->getInstagram()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getInstagram() ?>" target="_blank"><i class="fa fa-instagram"></i></a>
-                        <?php endif; ?>
-                        <?php if($organizationAdditional->getSocials()->getYoutube()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getYoutube() ?>" target="_blank">	<i class="fa fa-youtube-square"></i></a>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                </div>
         
     <?php endif ?>
 </div>
