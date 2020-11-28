@@ -23,8 +23,8 @@
             elseif ($useCompanyAddress && $this->job->getOrganization()) {
                 $orgAddress = $this->job->getOrganization()->getContact();
                 echo $orgAddress->getStreet() . ' ' . $orgAddress->getHouseNumber() . '<br>';
-                echo $orgAddress->getPostalcode() . ' ' . $orgAddress->getCity(). '<br>';
-                echo $orgAddress->getCountry();
+                echo $orgAddress->getCountry(). ' - ' . $orgAddress->getPostalcode() . ' ' . $orgAddress->getCity();
+                
             
         
 
