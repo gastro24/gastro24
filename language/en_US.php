@@ -19,6 +19,8 @@
 
 
 return [
+
+    'Zusatz-Optionen für mehr Reichweite' => 'Multiposting',
      'Bewerben mit Social Media' => 'One click apply',
     'Täglich ähnliche Jobs in Ihrem Postfach' => 'Similar jobs in your inbox daily',
 
