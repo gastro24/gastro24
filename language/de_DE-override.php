@@ -17,6 +17,8 @@
  
  
 return [
+
+    'Multiposting' => 'Zusatz-Optionen für mehr Reichweite',
     'One click apply' => 'Bewerben mit Social Media',
     'Accepted' => 'Angenommen',
     'Changed' => 'Geändert',
