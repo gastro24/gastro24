@@ -115,7 +115,7 @@ $qualifications = $this->job->getClassifications()->getProfessions();
                    ?>
                    
                    
-          <?php if ($logo && !$preview): ?>             
+          <?php if ($logo): ?>             
              <span class="job-logo-wrapper">
                  <img rel="preload" as="image" class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
               </span>
