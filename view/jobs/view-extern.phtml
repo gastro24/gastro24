@@ -761,6 +761,17 @@ main#content {
             <span class="job-logo-wrapper">
                 <img class="job-logo" alt="<?= $orgName?>" src="<?= $logoUrl ?>" />
             </span>
+
+           <?php elseif ($preview) : ?>    
+             <span class="job-logo-wrapper">
+                      <img src="<?= $template && ($logo = $template->getLogo())
+                            ? $this->basePath($logo->getUri())
+                            : $defaultLogoUrl ?>" alt="<?= $this->organizationName?>">
+              </span>
+          <?php else: ?>
+
+
+
             <?php endif; ?>
 
 
