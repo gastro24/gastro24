@@ -77,7 +77,7 @@ class JobsBoardFacets extends Facets
                 $activeValues = [];
 
                 foreach ($values as $value => $count) {
-                    if (isset($this->params[$name][$value])) {
+                    if (isset($this->params[$name][$value]) && $count >=1) {
                         $activeValues[] = $value;
                     }
                 }
