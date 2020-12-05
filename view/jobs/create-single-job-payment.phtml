@@ -206,6 +206,9 @@
             <h2>Ihre Kontaktdaten</h2>
         <?php endif; ?>
 
+        <p><span class="required-mark">*</span> Pflichtfelder</p>
+        <p>&nbsp;</p>
+
          <div class="row form-group">
             <div class="col-md-11 gender-field">
                 <?= $this->formLabel($this->invoiceAddressForm->get('gender'), 'Anrede'); ?>
@@ -238,16 +241,15 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-md-4">
                 <?= $this->formLabel($invoiceAddressFieldset->get('zipCode'), 'PLZ'); ?>
                 <?= $this->formText($invoiceAddressFieldset->get('zipCode')); ?>
             </div>
-        </div>
-        <div class="row form-group">
-            <div class="col-md-11">
+          <div class="col-md-7">
                 <?= $this->formLabel($invoiceAddressFieldset->get('city'), 'Ort'); ?>
                 <?= $this->formText($invoiceAddressFieldset->get('city')); ?>
             </div>
+
         </div>
         <div class="row form-group">
             <div class="col-md-11">
