@@ -88,20 +88,20 @@ foreach ($this->jobs as $jobObject) {
 
     $job = $xml->addChild('job');
     $job->addAttribute('id', $jobObject->getId());
-    $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]');
-    $job->addChild('name', '<![CDATA[' . $jobObject->getTitle() . ']]');
+    $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
+    $job->addChild('name', '<![CDATA[' . $jobObject->getTitle() . ']]>');
 
     if ($jobObject->getSalary()->getCurrency()) {
         $job->addChild('salary', '<![CDATA[' . $jobObject->getSalary()->getValue() . $jobObject->getSalary()->getCurrency() .
-            $jobObject->getSalary()->getUnit() . ']]');
+            $jobObject->getSalary()->getUnit() . ']]>');
     }
     $jobDescription = $jobObject->getTemplateValues()->getHtml() ?: $jobObject->getTemplateValues()->get('position');
-    $job->addChild('description', '<![CDATA[' . htmlspecialchars($replaceImage($jobDescription)) . ']]');
-    $job->addChild('company', '<![CDATA[' . $jobObject->getCompany() . ']]');
+    $job->addChild('description', '<![CDATA[' . htmlspecialchars($replaceImage($jobDescription)) . ']]>');
+    $job->addChild('company', '<![CDATA[' . $jobObject->getCompany() . ']]>');
 
     $jobTypes = $jobObject->getClassifications()->getEmploymentTypes()->getValues();
     $jobType = array_pop($jobTypes);
-    $job->addChild('jobtype', '<![CDATA[' . ($jobType ?: 'vollzeit') . ']]');
+    $job->addChild('jobtype', '<![CDATA[' . ($jobType ?: 'vollzeit') . ']]>');
 
     $job->addChild('pubdate', $jobObject->getDatePublishStart()?date_format($jobObject->getDatePublishStart(),$dateFormat):"");
     if ($jobObject->getDatePublishEnd()) {
@@ -112,19 +112,19 @@ foreach ($this->jobs as $jobObject) {
     if ($jobObject->getAtsMode()->isEnabled()) {
         switch ($jobObject->getAtsMode()->getMode()) {
             case 'uri':
-                $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($jobObject->getAtsMode()->getUri()) . ']]');
+                $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($jobObject->getAtsMode()->getUri()) . ']]>');
                 break;
             default:
-                $job->addChild('email', '<![CDATA[' . $jobObject->getContactEmail() . ']]');
-                $job->addChild('apply_url', '<![CDATA[' . $this->applyUrl($jobObject, ['linkOnly'=>true, 'absolute' => true]) . ']]');
+                $job->addChild('email', '<![CDATA[' . $jobObject->getContactEmail() . ']]>');
+                $job->addChild('apply_url', '<![CDATA[' . $this->applyUrl($jobObject, ['linkOnly'=>true, 'absolute' => true]) . ']]>');
                 break;
         }
     }
     else {
-        $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]');
+        $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
     }
     if ($jobObject->getOrganization()) {
-        $job->addChild('phone', '<![CDATA[' . $jobObject->getOrganization()->getContact()->getPhone() . ']]');
+        $job->addChild('phone', '<![CDATA[' . $jobObject->getOrganization()->getContact()->getPhone() . ']]>');
     }
 
     $regions = [];
@@ -134,7 +134,7 @@ foreach ($this->jobs as $jobObject) {
         $regions[] =  $locationObject->getRegion();
         $countries[] =  $locationObject->getCountry();
     }
-    $job->addChild('region', '<![CDATA[' . implode(',', $regions) . ']]');
-    $job->addChild('country', '<![CDATA[' . implode(',', $countries) . ']]');
+    $job->addChild('region', '<![CDATA[' . implode(',', $regions) . ']]>');
+    $job->addChild('country', '<![CDATA[' . implode(',', $countries) . ']]>');
 }
 echo $xml->saveXML();
