@@ -201,7 +201,7 @@
     <!-- section main -->
     <div class="section-body">
         <?php if ($this->payment) : ?>
-            <h2>Zahlung erfolgt auf Rechnung</h2>
+            <h2>Bitte vervollständigen Sie Ihre Rechnungsadresse</h2>
         <?php else: ?>
             <h2>Ihre Kontaktdaten</h2>
         <?php endif; ?>
@@ -294,7 +294,7 @@
             $otherAddressFieldset = $this->invoiceAddressForm->get('otherAddress');
         ?>
         <div class="section-body">
-            <h2>Abweichende Rechnungsadresse</h2>
+            <h2>Abweichende Rechnungsadresse?</h2>
             <div class="row form-group">
                 <div class="col-md-11">
                     <?= $this->formElement($this->invoiceAddressForm->get('toggleOtherAddress')); ?>
