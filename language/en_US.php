@@ -19,7 +19,10 @@
 
 
 return [
-
+    'Automatisch freigeschaltet' => 'Auto approved',
+    'Automatisch aktiviert' => 'Job opening was activated automatically',
+    'Stellenanzeige wurde bearbeitet' => 'job was edited',
+    'Stellenanzeige wurde angelegt' => 'job was created', 
     'Zusatz-Optionen für mehr Reichweite' => 'Multiposting',
      'Bewerben mit Social Media' => 'One click apply',
     'Täglich ähnliche Jobs in Ihrem Postfach' => 'Similar jobs in your inbox daily',
