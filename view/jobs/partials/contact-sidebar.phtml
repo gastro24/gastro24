@@ -14,6 +14,10 @@
         <?php
             if ($useCompanyAddress) {
                 echo (!empty($this->organizationName)) ? $this->organizationName : $this->orgName . '<br>';
+            } else {
+
+                 echo $this->organizationName . '<br>';
+
             }
         ?>
         <?php
