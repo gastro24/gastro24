@@ -14,11 +14,7 @@
         <?php
             if ($useCompanyAddress) {
                 echo (!empty($this->organizationName)) ? $this->organizationName : $this->orgName . '<br>';
-            } else ($user->getRole() != 'admin') {
-
-                 echo $this->orgName . '<br>';
-
-            }
+            } 
         ?>
         <?php
             if ($location == '') {
