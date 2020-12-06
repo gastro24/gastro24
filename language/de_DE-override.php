@@ -17,7 +17,10 @@
  
  
 return [
-
+    'Auto approved' => 'Automatisch freigeschaltet',
+    'Job opening was activated automatically'  => 'Automatisch aktiviert',
+    'job was edited'  => 'Stellenanzeige wurde bearbeitet',
+    'job was created'  => 'Stellenanzeige wurde angelegt', 
     'Multiposting' => 'Zusatz-Optionen für mehr Reichweite',
     'One click apply' => 'Bewerben mit Social Media',
     'Accepted' => 'Angenommen',
