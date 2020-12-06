@@ -299,7 +299,8 @@ $qualifications = $this->job->getClassifications()->getProfessions();
         <?= $this->partial('jobs/partials/contact-sidebar', [
                 'job' =>  $this->job,
                 'orgName' => $orgName,
-                'preview' => $preview
+                'preview' => $preview,
+                'organizationName' => $this->organizationName
             ]
         ); ?>
     </div>
