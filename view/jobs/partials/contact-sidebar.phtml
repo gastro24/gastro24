@@ -14,8 +14,8 @@
         <?php
             if ($useCompanyAddress) {
                 echo (!empty($this->organizationName)) ? $this->organizationName : $this->orgName . '<br>';
-            } else (!$preview && $this->job->getTemplateValues()) {
-              echo $this->orgName . '<br>';
+            } else (!$preview && $this->job->getTemplateValues()->get('publishDate')) {
+                  echo $this->orgName . '<br>';
 
             }
 
