@@ -143,6 +143,7 @@ return [
             Filter\OrganizationJobsListQuery::class => InvokableFactory::class,
             'Gastro24/Paginator/JobsSimilarPaginationQuery' => 'Gastro24\Paginator\JobsSimilarPaginationQueryFactory',
             Filter\JobBoardPaginationQuery::class => Factory\Filter\JobBoardPaginationQueryFactory::class,
+            'Jobs/ChannelPrices'        => Factory\Filter\ChannelPricesFactory::class,
         ],
         'aliases' => [
             'Organizations/ListJobQuery' => Filter\OrganizationJobsListQuery::class,
