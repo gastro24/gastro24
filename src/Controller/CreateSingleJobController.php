@@ -56,7 +56,7 @@ class CreateSingleJobController extends AbstractActionController
                 $data['classifications']['industries'] = $data['industries'];
             }
             if (isset($data['professions'])) {
-                $data['professions']['industries'] = $data['professions'];
+                $data['classifications']['professions'] = $data['professions'];
             }
 
             $this->form->setData($data);
@@ -102,9 +102,9 @@ class CreateSingleJobController extends AbstractActionController
             $values['logo'] = isset($values['logo_url']) ? $values['logo_url'] : null;
             $values['image'] = isset($values['image_url']) ? $values['image_url'] : null;
             $values['classifications'] = [
-                'employmentTypes' => $values['classifications']->getEmploymentTypes(),
-                'industries' => $values['classifications']->getIndustries(),
-                'professions' => $values['classifications']->getProfessions()
+                'employmentTypes' => $values['classifications']['employmentTypes'],
+                'industries' => $values['classifications']['industries'] ?? [],
+                'professions' => $values['classifications']['professions'] ?? []
             ];
             $this->form->setData($values);
         }
@@ -125,7 +125,14 @@ class CreateSingleJobController extends AbstractActionController
         $mainValues = unserialize($session->values);
         $mainData = unserialize($session->data);
         // prefill company name from first step
-        $this->invoiceAddressForm->setData(['invoiceAddress' => ['company' => $mainValues['company']]]);
+        $firstLocation = json_decode($mainValues['location_1'], true);
+        $this->invoiceAddressForm->setData(['invoiceAddress' => [
+            'company' => $mainValues['company'],
+            'street' => $mainValues['locationStreet_1'],
+            'zipCode' => $mainValues['locationZipCode_1'],
+            'city' => $firstLocation['city'],
+            'email' => $mainValues['applicationEmail'] ?? '',
+        ]]);
 
         $hasAddons = $this->params()->fromRoute('show');
 
