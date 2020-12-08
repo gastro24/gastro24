@@ -620,8 +620,8 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
             </div>
 
            <div class="iframe-container" style="padding-bottom:50%;">
-              <img rel="preload" as="image" style="position:absolute;" width="300"
-         src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>"
+              <img style="position:absolute;" width="300"
+         data-src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>"
          alt="Google Map">
 
 
