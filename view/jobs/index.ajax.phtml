@@ -291,7 +291,7 @@ color: #000;
   <a class="job-logo-link" rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><img class="job-logo" alt="<?= $orgName ?>" src="<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>" /></a>
   <?php }
     else { ?>
-  <a class="job-logo-link" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><img class="job-logo" alt="<?= $orgName ?>" data-src="https://gastrojob24.gumlet.net<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>?mode=fit&width=90&height=90&quality=75" /></a>
+  <a class="job-logo-link" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><img class="job-logo" alt="<?= $orgName ?>" data-src="https://gastrojob24.gumlet.net<?= $logoUrl ? $logoUrl : $defaultLogoUrl ?>?mode=fit&width=90&height=90&quality=75" data-gmlazy="false" /></a>
   <?php } ?>
   <div class="card__job-content box__action-buttons">
 
