@@ -117,7 +117,7 @@ $qualifications = $this->job->getClassifications()->getProfessions();
                    
           <?php if ($logo): ?>             
              <span class="job-logo-wrapper">
-                 <img rel="preload" as="image" class="job-logo" alt="<?= $this->organizationName ?>" src="<?= $wrapperLogoUrl ?>" />
+                 <img class="job-logo" alt="<?= $this->organizationName ?>" data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>" />
               </span>
 
           <?php elseif ($preview) : ?>    
