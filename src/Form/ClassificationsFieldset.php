@@ -68,7 +68,7 @@ class ClassificationsFieldset extends Fieldset
                 'allow_select_nodes' => true,
                 'name' => 'industries',
                 'options' => [
-                    'label' => /*@translate*/ 'Branche',
+                    'label' => /*@translate*/ 'Kategorie',
                     'description' => /*@translate*/ 'Select the industry of the hiring organization. This allows an applicant to search for job opening by industry.',
                 ],
                 'attributes' => [
