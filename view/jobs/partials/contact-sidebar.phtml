@@ -43,10 +43,11 @@
 
     <?php if (!$this->preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
         <div class="meta-adress">
+
             <a rel="nofollow" title="<?= $this->organizationName ?>"
                href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>">zur Website</a>
         </div>
-       <?php elseif ($useCompanyAddress && $this->job->getOrganization()): ?>
+       <?php elseif ($useCompanyAddress && $this->job->getOrganization() || $this->job->getTemplateValues()  ) : ?>
 
          <div class="meta-adress">
                     <a href="tel:<?= $orgAddress->getPhone() ?>" rel="nofollow"><?= $orgAddress->getPhone() ?></a>
