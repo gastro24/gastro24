@@ -19,6 +19,6 @@
   },
   "dependencies": {
     "iframe-resizer": "^4.1.1",
-    "tinymce": "^4.9.8"
+    "tinymce": "^4.9.11"
   }
 }
