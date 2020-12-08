@@ -23,7 +23,7 @@ $replaceImage = function($str) use ($template, $basePathHelper)
     $image = $template ? $template->getImage() : null;
     if ($image) {
         $imageUri = $basePathHelper($image->getUri());
-        $imageHtml = '<img rel="preload" as="image" src="' . $imageUri . '">';
+        $imageHtml = '<img data-src="' . $imageUri . '">';
     } else {
         $imageHtml = '';
     }
