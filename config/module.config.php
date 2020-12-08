@@ -244,7 +244,7 @@ return [
     'view_manager' => [
          'template_map' => [
              'jobs/export/feed.xml' => __DIR__ . '/../view/jobs/export/feed.xml.phtml',
-             //'jobs/form/multiposting-select' => __DIR__ . '/../view/jobs/form/multiposting-select.phtml',
+             'jobs/form/multiposting-select' => __DIR__ . '/../view/jobs/form/multiposting-select.phtml',
              'jobs/form/multiposting-checkboxes' => __DIR__ . '/../view/jobs/form/multiposting-checkboxes.phtml',
              'error/404' => __DIR__ . '/../view/error/404.phtml',
              'error/403' => __DIR__ . '/../view/error/403.phtml',
