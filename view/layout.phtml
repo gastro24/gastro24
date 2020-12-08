@@ -60,7 +60,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headMeta() ?>
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
-    <link rel="stylesheet" type="text/css" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
+    <link rel="preload" as="style" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
    
 
     <!-- job json ld -->
@@ -79,11 +79,8 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
     </script>
     
-    <link rel="preconnect" href="https://www.google.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.google.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     
 <!-- Google Tag Manager -->
