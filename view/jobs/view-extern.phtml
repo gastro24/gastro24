@@ -855,13 +855,13 @@ main#content {
                     </li>
 <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
  <li ><i class="fa fa-angle-right"></i>
-   <div class="details-list-content"><span class="title">Branche</span><span class="value"><?= $industries->__toString(); ?></span></div>
+   <div class="details-list-content"><span class="title">Kategorie</span><span class="value"><?= $industries->__toString(); ?></span></div>
 </li>
 
 <?php else: ?>
 
  <li ><i class="fa fa-angle-right"></i>
-   <div class="details-list-content"><span class="title">Branche</span><span class="value">Gastronomie / Tourismus</span></div>
+   <div class="details-list-content"><span class="title">Kategorie</span><span class="value">Gastronomie / Tourismus</span></div>
 </li>
 <?php endif; ?>
 
