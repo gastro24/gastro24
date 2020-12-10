@@ -61,9 +61,6 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
     <link rel="preload" as="style" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
-    <style>
-       @font-face {font-display: swap;}
-    </style>
 
     <!-- job json ld -->
     <?php if($this->job): ?>
@@ -139,10 +136,6 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
                              <li class="nav-item">
                               <a title="Firmen" href="/de/organizations/profile" class="navigation-link-norm text-white">Firmen</a>
                             </li>
-                          <!-- <li class="nav-item">	   
-                              <a title="Abo für Firmen" href="/de/auth/register" class="navigation-link-norm text-white">Abo für Firmen</a>
-                           </li>-->
-                           
                             <li class="nav-item">
                                 <?php
                                 $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
