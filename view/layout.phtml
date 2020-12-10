@@ -61,7 +61,9 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
     <link rel="preload" as="style" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
-   
+    <style>
+       @font-face {font-display: swap;}
+    </style>
 
     <!-- job json ld -->
     <?php if($this->job): ?>
