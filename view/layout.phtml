@@ -61,6 +61,10 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
 
+  <?php if (!$this->params()->fromRoute('isLandingPage')):?>
+    #navbar-search-toggle { display: none;}
+  <?php endif ?>
+
     <link rel="preload" as="style" href="<?= $this->basePath($this->asset('modules/Gastro24/Gastro24.css')) ?>" onload="this.rel='stylesheet'">
 
     <!-- job json ld -->
@@ -211,7 +215,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
 <!-- lazy loaded javascript-->
-<?php if (!$this->auth()->isLoggedIn()): 
+<?php if (!$this->auth()->isLoggedIn() && !$this->params()->fromRoute('isLandingPage')): 
     $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
         ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
