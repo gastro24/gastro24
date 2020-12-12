@@ -68,7 +68,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
  </style>
   <?php endif ?>
 
-    <link rel="preload" as="style" href="<?= $this->basePath($this->asset('modules/Gastro24/Gastro24.css')) ?>" onload="this.rel='stylesheet'">
+    <link rel="stylesheet preload" as="style" href="<?= $this->basePath($this->asset('modules/Gastro24/Gastro24.css')) ?>">
 
     <!-- job json ld -->
     <?php if($this->job): ?>
