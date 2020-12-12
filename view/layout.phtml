@@ -211,7 +211,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
 <!-- lazy loaded javascript-->
-<?php if (!$this->auth()->isLoggedIn() && !$this->params()->fromRoute('isLandingPage')): 
+<?php if (!$this->auth()->isLoggedIn()): 
     $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
         ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
