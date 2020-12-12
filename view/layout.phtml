@@ -34,7 +34,7 @@ $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
 $this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
-// $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
+//$this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
 
 $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
 $savedJobsCount = ($savedJobsContainer->jobs) ? count($savedJobsContainer->jobs) : 0;
@@ -60,80 +60,10 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headMeta() ?>
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
-    
     <link rel="preload" as="style" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
 
     <!-- job json ld -->
     <?php if($this->job): ?>
-        <?= $this->jsonLd($this->job); ?>
-    <?php endif; ?>
-    <!-- job json ld -->
-
-    <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
-
-    <?php if ($this->params()->fromRoute('isLandingPage')):?>
-      
-    <?php endif ?>
-
-    <script>
-        var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
-    </script>
-    
-    <link rel="dns-prefetch" href="https://www.google.com">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <link rel="dns-prefetch" href="https://www.google-analytics.com">
-    
-<!-- Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125791873-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-125791873-1');
-  gtag('config', 'AW-980688466');
-
-</script>
-  
-    <!-- End Google Tag Manager -->
-    
-<?php if ($this->auth()->isLoggedIn() && !$preview):?>
-    <!-- Start of  Zendesk Widget script -->
-    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=2d241515-52bd-4381-8955-1cd82d61cf71"> </script>
-    <!-- End of  Zendesk Widget script -->
-<?php endif ?>
-
-<script type="text/javascript">
-    window.GUMLET_CONFIG = {
-        hosts: [{
-            current: "gastrojob24.ch",
-            gumlet: "gastrojob24.gumlet.io"
-        }],
-        lazy_load: true,
-		srcset: true,
-        auto_webp: true
-    };
-    (function(){d=document;s=d.createElement("script");s.src="https://cdn.gumlet.com/gumlet.js/2.0/gumlet.min.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
-</script>
-    
-</head>
-<body class="<?= $routeClass ?>" id="top">
-
-<?php if (!$this->noHeader):?>
-    <header id="header" role="banner" class="hidden-xs" data-saved-jobs="<?=$savedJobsCount?>">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header col-md-2">
-                    <a class="logo" title="Gastrojob24" href="<?php echo $this->basepath('/' . $this->params('lang')) ?>">
-                        <img src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_white.svg') ?>" alt="Gastrojob24">
-                    </a>
-                </div>
-                <div class="col-md-10">
-                    <?php if ('guest' == $this->auth('role')): ?>
-                        <ul class="pull-right navbar-nav nav-recruiting">
-                            
-                          <li class="nav-item">
-                              <a title="Jobs" href="/de/jobs?clear=1" class="navigation-link-norm text-white">Jobs</a>
-                            </li>
                              <li class="nav-item">
                               <a title="Firmen" href="/de/organizations/profile" class="navigation-link-norm text-white">Firmen</a>
                             </li>
