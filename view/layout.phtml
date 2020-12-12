@@ -33,7 +33,7 @@ $this->headTitle($this->translate('Gastrojob24'))->setSeparator(' - ')->setAutoE
 $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
-$this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
+//$this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
 // $this->headLink()->prependStylesheet($this->basePath('dist/css/core.min.css'));
 
 $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
@@ -60,6 +60,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headMeta() ?>
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
+    <link rel="preload" as="style" href="<?= $this->basePath($this->asset('modules/Gastro24/Gastro24.css')) ?>" onload="this.rel='stylesheet'">
     <link rel="preload" as="style" href="<?= $this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')) ?>">
 
     <!-- job json ld -->
