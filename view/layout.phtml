@@ -232,6 +232,8 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     echo $this->configHeadScript()->setAutoEscape(false);
 
 elseif (!$this->auth()->isLoggedIn() && $this->params()->fromRoute('isLandingPage') && 304 === $query):
+
+$query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
     $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
         ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
