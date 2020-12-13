@@ -11,7 +11,7 @@
 /* @var $options \Core\Options\ModuleOptions */
 $options = $this->services('Core/Options');
 $lang = $this->params('lang');
-$query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
+
 $routeParams = $this->params()->fromRoute();
 $routeClass = '';
 if (isset($routeParams['controller']) && isset($routeParams['action'])) {
@@ -243,6 +243,21 @@ elseif (!$this->auth()->isLoggedIn() && $this->params()->fromRoute('isLandingPag
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
 
    echo $this->configHeadScript()->setAutoEscape(false);
+
+elseif (!$this->params()->fromRoute('isLandingPage') && 304 === $query):
+
+
+    $langScript = 'dist/locales/' . $lang . '.js';
+    echo $this->inlineScript()->setAutoEscape(false)
+        ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
+        ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+        //->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
+        ->appendFile($this->basePath($langScript))
+        ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
+
+   echo $this->configHeadScript()->setAutoEscape(false);
+
+
 
 else: 
 
