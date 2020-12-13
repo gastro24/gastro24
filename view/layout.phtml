@@ -11,7 +11,7 @@
 /* @var $options \Core\Options\ModuleOptions */
 $options = $this->services('Core/Options');
 $lang = $this->params('lang');
-
+$query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
 $routeParams = $this->params()->fromRoute();
 $routeClass = '';
 if (isset($routeParams['controller']) && isset($routeParams['action'])) {
@@ -233,7 +233,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
 elseif (!$this->auth()->isLoggedIn() && $this->params()->fromRoute('isLandingPage') && 304 === $query):
 
-$query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
+
     $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
         ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
