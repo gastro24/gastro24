@@ -461,14 +461,17 @@ $lang = $this->params('lang');
                 newRow.find('.location-street label').attr('for', 'locationStreet_' + index);
                 newRow.find('.location-street input').attr('name', 'locationStreet_' + index)
                     .attr('id', 'locationStreet_' + index).val('');
-                newRow.find('.location-select label').attr('for', 'csj-location-' + index);
+
+                newRow.find('.location-select label').attr('for', 'csj-location-' + index).addClass('csj-location-' + index);
 
                 var geoSelect = $('<select>').attr('data-autoinit', false).attr('data-clear-on-reset', true)
-                    .attr('class', 'geoselect').attr('name', 'location_' + index).attr('id', 'csj-location-' + index);
+                    .attr('class', 'geoselect').attr('name', 'location_' + index).attr('id', 'csj-location-' + index)
+                    .attr('data-width', '100%').attr('required', true);
                 newRow.find('.location-select select').remove();
                 newRow.find('.location-select span').remove();
                 geoSelect.insertAfter(newRow.find('.location-select label'));
                 newRow.find('.location-select select').geoSelect();
+                newRow.find('.location-select label').append('<span class="required-mark">*</span>');
 
                 newRow.insertAfter('.row--locations:last');
             });
