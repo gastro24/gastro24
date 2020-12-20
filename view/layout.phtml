@@ -231,7 +231,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
     echo $this->configHeadScript()->setAutoEscape(false);
 
-elseif (!$this->auth()->isLoggedIn() && $this->params()->fromRoute('isLandingPage') && 304 === $query):
+elseif (!$this->auth()->isLoggedIn() && $searchTerm):
 
 
     $langScript = 'dist/locales/' . $lang . '.js';
