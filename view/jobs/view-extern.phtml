@@ -321,18 +321,6 @@ $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/j
     overflow: hidden;
 }
 
-.company-bg-image:before {
-    display: block;
-    position: absolute;
-    top: -45px;
-    bottom: -45px;
-    left: -35px;
-    right: -35px;
-    content: "";
-    background-size: cover;
-    background-position: center center;
-    filter: blur(25px);
-}
 
 .company-profile-wrapper {
     left: 0;
@@ -611,24 +599,6 @@ main#content {
 }
 
 
-.no-banner .company-bg-image:before {
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    content: "";
-    background-size: cover;
-    background-position: center center;
-    filter: none;
-    background-color: #fff;
-    background-image: none;
-    height: 305px;
-
-
-}
-
 .no-banner .company-profile-wrapper {
     top: 50px;
 }
@@ -734,13 +704,6 @@ main#content {
 <!-- view PDF / External --> 
 <?php if (!$this->isIntern && $this->isEmbeddable):?>
         
-<?php if ($hasBanner): ?>
-<!--<style>
-    .company-bg-image:before {
-        background-image: url(<?= $imageServerUrl ?>);
-    }
-</style>-->
-<?php endif; ?>
 
 <div class="<?php if(!$hasBanner) echo 'no-banner' ?>" style="position:relative;">
     <div style="height:482.5px" class="company-bg-image"></div>
