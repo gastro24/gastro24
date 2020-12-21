@@ -464,7 +464,7 @@ $lang = $this->params('lang');
 
                 newRow.find('.location-select label').attr('for', 'csj-location-' + index).addClass('csj-location-' + index);
 
-                var geoSelect = $('<select>').attr('data-autoinit', false).attr('data-clear-on-reset', true)
+                var geoSelect = $('<select>').attr('data-autoinit', '').attr('data-placeholder', '').attr('data-clear-on-reset', 1).attr('data-language', 'de')
                     .attr('class', 'geoselect').attr('name', 'location_' + index).attr('id', 'csj-location-' + index)
                     .attr('data-width', '100%').attr('required', true);
                 newRow.find('.location-select select').remove();
