@@ -141,6 +141,10 @@ class Module implements AssetProviderInterface
                     $routeMatch->setParam('isInseratPage', true);
                 }
 
+                if ('lang/jobboard' == $matchedRouteName) {
+                    $routeMatch->setParam('isJobboardPage', true);
+                }
+
                 if ('lang/landingPage' == $matchedRouteName) {
                     $services = $event->getApplication()->getServiceManager();
                     $options = $services->get(Landingpages::class);

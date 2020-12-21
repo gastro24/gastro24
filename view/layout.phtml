@@ -18,7 +18,8 @@ if (isset($routeParams['controller']) && isset($routeParams['action'])) {
     $routeClass = strtolower(str_replace(['/', '\\'], '-', $routeParams['controller'] . '-' . $routeParams['action']));
 }
 $isLandingPage = $routeParams['isLandingPage'];
-$isInserat = $routeParams['isInseratPage'];
+$isInseratPage = $routeParams['isInseratPage'];
+$isJobboardPage = $routeParams['isJobboardPage'];
 
 // check for preview
 $preview = false;
