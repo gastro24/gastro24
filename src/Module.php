@@ -134,7 +134,6 @@ class Module implements AssetProviderInterface
                 if (!$routeMatch) { return; }
 
                 $matchedRouteName = $routeMatch->getMatchedRouteName();
-
                 $container = new Container('gastro24_jobboardcontainer');
 
                 if ('lang/job-view-extern' == $matchedRouteName) {
