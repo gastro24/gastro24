@@ -61,7 +61,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <link rel="preload" href="/dist/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" type="font/woff2" crossorigin="anonymous">
     <?php echo $this->headTitle() ?>
     <?php echo $this->headMeta() ?>
-    <?php echo $this->headLink() ?>
+    <?php echo $this->headLink()->setAutoEscape(false) ?>
     <?php echo $this->headStyle() ?>
 
   <?php if (!$isLandingPage ) :?>

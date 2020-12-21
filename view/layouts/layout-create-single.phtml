@@ -7,7 +7,7 @@
 $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
-$this->headLink()->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')))->setAutoEscape(false);
+$this->headLink()->setAutoEscape(false)->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')));
 $this->headLink()->prependStylesheet($this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')))
     ->prependStylesheet($this->basePath('dist/css/core.min.css'));
 
@@ -27,7 +27,7 @@ $lang = $this->params('lang');
     <meta name="description" content="Publizieren Sie Ihre Stellenanzeige auf Gastrojob24 während 30 Tagen für CHF 29.- und erreichen Sie tausende Stellensuchende aus der Gastronomie. Jetzt inserieren!">
     
     <?php echo $this->headMeta() ?>
-    <?php echo $this->headLink() ?>
+    <?php echo $this->headLink()->setAutoEscape(false) ?>
     <?php echo $this->headStyle() ?>
     <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
 

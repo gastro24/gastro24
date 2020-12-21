@@ -137,4 +137,4 @@ foreach ($this->jobs as $jobObject) {
     $job->addChild('region', '<![CDATA[' . implode(',', $regions) . ']]>');
     $job->addChild('country', '<![CDATA[' . implode(',', $countries) . ']]>');
 }
-echo $xml->saveXML();
+echo html_entity_decode($xml->saveXML());
