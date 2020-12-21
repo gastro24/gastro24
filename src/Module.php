@@ -137,6 +137,14 @@ class Module implements AssetProviderInterface
 
                 $container = new Container('gastro24_jobboardcontainer');
 
+                if ('lang/job-view-extern' == $matchedRouteName) {
+                    $routeMatch->setParam('isInseratPage', true);
+                }
+
+                if ('lang/jobboard' == $matchedRouteName) {
+                    $routeMatch->setParam('isJobboardPage', true);
+                }
+
                 if ('lang/landingPage' == $matchedRouteName) {
                     $services = $event->getApplication()->getServiceManager();
                     $options = $services->get(Landingpages::class);
