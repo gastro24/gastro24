@@ -17,6 +17,8 @@ $routeClass = '';
 if (isset($routeParams['controller']) && isset($routeParams['action'])) {
     $routeClass = strtolower(str_replace(['/', '\\'], '-', $routeParams['controller'] . '-' . $routeParams['action']));
 }
+$isLandingPage = $routeParams['isLandingPage'];
+$isInserat = $routeParams['isInseratPage'];
 
 // check for preview
 $preview = false;
@@ -61,7 +63,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headLink() ?>
     <?php echo $this->headStyle() ?>
 
-  <?php if (!$this->params()->fromRoute('isLandingPage') ) :?>
+  <?php if (!$isLandingPage ) :?>
   <style>
     #navbar-search-toggle { display: none!important;}
 	
@@ -218,7 +220,8 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
 <!-- lazy loaded javascript-->
-<?php if (!$this->auth()->isLoggedIn() && !$this->params()->fromRoute('isLandingPage')): 
+<!-- not logged in and not landingpage -->
+<?php if (!$this->auth()->isLoggedIn() && !$isLandingPage):
     //$langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
         //->appendFile("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js");
@@ -231,10 +234,9 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
     echo $this->configHeadScript()->setAutoEscape(false);
 
-
+// logged in OR landingpage
 else: 
-
-  $langScript = 'dist/locales/' . $lang . '.js';
+    $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
         ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
         ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
@@ -246,8 +248,8 @@ else:
     echo $this->configHeadScript()->setAutoEscape(false);
 
 endif ?>
-
 <!-- end lazy loaded javascript -->
+
 <script>
     $(document).ready(function() {
         $(document).on('click', function(e) {
