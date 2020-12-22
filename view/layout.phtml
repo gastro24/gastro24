@@ -221,34 +221,23 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
 <!-- lazy loaded javascript-->
-<!-- not logged in and not landingpage -->
-<?php if (!$this->auth()->isLoggedIn() && !$isLandingPage):
-    //$langScript = 'dist/locales/' . $lang . '.js';
-    echo $this->inlineScript()->setAutoEscape(false)
-        //->appendFile("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js");
-        ->appendFile($this->basepath($this->asset('dist/js/core.min.js')));
-        //->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
-        //->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
-        //->appendFile($this->basePath($langScript))
-        //->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
 
+<!-- is InseratePage -->
+<?php if ($isInseratPage):
 
-    echo $this->configHeadScript()->setAutoEscape(false);
+  echo $this->inlineScript()->setAutoEscape(false)
+    ->appendFile($this->basePath($this->asset('https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js')))
+    ->appendFile($this->basepath($this->asset('https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js')));
+  echo $this->configHeadScript()->setAutoEscape(false);
 
-// logged in OR landingpage
-else: 
-    $langScript = 'dist/locales/' . $lang . '.js';
-    echo $this->inlineScript()->setAutoEscape(false)
-        ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
-        ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
-        ->appendFile($this->basePath($langScript))
-        ->appendFile($this->basePath('dist/js/tinymce.js'))
-        ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'))
-        ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
-
-    echo $this->configHeadScript()->setAutoEscape(false);
 
 endif ?>
+
+
+
+
+
+
 <!-- end lazy loaded javascript -->
 
 <script>
