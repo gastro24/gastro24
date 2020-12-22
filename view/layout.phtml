@@ -226,8 +226,8 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 <?php if ($isInseratPage):
 
   echo $this->inlineScript()->setAutoEscape(false)
-    ->appendFile($this->basePath($this->asset('https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js')))
-    ->appendFile($this->basepath($this->asset('https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js')));
+    ->appendFile("https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js")
+    ->appendFile("https://cdn.jsdelivr.net/npm/bootstrap.min.js@3.3.5/bootstrap.min.js");
   echo $this->configHeadScript()->setAutoEscape(false);
 
 
