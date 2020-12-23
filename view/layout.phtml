@@ -17,9 +17,9 @@ $routeClass = '';
 if (isset($routeParams['controller']) && isset($routeParams['action'])) {
     $routeClass = strtolower(str_replace(['/', '\\'], '-', $routeParams['controller'] . '-' . $routeParams['action']));
 }
-$isLandingPage = $routeParams['isLandingPage'];
-$isInseratPage = $routeParams['isInseratPage'];
-$isJobboardPage = $routeParams['isJobboardPage'];
+$isLandingPage = $routeParams['isLandingPage'] ?? false;
+$isInseratPage = $routeParams['isInseratPage'] ?? false;
+$isJobboardPage = $routeParams['isJobboardPage'] ?? false;
 
 // check for preview
 $preview = false;
