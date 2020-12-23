@@ -231,7 +231,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
   echo $this->configHeadScript()->setAutoEscape(false);
 
 
-  elseif ($isInseratPage || $isJobboardPage):
+  elseif ($isLandingPage || $isJobboardPage):
   
    echo $this->inlineScript()->setAutoEscape(false)
        $langScript = 'dist/locales/' . $lang . '.js';
