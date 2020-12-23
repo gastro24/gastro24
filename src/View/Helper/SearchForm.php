@@ -19,9 +19,9 @@ class SearchForm extends BaseSearchFormHelper
         $headscript = $this->getView()->plugin('headscript');
         $basepath   = $this->getView()->plugin('basepath');
 
-        $headscript
-            ->appendFile($basepath('modules/Core/js/core.forms.js'))
-            ->appendFile($basepath('modules/Core/js/core.searchform.js'));
+       // $headscript
+          //   ->appendFile($basepath('modules/Core/js/core.forms.js'))
+          //   ->appendFile($basepath('modules/Core/js/core.searchform.js'));
 
         if (is_int($colMap)) {
             $buttonsSpan = $colMap;
