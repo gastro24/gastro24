@@ -221,23 +221,34 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
 <?php if (!$this->noFooter): echo $this->partial("footer"); endif; ?>
 <!-- lazy loaded javascript-->
-<!-- not logged in and not landingpage -->
-<?php if (!$this->auth()->isLoggedIn() && !$isLandingPage):
-    //$langScript = 'dist/locales/' . $lang . '.js';
-    echo $this->inlineScript()->setAutoEscape(false)
-        //->appendFile("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js");
-        ->appendFile($this->basepath($this->asset('dist/js/core.min.js')));
-        //->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
-        //->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
-        //->appendFile($this->basePath($langScript))
-        //->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
+
+<?php if ($isInseratPage):
+
+  echo $this->inlineScript()->setAutoEscape(false)
+      ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jquery.min.js')))
+      ->appendFile($this->basePath($this->asset('modules/Gastro24/js/bootstrap.min.js')))
+	  ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')));
+  echo $this->configHeadScript()->setAutoEscape(false);
 
 
-    echo $this->configHeadScript()->setAutoEscape(false);
-
-// logged in OR landingpage
-else: 
-    $langScript = 'dist/locales/' . $lang . '.js';
+  elseif ($isLandingPage || $isJobboardPage):
+  
+   echo $this->inlineScript()->setAutoEscape(false)
+       $langScript = 'dist/locales/' . $lang . '.js';
+      ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jquery.min.js')))
+      ->appendFile($this->basePath($this->asset('modules/Gastro24/js/bootstrap.min.js')))
+	  ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+	  ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')))
+      ->appendFile($basepath('modules/Core/js/core.searchform.js'))
+	  ->appendFile($this->basepath('/modules/Core/js/core.pagination-container.js'))
+      ->appendFile($this->basePath('modules/Core/js/core.forms.js'))
+      ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
+      ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));
+        echo $this->configHeadScript()->setAutoEscape(false);
+  
+  else:
+  
+  $langScript = 'dist/locales/' . $lang . '.js';
     echo $this->inlineScript()->setAutoEscape(false)
         ->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
         ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
@@ -245,10 +256,11 @@ else:
         ->appendFile($this->basePath('dist/js/tinymce.js'))
         ->appendFile($this->basePath('/dist/js/iframeResizer.contentWindow.min.js'))
         ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')));
+         echo $this->configHeadScript()->setAutoEscape(false);
 
-    echo $this->configHeadScript()->setAutoEscape(false);
 
 endif ?>
+
 <!-- end lazy loaded javascript -->
 
 <script>
