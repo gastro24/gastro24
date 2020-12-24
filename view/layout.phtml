@@ -64,10 +64,9 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headLink()->setAutoEscape(false) ?>
     <?php echo $this->headStyle() ?>
 
-  <?php if (!$isLandingPage ) :?>
+  <?php if (!$isLandingPage || !$isJobboardPage) :?>
   <style>
     #navbar-search-toggle { display: none!important;}
-	
  </style>
   <?php endif ?>
 
