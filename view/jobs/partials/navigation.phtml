@@ -2,15 +2,23 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12"> 
-          <ul class="pull-left">
-            <li>
-              <?php if($this->hasSession) : ?>
-                 <a class="navbar-item-anchor" title="<?= $this->backTitle ?>" href="<?= $this->lastSearchQueryUrl ?>"><i class="fa fa-angle-left"></i> zurück</a>
-             <?php else: ?>
-                 <a class="navbar-item-anchor" title="<?= $this->translate('Back to search') ?>" href="/de/jobs?clear=1"><i class="fa fa-angle-left"></i> zurück</a>
-             <?php endif; ?>
-            </li>
-          </ul>
+         <nav class="job-detail-breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/"> <span itemprop="name">Home</span></a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span></a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <span itemprop="name"><?=ucfirst($this->job->getTitle())?></span>
+                        <meta itemprop="position" content="3">
+                    </li>
+                </ol>
+            </nav>
+
           <ul class="pull-right job-pagination">
            <?php if($this->prevJob) : ?>
                <li><a class="navbar-item-anchor" title="<?= $this->prevJob->getTitle() ?>" href="<?= $this->jobUrl($this->prevJob, ['linkOnly' => true ]) ?>"><i class="fa fa-arrow-left"></i> </a></li>
