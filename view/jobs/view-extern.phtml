@@ -183,6 +183,24 @@ endif;
     ?>
 <?php endif; ?>
 <style>
+
+.company-description-wrapper {
+
+    margin-top:15px;
+
+}
+.job-detail-breadcrumb-nav {
+
+    display: inline-block;
+    height: 52px;
+    line-height: 35px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 75%;
+}
+
+
 .intro p {
 
     margin-bottom:20px;
@@ -796,26 +814,6 @@ main#content {
 
 <div class="company-description-wrapper">
     <div class="row">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/"> <span itemprop="name">Home</span></a>
-                        <meta itemprop="position" content="1">
-                    </li>
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span></a>
-                        <meta itemprop="position" content="2">
-                    </li>
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <span itemprop="name"><?=ucfirst($this->job->getTitle())?></span>
-                        <meta itemprop="position" content="3">
-                    </li>
-                </ol>
-            </nav>
-        </div>
-
-
         <div class="col-md-9">
             <div class="info-card" style="margin-bottom:0px;">
                 <h2>Kurz & knapp</h2>
