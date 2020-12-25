@@ -4,7 +4,7 @@
 ?>
 
 <?php if ($this->searchTerm) { ?>
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
         <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
@@ -50,7 +50,7 @@
     </nav>
 <?php } else if ($this->hasRegion) { ?>
 
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
         <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
@@ -78,7 +78,7 @@
 <?php } else if ($this->hasCity) { ?>
     
     
-       <nav aria-label="breadcrumb">
+       <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
         <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
@@ -106,7 +106,7 @@
     
 <?php } else { ?>
 
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
         <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
