@@ -104,7 +104,6 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
    }
   .full-width-bar-vw {
       
-    background: #fff;
     width: 100vw;
     position: relative;
     left:50%;
@@ -483,18 +482,30 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
 <div id="navbar-home-site-links" class="full-width-bar-vw">
    <div class="container">
       <div class="row">
-         <ul>
-   
-            <li>
-               <a class="navbar-item-anchor" href="#portrait">Portrait</a>
-            </li>
-     
-      
-            <li>
-               <a class="navbar-item-anchor" href="#jobs-list-container">Jobs (<?= $this->jobs->getTotalItemCount() ?>) </a>
-            </li>
-
-         </ul>
+       <div class="col-md-12">
+            <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
+                <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/"> <span itemprop="name">Home</span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span>
+                        </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemprop="item" href="/de/organizations/profile"> <span itemprop="name">Firmen</span>
+                        </a>
+                        <meta itemprop="position" content="3">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"> <span itemprop="name"><?= $organization->getName()?></span>
+                        <meta itemprop="position" content="4">
+                    </li>
+                </ol>
+            </nav>
+        </div>
       </div>
    </div>
 </div>
@@ -530,30 +541,6 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
 </div>
 <div class="company-description-wrapper">
     <div class="row">
-        <div class="col-md-12">
-            <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
-                <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/"> <span itemprop="name">Home</span>
-                        </a>
-                        <meta itemprop="position" content="1">
-                    </li>
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span>
-                        </a>
-                        <meta itemprop="position" content="2">
-                    </li>
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/de/organizations/profile"> <span itemprop="name">Firmen</span>
-                        </a>
-                        <meta itemprop="position" content="3">
-                    </li>
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"> <span itemprop="name"><?= $organization->getName()?></span>
-                        <meta itemprop="position" content="4">
-                    </li>
-                </ol>
-            </nav>
-        </div>
         <div class="col-md-9">
             <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
             <div class="info-card" id="portrait">
