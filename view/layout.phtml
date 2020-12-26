@@ -49,11 +49,9 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     $preview = true;
 }
 ?>
-
 <?php echo $this->doctype(); ?>
 <html lang="<?php echo $this->params('lang') ?>">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
-    
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -63,29 +61,21 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headMeta() ?>
     <?php echo $this->headLink()->setAutoEscape(false) ?>
     <?php echo $this->headStyle() ?>
-
-  <?php if (!$isLandingPage) :?>
-  <style>
-    #navbar-search-toggle { display: none!important;}
- </style>
-  <?php endif ?>
-
     <link rel="stylesheet preload" as="style" href="<?= $this->basePath($this->asset('modules/Gastro24/Gastro24.css')) ?>">
-
+     <?php if ($isInseratPage) :?>
+        <style>
+            #navbar-search-toggle { display: none!important;}
+        </style>
+    <?php endif ?>
     <!-- job json ld -->
     <?php if($this->job): ?>
         <?= $this->jsonLd($this->job); ?>
     <?php endif; ?>
     <!-- job json ld -->
-
     <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
-
-  
-
     <script>
         var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
     </script>
-    
     <link rel="dns-prefetch" href="https://www.google.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
@@ -202,15 +192,15 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
         </div>
     </header>
 <?php endif ?>
-
-<!-- search form container -->
-<?= $this->partial('partials/search-form-container.phtml', [
+ <?php if ($isLandingPage || $isJobboardPage) :?>
+  <!-- search form container -->
+  <?= $this->partial('partials/search-form-container.phtml', [
     'jobs' => $this->jobs,
     'filterForm' => $this->filterForm,
     'cssClass' => $preview ? 'searchform-preview' : '',
 ]); ?>
 <!-- end search form container -->
-
+<?php endif ?>
 <main id="content" class="<?= $routeClass ?>">
    <div class="container">
     <?php echo $notifications?>
@@ -241,7 +231,6 @@ elseif ($isLandingPage || $isJobboardPage):
     ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')))
     ->appendFile($this->basepath('modules/Core/js/core.searchform.js'))
     ->appendFile($this->basepath('/modules/Core/js/core.pagination-container.js'))
-    ->appendFile($this->basePath('modules/Core/js/core.forms.js'))
     ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));
         echo $this->configHeadScript()->setAutoEscape(false);
