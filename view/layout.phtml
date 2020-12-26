@@ -192,7 +192,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
         </div>
     </header>
 <?php endif ?>
- <?php if ($isLandingPage || $isJobboardPage) :?>
+
   <!-- search form container -->
   <?= $this->partial('partials/search-form-container.phtml', [
     'jobs' => $this->jobs,
@@ -200,7 +200,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     'cssClass' => $preview ? 'searchform-preview' : '',
 ]); ?>
 <!-- end search form container -->
-<?php endif ?>
+
 <main id="content" class="<?= $routeClass ?>">
    <div class="container">
     <?php echo $notifications?>
