@@ -1003,6 +1003,7 @@ border-top: 1px solid rgba(0, 0, 0, 0.1)
             ->appendFile($this->basePath('modules/Gastro24/js/jquery.min.js'))
             ->appendFile($this->basePath('modules/Gastro24/js/bootstrap.min.js'))
             ->appendFile($this->basePath('modules/Gastro24/js/select2.min.js'))
+            ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
             ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.search.js')))
             ->appendFile($this->basePath($langScript));
         echo $this->configHeadScript()->setAutoEscape(false);
