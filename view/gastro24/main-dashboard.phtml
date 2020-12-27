@@ -14,8 +14,9 @@ $user = $this->auth()->getUser();
 <?php endif; ?>
 
 <?php $this->headTitle($this->translate('Dashboard'));?>
-
-<h1><?php echo $this->translate('Dashboard'); ?></h1>
+<div class="page-title">
+   <h1><?php echo $this->translate('Dashboard'); ?></h1>
+</div>
 
 <div class="row">
     <?php foreach ($this->viewModel()->getCurrent()->getChildren() as $model):
