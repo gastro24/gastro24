@@ -184,7 +184,11 @@ $qualifications = $this->job->getClassifications()->getProfessions();
     </div>
   </div>
  </div>
+ <?php if ($preview) : ?>    
 </div>
+     <!-- DOM Hack only in preview mode -->
+<?php endif: ?>
+
 <div class="company-description-wrapper">
     <div class="row">
  <div class="col-md-9">
