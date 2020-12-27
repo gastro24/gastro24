@@ -161,9 +161,10 @@ endif;
 
 <?php if ($preview): ?>
     <?php $this->headStyle()->captureStart() ?>
-    .container {
+  .container {
     min-width: 100%;
-    padding: 0;
+    padding-left:0px!important;
+    padding-right:0px!important;
     }
     <?php $this->headStyle()->captureEnd() ?>
 <?php endif; ?>
@@ -179,7 +180,9 @@ endif;
         'lastSearchQueryUrl' => $lastSearchQueryUrl,
         'prevJob' => $this->prevJob,
         'nextJob' => $this->nextJob,
-        'job' => $this->job
+        'job' => $this->job,
+        'location' => $this->location
+
     ]);
     ?>
 <?php endif; ?>
