@@ -16,7 +16,7 @@
                 <span itemprop="name"><?=ucfirst($this->job->getTitle())?> <?php
                    $location = $job->getLocations()->current();
                     if ($location) {
-                        echo "in " .$location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                        echo 'in ' .$location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
                     }
                     
                     ?>
