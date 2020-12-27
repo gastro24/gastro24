@@ -140,10 +140,6 @@ class Module implements AssetProviderInterface
                     $routeMatch->setParam('isInseratPage', true);
                 }
 
-                 if ('lang/organizations-profiles' == $matchedRouteName) {
-                    $routeMatch->setParam('isOrganizationProfile', true);
-                }
-
                 if ('lang/jobboard' == $matchedRouteName) {
                     $routeMatch->setParam('isJobboardPage', true);
                 }
