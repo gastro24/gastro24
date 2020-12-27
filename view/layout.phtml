@@ -20,6 +20,9 @@ if (isset($routeParams['controller']) && isset($routeParams['action'])) {
 $isLandingPage = $routeParams['isLandingPage'] ?? false;
 $isInseratPage = $routeParams['isInseratPage'] ?? false;
 $isJobboardPage = $routeParams['isJobboardPage'] ?? false;
+$isOrganizationProfile = $routeParams['isOrganizationProfile'] ?? false;
+
+
 
 // check for preview
 $preview = false;
@@ -234,6 +237,15 @@ elseif ($isLandingPage || $isJobboardPage):
     ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')))
     ->appendFile($this->basePath('/dist/js/bootstrap-dialog.min.js'));
         echo $this->configHeadScript()->setAutoEscape(false);
+
+
+elseif ($isOrganizationProfile):
+   echo $this->inlineScript()->setAutoEscape(false)
+        ->appendFile($this->basePath('modules/Gastro24/js/jquery.min.js'))
+        ->appendFile($this->basePath('modules/Gastro24/js/bootstrap.min.js'))
+        ->appendFile($this->basePath($this->asset('modules/Gastro24/js/jobs.js')));
+   echo $this->configHeadScript()->setAutoEscape(false);
+
 
 else:
 
