@@ -77,8 +77,10 @@ $this->headScript()->captureEnd();
 //$this->headLink()->appendStylesheet($this->basePath('/assets/bootstrap3-dialog/css/bootstrap-dialog.min.css'));
 //$this->headLink()->appendStylesheet($this->basePath($this->asset('build/bootstrap-dialog.css')));
 ?>
+<div class="page-title">
+  <h1><?php echo $this->translate('List of your jobs'); ?></h1>
+</div>
 
-<h1><?php echo $this->translate('List of your jobs'); ?></h1>
 
 <?php echo $this->flashMessenger()->render('default', array('alert', 'alert-success')) ?>
 
