@@ -13,7 +13,19 @@
                         <meta itemprop="position" content="2">
                     </li>
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                       <span itemprop="name"><?=ucfirst($this->job->getTitle())?></span>
+                       <span itemprop="name"><?=ucfirst($this->job->getTitle())?> in <?php
+                    $location = $job->getLocations()->current();
+                    if ($location == '') {
+                        echo $this->translate('Swiss');
+                    }
+                    elseif ($location) {
+                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    else {
+                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    ?>
+                    </span>
                         <meta itemprop="position" content="3">
                     </li>
                 </ol>
