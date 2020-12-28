@@ -94,7 +94,7 @@ color: #fff;
 font-size: 14px;
 line-height: 17px;
 display: inline-block;
-padding: 3px 10px;
+padding: 2px 8px;
  margin-bottom: 5px;
 -webkit-border-radius: 4px;
 -moz-border-radius: 4px;
@@ -315,10 +315,10 @@ color: #000;
                                                 <?php endif; ?>
 
     <?php if($jobHasExternLink) { ?>
-    <h2><span class="top-listing fa fa-star">span>Top-Job</span></span> <a rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?> <i class="fa fa-external-link"></i></a></h2>
+    <h2><span class="top-listing fa fa-star"><span>Top Job</span></span> <a rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?> <i class="fa fa-external-link"></i></a></h2>
     <?php }
       else { ?>
-    <h2><span class="top-listing fa fa-star">span>Top-Job</span></span> <a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=ucfirst(strip_tags($job->getTitle()))?></a></h2>
+    <h2><span class="top-listing fa fa-star"><span>Top Job</span></span> <a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=ucfirst(strip_tags($job->getTitle()))?></a></h2>
     <?php } ?>
     <div class="card__job-info">
       <div class="card__job-empname-label">
