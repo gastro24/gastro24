@@ -108,6 +108,8 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
 a.morelink {
 	text-decoration:none;
 	outline: none;
+    color:#1e69a3;
+	text-decoration:underline;
 }
 .morecontent span {
 	display: none;
@@ -186,32 +188,6 @@ a.morelink {
         }
     }
 
-    .jsDRpn {
-        max-height: 70px;
-        overflow: hidden;
-    }
-
-    .jsDRpn.in {
-        padding-bottom: 24px;
-        max-height: 100%!important;
-    }
-
-    .jsDRpn.collapse {
-        display: block!important;
-        height: 100%!important;
-    }
-
-    .iMNdyq {
-        margin-top: -24px;
-        padding-top: 24px;
-        position: relative;
-        background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 40%, rgba(255, 255, 255, 0) 100%);
-    }
-
-    .iMNdyq.in {
-        margin-top: 0;
-        padding-top: 0;
-    }
 
     .company-description-wrapper address {
         color: rgb(118, 115, 125);
@@ -531,7 +507,7 @@ a.morelink {
 <div class="" style="position:relative;">
     <div class="company-bg-image"></div>
     <div class="company-profile-wrapper">
-        <div class="jgArSS" style="background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=75);"></div>
+        <div class="jgArSS" style="background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=55);"></div>
         <div class="company-profile-image">
             <span class="job-logo-wrapper">
 				<img class="job-logo" alt="Logo <?= $organization->getName()?>" src="<?= $logoUrl ?>">
@@ -567,19 +543,9 @@ a.morelink {
                         <iframe class="embed-responsive-item" src="<?= $organizationAdditional->getVideoLink() ?>" allowfullscreen></iframe>
                     </div>
                 <?php endif; ?>
-                <div class="jsDRpn collapse-textbox more">
-                    <p><?= nl2br($organization->getdescription()) ?></p>
+                <div class="more">
+                    <?= nl2br($organization->getdescription()) ?>
                 </div>
-
-
-                <div class="iMNdyq tab-readmore text-center">
-                    <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-textbox">
-                        <p class="collapse-textbox tab-more collapse in" aria-expanded="true"> <span class="fa fa-chevron-down"></span> Mehr</p>
-                        <p class="collapse-textbox tab-less collapse" aria-expanded="false" style="height: 0px;"> <span class="fa fa-chevron-up"></span> Weniger</p>
-                    </button>
-                </div>
-
-
 
 
             </div>
@@ -642,3 +608,43 @@ a.morelink {
     </div>
 </div>
 <!-- End Organization Profile -->
+
+<?php $this->configHeadScript()->appendScript('
+<script>
+$(document).ready(function() {
+	var showChar = 150;
+	var ellipsestext = "...";
+	var moretext = "mehr anzeigen";
+	var lesstext = "weniger";
+	$('.more').each(function() {
+		var content = $(this).html();
+
+		if(content.length > showChar) {
+
+			var c = content.substr(0, showChar);
+			var h = content.substr(showChar-1, content.length - showChar);
+
+			var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
+
+			$(this).html(html);
+		}
+
+	});
+
+	$(".morelink").click(function(){
+		if($(this).hasClass("less")) {
+			$(this).removeClass("less");
+			$(this).html(moretext);
+		} else {
+			$(this).addClass("less");
+			$(this).html(lesstext);
+		}
+		$(this).parent().prev().toggle();
+		$(this).prev().toggle();
+		return false;
+	});
+});
+</script>
+
+');  
+ ?>
