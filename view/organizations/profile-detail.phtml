@@ -98,11 +98,12 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
 
 
 <style>
-   html {
-     
-     scroll-behavior: smooth;
-   }
 
+
+.company-description-wrapper {
+
+    margin-top:15px;
+}
 
 
 a.morelink {
@@ -390,12 +391,7 @@ a.morelink {
         }
     }
 
-@media (min-width:768px) {
-.company-description-wrapper {
 
-    margin-top:15px;
-}
-}
 
     @media (max-width:768px) {
         .company-description-wrapper .info-card:first-child {
@@ -470,8 +466,6 @@ a.morelink {
 </style>
 
 <!-- Begin Organization Profile -->
-
-<?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
 <div id="navbar-home-site-links" class="full-width-bar-vw">
    <div class="container">
       <div class="row">
@@ -502,7 +496,7 @@ a.morelink {
       </div>
    </div>
 </div>
-<?php endif; ?>  
+
  
 <div class="" style="position:relative;">
     <div class="company-bg-image"></div>
