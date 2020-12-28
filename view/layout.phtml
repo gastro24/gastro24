@@ -98,7 +98,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=2d241515-52bd-4381-8955-1cd82d61cf71"> </script>
     <!-- End of  Zendesk Widget script -->
 <?php endif ?>
-<?php if ($isInseratPage): ?>
+<?php if ($isInseratPage || $this->auth()->isLoggedIn() ): ?>
 <script type="text/javascript">
     window.GUMLET_CONFIG = {
         hosts: [{
