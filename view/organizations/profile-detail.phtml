@@ -68,7 +68,7 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
 
 <?php $this->headStyle()->captureStart() ?>
     .company-bg-image:before {
-        background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=75);
+        background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=25);
     }
 <?php $this->headStyle()->captureEnd() ?>
 
@@ -102,6 +102,18 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
      
      scroll-behavior: smooth;
    }
+
+
+
+a.morelink {
+	text-decoration:none;
+	outline: none;
+}
+.morecontent span {
+	display: none;
+}
+
+
   .full-width-bar-vw {
       
     width: 100vw;
@@ -555,15 +567,21 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
                         <iframe class="embed-responsive-item" src="<?= $organizationAdditional->getVideoLink() ?>" allowfullscreen></iframe>
                     </div>
                 <?php endif; ?>
-                <div class="jsDRpn collapse-textbox">
+                <div class="jsDRpn collapse-textbox more">
                     <p><?= nl2br($organization->getdescription()) ?></p>
                 </div>
+
+
                 <div class="iMNdyq tab-readmore text-center">
                     <button type="button" class="btn btn-link tab-readmore__bottom" data-toggle="collapse" data-target=".collapse-textbox">
                         <p class="collapse-textbox tab-more collapse in" aria-expanded="true"> <span class="fa fa-chevron-down"></span> Mehr</p>
                         <p class="collapse-textbox tab-less collapse" aria-expanded="false" style="height: 0px;"> <span class="fa fa-chevron-up"></span> Weniger</p>
                     </button>
                 </div>
+
+
+
+
             </div>
             <?php endif; ?>
 
@@ -624,4 +642,3 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
     </div>
 </div>
 <!-- End Organization Profile -->
-
