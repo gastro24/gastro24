@@ -8,7 +8,7 @@
 <?php if (count($similarCompanyJobs)) : ?>
 
 <h2 style="margin-bottom:15px;"><?= $similarJobTitle ?></h2>
-
+            <div class="item-group">
 
                 <?php
                 /* @var Solr\Entity\JobProxy $similarJob */
@@ -115,4 +115,6 @@
             
         
          <?php endforeach; ?>
+
+         </div>
 <?php endif; ?>
