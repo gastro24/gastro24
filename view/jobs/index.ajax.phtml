@@ -256,7 +256,7 @@ color: #000;
                        <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
                    </div>
                 </div>
-
+<div class="item-group">
                         <?php
                             // get date difference
                             $today = new DateTime();
@@ -283,9 +283,11 @@ color: #000;
                                     $orgIsDisabled = true;
                                 }
                                 $href = ($jobHasExternLink) ? $job->getLink() : $this->jobUrl($job, ['linkOnly' => true, 'absolute' => true ]);
-                            ?>
+                             ?>
+
+
  <!-- begin card-->
-<div class="<?= $additionalCardCss ?> card box__job-favorite">
+ <div class="<?= $additionalCardCss ?> card box__job-favorite">
   <?php
     $logoUrl = null;
     if (is_object($org) && is_object($org->getImage()) && $org->getImage()->getUri()) {
@@ -399,7 +401,8 @@ color: #000;
     </div>
   </div>
 </div>
-<!-- end card -->
+ <!-- end card -->
+
 <?php if ($index == 1) : ?>
 <!-- box after second job -->
 <?php endif ?>
@@ -408,6 +411,7 @@ color: #000;
 <?php endif ?>
 <?php endforeach?>
 
+</div>
              
                 <!-- pagination -->
                    <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
