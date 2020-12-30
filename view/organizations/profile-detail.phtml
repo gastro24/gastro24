@@ -253,6 +253,8 @@ a.morelink {
         right: 0;
         top: 0;
         position: absolute;
+        border-left: 1px solid #dcdfe2;
+        border-right: 1px solid #dcdfe2;
     }
 
     main#content {
@@ -523,7 +525,6 @@ a.morelink {
         <div class="col-md-9">
             <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
             <div class="info-card stand-alone-card" id="portrait">
-                <h2>Firmenportrait</h2>
                 <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
                     <div class="yt-video embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="<?= $organizationAdditional->getVideoLink() ?>" allowfullscreen></iframe>
