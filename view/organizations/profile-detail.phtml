@@ -279,7 +279,6 @@ a.morelink {
 
     .info-card {
         background: white;
-        padding: 20px 30px;
         margin-bottom: 16px;
         margin-top: 32px;
 
@@ -446,12 +445,8 @@ a.morelink {
         }
     }
 
-    @media (max-width:468px) {
-        .info-card {
-
-            padding: 15px;
-
-        }
+@media (max-width:468px) {
+ 
 
 .company-profile-wrapper {
    
@@ -526,7 +521,7 @@ a.morelink {
     <div class="row">
         <div class="col-md-9">
             <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
-            <div class="info-card" id="portrait">
+            <div class="info-card stand-alone-card" id="portrait">
                 <h2>Firmenportrait</h2>
                 <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
                     <div class="yt-video embed-responsive embed-responsive-16by9">
