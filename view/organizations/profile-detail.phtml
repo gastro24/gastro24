@@ -296,18 +296,14 @@ a.morelink {
     }
 
     .job-logo-wrapper {
-        display: block;
-        width: 150px;
+            display: block;
+     width: 140px;
+    padding: 5px;
         
     }
 
     .job-logo-wrapper img {
-    max-width: 100%;
-    display: inline-flex;
-    max-height: 100%;
-    vertical-align: middle;
-    text-align: center;
-    margin: 0 auto;
+    width:100%;
     }
 
     .job-info-wrapper {
@@ -535,7 +531,7 @@ a.morelink {
 
                 <div class="meta-adress">
                     <a href="tel:<?= $contact->getPhone() ?>" rel="nofollow"><?= $contact->getPhone() ?></a>
-                    <a href="<?= $contact->getWebsite() ?>" rel="nofollow"><?= $contact->getWebsite() ?></a>
+                    <a href="<?= $contact->getWebsite() ?>" rel="nofollow">zur Firmenwebsite</a>
                 </div>
                 <div class="social-media-company-profile">
                     <?php if($organizationAdditional && $organizationAdditional->getSocials()) : ?>
