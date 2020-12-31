@@ -158,13 +158,13 @@ a.morelink {
 
     }
     .social-media-company-profile {
-        margin-top:16px;
+        margin-bottom:25px;
 
     }
     .social-media-company-profile a {
-        color:#b1b1b1;
-        font-size: 16px;
-        margin-right: 5px;
+        color:#dcdfe2;
+        font-size: 22px;
+        margin-right: 10px;
 
     }
     .social-media-company-profile a:hover {
@@ -520,18 +520,7 @@ a.morelink {
         <div class="col-md-3">
         <div class="stand-alone-card">
             <div class="info-card" style="margin-bottom:0px;">
-                <address>
-                    <strong><?= $organization->getName()?></strong>
-                    <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
-                    <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
-                    <?= $contact->getCountry() ?>
-                </address>
-
-                <div class="meta-adress">
-                    <a href="tel:<?= $contact->getPhone() ?>" rel="nofollow"><?= $contact->getPhone() ?></a>
-                    <a href="<?= $contact->getWebsite() ?>" rel="nofollow">zur Firmenwebsite</a>
-                </div>
-                <div class="social-media-company-profile">
+            <div class="social-media-company-profile">
                     <?php if($organizationAdditional && $organizationAdditional->getSocials()) : ?>
                         <?php if($organizationAdditional->getSocials()->getFacebook()) :?>
                             <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>" target="_blank"> <i class="fa fa-facebook-square"></i></a>
@@ -550,6 +539,18 @@ a.morelink {
                         <?php endif; ?>
                     <?php endif; ?>
                 </div>
+                <address>
+                    <strong><?= $organization->getName()?></strong>
+                    <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
+                    <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
+                    <?= $contact->getCountry() ?>
+                </address>
+
+                <div class="meta-adress">
+                    <a href="tel:<?= $contact->getPhone() ?>" rel="nofollow"><?= $contact->getPhone() ?></a>
+                    <a href="<?= $contact->getWebsite() ?>" rel="nofollow">zur Firmenwebsite</a>
+                </div>
+                
             </div>
 
            <div class="iframe-container" style="padding-bottom:50%;">
