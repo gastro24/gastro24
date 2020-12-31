@@ -128,6 +128,8 @@ color: #000;
                 /** @var \Gastro24\Options\Landingpages $landingpagesOptions */
                  $landingpagesOptions = $this->services(\Gastro24\Options\Landingpages::class);
           ?>
+
+    <?php if ($this->searchTerm) { ?>
       <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
         <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
@@ -170,20 +172,40 @@ color: #000;
                     <meta itemprop="position" content="<?= $content ?>"/>
                 </li>
 
-            <?php else: ?>
 
-            <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
+            <?php endif; ?>
+        </ol>
+    </nav>
+
+<?php } else { ?>
+   <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
+        <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a itemprop="item" href="/">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1"/>
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                 <span itemprop="name">Jobs</span>
+                <meta itemprop="position" content="2"/>
+            </li>
+
+             <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem" aria-current="page">
              
                  <span itemprop="name"> <h1><?=$this->jobs->getTotalItemCount() ?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer für '.$searchTerm.' Jobs' : 'Leider keine passenden Jobs gefunden'); ?></h1></span>
                 
                 <meta itemprop="position" content="3"/>
             </li>
-
-
-            <?php endif; ?>
         </ol>
     </nav>
+
+<?php }; ?>
+
+
+
+
 
 <div class="row job-results-container">
     <div class="col-md-12 container__date-filter">
