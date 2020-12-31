@@ -62,9 +62,14 @@ $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
     </div>
 <?php endif;?>
 
+<?php $jobsCount = $this->jobs->getTotalItemCount(); ?>
 <?php if (count($jobs)):?>
 
-<h2 style="margin-bottom:15px;">Offene Jobs</h2>
+<h2 style="margin-bottom:15px;"><?= $jobsCount ?>
+<?php if ($jobsCount == 1) : ?> offener Job 
+  <?php else : ?> offene Jobs
+ <?php endif; ?>
+</h2>
 
 <div class="item-group">
      <?php foreach ($jobs as $job): /* @var \Jobs\Entity\Job $job */?>
