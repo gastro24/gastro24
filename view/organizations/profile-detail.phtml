@@ -172,7 +172,12 @@ a.morelink {
     }
 
     .yt-video {
-        margin-bottom:20px;
+        margin-top:20px;
+    }
+
+    address strong {
+
+        display:block;
     }
 
     .company-link {
@@ -231,7 +236,7 @@ a.morelink {
         position: relative;
         margin-left: -50vw;
         margin-right: -50vw;
-        height: 530px;
+        height: 410px;
         overflow: hidden;
     }
 
@@ -291,20 +296,9 @@ a.morelink {
     }
 
     .job-logo-wrapper {
-        height: 150px;
-        display: inline-block;
-        text-align:center;
+        display: block;
         width: 150px;
-        padding: 5px;
-        background-color: #fff;
-        margin-right: 20px;
-        box-shadow: 0 0 6px #ccc;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
-        border-radius: 2px;
-        margin-top: -70px;
-        line-height: 140px;
-        border-radius: 4px;
+        
     }
 
     .job-logo-wrapper img {
@@ -388,7 +382,7 @@ a.morelink {
         }
     
         .company-bg-image {
-            height: 370px;
+            height: 250px;
         }
     }
 
@@ -398,13 +392,10 @@ a.morelink {
             height: 200px;
         }
         .company-bg-image {
-           height: 295px;
+           height: 200px;
         }
         .job-logo-wrapper {
-            height: 115px;
-            margin-top: -50px;
-            width: 115px;
-            line-height: 105px;
+            width: 100px
         }
         .job-info-wrapper {
             width: calc(100% - 135px);
@@ -430,14 +421,9 @@ a.morelink {
             height: 150px;
         }
         .company-bg-image {
-            height: 240px;
+            height: 150px;
         }
-        .job-logo-wrapper {
-            height: 90px;
-            margin-top: -40px;
-            width: 90px;
-            line-height: 80px;
-        }
+       
         .company-profile-image h1 {
             font-size: 20px;
             line-height: 28px;
@@ -494,35 +480,34 @@ a.morelink {
 <div class="" style="position:relative;">
     <div class="company-bg-image"></div>
     <div class="company-profile-wrapper">
-        <div class="jgArSS" style="background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=55);"></div>
-        <div class="company-profile-image">
-            <span class="job-logo-wrapper">
-				<img class="job-logo" alt="Logo <?= $organization->getName()?>" src="<?= $logoUrl ?>">
-			</span>
-            <div class="job-info-wrapper">
-                <h1><?= $organization->getName()?></h1>
-                
-            </div>
-        </div>
+    <div class="jgArSS" style="background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=55);"></div>
+       
     </div>
 </div>
 <div class="company-description-wrapper">
     <div class="row">
         <div class="col-md-9">
-            <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
+              
             <div class="info-card stand-alone-card" id="portrait">
+            <span class="job-logo-wrapper">
+				<img class="job-logo" alt="Logo <?= $organization->getName()?>" src="<?= $logoUrl ?>">
+			</span>
+                <h1><?= $organization->getName()?></h1>
+
+             <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
+                 <div class="more">
+                    <?= nl2br($organization->getdescription()) ?>
+                </div>
+
                 <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
                     <div class="yt-video embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="<?= $organizationAdditional->getVideoLink() ?>" allowfullscreen></iframe>
                     </div>
                 <?php endif; ?>
-                <div class="more">
-                    <?= nl2br($organization->getdescription()) ?>
-                </div>
 
+              </div>
 
-            </div>
-            <?php endif; ?>
+        <?php endif; ?>
 
             <!-- active jobs -->
             <div class="tab-pane active" id="jobs">
@@ -538,6 +523,7 @@ a.morelink {
         <div class="stand-alone-card">
             <div class="info-card" style="margin-bottom:0px;">
                 <address>
+                    <strong><?= $organization->getName()?></strong>
                     <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
                     <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
                     <?= $contact->getCountry() ?>
