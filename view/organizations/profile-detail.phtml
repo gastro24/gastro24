@@ -280,9 +280,8 @@ a.morelink {
     }
 
     .info-card {
-        background: white;
         margin-bottom: 15px;
-        margin-top: 32px;
+        margin-top: 30px;
         padding:15px;
 
     }
@@ -502,20 +501,7 @@ a.morelink {
 			</span>
             <div class="job-info-wrapper">
                 <h1><?= $organization->getName()?></h1>
-                <span class="address-short">
-                    <?php
-                        $orgAddressString = $contact->getStreet() . ' ' . $contact->getHouseNumber() . ', ' .
-                        $contact->getPostalcode() . ' ' . $contact->getCity();
-                        $jobsCount = $this->jobs->getTotalItemCount();
-                    ?>
-                    <?= $orgAddressString ?></span>
-                <!--<span class="job-count-badge"><?= $jobsCount ?>
-                    <?php if ($jobsCount == 1) : ?>
-                        <span class="hidden-sm hidden-xs">verfügbarer</span> Job
-                    <?php else : ?>
-                        <span class="hidden-sm hidden-xs">verfügbare</span> Jobs
-                    <?php endif; ?>
-                </span>-->
+                
             </div>
         </div>
     </div>
@@ -549,8 +535,8 @@ a.morelink {
             <!-- end active jobs -->
         </div>
         <div class="col-md-3">
+        <div class="stand-alone-card">
             <div class="info-card" style="margin-bottom:0px;">
-                <h2>Kontakt</h2>
                 <address>
                     <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
                     <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
@@ -589,9 +575,8 @@ a.morelink {
 
 
           </div>
-
-        
         </div>
+    </div>
     </div>
 </div>
 <!-- End Organization Profile -->
