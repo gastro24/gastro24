@@ -316,13 +316,10 @@ color: #000;
         </div>
        </div>
             <div class="col-md-9">
-                <div class="row">
+
+               <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
             
-                   <div class="col-md-3">
-                       <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-                   </div>
-                </div>
-<div class="item-group">
+                 <div class="item-group">
                         <?php
                             // get date difference
                             $today = new DateTime();
