@@ -318,10 +318,10 @@ color: #000;
             ?>
         </div>
        </div>
-            <div class="col-md-9">
+         
+            <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
 
-               <?=$this->proxy('jobsByMailSubscriptionForm')->render($jobs)?>
-              <div class="row">
+            <div class="col-md-9">
                  <div class="item-group">
                         <?php
                             // get date difference
