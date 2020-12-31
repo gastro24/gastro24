@@ -476,14 +476,18 @@ a.morelink {
    </div>
 </div>
 
- 
+<?php if ($bannerUrl): ?>
 <div class="" style="position:relative;">
     <div class="company-bg-image"></div>
     <div class="company-profile-wrapper">
-    <div class="jgArSS" style="background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=55);"></div>
-       
+    <div class="jgArSS" 
+        style="background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=55);">
     </div>
+       
 </div>
+</div>
+<?php endif; ?>
+
 <div class="company-description-wrapper">
     <div class="row">
         <div class="col-md-9">
@@ -505,10 +509,10 @@ a.morelink {
                     </div>
                 <?php endif; ?>
 
-              </div>
+              
 
         <?php endif; ?>
-
+        </div> 
             <!-- active jobs -->
             <div class="tab-pane active" id="jobs">
                 <div id="jobs-list-container" class="pagination-container">
