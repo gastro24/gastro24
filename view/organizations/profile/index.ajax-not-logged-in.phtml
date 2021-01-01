@@ -8,7 +8,7 @@
 ?>
 
 <div class=" card box__job-favorite">
-    <a class="job-logo-link" title="<?php
+    <a class="stand-alone-card job-logo-link" title="<?php
         $nameEntity = $organization->getOrganizationName();
         echo isset($nameEntity)?$nameEntity->getName():'**** DRAFT ****';
         ?>" href="<?php echo $this->url('lang/organizations/profileDetail', array('id' => $organization->getId())); ?>?clear=1">
