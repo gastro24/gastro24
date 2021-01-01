@@ -37,7 +37,7 @@
                     
             
        <div class="card box__job-favorite profile-detail">
-            <a class="job-logo-link" title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $this->jobUrl($similarJob, ['linkOnly' => true ]) ?>">
+            <a class="stand-alone-card job-logo-link" title="<?=strip_tags($similarJob->getTitle())?>" href="<?= $this->jobUrl($similarJob, ['linkOnly' => true ]) ?>">
                 <img class="job-logo" alt="<?= $orgName ?>" src="<?= $wrapperLogoUrl ?>" />
             </a>
             <div class="card__job-content box__action-buttons">
