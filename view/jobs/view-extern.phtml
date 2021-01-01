@@ -817,7 +817,7 @@ main#content {
 <div class="company-description-wrapper">
     <div class="row">
         <div class="col-md-9">
-          
+          <div class="stand-alone-card">
             <div class="info-card" style="margin-bottom:0px;">
                 <h2>Kurz & knapp</h2>
                 <ul class="details-list-horizontal">
@@ -926,7 +926,7 @@ main#content {
                     
                     </script>
              
-
+        
           
                   <?php else: ?>
                       <iframe style="height:1500px;width:100%;background-color:#fff;" src="" data-src="<?=$link?>"></iframe>
@@ -948,6 +948,8 @@ main#content {
 
 
             <?php endif; ?>
+
+            </div>
 
             <?php if (!$preview): ?>
             <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
