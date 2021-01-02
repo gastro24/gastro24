@@ -100,7 +100,7 @@ $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
         ?>
          <!-- begin card -->
          <div class="card box__job-favorite profile-detail">
-             <a class="job-logo-link" title="<?= $job->getTitle()?>" href="<?=$this->jobUrl($job, ['linkOnly' => true, 'absolute' => true]) ?>">
+             <a class="stand-alone-card job-logo-link" title="<?= $job->getTitle()?>" href="<?=$this->jobUrl($job, ['linkOnly' => true, 'absolute' => true]) ?>">
                  <img class="job-logo" alt="<?= $orgName ?>" src="<?= $logoUrl ?>">
              </a>
              <div class="card__job-content box__action-buttons">
