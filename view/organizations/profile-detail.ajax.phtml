@@ -139,8 +139,8 @@ $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
                          <?= $locationString;  ?>
                      </div>
                  </div>
-                 <div class="card__job-snippet-logo">
-                     <p class="hidden-xs card__job-snippet" dir="auto">
+                 <div class="card__job-snippet-logo hidden-xs">
+                     <p class="card__job-snippet" dir="auto">
                          <?php
                          $preview = null;
                          if ($job->getTemplateValues()->getIntroduction()) {
