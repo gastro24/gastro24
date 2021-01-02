@@ -74,16 +74,17 @@ class JobboardSearch extends BaseJobboardSearchForm
                 'options'    => array(
                     'label'         => /*@translate*/ 'Distance',
                     'value_options' => [
-                        '5'   => '5 km',
-                        '10'  => '10 km',
-                        '20'  => '20 km',
-                        '50'  => '50 km',
-                        '100' => '100 km'
+                        '0'   => 'exakt',
+                        '5'   => '+ 5 km',
+                        '10'  => '+ 10 km',
+                        '20'  => '+ 20 km',
+                        '50'  => '+ 50 km',
+                        '100' => '+ 100 km'
                     ],
                     'span'          => 3,
                 ),
                 'attributes' => [
-                    'value'            => '10', // default distance
+                    'value'            => '20', // default distance
                     'data-searchbox'   => -1,  // hide the search box
                     'data-allowclear'  => 'false', // allow to clear a selected value
                     'data-placeholder' => /*@translate*/ 'Distance',
