@@ -266,6 +266,41 @@ $qualifications = $this->job->getClassifications()->getProfessions();
  
  <!-- end info-card -->
   </div>
+  <div class="visible-xs">
+    <hr />
+
+    
+
+    <div class="iframe-container" style="padding-bottom:50%;">
+    <?php
+        $googleMapsString = '';
+        if ($useCompanyAddress) {
+            $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $this->orgName;
+            $googleMapsString .= '+';
+        }
+
+        if ($location == '') {
+            $googleMapsString .= 'Schweiz';
+        }
+        elseif ($useCompanyAddress && $this->job->getOrganization()) {
+            $orgAddress = $this->job->getOrganization()->getContact();
+            $googleMapsString .= $orgAddress->getStreet() . ' ' . $orgAddress->getHouseNumber() . '+' .
+                $orgAddress->getCity() . '+' . $orgAddress->getPostalcode() . '+Schweiz';
+        } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
+            $googleMapsString .= $location->getStreetname() . '+' . $location->getCity() . '+' . $location->getPostalcode() . '+Schweiz';
+        } else {
+            $googleMapsString .= preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
+        }
+    ?>
+
+    <img style="position:absolute;" width="300"
+         data-src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&language=de&zoom=15&scale=1&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>"
+         alt="Google Map von <?= $googleMapsString ?>">
+</div>
+
+  </div>
+
+
 </div>
   
      <?php if (!$preview): ?>
@@ -281,14 +316,14 @@ $qualifications = $this->job->getClassifications()->getProfessions();
 
 
     <!-- sidebar contact and map -->
-    <div class="col-md-3">
+   
         <?= $this->partial('jobs/partials/contact-sidebar', [
                 'job' =>  $this->job,
                 'orgName' => $orgName,
                 'preview' => $preview
             ]
         ); ?>
-    </div>
+    
     <!-- end col-md-3 -->
 
  </div>
