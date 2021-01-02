@@ -10,7 +10,7 @@
 ?>
 
 <div class="stand-alone-card">
-<div class="info-card" style="margin-bottom:0px;">
+<div class="info-card">
     <h2><?= ($useCompanyAddress) ? 'Kontakt' : 'Arbeitsort' ?></h2>
     <address>
         <?php
@@ -43,15 +43,15 @@
     <?php if (!$this->preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
         <div class="meta-adress">
 
-            <a rel="nofollow" title="<?= $this->organizationName ?>"
-               href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>">zur Website</a>
+            <a class="fa fa-angle-right" rel="nofollow" title="<?= $this->organizationName ?>"
+               href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>"><span>zur Firmenwebsite</span></a>
         </div>
 
        <?php elseif ($useCompanyAddress && $this->job->getOrganization()) : ?>
 
          <div class="meta-adress">
                     <a href="tel:<?= $orgAddress->getPhone() ?>" rel="nofollow"><?= $orgAddress->getPhone() ?></a>
-                    <a href="<?= $orgAddress->getWebsite() ?>" rel="nofollow"><?= $orgAddress->getWebsite() ?></a>
+                    <a class="fa fa-angle-right" href="<?= $orgAddress->getWebsite() ?>" rel="nofollow"><span>zur Firmenwebsite</span></a>
                 </div>
 
         
