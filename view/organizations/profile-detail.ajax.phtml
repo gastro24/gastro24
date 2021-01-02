@@ -65,7 +65,7 @@ $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
 <?php $jobsCount = $this->jobs->getTotalItemCount(); ?>
 <?php if (count($jobs)):?>
 
-<h2 style="margin-bottom:15px;"><?= $jobsCount ?>
+<h2 style="margin-bottom:15px;font-weight:bold;"><?= $jobsCount ?>
 <?php if ($jobsCount == 1) : ?> offener Job 
   <?php else : ?> offene Jobs
  <?php endif; ?>
@@ -140,7 +140,7 @@ $savedJobsContainer = new \Laminas\Session\Container('gastro24_savedjobs');
                      </div>
                  </div>
                  <div class="card__job-snippet-logo">
-                     <p class="card__job-snippet" dir="auto">
+                     <p class="hidden-xs card__job-snippet" dir="auto">
                          <?php
                          $preview = null;
                          if ($job->getTemplateValues()->getIntroduction()) {
