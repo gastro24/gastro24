@@ -353,6 +353,13 @@ a.morelink {
         margin-top: 10px;
     }
 
+    .meta-adress a span {
+
+font-family: sans-serif;
+    padding-left: 5px;
+	
+	}
+
     .job-count-badge {
         display: inline;
         padding: 7px 10px;
@@ -544,7 +551,7 @@ a.morelink {
 
                 <div class="meta-adress">
                     <a href="tel:<?= $contact->getPhone() ?>" rel="nofollow"><?= $contact->getPhone() ?></a>
-                    <a href="<?= $contact->getWebsite() ?>" rel="nofollow">zur Firmenwebsite</a>
+                    <a class="fa fa-angle-right" href="<?= $contact->getWebsite() ?>" rel="nofollow">zur Firmenwebsite</a>
                 </div>
                 
             </div>
