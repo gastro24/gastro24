@@ -263,79 +263,16 @@ $qualifications = $this->job->getClassifications()->getProfessions();
            <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
           </div>
  <?php endif; ?>
- 
- <div class="visible-xs visible-sm">
-    <hr />
-<?php
-    $location = $this->job->getLocations()->current();
 
-    // no street available, get address from organization (only for abo jobs, single has street)
-    // @see https://gitlab.cross-solution.de/YAWIK/Gastro24/-/issues/587
-    $useCompanyAddress = false;
-    if ($location && !$location->getStreetname()) {
-        $useCompanyAddress = true;
-    }
-?>
-
- <address>
-<?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
+    <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
+                'job' =>  $this->job,
+                'orgName' => $orgName,
+                'preview' => $preview
+            ]
+     ); ?>
 
 
-      <strong>
-         <?php
-        
-            if ($useCompanyAddress) {
-                echo (!empty($this->organizationName)) ? $this->organizationName : $this->orgName . '<br>';
-            } else {
-
-               echo (!empty($this->organizationName)) ? $this->organizationName : $this->orgName . '<br>';
-
-            }
-        ?>
-        </strong>
-        <?php
-            if ($location == '') {
-                echo $this->translate('Swiss');
-            }
-            elseif ($useCompanyAddress && $this->job->getOrganization()) {
-                $orgAddress = $this->job->getOrganization()->getContact();
-                echo $orgAddress->getStreet() . ' ' . $orgAddress->getHouseNumber() . '<br>';
-                echo $orgAddress->getPostalcode() . ' ' . $orgAddress->getCity();
-                
-            
-        
-
-
-            } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
-                echo $location->getStreetname() . '<br>';
-                echo $location->getPostalcode() . ' ' . $location->getCity();
-            } else {
-                echo preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
-            }
-        ?>
-    </address>
-
-    <?php if (!$this->preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
-        <div class="meta-adress">
-
-            <a class="fa fa-angle-right" rel="nofollow" title="<?= $this->organizationName ?>"
-               href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>"><span>zur Firmenwebsite</span></a>
-        </div>
-
-       <?php elseif ($useCompanyAddress && $this->job->getOrganization()) : ?>
-
-         <div class="meta-adress">
-                    <a href="tel:<?= $orgAddress->getPhone() ?>" rel="nofollow"><?= $orgAddress->getPhone() ?></a>
-                    <a class="fa fa-angle-right" href="<?= $orgAddress->getWebsite() ?>" rel="nofollow"><span>zur Firmenwebsite</span></a>
-                </div>
-
-        
-    <?php endif ?>
-
-
-</div>
-
-
+    </div>
      <!-- end info-card -->
   </div>
 
