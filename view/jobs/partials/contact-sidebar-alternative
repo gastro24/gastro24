@@ -1,7 +1,4 @@
-<div class="visible-xs visible-sm">
-
-    <hr />
-    <?php
+<?php
     $location = $this->job->getLocations()->current();
 
     // no street available, get address from organization (only for abo jobs, single has street)
@@ -11,6 +8,10 @@
         $useCompanyAddress = true;
     }
 ?>
+<div class="visible-xs visible-sm">
+
+    <hr />
+
 
     <address>
 
