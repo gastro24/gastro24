@@ -262,14 +262,20 @@ $qualifications = $this->job->getClassifications()->getProfessions();
         <div class="position">
            <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
           </div>
-    <?php endif; ?>
+ <?php endif; ?>
+ 
+ <!-- end info-card -->
+  </div>
+  
+
 
  <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
                 'job' =>  $this->job,
                 'orgName' => $orgName,
                 'preview' => $preview
             ]
-     ); ?>
+        ); ?>
+
 
 </div>
   
@@ -295,8 +301,8 @@ $qualifications = $this->job->getClassifications()->getProfessions();
         ); ?>
     
     <!-- end col-md-3 -->
+
  </div>
 
 <!-- end company-description-wrapper -->
 </div>
-
