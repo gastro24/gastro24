@@ -942,6 +942,14 @@ main#content {
 
             <?php endif; ?>
 
+             <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
+                'job' =>  $this->job,
+                'orgName' => $orgName,
+                'preview' => $preview
+            ]
+          ); ?>
+
+
             </div>
 
             <?php if (!$preview): ?>
