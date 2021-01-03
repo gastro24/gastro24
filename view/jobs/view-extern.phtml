@@ -809,9 +809,9 @@ main#content {
 
 <div class="company-description-wrapper">
     <div class="row">
-        <div class="col-md-9">
-          <div class="stand-alone-card">
-            <div class="info-card" style="margin-bottom:0px;">
+      <div class="col-md-9">
+       <div class="stand-alone-card">
+          <div class="info-card">
                 <h2>Kurz & knapp</h2>
                 <ul class="details-list-horizontal">
 
@@ -877,7 +877,7 @@ main#content {
                      
                 <?php endif; ?>
                 
-            </div>
+
              <?php if(strpos($link, '.pdf') !== false): ?>
                 <style>
                     
@@ -940,17 +940,16 @@ main#content {
     </script>
 
 
-            <?php endif; ?>
+     <?php endif; ?>
 
-             <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
+    <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
                 'job' =>  $this->job,
                 'orgName' => $orgName,
                 'preview' => $preview
             ]
-          ); ?>
+    ); ?>
 
-
-            </div>
+ </div>
 
             <?php if (!$preview): ?>
             <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
