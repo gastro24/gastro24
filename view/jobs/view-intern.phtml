@@ -264,10 +264,12 @@ $qualifications = $this->job->getClassifications()->getProfessions();
           </div>
  <?php endif; ?>
  
- <!-- end info-card -->
-  </div>
-  
-
+  <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
+                'job' =>  $this->job,
+                'orgName' => $orgName,
+                'preview' => $preview
+            ]
+ ); ?>
   
 
 </div>
