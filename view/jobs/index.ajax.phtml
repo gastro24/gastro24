@@ -129,7 +129,7 @@ color: #000;
                  $landingpagesOptions = $this->services(\Gastro24\Options\Landingpages::class);
           ?>
 
-    <?php if ($this->searchTerm) { ?>
+    <?php if ($searchTerm) { ?>
       <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
         <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
@@ -151,7 +151,7 @@ color: #000;
             <?php if ($this->params()->fromRoute('isLandingPage')) : ?>
                 <!-- build parent breadcrumbs -->
                 <?php
-                    $mainTerm = $this->searchTerm;
+                    $mainTerm = $searchTerm;
                     $content = 3;
                     $parentsBreadcrumbHtml = '';
                     while ($parentTermData = $landingpagesOptions->getParentByTerm($mainTerm)) {
@@ -171,8 +171,6 @@ color: #000;
                     <span itemprop="name"> <h1><?=$this->jobs->getTotalItemCount() ?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer für '.$searchTerm.' Jobs' : 'Leider keine passenden Jobs gefunden'); ?></h1></span>
                     <meta itemprop="position" content="<?= $content ?>"/>
                 </li>
-
-
             <?php endif; ?>
         </ol>
     </nav>
