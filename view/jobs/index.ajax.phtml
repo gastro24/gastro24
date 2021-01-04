@@ -287,13 +287,15 @@ color: #000;
                             if($facetOptionsCounter > 10) continue;
                             $activeFacet = $facets->isValueActive($facetName, $facetValue);
                             $atLeastOneActive = $atLeastOneActive || $activeFacet;?>
-                            <div class="filter-links">
-                                <label<?=$activeFacet ? ' class="text-primary"' : ''?>>  <?=$activeFacet ? ' <i class="fa fa-check"></i>' : ''?>
-                                    <input type="checkbox" name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]"
-                                           class="facet-checkbox"<?=$activeFacet?" checked":""?>>
-                                    <?=($facetName == 'publishDateFilter') ? \Gastro24\Paginator\JobsBoardFacets::$formattedPublishDateValue[$facetValue] : $facetValue?> <span class="filter-count"><?=$facetValueCount?></span>
-                                </label>
-                            </div>
+                            <?php if ($facetValueCount) : ?>
+                                <div class="filter-links">
+                                    <label<?=$activeFacet ? ' class="text-primary"' : ''?>>  <?=$activeFacet ? ' <i class="fa fa-check"></i>' : ''?>
+                                        <input type="checkbox" name="<?=$this->escapeHtmlAttr($facetName)?>[<?=$this->escapeHtmlAttr($facetValue)?>]"
+                                               class="facet-checkbox"<?=$activeFacet?" checked":""?>>
+                                        <?=($facetName == 'publishDateFilter') ? \Gastro24\Paginator\JobsBoardFacets::$formattedPublishDateValue[$facetValue] : $facetValue?> <span class="filter-count"><?=$facetValueCount?></span>
+                                    </label>
+                                </div>
+                            <?php endif; ?>
                         <?php if ($activeFacet): $facetsList[] = $facetValue; endif; endforeach;?>
                     </div>
                     </div> <!-- facets-collaps-* -->
