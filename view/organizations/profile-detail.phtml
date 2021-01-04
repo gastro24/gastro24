@@ -69,120 +69,121 @@ if ($organizationAdditional && $organizationAdditional->getSocials()) {
 ?>
 
 <?php $this->headStyle()->captureStart() ?>
-    .company-bg-image:before {
-        background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=25);
-    }
+.company-bg-image:before {
+background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=25);
+}
 <?php $this->headStyle()->captureEnd() ?>
 
 <script type="application/ld+json">
- {
- "@context": "https://schema.org",
- "@type": "Organization",
- "name": "<?= $organization->getName()?>",
- "url": "<?= $contact->getWebsite() ?>",
- "logo": "https://www.gastrojob24.ch<?= $logoUrl ?>",
- "description": "<?= $organization->getdescription()?>",
- "address": {
- "@type": "PostalAddress",
- "streetAddress": "<?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?>",
- "addressLocality": "<?= $contact->getCity() ?>",
- "postalCode": "<?= $contact->getPostalcode() ?>",
- "addressCountry": "<?= $contact->getCountry() ?>"
- },
- "contactPoint": {
- "@type": "ContactPoint",
- "contactType": "Human Resource",
- "telephone": "[<?= $contact->getPhone() ?>]"
- },
- "sameAs": [<?= $jsonLdSocialsString ?>]
- }
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "<?= $organization->getName()?>",
+        "url": "<?= $contact->getWebsite() ?>",
+        "logo": "https://www.gastrojob24.ch<?= $logoUrl ?>",
+        "description": "<?= $organization->getdescription()?>",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "<?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?>",
+            "addressLocality": "<?= $contact->getCity() ?>",
+            "postalCode": "<?= $contact->getPostalcode() ?>",
+            "addressCountry": "<?= $contact->getCountry() ?>"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Human Resource",
+            "telephone": "[<?= $contact->getPhone() ?>]"
+        },
+        "sameAs": [ < ? = $jsonLdSocialsString ? > ]
+    }
 </script>
 
 
 <style>
+    .company-description-wrapper {
+
+        margin-top: 15px;
+    }
 
 
-.company-description-wrapper {
+    a.morelink {
+        text-decoration: none;
+        outline: none;
+        color: #1e69a3;
+        text-decoration: underline;
+    }
 
-    margin-top:15px;
-}
-
-
-a.morelink {
-	text-decoration:none;
-	outline: none;
-    color:#1e69a3;
-	text-decoration:underline;
-}
-.morecontent span {
-	display: none;
-}
+    .morecontent span {
+        display: none;
+    }
 
 
-  .full-width-bar-vw {
-      
-    width: 100vw;
-    position: relative;
-    left:50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    .full-width-bar-vw {
 
-  }
-  .full-width-bar-vw ul {
-      
-      padding-left:15px!important;
-  }
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+
+    }
+
+    .full-width-bar-vw ul {
+
+        padding-left: 15px !important;
+    }
 
 
     .iframe-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    width: 100%;
-    height: auto;
-}
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+    }
 
-.iframe-container img {
-    width: 100%;
-}
+    .iframe-container img {
+        width: 100%;
+    }
 
     .meta-adress {
-        margin-top:15px;
+        margin-top: 15px;
 
     }
 
     .meta-adress a {
-        display:block;
-        color: #1e69a3; 
+        display: block;
+        color: #1e69a3;
 
     }
-  
+
     .social-media-company-profile a {
-        color:#dcdfe2;
+        color: #dcdfe2;
         font-size: 22px;
         margin-right: 10px;
-        margin-bottom:15px;
-        display:inline-block;
+        margin-bottom: 15px;
+        display: inline-block;
 
     }
+
     .social-media-company-profile a:hover {
-        color:#000;
+        color: #000;
     }
 
     .yt-video {
-        margin-top:20px;
+        margin-top: 20px;
     }
 
     address strong {
 
-        display:block;
+        display: block;
     }
 
     .company-link {
         color: rgb(71, 60, 60);
-        text-decoration:underline;
+        text-decoration: underline;
     }
 
     @media (min-width: 992px) {
@@ -210,7 +211,7 @@ a.morelink {
     .content {
         position: relative;
         overflow: hidden;
-        margin-bottom: auto!important;
+        margin-bottom: auto !important;
     }
 
     .content:after {
@@ -279,14 +280,14 @@ a.morelink {
     }
 
     .info-card h1 {
-        font-weight:bold;
+        font-weight: bold;
     }
-    
+
 
     .info-card {
         margin-bottom: 15px;
         margin-top: 30px;
-        padding:15px;
+        padding: 15px;
 
     }
 
@@ -295,14 +296,14 @@ a.morelink {
     }
 
     .job-logo-wrapper {
-            display: block;
-     width: 140px;
-    padding: 5px;
-        
+        display: block;
+        width: 140px;
+        padding: 5px;
+
     }
 
     .job-logo-wrapper img {
-    width:100%;
+        width: 100%;
     }
 
     .job-info-wrapper {
@@ -357,10 +358,10 @@ a.morelink {
 
     .meta-adress a span {
 
-font-family: sans-serif;
-    padding-left: 5px;
-	
-	}
+        font-family: sans-serif;
+        padding-left: 5px;
+
+    }
 
     .job-count-badge {
         display: inline;
@@ -382,30 +383,35 @@ font-family: sans-serif;
         .jgArSS {
             height: 250px;
         }
-    
+
         .company-bg-image {
             height: 250px;
         }
     }
 
     @media (max-width:768px) {
-    
+
         .jgArSS {
             height: 200px;
         }
+
         .company-bg-image {
-           height: 200px;
+            height: 200px;
         }
+
         .job-logo-wrapper {
             width: 100px
         }
+
         .job-info-wrapper {
             width: calc(100% - 135px);
         }
+
         .info-card h1 {
             font-size: 24px;
             line-height: 28px;
         }
+
         .company-profile-image {
             padding: 15px 20px;
         }
@@ -413,105 +419,152 @@ font-family: sans-serif;
 
     @media (max-width:510px) {
         .info-card h1 {
-              font-size: 20px;
-              line-height: 28px;
+            font-size: 20px;
+            line-height: 28px;
         }
+
         .jgArSS {
             height: 150px;
         }
+
         .company-bg-image {
             height: 150px;
         }
-       
+
         .company-profile-image h1 {
             font-size: 20px;
             line-height: 28px;
         }
+
         .job-info-wrapper {
             width: calc(100% - 110px);
         }
     }
 
-@media (max-width:468px) {
- 
+    @media (max-width:468px) {
 
-.company-profile-wrapper {
-   
-    margin-left: -12px;
-    margin-right: -12px;
-}
+
+        .company-profile-wrapper {
+
+            margin-left: -12px;
+            margin-right: -12px;
+        }
     }
 </style>
 
 <!-- Begin Organization Profile -->
 <div id="navbar-home-site-links" class="full-width-bar-vw">
-   <div class="container">
-      <div class="row">
-       <div class="col-md-12">
-            <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
-                <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/"> <span itemprop="name">Home</span>
-                        </a>
-                        <meta itemprop="position" content="1">
-                    </li>
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span>
-                        </a>
-                        <meta itemprop="position" content="2">
-                    </li>
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/de/organizations/profile"> <span itemprop="name">Firmen</span>
-                        </a>
-                        <meta itemprop="position" content="3">
-                    </li>
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"> <span itemprop="name">Firmenprofil von <?= $organization->getName()?></span>
-                        <meta itemprop="position" content="4">
-                    </li>
-                </ol>
-            </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
+                    <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                        <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                            <a itemprop="item" href="/"> <span itemprop="name">Home</span>
+                            </a>
+                            <meta itemprop="position" content="1">
+                        </li>
+                        <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                            <a itemprop="item" href="/de/jobs?clear=1"> <span itemprop="name">Jobs</span>
+                            </a>
+                            <meta itemprop="position" content="2">
+                        </li>
+                        <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                            <a itemprop="item" href="/de/organizations/profile"> <span itemprop="name">Firmen</span>
+                            </a>
+                            <meta itemprop="position" content="3">
+                        </li>
+                        <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"> <span itemprop="name">Firmenprofil von <?= $organization->getName()?></span>
+                            <meta itemprop="position" content="4">
+                        </li>
+                    </ol>
+                </nav>
+            </div>
         </div>
-      </div>
-   </div>
+    </div>
 </div>
 
 <?php if ($organizationAdditional && $organizationAdditional->getBanner()): ?>
 <div class="" style="position:relative;">
     <div class="company-bg-image"></div>
     <div class="company-profile-wrapper">
-    <div class="jgArSS" 
-        style="background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=55);">
+        <div class="jgArSS" style="background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&width=1200&height=410&quality=55);">
+        </div>
+
     </div>
-       
-</div>
 </div>
 <?php endif; ?>
 
-<div class="company-description-wrapper" >
+<div class="company-description-wrapper">
     <div class="row">
         <div class="col-md-9">
-              
-            <div class="info-card stand-alone-card" id="portrait">
-            <span class="job-logo-wrapper stand-alone-card">
-				 <img class="job-logo" alt="Logo <?= $organization->getName()?>" src="<?= $logoUrl ?>">
-			</span>
-                <h1><?= $organization->getName()?></h1>
+            <div class="stand-alone-card">
+                <div class="info-card" id="portrait">
+                    <span class="job-logo-wrapper stand-alone-card">
+                        <img class="job-logo" alt="Logo <?= $organization->getName()?>" src="<?= $logoUrl ?>">
+                    </span>
+                    <h1><?= $organization->getName()?></h1>
 
-             <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
-                 <div class="more">
-                    <?= nl2br($organization->getdescription()) ?>
-                </div>
+                    <?php if($organizationAdditional && ($organizationAdditional->getVideoLink() || $organization->getdescription())) : ?>
+                    <div class="more">
+                        <?= nl2br($organization->getdescription()) ?>
+                    </div>
 
-                <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
+                    <?php if($organizationAdditional && $organizationAdditional->getVideoLink()) : ?>
                     <div class="yt-video embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="<?= $organizationAdditional->getVideoLink() ?>" allowfullscreen></iframe>
                     </div>
-                <?php endif; ?>
+                    <?php endif; ?>
 
-              
 
-        <?php endif; ?>
-        </div> 
+
+                    <?php endif; ?>
+
+                    <div class="visible-xs visible-sm">
+                        <hr />
+                        <div class="social-media-company-profile">
+                            <?php if($organizationAdditional && $organizationAdditional->getSocials()) : ?>
+                            <?php if($organizationAdditional->getSocials()->getFacebook()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>" target="_blank"> <i class="fa fa-facebook-square"></i></a>
+                            <?php endif; ?>
+                            <?php if($organizationAdditional->getSocials()->getLinkedin()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getLinkedin() ?>" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+                            <?php endif; ?>
+                            <?php if($organizationAdditional->getSocials()->getTwitter()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getTwitter() ?>" target="_blank"> <i class="fa fa-twitter-square"></i></a>
+                            <?php endif; ?>
+                            <?php if($organizationAdditional->getSocials()->getInstagram()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getInstagram() ?>" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <?php endif; ?>
+                            <?php if($organizationAdditional->getSocials()->getYoutube()) :?>
+                            <a href="<?= $organizationAdditional->getSocials()->getYoutube() ?>" target="_blank"> <i class="fa fa-youtube-square"></i></a>
+                            <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                        <address>
+                            <strong><?= $organization->getName()?></strong>
+                            <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
+                            <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
+                            <?= $contact->getCountry() ?>
+                        </address>
+
+                        <div class="meta-adress">
+                            <a href="tel:<?= $contact->getPhone() ?>" rel="nofollow"><?= $contact->getPhone() ?></a>
+                            <a class="fa fa-angle-right" href="<?= $contact->getWebsite() ?>" rel="nofollow"><span>zur Firmenwebsite</span></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="visible-xs visible-sm">
+                    <div class="iframe-container" style="padding-bottom:50%;">
+                        <img style="position:absolute;" width="300" data-src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>" alt="Google Map">
+                    </div>
+
+                </div>
+
+            </div>
             <!-- active jobs -->
             <div class="tab-pane active" id="jobs">
                 <div id="jobs-list-container" class="pagination-container">
@@ -522,51 +575,49 @@ font-family: sans-serif;
             </div>
             <!-- end active jobs -->
         </div>
-        <div class="col-md-3">
-        <div class="stand-alone-card">
-            <div class="info-card" style="margin-bottom:0px;">
-            <div class="social-media-company-profile">
-                    <?php if($organizationAdditional && $organizationAdditional->getSocials()) : ?>
+        <div class="col-md-3  hidden-xs hidden-sm">
+            <div class="stand-alone-card">
+                <div class="info-card" style="margin-bottom:0px;">
+                    <div class="social-media-company-profile">
+                        <?php if($organizationAdditional && $organizationAdditional->getSocials()) : ?>
                         <?php if($organizationAdditional->getSocials()->getFacebook()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>" target="_blank"> <i class="fa fa-facebook-square"></i></a>
+                        <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>" target="_blank"> <i class="fa fa-facebook-square"></i></a>
                         <?php endif; ?>
                         <?php if($organizationAdditional->getSocials()->getLinkedin()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getLinkedin() ?>" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+                        <a href="<?= $organizationAdditional->getSocials()->getLinkedin() ?>" target="_blank"><i class="fa fa-linkedin-square"></i></a>
                         <?php endif; ?>
                         <?php if($organizationAdditional->getSocials()->getTwitter()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getTwitter() ?>" target="_blank"> <i class="fa fa-twitter-square"></i></a>
+                        <a href="<?= $organizationAdditional->getSocials()->getTwitter() ?>" target="_blank"> <i class="fa fa-twitter-square"></i></a>
                         <?php endif; ?>
                         <?php if($organizationAdditional->getSocials()->getInstagram()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getInstagram() ?>" target="_blank"><i class="fa fa-instagram"></i></a>
+                        <a href="<?= $organizationAdditional->getSocials()->getInstagram() ?>" target="_blank"><i class="fa fa-instagram"></i></a>
                         <?php endif; ?>
                         <?php if($organizationAdditional->getSocials()->getYoutube()) :?>
-                            <a href="<?= $organizationAdditional->getSocials()->getYoutube() ?>" target="_blank">	<i class="fa fa-youtube-square"></i></a>
+                        <a href="<?= $organizationAdditional->getSocials()->getYoutube() ?>" target="_blank"> <i class="fa fa-youtube-square"></i></a>
                         <?php endif; ?>
-                    <?php endif; ?>
-                </div>
-                <address>
-                    <strong><?= $organization->getName()?></strong>
-                    <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
-                    <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
-                    <?= $contact->getCountry() ?>
-                </address>
+                        <?php endif; ?>
+                    </div>
+                    <address>
+                        <strong><?= $organization->getName()?></strong>
+                        <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
+                        <?= $contact->getPostalcode() ?> <?= $contact->getCity() ?><br>
+                        <?= $contact->getCountry() ?>
+                    </address>
 
-                <div class="meta-adress">
-                    <a href="tel:<?= $contact->getPhone() ?>" rel="nofollow"><?= $contact->getPhone() ?></a>
-                    <a class="fa fa-angle-right" href="<?= $contact->getWebsite() ?>" rel="nofollow"><span>zur Firmenwebsite</span></a>
+                    <div class="meta-adress">
+                        <a href="tel:<?= $contact->getPhone() ?>" rel="nofollow"><?= $contact->getPhone() ?></a>
+                        <a class="fa fa-angle-right" href="<?= $contact->getWebsite() ?>" rel="nofollow"><span>zur Firmenwebsite</span></a>
+                    </div>
+
                 </div>
-                
+
+                <div class="iframe-container" style="padding-bottom:50%;">
+                    <img style="position:absolute;" width="300" data-src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>&language=de&zoom=15&scale=1&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>" alt="Google Map">
+
+
+                </div>
             </div>
-
-           <div class="iframe-container" style="padding-bottom:50%;">
-              <img style="position:absolute;" width="300"
-         data-src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C=<?php echo $organization->getName()?>+<?php echo $contact->getStreet()?>+<?php echo $contact->getHouseNumber()?>+<?php echo $contact->getCity()?>>+<?php echo $contact->getCountry()?>"
-         alt="Google Map">
-
-
-          </div>
         </div>
-    </div>
     </div>
 </div>
 <!-- End Organization Profile -->
