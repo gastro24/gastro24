@@ -250,23 +250,17 @@ $industries = $job->getClassifications()->getIndustries();
  </div>
 </div>
 
-    <!-- sidebar contact and map -->
-    <div class="col-md-3">
+    
+
         <?= $this->partial('jobs/partials/contact-sidebar', [
                 'job' =>  $this->job,
                 'orgName' => $orgName,
                 'preview' => $preview
             ]
         ); ?>
-    </div>
     <!-- end col-md-3 -->
-
-
  </div>
 
 <!-- end company-description-wrapper -->
 </div>
 
-<div class="to-top-link">
-                    <a id="scroll-to-top" href="#top"><span class="fa fa-chevron-up"></span> nach oben</a>
-                </div>
