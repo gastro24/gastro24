@@ -179,6 +179,8 @@ $industries = $job->getClassifications()->getIndustries();
     <div class="row">
         
  <div class="col-md-9">
+
+
  <div class="stand-alone-card">
   <div class="info-card">
 <h2>Kurz & knapp</h2>
@@ -235,8 +237,8 @@ $industries = $job->getClassifications()->getIndustries();
  <?php endif; ?>
  
  <!-- end info-card -->
+   </div>
   </div>
-  
   
      <?php if (!$preview): ?>
             <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
@@ -248,7 +250,7 @@ $industries = $job->getClassifications()->getIndustries();
   
 <!-- end col-md-9 -->
  </div>
-</div>
+
 
     
 
