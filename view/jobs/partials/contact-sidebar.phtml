@@ -25,22 +25,20 @@
         ?>
         </strong>
         <?php
-            if ($location === false) {
+            if ($location === false && !$useCompanyAddress) {
                 echo $this->translate('Swiss');
             }
             elseif ($useCompanyAddress && $this->job->getOrganization()) {
                 $orgAddress = $this->job->getOrganization()->getContact();
                 echo $orgAddress->getStreet() . ' ' . $orgAddress->getHouseNumber() . '<br>';
                 echo $orgAddress->getPostalcode() . ' ' . $orgAddress->getCity();
-                
-            
-        
-
-
             } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
                 echo $location->getStreetname() . '<br>';
                 echo $location->getPostalcode() . ' ' . $location->getCity();
-            } else {
+            } elseif ($location === false) {
+                echo $this->translate('Swiss');
+            }
+            else {
                 echo preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
             }
         ?>
