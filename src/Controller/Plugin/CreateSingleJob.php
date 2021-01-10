@@ -74,6 +74,9 @@ class CreateSingleJob extends AbstractPlugin
 //            $job->addAttachedEntity($template, 'gastro24-template');
 //
 //        }
+        if (isset($values['category'])) {
+            $job->getTemplateValues()->set('category', $values['category']);
+        }
         if (isset($values['publishDate'])) {
             $job->getTemplateValues()->set('publishDate', $values['publishDate']);
         }
@@ -203,6 +206,7 @@ class CreateSingleJob extends AbstractPlugin
             'applicationOptionData' => $applicationOptionData,
             'companyWebsite' => $values['companyWebsite'] ?? '',
             'companyDescription' => $values['companyDescription'],
+            'category' => $values['category'],
         ];
 
         if (isset($values['otherAddress'])) {

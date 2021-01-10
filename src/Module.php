@@ -146,6 +146,7 @@ class Module implements AssetProviderInterface
 
                 if ('lang/landingPage' == $matchedRouteName) {
                     $services = $event->getApplication()->getServiceManager();
+                    /** @var Landingpages $options */
                     $options = $services->get(Landingpages::class);
                     $term = $routeMatch->getParam('q');
 

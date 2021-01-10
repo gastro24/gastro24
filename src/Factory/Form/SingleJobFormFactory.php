@@ -25,11 +25,12 @@ class SingleJobFormFactory implements FactoryInterface
 
         $formManager = $container->get('FormElementManager');
         $formOptions = $container->get(\Gastro24\Options\JobDetailsForm::class);
+        $landingPageOptions = $container->get(\Gastro24\Options\Landingpages::class);
 
         /* @var $configForm RegistrationFormOptions */
         //$formOptions = $container->get('CompanyRegistration/RegistrationFormOptions');
 
-        $form = new SingleJobForm($formManager, $formOptions, null);
+        $form = new SingleJobForm($formManager, $formOptions, $landingPageOptions, null);
         $form->setAttribute('id', 'single-job-form');
         //$form->setInputfilter($filter);
 

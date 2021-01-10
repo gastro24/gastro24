@@ -7,6 +7,10 @@
  * @license       MIT
  */
 
+$previousUri = '';
+$nextUri = '';
+$canonicalUri = '';
+
 if ($this->pageCount > 1):
 
     //$this->headScript()->appendFile($this->basepath('/Core/js/core.pagination.js'));
@@ -16,6 +20,7 @@ if ($this->pageCount > 1):
     $currentPage = (isset($query['page']) && $query['page']>0) ? $query['page'] : '1';
     $enableNextButton = $currentPage < $this->pageCount;
     $enablePrevButton = $currentPage > 1;
+
 
     if ($this->params()->fromRoute('isLandingPage')) {
         $canonicalUri = $this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true);

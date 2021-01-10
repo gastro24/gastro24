@@ -1,6 +1,7 @@
 <?php
 namespace Gastro24\Form\Jobs;
 
+use Core\Form\Container;
 use Core\Form\WizardContainer;
 use Jobs\Form\Job as BaseJobForm;
 use Laminas\View\Renderer\PhpRenderer as Renderer;
@@ -14,10 +15,30 @@ class Job extends BaseJobForm
     public function init()
     {
         parent::init();
-        $this->get('general')->disableForm('salaryForm');
-        $this->get('general')->disableForm('customerNote');
-        $this->get('general')->get('nameForm')->setLabel('Firmenprofil');
-        $this->get('general')->get('nameForm')->get('jobCompanyName')->get('companyId')->setLabel('Firmenprofil auswählen');
+        /** @var Container $generalForm */
+        $generalForm = $this->get('general');
+        $generalForm->disableForm('salaryForm');
+        $generalForm->disableForm('customerNote');
+
+        $generalForm->setForm('categoryForm', [
+            'type' => 'Gastro24\Form\Jobs\CategoryForm',
+            'property' => true,
+            'priority' => 30,
+            'options' => array(
+                'enable_descriptions' => true,
+                'description' => /*@translate*/ 'Choose a category for the job.',
+                'display_mode' => 'summary'
+            )
+        ]);
+
+        $generalForm->get('nameForm')->setLabel('Firmenprofil');
+        $generalForm->get('nameForm')->get('jobCompanyName')->get('companyId')->setLabel('Firmenprofil auswählen');
+
+        // WORKAROUND: reorder subforms
+        $generalForm->forms['locationForm']['priority'] = 50;
+        $generalForm->forms['nameForm']['priority'] = 40;
+        $generalForm->forms['classifications']['priority'] = 20;
+        $generalForm->forms['portalForm']['priority'] = 10;
     }
 
     public function renderPost(Renderer $renderer)
