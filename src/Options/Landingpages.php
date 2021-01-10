@@ -33,9 +33,12 @@ class Landingpages extends AbstractOptions
 
     private $parentQueries = [];
 
+    private $categoryValues = [];
+
     public function setFromArray($options)
     {
         $this->options = $options;
+        $categoryValues = [];
         $idMap = [];
         $queryMap = [];
         $tabs = [];
@@ -59,6 +62,8 @@ class Landingpages extends AbstractOptions
             if (isset($spec['query']) && !isset($spec['query']['q'])) {
                 $spec['query']['q'] = '';
             }
+            $queryValue = $spec['query']['q'];
+            $categoryValues[$term] = $queryValue;
 
             $queryMap[ $term ] = isset($spec[ 'query' ]) ? $spec[ 'query' ] : ['q' => $term];
 
@@ -78,7 +83,8 @@ class Landingpages extends AbstractOptions
             'queryMap' => $queryMap,
             'tabs' => $tabs,
             'companies' => $companies,
-            'parentQueries' => $this->parentQueries
+            'parentQueries' => $this->parentQueries,
+            'categoryValues' => $categoryValues
         ]);
     }
 
@@ -101,8 +107,6 @@ class Landingpages extends AbstractOptions
 
         return $this;
     }
-
-
 
     /**
      * @return array
@@ -203,5 +207,22 @@ class Landingpages extends AbstractOptions
         }
 
         return null;
+    }
+
+    /**
+     * @param array $categoryValues
+     *
+     * @return self
+     */
+    public function setCategoryValues($categoryValues)
+    {
+        $this->categoryValues = $categoryValues;
+
+        return $this;
+    }
+
+    public function getCategoryValues()
+    {
+        return $this->categoryValues;
     }
 }

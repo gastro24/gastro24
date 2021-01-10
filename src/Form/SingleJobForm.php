@@ -5,8 +5,10 @@ namespace Gastro24\Form;
 use Core\Entity\Hydrator\EntityHydrator;
 use Core\Form\Form;
 use Gastro24\Filter\PdfFileUri;
+use Gastro24\Options\Landingpages;
 use Jobs\Entity\Category;
 use Jobs\Entity\Location;
+use Laminas\Form\Element\Select;
 use Laminas\Form\FormElementManager\FormElementManagerV3Polyfill as FormElementManager;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
@@ -24,11 +26,17 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
      */
     private $gastroOptions;
 
-    public function __construct(FormElementManager $formManager, $gastroOptions, $name = 'single-job-form')
+    /**
+     * @var \Gastro24\Options\Landingpages
+     */
+    private $landingPageOptions;
+
+    public function __construct(FormElementManager $formManager, $gastroOptions, $landingPageOptions, $name = 'single-job-form')
     {
         parent::__construct($name, []);
         $this->formManager = $formManager;
         $this->gastroOptions = $gastroOptions;
+        $this->landingPageOptions = $landingPageOptions;
 
         $this->setAttribute('data-handle-by', 'native');
         $this->setAttribute('class', 'single-job-form file-upload');
@@ -94,6 +102,22 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             'type' => ClassificationsFieldset::class,
         ]);
         $this->get('classifications')->get('employmentTypes')->setAttribute('required', true);
+
+        $catValues = $this->landingPageOptions->getCategoryValues();
+        ksort($catValues);
+        $options = array_merge(['' => ''], $catValues);
+        $this->add([
+            'type' => Select::class,
+            'name' => 'category',
+            'options' => [
+                'label' => 'Kategorie',
+                'value_options' => $options
+            ],
+            'attributes' => [
+                'data-width' => '100%',
+                'multiple' => false,
+            ]
+        ]);
 
         $this->add([
             'type' => 'TextEditor',
@@ -283,6 +307,10 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
                     'required' => false,
                     'allow_empty' => true
                 ],
+            ],
+            'category' => [
+                'required' => false,
+                'allow_empty' => true
             ],
             'applicationUri' => [
                 'required' => false,

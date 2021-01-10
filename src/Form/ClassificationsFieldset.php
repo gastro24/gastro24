@@ -68,7 +68,7 @@ class ClassificationsFieldset extends Fieldset
                 'allow_select_nodes' => true,
                 'name' => 'industries',
                 'options' => [
-                    'label' => /*@translate*/ 'Kategorie',
+                    'label' => /*@translate*/ 'Branche',
                     'description' => /*@translate*/ 'Select the industry of the hiring organization. This allows an applicant to search for job opening by industry.',
                 ],
                 'attributes' => [
@@ -99,10 +99,9 @@ class ClassificationsFieldset extends Fieldset
         );
         $this->add($types);
 
-
         $hydrator = $this->getHydrator();
         $hydrator->addStrategy('professions', $professions->getHydratorStrategy());
         $hydrator->addStrategy('employmentTypes', $types->getHydratorStrategy());
-       $hydrator->addStrategy('industries', $industries->getHydratorStrategy());
+        $hydrator->addStrategy('industries', $industries->getHydratorStrategy());
     }
 }

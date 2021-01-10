@@ -98,6 +98,7 @@ return [
             Listener\JobDeletedListener::class => [Listener\JobDeletedListener::class,'factory'],
             'Gastro24\Form\ForgotPasswordPopup' => \Gastro24\Factory\Form\ForgotPasswordPopupFactory::class,
             'Auth/Adapter/UserLogin' => Factory\Service\UserAdapterFactory::class,
+            'Solr/Listener/JobEventSubscriber' => \Gastro24\Factory\Filter\JobEventSubscriberFactory::class
         ],
         'aliases' => [
             'Orders\Form\Listener\InjectInvoiceAddressInJobContainer' => Listener\VoidListener::class,
@@ -373,6 +374,7 @@ return [
             'Organizations/Form' => 'Gastro24\Form\Organizations\Organizations',
             'Organizations/OrganizationsContactFieldset' => 'Gastro24\Form\Organizations\OrganizationsContactFieldset',
             'Gastro24/Organizations/OrganizationsSocialForm' => 'Gastro24\Form\Organizations\OrganizationsSocialForm',
+            'Gastro24/Jobs/Category' => 'Gastro24\Form\Jobs\CategoryForm',
         ],
         'factories' => [
             Form\SingleJobForm::class => \Gastro24\Factory\Form\SingleJobFormFactory::class,
@@ -394,6 +396,7 @@ return [
             'Organizations/Banner' => \Gastro24\Factory\Form\OrganizationBannerImageFactory::class,
             'Jobs/Job' => Factory\Form\Jobs\JobFactory::class,
             'Jobs/BaseFieldset'  => \Gastro24\Factory\Form\Jobs\BaseFieldsetFactory::class,
+            'Gastro24\Form\Jobs\CategoriesFieldset'  => \Gastro24\Factory\Form\Jobs\CategoriesFieldsetFactory::class,
         ],
         'aliases' => [
             'Orders/InvoiceAddressSettingsFieldset' => Form\InvoiceAddressSettingsFieldset::class,

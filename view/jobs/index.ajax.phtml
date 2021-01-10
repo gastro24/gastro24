@@ -157,7 +157,7 @@ color: #000;
                     while ($parentTermData = $landingpagesOptions->getParentByTerm($mainTerm)) {
                         $breadcrumbHtml = '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">' .
                             '<a title="' . $parentTermData['parent']['query']['q'] . ' Jobs" itemprop="item" href="' . $this->url('lang/landingPage', ['q' => $parentTermData['searchTerm'], 'format' => 'html' ], true) . '">' .
-                                '<span itemprop="name">' . $parentTermData['parent']['query']['q'] . '</span></a>' .
+                                '<span itemprop="name"> ' . $parentTermData['parent']['query']['q'] . '</span></a>' .
                             '<meta itemprop="position" content="' . $content . '"/></li>';
                         $content++;
                         $mainTerm = $parentTermData['parent']['query']['q'];
