@@ -62,8 +62,11 @@ class Landingpages extends AbstractOptions
             if (isset($spec['query']) && !isset($spec['query']['q'])) {
                 $spec['query']['q'] = '';
             }
-            $queryValue = $spec['query']['q'];
-            $categoryValues[$term] = $queryValue;
+
+            if ($spec['query']['q']) {
+                $queryValue = $spec['query']['q'];
+                $categoryValues[$term] = $queryValue;
+            }
 
             $queryMap[ $term ] = isset($spec[ 'query' ]) ? $spec[ 'query' ] : ['q' => $term];
 
