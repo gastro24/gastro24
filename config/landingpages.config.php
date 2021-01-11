@@ -199,21 +199,6 @@ $options = [
 		   'panel' => '',
           'text' => 'Hauswirtschaft Jobs'
        ],
-
-    'coople' => [
-          'id' => 1532,
-		  'query' => [ 'q' => 'Coople'],
-		  'tab' => '',
-		  'panel' => '',
-          'text' => 'Jobs Coople'
-       ],
-       'coop' => [
-          'id' => 1530,
-		  'query' => [ 'q' => 'Coop'],
-		  'tab' => '',
-		  'panel' => '',
-          'text' => 'Jobs Coop'
-       ],
     
       'stadt-zug' => [
         'text' => 'Stadt Zug',
