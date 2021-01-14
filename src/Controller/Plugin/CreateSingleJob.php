@@ -52,30 +52,16 @@ class CreateSingleJob extends AbstractPlugin
         /* @var \Jobs\Entity\Job $job */
         $job = $jobRepository->create();
         $job->setCompany($values['company']);
-//        if ('html' == $values['details']['mode']) {
-//            $job->getTemplateValues()->setIntroduction($values['details']['introduction']);
-//            $job->getTemplateValues()->setDescription($values['details']['description']);
-//            $job->getTemplateValues()->setQualifications($values['details']['qualifications']);
-//            $job->getTemplateValues()->set('position', $values['details']['position']);
-//            $job->getTemplateValues()->setRequirements($values['details']['requirements']);
-//            $job->getTemplateValues()->setBenefits($values['details']['benefits']);
-//            $template = new Template();
-//            $this->jobRepository->getDocumentManager()->persist($template);
-//            $this->jobRepository->getDocumentManager()->flush($template);
-//
-//            if (isset($values['details']['image_id'])) {
-//                $image = $this->templateImageRepository->find($values['details']['image_id']);
-//                $template->setImage($image);
-//            }
-//            if (isset($values['details']['logo_id'])) {
-//                $logo = $this->templateImageRepository->find($values['details']['logo_id']);
-//                $template->setLogo($logo);
-//            }
-//            $job->addAttachedEntity($template, 'gastro24-template');
-//
-//        }
+
+        // save landingpage categories
         if (isset($values['category'])) {
-            $job->getTemplateValues()->set('category', $values['category']);
+            $categories = [$values['category']];
+
+            if (isset($values['subcategory'])) {
+                $categories[] = $values['subcategory'];
+            }
+            $job->getTemplateValues()->set('categories', $categories);
+            $job->getTemplateValues()->set('category', end($categories));
         }
         if (isset($values['publishDate'])) {
             $job->getTemplateValues()->set('publishDate', $values['publishDate']);
@@ -205,8 +191,7 @@ class CreateSingleJob extends AbstractPlugin
             'applicationOption' => $applicationOption,
             'applicationOptionData' => $applicationOptionData,
             'companyWebsite' => $values['companyWebsite'] ?? '',
-            'companyDescription' => $values['companyDescription'],
-            'category' => $values['category'],
+            'companyDescription' => $values['companyDescription']
         ];
 
         if (isset($values['otherAddress'])) {

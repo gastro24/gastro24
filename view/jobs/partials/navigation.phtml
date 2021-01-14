@@ -1,7 +1,7 @@
 <?php
 /** @var \Gastro24\Options\Landingpages $landingpagesOptions */
 $landingpagesOptions = $this->services(\Gastro24\Options\Landingpages::class);
-$category = $this->job->getTemplateValues()->get('category');
+$landingPageCategories = $this->job->getTemplateValues()->get('categories');
 $contentProperty = 3;
 ?>
 <div id="navbar-home-site-links" class="<?php if(!$hasBanner) echo 'no-banner' ?> full-width-bar-vw">
@@ -19,30 +19,20 @@ $contentProperty = 3;
                         <meta itemprop="position" content="2">
                     </li>
 
-                    <?php if ($category) : ?>
+                    <?php if ($landingPageCategories) : ?>
                         <!-- build parent breadcrumbs -->
                         <?php
-                        $mainTerm = $category;
-                        $parentsBreadcrumbHtml = '';
-                        $termText = $landingpagesOptions->getQueryParameters($mainTerm)['q'];
-                        $mainTerm = $termText;
-                        while ($parentTermData = $landingpagesOptions->getParentByTerm($mainTerm)) {
-                            $breadcrumbHtml = '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">' .
-                                '<a title="' . $parentTermData['parent']['query']['q'] . ' Jobs" itemprop="item" href="' . $this->url('lang/landingPage', ['q' => $parentTermData['searchTerm'], 'format' => 'html' ], true) . '">' .
-                                '<span itemprop="name"> ' . $parentTermData['parent']['query']['q'] . '</span></a>' .
-                                '<meta itemprop="position" content="' . $contentProperty . '"/></li>';
-                            $contentProperty++;
-                            $mainTerm = $parentTermData['parent']['query']['q'];
-                            $parentsBreadcrumbHtml = $breadcrumbHtml . $parentsBreadcrumbHtml;
-                        }
-                        echo $parentsBreadcrumbHtml;
+                            foreach ($landingPageCategories as $category) {
+                                $catText = $landingpagesOptions->getQueryParameters($category)['q'];
+
+                                echo '<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">' .
+                                    '<a title="' . $catText . ' Jobs" itemprop="item" href="' . $this->url('lang/landingPage', ['q' => $category, 'format' => 'html' ], true) . '">' .
+                                    '<span itemprop="name"> ' . $catText . '</span></a>' .
+                                    '<meta itemprop="position" content="' . $contentProperty . '"/></li>';
+
+                                $contentProperty++;
+                            }
                         ?>
-                        <li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a title="<?= $termText . ' Jobs' ?>" itemprop="item" href="<?= $this->url('lang/landingPage', ['q' => $category, 'format' => 'html' ], true) ?>">
-                            <span itemprop="name"> <?= $termText ?></span></a>
-                            <meta itemprop="position" content="<?= $contentProperty ?>"/>
-                        </li>
-                        <?php $contentProperty++; ?>
                     <?php endif; ?>
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                         <span itemprop="name"><?=ucfirst($this->job->getTitle())?></span>

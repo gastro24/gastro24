@@ -4,8 +4,9 @@ namespace Gastro24\Form\Jobs;
 
 use Core\Entity\Hydrator\EntityHydrator;
 use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
 
-class CategoriesFieldset extends Fieldset
+class CategoriesFieldset extends Fieldset implements InputFilterProviderInterface
 {
     /**
      * @var \Gastro24\Options\Landingpages
@@ -30,9 +31,9 @@ class CategoriesFieldset extends Fieldset
     public function init()
     {
         $this->setName('category');
-        $catValues = $this->landingPageOptions->getCategoryValues();
-        ksort($catValues);
-        $options = array_merge(['' => ''], $catValues);
+        $parentCategories = $this->landingPageOptions->getParentCategories();
+        ksort($parentCategories);
+        $options = array_merge(['' => ''], $parentCategories);
         $this->add([
             'type' => 'Core/Select',
             'name' => 'category',
@@ -41,9 +42,44 @@ class CategoriesFieldset extends Fieldset
                 'value_options' => $options,
             ],
             'attributes' => [
+                'id' => 'category',
                 'data-width' => '100%',
                 'multiple' => false,
             ],
         ]);
+
+        $allCategories = $this->landingPageOptions->getCategoryValues();
+        ksort($allCategories);
+        $options = array_merge(['' => ''], $allCategories);
+        $this->add([
+            'type' => 'Core/Select',
+            'name' => 'subcategory',
+            'options' => [
+                'label' => 'Unterkategorie',
+                'value_options' => $options,
+                'disable_inarray_validator' => true
+            ],
+            'attributes' => [
+                'id' => 'subcategory',
+                'data-width' => '100%',
+                'multiple' => false,
+            ],
+        ]);
+    }
+
+    public function getInputFilterSpecification()
+    {
+        $spec = [
+            'category' => [
+                'required' => false,
+                'allow_empty' => true
+            ],
+            'subcategory' => [
+                'required' => false,
+                'allow_empty' => true
+            ],
+        ];
+
+        return $spec;
     }
 }

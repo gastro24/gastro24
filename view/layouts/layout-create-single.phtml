@@ -441,6 +441,53 @@ $lang = $this->params('lang');
     <!-- end iframe resizer -->
     <script type="text/javascript">
         (function($) {
+
+            var Select2Cascade = ( function(window, $) {
+                function Select2Cascade(parent, child, url, select2Options) {
+                    var afterActions = [];
+                    var options = select2Options || {};
+
+                    // Register functions to be called after cascading data loading done
+                    this.then = function(callback) {
+                        afterActions.push(callback);
+                        return this;
+                    };
+
+                    parent.on("change", function (e) {
+                        child.prop("disabled", true);
+                        var _this = this;
+                        $.getJSON(url.replace(':parentId:', $(this).val()), function(items) {
+                            var newOptions = '<option value="">-- Select --</option>';
+                            for(var id in items) {
+                                newOptions += '<option value="'+ id +'">'+ items[id] +'</option>';
+                            }
+
+                            child.select2('destroy').html(newOptions).prop("disabled", false)
+                                .select2(options);
+
+                            afterActions.forEach(function (callback) {
+                                callback(parent, child, items);
+                            });
+                        });
+                    });
+                }
+
+                return Select2Cascade;
+
+            })( window, $);
+
+            var select2Options = {
+                theme: 'bootstrap'
+            };
+            var apiUrl =  '/' + lang + '/landingpage/:parentId:/childs';
+
+            $('select').select2(select2Options);
+            var cascadLoading = new Select2Cascade($('#category'), $('#subcategory'), apiUrl, select2Options);
+            cascadLoading.then( function(parent, child, items) {
+                // Dump response data
+                console.debug(items);
+            });
+
             $('.link--add-location').click(function() {
                 var newRow = $('.row--locations').last().clone();
                 var index = parseInt(newRow.find('.location-zip-code label').attr('for').replace("locationZipCode_", ""));

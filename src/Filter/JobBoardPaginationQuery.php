@@ -27,7 +27,8 @@ class JobBoardPaginationQuery extends BaseQuery
     public function createQuery(array $params, SolrDisMaxQuery $query, Facets $facets)
     {
         // also search on category property
-        $query->addQueryField('categoryName_s', '3');
+        //$query->addQueryField('categoryName_s', '3');
+        $query->addQueryField('categories_MultiString', '3');
         // show only jobs, where publishDate not in future
         $query->addFilterQuery('datePublishStart:[* TO NOW]');
 

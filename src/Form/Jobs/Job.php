@@ -46,6 +46,52 @@ class Job extends BaseJobForm
         $coreformsjs   = $renderer->basepath('modules/Core/js/core.forms.js');
         $javaScript = <<<JS
         $(document).ready(function() {
+            
+            var Select2Cascade = ( function(window, $) {
+                function Select2Cascade(parent, child, url, select2Options) {
+                    var afterActions = [];
+                    var options = select2Options || {};
+
+                    // Register functions to be called after cascading data loading done
+                    this.then = function(callback) {
+                        afterActions.push(callback);
+                        return this;
+                    };
+                    
+                    parent.on("change", function (e) {
+                        console.log('CAHNGED')
+                        child.prop("disabled", true);
+                        var _this = this;
+                        $.getJSON(url.replace(':parentId:', $(this).val()), function(items) {
+                            var newOptions = '<option value="">-- Select --</option>';
+                            for(var id in items) {
+                                newOptions += '<option value="'+ id +'">'+ items[id] +'</option>';
+                            }
+
+                            child.select2('destroy').html(newOptions).prop("disabled", false)
+                                .select2(options);
+
+                            afterActions.forEach(function (callback) {
+                                callback(parent, child, items);
+                            });
+                        });
+                    });
+                }
+
+                return Select2Cascade;
+
+            })( window, $);
+
+            var select2Options = { 
+                theme: 'bootstrap' 
+            };
+            var apiUrl =  '/' + lang + '/landingpage/:parentId:/childs';
+
+            var cascadLoading = new Select2Cascade($('#category'), $('#subcategory'), apiUrl, select2Options);
+            cascadLoading.then( function(parent, child, items) {
+                // Dump response data
+                console.debug(items);
+            });
 
             console.log('attached yk.forms.done to ', \$('form'));
 

@@ -25,6 +25,8 @@ class Landingpages extends AbstractOptions
 
     private $queryMap = [];
 
+    private $childsMap = [];
+
     private $tabs = [];
     
     private $companies = [];
@@ -41,6 +43,7 @@ class Landingpages extends AbstractOptions
         $categoryValues = [];
         $idMap = [];
         $queryMap = [];
+        $childsMap = [];
         $tabs = [];
         $companies = [];
 
@@ -77,6 +80,10 @@ class Landingpages extends AbstractOptions
             if (isset($spec['parent'])) {
                 $identifier = isset($spec['query']['q']) ? $spec['query']['q'] : $term;
                 $this->parentQueries[$identifier] = $spec['parent'];
+                $childsMap[$spec['parent']][] = [
+                    'child' => $term,
+                    'spec'  => $spec
+                ];
             }
 
         }
@@ -84,6 +91,7 @@ class Landingpages extends AbstractOptions
         return parent::setFromArray([
             'idMap' => $idMap,
             'queryMap' => $queryMap,
+            'childsMap' => $childsMap,
             'tabs' => $tabs,
             'companies' => $companies,
             'parentQueries' => $this->parentQueries,
@@ -212,6 +220,28 @@ class Landingpages extends AbstractOptions
         return null;
     }
 
+    public function getChildCategories($parentCategory)
+    {
+        return $this->childsMap[$parentCategory] ?? [];
+    }
+
+    /**
+     * @param array $childsMap
+     *
+     * @return self
+     */
+    public function setChildsMap($childsMap)
+    {
+        $this->childsMap = $childsMap;
+
+        return $this;
+    }
+
+    public function getChildsMap()
+    {
+        return $this->childsMap;
+    }
+
     /**
      * @param array $categoryValues
      *
@@ -227,5 +257,18 @@ class Landingpages extends AbstractOptions
     public function getCategoryValues()
     {
         return $this->categoryValues;
+    }
+
+    public function getParentCategories()
+    {
+        $parents = [];
+        foreach ($this->childsMap as $parentKey => $childData) {
+            if (empty($this->getQueryParameters($parentKey)['q'])) {
+                continue;
+            }
+            $parents[$parentKey] = $this->getQueryParameters($parentKey)['q'];
+        }
+
+        return $parents;
     }
 }

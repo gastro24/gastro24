@@ -332,10 +332,16 @@ iframe {
             <div class="col-md-12">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('category')); ?>
+                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('subcategory')); ?>
             </div>
-            <div class="col-md-11 categorySelect form-group">
-                <?= $this->formLabel($this->form->get('category'), 'Kategorien'); ?>
+            <div class="col-md-5 categorySelect form-group">
+                <?= $this->formLabel($this->form->get('category'), 'Kategorie'); ?>
                 <?= $this->formElement($this->form->get('category')); ?>
+            </div>
+            <div class="col-md-5 subCategorySelect form-group">
+                <?= $this->formLabel($this->form->get('subcategory'), 'Unterkategorie'); ?>
+                <?= $this->formElement($this->form->get('subcategory')); ?>
             </div>
         </div>
         <div class="row form-group positionTextarea">

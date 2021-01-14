@@ -127,6 +127,7 @@ return [
 //                    'resource/contact',
                     'route/lang/organizations-profiles',
                     'route/lang/saved-jobs',
+                    'route/lang/landingpage-child-categories',
                     'route/lang/forgot-password',
                     'route/lang/register-organization-confirmation',
                 ]

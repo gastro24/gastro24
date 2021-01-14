@@ -2,6 +2,7 @@
 namespace Gastro24;
 
 use Gastro24\Controller\ForgotPasswordPopupController;
+use Gastro24\Controller\LandingPageController;
 use Gastro24\Filter\OrganizationJobsListQuery;
 use Gastro24\Form\JobDetailsHydrator;
 use Gastro24\Form\JobDetailsHydratorFactory;
@@ -118,6 +119,7 @@ return [
             Controller\CreateSingleJobController::class => Factory\Controller\CreateSingleJobFactory::class,
             Controller\LpStellenanzeigen::class => InvokableFactory::class,
             'Auth\Controller\Register' => Factory\Controller\RegisterControllerFactory::class,
+            Controller\LandingPageController::class => Factory\Controller\LandingPageControllerFactory::class,
             Controller\RegisterConfirmationController::class => Factory\Controller\RegisterConfirmationControllerFactory::class,
             Controller\SuggestJobs::class => Factory\Controller\SuggestJobFactory::class,
             Controller\OrdersController::class => Factory\Controller\OrdersControllerFactory::class,
@@ -454,6 +456,17 @@ return [
                                 'action' => 'index',
                             ],
                         ],
+                    ],
+                    'landingpage-child-categories' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/landingpage/:parent/childs',
+                            'defaults' => [
+                                'controller' => LandingPageController::class,
+                                'action'     => 'childs',
+                            ]
+                        ],
+                        'may_terminate' => true
                     ],
                     'forgot-password-startpage' => [
                         'type' => 'Literal',

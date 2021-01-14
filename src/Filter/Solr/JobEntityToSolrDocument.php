@@ -26,10 +26,17 @@ class JobEntityToSolrDocument extends BaseJobEntityToSolrDocument
     public function filter($job)
     {
         $document = parent::filter($job);
-        if ($category = $job->getTemplateValues()->get('category')) {
-            $searchTerm = $this->landingPageOptions->getQueryParameters($category);
+        $templateValues = $job->getTemplateValues();
+        if ($category = $templateValues->get('category')) {
+            $catQueryParams = $this->landingPageOptions->getQueryParameters($category);
             $document->addField('category_s', $category);
-            $document->addField('categoryName_s', $searchTerm['q']);
+            $document->addField('categoryName_s', $catQueryParams['q']);
+
+            $categories = $templateValues->get('categories');
+            foreach ($categories as $landingPageCategory) {
+                $queryParams = $this->landingPageOptions->getQueryParameters($landingPageCategory);
+                $document->addField('categories_MultiString', $queryParams['q']);
+            }
         }
 
         return $document;
