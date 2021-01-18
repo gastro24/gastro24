@@ -3,7 +3,5 @@
         <span class="btn btn-primary internal-apply-link"><?= $this->translate('Jetzt bewerben') ?></span>
     </div>-->
 <?php else: ?>
-    <div class="button-job-apply text-center">
-        <?=$this->gastroApplyUrl($this->job);?>
-    </div>
+    <?=$this->gastroApplyUrl($this->job);?>
 <?php endif; ?>
