@@ -156,7 +156,7 @@ $qualifications = $this->job->getClassifications()->getProfessions();
                                     </li>
                                     <?php endif; ?>
 
-
+<?php $typeOfContract = $this->job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
                                     <li><i class="fa fa-angle-right"></i>
                                         <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
                                     </li>
@@ -196,7 +196,7 @@ $qualifications = $this->job->getClassifications()->getProfessions();
 
                   </div>
                 </div>
-              <div class="button_container">
+              <div class="apply-wrapper button_container">
                  <?php if (!$preview): ?>
 
                           <?= $this->partial('jobs/partials/apply-button.phtml', [
