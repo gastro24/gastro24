@@ -46,8 +46,7 @@ if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getPro
 if($org && $org->getImages()->notEmpty('images')) {
     $defaultLogoUrl = $this->basePath($organizationImageCache->getUri($org->getImages()->get('thumbnail')));
 }
-// check for disabled ATMODE
-$ats = $this->$job->getAtsMode();
+
 // check for banner
 $hasBanner = false;
 // default banner
@@ -182,15 +181,7 @@ $qualifications = $this->job->getClassifications()->getProfessions();
                                     </li>
 									
 									
-			      <?php if ($ats->isDisabled()): ?>
-                    
-					<li><i class="fa fa-angle-right"></i>
-<div class="details-list-content"><span class="title">Bewerbung</span>
-<span class="value">Keine Online-Bewerbung erwünscht</span></div>
-</li>
-					
-					
-                  <?php endif; ?>
+			    
 
  
 
