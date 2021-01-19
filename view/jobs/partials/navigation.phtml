@@ -4,12 +4,9 @@ $landingpagesOptions = $this->services(\Gastro24\Options\Landingpages::class);
 $landingPageCategories = $this->job->getTemplateValues()->get('categories');
 $contentProperty = 3;
 ?>
-<div id="navbar-home-site-links" class="<?php if(!$hasBanner) echo 'no-banner' ?> full-width-bar-vw">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12"> 
-         <nav class="job-detail-breadcrumb-nav" aria-label="breadcrumb">
-                <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+<div class="sub-navigation-wrapper">
+   <nav class="job-detail-breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                         <a itemprop="item" href="/"> <span itemprop="name">Home</span></a>
                         <meta itemprop="position" content="1">
@@ -35,13 +32,14 @@ $contentProperty = 3;
                         ?>
                     <?php endif; ?>
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <span itemprop="name"><?=ucfirst($this->job->getTitle())?></span>
+                        <span itemprop="name"><h1><?=ucfirst($this->job->getTitle())?></h1></span>
                         <meta itemprop="position" content="<?= $contentProperty ?>">
                     </li>
                 </ol>
-            </nav>
 
-          <ul class="pull-right job-pagination">
+  </nav>  
+
+<ul class="pull-right job-pagination">
            <?php if($this->prevJob) : ?>
                <li><a class="navbar-item-anchor" title="<?= $this->prevJob->getTitle() ?>" href="<?= $this->jobUrl($this->prevJob, ['linkOnly' => true ]) ?>"><i class="fa fa-arrow-left"></i> <span class="hidden-xs">Vorherige</span></a></li>
             <?php endif; ?>
@@ -49,7 +47,5 @@ $contentProperty = 3;
                 <li><a class="navbar-item-anchor" title="<?= $this->nextJob->getTitle() ?>" href="<?= $this->jobUrl($this->nextJob, ['linkOnly' => true ]) ?>"><span class="hidden-xs">Nächste</span> <i class="fa fa-arrow-right"></i></a></li>
             <?php endif; ?>
         </ul>
-    </div>
-  </div>
- </div>
+ 
 </div>
