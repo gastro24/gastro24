@@ -1,78 +1,70 @@
 <?php
 /**
- * YAWIK - Anzeige für Preview & Ausgabe Einzelinserat / Job-Abo
- *
- * @filesource
- * @license MIT
- * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
- */
-
-
+* YAWIK - Anzeige für Preview & Ausgabe Einzelinserat / Job-Abo
+*
+* @filesource
+* @license MIT
+* @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
+*/
 // check for preview
 $routeParams = $this->params()->fromRoute();
 $preview = false;
 if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
-    $preview = true;
+$preview = true;
 }
-
 /** @var \Gastro24\Entity\Template $template */
 $template = $this->job->getAttachedEntity('gastro24-template');
 $basePathHelper = $this->plugin('basePath');
 $replaceImage = function($str) use ($template, $basePathHelper)
 {
-    $image = $template ? $template->getImage() : null;
-    if ($image) {
-        $imageUri = $basePathHelper($image->getUri());
-        $imageHtml = '<img data-src="' . $imageUri . '">';
-    } else {
-        $imageHtml = '';
-    }
-
-    return str_replace('#image#', $imageHtml, $str);
+$image = $template ? $template->getImage() : null;
+if ($image) {
+$imageUri = $basePathHelper($image->getUri());
+$imageHtml = '<img data-src="' . $imageUri . '">';
+} else {
+$imageHtml = '';
+}
+return str_replace('#image#', $imageHtml, $str);
 };
-
 $isExpired = ($this->job->getStatus()) ? $this->job->getStatus()->getName() == \Jobs\Entity\StatusInterface::EXPIRED : false;
 $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png');
-
 // organisation values
 $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
 $org = $this->job->getOrganization();
 $orgIsDisabled = false;
 $orgName = $this->jobOrganizationName($this->job);
 if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting())) ) {
-    $orgIsDisabled = true;
+$orgIsDisabled = true;
 }
 // get org logo as default
 if($org && $org->getImages()->notEmpty('images')) {
-    $defaultLogoUrl = $this->basePath($organizationImageCache->getUri($org->getImages()->get('thumbnail')));
+$defaultLogoUrl = $this->basePath($organizationImageCache->getUri($org->getImages()->get('thumbnail')));
 }
-
 // check for banner
 $hasBanner = false;
 // default banner
 $imageServerUrl = $this->basePath('modules/Gastro24/images/bg_placeholder_gray.svg');
 // banner from org
 if ($org) {
-    $organizationAdditionalRepo = $this->services('repositories')->get(\Gastro24\Entity\OrganizationAdditional::class);
-    /** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
-    $organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($org->getId());
-    if ($organizationAdditional && $organizationAdditional->getBanner()) {
-        $imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
-        $hasBanner = true;
-    }
+$organizationAdditionalRepo = $this->services('repositories')->get(\Gastro24\Entity\OrganizationAdditional::class);
+/** @var \Gastro24\Entity\OrganizationAdditional $organizationAdditional */
+$organizationAdditional = $organizationAdditionalRepo->findOneByOrganizationId($org->getId());
+if ($organizationAdditional && $organizationAdditional->getBanner()) {
+$imageServerUrl = $this->basePath($organizationAdditional->getBanner()->getUri());
+$hasBanner = true;
+}
 }
 // banner from job
 $jobBanner = $template && ($image = $template->getImage());
 if ($jobBanner) {
-    $serverUrl = new \Laminas\View\Helper\ServerUrl();
-    /*$imageServerUrl = $serverUrl($this->basePath($image->getUri()));*/
-    $imageServerUrl = $this->basePath($image->getUri());
-    $hasBanner = true;
+$serverUrl = new \Laminas\View\Helper\ServerUrl();
+/*$imageServerUrl = $serverUrl($this->basePath($image->getUri()));*/
+$imageServerUrl = $this->basePath($image->getUri());
+$hasBanner = true;
 }
 if ($template && $template->getHideBanner()) {
-    $hasBanner = false;
+$hasBanner = false;
 }
-
 // check for newer than 24 hours
 $newerThanDay = false;
 // get date difference
@@ -83,276 +75,250 @@ $time = strtotime($jobDate->format('y-m-d\TH:i:s.u'). '+02:00');
 $jobDate->setTimestamp($time);
 $dayDiff = $today->diff($jobDate);
 if ($dayDiff->days < 1) {
-    $newerThanDay = true;
+$newerThanDay = true;
 }
-
 $industries = $this->job->getClassifications()->getIndustries();
 $qualifications = $this->job->getClassifications()->getProfessions();
 ?>
-
- <div class="company-description-wrapper">
-    <div class="row">
-      <div class="col-md-9">
-         <div class="stand-alone-card company-info-wrapper">
-              <div class="info-card">
-                 <div class="company-profile-image">
-                    <span class="job-logo-wrapper">
-
-                    <?php
-                      $wrapperLogoUrl = $defaultLogoUrl;
-                     if ($template && ($logo = $template->getLogo())) {
-                            $wrapperLogoUrl = $this->basePath($logo->getUri());
-                        }
-                      else {
-                             $wrapperLogoUrl = $defaultLogoUrl;
-                        }
-                      ?>
-                    <?php if ($logo): ?>
-                        <img 
-                          data-gmlazy="false" 
-                          class="job-logo " 
-                          alt="<?= $this->organizationName ?>" 
-                          data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
-
-                    <?php elseif ($preview) : ?>  
-
-                    <?php else: ?>
-         
-                 <?php endif; ?>  
-
-                    </span>
-                    <div class="job-info-wrapper">
-                     <h2 class="job-titel">
-                        <span><?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?></span>
-                      <?=$this->job->getTitle()?>
-                     </h2>
-                   <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
-                  <?php if ($newerThanDay): ?>
-                     <span class="apply-info-new"><i class="fa fa-clock-o"></i> Gehören Sie zu den ersten 3 Bewerbern.</span>
-                  <?php endif; ?>
-            
-             <ul class="details-list-horizontal">
-                                    <li>
-                                        <i class="fa fa-angle-right"></i>
-                                        <div class="details-list-content">
-                                            <span class="title">Veröffentlichung</span><span class="value"><?= $this->publishDateFormatter($this->job) ?></span>
-                                        </div>
-                                    </li>
-                                    <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
-                                    <li><i class="fa fa-angle-right"></i>
-                                        <div class="details-list-content"><span class="title">Branche</span><span class="value"><?= $industries->__toString(); ?></span></div>
-                                    </li>
-
-                                    <?php else: ?>
-
-                                    <li><i class="fa fa-angle-right"></i>
-                                        <div class="details-list-content"><span class="title">Branche</span><span class="value">Gastronomie / Tourismus</span></div>
-                                    </li>
-                                    <?php endif; ?>
-
-                                    <?php if ($qualifications->getItems()->count() && !$this->isCrawlerJob($org) && $qualifications->__toString() != ""): ?>
-                                    <li><i class="fa fa-angle-right"></i>
-                                        <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
-                                    </li>
-                                    <?php endif; ?>
-
-<?php $typeOfContract = $this->job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
-                                    <li><i class="fa fa-angle-right"></i>
-                                        <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
-                                    </li>
-
-                                    </li>
-                                    <li><i class="fa fa-angle-right"></i>
-                                        <div class="details-list-content"><span class="title">Arbeitsort</span>
-                                            <span class="value">
-                                                <?php
-                                                        $location = $this->job->getLocations()->current();
-                                                        if ($location == '') {
-                                                            echo $this->translate('Swiss');
-                                                        }
-                                                        elseif ($location) {
-                                                            echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
-                                                        }
-                                                        else {
-                                                            echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
-                                                        }
-                                                        ?></span>
-                                        </div>
-                                    </li>
-									
-									
-			    
-
- 
-
-
-
-
-
-
-
-
-</ul>   
-
-                  </div>
-                </div>
-              <div class="apply-wrapper button_container">
-                 <?php if (!$preview): ?>
-
-                          <?= $this->partial('jobs/partials/apply-button.phtml', [
-                            'preview' => $preview,
-                            'isExpired' => $isExpired,
-                            'job' => $this->job,
-                            ]); 
-                        ?>
-				<?php endif; ?>	
-				<?php if ($org && !$orgIsDisabled && !$preview): ?>
-						     <a class="btn btn-default" 
-							  title="Firmenprofil <?= $this->organizationName ?>" 
-							  href="<?= $this->orgProfileUrl($org)?>?clear=1">
-							  <span>Firmenprofil</span>
-							 </a>
-				<?php endif; ?> 
-                <?php if (!$preview): ?>
-            
-
-                      <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                        'jobId' => $this->job->getId(),
-                        'isExpired' => $isExpired,
-                        'buttonCss' => 'favorite-button',
-                      ]); 
-                      ?>
-               <?php endif; ?>
-
-              </div>
-        </div>
-    </div>
-
- <div class="stand-alone-card">
-       <img 
-         class="job-top-image" 
-         alt="<?=$this->job->getTitle()?>" 
-         data-src="https://gastrojob24.gumlet.net<?= $imageServerUrl ?>?mode=crop&amp;width=845&amp;quality=75);" />
+<div class="company-description-wrapper">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="stand-alone-card company-info-wrapper">
         <div class="info-card">
-
-       <?php if ($this->html): ?>
-          <div class="position">
-             <?=$this->html?>
-           </div>
-       <?php else: ?>
-        <div class="position">
-           <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
-         </div>
-       <?php endif; ?>
-
-       <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
-                'job' =>  $this->job,
-                'orgName' => $orgName,
-                'preview' => $preview
-            ]
- ); ?>
-
- </div>
-<div class="apply-box-footer">
-
-        <?= $this->partial('jobs/partials/apply-button.phtml', [
-        'preview' => $preview,
-        'isExpired' => $isExpired,
-        'job' => $this->job,
-        ]); 
-        ?>
-</div>
-<?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
-<div class="stand-alone-card company-info">
-      <div class="info-card">
-           <div class="container-fluid">
-             <div class="row">
-                 <div class="col-md-3">
-                    <span class="job-logo-wrapper">
-					
-					<?php
-                      $wrapperLogoUrl = $defaultLogoUrl;
-                     if ($template && ($logo = $template->getLogo())) {
-                            $wrapperLogoUrl = $this->basePath($logo->getUri());
-                        }
-                      else {
-                             $wrapperLogoUrl = $defaultLogoUrl;
-                        }
-                      ?>
-                              
-                    <?php if ($logo): ?>
-                         <img 
-                          data-gmlazy="false" 
-                          class="job-logo " 
-                          alt="<?= $this->organizationName ?>" 
-                          data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
-
-                      <?php elseif ($preview) : ?>  
-
-                      <?php else: ?>
-         
-                     <?php endif; ?>  
+          <div class="company-profile-image">
+            <span class="job-logo-wrapper">
+              <?php
+$wrapperLogoUrl = $defaultLogoUrl;
+if ($template && ($logo = $template->getLogo())) {
+$wrapperLogoUrl = $this->basePath($logo->getUri());
+}
+else {
+$wrapperLogoUrl = $defaultLogoUrl;
+}
+?>
+              <?php if ($logo): ?>
+              <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
+              <?php elseif ($preview) : ?>
+              <?php else: ?>
+              <?php endif; ?>
+            </span>
+            <div class="job-info-wrapper">
+              <h2 class="job-titel">
+                <span>
+                  <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
+                </span>
+                <?=$this->job->getTitle()?>
+              </h2>
+              <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
+              <?php if ($newerThanDay): ?>
+              <span class="apply-info-new">
+                <i class="fa fa-clock-o">
+                </i> Gehören Sie zu den ersten 3 Bewerbern.
+              </span>
+              <?php endif; ?>
+              <ul class="details-list-horizontal">
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Veröffentlichung
                     </span>
-
-
-
-
-                        <div class="meta-adress">
-						
-						   <?php if ($org && !$orgIsDisabled && !$preview): ?>
-						      <a class="fa fa-angle-right" 
-							  title="Firmenprofil <?= $this->organizationName ?>" 
-							  href="<?= $this->orgProfileUrl($org)?>?clear=1">
-							  <span>Firmenprofil</span>
-							  </a>
-						   <?php endif; ?> 
-						
-                        
-                          <!--<a class="fa fa-angle-right" href="http://gastro.jobs" rel="nofollow"><span>Jobs: 4</span></a>-->
-						</div>
-
-
-
-
-                 </div>
-
-                <div class="col-md-9">
-                  <h2><?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?></h2>
-                  <div class="more">
-                                                      
-                   <?= nl2br($this->job->getTemplateValues()->get('companyDescription')); ?>
-
-                 </div>
-             </div>
+                    <span class="value">
+                      <?= $this->publishDateFormatter($this->job) ?>
+                    </span>
+                  </div>
+                </li>
+                <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Branche
+                    </span>
+                    <span class="value">
+                      <?= $industries->__toString(); ?>
+                    </span>
+                  </div>
+                </li>
+                <?php else: ?>
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Branche
+                    </span>
+                    <span class="value">Gastronomie / Tourismus
+                    </span>
+                  </div>
+                </li>
+                <?php endif; ?>
+                <?php if ($qualifications->getItems()->count() && !$this->isCrawlerJob($org) && $qualifications->__toString() != ""): ?>
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Erforderliche Qualifikation
+                    </span>
+                    <span class="value">
+                      <?= $qualifications->__toString(); ?>
+                    </span>
+                  </div>
+                </li>
+                <?php endif; ?>
+                <?php $typeOfContract = $this->job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Beschäftigungsart
+                    </span>
+                    <span class="value">
+                      <?=$typeOfContract; ?>
+                    </span>
+                  </div>
+                </li>
+                </li>
+              <li>
+                <i class="fa fa-angle-right">
+                </i>
+                <div class="details-list-content">
+                  <span class="title">Arbeitsort
+                  </span>
+                  <span class="value">
+                    <?php
+$location = $this->job->getLocations()->current();
+if ($location == '') {
+echo $this->translate('Swiss');
+}
+elseif ($location) {
+echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
+}
+else {
+echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
+}
+?>
+                  </span>
+                </div>
+              </li>
+              </ul>
           </div>
-       </div>
+        </div>
+        <div class="apply-wrapper button_container">
+          <?php if (!$preview): ?>
+          <?= $this->partial('jobs/partials/apply-button.phtml', [
+'preview' => $preview,
+'isExpired' => $isExpired,
+'job' => $this->job,
+]); 
+?>
+          <?php endif; ?>
+          <?php if ($org && !$orgIsDisabled && !$preview): ?>
+          <a class="btn btn-default" title="Firmenprofil <?= $this->organizationName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1">
+            <span>Firmenprofil
+            </span>
+          </a>
+          <?php endif; ?>
+          <?php if (!$preview): ?>
+          <?= $this->partial('jobs/partials/favorite-button.phtml', [
+'jobId' => $this->job->getId(),
+'isExpired' => $isExpired,
+'buttonCss' => 'favorite-button',
+]); 
+?>
+          <?php endif; ?>
+        </div>
+      </div>
     </div>
-</div>
-<?php endif; ?>
- 
-
-
-   <?php if (!$preview): ?>
-            <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
+    <div class="stand-alone-card">
+      <?php if($hasBanner): ?>
+      <img class="job-top-image" alt="<?=$this->job->getTitle()?>" data-src="https://gastrojob24.gumlet.net<?= $imageServerUrl ?>?mode=crop&amp;width=845&amp;quality=75);" />
       <?php endif; ?>
-  
-    <?php if (!$preview && !$isExpired): ?>  
-            <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
-     <?php endif; ?>
-  
-<!-- end col-md-9 -->
- </div>
-
+      <div class="info-card">
+        <?php if ($this->html): ?>
+        <div class="position">
+          <?=$this->html?>
+        </div>
+        <?php else: ?>
+        <div class="position">
+          <?= $replaceImage($this->job->getTemplateValues()->get('position'));?>
+        </div>
+        <?php endif; ?>
+        <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
+'job' =>  $this->job,
+'orgName' => $orgName,
+'preview' => $preview
+]
+); ?>
+      </div>
+      <div class="apply-box-footer">
+        <?= $this->partial('jobs/partials/apply-button.phtml', [
+'preview' => $preview,
+'isExpired' => $isExpired,
+'job' => $this->job,
+]); 
+?>
+      </div>
+      <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+      <div class="stand-alone-card company-info">
+        <div class="info-card">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3">
+                <span class="job-logo-wrapper">
+                  <?php
+$wrapperLogoUrl = $defaultLogoUrl;
+if ($template && ($logo = $template->getLogo())) {
+$wrapperLogoUrl = $this->basePath($logo->getUri());
+}
+else {
+$wrapperLogoUrl = $defaultLogoUrl;
+}
+?>
+                  <?php if ($logo): ?>
+                  <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
+                  <?php elseif ($preview) : ?>
+                  <?php else: ?>
+                  <?php endif; ?>
+                </span>
+                <div class="meta-adress">
+                  <?php if ($org && !$orgIsDisabled && !$preview): ?>
+                  <a class="fa fa-angle-right" title="Firmenprofil <?= $this->organizationName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1">
+                    <span>Firmenprofil
+                    </span>
+                  </a>
+                  <?php endif; ?>
+                  <!--<a class="fa fa-angle-right" href="http://gastro.jobs" rel="nofollow"><span>Jobs: 4</span></a>-->
+                </div>
+              </div>
+              <div class="col-md-9">
+                <h2>
+                  <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
+                </h2>
+                <div class="more">
+                  <?= nl2br($this->job->getTemplateValues()->get('companyDescription')); ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
+      <?php if (!$preview): ?>
+      <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
+      <?php endif; ?>
+      <?php if (!$preview && !$isExpired): ?>
+      <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
+      <?php endif; ?>
+      <!-- end col-md-9 -->
+    </div>
     <!-- sidebar contact and map -->
-
-        <?= $this->partial('jobs/partials/contact-sidebar', [
-                'job' =>  $this->job,
-                'orgName' => $orgName,
-                'preview' => $preview
-            ]
-        ); ?>
-    
+    <?= $this->partial('jobs/partials/contact-sidebar', [
+'job' =>  $this->job,
+'orgName' => $orgName,
+'preview' => $preview
+]
+); ?>
     <!-- end col-md-3 -->
- </div>
-<!-- end company-description-wrapper -->
+  </div>
+  <!-- end company-description-wrapper -->
 </div>
