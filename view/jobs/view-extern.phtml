@@ -194,165 +194,171 @@ endif;
         <?php if ($this->isIntern):?>
             <?= $this->internalJob ?>
         <?php endif ?>
-
       <!-- end view-intern --> 
-       
-<!-- view PDF / External --> 
+
 <?php if (!$this->isIntern && $this->isEmbeddable):?>
+<div class="company-description-wrapper">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="stand-alone-card company-info-wrapper">
+        <div class="info-card">
+          <div class="company-profile-image">
 
+          <?php if ($jobLogoUrl): ?>
 
-
-        
-
-<div class="<?php if(!$hasBanner) echo 'no-banner' ?>" style="position:relative;">
-    <div style="height:482.5px" class="company-bg-image"></div>
-    <div class="<?php if(!$hasBanner) echo 'no-banner' ?> company-profile-wrapper">
-        <div class="jgArSS" style="background-image: url(https://gastrojob24.gumlet.net<?= $imageServerUrl ?>?mode=crop&width=1200&height=400&quality=75);"></div>
-        <div class="company-profile-image">
-
-
-            <?php if ($jobLogoUrl): ?>
-            
             <span class="job-logo-wrapper">
-                <img class="job-logo" alt="<?= $orgName?>" src="<?= $logoUrl ?>" />
-            </span>
+              <img data-gmlazy="false" 
+                class="job-logo" 
+                alt="<?= $orgName?>" 
+                data-src="https://gastrojob24.gumlet.net<?= $logoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
+              </span>
 
             <?php endif; ?>
-
-
-
             <div class="job-info-wrapper">
-                <h1><?=ucfirst($this->job->getTitle())?></h1>
-
-                <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
-
-                <p><?=$typeOfContract; ?> bei <?php if ($org && !$orgIsDisabled && !$preview): ?>
-                    <a title="<?= $this->organizationName ?> " href="<?= $this->orgProfileUrl($org)?>?clear=1"><?= $orgName ?></a>
-                    <?php elseif (!$preview && $job->getTemplateValues()->get('companyWebsite')) : ?>
-                    <a rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $job->getTemplateValues()->get('companyWebsite') ?>"><?= $orgName ?></a>
-                    <?php else: ?>
-                    <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
-                    <?php endif ?> in <?php
-                    $location = $job->getLocations()->current();
-                    if ($location == '') {
-                        echo $this->translate('Swiss');
-                    }
-                    elseif ($location) {
-                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                    }
-                    else {
-                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                    }
-                    ?>
-                </p>
-
-                <div class="apply-wrapper">
-                    <?= $this->partial('jobs/partials/apply-button.phtml', [
-                        'preview' => $preview,
-                        'isExpired' => $isExpired,
-                        'job' => $this->job,
-                          ]); 
-                        ?>
-                <?php if (!$preview): ?>
-                     <?= $this->partial('jobs/partials/favorite-button.phtml', [
-                        'jobId' => $job->getId(),
-                        'isExpired' => $isExpired,
-                        'buttonCss' => 'favorite-button',
-                      ]); 
-                    ?>
+              <h2 class="job-titel">
+                <span>
+                  <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
+                </span>
+                <?=ucfirst($this->job->getTitle())?>
+              </h2>
+            
+              <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
+              <?php if ($newerThanDay): ?>
+              <span class="apply-info-new">
+                <i class="fa fa-clock-o">
+                </i> Gehören Sie zu den ersten 3 Bewerbern.
+              </span>
+              <?php endif; ?>
+            <ul class="details-list-horizontal">
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Veröffentlichung
+                    </span>
+                    <span class="value">
+                      <?= $this->publishDateFormatter($this->job) ?>
+                    </span>
+                  </div>
+                </li>
+                <?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Branche
+                    </span>
+                    <span class="value">
+                      <?= $industries->__toString(); ?>
+                    </span>
+                  </div>
+                </li>
+                <?php else: ?>
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Branche
+                    </span>
+                    <span class="value">Gastronomie / Tourismus
+                    </span>
+                  </div>
+                </li>
                 <?php endif; ?>
-                  
+                <?php if ($qualifications->getItems()->count() && !$this->isCrawlerJob($org) && $qualifications->__toString() != ""): ?>
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Erforderliche Qualifikation
+                    </span>
+                    <span class="value">
+                      <?= $qualifications->__toString(); ?>
+                    </span>
+                  </div>
+                </li>
+                <?php endif; ?>
+                <?php $typeOfContract = $this->job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
+                <li>
+                  <i class="fa fa-angle-right">
+                  </i>
+                  <div class="details-list-content">
+                    <span class="title">Beschäftigungsart
+                    </span>
+                    <span class="value">
+                      <?=$typeOfContract; ?>
+                    </span>
+                  </div>
+                </li>
+                </li>
+              <li>
+                <i class="fa fa-angle-right">
+                </i>
+                <div class="details-list-content">
+                  <span class="title">Arbeitsort
+                  </span>
+                  <span class="value">
+                    <?php
+$location = $this->job->getLocations()->current();
+if ($location == '') {
+echo $this->translate('Swiss');
+}
+elseif ($location) {
+echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
+}
+else {
+echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
+}
+?>
+                  </span>
                 </div>
-
-                <?php if ($newerThanDay): ?>
-                <span class="apply-info-new"><i class="fa fa-clock-o"></i> Gehören Sie zu den ersten 3 Bewerbern.</span>
-                <?php endif; ?>
-
-                <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
+              </li>
+              </ul>
 
 
-            </div>
+/div>
         </div>
+        <div class="apply-wrapper button_container">
+          <?php if (!$preview): ?>
+          <?= $this->partial('jobs/partials/apply-button.phtml', [
+'preview' => $preview,
+'isExpired' => $isExpired,
+'job' => $this->job,
+]); 
+?>
+          <?php endif; ?>
+          <?php if ($org && !$orgIsDisabled && !$preview): ?>
+          <a class="btn btn-default" title="Firmenprofil <?= $this->organizationName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1">
+            <span>Firmenprofil
+            </span>
+          </a>
+          <?php endif; ?>
+          <?php if (!$preview): ?>
+          <?= $this->partial('jobs/partials/favorite-button.phtml', [
+'jobId' => $this->job->getId(),
+'isExpired' => $isExpired,
+'buttonCss' => 'favorite-button',
+]); 
+?>
+          <?php endif; ?>
+        </div>
+      </div>
     </div>
-</div>
+    <div class="stand-alone-card">
+      <?php if ($hasBanner): ?>
+      <img class="job-top-image" alt="<?=$this->job->getTitle()?>" data-src="https://gastrojob24.gumlet.net<?= $imageServerUrl ?>?mode=crop&amp;width=845&amp;quality=75);" />
+      <?php endif; ?>
+      <div class="info-card">
 
-<div class="company-description-wrapper">
-    <div class="row">
-      <div class="col-md-9">
-       <div class="stand-alone-card">
-          <div class="info-card">
-                <h2>Kurz & knapp</h2>
-                <ul class="details-list-horizontal">
+<?php if(strpos($link, '.pdf') !== false): ?>
+             
+             <i class="fa fa-file-pdf-o"></i> 
+                <a href="<?=$link?>" 
+                   class="pdf-link-original" 
+                   target="_blank" 
+                   rel="noopener" 
+                   title="Originalinserat öffnen">Originalinserat öffnen</a>
 
-
-                    <li><i class="fa fa-angle-right"></i>
-                        <div class="details-list-content"><span class="title">Datum der Veröffentlichung</span><span class="value"><?= $this->publishDateFormatter($job) ?></span></div>
-                    </li>
-<?php if ($industries->getItems()->count() && !$this->isCrawlerJob($org) && $industries->__toString() != ""): ?>
- <li ><i class="fa fa-angle-right"></i>
-   <div class="details-list-content"><span class="title">Kategorie</span><span class="value"><?= $industries->__toString(); ?></span></div>
-</li>
-
-<?php else: ?>
-
- <li ><i class="fa fa-angle-right"></i>
-   <div class="details-list-content"><span class="title">Kategorie</span><span class="value">Gastronomie / Tourismus</span></div>
-</li>
-<?php endif; ?>
-
-<?php if ($qualifications->getItems()->count() && !$this->isCrawlerJob($org) && $qualifications->__toString() != ""): ?>
- <li ><i class="fa fa-angle-right"></i>
-   <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
-</li>
-<?php endif; ?>
-
-
-                    <li><i class="fa fa-angle-right"></i>
-                        <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
-                    </li>
-
-                    </li>
-                    <li><i class="fa fa-angle-right"></i>
-                        <div class="details-list-content"><span class="title">Arbeitsort</span><span class="value"><?php
-                    $location = $job->getLocations()->current();
-                    if ($location == '') {
-                        echo $this->translate('Swiss');
-                    }
-                    elseif ($location) {
-                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                    }
-                    else {
-                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
-                    }
-                    ?></span></div>
-                    </li>
-
-                </ul>
-                
-               <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
-               <h2><?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> als Arbeitgeber</h2>
-                <div class="position intro">
-                    <p><?= nl2br($this->job->getTemplateValues()->get('companyDescription')); ?></p>
-                </div>
-                <?php endif;?>
-
-                 <h2>Stellenbeschreibung</h2>
-
-                <!-- end info-card -->
-                
-                 <?php if(strpos($link, '.pdf') !== false): ?>
-                
-                    <i class="fa fa-file-pdf-o"></i> <a href="<?=$link?>" class="pdf-link-original" target="_blank" rel="noopener" title="Originalinserat öffnen">Originalinserat öffnen</a>
-                     
-                <?php endif; ?>
-                
-
-             <?php if(strpos($link, '.pdf') !== false): ?>
-                <style>
-                    
-                    .no-apply-link { display:none;}
-     
-                </style>
                    <canvas style="width:100%" id="my_canvas"></canvas>
                    	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js"></script>
                     <script>
@@ -391,86 +397,106 @@ endif;
         
           
                   <?php else: ?>
-                      <iframe style="height:1500px;width:100%;background-color:#fff;" src="" data-src="<?=$link?>"></iframe>
+                      <iframe style="height:1500px;width:100%;background-color:#fff;" data-src="<?=$link?>"></iframe>
+                        <script>
+                            function deferIframe() {
+                            var iframeElem = document.getElementsByTagName('iframe');
+                            for ( var i = 0; i < iframeElem.length; i++ ) {
+                                if(iframeElem[i].getAttribute('data-src')) {
+                                iframeElem[i].setAttribute('src',iframeElem[i].getAttribute('data-src'));
+                                } 
+                            } 
+                            }
+                            window.onload = deferIframe;
+                        </script>
+                 <?php endif ?>
 
-
-    <script>
-		function deferIframe() {
-		  var iframeElem = document.getElementsByTagName('iframe');
-		  for ( var i = 0; i < iframeElem.length; i++ ) {
-			if(iframeElem[i].getAttribute('data-src')) {
-			  iframeElem[i].setAttribute('src',iframeElem[i].getAttribute('data-src'));
-			} 
-		  } 
-		}
-		window.onload = deferIframe;
-																											 
-	
-    </script>
-
-
-     <?php endif; ?>
-
-    <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
-                'job' =>  $this->job,
-                'orgName' => $orgName,
-                'preview' => $preview
-            ]
-    ); ?>
-
- </div>
-
-            <?php if (!$preview): ?>
-            <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
-            <?php endif; ?>
-
-            <?php if (!$preview && !$isExpired): ?>
-            <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
-            <?php endif; ?>
-
-            <!-- end col-md-9 -->
-        </div>
-
-        <!-- sidebar contact and map -->
         
-            <?= $this->partial('jobs/partials/contact-sidebar', [
-                    'job' =>  $this->job,
-                    'orgName' => $orgName,
-                    'preview'  => $preview
-                ]
-            ); ?>
-       
+        <?php endif; ?>
+        <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
+'job' =>  $this->job,
+'orgName' => $orgName,
+'preview' => $preview
+]
+); ?>
+      </div>
+      <div class="apply-box-footer">
+        <?= $this->partial('jobs/partials/apply-button.phtml', [
+'preview' => $preview,
+'isExpired' => $isExpired,
+'job' => $this->job,
+]); 
+?>
+      </div>
+      <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+      <div class="stand-alone-card company-info">
+        <div class="info-card">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3">
+           
+                  
+        <?php if ($jobLogoUrl): ?>
+        <span class="job-logo-wrapper">
+           <img data-gmlazy="false" class="job-logo " alt="<?= $orgName?>" data-src="https://gastrojob24.gumlet.net<?= $logoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
+          </span>
+            <?php endif; ?>     
+
+                
+                <div class="meta-adress">
+                  <?php if ($org && !$orgIsDisabled && !$preview): ?>
+                  <a class="fa fa-angle-right" title="Firmenprofil <?= $this->organizationName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1">
+                    <span>Firmenprofil
+                    </span>
+                  </a>
+                  <?php endif; ?>
+                  <!--<a class="fa fa-angle-right" href="http://gastro.jobs" rel="nofollow"><span>Jobs: 4</span></a>-->
+                </div>
+              </div>
+              <div class="col-md-9">
+                <h2>
+                  <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>
+                </h2>
+                <div class="more">
+                  <?= nl2br($this->job->getTemplateValues()->get('companyDescription')); ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
+      <?php if (!$preview): ?>
+      <?php echo $this->partial('jobs/partials/similar-company-jobs.phtml', ['job' => $this->job]); ?>
+      <?php endif; ?>
+      <?php if (!$preview && !$isExpired): ?>
+      <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
+      <?php endif; ?>
+      <!-- end col-md-9 -->
     </div>
-    <!-- end company-description-wrapper -->
+    <!-- sidebar contact and map -->
+    <?= $this->partial('jobs/partials/contact-sidebar', [
+'job' =>  $this->job,
+'orgName' => $orgName,
+'preview' => $preview
+]
+); ?>
+    <!-- end col-md-3 -->
+  </div>
+  <!-- end company-description-wrapper -->
 </div>
 
- 
+
+             
+        <!-- end view PDF / External -->
 <?php endif ?>
-<!-- end view PDF / External -->
-        
-                  
-      <?php $this->configHeadScript()->appendScript('
-      
-       $(window).resize(function() {
-            $(".company-bg-image").height($(".company-profile-wrapper").height());
-
-        });
-
-        $(window).trigger("resize");
-      
-           
-          ');  
-        ?>
-
-
-
     </div>
 </div>
 
 
 <!-- apply modal -->
 <div class="modal fade" id="job-apply-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" style="width: 90%; max-width:1200px; height: 90%" role="document">
+    <div class="modal-dialog" style="width: 100%; max-width:1200px; height: 100%" role="document">
         <div class="modal-content" style="height: 100%">
             <div class="modal-body" style="height: calc(100% - 65px)"></div>
             <div class="modal-footer">
