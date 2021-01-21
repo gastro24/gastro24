@@ -248,7 +248,7 @@ endif;
       </li>
       <?php endif; ?>
 
-      <?php if ($qualifications->getItems()->count() && !$this->isCrawlerJob($org) && $qualifications->__toString() != ""): ?>
+    <?php if ($qualifications->getItems()->count() && !$this->isCrawlerJob($org) && $qualifications->__toString() != ""): ?>
       <li><i class="fa fa-angle-right"></i>
           <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
       </li>
@@ -399,7 +399,7 @@ endif;
     ?>
  </div>
 
- <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+ <?php if ($this->job->getTemplateValues()->get('companyDescription') && !$orgIsDisabled ): ?>
       <div class="stand-alone-card company-info">
         <div class="info-card">
           <div class="container-fluid">
