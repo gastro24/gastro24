@@ -252,6 +252,10 @@ endif;
       <li><i class="fa fa-angle-right"></i>
           <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
       </li>
+    <?php else: ?>
+     <li><i class="fa fa-angle-right"></i>
+          <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value">Keine angegeben</div>
+      </li>
       <?php endif; ?>
 
       <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
@@ -275,6 +279,8 @@ endif;
                     ?></span></div>
       </li>
   </ul>
+  </div>
+</div>
 <div class="apply-wrapper button_container">
             <?php if (!$preview): ?>
                     <?= $this->partial('jobs/partials/apply-button.phtml', [
@@ -301,8 +307,7 @@ endif;
         </div>
       </div>
     </div>
-   </div>
-  </div>
+
 
 
    <div class="stand-alone-card">
