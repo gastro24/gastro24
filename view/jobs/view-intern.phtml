@@ -263,7 +263,7 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
 ]); 
 ?>
       </div>
-      <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
+      <?php if ($this->job->getTemplateValues()->get('companyDescription') && !$orgIsDisabled): ?>
       <div class="stand-alone-card company-info">
         <div class="info-card">
           <div class="container-fluid">
