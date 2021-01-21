@@ -311,7 +311,7 @@ endif;
 
 
    <div class="stand-alone-card">
-   <?php if (!$hasBanner): ?>
+   <?php if ($hasBanner): ?>
 
       <img class="job-top-image" 
       alt="<?=ucfirst($this->job->getTitle())?>" 
