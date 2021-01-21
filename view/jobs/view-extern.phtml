@@ -203,8 +203,11 @@ endif;
 <div class="company-description-wrapper">
   <div class="row">
     <div class="col-md-9">
+
+
       <div class="stand-alone-card company-info-wrapper">
         <div class="info-card">
+
           <div class="company-profile-image">
 
                 <?php if ($jobLogoUrl): ?>
@@ -250,6 +253,8 @@ endif;
           <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
       </li>
       <?php endif; ?>
+
+      <?php $typeOfContract = $job->getClassifications()->getEmploymentTypes()->__toString() ?:'Vollzeit' ?>
       <li><i class="fa fa-angle-right"></i>
           <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
       </li>
@@ -296,6 +301,10 @@ endif;
         </div>
       </div>
     </div>
+   </div>
+  </div>
+
+
    <div class="stand-alone-card">
    <?php if (!$hasBanner): ?>
 
