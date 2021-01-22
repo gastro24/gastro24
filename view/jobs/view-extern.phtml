@@ -321,6 +321,19 @@ endif;
     <div class="info-card">
   
          <?php if(strpos($link, '.pdf') !== false): ?> 
+
+           <style>
+              .no-apply-link { display:none;}
+
+                @media (max-width: 468px) {
+                 .button_container .favorite-button {
+                  float: none;
+                   width: 100%;
+                  }
+
+                }
+              
+            </style>
                 
          <i class="fa fa-file-pdf-o"></i> <a href="<?=$link?>" class="pdf-link-original" target="_blank" rel="noopener" title="Originalinserat öffnen">Originalinserat öffnen</a>
     
