@@ -10,6 +10,26 @@
     if ($location === false) {
         $useCompanyAddress = true;
     }
+
+    // google maps string
+    $googleMapsString = '';
+    if ($useCompanyAddress) {
+        $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $this->orgName;
+        $googleMapsString .= '+';
+    }
+
+    if ($location == '') {
+        $googleMapsString .= 'Schweiz';
+    }
+    elseif ($useCompanyAddress && $this->job->getOrganization()) {
+        $orgAddress = $this->job->getOrganization()->getContact();
+        $googleMapsString .= $orgAddress->getStreet() . ' ' . $orgAddress->getHouseNumber() . '+' .
+            $orgAddress->getCity() . '+' . $orgAddress->getPostalcode() . '+Schweiz';
+    } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
+        $googleMapsString .= $location->getStreetname() . '+' . $location->getCity() . '+' . $location->getPostalcode() . '+Schweiz';
+    } else {
+        $googleMapsString .= preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
+    }
 ?>
 
 <div class="visible-xs visible-sm">
@@ -60,8 +80,6 @@
         <a href="tel:<?= $orgAddress->getPhone() ?>" rel="nofollow"><?= $orgAddress->getPhone() ?></a>
         <a class="fa fa-angle-right" href="<?= $orgAddress->getWebsite() ?>" rel="nofollow"><span>zur Firmenwebsite</span></a>
     </div>
-
-
     <?php endif ?>
 
     <div class="meta-adress">
@@ -75,29 +93,7 @@
 
 <div class="visible-xs visible-sm">
     <div class="iframe-container" style="padding-bottom:50%;">
-        <?php
-        $googleMapsString = '';
-        if ($useCompanyAddress) {
-            $googleMapsString .= !empty($this->organizationName) ? $this->organizationName : $this->orgName;
-            $googleMapsString .= '+';
-        }
-
-        if ($location == '') {
-            $googleMapsString .= 'Schweiz';
-        }
-        elseif ($useCompanyAddress && $this->job->getOrganization()) {
-            $orgAddress = $this->job->getOrganization()->getContact();
-            $googleMapsString .= $orgAddress->getStreet() . ' ' . $orgAddress->getHouseNumber() . '+' .
-                $orgAddress->getCity() . '+' . $orgAddress->getPostalcode() . '+Schweiz';
-        } elseif ($location->getCity() && $location->getStreetname() && $location->getPostalcode()) {
-            $googleMapsString .= $location->getStreetname() . '+' . $location->getCity() . '+' . $location->getPostalcode() . '+Schweiz';
-        } else {
-            $googleMapsString .= preg_replace('~\(.*?\)$~', '', (string)$this->job->getLocation());
-        }
-    ?>
-
         <img style="position:absolute;" width="300" data-src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>" alt="Google Map von <?= $googleMapsString ?>">
-    
      <!-- end visible-xs -->
     </div>
   <!-- end iframe-container -->
