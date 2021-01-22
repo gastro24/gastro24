@@ -205,6 +205,17 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
                   </span>
                 </div>
               </li>
+                  <?php if ($this->job->getAtsMode()->getMode() === 'none') : ?>
+
+                  <li>
+                      <i class="fa fa-angle-right">
+                      </i>
+                      <div class="details-list-content">
+                  <span class="title">Bewerbung</span>
+                          <span class="value">Keine Online-Bewerbung erwünscht</span>
+                      </div>
+                  </li>
+                  <?php endif; ?>
               </ul>
           </div>
         </div>

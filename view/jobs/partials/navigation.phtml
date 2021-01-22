@@ -3,6 +3,7 @@
 $landingpagesOptions = $this->services(\Gastro24\Options\Landingpages::class);
 $landingPageCategories = $this->job->getTemplateValues()->get('categories');
 $contentProperty = 3;
+$locationString = ' ' . \Gastro24\View\Helper\Jobs\JobLocationHelper::getLocationStringForBreadcrumb($this->job);
 ?>
 <div class="sub-navigation-wrapper">
    <nav class="job-detail-breadcrumb-nav" aria-label="breadcrumb">
@@ -32,7 +33,7 @@ $contentProperty = 3;
                         ?>
                     <?php endif; ?>
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                        <span itemprop="name"><h1><?=ucfirst($this->job->getTitle())?></h1></span>
+                        <span itemprop="name"><h1><?=ucfirst($this->job->getTitle()) . $locationString ?></h1></span>
                         <meta itemprop="position" content="<?= $contentProperty ?>">
                     </li>
                 </ol>
