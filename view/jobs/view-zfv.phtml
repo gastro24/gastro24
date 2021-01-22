@@ -124,7 +124,35 @@ $industries = $this->job->getClassifications()->getIndustries();
               </span>
               <?php endif; ?>
 
-   
+    <ul class="details-list-horizontal">
+
+
+  <li ><i class="fa fa-angle-right"></i>
+   <div class="details-list-content"><span class="title">Datum der Veröffentlichung</span><span class="value"><?= $this->publishDateFormatter($this->job) ?></span></div>
+</li>
+  <li ><i class="fa fa-angle-right"></i>
+   <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
+</li>
+
+</li>
+  <li ><i class="fa fa-angle-right"></i>
+   <div class="details-list-content"><span class="title">Arbeitsort</span><span class="value"><?php
+                    $location = $this->job->getLocations()->current();
+                    if ($location == '') {
+                        echo $this->translate('Swiss');
+                    }
+                    elseif ($location) {
+                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
+                    }
+                    else {
+                        echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
+                    }
+                    ?></span></div>
+</li>
+
+</ul>
+ </div>
+</div>
 
 
 
