@@ -269,7 +269,7 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
           <div class="container-fluid">
             <div class="row">
             
-             
+               <div class="col-md-3">
                   <?php
 $wrapperLogoUrl = $defaultLogoUrl;
 if ($template && ($logo = $template->getLogo())) {
@@ -280,12 +280,12 @@ $wrapperLogoUrl = $defaultLogoUrl;
 }
 ?>
                   <?php if ($logo): ?>
-                  <div class="col-md-3">
+                 
                      <span class="job-logo-wrapper">
                   <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
 
                     </span>
-                    </div>
+                   
                   <?php elseif ($preview) : ?>
                   <?php else: ?>
                   <?php endif; ?>
