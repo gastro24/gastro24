@@ -263,12 +263,12 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
 ]); 
 ?>
       </div>
-      <?php if ($this->job->getTemplateValues()->get('companyDescription') && !$orgIsDisabled): ?>
+    <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
       <div class="stand-alone-card company-info">
         <div class="info-card">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-3">
+            
              
                   <?php
 $wrapperLogoUrl = $defaultLogoUrl;
@@ -280,10 +280,12 @@ $wrapperLogoUrl = $defaultLogoUrl;
 }
 ?>
                   <?php if ($logo): ?>
+                  <div class="col-md-3">
                      <span class="job-logo-wrapper">
                   <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
 
                     </span>
+                    </div>
                   <?php elseif ($preview) : ?>
                   <?php else: ?>
                   <?php endif; ?>
