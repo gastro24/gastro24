@@ -18,7 +18,7 @@ $labels = [
     'pdf' => 'PDF-Datei hochladen',
 
     /* Datei-Auswahlfeld für das Unternehmenslogo (nur bei Einzelinserat) */
-    'logo' => 'Unternehmenslogo (max. 350x150)',
+    'logo' => 'Firmenlogo',
 
     /* Text-Area für die Unternehmensbeschreibung (nur bei Einzelinserat) */
     'description' => 'Beschreibung des Unternehmens',
