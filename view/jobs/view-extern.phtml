@@ -318,10 +318,10 @@ endif;
       data-src="https://gastrojob24.gumlet.net<?= $imageServerUrl ?>?mode=crop&amp;width=845&amp;quality=75);" />
 
     <?php endif; ?>
-    <div class="info-card">
-  
-         <?php if(strpos($link, '.pdf') !== false): ?> 
+      
+      <div class="info-card" style="padding:0px;">
 
+         <?php if(strpos($link, '.pdf') !== false): ?> 
            <style>
              .apply-wrapper .no-apply-link { display:none;}
 
@@ -335,8 +335,6 @@ endif;
               
             </style>
                 
-         <i class="fa fa-file-pdf-o"></i> <a href="<?=$link?>" class="pdf-link-original" target="_blank" rel="noopener" title="Originalinserat öffnen">Originalinserat öffnen</a>
-    
                    <canvas style="width:100%" id="my_canvas"></canvas>
                    	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js"></script>
                     <script>
@@ -372,10 +370,19 @@ endif;
                     
                     </script>
              
+
+                  <div class="info-card">
+
+                  <i class="fa fa-file-pdf-o"></i> 
+                     <a href="<?=$link?>" class="text-center pdf-link-original" target="_blank" rel="noopener" 
+                  title="Originalinserat öffnen">Originalinserat öffnen</a>
+
+                    </div>
         
           
                   <?php else: ?>
-                      <iframe style="height:1500px;width:100%;background-color:#fff;" src="" data-src="<?=$link?>"></iframe>
+                    
+                    <iframe style="height:1500px;width:100%;background-color:#fff;" src="" data-src="<?=$link?>"></iframe>
 
 
     <script>
