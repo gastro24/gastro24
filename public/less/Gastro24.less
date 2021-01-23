@@ -197,8 +197,46 @@ height:45px;
 }
 
 
-/* Job-Detail Page Design 2021 */
+/* Job-Detail & Organization Page Design 2021 */
+.company-profile-wrapper {
+    left: 0;
+    right: 0;
+    top: 0;
+    position: absolute;
+    border-left: 1px solid #dcdfe2;
+    border-right: 1px solid #dcdfe2;
+}
 
+.company-bg-image {
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        position: relative;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        height: 510px;
+        overflow: hidden;
+		margin-bottom:15px;
+    }
+
+    .company-bg-image:before {
+        display: block;
+        position: absolute;
+        top: -45px;
+        bottom: -45px;
+        left: -35px;
+        right: -35px;
+        content: "";
+        background-size: cover;
+        background-position: center center;
+        filter: blur(25px);
+    }
+
+.jgArSS {
+        background-size: cover;
+        height: 510px;
+        background-position: center center;
+    }
  .job-top-image {
      width:100%;
      -webkit-border-top-left-radius: 4px;
@@ -344,6 +382,16 @@ height:45px;
          padding-left:0px;
     }
 }
+
+ @media (max-width:991px) {
+        .jgArSS {
+            height: 250px;
+        }
+
+        .company-bg-image {
+            height: 250px;
+        }
+    }
  .company-description-wrapper address {
      color: rgb(118, 115, 125);
      margin-bottom: 0px;
@@ -446,6 +494,15 @@ height:45px;
     }
 }
  @media (max-width:768px) {
+
+       .jgArSS {
+            height: 200px;
+        }
+
+        .company-bg-image {
+            height: 200px;
+        }
+
      .details-list-horizontal {
          margin-top: 10px;
          margin-bottom: 10px;
@@ -480,6 +537,11 @@ height:45px;
     }
 }
  @media (max-width:468px) {
+
+.social-media-company-profile {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
      .details-list-horizontal>li:last-child {
          border-bottom: 1px solid transparent;
     }
@@ -526,11 +588,6 @@ height:45px;
          border-bottom: 1px solid #e7eaee;
     }
 }
-
-
-
-
-
 
 
 /* Panel + Card */
