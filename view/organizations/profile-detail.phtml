@@ -120,7 +120,7 @@ background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&w
             </li>
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                 <span itemprop="name">
-                    <h1>Firmenprofil von <?= $organization->getName()?></h1>/span>
+                    <h1>Firmenprofil von <?= $organization->getName()?></h1></span>
                     <meta itemprop="position" content="4">
             </li>
         </ol>
@@ -237,27 +237,7 @@ background-image: url(https://gastrojob24.gumlet.net<?= $bannerUrl?>?mode=crop&w
         </div>
         <div class="col-md-3  hidden-xs hidden-sm">
             <div class="stand-alone-card">
-                <div class="info-card" style="margin-bottom:0px;">
-                    <div class="social-media-company-profile">
-                        <?php if($organizationAdditional && $organizationAdditional->getSocials()) : ?>
-                        <?php if($organizationAdditional->getSocials()->getFacebook()) :?>
-                        <a href="<?= $organizationAdditional->getSocials()->getFacebook() ?>" target="_blank"> 
-                        <i class="fa fa-facebook-square"></i></a>
-                        <?php endif; ?>
-                        <?php if($organizationAdditional->getSocials()->getLinkedin()) :?>
-                        <a href="<?= $organizationAdditional->getSocials()->getLinkedin() ?>" target="_blank"><i class="fa fa-linkedin-square"></i></a>
-                        <?php endif; ?>
-                        <?php if($organizationAdditional->getSocials()->getTwitter()) :?>
-                        <a href="<?= $organizationAdditional->getSocials()->getTwitter() ?>" target="_blank"> <i class="fa fa-twitter-square"></i></a>
-                        <?php endif; ?>
-                        <?php if($organizationAdditional->getSocials()->getInstagram()) :?>
-                        <a href="<?= $organizationAdditional->getSocials()->getInstagram() ?>" target="_blank"><i class="fa fa-instagram"></i></a>
-                        <?php endif; ?>
-                        <?php if($organizationAdditional->getSocials()->getYoutube()) :?>
-                        <a href="<?= $organizationAdditional->getSocials()->getYoutube() ?>" target="_blank"> <i class="fa fa-youtube-square"></i></a>
-                        <?php endif; ?>
-                        <?php endif; ?>
-                    </div>
+                <div class="info-card">
                     <address>
                         <strong><?= $organization->getName()?></strong>
                         <?= $contact->getStreet() ?> <?= $contact->getHouseNumber() ?> <br>
