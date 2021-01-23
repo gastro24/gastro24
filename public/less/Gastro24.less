@@ -110,6 +110,28 @@ input[type="file"] {
     display:none;
 }
 
+/* Formulare & Modcal */
+
+.form-control,
+.select2-dropdown,
+.select2-container--bootstrap .select2-selection,
+.modal-content
+ {
+    border-radius: 0;
+}
+
+.modal-content .container {
+
+padding-left:0px;
+padding-right:0px;
+}
+
+.modal-content main#content {
+background-color:#fff
+
+}
+
+
 /* Job-pagination +  Breadcrumbs */
 
 .job-detail-breadcrumb-nav {
@@ -175,8 +197,47 @@ height:45px;
 }
 
 
-/* Job-Detail Page Design 2021 */
+/* Job-Detail & Organization Page Design 2021 */
 
+.company-profile-wrapper {
+    left: 0;
+    right: 0;
+    top: 0;
+    position: absolute;
+    border-left: 1px solid #dcdfe2;
+    border-right: 1px solid #dcdfe2;
+}
+
+.company-bg-image {
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        position: relative;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        height: 510px;
+        overflow: hidden;
+		margin-bottom:15px;
+    }
+
+    .company-bg-image:before {
+        display: block;
+        position: absolute;
+        top: -45px;
+        bottom: -45px;
+        left: -35px;
+        right: -35px;
+        content: "";
+        background-size: cover;
+        background-position: center center;
+        filter: blur(25px);
+    }
+
+.jgArSS {
+        background-size: cover;
+        height: 510px;
+        background-position: center center;
+    }
  .job-top-image {
      width:100%;
      -webkit-border-top-left-radius: 4px;
@@ -296,13 +357,11 @@ height:45px;
      display: block;
      color: #1e69a3;
 }
- .social-media-company-profile {
-     margin-top: 16px;
-}
+
  .social-media-company-profile a {
      color: #b1b1b1;
-     font-size: 16px;
-     margin-right: 5px;
+     font-size: 18px;
+     margin-right: 7px;
 }
  .social-media-company-profile a:hover {
      color: #000;
@@ -322,6 +381,16 @@ height:45px;
          padding-left:0px;
     }
 }
+
+ @media (max-width:991px) {
+        .jgArSS {
+            height: 250px;
+        }
+
+        .company-bg-image {
+            height: 250px;
+        }
+    }
  .company-description-wrapper address {
      color: rgb(118, 115, 125);
      margin-bottom: 0px;
@@ -342,7 +411,7 @@ height:45px;
      font-size: 16px;
      font-weight: 400;
      color: #5c5c5c;
-     margin-bottom: 5px;
+     margin-bottom: 2px;
 }
  .company-profile-wrapper {
      left: 0;
@@ -365,6 +434,7 @@ height:45px;
      text-align: center;
      width: 150px;
      padding: 5px;
+     margin-bottom:15px;
      background-color: #fff;
      margin-right: 20px;
      -webkit-border-radius: 4px;
@@ -423,6 +493,15 @@ height:45px;
     }
 }
  @media (max-width:768px) {
+
+       .jgArSS {
+            height: 200px;
+        }
+
+        .company-bg-image {
+            height: 200px;
+        }
+
      .details-list-horizontal {
          margin-top: 10px;
          margin-bottom: 10px;
@@ -442,8 +521,8 @@ height:45px;
          width: calc(100% - 135px);
     }
      .job-info-wrapper h2.job-titel {
-         font-size: 24px;
-         line-height: 28px;
+         font-size: 22px;
+         line-height: 24px;
     }
 }
  @media (max-width:510px) {
@@ -457,6 +536,21 @@ height:45px;
     }
 }
  @media (max-width:468px) {
+#form-jobsbymail-subscribe-form {
+    float: none;
+    width: 100%;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.card_job-short-info ul li.industries {
+
+display:none;
+}
+
+.social-media-company-profile {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
      .details-list-horizontal>li:last-child {
          border-bottom: 1px solid transparent;
     }
@@ -474,7 +568,8 @@ height:45px;
          margin-top: 15px;
          margin-bottom: 15px;
     }
-     .button_container .internal-apply-link {
+     .button_container .internal-apply-link,
+    .button_container .external-apply-link {
          width:100%;
          margin-bottom:5px;
     }
@@ -502,11 +597,6 @@ height:45px;
          border-bottom: 1px solid #e7eaee;
     }
 }
-
-
-
-
-
 
 
 /* Panel + Card */
@@ -614,14 +704,12 @@ margin-bottom:15px;
 }
 
 .card__job-content h2 {
-     font-size: 18px;
+     font-size: 17px;
     margin-top: 0;
     margin-right: 25px;
     margin-bottom: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-weight: 700;
-    line-height: 1.2em;
+    line-height: 1.3em;
 }
 
 .similarjob h2 {
@@ -638,9 +726,6 @@ margin-bottom:15px;
     margin-top: 0;
 }
 
-.card__job-content h2 a {
-    color: #1e69a3;
-}
 
 .card__job-snippet-logo {
     position: relative;
@@ -674,26 +759,16 @@ font-weight: 300;
 
 .card_job-short-info ul li {
     display: inline;
-    margin-right: 12px;
+    margin-right: 10px;
 }
-.card_job-short-info ul li.industries {
 
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: inline-block;
-    max-width: 65%;
-    height: 15px;
-    overflow: hidden;
-    word-break: break-word;
-
-}
 .card_job-short-info ul li.new {
-    background-color: #60a5d1;
+    background-color: #7aae1a;
     color: #fff;
-    padding: 3px 10px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    padding: 3px 15px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
 }
 
 .card_job-short-info ul li.industries:before {
@@ -959,7 +1034,12 @@ font-weight: 300;
 }
 
 .box__job-favorite h2>a {
-    color: #1e69a3;
+    color: #22436c;
+}
+
+.box__job-favorite h2>a:hover {
+    color: #9c9c9c;
+    text-decoration:none;
 }
 
 .box__job-favorite h2>a>i {
@@ -1092,7 +1172,7 @@ font-weight: 300;
         right: 0;
        width: 25%;
     position: absolute;
-    top: 5px;
+    top: 9px;
 
         .container--filter {
 
@@ -2006,7 +2086,7 @@ main ul.column li a {
     .card__job-content h2 {
         margin-right: 40px !important;
         margin-bottom: 2px;
-        font-size:17px;
+        font-size:16px;
     }
 
     .card__job-content {

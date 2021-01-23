@@ -215,7 +215,7 @@ endif;
                      <img data-gmlazy="false" 
                           class="job-logo " 
                           alt="<?= $orgName?>" 
-                          data-src="https://gastrojob24.gumlet.net<?= $logoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
+                          src="https://gastrojob24.gumlet.net<?= $logoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
                    </span>
                  <?php endif; ?>
 
@@ -318,12 +318,23 @@ endif;
       data-src="https://gastrojob24.gumlet.net<?= $imageServerUrl ?>?mode=crop&amp;width=845&amp;quality=75);" />
 
     <?php endif; ?>
-    <div class="info-card">
-  
+      
+
+
          <?php if(strpos($link, '.pdf') !== false): ?> 
+           <style>
+             .apply-wrapper .no-apply-link { display:none;}
+
+                @media (max-width: 468px) {
+                 .button_container .favorite-button {
+                  float: none;
+                   width: 100%;
+                  }
+
+                }
+              
+            </style>
                 
-         <i class="fa fa-file-pdf-o"></i> <a href="<?=$link?>" class="pdf-link-original" target="_blank" rel="noopener" title="Originalinserat öffnen">Originalinserat öffnen</a>
-    
                    <canvas style="width:100%" id="my_canvas"></canvas>
                    	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js"></script>
                     <script>
@@ -359,10 +370,23 @@ endif;
                     
                     </script>
              
+
+              <div class="info-card">
+
+                  <i class="fa fa-file-pdf-o"></i> 
+                     <a href="<?=$link?>" class="text-center pdf-link-original" target="_blank" rel="noopener" 
+                  title="Originalinserat öffnen">Originalinserat öffnen</a>
+
+       
+             </div>
+
+                
+                
         
           
                   <?php else: ?>
-                      <iframe style="height:1500px;width:100%;background-color:#fff;" src="" data-src="<?=$link?>"></iframe>
+                    
+                    <iframe style="height:1500px;width:100%;background-color:#fff;" src="" data-src="<?=$link?>"></iframe>
 
 
     <script>
@@ -379,16 +403,19 @@ endif;
 	
     </script>
 
-   <?php endif; ?>
 
-    <?= $this->partial('jobs/partials/contact-sidebar-alternative', [
+
+<?php endif; ?>
+
+ <?= $this->partial('jobs/partials/contact-sidebar-alternative-extern', [
 'job' =>  $this->job,
 'orgName' => $orgName,
 'preview' => $preview
 ]
 ); ?>
 
-</div>
+
+
 
  <div class="apply-box-footer">
     <?= $this->partial('jobs/partials/apply-button.phtml', [
@@ -474,8 +501,8 @@ endif;
 
 
 <!-- apply modal -->
-<div class="modal fade" id="job-apply-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" style="width: 100%; max-width:1200px; height: 100%" role="document">
+<div class="modal fade" id="job-apply-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="padding:0px;">
+    <div class="modal-dialog" style="width: 95%; max-width:1200px; height: 95%" role="document">
         <div class="modal-content" style="height: 100%">
             <div class="modal-body" style="height: calc(100% - 65px)"></div>
             <div class="modal-footer">

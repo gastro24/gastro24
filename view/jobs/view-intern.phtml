@@ -98,7 +98,7 @@ $wrapperLogoUrl = $defaultLogoUrl;
 ?>
               <?php if ($logo): ?>
               <span class="job-logo-wrapper">
-              <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
+              <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
 
               </span>
               <?php elseif ($preview) : ?>
@@ -274,13 +274,13 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
 ]); 
 ?>
       </div>
-      <?php if ($this->job->getTemplateValues()->get('companyDescription') && !$orgIsDisabled): ?>
+    <?php if ($this->job->getTemplateValues()->get('companyDescription')): ?>
       <div class="stand-alone-card company-info">
         <div class="info-card">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-3">
-             
+            
+               <div class="col-md-3">
                   <?php
                     $wrapperLogoUrl = $defaultLogoUrl;
                     if ($template && ($logo = $template->getLogo())) {
@@ -291,9 +291,11 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
                     }
 ?>
                   <?php if ($logo): ?>
+                 
                      <span class="job-logo-wrapper">
                          <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
                     </span>
+                   
                   <?php elseif ($preview) : ?>
                   <?php else: ?>
                   <?php endif; ?>
