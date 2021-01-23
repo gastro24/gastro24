@@ -362,8 +362,6 @@
 }
 
 @media(max-width: @screen-sm) {
-
-
   .box {
     &__job {
       .badge-expired,
@@ -393,6 +391,23 @@
 
         a {
           margin-top: 10px;
+        }
+      }
+    }
+  }
+
+  .link {
+    &__saved-jobs {
+      &.empty {
+        display: inline-block;
+        vertical-align: middle;
+
+        &:before {
+          color: @g24-grey-blue;
+          font-family: "FontAwesome";
+          font-size: 2rem;
+          content: "\f006";
+          padding-right: 5px;
         }
       }
     }
@@ -487,11 +502,5 @@
     }
   }
 
-}
-
-
-
-@media(max-width: @screen-xs) {
- 
 }
 /* END BUTTON IN JOB SHORT INFO */

@@ -300,12 +300,17 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
          
                 <div class="meta-adress">
                   <?php if ($org && !$orgIsDisabled && !$preview): ?>
-                  <a class="fa fa-angle-right" title="Firmenprofil <?= $this->organizationName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1">
-                    <span>Firmenprofil
-                    </span>
-                  </a>
+                      <a class="fa fa-angle-right" title="Firmenprofil <?= $this->organizationName ?>" href="<?= $this->orgProfileUrl($org)?>?clear=1">
+                        <span>Firmenprofil
+                        </span>
+                      </a>
+                      <a class="fa fa-angle-right" href="<?= $this->orgProfileUrl($org)?>?clear=1" rel="nofollow"><span>Jobs: <?= $this->companyJobsCount($org->getId()); ?></span></a>
+                  <?php elseif($this->job->getTemplateValues()->get('companyWebsite')): ?>
+                      <a class="fa fa-angle-right" title="Firmenprofil <?= $this->organizationName ?>" href="<?= $this->job->getTemplateValues()->get('companyWebsite')?>">
+                        <span>Firmenprofil
+                        </span>
+                      </a>
                   <?php endif; ?>
-                  <a class="fa fa-angle-right" href="<?= $this->orgProfileUrl($org)?>?clear=1" rel="nofollow"><span>Jobs: <?= $this->companyJobsCount($org->getId()); ?></span></a>
                 </div>
               </div>
               <div class="col-md-9">

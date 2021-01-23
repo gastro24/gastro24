@@ -64,6 +64,12 @@
         var badge = $('.nav-recruiting .link__saved-jobs span');
         var searchFormBadge = $('.search-form-container .link__saved-jobs span');
         var oldValue = parseInt(badge.html());
+
+        // on mobile
+        if (!badge.length) {
+            oldValue = parseInt(searchFormBadge.html());
+        }
+
         if (oldValue > 0) {
             var newValue = oldValue - 1;
             badge.html(newValue);
@@ -72,6 +78,7 @@
 
         if (!newValue) {
             badge.remove();
+            searchFormBadge.remove();
             $('.search-form-container .link__saved-jobs').addClass('empty');
             $('.nav-recruiting .link__saved-jobs').addClass('empty');
         }
