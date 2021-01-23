@@ -282,18 +282,17 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
               <div class="col-md-3">
              
                   <?php
-$wrapperLogoUrl = $defaultLogoUrl;
-if ($template && ($logo = $template->getLogo())) {
-$wrapperLogoUrl = $this->basePath($logo->getUri());
-}
-else {
-$wrapperLogoUrl = $defaultLogoUrl;
-}
+                    $wrapperLogoUrl = $defaultLogoUrl;
+                    if ($template && ($logo = $template->getLogo())) {
+                    $wrapperLogoUrl = $this->basePath($logo->getUri());
+                    }
+                    else {
+                    $wrapperLogoUrl = $defaultLogoUrl;
+                    }
 ?>
                   <?php if ($logo): ?>
                      <span class="job-logo-wrapper">
-                  <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
-
+                         <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" data-src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=115&height=115&quality=75);" />
                     </span>
                   <?php elseif ($preview) : ?>
                   <?php else: ?>
@@ -306,7 +305,7 @@ $wrapperLogoUrl = $defaultLogoUrl;
                     </span>
                   </a>
                   <?php endif; ?>
-                  <!--<a class="fa fa-angle-right" href="http://gastro.jobs" rel="nofollow"><span>Jobs: 4</span></a>-->
+                  <a class="fa fa-angle-right" href="<?= $this->orgProfileUrl($org)?>?clear=1" rel="nofollow"><span>Jobs: <?= $this->companyJobsCount($org->getId()); ?></span></a>
                 </div>
               </div>
               <div class="col-md-9">
