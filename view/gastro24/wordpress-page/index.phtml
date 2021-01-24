@@ -9,10 +9,9 @@
 $this->headTitle($this->article->title->rendered);
 ?>
 
-<div class="row">
-  <div class="col-md-8 col-xs-12">
-      <nav aria-label="breadcrumb" class="job-detail-breadcrumb-nav">
-        <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+<div class="sub-navigation-wrapper">
+   <nav class="job-detail-breadcrumb-nav" aria-label="breadcrumb">
+    <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                 <a itemprop="item" href="/">
                     <span itemprop="name">Home</span>
@@ -24,13 +23,40 @@ $this->headTitle($this->article->title->rendered);
                 <meta itemprop="position" content="2">
             </li>
         </ol>
-    </nav>
-      <div class="page-title">
-            <h1><?=$this->article->title->rendered?></h1>
-        </div>
-        
-        <div class="wp-content">
+   </nav>
+</div>
+<div class="row">
+<div class="col-md-3" style="padding-right:0px;">
+
+<div class="stand-alone-card">
+          <div class="info-card">
+			<ul class="content-link">
+                    <li><a title="Publikationsnetzwerk" href="/de/publikationsnetzwerk.html">Publikationsnetzwerk</a></li>
+                    <<li><a title="Kontakt" href="/de/contact.html">Kontakt</a></li>
+                    <li><a title="Über uns" href="/de/ueber-uns.html">Über uns</a></li>
+                    <li><a title="Impressum" href="/de/impressum.html">Impressum</a></li>
+                    <li><a title="Datenschutz" href="/de/datenschutz.html">Datenschutz</a></li>
+                    <li><a title="AGB" href="/de/agb.html">AGB</a></li>
+
+            </ul>
+			
+			
+		</div>
+    </div>	
+
+
+
+</div>
+
+<div class="col-md-9">
+    <div class="stand-alone-card">
+          <div class="info-card">
+			<h1><?=$this->article->title->rendered?></h1>
             <?=$this->article->content->rendered;?>
-        </div>
-  </div>
+			
+			
+		</div>
+    </div>	
+</div>
+<!-- end row -->
 </div>
