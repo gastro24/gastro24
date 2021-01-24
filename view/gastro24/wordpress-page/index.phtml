@@ -19,8 +19,14 @@ $this->headTitle($this->article->title->rendered);
                 <meta itemprop="position" content="1">
             </li>
             <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                 <span itemprop="name"><?=$this->article->title->rendered?></span>
+                <a itemprop="item" href="/de/jobs?clear=1">
+                    <span itemprop="name">Jobs</span>
+                </a>
                 <meta itemprop="position" content="2">
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                 <span itemprop="name"><?=$this->article->title->rendered?></span>
+                <meta itemprop="position" content="3">
             </li>
         </ol>
    </nav>
@@ -51,7 +57,7 @@ $this->headTitle($this->article->title->rendered);
 <div class="col-md-9">
     <div class="stand-alone-card">
           <div class="info-card">
-			<h1><?=$this->article->title->rendered?></h1>
+			<h1 style="margin-top:0px;"><?=$this->article->title->rendered?></h1>
             <?=$this->article->content->rendered;?>
 			
 			
