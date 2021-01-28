@@ -709,13 +709,7 @@ return [
             ],
             'jobs' => [
                 /* jobId => boost param */
-                '5fd603149f17e7561544950c' => 95,
-                '5fd5fd91cd169f213d3a6cb6' => 85,
-                '5fd6005fcd169f213d3a6cbc' => 75,
-                '5fcf838fd8706c2e870865a7' => 65,
-                '5fc3f23adc2466745525c373' => 55,
-                '5fc10a8c9251800149043bd8' => 50,
-                '5f0f4215a1b897209d375de4' => 10,
+                '6012f005c5564d29fe4e99f7' => 15,
             ],
         ]],
         Options\CompanyTemplatesMap::class => [[
