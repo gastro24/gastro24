@@ -101,6 +101,43 @@ input[type="file"] {
         color: #22436c
     }
 }
+
+/* Top-Job */
+
+.card:not(.topjob) .fa-star  {
+display:none;
+}
+
+.topjob:not(.company-top-job) .fa-star,
+.topjob.company-top-job .fa-star {
+color: #f4da1e;
+font-size: 14px;
+line-height: 17px;
+display: inline-flex;
+ margin-bottom: 5px;
+
+}
+.topjob:not(.company-top-job) .fa-star:before,
+.topjob.company-top-job .fa-star:before {
+padding-right: 10px;
+}
+
+.topjob:not(.company-top-job) .fa-star span,
+.topjob.company-top-job .fa-star span {
+font-family:sans-serif;
+}
+
+@media (max-width: 480px) {
+
+.topjob .box__action-buttons .top-listing span {
+     display: block!important;
+}
+
+}
+
+
+
+
 /* Static Wordpress pages */
 
 .sitemap li a {
