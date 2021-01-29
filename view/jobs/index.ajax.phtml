@@ -71,57 +71,6 @@ if (count($jobs)): ?>
         $activeFacets = $facets->getActiveValues();
     ?>
 <?php endif;?>
-
-<style>
-    
-.card:not(.topjob) .fa-star  {
-display:none;
-}
-
-    
-.topjob:not(.company-top-job),
-.topjob.company-top-job {
-background-color:#fcf8e3;
-}
-
-.topjob:not(.company-top-job) .fa-star,
-.topjob.company-top-job .fa-star {
-background-color: #f4da1e;
-color: #fff;
-font-size: 14px;
-line-height: 17px;
-display: inline-flex;
-padding: 2px 8px;
- margin-bottom: 5px;
--webkit-border-radius: 4px;
--moz-border-radius: 4px;
-border-radius: 4px;
-}
-.topjob:not(.company-top-job) .fa-star:before,
-.topjob.company-top-job .fa-star:before {
-padding-right: 10px;
-}
-
-.topjob:not(.company-top-job) .fa-star span,
-.topjob.company-top-job .fa-star span {
-font-family:sans-serif;
-}
-.topjob:not(.company-top-job) h2>a,
-.topjob.company-top-job h2>a {
-color: #000;
-}
-
-@media (max-width: 480px) {
-
-.topjob .box__action-buttons .top-listing span {
-     display: block!important;
-}
-
-}
-
-    
-</style>
-
 <div class="row">
     <div class="col-md-12">
            <?php
@@ -402,10 +351,12 @@ color: #000;
                                                 <?php endif; ?>
 
     <?php if($jobHasExternLink) { ?>
-    <h2><span class="top-listing fa fa-star"><span>Top Job</span></span> <a rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?> <i class="fa fa-external-link"></i></a></h2>
+    <h2><a rel="sponsored noopener" title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=strip_tags($job->getTitle())?> <i class="fa fa-external-link"></i></a></h2>
+    <span class="top-listing fa fa-star"><span>Top Job</span></span> 
     <?php }
       else { ?>
-    <h2><span class="top-listing fa fa-star"><span>Top Job</span></span> <a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=ucfirst(strip_tags($job->getTitle()))?></a></h2>
+    <h2><a title="<?=strip_tags($job->getTitle())?>" href="<?=$href?>"><?=ucfirst(strip_tags($job->getTitle()))?></a></h2>
+    <span class="top-listing fa fa-star"><span>Top Job</span></span> 
     <?php } ?>
     <div class="card__job-info">
       <div class="card__job-empname-label">
