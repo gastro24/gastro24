@@ -253,7 +253,8 @@ endif;
           <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value"><?= $qualifications->__toString(); ?></span></div>
       </li>
     <?php else: ?>
-     <li><i class="fa fa-angle-right"></i>
+     <li>
+         <i class="fa fa-angle-right"></i>
           <div class="details-list-content"><span class="title">Erforderliche Qualifikation</span><span class="value">Keine angegeben</div>
       </li>
       <?php endif; ?>
@@ -262,9 +263,8 @@ endif;
       <li><i class="fa fa-angle-right"></i>
           <div class="details-list-content"><span class="title">Beschäftigungsart</span><span class="value"><?=$typeOfContract; ?></span></div>
       </li>
-
-      </li>
-      <li><i class="fa fa-angle-right"></i>
+      <li>
+          <i class="fa fa-angle-right"></i>
           <div class="details-list-content"><span class="title">Arbeitsort</span><span class="value"><?php
                     $location = $job->getLocations()->current();
                     if ($location == '') {
@@ -278,6 +278,17 @@ endif;
                     }
                     ?></span></div>
       </li>
+      <?php if ($this->job->getAtsMode()->getMode() === 'none') : ?>
+
+          <li>
+              <i class="fa fa-angle-right">
+              </i>
+              <div class="details-list-content">
+                  <span class="title">Bewerbung</span>
+                  <span class="value">Keine Online-Bewerbung erwünscht</span>
+              </div>
+          </li>
+      <?php endif; ?>
   </ul>
   </div>
 </div>
