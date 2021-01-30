@@ -30,6 +30,7 @@ return [
     '%1$s - %2$s of %3$s' => '%1$s - %2$s von %3$s',
     'Job, Keyword or Location' => 'Beruf, Begriff oder Arbeitsort',
     'Job or Keyword' => 'Beruf oder Begriff',
+    'search' => 'Jobs finden',
     'Location or Zip' => 'Ort oder PLZ',
     'Back to search' => 'Zurück',
     'Previous Job' => 'Vorheriger Job',
