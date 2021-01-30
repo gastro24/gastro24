@@ -25,6 +25,13 @@ $session = new \Laminas\Session\Container('Gastro24_SingleJobData');
 $sessionData = unserialize($session->data);
 ?>
 <style>
+
+
+.select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
+
+
+    display:none;
+}
 .mce-branding {
     display:none;
 }
