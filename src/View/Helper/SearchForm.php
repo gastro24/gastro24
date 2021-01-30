@@ -104,7 +104,7 @@ class SearchForm extends BaseSearchFormHelper
 
             }
             $content .= '<div class="input-group search-form-buttons col-md-' . $buttonsSpanMd . ' col-sm-' . $buttonsSpanSm . ' col-xs-12 text-right">'
-                . '<div class="btn-group">' . $this->renderButtons($form->getButtons()) .'</div></div>';
+                . '<div class="btn-group"><button type="submit" class="btn btn-primary">Jobs finden</button> </div></div>';
         }
 
         return $content;
