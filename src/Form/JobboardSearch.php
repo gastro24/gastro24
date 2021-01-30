@@ -24,7 +24,7 @@ class JobboardSearch extends BaseJobboardSearchForm
         $this->setName($this->getOption('name') ?: 'searchform');
 
         $name = $this->getOption('text_name') ?: 'q';
-        $label = $this->getOption('text_label') ?: /*@translate*/ 'Search';
+        $label = $this->getOption('text_label') ?: /*@translate*/ 'Jobs finden';
         $placeholder = $this->getOption('text_placeholder') ?: /*@translate*/ 'Job or Keyword';
         $span = $this->getOption('text_span') ?: 12;
         $priority = 50;
