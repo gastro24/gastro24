@@ -36,6 +36,7 @@ return [
     'Beruf, Begriff oder Arbeitsort' => 'Job, Keyword or Location',
     'Beruf oder Begriff' => 'Job or Keyword',
     'Ort oder PLZ' => 'Location or Zip',
+    'Jobs finden' => 'search',
     'Zurück' => 'Back to search',
     'Voriger Job' => 'Previous Job',
     'Nächster Job' => 'Next Job',
