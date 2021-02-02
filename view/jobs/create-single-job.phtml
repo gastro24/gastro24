@@ -168,8 +168,7 @@ iframe {
 
 </style>
 <!-- breadcrumbs -->
-<div class="row">
-    <div class="col-md-12">
+<div class="sub-navigation-wrapper">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">
                 <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
@@ -200,7 +199,6 @@ iframe {
             </ol>
         </nav>
     </div>
-</div>
 <!-- end breadcrumbs -->
 
 
@@ -209,14 +207,19 @@ iframe {
 
 <!-- Form -->
 <div class="row">
+
 <div class="col-md-3">
   <div class="stand-alone-card">
     <div class="info-card">
-
+<ol>
+  <li>Job-Details</li>
+  <li>Ihre Kontaktdaten</li>
+  <li>Fertig</li>
+ </ol>
 
     </div>
   </div>
-
+</div>
 <div class="col-md-9 form-container">
     <!-- begin form -->
     <?= $this->form()->openTag($form); ?>
