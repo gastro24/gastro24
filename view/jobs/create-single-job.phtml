@@ -30,7 +30,10 @@ $sessionData = unserialize($session->data);
       padding-left:15px;
       margin-bottom:0px;
 }
+.steps li {
 
+    margin-bottom:5px;
+}
 li:not(.step-active) {
     color: rgba(46,68,135,0.267);
 }
@@ -160,7 +163,7 @@ iframe {
   <div class="stand-alone-card">
     <div class="info-card">
 <ol class="steps">
-  <li class="active">Stellendetails eingeben</li>
+  <li class="step-active">Stellendetails eingeben</li>
   <li>Ihre Kontaktdaten</li>
   <li>Fertig</li>
  </ol>
