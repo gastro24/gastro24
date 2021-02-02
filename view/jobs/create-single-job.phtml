@@ -194,7 +194,7 @@ iframe {
                 </li>
                 
                 <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                    <span itemprop="name">Einzelinserat</span>
+                    <span itemprop="name">Einzelinserat schalten</span>
                     <meta itemprop="position" content="4">
                 </li>
             </ol>
@@ -203,60 +203,27 @@ iframe {
 </div>
 <!-- end breadcrumbs -->
 
-<!-- Header & Pricing -->
-<div class="row">
-    <div class="col-md-12">
-        <div style="max-width:100%;float:none;" class="page-title text-center">
-            <h1>Jetzt Einzelinserat schalten</h1>
-        </div>
-    </div>
-    <!--<div class="col-md-6">
-        <div class="pull-right">
-            <div class="page-title hidden-xs">
-                <div>Preis</div>
-                <div>Einzelinserat: CHF <em class="total">
-                    <?php
-                        if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
-                            echo $sessionData['totalPrice'];
-                        }
-                        else {
-                            echo '0';
-                        }
-                    ?>
-                </em>.- </div>
-            </div>
-        </div>
-    </div>-->
-     <div class="steps-form">
-      <div class="steps-row setup-panel">
-        <div class="steps-step active">
-          <span type="button" class="btn btn-indigo btn-circle">1</span>
-          <p>Schritt 1: Job-Details</p>
-        </div>
-        <div class="steps-step">
-          <span type="button" class="btn btn-default btn-circle" disabled="disabled">2</span>
-          <p>Schritt 2: Kontaktdaten</p>
-        </div>
-        <div class="steps-step">
-          <span type="button" class="btn btn-default btn-circle" disabled="disabled">3</span>
-          <p>Fertig</p>
-        </div>
-      </div>
-    </div>
-    
-    
-    
-    
-</div>
+
+
 <!-- Ende --->
 
 <!-- Form -->
-<div class="form-container">
+<div class="row">
+<div class="col-md-3">
+  <div class="stand-alone-card">
+    <div class="info-card">
+
+
+    </div>
+  </div>
+
+<div class="col-md-9 form-container">
     <!-- begin form -->
     <?= $this->form()->openTag($form); ?>
 
     <!-- section main -->
-    <div class="section-body">
+  <div class="stand-alone-card">
+    <div class="info-card">
         <h2>Stellendetails</h2>
         <div class="row form-group">
             <div class="col-md-11">
@@ -606,6 +573,8 @@ iframe {
 
     <?= $this->form()->closeTag($form); ?>
     <!-- end form -->
+ </div>
+ </div>
 </div>
 <!-- End Form -->
 
