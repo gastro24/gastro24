@@ -342,6 +342,36 @@ iframe {
             
         </div>
 
+
+        <div class="row form-group">
+            <div class="col-md-12">
+                <?= $this->formLabel($this->form->get('company'), 'Firmenname'); ?>
+                <?= $this->formText($this->form->get('company')); ?>
+            </div>
+        </div>
+
+        
+        <div class="row form-group">
+            <div class="col-md-12">
+                <?= $this->formLabel($this->form->get('companyWebsite'), 'Website'); ?>
+                <?= $this->formUrl($this->form->get('companyWebsite')); ?>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-12">
+                <?= $this->formLabel($this->form->get('companyDescription'), 'Unternehmensinformation'); ?>
+                <?= $this->formTextarea($this->form->get('companyDescription')); ?>
+            </div>
+            <div class="hidden col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
+                    <input type="checkbox">
+                    <span>Hier können Sie weitere Informationen zu Ihrem Unternehmen hinterlegen die Bewerber interessieren könnten.</span>
+                </label>
+            </div>
+        </div>
+
+
     <!-- end section main -->
 
     <!-- section application -->
@@ -397,37 +427,9 @@ iframe {
     </div>
     <!-- end section application -->
 
-    <!-- section company details -->
-    <div class="section-body">
-        <h2>Firmendaten</h2>
-        <div class="row form-group">
-            <div class="col-md-12">
-                <?= $this->formLabel($this->form->get('company'), 'Unternehmensname'); ?>
-                <?= $this->formText($this->form->get('company')); ?>
-            </div>
-        </div>
 
-        
-        <div class="row form-group">
-            <div class="col-md-12">
-                <?= $this->formLabel($this->form->get('companyWebsite'), 'Unternehmenswebsite'); ?>
-                <?= $this->formUrl($this->form->get('companyWebsite')); ?>
-            </div>
-        </div>
 
-        <div class="row form-group">
-            <div class="col-md-12">
-                <?= $this->formLabel($this->form->get('companyDescription'), 'Unternehmensinformation'); ?>
-                <?= $this->formTextarea($this->form->get('companyDescription')); ?>
-            </div>
-            <div class="hidden col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
-                    <input type="checkbox">
-                    <span>Hier können Sie weitere Informationen zu Ihrem Unternehmen hinterlegen die Bewerber interessieren könnten.</span>
-                </label>
-            </div>
-        </div>
-    </div>
+
     <!-- end section company details -->
 
     <!-- section publication and addons -->
