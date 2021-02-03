@@ -258,11 +258,11 @@ iframe {
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('subcategory')); ?>
             </div>
-            <div class="col-md-5 categorySelect form-group">
+            <div class="col-md-6 categorySelect form-group">
                 <?= $this->formLabel($this->form->get('category'), 'Hauptkategorie'); ?>
                 <?= $this->formElement($this->form->get('category')); ?>
             </div>
-            <div class="col-md-5 subCategorySelect form-group">
+            <div class="col-md-6 subCategorySelect form-group">
                 <?= $this->formLabel($this->form->get('subcategory'), 'Unterkategorie'); ?>
                 <?= $this->formElement($this->form->get('subcategory')); ?>
             </div>
@@ -303,21 +303,21 @@ iframe {
 
 
         <div class="row controls controls-row form-group">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('industries')); ?>
             </div>
-            <div class="col-md-11 industriesSelect form-group">
+            <div class="col-md-6 industriesSelect form-group">
                 <?= $this->formLabel($this->form->get('classifications')->get('industries'), 'Branche'); ?>
                 <?= $this->formElement($this->form->get('classifications')->get('industries')); ?>
             </div>
        
     
-            <div class="col-md-11 form-group">
+            <div class="col-md-12 form-group">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('professions')); ?>
             </div>
-            <div class="col-md-11 professionsSelect form-group">
+            <div class="col-md-6 professionsSelect form-group">
                 <?= $this->formLabel($this->form->get('classifications')->get('professions'), 'Qualifikation'); ?>
                 <?= $this->formElement($this->form->get('classifications')->get('professions')); ?>
             </div>
@@ -333,13 +333,13 @@ iframe {
                 <input type="radio" value="applicationMail" name="enableOnlineApplication"
                     <?php if ($sessionData['enableOnlineApplication'] == 'applicationMail') echo 'checked' ?> />
             </div>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 application-input">
+            <div class="col-xs-11 col-sm-10 col-md-10 col-lg-10 application-input">
                 <div class="form-group">
                     <?= $this->formLabel($this->form->get('applicationEmail'), 'E-Mail Adresse für Bewerbungen'); ?>
                     <?= $this->formEmail($this->form->get('applicationEmail')); ?>
                 </div>
             </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <div class="hidden col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Bitte geben Sie die E-Mail Adresse(n) ein, an die Bewerbungen gesendet werden sollen.</span>
@@ -353,11 +353,11 @@ iframe {
                 <input type="radio" value="directLink" name="enableOnlineApplication"
                     <?php if ($sessionData['enableOnlineApplication'] == 'directLink') echo 'checked' ?> />
             </div>
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 application-input">
+            <div class="col-xs-11 col-sm-10 col-md-10 col-lg-10 application-input">
                 <?= $this->formLabel($this->form->get('applicationUri'), 'Direktlink zum Bewerberformular'); ?>
                 <?= $this->formUrl($this->form->get('applicationUri')); ?>
             </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <div class="hidden col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Sofern Sie auf Ihrer Website ein Bewerbungsformular haben, können Sie die Internet-Adresse hier eingeben. Bewerber werden dann direkt weitergeleitet.</span>
@@ -382,18 +382,18 @@ iframe {
     <div class="section-body">
         <h2>Firmendaten</h2>
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formLabel($this->form->get('company'), 'Unternehmensname'); ?>
                 <?= $this->formText($this->form->get('company')); ?>
             </div>
         </div>
 
         <div class="row form-group">
-            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 bannerImage-field" id="bannerImage-span">
+            <div class="col-xs-12 bannerImage-field" id="bannerImage-span">
                 <?= $this->formLabel($this->form->get('bannerImage'), 'Bannerbild'); ?>
                 <?= $this->formElement($this->form->get('bannerImage')); ?>
             </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <div class="hidden col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Ein Bild sagt mehr als 1000 Worte: Mit einem zusätzlichen Bannerbild noch mehr
@@ -410,7 +410,7 @@ iframe {
         </div>
 
         <div class="row form-group">
-            <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
+            <div class="col-md-12">
                 <?= $this->formLabel($this->form->get('companyDescription'), 'Unternehmensinformation'); ?>
                 <?= $this->formTextarea($this->form->get('companyDescription')); ?>
             </div>
@@ -428,14 +428,14 @@ iframe {
     <div class="section-body">
         <h2>Publikation</h2>
         <div class="row form-group">
-            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+            <div class="col-md-12">
                     <?= $this->formLabel($this->form->get('publishDate'), 'Gewünschtes Aufschaltdatum'); ?>
                     <?php if($this->publishDateError): ?>
                         <div style="color: red; margin: 10px 0;">* Das gewünschte Aufschaltdatum sollte in der Zukunft liegen</div>
                     <?php endif; ?>
                     <?= $this->formDatePicker($this->form->get('publishDate')); ?>
             </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <div class="hidden col-xs-1 col-sm-1 col-md-1 col-lg-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Nach unserer persönlichen Kontrolle geht Ihre Anzeige innert 24h oder zu dem von Ihnen definierten Zeitpunkt online.</span>
