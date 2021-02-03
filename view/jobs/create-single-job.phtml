@@ -270,6 +270,22 @@ iframe {
                 <?= $this->formElement($this->form->get('subcategory')); ?>
             </div>
         </div>
+
+     <div class="row form-group">
+            <div class="col-xs-12 bannerImage-field" id="bannerImage-span">
+                <?= $this->formLabel($this->form->get('bannerImage'), 'Bannerbild'); ?>
+                <?= $this->formElement($this->form->get('bannerImage')); ?>
+            </div>
+            <div class="hidden col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
+                    <input type="checkbox">
+                    <span>Ein Bild sagt mehr als 1000 Worte: Mit einem zusätzlichen Bannerbild noch mehr
+                        Aufmerksamkeit generieren. Das Bannerbild erscheint zuoberst im Kopfbereich Ihrer Stellenanzeige.
+                    </span>
+                </label>
+            </div>
+        </div>
+
         <div class="row form-group positionTextarea">
             <div class="col-md-12">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
@@ -309,21 +325,21 @@ iframe {
             <div class="col-md-12">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('industries')); ?>
+
+                      <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
+                    ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('professions')); ?>
             </div>
             <div class="col-md-6 industriesSelect form-group">
                 <?= $this->formLabel($this->form->get('classifications')->get('industries'), 'Branche'); ?>
                 <?= $this->formElement($this->form->get('classifications')->get('industries')); ?>
             </div>
-       
     
-            <div class="col-md-12 form-group">
-                <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
-                    ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('professions')); ?>
-            </div>
             <div class="col-md-6 professionsSelect form-group">
                 <?= $this->formLabel($this->form->get('classifications')->get('professions'), 'Qualifikation'); ?>
                 <?= $this->formElement($this->form->get('classifications')->get('professions')); ?>
             </div>
+
+            
         </div>
 
     <!-- end section main -->
@@ -391,20 +407,7 @@ iframe {
             </div>
         </div>
 
-        <div class="row form-group">
-            <div class="col-xs-12 bannerImage-field" id="bannerImage-span">
-                <?= $this->formLabel($this->form->get('bannerImage'), 'Bannerbild'); ?>
-                <?= $this->formElement($this->form->get('bannerImage')); ?>
-            </div>
-            <div class="hidden col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
-                    <input type="checkbox">
-                    <span>Ein Bild sagt mehr als 1000 Worte: Mit einem zusätzlichen Bannerbild noch mehr
-                        Aufmerksamkeit generieren. Das Bannerbild erscheint zuoberst im Kopfbereich Ihrer Stellenanzeige.
-                    </span>
-                </label>
-            </div>
-        </div>
+        
         <div class="row form-group">
             <div class="col-md-12">
                 <?= $this->formLabel($this->form->get('companyWebsite'), 'Unternehmenswebsite'); ?>
