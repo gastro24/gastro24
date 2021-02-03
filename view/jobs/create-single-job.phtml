@@ -218,15 +218,15 @@ iframe {
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('locationStreet_1')); ?>
             </div>
-            <div class="col-md-4 location-zip-code form-group">
+            <div class="col-md-4 col-xs-6 location-zip-code form-group">
                 <?= $this->formLabel($this->form->get('locationZipCode_1'), 'PLZ'); ?>
                 <?= $this->formElement($this->form->get('locationZipCode_1')); ?>
             </div>
-            <div class="col-md-4 location-select form-group">
+            <div class="col-md-4 col-xs-6 location-select form-group">
                 <?= $this->formLabel($this->form->get('location_1'), 'Arbeitsort'); ?>
                 <?= $this->formElement($this->form->get('location_1')); ?>
             </div>
-            <div class="col-md-4 location-street form-group">
+            <div class="col-md-4 col-xs-12 location-street form-group">
                 <?= $this->formLabel($this->form->get('locationStreet_1'), 'Strasse'); ?>
                 <?= $this->formElement($this->form->get('locationStreet_1')); ?>
             </div>
@@ -273,7 +273,7 @@ iframe {
                 <?= $this->formLabel($this->form->get('position'), 'Stellenbeschreibung'); ?>
                 <?= $this->formElement($this->form->get('position')); ?>
             </div>
-            <<div class="hidden col-md-1">
+            <div class="hidden col-md-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Beschreiben Sie die Stellenanzeige mit so vielen Details wie möglich. Sie können Text ausschneiden und in dieses Feld einfügen. HTML und Nicht-Standard-Zeichen werden nicht unterstützt. Beispiele für Informationen, die enthalten sein sollten:<br /><br /><ul><li>Einleitung zu Ihrer Stellenanzeige.</li><li>Mehr über die erforderlichen Fähigkeiten. </li><li>Weitere Anforderungen wie Ausbildung und/oder jahrelange Erfahrung.</li><li>Weitere Angebote kostenlose Unterkunft, Zustupf an die Weiterbildung, etc.</li></ul></span>
@@ -300,21 +300,21 @@ iframe {
 
 
         <div class="row controls controls-row form-group">
-            <div class="col-md-6">
+            <div class="col-md-6 col-xs-6">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('industries')); ?>
             </div>
-            <div class="col-md-6 industriesSelect form-group">
+            <div class="col-md-6 col-xs-6 industriesSelect form-group">
                 <?= $this->formLabel($this->form->get('classifications')->get('industries'), 'Branche'); ?>
                 <?= $this->formElement($this->form->get('classifications')->get('industries')); ?>
             </div>
-        </div>
-        <div class="row controls controls-row form-group">
-            <div class="col-md-6">
+       
+    
+            <div class="col-md-6 col-xs-6 form-group">
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('classifications')->get('professions')); ?>
             </div>
-            <div class="col-md-6 professionsSelect form-group">
+            <div class="col-md-6 col-xs-6 professionsSelect form-group">
                 <?= $this->formLabel($this->form->get('classifications')->get('professions'), 'Qualifikation'); ?>
                 <?= $this->formElement($this->form->get('classifications')->get('professions')); ?>
             </div>
