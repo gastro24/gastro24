@@ -269,11 +269,11 @@ iframe {
                 <?= $this->formElementErrors()->setMessageOpenFormat('<div class="alert alert-danger register-form-error">')
                     ->setMessageCloseString('</div>')->render($this->form->get('position')); ?>
             </div>
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formLabel($this->form->get('position'), 'Stellenbeschreibung'); ?>
                 <?= $this->formElement($this->form->get('position')); ?>
             </div>
-            <div class="col-md-1">
+            <<div class="hidden col-md-1">
                 <label class="tooltip-insert"><i class="fa fa-info-circle"></i>
                     <input type="checkbox">
                     <span>Beschreiben Sie die Stellenanzeige mit so vielen Details wie möglich. Sie können Text ausschneiden und in dieses Feld einfügen. HTML und Nicht-Standard-Zeichen werden nicht unterstützt. Beispiele für Informationen, die enthalten sein sollten:<br /><br /><ul><li>Einleitung zu Ihrer Stellenanzeige.</li><li>Mehr über die erforderlichen Fähigkeiten. </li><li>Weitere Anforderungen wie Ausbildung und/oder jahrelange Erfahrung.</li><li>Weitere Angebote kostenlose Unterkunft, Zustupf an die Weiterbildung, etc.</li></ul></span>
@@ -286,7 +286,7 @@ iframe {
             </div>
         </div>
         <div class="row form-group pdf-upload" id="pdf-span">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formLabel($this->form->get('pdf'), 'Stellenbeschreibung als PDF<span class="required-mark">*</span>'); ?>
                 <div id="pdf-errors" class="errors"></div>
                 <?= $this->formElement($this->form->get('pdf')); ?>
