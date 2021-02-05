@@ -168,22 +168,34 @@ iframe {
 
 <!-- Form -->
 <div class="row">
+    <!-- begin form -->
+ <?= $this->form()->openTag($form); ?>
 
-<div class="col-md-3">
+
+<div class="col-md-4">
   <div class="stand-alone-card">
     <div class="info-card">
-<ol class="steps">
-  <li class="step-active">Stellendetails eingeben</li>
-  <li>Ihre Kontaktdaten</li>
-  <li>Fertig</li>
- </ol>
+        <ol class="steps">
+        <li class="step-active">Stellendetails eingeben</li>
+        <li>Ihre Kontaktdaten</li>
+        <li>Fertig</li>
+        </ol>
 
     </div>
   </div>
 </div>
-<div class="col-md-9 form-container extra-content">
-    <!-- begin form -->
-    <?= $this->form()->openTag($form); ?>
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-8 form-container extra-content">
+
 
     <!-- section main -->
   <div class="stand-alone-card">
