@@ -185,9 +185,77 @@ iframe {
   </div>
 </div>
 
+  <div class="stand-alone-card">
+    <div class="info-card">
+ <!--<div class="add_box add_left col-md-4">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="15" value="addon_renewal"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_renewal', $sessionData['addons']) !== false)) echo 'checked' ?> >
+                    &nbsp;&nbsp;
+                    <h3>Verlängerung 90 Tage</h3>
+                    <p>Ihre Stellenanzeige bleibt ab Ihrem gewünschtem Aufschaltdatum anstatt 30 Tage, insgesamt 120 Tage online.</p>
+                    <p class="add_price"><span class="price_add_1">15 </span> CHF</p>
+                </div>
+            </div>-->
+            
+             <div class="add_box add_left">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="150" value="addon_facebook"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_facebook', $sessionData['addons']) !== false)) echo 'checked' ?>>
+                    &nbsp;&nbsp;
+                    <h3>Social Media Werbung</h3>
+                    <p>Publikation auf Facebook & Instagram (inkl. CHF 50.- Ads-Budget). Sie erhalten im Anschluss ein Reporting.</p>
+                    <p class="add_price"><span class="price_add_1">150 </span> CHF</p>
+                </div>
+            </div>
+            <div class="add_box add_left">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="95" value="addon_startpage"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_startpage', $sessionData['addons']) !== false)) echo 'checked' ?>>
+                    &nbsp;&nbsp;
+                    <h3>Top-Listing Homepage</h3>
+                    <p>Premium-Platzierung oben auf der Startseite während 30 Tagen.<br /><br /></p>
+                    <p class="add_price"><span class="price_add_1">95 </span> CHF</p>
+                </div>
+            </div>
+            <div class="add_box add_left">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="55" value="addon_top_result"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_top_result', $sessionData['addons']) !== false)) echo 'checked' ?>>
+                    &nbsp;&nbsp;
+                    <h3>Top-Listing Suche</h3>
+                    <p>Kommt Ihre Stellenanzeige in einer Suche vor, wird sie automatisch oberhalb der klassischen Stelleninserate angezeigt und hervorgehoben.</p>
+                    <p class="add_price"><span class="price_add_1">55 </span> CHF</p>
+                </div>
+            </div>
+          <!--  <div class="add_box add_left col-md-4">
+                <div>
+                    <input type="checkbox" name="addons[]" data-value="25" value="addon_highlight"
+                        <?php if (isset($sessionData['addons']) && (in_array('addon_highlight', $sessionData['addons']) !== false)) echo 'checked' ?>>
+                    &nbsp;&nbsp;
+                    <h3>Farbliche Hervorhebung</h3>
+                    <p>Ihre Stellenanzeige wird farblich in den Suchresultaten hervorgehoben und dadurch besser wahrgenommen.</p>
+                    <p class="add_price"><span class="price_add_1">25 </span> CHF</p>
+                </div>
+            </div>-->
 
 
+<hr />
 
+   <div class="post">
+            <h3>Einzelinserat: <span class="currency">CHF</span> <span class="total">
+                <?php
+                    if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
+                        echo $sessionData['totalPrice'];
+                    }
+                    else {
+                        echo '29';
+                    }
+                ?></span>.-</h3>
+        </div>
+
+   </div>
+</div>   
 
 
 
@@ -466,76 +534,7 @@ iframe {
 
       </div>
 
-        <h3>Besetzen Sie Ihre Stellen schneller mit Zusatz-Optionen für mehr Reichweite</h3>
-
-        <div class="row">
-            <!--<div class="add_box add_left col-md-4">
-                <div>
-                    <input type="checkbox" name="addons[]" data-value="15" value="addon_renewal"
-                        <?php if (isset($sessionData['addons']) && (in_array('addon_renewal', $sessionData['addons']) !== false)) echo 'checked' ?> >
-                    &nbsp;&nbsp;
-                    <h3>Verlängerung 90 Tage</h3>
-                    <p>Ihre Stellenanzeige bleibt ab Ihrem gewünschtem Aufschaltdatum anstatt 30 Tage, insgesamt 120 Tage online.</p>
-                    <p class="add_price"><span class="price_add_1">15 </span> CHF</p>
-                </div>
-            </div>-->
-            
-             <div class="add_box add_left col-md-4">
-                <div>
-                    <input type="checkbox" name="addons[]" data-value="150" value="addon_facebook"
-                        <?php if (isset($sessionData['addons']) && (in_array('addon_facebook', $sessionData['addons']) !== false)) echo 'checked' ?>>
-                    &nbsp;&nbsp;
-                    <h3>Social Media Werbung</h3>
-                    <p>Publikation auf Facebook & Instagram (inkl. CHF 50.- Ads-Budget). Sie erhalten im Anschluss ein Reporting.</p>
-                    <p class="add_price"><span class="price_add_1">150 </span> CHF</p>
-                </div>
-            </div>
-            <div class="add_box add_left col-md-4">
-                <div>
-                    <input type="checkbox" name="addons[]" data-value="95" value="addon_startpage"
-                        <?php if (isset($sessionData['addons']) && (in_array('addon_startpage', $sessionData['addons']) !== false)) echo 'checked' ?>>
-                    &nbsp;&nbsp;
-                    <h3>Top-Listing Homepage</h3>
-                    <p>Premium-Platzierung oben auf der Startseite während 30 Tagen.<br /><br /></p>
-                    <p class="add_price"><span class="price_add_1">95 </span> CHF</p>
-                </div>
-            </div>
-            <div class="add_box add_left col-md-4">
-                <div>
-                    <input type="checkbox" name="addons[]" data-value="55" value="addon_top_result"
-                        <?php if (isset($sessionData['addons']) && (in_array('addon_top_result', $sessionData['addons']) !== false)) echo 'checked' ?>>
-                    &nbsp;&nbsp;
-                    <h3>Top-Listing Suche</h3>
-                    <p>Kommt Ihre Stellenanzeige in einer Suche vor, wird sie automatisch oberhalb der klassischen Stelleninserate angezeigt und hervorgehoben.</p>
-                    <p class="add_price"><span class="price_add_1">55 </span> CHF</p>
-                </div>
-            </div>
-          <!--  <div class="add_box add_left col-md-4">
-                <div>
-                    <input type="checkbox" name="addons[]" data-value="25" value="addon_highlight"
-                        <?php if (isset($sessionData['addons']) && (in_array('addon_highlight', $sessionData['addons']) !== false)) echo 'checked' ?>>
-                    &nbsp;&nbsp;
-                    <h3>Farbliche Hervorhebung</h3>
-                    <p>Ihre Stellenanzeige wird farblich in den Suchresultaten hervorgehoben und dadurch besser wahrgenommen.</p>
-                    <p class="add_price"><span class="price_add_1">25 </span> CHF</p>
-                </div>
-            </div>-->
-           
-        </div>
-        <hr />
-        <div class="post">
-            <h3>Einzelinserat: <span class="currency">CHF</span> <span class="total">
-                <?php
-                    if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
-                        echo $sessionData['totalPrice'];
-                    }
-                    else {
-                        echo '29';
-                    }
-                ?></span>.-</h3>
-        </div>
-
-    <!-- end section publication and addons -->
+    <!-- end section publication -->
 
     <?= $this->formHidden($this->form->get('totalPrice')); ?>
 
