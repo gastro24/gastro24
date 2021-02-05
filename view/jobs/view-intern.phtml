@@ -219,7 +219,10 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
               </ul>
           </div>
         </div>
-        <div class="apply-wrapper button_container <?php if ($this->job->getAtsMode()->getMode() === 'none') : ?>no-application<?php endif; ?>">
+        <div class="apply-wrapper button_container 
+        <?php if ($this->job->getAtsMode()->getMode() === 'none') : ?>no-application<?php endif; ?> 
+        <?php if (!$org && $orgIsDisabled: ?>no-company-profile<?php endif; ?>
+        ">
           <?php if (!$preview): ?>
           <?= $this->partial('jobs/partials/apply-button.phtml', [
 'preview' => $preview,
