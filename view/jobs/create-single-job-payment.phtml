@@ -36,8 +36,18 @@
                     </div>
                 </div>
             <?php endforeach; ?>
+           <hr />
+           <p> <a href="<?= $this->url('lang/jobs/single') ?>">&laquo; Job-Boostings ändern/hinzufügen</a></p>
 
-            <a href="<?= $this->url('lang/jobs/single') ?>">&laquo; Job-Boostings ändern</a>
+           <?php
+        if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
+            echo $sessionData['totalPrice'];
+        }
+        else {
+            echo '0';
+        }
+     ?>
+
        
     <?php endif; ?>
 
