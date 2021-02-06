@@ -224,13 +224,13 @@ $lang = $this->params('lang');
 
             $('div#pdf-span').on('gastroUploadFailed', function(e) {
                 console.log('pdf errors');
-                $('.pdf-upload').show('slow');
-                $('.pdf-upload #pdf').show('slow');
+                $('.pdf-upload').show('fast');
+                $('.pdf-upload #pdf').show('fast');
             });
 
 
             $('#single-job-address-form .toggle-address-checkbox').click(function(e) {
-                $('#single-job-address-form .otherAddressForm').toggle('slow');
+                $('#single-job-address-form .otherAddressForm').toggle('fast);
             });
 
             $('#single-job-form input[name="jobTitle"]').on('change', function() {
