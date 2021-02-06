@@ -159,6 +159,405 @@ color:#000;
 
 }
 
+/* Single Job Form */
+
+#single-job-form .form-container .form-group {
+
+    margin-bottom: 5px;
+}
+
+.steps {
+    padding-left: 15px;
+    margin-bottom: 0px;
+}
+
+.steps li {
+
+    margin-bottom: 5px;
+}
+
+.steps li:not(.step-active) {
+    color: rgba(46, 68, 135, 0.267);
+}
+
+.steps li.step-active {
+
+    color: #000;
+    font-weight: bold;
+
+}
+
+
+#mceu_15-body,
+.mce-btn {
+    background-color: #efefef;
+
+}
+
+.mce-branding {
+    display: none;
+}
+
+#single-job-form iframe {
+    background-color: #fff;
+    height: 1800px;
+    overflow: auto;
+    width: 1px;
+    min-width: 100%;
+}
+
+#single-job-form .embed-container {
+    margin-bottom: 50px;
+}
+
+#single-job-address-form label,
+#single-job-form label {
+    font-weight: normal;
+}
+
+#single-job-address-form input[type="radio"] {
+    height: 20px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    width: 35px;
+    float: left;
+}
+
+.gender-field .radioBoxes {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.gender-field .radioBoxes label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.link--add-location:hover {
+    cursor: pointer;
+}
+
+
+
+
+@media (min-width: 768px) {
+    #single-job-form .search-form-container {
+
+        display: none;
+    }
+
+
+
+}
+
+@media (max-width: 768px) {
+
+
+    .positionTextarea .tooltip-insert span {
+        right: 0;
+        left: 0;
+    }
+
+    .positionTextarea .tooltip-insert span::after {
+        display: none;
+    }
+
+    .tooltip-insert span {
+        top: 25px;
+        right: 5px;
+        left: auto;
+        margin-left: 0;
+    }
+
+    .tooltip-insert span::after {
+        top: 0;
+        right: 0px;
+        margin-top: -5px;
+    }
+
+    #single-job-preview-modal {
+        width: 100vw;
+        height: 90vh;
+    }
+
+    #single-job-preview-modal .modal-dialog {
+        width: 95%;
+        height: 95%;
+    }
+
+    #single-job-preview-modal .modal-dialog .modal-body {
+        margin-bottom: 15px;
+    }
+
+
+}
+
+
+.tooltip-insert {
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    display: inline-block;
+    margin-top: 25px;
+}
+
+.tooltip-insert span {
+    visibility: hidden;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    text-align: left;
+    border-radius: 4px;
+    padding: 10px 10px;
+    position: absolute;
+    font-size: 16px;
+    font-weight: 300;
+    z-index: 9;
+    top: -1em;
+    left: 100%;
+    line-height: 24px;
+    margin-left: 1em;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip-insert span::after {
+    content: "";
+    position: absolute;
+    top: 1.5em;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.tooltip-insert input {
+    display: none;
+}
+
+.tooltip-insert input:checked+span {
+    visibility: visible;
+    opacity: 1;
+}
+
+span.required-mark {
+    color: red;
+    padding-left: 3px;
+}
+
+.post h3 {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.post h3 .total,
+.post h3 .currency {
+    font-weight: bold;
+}
+
+div.mce-edit-area {
+    padding-right: 1px;
+}
+
+div.add_box {
+    margin-bottom: 15px;
+}
+
+div.add_box>div {
+    background: #f2f2f2;
+    padding: 10px;
+
+}
+
+p.add_price {
+    text-align: right;
+    font-weight: 700;
+    margin: 0;
+}
+
+div.add_box h3 {
+    display: inline;
+}
+
+div.add_box p {
+    margin-top: 10px;
+}
+
+div.add_box h3 {
+    font-weight: 300;
+    font-size: 16px;
+}
+
+#single-job-form .modal-dialog {
+    width: 1170px;
+
+}
+
+#single-job-form .modal-content {
+    height: 100%;
+}
+
+#single-job-form .modal-body {
+    overflow: scroll;
+}
+
+.apply-checkbox,
+.terms-checkbox,
+.toggle-address-checkbox,
+div.add_box input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    transition: all 0.15s ease-out 0s;
+    background: #fff;
+    border: 1px solid #cacaca;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    outline: none;
+    width: 20px;
+    height: 20px;
+}
+
+.apply-checkbox::before,
+.terms-checkbox::before,
+.toggle-address-checkbox::before,
+div.add_box input[type="checkbox"]::before {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    line-height: 18px;
+    color: #fff;
+    content: '✓';
+}
+
+.apply-checkbox:checked,
+.terms-checkbox:checked,
+.toggle-address-checkbox:checked,
+div.add_box input[type="checkbox"]:checked {
+    background: green
+}
+
+.apply-checkbox,
+.toggle-address-checkbox,
+.terms-checkbox {
+    position: relative !important;
+    margin-right: 12px !important;
+    margin-top: 0px !important;
+}
+
+.textarea-link-text,
+.pdf-upload,
+.embed-container,
+#iframePdf,
+#iframeDirectLink,
+#single-job-preview-modal .banner,
+#single-job-preview-modal .teaser__job-detail {
+    display: none;
+}
+
+#single-job-preview-modal .apply-button-group {
+    justify-content: center;
+}
+
+.summary-options input[type="checkbox"],
+.application-radio input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    transition: all 0.15s ease-out 0s;
+    background: #fff;
+    border: 1px solid #cacaca;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    outline: none;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+.summary-options input[type="checkbox"]::before,
+.application-radio input[type="radio"]::before {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    line-height: 18px;
+    color: #fff;
+    content: '✓';
+}
+
+.summary-options input[type="checkbox"]:disabled,
+.summary-options input[type="checkbox"]:checked {
+    background: #A5B0BB;
+    cursor: default;
+}
+
+.application-radio input[type="radio"]:checked {
+    background: green
+}
+
+
+
+
+@media (min-width: 992px) {
+
+   #single-job-form form {
+
+        float: left;
+    }
+
+     #single-job-form .col-md-8.form-container {
+
+
+        padding-left: 0px;
+    }
+
+
+    #single-job-form .col-md-4 {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 5px;
+    }
+
+
+    .summary-options {
+        z-index: 100;
+        float: left;
+        width: 2.5%;
+        padding-right: 20px;
+    }
+
+    .application-radio {
+        z-index: 100;
+        float: left;
+        width: 2.5%;
+        padding-top: 21px;
+        padding-right: 20px;
+    }
+
+    .summary-options-values,
+    .application-input {
+        position: static !important;
+        width: 88.5%;
+    }
+}
+
+
 
 
 /* Top-Job */
