@@ -203,10 +203,10 @@ $lang = $this->params('lang');
 
             $('.pdf-link').click(function(e) {
                 e.preventDefault();
-                $('.pdf-link-text').hide('slow');
-                $('.positionTextarea').hide('slow');
-                $('.pdf-upload').show('slow');
-                $('.textarea-link-text').show('slow');
+                $('.pdf-link-text').hide('fast');
+                $('.positionTextarea').hide('fast');
+                $('.pdf-upload').show('fast');
+                $('.textarea-link-text').show('fast');
                 $('#single-job-form input[name="pdf_uri"]').attr('required', 'required');
                 $('#single-job-form div[name="position"]').removeAttr("required");
 
@@ -214,10 +214,10 @@ $lang = $this->params('lang');
 
             $('.textarea-link').click(function(e) {
                 e.preventDefault();
-                $('.pdf-link-text').show('slow');
-                $('.positionTextarea').show('slow');
-                $('.pdf-upload').hide('slow');
-                $('.textarea-link-text').hide('slow');
+                $('.pdf-link-text').show('fast');
+                $('.positionTextarea').show('fast');
+                $('.pdf-upload').hide('fast');
+                $('.textarea-link-text').hide('fast');
                 $('#single-job-form input[name="pdf_uri"]').removeAttr("required");
                 $('#single-job-form div[name="position"]').attr('required', 'required');
             });
