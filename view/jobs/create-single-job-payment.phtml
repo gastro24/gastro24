@@ -13,7 +13,7 @@
     <div class="stand-alone-card">
         <div class="info-card">
             <ol class="steps">
-            <li><a href="<?= $this->url('lang/jobs/single') ?>">&laquo; Stellendetails eingeben</a></li>
+            <li>Stellendetails eingeben</li>
             <li class="step-active">Ihre Kontaktdaten</li>
             <li>Fertig</li>
             </ol>
@@ -36,6 +36,8 @@
                     </div>
                 </div>
             <?php endforeach; ?>
+
+            <a href="<?= $this->url('lang/jobs/single') ?>">&laquo; Job-Boostings ändern</a>
        
     <?php endif; ?>
 
