@@ -8,8 +8,8 @@ $this->headMeta()->setCharset("utf-8");
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
 
 $this->headLink()->setAutoEscape(false)->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')));
-$this->headLink()->prependStylesheet($this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')))
-    ->prependStylesheet($this->basePath('dist/css/core.min.css'));
+$this->headLink()->prependStylesheet($this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')));
+   // ->prependStylesheet($this->basePath('dist/css/core.min.css'));
 
 $lang = $this->params('lang');
 ?>
