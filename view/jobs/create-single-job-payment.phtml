@@ -39,14 +39,16 @@
            <hr />
            <p> <a href="<?= $this->url('lang/jobs/single') ?>">&laquo; Job-Boostings ändern/hinzufügen</a></p>
 
-           <?php
+        <div class="post">
+        <h3>Total CHF 
+        <?php
         if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
             echo $sessionData['totalPrice'];
         }
         else {
             echo '0';
         }
-     ?>
+     ?></h3></div>
 
        
     <?php endif; ?>
@@ -198,8 +200,7 @@
                         <?= $this->formLabel($otherAddressFieldset->get('zipCode'), 'PLZ'); ?>
                         <?= $this->formText($otherAddressFieldset->get('zipCode')); ?>
                     </div>
-                </div>
-                <div class="row form-group">
+               
                     <div class="col-xs-6 col-md-6">
                         <?= $this->formLabel($otherAddressFieldset->get('city'), 'Ort'); ?>
                         <?= $this->formText($otherAddressFieldset->get('city')); ?>
