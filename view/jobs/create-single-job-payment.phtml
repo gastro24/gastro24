@@ -25,7 +25,7 @@
     
         <?php if ($this->payment) : ?>
      
-            <h2>Ihre gewählten Job-Boostings</h2>
+            <h2>Ihre Bestellübersicht</h2>
             <?php foreach ($this->formattedAddons as $addon ) : ?>
                 <div class="row form-group">
                     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
@@ -41,7 +41,25 @@
                         <input type="checkbox" disabled="disabled" checked="checked">
                     </div>
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
-                        <span>Einzelinserat - 29 CHF</span>
+                        <span>Einzelinserat 1 Monat - 29 CHF</span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
+                        <input type="checkbox" disabled="disabled" checked="checked">
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
+                        <span>Datumsaktualisierung nach 15 Tagen - <em>inklusive</em> </span>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
+                        <input type="checkbox" disabled="disabled" checked="checked">
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
+                        <span>Schaltung im Publikationsnetzwerk - <em>inklusive</em> </span>
                     </div>
                 </div>
 
