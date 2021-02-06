@@ -3,12 +3,58 @@
     $sessionData = unserialize($session->data);
 ?>
 
-<?php if ($this->isSuccess): ?>
+
+    <!-- breadcrumbs -->
+   <div class="sub-navigation-wrapper"></div>
+    <!-- end breadcrumbs -->
+
+ 
+<div class="col-md-4">
+    <div class="stand-alone-card">
+        <div class="info-card">
+            <ol class="steps">
+            <li><a href="<?= $this->url('lang/jobs/single') ?>">&laquo; Stellendetails eingeben</a></li>
+            <li class="step-active">Ihre Kontaktdaten</li>
+            <li>Fertig</li>
+            </ol>
+
+        </div>
+    </div>
+    <div class="stand-alone-card" style="margin-top:15px;">
+       <div class="extra-content info-card">
+    
+        <?php if ($this->payment) : ?>
+     
+            <h2>Ihre gewählten Job-Boostings</h2>
+            <?php foreach ($this->formattedAddons as $addon ) : ?>
+                <div class="row form-group">
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
+                        <input type="checkbox" disabled="disabled" checked="checked">
+                    </div>
+                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
+                        <span><?= $addon['name'] . ' - ' . $addon['price'] . ' CHF' ?></span>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+       
+    <?php endif; ?>
+
+
+      </div>
+    </div>   
+
+</div>
+
+<div class="col-md-8 form-container extra-content">
+ <div class="stand-alone-card">
+    <div class="info-card">
+
+    <?php if ($this->isSuccess): ?>
     <div class="panel panel-default">
         <div class="panel-body">
             <?=$this->alert()->success('Inserat erfolgreich angelegt.');?>
                 <p class="lead">Vielen Dank.</p>
-                <p>Ihr Einzelinserat wurde angelegt. Nach der Prüfung wird das Inserat freigeschaltet.</p>
+                <p>Ihr Einzelinserat wurde angelegt. Nach der Prüfung durch uns wird das Inserat freigeschaltet.</p>
         </div>
     </div>
 <?php elseif ($this->isError): ?>
@@ -16,93 +62,25 @@
         <div class="panel-body">
                 <?=$this->alert()->danger('Inserat anlegen fehlgeschlagen');?>
             <p class="lead">Das Inserat konnte nicht angelegt werden.</p>
-            <p>Es ist ein Fehler aufgetreten. Versuchen Sie es <a href="">erneut</a> ...</p>
+            <p>Es ist ein Fehler aufgetreten. Versuchen Sie es bitte <a href="">erneut</a>.</p>
         </div>
     </div>
 <?php else: ?>
-    <!-- breadcrumbs -->
-   <div class="sub-navigation-wrapper"></div>
-    <!-- end breadcrumbs -->
-
-    <!-- Header & Pricing -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-title text-center">
-                <h1>Einzelinserat erfassen</h1>
-            </div>
-        </div>
-        
-        <!--<div class="col-md-6">
-            <div class="pull-right">
-                <div class="page-title">
-                    <div>Preis</div>
-                    <div>Einzelinserat: CHF <em class="total">
-    <?php
-        if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
-            echo $sessionData['totalPrice'];
-        }
-        else {
-            echo '0';
-        }
-     ?>
-    </em>.- </div>
-                </div>
-            </div>
-        </div>-->
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        
-   <div class="steps-form">
-      <div class="steps-row setup-panel">
-        <div class="steps-step">
-          <a href="<?= $this->url('lang/jobs/single') ?>" type="button" class="btn btn-default btn-circle">1</a>
-          <p>Schritt 1: Job-Details</p>
-        </div>
-        <div class="steps-step active">
-          <span type="button" class="btn btn-indigo btn-circle">2</span>
-          <p>Schritt 2: Kontaktdaten</p>
-        </div>
-        <div class="steps-step">
-          <span type="button" class="btn btn-default btn-circle" disabled="disabled">3</span>
-          <p>Fertig</p>
-        </div>
-      </div>
-    </div>
-
-        
-    </div>
-    <!-- Ende --->
-
-    <div class="form-container">
-    <!-- begin form -->
-    <?= $this->form()->openTag($this->invoiceAddressForm); ?>
-    <?php
-        $invoiceAddressFieldset = $this->invoiceAddressForm->get('invoiceAddress');
-    ?>
-    <!-- section main -->
-    <div class="section-body">
+        <?= $this->form()->openTag($this->invoiceAddressForm); ?>
+        <?php
+          $invoiceAddressFieldset = $this->invoiceAddressForm->get('invoiceAddress');
+         ?>
         <?php if ($this->payment) : ?>
-            <h2>Bitte prüfen und vervollständigen Sie Ihre Rechnungsadresse</h2>
+            <h1>Ihre Kontaktdaten
+            <span class="pflicht">Pflichtfelder<span class="required-mark">*</span></span></h1>
+            <p>Bitte überprüfen und vervollständigen Sie Ihre Rechnungsadresse.</p>
         <?php else: ?>
-            <h2>Ihre Kontaktdaten</h2>
+            <h1>Ihre Kontaktdaten 
+            <span class="pflicht">Pflichtfelder<span class="required-mark">*</span></span></h1>
         <?php endif; ?>
-
-        <p><span class="required-mark">*</span> Pflichtfelder</p>
-        <p>&nbsp;</p>
 
          <div class="row form-group">
             <div class="col-md-11 gender-field">
@@ -164,34 +142,14 @@
                 <?= $this->formText($this->invoiceAddressForm->get('phonenumber')); ?>
             </div>
         </div>
-    </div>
-    <!-- end section main -->
 
-    <!-- section list addons -->
-    <?php if ($this->payment) : ?>
-        <div class="section-body">
-            <h2>Gewählte Zusatz-Optionen</h2>
-            <?php foreach ($this->formattedAddons as $addon ) : ?>
-                <div class="row form-group">
-                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
-                        <input type="checkbox" disabled="disabled" checked="checked">
-                    </div>
-                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
-                        <span><?= $addon['name'] . ' - ' . $addon['price'] . ' CHF' ?></span>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
-    <!-- end section list addons -->
-
-    <!-- section different invoice address -->
-    <?php if ($this->payment) : ?>
+<hr />
+   <?php if ($this->payment) : ?>
         <?php
             $otherAddressFieldset = $this->invoiceAddressForm->get('otherAddress');
         ?>
-        <div class="section-body">
-            <h2>Abweichende Rechnungsadresse?</h2>
+ 
+            <h1>Abweichende Rechnungsadresse?</h1>
             <div class="row form-group">
                 <div class="col-md-11">
                     <?= $this->formElement($this->invoiceAddressForm->get('toggleOtherAddress')); ?>
@@ -241,38 +199,49 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
     <?php endif; ?>
-    <!-- end section different invoice address -->
 
-    <!-- section agb -->
-    <div class="section-body">
-        <h2>Allgemeine Geschäftsbedingungen</h2>
+
+    <hr />
+
+
+    <h1>Allgemeine Geschäftsbedingungen</h1>
         <div class="row form-group">
             <div class="col-md-11">
                 <?= $this->formElement($this->invoiceAddressForm->get('termsAccepted')); ?>
             </div>
         </div>
-    </div>
-    <!-- end section agb -->
 
-    <!-- section buttons -->
+<hr />
+
     <div class="section-body">
         <div class="row">
             <div class="col-sm-12">
                 <div class="btn-toolbar">
                     <a type="button" href="<?= $this->url('lang/jobs/single') ?>" class="cam-btn-reset"
-                            title="Zurück">&laquo; Zurück
+                            title="Zurück">&laquo; Zurück und Inserat überarbeiten
                     </a>
                     <?= $this->formButton()->openTag($this->invoiceAddressForm->get('submit')); ?>
-                    <div class="default">Fertig stellen</div>
+                    <div class="default">Fertig</div>
                     <?= $this->formButton()->closeTag(); ?>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end section buttons -->
 
-    <?= $this->form()->closeTag($this->invoiceAddressForm); ?>
+
+
+<?= $this->form()->closeTag($this->invoiceAddressForm); ?>
     <!-- end form -->
 <?php endif; ?>
+   </div>
+  </div>
+</div>
+
+
+
+
+
+
+
