@@ -24,127 +24,6 @@ $logoImageUrl = (isset($this->details['logo_url'])) ? $this->basePath($this->det
 $session = new \Laminas\Session\Container('Gastro24_SingleJobData');
 $sessionData = unserialize($session->data);
 ?>
-<style>
-@media (min-width: 992px) {
-
-    form {
-
-        float:left;
-    }
-
-.col-md-8.form-container {
-
-
-   padding-left:0px;
-}
-
-
-.col-md-4  {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 5px;
-}
-
-
-
-}
-
-.form-container .form-group {
-
-    margin-bottom:5px;
-}
-.steps {
-      padding-left:15px;
-      margin-bottom:0px;
-}
-.steps li {
-
-    margin-bottom:5px;
-}
-.steps li:not(.step-active) {
-    color: rgba(46,68,135,0.267);
-}
-.steps li.step-active {
-
-color: #000;
-font-weight:bold;
-
-}
-
-
-#mceu_15-body, .mce-btn {
-background-color:#efefef;
-
- }
-
-.mce-branding {
-    display:none;
-}
-iframe {
-	background-color: #fff;
-	height: 1800px;
-	overflow: auto;
-	width: 1px;
-	min-width: 100%;
-}
-.embed-container {
-    margin-bottom: 50px;
-}
-#single-job-address-form label,
-#single-job-form label {
-	font-weight: normal;
-}
-
-#single-job-address-form input[type="radio"] {
-	height: 20px;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-	width: 35px;
-	float: left;
-}
-
-.gender-field .radioBoxes {
-	width: 30%;
-	display: flex;
-	justify-content: space-between;
-}
-
-.gender-field .radioBoxes label {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-
-.link--add-location:hover {
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-	.positionTextarea .tooltip-insert span {
-		right: 0;
-		left: 0;
-	}
-	.positionTextarea .tooltip-insert span::after {
-		display: none;
-	}
-	.tooltip-insert span {
-		top: 25px;
-		right: 5px;
-		left: auto;
-		margin-left: 0;
-	}
-	.tooltip-insert span::after {
-		top: 0;
-		right: 0px;
-		margin-top: -5px;
-	}
-}
-
-
-
-
-
-</style>
 <!-- breadcrumbs -->
 <div class="sub-navigation-wrapper">
         <nav aria-label="breadcrumb">
@@ -178,10 +57,6 @@ iframe {
         </nav>
     </div>
 <!-- end breadcrumbs -->
-
-
-
-<!-- Ende --->
 
 <!-- Form -->
 <div class="row">
