@@ -85,7 +85,7 @@
         <?php endif; ?>
 
          <div class="row form-group">
-            <div class="col-md-11 gender-field">
+            <div class="col-md-12 gender-field">
                <!-- <?= $this->formLabel($this->invoiceAddressForm->get('gender'), 'Anrede'); ?> -->
                 <div class="radioBoxes" style="display: flex;">
                     <?= $this->formRadio($this->invoiceAddressForm->get('gender')); ?>
@@ -93,53 +93,53 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-5">
+            <div class="col-xs-6 col-md-6">
                 <?= $this->formLabel($this->invoiceAddressForm->get('firstname'), 'Vorname'); ?>
                 <?= $this->formText($this->invoiceAddressForm->get('firstname')); ?>
             </div>
-            <div class="col-md-6">
+            <div class="col-xs-6 col-md-6">
                 <?= $this->formLabel($this->invoiceAddressForm->get('lastname'), 'Name'); ?>
                 <?= $this->formText($this->invoiceAddressForm->get('lastname')); ?>
             </div>
         </div>
       
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formLabel($invoiceAddressFieldset->get('company'), 'Unternehmen'); ?>
                 <?= $this->formText($invoiceAddressFieldset->get('company')); ?>
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formLabel($invoiceAddressFieldset->get('street'), 'Strasse / Nr.'); ?>
                 <?= $this->formText($invoiceAddressFieldset->get('street')); ?>
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-4">
+            <div class="col-xs-6 col-md-6">
                 <?= $this->formLabel($invoiceAddressFieldset->get('zipCode'), 'PLZ'); ?>
                 <?= $this->formText($invoiceAddressFieldset->get('zipCode')); ?>
             </div>
-          <div class="col-md-7">
+          <div class="col-xs-6 col-md-6">
                 <?= $this->formLabel($invoiceAddressFieldset->get('city'), 'Ort'); ?>
                 <?= $this->formText($invoiceAddressFieldset->get('city')); ?>
             </div>
 
         </div>
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formLabel($invoiceAddressFieldset->get('region'), 'Land'); ?>
                 <?= $this->formText($invoiceAddressFieldset->get('region')); ?>
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formLabel($invoiceAddressFieldset->get('email'), 'E-Mail'); ?>
                 <?= $this->formEmail($invoiceAddressFieldset->get('email')); ?>
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formLabel($this->invoiceAddressForm->get('phonenumber'), 'Telefon'); ?>
                 <?= $this->formText($this->invoiceAddressForm->get('phonenumber')); ?>
             </div>
@@ -153,23 +153,13 @@
  
             <h1>Abweichende Rechnungsadresse?</h1>
             <div class="row form-group">
-                <div class="col-md-11">
+                <div class="col-md-12">
                     <?= $this->formElement($this->invoiceAddressForm->get('toggleOtherAddress')); ?>
                 </div>
             </div>
             <div class="otherAddressForm">
-                <div class="row form-group">
-                    <div class="col-md-5">
-                        <?= $this->formLabel($this->invoiceAddressForm->get('firstname-other-address'), 'Vorname'); ?>
-                        <?= $this->formText($this->invoiceAddressForm->get('firstname-other-address')); ?>
-                    </div>
-                    <div class="col-md-6">
-                        <?= $this->formLabel($this->invoiceAddressForm->get('lastname-other-address'), 'Name'); ?>
-                        <?= $this->formText($this->invoiceAddressForm->get('lastname-other-address')); ?>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-11 gender-field">
+              <div class="row form-group">
+                    <div class="col-md-12 gender-field">
                         <?= $this->formLabel($this->invoiceAddressForm->get('gender-other-address'), 'Anrede'); ?>
                         <div class="radioBoxes" style="display: flex;">
                             <?= $this->formRadio($this->invoiceAddressForm->get('gender-other-address')); ?>
@@ -177,25 +167,36 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-11">
+                    <div class="col-xs-6 col-md-6">
+                        <?= $this->formLabel($this->invoiceAddressForm->get('firstname-other-address'), 'Vorname'); ?>
+                        <?= $this->formText($this->invoiceAddressForm->get('firstname-other-address')); ?>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <?= $this->formLabel($this->invoiceAddressForm->get('lastname-other-address'), 'Name'); ?>
+                        <?= $this->formText($this->invoiceAddressForm->get('lastname-other-address')); ?>
+                    </div>
+                </div>
+              
+                <div class="row form-group">
+                    <div class="col-md-12">
                         <?= $this->formLabel($otherAddressFieldset->get('street'), 'Strasse / Nr.'); ?>
                         <?= $this->formText($otherAddressFieldset->get('street')); ?>
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-11">
+                    <div class="col-xs-6 col-md-6">
                         <?= $this->formLabel($otherAddressFieldset->get('zipCode'), 'PLZ'); ?>
                         <?= $this->formText($otherAddressFieldset->get('zipCode')); ?>
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-11">
+                    <div class="col-xs-6 col-md-6">
                         <?= $this->formLabel($otherAddressFieldset->get('city'), 'Ort'); ?>
                         <?= $this->formText($otherAddressFieldset->get('city')); ?>
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-11">
+                    <div class="col-md-12">
                         <?= $this->formLabel($otherAddressFieldset->get('region'), 'Land'); ?>
                         <?= $this->formText($otherAddressFieldset->get('region')); ?>
                     </div>
@@ -210,7 +211,7 @@
 
     <h1>Allgemeine Geschäftsbedingungen</h1>
         <div class="row form-group">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <?= $this->formElement($this->invoiceAddressForm->get('termsAccepted')); ?>
             </div>
         </div>
