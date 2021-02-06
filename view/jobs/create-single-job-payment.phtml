@@ -49,7 +49,7 @@
            <p> <a href="<?= $this->url('lang/jobs/single') ?>">&laquo; Job-Boostings ändern / hinzufügen</a></p>
 
         <div class="post">
-        <h3>Total CHF 
+        <h3>Total: <span class="total">CHF 
         <?php
         if(isset($sessionData['totalPrice']) && !empty($sessionData['totalPrice'])){
             echo $sessionData['totalPrice'];
@@ -57,7 +57,7 @@
         else {
             echo '29';
         }
-     ?></h3></div>
+     ?></span></h3></div>
 
        
     <?php endif; ?>
