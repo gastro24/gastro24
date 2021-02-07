@@ -105,7 +105,7 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
 
         $parentCategories = $this->landingPageOptions->getParentCategories();
         ksort($parentCategories);
-        $options = array_merge(['' => ''], $parentCategories);
+        $options = array_merge(['' => '-- keine Auswahl --'], $parentCategories);
         $this->add([
             'type' => Select::class,
             'name' => 'category',
