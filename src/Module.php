@@ -291,7 +291,7 @@ class Module implements AssetProviderInterface
                 $navigation->addPage($page);
 
                 $jobPage = [
-                    'label'      => 'Für Arbeitgeber',
+                    'label'      => 'Inserieren',
                     'order'      => -11,
                     'route'      => 'lang/jobs/manage',
                     'router'     => $e->getRouter(),
