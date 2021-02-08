@@ -156,8 +156,8 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
                            
                             <li class="nav-item">
                                 <?php if ($this->auth('role') !== Auth\Entity\User::ROLE_RECRUITER) : ?>
-                                    <a title="Inserieren" href="<?= $this->url('stellenanzeigen-schalten') ?>"
-                                       class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Inserieren</a>
+                                    <a title="Für Arbeitgeber" href="<?= $this->url('stellenanzeigen-schalten') ?>"
+                                       class="px-md-2 px-lg-3 px-xl-4 btn btn-danger nav-link text-white text-decoration-none">Für Arbeitgeber</a>
                                 <?php endif ?>
                             </li>
                             <li class="nav-item dropdown">
