@@ -63,9 +63,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
     <?php echo $this->headStyle() ?>
     <link rel="stylesheet preload" as="style" href="<?= $this->basePath($this->asset('modules/Gastro24/Gastro24.css')) ?>">
      <?php if ($isInseratPage) :?>
-        <style>
-            #navbar-search-toggle { display: none!important;}
-        </style>
+      
     <?php endif ?>
     <!-- job json ld -->
     <?php if($this->job): ?>
