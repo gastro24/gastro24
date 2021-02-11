@@ -52,8 +52,8 @@ else {
 
 <nav class="navbar yk-toolbar <?= $this->cssClass ?>" id="jobs-list-filter-wrapper">
     <div class="search-form-container search-form-container__header ">
-        <div class="container">
-            <div class="navbar-collapse" id="meta-navigation">
+        <div class="container-fluid">
+<div class="navbar-collapse" id="meta-navigation">
                 
 <?php if (!$this->auth()->isLoggedIn()):?>
   <ul id="menu" class="nav navbar-nav2 visible-xs">
@@ -96,11 +96,8 @@ else {
  </li>
 </ul>
  
-
-
 <?php endif ?>
- 
-            </div><!-- /.navbar-collapse -->
+ </div><!-- /.navbar-collapse -->
 
             <a class="visible-xs navbar-brand" href="/">
                 <img src="<?= $this->basepath('/modules/Gastro24/gastrojob24_dark_blue.svg') ?>" alt="Gastrojob24 Schweiz"
@@ -126,7 +123,7 @@ else {
                     <?php endif; ?>
                 </a>
             </div>
-             <div class="navbar-always-on collapsed pull-right navbar-item visible-xs search-icon">
+             <div class="navbar-always-on collapsed navbar-item visible-xs search-icon">
                 <span id="navbar-search-toggle" class="fa-search" data-target="#navbar-search-bar" data-toggle="collapse"></span>
             </div>
            <!-- <div class="login-icon pull-right visible-xs" data-toggle="dropdown" aria-expanded="false">
