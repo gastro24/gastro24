@@ -68,6 +68,7 @@ else {
              <li><a title="Firmen" href="/de/organizations/profile">Firmen</a></li>
            <!-- <li><a title="Abo für Firmen" href="/de/auth/register">Abo für Firmen</a></li>-->
             <li class="hidden-sm hidden-md hidden-lg btn-danger"><a href="/lg/stellenanzeigen-schalten">Für Arbeitgeber</a></li>
+            <li><a title="Login" href="/de/login">Login</a></li>
       </li>
     </ul>
   </li>
@@ -107,19 +108,12 @@ else {
             </a>
 
             <?= $this->searchForm($form, ['q' => 4, 'l' => 4, 'd' => 2]); ?>
-
-            <div class="navbar-always-on collapsed pull-right navbar-item visible-xs search-icon"
-                 style="position: absolute; right: 80px; top: 0">
-                <span id="navbar-search-toggle" class="fa-search" data-target="#navbar-search-bar" data-toggle="collapse"></span>
-            </div>
-
-            <div class="favorite-icon" style="top: 11px; width: unset;">
+            <div class="favorite-icon">
                 <?php
                 $tooltip = ($savedJobsCount) ? (($savedJobsCount == 1) ? $this->translate('1 saved job') :
                     sprintf($this->translate('%s saved jobs'), $savedJobsCount)) : $this->translate('No saved jobs');
                 ?>
-                <a style="color: #A5B0BB;font-size: 16px;"
-                   href="<?= $this->url('lang/saved-jobs', [], true) ?>"
+                <a href="<?= $this->url('lang/saved-jobs', [], true) ?>"
                    data-toggle="tooltip" data-placement="bottom" title="<?= $tooltip ?>">
                     <?php if($savedJobsCount): ?>
                         <div class="link__saved-jobs">
@@ -132,9 +126,12 @@ else {
                     <?php endif; ?>
                 </a>
             </div>
-            <div class="login-icon pull-right visible-xs" data-toggle="dropdown" aria-expanded="false">
-                <span class="fa fa-user"></span>
+             <div class="navbar-always-on collapsed pull-right navbar-item visible-xs search-icon">
+                <span id="navbar-search-toggle" class="fa-search" data-target="#navbar-search-bar" data-toggle="collapse"></span>
             </div>
+           <!-- <div class="login-icon pull-right visible-xs" data-toggle="dropdown" aria-expanded="false">
+                <span class="fa fa-user"></span>
+            </div>-->
             <!-- login content mobile -->
             <div class="dropdown-menu dropdown-menu-mobile">
                 <?php if ('guest' == $this->auth('role')): ?>
