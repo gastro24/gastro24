@@ -115,7 +115,9 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
+                            <div class="pull-right">
                                 <?php echo $this->formSubmit($this->form->get('button')); ?>
+                            </div>
                             </div>
                         </div>
                         <?php echo $this->form()->closeTag($form); ?>
@@ -124,11 +126,11 @@ $this->headLink()->headLink(array('rel' => 'canonical', 'href' => $registerLandi
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="pull-right">
+                        
                         <p>Bereits registriert? <a class="link--blue" href="/de/login">Login</a></p>
                     </div>
                     </div>
-                </div>
+                
             </div>
         </div>
         <?php endif ?>
