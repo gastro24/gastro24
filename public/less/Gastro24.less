@@ -87,7 +87,226 @@ input[type="file"] {
     display: block;
     height: auto;
 }
+/* Landingpage */
 
+.price-title {
+  
+  
+  
+ 
+    font-size: 25px;
+    font-weight: bold;
+	margin-bottom:70px;
+	margin-top:0px;
+
+   
+
+  }
+  
+ .productlist-h3 {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #dcdfe2;
+    text-align: left;
+    font-size: 18px;
+  }
+ .price-productlist  strong {
+    font-size: 27px;
+}
+
+
+
+.price-btn {
+    padding: 8px 20px;
+	width:100%;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-right: 15px;
+    color: #fff;
+    border: 1px solid #22436c;
+    background-color: #22436c;
+}
+
+.price-btn:hover {
+color:#fff;
+background-color:#0b2235;
+  border: 1px solid #0b2235;
+
+}
+
+
+.price-sub-productlist  {
+color: #8e97a4;
+} 
+.price-list-check {
+position: relative;
+    list-style: none inside;
+    padding: 0;
+
+}
+.price-list-check li {
+    position: relative;
+    padding-left: 19px;
+	margin-bottom:6px;
+	color: #5c5c5c;
+} 
+.price-list-check li::before {
+    content: '\f058';
+    display: block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    margin-left: -20px;
+    color: #7aae1a;
+    top: 3px;
+    font-weight: 100;
+}
+.price-list-check li a, .neukunden-info  a{
+    color: #5498d7;
+    text-decoration: none;
+}
+
+.price-list-check li a:hover, .neukunden-info a:hover {
+   
+    text-decoration: underline;
+}
+
+.neukunden-info {
+
+ padding-top:15px;
+}
+
+.top-product {
+
+position:relative;
+}
+
+
+@media (min-width: 991px) {
+
+.top-product {
+
+box-shadow: 0 -6px 12px 0 rgb(0 0 0 / 15%);
+
+}
+
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom:20px;
+}
+.row-eq-height .col-md-4 {
+padding-left:10px;
+padding-right:10px;
+
+}
+.row-eq-height .stand-alone-card {
+height:100%;
+
+}
+.top-product {
+height:103%!important;
+}
+
+}
+@media (max-width: 991px) {
+
+.row-eq-height .col-md-4:first-child {
+margin-bottom:60px;
+}
+
+
+}
+
+.topseller::before {
+    content: attr(data-topseller);
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    top: -40px;
+    height: 40px;
+
+    line-height: 40px;
+    text-align: center;
+    left: 0;
+    width: 100%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 1px solid #d54500;
+    background-color: #d54500;
+}
+
+.span-topseller-default {
+    line-height: 1.3;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 17px;
+	
+}
+.brands {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+	margin:20px 0;
+}
+
+.brands img {
+    height: 52px;
+    margin: 35px;
+}
+
+.brands img {
+    width: auto;
+}
+
+.hint {
+margin:15px 0;
+    color: #9c9c9c;
+	font-size:12px;
+
+
+}
+.accordion-section {
+padding:25px 0;
+
+
+}
+.accordion-section .panel-default > .panel-heading {
+    border: 0;
+    background: #f6f6f6;
+    padding: 10px 6px 10px 12px !important;
+}
+.accordion-section .panel-default .panel-title a {
+    display: block;
+
+    font-size: 16px;
+}
+.accordion-section .panel-default .panel-title a:after {
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-size: 3rem;
+    content: "\f106";
+    color: #0b2235;
+    float: right;
+    margin-top: -3px;
+}
+.accordion-section .panel-default .panel-title a.collapsed:after {
+    content: "\f107";
+}
 
 /* Wordpress Styles */
 
