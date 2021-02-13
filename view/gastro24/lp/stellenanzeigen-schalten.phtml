@@ -138,146 +138,17 @@
                             <a title="Jobs" href="/de/jobs?clear=1" class="navigation-link-norm text-white">Jobs suchen</a>
                         </li>
                        
-                        <li class="nav-item dropdown">
-                            <a title="Anmelden" href="#" class="login-link nav-link text-reset _dropdown-toggle text-decoration-none" data-toggle="dropdown" aria-expanded="false"><i class="login-icon-top"></i>
+                        <li class="nav-item">
+                            <a title="Anmelden" href="/de/login" class="login-link nav-link text-decoration-none"><i class="login-icon-top"></i>
                                 <span>Login</span>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li class="nav-item">
-
-                                    <div class="yamm-content login-form-desktop">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <strong class="reveal-form-title"><i class="fa fa-lock"></i> Arbeitgeber-Login</strong>
-                                                <div id="form-login-form" class="form-container">
-                                                    <div class="form-content">
-                                                        <form method="POST" name="login-form" data-handle-by="native" class="&#x20;form-horizontal" action="&#x2F;de&#x2F;login&#x3F;ref&#x3D;&#x25;252Fde&#x25;252Fdashboard&amp;0&#x3D;1" id="login-form">
-                                                            <fieldset id="login-form-login-form-credentials">
-                                                                <div class="fieldset-content">
-                                                                    <div class="controls controls-row form-group">
-                                                                        <div class="col-md-12"><input name="credentials&#x5B;login&#x5D;" data-placeholder="E-Mail&#x20;Adresse" placeholder="E-Mail&#x20;Adresse" id="credentials-login" class="&#x20;form-control&#x20;" type="text" value="">
-                                                                            <div id="credentials-login-errors" class="errors"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="controls controls-row form-group">
-                                                                        <div class="col-md-12"><input type="password" name="credentials&#x5B;credential&#x5D;" data-placeholder="Passwort" placeholder="Passwort" id="credentials-credential" class="&#x20;form-control&#x20;" value="">
-                                                                            <div id="credentials-credential-errors" class="errors"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="controls controls-row form-group">
-                                                                        <div class="col-md-12"><input type="hidden" name="credentials&#x5B;csrf&#x5D;" id="credentials-csrf" class="&#x20;form-control&#x20;" value="37cf931d735584567dc466a2c1b41679-d9c007831b17fa3f9706d9091535279e">
-                                                                            <div id="credentials-csrf-errors" class="errors"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </fieldset>
-                                                            <div id="login-form-buttons" class="buttons-bar&#x20;form-group">
-                                                                <div class="col-md-offset-3 col-md-9">
-
-                                                                    <input type="submit" name="buttons&#x5B;button&#x5D;" id="submit" class="btn&#x20;btn-primary&#x20;btn-login" value="Einloggen">
-                                                                    <div id="submit-errors" class="errors"></div>
-                                                                </div>
-                                                            </div>
-
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                                <p>
-                                                    <a class="link--reset-password" href="#" title="Passwort vergessen?">
-                                                        Passwort vergessen? </a>
-                                                    <br>Noch kein Konto? <a title="Als Arbeitgeber registrieren" href="/de/auth/register?pt=plus">Registrieren</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="yamm-content reset-form-desktop" style="display: none;">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <strong class="reveal-form-title"><i class="fa fa-lock"></i> Passwort vergessen</strong>
-                                                <style>
-                                                    #form-forgot-password #forgot-password-identity {
-                                                        margin-bottom: 15px;
-                                                    }
-
-                                                    .yamm-content .btn-reset {
-                                                        color: #fff;
-                                                        background-color: #97979D;
-                                                        border-color: #97979D;
-                                                        width: 100% !important;
-                                                    }
-
-                                                    @media only screen and (max-width: 768px) {
-                                                        .yamm-content .btn-reset {
-                                                            margin-left: 0;
-                                                        }
-                                                    }
-
-                                                    @media (max-width: 768px) {
-                                                        .yamm-content .btn-reset {
-                                                            display: block;
-                                                            width: 100%;
-                                                            height: 34px;
-                                                            padding: 6px 12px;
-                                                            font-size: 14px;
-                                                            line-height: 1.42857143;
-                                                        }
-                                                    }
-                                                </style>
-
-                                                <div id="form-forgot-password" class="form-container">
-                                                    <div class="daf-form-container row">
-                                                        <div class="daf-form col-md-12">
-                                                            <div class="panel panel-default">
-                                                                <div class="panel-body">
-                                                                    <form method="POST" name="forgot-password" data-handle-by="native" class="&#x20;" action="&#x2F;de&#x2F;forgot-password" id="forgot-password">
-                                                                        <div class="controls controls-row row">
-                                                                            <div class="col-md-12"><input type="text" name="identity" data-placeholder="Username&#x20;or&#x20;email" placeholder="Benutzername&#x20;oder&#x20;E-Mail" id="forgot-password-identity" class="&#x20;form-control&#x20;" value="">
-                                                                                <div id="forgot-password-identity-errors" class="errors"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="controls controls-row row">
-                                                                            <div class="col-md-12"><input type="hidden" name="csrf" id="forgot-password-csrf" class="&#x20;form-control&#x20;" value="1491777dee5bed0602e587896279600a-0190a452a94a156608ddb6560422b387">
-                                                                                <div id="forgot-password-csrf-errors" class="errors"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="buttons-bar&#x20;form-group&#x20;row" id="forgot-password-buttons">
-                                                                            <div class="col-md-offset-3 col-md-9">
-
-                                                                                <input type="submit" name="buttons&#x5B;button&#x5D;" id="submit" class="btn&#x20;btn-primary&#x20;btn-reset" value="Kennwort&#x20;zur&#xFC;cksetzen">
-                                                                                <div id="submit-errors" class="errors"></div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="daf-desc col-md-12">
-                                                            <div class="daf-desc-content alert alert-info">Bitte geben Sie Ihren Benutzernamen oder Ihre E-mail Adresse ein. Sie erhalten per Mail einen Link, um Ihr Kennwort zurückzusetzen</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </li>
-                            </ul>
+                            
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </header>
-
-
-
-
-
-
 
 
 
