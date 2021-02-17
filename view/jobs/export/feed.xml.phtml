@@ -11,6 +11,14 @@
 
 
 /**
+ * @see http://php.net/manual/de/class.datetime.php#datetime.constants.types
+ */
+$dateFormat = 'd.m.Y';
+
+/* @var Organizations\ImageFileCache\Manager $organizationImageCache */
+$organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
+
+/**
  * Feed for offene-stellen.ch
  * @see https://www.offene-stellen.ch/XMLInfo/
  */
@@ -19,87 +27,131 @@ if ($this->channel == 'offene-stellen') {
     $params = [
         'channel' => 'default'
     ];
-    //$params['sort'] = '-dateCreated.date';
     /* @var \Laminas\Paginator\Paginator $paginator */
     $jobsPaginator = $paginators->get('Jobs/Job', $params);
+    $jobsPaginator->setItemCountPerPage(1000);
+    $xml = \Gastro24\View\Helper\OffeneStellenXmlExportHelper::getOffeneStellenXml($jobsPaginator);
 
-    $xmlStr='<?xml version="1.0" encoding="ISO-8859-1" ?><content></content>';
+    echo $xml->saveXML();
+}
+elseif ($this->channel == 'neuvoo') {
+    $paginators = $this->services('Core/PaginatorService');
+    $params = [
+        'channel' => 'default'
+    ];
+    /* @var \Laminas\Paginator\Paginator $paginator */
+    $jobsPaginator = $paginators->get('Jobs/Job', $params);
+    $jobsPaginator->setItemCountPerPage(1000);
+    $basePathHelper = $this->plugin('basePath');
+
+    $crawlerOrganizations = [
+        '5a0809397bb2b582267c7a97', // Adecco
+        '5bcf612fb6428b0b1008db60', // McDonalds
+        '5bc6e561b6428b641322dbf9', // Gilde
+        '5aa7e1d77bb2b57b5d3c03e4', // zfv
+        '58a4a59d4e197f17047b23c6', // Sprüngli
+        '5bcdfda2b6428ba17c5c9048', // Bürkenstock
+        '59d7d04e7bb2b594121c1235', // Coop
+        '5aaf724f7bb2b5233a03ed25', // Kramer
+        '5bd21420b6428bfb4523562e', // gastrag.ch
+        '5a970fea7bb2b5a578812d52', // Randstad
+        '59e4b53e7bb2b553412f9be9', // Sv Group
+        '5a054fa37bb2b593231413a0', // Migros
+        '5dc120e93c050f419712a3b2', // Coople Schweiz
+        '5db7f6bb3c050f1326103fc2', // Jobs And More
+        '5d8e267b3c050f7ff12f75d2', // Active Gastro
+        '5d8da3cb3c050f4563073b32', // Compass Group
+        '602bd1ebdd454724e4444042', // New Economy GmbH  - offene-stellen.ch
+    ];
+
+    $xmlStr='<?xml version="1.0" encoding="UTF-8"?><jobs></jobs>';
+
     $xml = simplexml_load_string($xmlStr);
 
+    /* @var \Jobs\Entity\Job $jobObject */
     foreach ($jobsPaginator as $jobObject) {
-        /* @var \Jobs\Entity\Job $jobObject */
+        // skip crawler jobs
+        $org = $jobObject->getOrganization();
+        if($org && in_array($crawlerOrganizations, $org->getId()) !== false ) {
+            continue;
+        }
+
         // skip PDF and external jobs
         if($jobObject->getLink() && !$jobObject->getTemplateValues()->getHtml()) {
             continue;
         }
 
-        $job = $xml->addChild('stelle');
-        $job->addChild('Test', htmlspecialchars('<br />'));
-        $job->addChild('aktivid', 1); // active = 1, inactive = 2
-        $job->addChild('StelleTitel', '<![CDATA[' . $jobObject->getTitle() . ']]>');
-        $job->addChild('StelleArbeitsort', '<![CDATA[' . $jobObject->getTitle() . ']]>');
+        /** @var \Gastro24\Entity\Template $template */
+        $template = $jobObject->getAttachedEntity('gastro24-template');
 
-        /*
-         * <auftraggeberid>788</auftraggeberid>
-<kontakttext>Melden Sie sich bitte bei </kontakttext>
-<kontaktname>Tom Fuchs</kontaktname>
-<kontakttelno> 041 226 10 03</kontakttelno>
-<kontaktemail>stellen@bjbag.ch</kontaktemail>
-<LandRegionID/>
-<levelid>17</levelid>
-<KategorieRubrikID>84</KategorieRubrikID>
-<brancheid>84</brancheid>
-<firmatxt>Best Jobs Baggenstos AG</firmatxt>
-<firmaadresse>Habsburgerstrasse 26</firmaadresse>
-<firmaplZ>6003</firmaplZ>
-<firmaOrt>Luzern</firmaOrt>
-<firmatelno> 041 226 10 03</firmatelno>
-<firmafax/>
-<firmaemail>stellen@bjbag.ch</firmaemail>
-<firmahomepage>http://www.bestjobs-ag.ch/</firmahomepage>
-<StelleTitel>ABKANTER</StelleTitel>
-<Stellekurz>Für einen Kunden suchen wir einen Abkanter</Stellekurz>
-<StelleArbeitsort>Buchrain</StelleArbeitsort>
-<stelleabsatz1titel/>
-<stelleabsatz1>
-<br>Wir suchen per sofort einen ABKANTER, der verschiedenste Blechkonstruktionen abkantet. <br><br>Gutes Lesen von Konstruktionspl&auml;nen sind dabei Voraussetzung. Zus&auml;tzlich bringen Sie Erfahrung auf CNC-Abkantpressen mit oder verf&uuml;gen &uuml;ber einige Jahre Berufserfahrung als Maschinen-Operateur in der blechverarbeitenden Industrie.<br><br>Wenn Sie sich angesprochen f&uuml;hlen, dann melden Sie sich doch unverz&uuml;glich bei uns!<br><br>www.bjbag.ch <b>CODE bjb1000743</b><br>Tom Fuchs, 041 226 10 03 c/o Best Jobs Baggenstos AG, Postfach 3357, CH-6002 Luzern<br>Bitte senden Sie uns Ihre Personalien mit Berufslebenslauf vorzugsweise per Email, evtl. per Post zu oder rufen Sie an.<br>(Unaufgefordert eingesandte Dossiers werden n i c h t zur&uuml;ckgesandt.)<br>
-</stelleabsatz1>
-<stelleabsatz2titel/>
-<stelleabsatz2/>
-<stelleabsatz3titel/>
-<stelleabsatz3/>
-<stelleabsatz4titel/>
-<stelleabsatz4/>
-<stelleaktivvon type="date">2008-07-31</stelleaktivvon>
-<stelleaktivbis type="date">2008-07-31</stelleaktivbis>
-<stellentypfid>1</stellentypfid>
-<stelleantrittsdatumfid>3</stelleantrittsdatumfid>
-         */
+        $replaceImage = function($str) use ($template, $basePathHelper)
+        {
+            $image = $template ? $template->getImage() : null;
+            if ($image) {
+                $imageUri = $basePathHelper($image->getUri());
+                $imageHtml = '<img rel="preload" as="image" src="' . $imageUri . '">';
+            } else {
+                $imageHtml = '';
+            }
 
+            return str_replace('#image#', $imageHtml, $str);
+        };
+
+        $job = $xml->addChild('job');
+        $job->addAttribute('id', $jobObject->getId());
+        $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
+        $job->addChild('name', '<![CDATA[' . $jobObject->getTitle() . ']]>');
+
+        if ($jobObject->getSalary()->getCurrency()) {
+            $job->addChild('salary', '<![CDATA[' . $jobObject->getSalary()->getValue() . $jobObject->getSalary()->getCurrency() .
+                $jobObject->getSalary()->getUnit() . ']]>');
+        }
+        $jobDescription = $jobObject->getTemplateValues()->getHtml() ?: $jobObject->getTemplateValues()->get('position');
+        $job->addChild('description', '<![CDATA[' . htmlspecialchars($replaceImage($jobDescription)) . ']]>');
+        $job->addChild('company', '<![CDATA[' . $jobObject->getCompany() . ']]>');
+
+        $jobTypes = $jobObject->getClassifications()->getEmploymentTypes()->getValues();
+        $jobType = array_pop($jobTypes);
+        $job->addChild('jobtype', '<![CDATA[' . ($jobType ?: 'vollzeit') . ']]>');
+
+        $job->addChild('pubdate', $jobObject->getDatePublishStart()?date_format($jobObject->getDatePublishStart(),$dateFormat):"");
+        if ($jobObject->getDatePublishEnd()) {
+            $job->addChild('expire', date_format($jobObject->getDatePublishEnd(),$dateFormat));
+        }
+        $job->addChild('updated', $jobObject->getDateModified()?date_format($jobObject->getDateModified(),$dateFormat):"");
+
+        if ($jobObject->getAtsMode()->isEnabled()) {
+            switch ($jobObject->getAtsMode()->getMode()) {
+                case 'uri':
+                    $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($jobObject->getAtsMode()->getUri()) . ']]>');
+                    break;
+                default:
+                    $job->addChild('email', '<![CDATA[' . $jobObject->getContactEmail() . ']]>');
+                    $job->addChild('apply_url', '<![CDATA[' . $this->applyUrl($jobObject, ['linkOnly'=>true, 'absolute' => true]) . ']]>');
+                    break;
+            }
+        }
+        else {
+            $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
+        }
+        if ($jobObject->getOrganization()) {
+            $job->addChild('phone', '<![CDATA[' . $jobObject->getOrganization()->getContact()->getPhone() . ']]>');
+        }
+
+        $regions = [];
+        $countries = [];
+        foreach ($jobObject->getLocations() as $locationObject) {
+            /* @var \Jobs\Entity\Location $locationObject */
+            $regions[] =  $locationObject->getRegion();
+            $countries[] =  $locationObject->getCountry();
+        }
+        $job->addChild('region', '<![CDATA[' . implode(',', $regions) . ']]>');
+        $job->addChild('country', '<![CDATA[' . implode(',', $countries) . ']]>');
     }
 
-
-
-    echo $xml->saveXML();
-}
-elseif ($this->channel == 'exclude') {
-    $xmlStr='<?xml version="1.0" encoding="UTF-8"?><jobs>
-        
-    </jobs>';
-
-    $xml = simplexml_load_string($xmlStr);
     echo html_entity_decode($xml->saveXML());
 }
 else {
-
-    /**
-     * @see http://php.net/manual/de/class.datetime.php#datetime.constants.types
-     */
-    $dateFormat = 'd.m.Y';
-
-    /* @var Organizations\ImageFileCache\Manager $organizationImageCache */
-    $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
-
     /* @var \Laminas\Paginator\Paginator $paginator */
     $paginator = $this->jobs;
     $paginator->setItemCountPerPage(1000);

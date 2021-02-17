@@ -61,6 +61,7 @@ return [
         'Fachkräfte',
         'Hilfskräfte',
         'Sonstiges'
+
     ]
 ];
 
