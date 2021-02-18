@@ -58,7 +58,7 @@ class OffeneStellenXmlExportHelper
             $job->addChild('aktivid', 1); // active = 1, inactive = 2
 
             // main job values
-            $job->addChild('StelleTitel', '<![CDATA[' . $jobObject->getTitle() . ']]>');
+            $job->addChild('StelleTitel', '<![CDATA[' . htmlspecialchars($jobObject->getTitle()) . ']]>');
             $job->addChild('LandRegionID', self::getLandRegionId($jobObject));
             $job->addChild('levelid', self::getLevelId($jobObject));
             $job->addChild('KategorieRubrikID', 34); // Hotellerie / Gastronomie / Hotellerie / Gastronomie
@@ -100,12 +100,12 @@ class OffeneStellenXmlExportHelper
             // additional company info (single jobs)
             if ($jobObject->getTemplateValues()->get('position')) {
                 $job->addChild('stelleabsatz1titel', 'Stellenbeschreibung');
-                $job->addChild('stelleabsatz1', '<![CDATA[' . $jobObject->getTemplateValues()->get('position') . ']]>');
+                $job->addChild('stelleabsatz1', '<![CDATA[' . htmlspecialchars($jobObject->getTemplateValues()->get('position')) . ']]>');
                 $job->addChild('stelleabsatz4titel', 'Unternehmensinformation');
-                $job->addChild('stelleabsatz4', '<![CDATA[' . $jobObject->getTemplateValues()->get('companyDescription') . ']]>');
+                $job->addChild('stelleabsatz4', '<![CDATA[' . htmlspecialchars($jobObject->getTemplateValues()->get('companyDescription')) . ']]>');
             }
             elseif ($jobObject->getTemplateValues()->getHtml()) {
-                $job->addChild('stelleabsatz1', '<![CDATA[' . $jobObject->getTemplateValues()->getHtml() . ']]>');
+                $job->addChild('stelleabsatz1', '<![CDATA[' . htmlspecialchars($jobObject->getTemplateValues()->getHtml()) . ']]>');
             }
         }
 
