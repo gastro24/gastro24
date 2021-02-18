@@ -2406,7 +2406,7 @@ main ul.column li a {
 
 #meta-navigation .dropdown.dropdown-submenu.open,
 #meta-navigation .dropdown.dropdown-submenu.open>.dropdown-menu {
-    width: 400px
+    width: 350px
 }
 
 #meta-navigation .dropdown .reveal:not(.open) {
@@ -2451,13 +2451,19 @@ main ul.column li a {
     display: none
 }
 
+.dd-menu-show {
+
+    overflow:hidden;
+}
+
 #meta-navigation .navbar-nav2>li>.dropdown-menu {
-    margin-top: -1px;
     left: 0px;
+    top:53px;
+    position:fixed;
     border:1px solid #ddd;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    min-width: 250px;
-    height:100vw;
+    min-width: 200px;
+    height:100%;
     background-color: #fff;
 }
 
