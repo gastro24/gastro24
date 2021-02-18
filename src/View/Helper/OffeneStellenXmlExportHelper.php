@@ -22,13 +22,29 @@ class OffeneStellenXmlExportHelper
         /* @var \Jobs\Entity\Job $jobObject */
         foreach ($jobsPaginator as $jobObject) {
             $org = $jobObject->getOrganization();
-            // skip jobs imported from offene-stellen.ch
-            if($org && $org->getId() == '602bd1ebdd454724e4444042') {
+
+            // skip jobs from crawler orgs
+            $skipOrgIds = [
+                '602bd1ebdd454724e4444042', //offene-stellen.ch
+            ];
+
+            if($org && (in_array($org->getId(), $skipOrgIds) !== false)) {
                 continue;
             }
 
-            // skip PDF and external jobs
-            if($jobObject->getLink() && !$jobObject->getTemplateValues()->getHtml()) {
+            // skip jobs with empty firmaemail
+            if (empty($jobObject->getContactEmail())) {
+                continue;
+            }
+
+            // skip external jobs
+            $link = $jobObject->getLink();
+            $hasLink = false;
+            if ($link && substr($link, -4) != '.pdf') {
+                $hasLink = true;
+            }
+
+            if($hasLink && !$jobObject->getTemplateValues()->getHtml()) {
                 continue;
             }
 
@@ -42,7 +58,7 @@ class OffeneStellenXmlExportHelper
             $job->addChild('aktivid', 1); // active = 1, inactive = 2
 
             // main job values
-            $job->addChild('StelleTitel', $jobObject->getTitle());
+            $job->addChild('StelleTitel', '<![CDATA[' . $jobObject->getTitle() . ']]>');
             $job->addChild('LandRegionID', self::getLandRegionId($jobObject));
             $job->addChild('levelid', self::getLevelId($jobObject));
             $job->addChild('KategorieRubrikID', 34); // Hotellerie / Gastronomie / Hotellerie / Gastronomie
@@ -67,6 +83,7 @@ class OffeneStellenXmlExportHelper
 
             // organization values
             $job->addChild('firmatxt', 'Jobs ' . $jobObject->getCompany());
+
             $job->addChild('firmaemail', $jobObject->getContactEmail());
             if ($org) {
                 $job->addChild('firmaadresse', $org->getContact()->getStreet() . ' ' . $org->getContact()->getHouseNumber());
@@ -83,12 +100,12 @@ class OffeneStellenXmlExportHelper
             // additional company info (single jobs)
             if ($jobObject->getTemplateValues()->get('position')) {
                 $job->addChild('stelleabsatz1titel', 'Stellenbeschreibung');
-                $job->addChild('stelleabsatz1', htmlspecialchars($jobObject->getTemplateValues()->get('position')));
+                $job->addChild('stelleabsatz1', '<![CDATA[' . $jobObject->getTemplateValues()->get('position') . ']]>');
                 $job->addChild('stelleabsatz4titel', 'Unternehmensinformation');
-                $job->addChild('stelleabsatz4', htmlspecialchars($jobObject->getTemplateValues()->get('companyDescription')));
+                $job->addChild('stelleabsatz4', '<![CDATA[' . $jobObject->getTemplateValues()->get('companyDescription') . ']]>');
             }
             elseif ($jobObject->getTemplateValues()->getHtml()) {
-                $job->addChild('stelleabsatz1', htmlspecialchars($jobObject->getTemplateValues()->getHtml()));
+                $job->addChild('stelleabsatz1', '<![CDATA[' . $jobObject->getTemplateValues()->getHtml() . ']]>');
             }
         }
 
