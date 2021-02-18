@@ -256,7 +256,7 @@ endif ?>
     $(document).ready(function() {
             $('.dropdown-toggle').click(function(e){
                 e.preventDefault();
-                var body = $(this).find('body');
+                var body = $(document.body);
                 body.toggleClass('dd-menu-show');
             });
 
