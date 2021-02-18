@@ -36,6 +36,13 @@ class OrderHydrator extends EntityHydrator
             return $data;
         }
 
+        // neuvoo xml feed
+        $data['neuvoo'] = false;
+        $portals = $jobEntity->getPortals();
+        if (in_array('neuvoo', $portals) !== false) {
+            $data['neuvoo'] = true;
+        }
+
         $user = $jobEntity->getUser();
         if (!$user) {
             $data['singleJob'] = true;

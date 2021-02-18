@@ -33,7 +33,7 @@ $columns = [
     ]
 ];
 
-$sort = $this->params()->fromQuery('sort', 'date');
+$sort = $this->params()->fromQuery('sort', '-date');
 if ('-' == $sort{0}) {
     $sortBy  = substr($sort, 1);
     $sortDir = false;
@@ -96,21 +96,35 @@ use Orders\Entity\ProductInterface; ?>
             </td>
             <td class="text-right"><strong><?php echo $this->currencyFormat($order->getPrice(), $order->getCurrency()) ?></strong></td>
 
-            <td class="not-clickable text-nowrap text-right">
-                <div class="btn-group btn-toolbar">
-                    <?php
-                        $additionalOrderData = $this->hydrator->extract($order);
-                    ?>
+            <td class="not-clickable text-nowrap">
+                <?php $additionalOrderData = $this->hydrator->extract($order); ?>
+                <div>
                     <?php if (!$additionalOrderData['automaticJobActivation'] && !$additionalOrderData['singleJob']) : ?>
-                    <a class="btn btn-default btn-xs"
-                       href="<?= $this->url('lang/order-job-activation', ['id' => $order->getId()]) ?>"
-                       title="<?php echo $this->translate('Sofortige Jobfreischaltung')?>">
-                        <i class="yk-icon fa-check"></i>
-                    </a>
+                        <a class="btn btn-default btn-xs"
+                           href="<?= $this->url('lang/order-job-activation', ['id' => $order->getId()]) ?>"
+                           title="<?php echo $this->translate('Sofortige Jobfreischaltung')?>">
+                            <i class="yk-icon fa-check"></i>
+                        </a>
                     <?php elseif($additionalOrderData['automaticJobActivation'] && !$additionalOrderData['singleJob']) : ?>
-                        <a class="btn btn-default btn-xs jobactivation-icon"
-                           title="<?php echo $this->translate('Sofortige Jobfreischaltung aktiviert')?>">
-                            <i class="yk-icon fa-stop-circle"></i>
+                            <a class="btn btn-default btn-xs jobactivation-icon"
+                               title="<?php echo $this->translate('Sofortige Jobfreischaltung aktiviert')?>">
+                                <i class="yk-icon fa-stop-circle"></i>
+                            </a>
+                    <?php endif; ?>
+                </div>
+                <br>
+                <div>
+                    <?php if (isset($additionalOrderData['neuvoo']) && !$additionalOrderData['neuvoo']) : ?>
+                        <a class="btn btn-default btn-xs"
+                           href="<?= $this->url('lang/order-feed-activation', ['id' => $order->getId(), 'method' => 'add']) ?>"
+                           title="<?php echo $this->translate('in Neuvoo XML zeigen')?>">
+                            <i class="yk-icon fa-check"></i> in Neuvoo zeigen
+                        </a>
+                    <?php elseif($additionalOrderData['neuvoo'] && $additionalOrderData['neuvoo']) : ?>
+                        <a class="btn btn-default btn-xs"
+                           href="<?= $this->url('lang/order-feed-activation', ['id' => $order->getId(), 'method' => 'remove']) ?>"
+                           title="<?php echo $this->translate('von Neuvoo XML entfernen')?>">
+                            <i class="yk-icon fa-stop-circle"></i> von Neuvoo entfernen
                         </a>
                     <?php endif; ?>
                 </div>

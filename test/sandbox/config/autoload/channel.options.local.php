@@ -39,6 +39,20 @@ $channel['top-listing-home'] = array(
         'view' => 'option2'
     )
 );
+$channel['top-listing-home'] = array(
+
+    'label' => 'Job-Boost 2',
+    'prices' => [ 'base' => 95, 'list' => 95, 'min'  => 95, ],
+    'currency' => 'SFR',
+    'tax' => 0,
+    'headline' => /*@translate*/ 'Top-Listing Homepage',
+    'description' => /*@translate*/ 'Premium-Platzierung oben auf der Startseite während 30 Tagen.',
+    'route' => 'lang/content',
+    'publishDuration' => 30,
+    'params' => array(
+        'view' => 'option2'
+    )
+);
 
 $channel['top-listing-search'] = array(
 

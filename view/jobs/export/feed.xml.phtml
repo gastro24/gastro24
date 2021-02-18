@@ -37,7 +37,7 @@ if ($this->channel == 'offene-stellen') {
 elseif ($this->channel == 'neuvoo') {
     $paginators = $this->services('Core/PaginatorService');
     $params = [
-        'channel' => 'default'
+        'channel' => 'neuvoo'
     ];
     /* @var \Laminas\Paginator\Paginator $paginator */
     $jobsPaginator = $paginators->get('Jobs/Job', $params);
@@ -72,7 +72,7 @@ elseif ($this->channel == 'neuvoo') {
     foreach ($jobsPaginator as $jobObject) {
         // skip crawler jobs
         $org = $jobObject->getOrganization();
-        if($org && in_array($crawlerOrganizations, $org->getId()) !== false ) {
+        if($org && in_array($org->getId(), $crawlerOrganizations) !== false ) {
             continue;
         }
 

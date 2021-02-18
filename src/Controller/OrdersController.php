@@ -6,6 +6,7 @@ use Auth\Entity\User;
 use Gastro24\Entity\Hydrator\OrderHydrator;
 use Gastro24\Entity\JobActivation;
 use Jobs\Controller\ManageController;
+use Jobs\Entity\Job;
 use Jobs\Entity\JobSnapshot;
 use Jobs\Entity\JobSnapshotStatus;
 use Jobs\Entity\Status;
@@ -83,7 +84,7 @@ class OrdersController extends BaseController
     {
         $results = $this->pagination([
             'form' => ['Core/Search', 'as' => 'form'],
-            'paginator' => ['Orders', [ 'sort' => 'date'], 'as' => 'orders']
+            'paginator' => ['Orders', [ 'sort' => '-date'], 'as' => 'orders']
         ]);
 
         $results['hydrator'] = new OrderHydrator($this->jobActivationRepository);
@@ -128,6 +129,49 @@ class OrdersController extends BaseController
 
         $this->notification()->success(sprintf(/*@translate*/ 'Automatische Jobfreischaltung wurde für "%s" aktiviert',
             $user->getInfo()->getDisplayName()));
+
+        return $this->redirect()->toRoute('lang/orders-list');
+    }
+
+    public function feedactivationAction()
+    {
+        $orderId = $this->params()->fromRoute('id');
+        $method = $this->params()->fromRoute('method');
+        $order = $this->orderRepository->findOneById($orderId);
+
+        /** @var Job $jobEntity */
+        $jobEntity = $order->getEntity()->getEntity();
+        if (!$jobEntity) {
+            return $this->redirect()->toRoute('lang/orders-list');
+        }
+
+        /** @var User $user */
+        $user = $jobEntity->getUser();
+        if (!$user) {
+            $jobs[] = $jobEntity;
+        }
+        else {
+            $jobs = $this->jobsRepository->findBy(['user' => $user]);
+        }
+
+        /** @var Job $job */
+        foreach ($jobs as $job) {
+            if ($method == 'add') {
+                $portals = $job->getPortals();
+                $portals[] = 'neuvoo';
+                $portals = array_unique($portals);
+            }
+            if ($method == 'remove') {
+                $portals = $job->getPortals();
+                if (($key = array_search('neuvoo', $portals)) !== false) {
+                    unset($portals[$key]);
+                }
+            }
+            $job->setPortals($portals);
+            $this->jobsRepository->store($job);
+        }
+
+        $this->notification()->success(/*@translate*/ 'Neuvoo Feed wurde für aktiviert');
 
         return $this->redirect()->toRoute('lang/orders-list');
     }

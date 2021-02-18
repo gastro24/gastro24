@@ -86,6 +86,7 @@ return [
             Listener\VoidListener::class => InvokableFactory::class,
             Listener\CreateJobOrder::class => Listener\CreateJobOrderFactory::class,
             Listener\SingleJobAcceptedListener::class => Listener\SingleJobAcceptedListenerFactory::class,
+            Listener\NeuvooFeedListener::class => Listener\NeuvooFeedListenerFactory::class,
             Listener\JobFileUpload::class => Listener\JobFileUploadFactory::class,
             Listener\DeleteTemplateImage::class => Listener\DeleteTemplateImageFactory::class,
             Listener\DeleteBannerImageReference::class => \Gastro24\Factory\Listener\DeleteBannerImageReferenceFactory::class,
@@ -644,6 +645,19 @@ return [
                             ]
                         ],
                     ],
+                    'order-feed-activation' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/orders/:id/feedactivation/:method',
+                            'defaults' => [
+                                'controller' => Controller\OrdersController::class,
+                                'action' => 'feedactivation',
+                            ],
+                            'constraints' => [
+                                'id' => '\w+',
+                            ]
+                        ],
+                    ],
 
                     'orders-list' => [
                         'type' => 'Literal',
@@ -774,6 +788,7 @@ return [
             Listener\ExpiredJobListener::class => [JobEvent::EVENT_STATUS_CHANGED, true],
             Listener\UpdateJobCount::class => [JobEvent::EVENT_STATUS_CHANGED, true],
             Listener\AutomaticJobApproval::class => [JobEvent::EVENT_JOB_CREATED, true],
+            Listener\NeuvooFeedListener::class => [JobEvent::EVENT_JOB_CREATED, true],
         ]],
 
         'Core/Ajax/Events' => [ 'listeners' => [
