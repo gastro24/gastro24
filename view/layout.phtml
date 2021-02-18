@@ -254,6 +254,14 @@ endif ?>
 
 <script>
     $(document).ready(function() {
+            $('.dropdown-toggle').click(function(e){
+                e.preventDefault();
+                var body = $(this).find('body');
+                body.toggleClass('dd-menu-show');
+            });
+
+
+
         $(document).on('click', function(e) {
             var $trigger = $('.dropdown-menu');
             if($trigger !== e.target && !$trigger.has(e.target).length) {
