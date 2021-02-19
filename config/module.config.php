@@ -736,7 +736,7 @@ return [
         Options\CompanyTemplatesMap::class => [[
             /* Firmen-Id => View-Template-Name */
             'map' => [
-               '5dc6bc273c050f120b421aa2' => 'gastro24/jobs/view-zfv',
+               //'5dc6bc273c050f120b421aa2' => 'gastro24/jobs/view-zfv',
                 // McDonald's Suisse Restaurants
                 '5bcf612fb6428b0b1008db60' => 'gastro24/jobs/view-mcdonalds',
                 // zfv
