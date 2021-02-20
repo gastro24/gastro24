@@ -18,7 +18,7 @@ if (!$productWrapper) { return; }
 $product = $productWrapper->getProduct();
 // HINT: currently only 1 package
 //$name    = str_replace('Gastro24\Entity\Product\\', '', get_class($product));
-$name = 'Flatrate für 12 Monate (CHF 595.-)';
+$name = 'Abonnement für 12 Monate (CHF 895.-)';
 $jobDraftsCount = $this->gastroJobDraftsCount($user);
 $inactiveJobCount = $product->getInactiveJobCount();
 $activeJobCount = $product->getJobCount();
