@@ -159,6 +159,10 @@ else {
         }
         $job->addChild('region', '<![CDATA[' . implode(',', $regions) . ']]>');
         $job->addChild('country', '<![CDATA[' . implode(',', $countries) . ']]>');
+
+        if (strtolower($this->channel) == 'neuvoo') {
+            $job->addChild('budget', 10);
+        }
     }
 
     echo html_entity_decode($xml->saveXML());
