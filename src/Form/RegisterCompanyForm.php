@@ -242,7 +242,7 @@ class RegisterCompanyForm extends Form implements RegisterFormInterface
             'type' => 'hidden',
             'name' => 'pt',
             'attributes' => [
-                'value' => 'plus'
+                'value' => 'basic'
             ],
         ]);
 

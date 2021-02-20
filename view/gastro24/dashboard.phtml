@@ -19,6 +19,12 @@ $product = $productWrapper->getProduct();
 // HINT: currently only 1 package
 //$name    = str_replace('Gastro24\Entity\Product\\', '', get_class($product));
 $name = 'Abonnement für 12 Monate (CHF 895.-)';
+if ($product instanceof Gastro24\Entity\Product\Basic) {
+    $name = '10er Abonnement';
+}
+elseif($product instanceof Gastro24\Entity\Product\Plus) {
+    $name = 'Plus';
+}
 $jobDraftsCount = $this->gastroJobDraftsCount($user);
 $inactiveJobCount = $product->getInactiveJobCount();
 $activeJobCount = $product->getJobCount();

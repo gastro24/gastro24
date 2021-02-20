@@ -23,7 +23,7 @@ if (!$product) { return; }
 ?>
 <div class="panel panel-default">
     <div class="panel-body">
-        <h3><?=$product instanceOf \Gastro24\Entity\Product\Basic ? 'Basic' : 'Plus' ?></h3>
+        <h3><?=$product instanceOf \Gastro24\Entity\Product\FBasic ? 'Basic' : 'Plus' ?></h3>
         <?php if ($product->isExpired()): ?>
             <p>Ihr Abonnement ist am <?=$this->dateFormat($product->getEndDate(), \IntlDateFormatter::MEDIUM, \IntlDateFormatter::NONE)?> abgelaufen.</p>
         <?php else: ?>
