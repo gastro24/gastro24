@@ -89,6 +89,92 @@ input[type="file"] {
 }
 /* Landingpage */
 
+#full-stars {
+
+
+  .rating-group {
+    display: inline-flex;
+    padding-left:10px;
+  }
+  
+ 
+
+
+  .rating__input {
+   position: absolute !important;
+   left: -9999px !important;
+  }
+
+  .rating__label {
+    cursor: pointer;
+    padding: 0 0.1em;
+    font-size: 2rem;
+  }
+  
+  .rating__icon--star {
+    color: orange;
+  }
+  
+  .rating__icon--none {
+    color: #eee;
+  }
+
+  /* if none icon is checked, make it red */
+  .rating__input--none:checked + .rating__label .rating__icon--none {
+    color: red;
+  }
+
+  /* if any input is checked, make its following siblings grey */
+  .rating__input:checked ~ .rating__label .rating__icon--star {
+    color: #ddd;
+  }
+
+   } 
+
+
+
+p.usp {
+
+max-width:85%;
+font-size:17px;margin-bottom:25px;
+}
+
+blockquote {
+
+    background-color:#fff;
+    padding:10px;
+}
+
+blockquote p {
+    vertical-align: top;
+    display: inline-block;
+    background-color: #fff;
+    padding: 15px;
+    font-size: 1.6rem;
+    line-height: 2.0rem;
+}
+blockquote strong {
+
+    display:block;
+    margin-bottom:10px;
+}
+@media (max-width: 468px) {
+
+ p.usp {
+
+   max-width:100%;
+}
+}
+
+
+p.usp a {
+
+color:#1e69a3;
+text-decoration:underline;
+}
+
+
+
 .price-title {
   
   
