@@ -71,8 +71,6 @@ class OffeneStellenXmlExportHelper
                 continue;
             }
 
-            $firmaEmail = $jobObject->getContactEmail();
-
             /** @var Location $location */
             $location = $jobObject->getLocations()->first();
 
@@ -107,7 +105,7 @@ class OffeneStellenXmlExportHelper
 //    <kontaktemail>stellen@bjbag.ch</kontaktemail>
 
             // organization values
-            $job->addChild('firmatxt', 'Jobs ' . $jobObject->getCompany());
+            $job->addChild('firmatxt', '<![CDATA[' . htmlspecialchars('Jobs ' . $jobObject->getCompany()) . ']]>');
 
             $job->addChild('firmaemail', $firmaEmail);
             if ($org) {
