@@ -176,6 +176,7 @@ else {
             }
 
             $logoUrl = 'https://www.gastrojob24.ch' . $logoUri;
+
             $job->addChild('logo', '<![CDATA[' . htmlspecialchars($logoUrl) . ']]>');
 
             $job->addChild('budget', 10);
