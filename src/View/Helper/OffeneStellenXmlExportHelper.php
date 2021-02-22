@@ -33,18 +33,28 @@ class OffeneStellenXmlExportHelper
                 continue;
             }
 
-            if (empty($jobObject->getContactEmail()) && $jobObject->getAtsMode()->getMode() == 'uri') {
-                /** @var Order $order */
-                $order = $ordersRepo->findByJobId($jobObject->getId());
-                if (!$order) {
-                    continue;
-                }
-                $firmaEmail = $order->getInvoiceAddress()->getEmail();
-            };
+//            if (empty($jobObject->getContactEmail()) && $jobObject->getAtsMode()->getMode() == 'uri') {
+//                /** @var Order $order */
+//                $order = $ordersRepo->findByJobId($jobObject->getId());
+//                if (!$order) {
+//                    continue;
+//                }
+//                $firmaEmail = $order->getInvoiceAddress()->getEmail();
+//            };
 
             // skip jobs with empty firmaemail
             if (empty($jobObject->getContactEmail())) {
-                continue;
+                if ($jobObject->getAtsMode()->getMode() == 'uri') {
+                    /** @var Order $order */
+                    $order = $ordersRepo->findByJobId($jobObject->getId());
+                    if (!$order) {
+                        continue;
+                    }
+                    $firmaEmail = $order->getInvoiceAddress()->getEmail();
+                }
+                else {
+                    continue;
+                }
             }
             else {
                 $firmaEmail = $jobObject->getContactEmail();
