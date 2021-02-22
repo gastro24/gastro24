@@ -175,7 +175,7 @@ else {
                 $logoUri = $this->basePath($template->getLogo()->getUri());
             }
 
-            $logoUrl = 'https://gastrojob24.gumlet.net' . $logoUri . '?mode=fit&width=115&height=115&quality=75)';
+            $logoUrl = 'https://www.gastrojob24.ch' . $logoUri . '';
             $job->addChild('logo', '<![CDATA[' . htmlspecialchars($logoUrl) . ']]>');
 
             $job->addChild('budget', 10);
