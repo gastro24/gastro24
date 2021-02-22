@@ -23,6 +23,7 @@ $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager'
  * @see https://www.offene-stellen.ch/XMLInfo/
  */
 if ($this->channel == 'offene-stellen' || $this->channel == 'offene-stellen.xml') {
+    $ordersRepo = $this->services('repositories')->get('Orders');
     $paginators = $this->services('Core/PaginatorService');
     $params = [
         'channel' => 'default'
@@ -30,7 +31,7 @@ if ($this->channel == 'offene-stellen' || $this->channel == 'offene-stellen.xml'
     /* @var \Laminas\Paginator\Paginator $paginator */
     $jobsPaginator = $paginators->get('Jobs/Job', $params);
     $jobsPaginator->setItemCountPerPage(1000);
-    $xml = \Gastro24\View\Helper\OffeneStellenXmlExportHelper::getOffeneStellenXml($jobsPaginator);
+    $xml = \Gastro24\View\Helper\OffeneStellenXmlExportHelper::getOffeneStellenXml($jobsPaginator, $ordersRepo);
 
     echo html_entity_decode($xml->saveXML());
 }
@@ -39,6 +40,7 @@ else {
     $paginator = $this->jobs;
     $paginator->setItemCountPerPage(1000);
     $basePathHelper = $this->plugin('basePath');
+    $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
 
     /* @todo move this into a view helper */
     $linkNext = $paginator->getCurrentPageNumber() < $paginator->count() ?
@@ -93,6 +95,8 @@ else {
             continue;
         }
 
+        $org = $jobObject->getOrganization();
+
         /** @var \Gastro24\Entity\Template $template */
         $template = $jobObject->getAttachedEntity('gastro24-template');
 
@@ -146,8 +150,8 @@ else {
         else {
             $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
         }
-        if ($jobObject->getOrganization()) {
-            $job->addChild('phone', '<![CDATA[' . $jobObject->getOrganization()->getContact()->getPhone() . ']]>');
+        if ($org) {
+            $job->addChild('phone', '<![CDATA[' . $org->getContact()->getPhone() . ']]>');
         }
 
         $regions = [];
@@ -161,6 +165,19 @@ else {
         $job->addChild('country', '<![CDATA[' . implode(',', $countries) . ']]>');
 
         if (strtolower($this->channel) == 'neuvoo') {
+            $logoUri = $this->basePath('modules/Gastro24/images/no-company-logo.png');
+            if($org && $org->getImages()->notEmpty('images')) {
+                $logoUri = $this->basePath($organizationImageCache->getUri($org->getImages()->get('thumbnail')));
+            }
+            /** @var \Gastro24\Entity\Template $template */
+            $template = $jobObject->getAttachedEntity('gastro24-template');
+            if ($template->getLogo()) {
+                $logoUri = $this->basePath($template->getLogo()->getUri());
+            }
+
+            $logoUrl = 'https://gastrojob24.gumlet.net' . $logoUri . '?mode=fit&width=115&height=115&quality=75)';
+            $job->addChild('logo', '<![CDATA[' . htmlspecialchars($logoUrl) . ']]>');
+
             $job->addChild('budget', 10);
         }
     }

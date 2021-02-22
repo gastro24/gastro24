@@ -4,6 +4,7 @@ namespace Gastro24\View\Helper;
 
 use Jobs\Entity\Job;
 use Jobs\Entity\Location;
+use Orders\Entity\Order;
 
 /**
  * Class OffeneStellenXmlExportHelper
@@ -14,7 +15,7 @@ use Jobs\Entity\Location;
 class OffeneStellenXmlExportHelper
 {
 
-    static public function getOffeneStellenXml($jobsPaginator)
+    static public function getOffeneStellenXml($jobsPaginator, $ordersRepo)
     {
         $xmlStr='<?xml version="1.0" encoding="ISO-8859-1" ?><content></content>';
         $xml = simplexml_load_string($xmlStr);
@@ -32,9 +33,21 @@ class OffeneStellenXmlExportHelper
                 continue;
             }
 
+            if (empty($jobObject->getContactEmail()) && $jobObject->getAtsMode()->getMode() == 'uri') {
+                /** @var Order $order */
+                $order = $ordersRepo->findByJobId($jobObject->getId());
+                if (!$order) {
+                    continue;
+                }
+                $firmaEmail = $order->getInvoiceAddress()->getEmail();
+            };
+
             // skip jobs with empty firmaemail
             if (empty($jobObject->getContactEmail())) {
                 continue;
+            }
+            else {
+                $firmaEmail = $jobObject->getContactEmail();
             }
 
             // skip external jobs
@@ -47,6 +60,8 @@ class OffeneStellenXmlExportHelper
             if($hasLink && !$jobObject->getTemplateValues()->getHtml()) {
                 continue;
             }
+
+            $firmaEmail = $jobObject->getContactEmail();
 
             /** @var Location $location */
             $location = $jobObject->getLocations()->first();
@@ -84,7 +99,7 @@ class OffeneStellenXmlExportHelper
             // organization values
             $job->addChild('firmatxt', 'Jobs ' . $jobObject->getCompany());
 
-            $job->addChild('firmaemail', $jobObject->getContactEmail());
+            $job->addChild('firmaemail', $firmaEmail);
             if ($org) {
                 $job->addChild('firmaadresse', $org->getContact()->getStreet() . ' ' . $org->getContact()->getHouseNumber());
                 $job->addChild('firmaplZ', $org->getContact()->getPostalcode());
