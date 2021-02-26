@@ -151,7 +151,7 @@ else {
             $job->addChild('apply_url', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
         }
         if ($org) {
-            $job->addChild('phone', '<![CDATA[' . $org->getContact()->getPhone() . '.'?utm_source=neuvo&utm_medium=cpc&utm_campaign=partnership']]>');
+             $job->addChild('phone', '<![CDATA[' . $org->getContact()->getPhone() . ']]>');
         }
 
         $regions = [];
