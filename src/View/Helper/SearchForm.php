@@ -37,7 +37,7 @@ class SearchForm extends BaseSearchFormHelper
         $content = $this->renderElements($form, $colMap, $buttonsSpan);
 
         return $this->openTag($form)
-            . '<div class="container"><div class="row">'
+            . '<div class="container-fluid"><div class="row">'
             . $content . '</div></div>' . $this->closeTag();
     }
 
