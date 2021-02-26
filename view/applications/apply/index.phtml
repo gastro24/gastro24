@@ -12,10 +12,38 @@ $this->headTitle($this->translate('Apply'));
 $job = $this->application->getJob(); /* @var Jobs\Entity\Job $job */
 
 ?>
-<h1><?= $this->translate('Application')?></h1>
+
+<style>
+
+main#content {
+    background-color: #fff;
+}
+#form-profiles {
+    display:none;
+}
+
+.lead a {
+    color: #5498d7;
+    text-decoration: none;
+}
+.yk-label {
+    text-align: left;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+
+
+
+</style>
+
+
+<h1>Jetzt bewerben</h1>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <p class="lead">
                 <?php $href = $job->getLink() ? $job->getLink() : $this->url('lang/jobs/view', array(), array('query' => array('id' => $job->getId())), true); ?>
                 <?php printf($this->translate('Apply to "%s" from "%s"'),
