@@ -810,6 +810,10 @@ $this->headTitle($this->translate('Home'));
     
     <script>
         $( document ).ready(function() {
+           $('#menu > .dropdown').click(function(e){
+         
+               $('body').toggleClass('dd-menu-show');
+            });
          $('.center').slick({
             centerMode: true,
             autoplay: true,
