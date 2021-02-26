@@ -110,12 +110,12 @@ $this->headTitle($this->translate('Home'));
     <header id="header" role="banner" class="hidden-xs" data-saved-jobs="<?=$savedJobsCount?>">
         <div class="container-fluid">
             <div class="row">
-                <div class="navbar-header col-md-2">
+                <div class="navbar-header col-xs-2 col-md-2">
                     <a class="logo" title="Gastrojob24" href="<?php echo $this->basepath('/' . $this->params('lang')) ?>">
                         <img src="<?php echo $this->basepath('/modules/Gastro24/gastrojob24_dark_blue.svg') ?>" alt="Gastrojob24">
                     </a>
                 </div>
-                <div class="col-md-10">
+                <div class="col-xs-10 col-md-10">
                     <?php if ('guest' == $this->auth('role')) : ?>
                         <ul class="pull-right navbar-nav nav-recruiting">
                              <li class="nav-item">
