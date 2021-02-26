@@ -30,7 +30,7 @@
         var $link = $(event.currentTarget);
         var $modal = $('#job-apply-modal');
 
-        $modal.find('.modal-body').html('<iframe style="border: 0 solid black;" src="' + $link.attr('href') + '" width="100%" height="100%"></iframe>');
+        $modal.find('.modal-body').html('<iframe style="border: 0 solid black;" rel="nofollow" src="' + $link.attr('href') + '" width="100%" height="100%"></iframe>');
         $modal.modal('show');
 
         return false;
