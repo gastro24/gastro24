@@ -115,6 +115,14 @@ else {
 
         $job = $xml->addChild('job');
         $job->addAttribute('id', $jobObject->getId());
+
+        if (strtolower($this->channel) == 'neuvoo') {
+            $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . '?utm_source=neuvo&utm_medium=cpc&utm_campaign=partnership ]]>');
+        else {
+            $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
+        }
+
+
         $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
         $job->addChild('name', '<![CDATA[' . $jobObject->getTitle() . ']]>');
 
