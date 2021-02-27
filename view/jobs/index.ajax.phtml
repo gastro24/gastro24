@@ -120,7 +120,7 @@ if (count($jobs)): ?>
                 <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                     itemtype="http://schema.org/ListItem" aria-current="page">
 
-                    <span itemprop="name"> <h1><?=$this->jobs->getTotalItemCount() ?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer gefunden' : 'Leider keine passenden Jobs gefunden'); ?></h1></span>
+                    <span itemprop="name"> <h1><?=$this->jobs->getTotalItemCount() ?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer' : 'Leider keine passenden Jobs gefunden'); ?></h1></span>
                     <meta itemprop="position" content="<?= $content ?>"/>
                 </li>
 
@@ -137,7 +137,7 @@ if (count($jobs)): ?>
                 <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem" aria-current="page">
              
-                 <span itemprop="name"> <h1><?=$this->jobs->getTotalItemCount()?> Treffer gefunden</h1></span>
+                 <span itemprop="name"> <h1><?=$this->jobs->getTotalItemCount()?> Treffer</h1></span>
                 
                 <meta itemprop="position" content="3"/>
             </li>
@@ -167,7 +167,7 @@ if (count($jobs)): ?>
              <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem" aria-current="page">
              
-                 <span itemprop="name"> <h1><?=$this->jobs->getTotalItemCount() ?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer gefunden' : 'Leider keine passenden Jobs gefunden'); ?></h1></span>
+                 <span itemprop="name"> <h1><?=$this->jobs->getTotalItemCount() ?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer' : 'Leider keine passenden Jobs gefunden'); ?></h1></span>
                 
                 <meta itemprop="position" content="3"/>
             </li>
