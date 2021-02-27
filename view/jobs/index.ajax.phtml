@@ -89,15 +89,18 @@ if (count($jobs)): ?>
             </li>
 
 
-            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                <a title="Jobs" itemprop="item" href="/de/jobs?clear=1">
-                    <span itemprop="name">Jobs.</span>
-                </a>
-                <meta itemprop="position" content="2"/>
-            </li>
+           
 
 
             <?php if ($this->params()->fromRoute('isLandingPage')) : ?>
+
+               <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <a title="Jobs" itemprop="item" href="/de/jobs?clear=1">
+                    <span itemprop="name">Jobs</span>
+                </a>
+                <meta itemprop="position" content="2"/>
+               </li>
+
                 <!-- build parent breadcrumbs -->
                 <?php
                     $mainTerm = $searchTerm;
@@ -120,6 +123,12 @@ if (count($jobs)): ?>
                     <span itemprop="name"> <h1><?=$this->jobs->getTotalItemCount() ?> <?=$wordpress->call('value', ['title.rendered'], '') ?: (count($this->jobs) ? 'Treffer für '.$searchTerm.' Jobs' : 'Leider keine passenden Jobs gefunden'); ?></h1></span>
                     <meta itemprop="position" content="<?= $content ?>"/>
                 </li>
+
+            <?php else: >
+
+               .
+
+
             <?php endif; ?>
         </ol>
     </nav>
