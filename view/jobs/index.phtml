@@ -21,7 +21,19 @@ $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, '
 //$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
 $description = $wordpress->call('value', ['content.rendered'], '');
 //$title = $wordpress->call('value', ['meta-fields.title'], '');
-$title = ''. $wordpress->call('value', ['meta-fields.title'], '') . '';
+
+
+
+if ($this->jobs->getTotalItemCount() == 1) {
+
+$title = ''. $wordpress->call('value', ['meta-fields.title'], '') . ': ' . $this->jobs->getTotalItemCount() . 'freies Stellenangebot' ;
+
+} else {
+
+$title = ''. $wordpress->call('value', ['meta-fields.title'], '') . ': ' . $this->jobs->getTotalItemCount() . 'freie Stellenangebote' ;
+
+}
+
 $this->headTitle($title ?: $this->translate('Jobs'));
 $headline = $wordpress->call('value', ['title.rendered'], '');
 $headline = $headline ?: $searchTerm;
