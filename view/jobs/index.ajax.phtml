@@ -45,8 +45,8 @@ if (count($jobs)): ?>
                     $wordpressTitle . ' finden auf Gastrojob24.ch, der #1 Gastronomie & Hotellerie Jobbörse der Schweiz.';
             }
 
-            $titleOgText = $this->jobs->getTotalItemCount() . ' ' . $wordpress->call('value', ['title.rendered'], '' . ' verfügbar - Gastrojob24.ch.';
-            $descriptionOgText = 'Jetzt Traumjob finden aus ' . $this->jobs->getTotalItemCount() . ' ' . $wordpressTitle . ' bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz.';
+            $titleOgText = $this->jobs->getTotalItemCount() . 'Aktuell ' . $wordpress->call('value', ['title.rendered'], '') . ' verfügbar - Gastrojob24.ch.';
+            $descriptionOgText = 'Jetzt Traumjob finden aus ' . $wordpress->call('value', ['title.rendered'], '') . ' bei Gastrojob24.ch - der Gastronomie & Hotellerie Jobbörse der Schweiz.';
             $this->headMeta()->setName('description', $descriptionText)
                 ->setProperty('og:title', $titleOgText)
                 ->setProperty('og:description', $descriptionOgText)
