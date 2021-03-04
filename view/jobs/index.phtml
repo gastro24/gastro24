@@ -20,8 +20,8 @@ $wordpress = $this->proxy('wordpress');
 $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, 'value' => 'meta-fields.description'], ''));
 //$this->headMeta()->setName('keywords', $wordpress->call('value', ['meta-fields.keywords'], ''));
 $description = $wordpress->call('value', ['content.rendered'], '');
-
-$title = $wordpress->call('value', ['meta-fields.title'], '');
+//$title = $wordpress->call('value', ['meta-fields.title'], '');
+$title = 'test'. $wordpress->call('value', ['meta-fields.title'], '') . ' .';
 $this->headTitle($title ?: $this->translate('Jobs'));
 $headline = $wordpress->call('value', ['title.rendered'], '');
 $headline = $headline ?: $searchTerm;
