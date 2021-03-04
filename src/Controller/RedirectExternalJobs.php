@@ -217,17 +217,17 @@ class RedirectExternalJobs extends AbstractActionController
             $city = $location->getCity();
 
             if (!$city) {
-                return 'Offene Stelle als '. $job->getTitle() . 'bei ' . $orgName;
+                return ''. $job->getTitle() . 'bei ' . $orgName;
                 
             }
         }
         elseif (count($locations) == 0) {
-            return 'Offene Stelle als '. $job->getTitle() . ' bei ' . $orgName;
+            return ''. $job->getTitle() . ' bei ' . $orgName;
         }
         //$title = $job->getTitle() .' bei ' . $orgName . ' in ' . $city ;
         //$title = $job->getTitle() .' in ' . $city . ' bei ' . $orgName ;
         
-        $title = 'Offene Stelle als '.  $job->getTitle().' in ' . $city . ' bei ' . $orgName;
+        $title = ''.  $job->getTitle().' in ' . $city . ' bei ' . $orgName;
 
         return $title;
     }
