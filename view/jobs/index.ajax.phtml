@@ -35,7 +35,7 @@ if (count($jobs)): ?>
         $wordpressTitle = '';
 
         if ($this->params()->fromRoute('isLandingPage')) {
-            $wordpressTitle = $wordpress->call('value', ['title.rendered'], '');
+            //$wordpressTitle = $wordpress->call('value', ['title.rendered'], '');
             //$descriptionText = 'Aktuell ' . $this->jobs->getTotalItemCount() . ' verfügbare ' .
                 $descriptionText = $wordpress->call('value', ['meta-fields.title'], '').
                 $wordpressTitle . ' finden auf Gastrojob24.ch, der #1 Gastronomie & Hotellerie Jobbörse der Schweiz.';
