@@ -34,9 +34,9 @@
 <div class="col-md-3 hidden-xs hidden-sm"> 
  <div class="stand-alone-card">
   <div class="info-card">
-    <h2><?= ($useCompanyAddress) ? 'Kontakt' : 'Arbeitsort' ?></h2>
+    <!--<h2><?= ($useCompanyAddress) ? 'Kontakt' : 'Arbeitsort' ?></h2>-->
     <address>
-       <strong> <?php
+       <?php
         
             if ($useCompanyAddress) {
                 echo (!empty($this->organizationName)) ? $this->organizationName : $this->orgName . '<br>';
@@ -46,7 +46,7 @@
 
             }
         ?>
-        </strong>
+       
         <?php
             if ($location === false && !$useCompanyAddress) {
                 echo $this->translate('Swiss');
