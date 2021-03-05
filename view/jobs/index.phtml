@@ -28,17 +28,14 @@ if ($this->jobs->getTotalItemCount() == 1 ) {
 
   $title = ''. $wordpress->call('value', ['title.rendered'], '') . ' : ' . $this->jobs->getTotalItemCount() . ' freies Stellenangebot' ;
 
-} elseif ($this->jobs->getTotalItemCount() > 1 ) {
+} 
+if ($this->jobs->getTotalItemCount() > 1 ) {
 
   $title = ''. $wordpress->call('value', ['title.rendered'], '') . ': ' . $this->jobs->getTotalItemCount() . ' freie Stellenangebote' ;
 
-} else {
+} 
 
-  $title = $this->headTitle($title ?: $this->translate('Jobs'));
-
-}
-
-
+$title = $this->headTitle($title ?: $this->translate('Jobs'));
 $headline = $wordpress->call('value', ['title.rendered'], '');
 $headline = $headline ?: $searchTerm;
 $wordpressTitle = '';
