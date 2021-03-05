@@ -24,17 +24,21 @@ $description = $wordpress->call('value', ['content.rendered'], '');
 
 
 
-if ($this->jobs->getTotalItemCount() == 1) {
+if ($this->jobs->getTotalItemCount() == 1 && $this->params()->fromRoute('isLandingPage') ) {
 
   $title = ''. $wordpress->call('value', ['title.rendered'], '') . ' : ' . $this->jobs->getTotalItemCount() . ' freies Stellenangebot' ;
 
-} else {
+} else if ($this->jobs->getTotalItemCount() > 1 && $this->params()->fromRoute('isLandingPage') ) {
 
   $title = ''. $wordpress->call('value', ['title.rendered'], '') . ': ' . $this->jobs->getTotalItemCount() . ' freie Stellenangebote' ;
 
+} else {
+
+  $title = $this->headTitle($title ?: $this->translate('Jobs'));
+
 }
 
-$this->headTitle($title ?: $this->translate('Jobs'));
+
 $headline = $wordpress->call('value', ['title.rendered'], '');
 $headline = $headline ?: $searchTerm;
 $wordpressTitle = '';
