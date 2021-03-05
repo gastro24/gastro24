@@ -22,7 +22,7 @@ $this->headMeta()->setName('description', $wordpress->chain(['page' => $query, '
 $description = $wordpress->call('value', ['content.rendered'], '');
 //$title = $wordpress->call('value', ['meta-fields.title'], '');
 
-if (304 === $query && $this->params()->fromRoute('isLandingPage')) {
+if (304 === $query || $this->params()->fromRoute('isLandingPage')) {
 
         if ($this->jobs->getTotalItemCount() == 1 ) {
 
