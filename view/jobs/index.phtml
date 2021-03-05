@@ -28,7 +28,7 @@ if ($this->jobs->getTotalItemCount() == 1 ) {
 
   $title = ''. $wordpress->call('value', ['title.rendered'], '') . ' : ' . $this->jobs->getTotalItemCount() . ' freies Stellenangebot' ;
 
-} else if ($this->jobs->getTotalItemCount() > 1 ) {
+} elseif ($this->jobs->getTotalItemCount() > 1 ) {
 
   $title = ''. $wordpress->call('value', ['title.rendered'], '') . ': ' . $this->jobs->getTotalItemCount() . ' freie Stellenangebote' ;
 
