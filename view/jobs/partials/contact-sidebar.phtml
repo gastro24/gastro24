@@ -35,8 +35,8 @@
  <div class="stand-alone-card">
   <div class="info-card">
     <h2><?= ($useCompanyAddress) ? 'Kontakt' : 'Arbeitsort' ?></h2>
-    <address
-       <?php
+    <address>
+        <?php
         
             if ($useCompanyAddress) {
                 echo (!empty($this->organizationName)) ? $this->organizationName : $this->orgName . '<br>';
@@ -46,7 +46,7 @@
 
             }
         ?>
-       
+        
         <?php
             if ($location === false && !$useCompanyAddress) {
                 echo $this->translate('Swiss');
@@ -66,6 +66,7 @@
             }
         ?>
     </address>
+
 
     <?php if (!$this->preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
         <div class="meta-adress">
