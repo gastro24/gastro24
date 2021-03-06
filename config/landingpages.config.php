@@ -712,7 +712,8 @@ $options = [
 		  'query' => [ 'q' => 'Metzger'],
           'tab' => 'Jobs von A - Z',
           'panel' => '',
-          'text' => 'Metzger Jobs'
+          'text' => 'Metzger Jobs',
+          'parent' => 'metzger'
      ],	
      'office' => [
           'id' => 225,
