@@ -413,7 +413,7 @@ $sessionData = unserialize($session->data);
      
         <div class="row form-group">
             <div class="col-md-12">
-                    <?= $this->formLabel($this->form->get('publishDate'), 'Gewünschtes Aufschaltdatum'); ?>
+                    <?= $this->formLabel($this->form->get('publishDate'), 'Gewünschtes Aufschaltdatum (Leer lassen = heute)'); ?>
                     <?php if($this->publishDateError): ?>
                         <div style="color: red; margin: 10px 0;">* Das gewünschte Aufschaltdatum sollte in der Zukunft liegen</div>
                     <?php endif; ?>
