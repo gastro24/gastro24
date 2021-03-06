@@ -713,7 +713,7 @@ $options = [
           'tab' => 'Jobs von A - Z',
           'panel' => '',
           'text' => 'Metzger Jobs',
-          'parent' => 'metzger'
+          'parent' => ''
      ],	
      'office' => [
           'id' => 225,
