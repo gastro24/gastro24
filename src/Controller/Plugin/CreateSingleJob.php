@@ -57,7 +57,7 @@ class CreateSingleJob extends AbstractPlugin
         if (isset($values['category'])) {
             $categories = [$values['category']];
 
-            if (isset($values['subcategory'])) {
+            if (isset($values['subcategory']) && !empty($values['subcategory'])) {
                 $categories[] = $values['subcategory'];
             }
             $job->getTemplateValues()->set('categories', $categories);

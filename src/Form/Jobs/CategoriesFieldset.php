@@ -31,7 +31,8 @@ class CategoriesFieldset extends Fieldset implements InputFilterProviderInterfac
     public function init()
     {
         $this->setName('category');
-        $parentCategories = $this->landingPageOptions->getParentCategories();
+        //$parentCategories = $this->landingPageOptions->getParentCategories();
+        $parentCategories = $this->landingPageOptions->getCategoryValues();
         ksort($parentCategories);
         $options = array_merge(['' => ''], $parentCategories);
         $this->add([

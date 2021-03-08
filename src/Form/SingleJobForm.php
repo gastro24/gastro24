@@ -103,7 +103,8 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
         ]);
         $this->get('classifications')->get('employmentTypes')->setAttribute('required', true);
 
-        $parentCategories = $this->landingPageOptions->getParentCategories();
+        //$parentCategories = $this->landingPageOptions->getParentCategories();
+        $parentCategories = $this->landingPageOptions->getCategoryValues();
         ksort($parentCategories);
         $options = array_merge(['' => '-- keine Auswahl --'], $parentCategories);
         $this->add([
