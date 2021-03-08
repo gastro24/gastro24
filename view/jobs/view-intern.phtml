@@ -123,7 +123,7 @@ $wrapperLogoUrl = $defaultLogoUrl;
                 <?=$this->job->getTitle()?>
               </h2>
               <?= $this->partial('jobs/partials/expired-info.phtml', ['isExpired' => $isExpired]); ?>
-              <?php if ($newerThanDay || !$this->job->getAtsMode()->getMode() === 'none'): ?>
+              <?php if ($newerThanDay): ?>
               <span class="apply-info-new">
                 <i class="fa fa-clock-o">
                 </i> Gehören Sie zu den ersten 3 Bewerbern.
