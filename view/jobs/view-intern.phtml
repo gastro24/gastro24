@@ -96,6 +96,15 @@ else {
 $wrapperLogoUrl = $defaultLogoUrl;
 }
 ?>
+
+<?php if (!$logo): ?>
+<style>
+  .job-info-wrapper {
+    width:100%
+  }
+</style>
+
+<?php endif; ?>
               <?php if ($logo): ?>
               <span class="job-logo-wrapper">
               <img data-gmlazy="false" class="job-logo " alt="<?= $this->organizationName ?>" src="https://gastrojob24.gumlet.net<?= $wrapperLogoUrl ?>?mode=fit&width=140&height=140&quality=75" />
@@ -103,8 +112,7 @@ $wrapperLogoUrl = $defaultLogoUrl;
               </span>
               <?php elseif ($preview) : ?>
               <?php else: ?>
-
-             
+               
               <?php endif; ?>
             
             <div class="job-info-wrapper">
