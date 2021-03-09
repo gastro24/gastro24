@@ -54,7 +54,7 @@ class CreateSingleJob extends AbstractPlugin
         $job->setCompany($values['company']);
 
         // save landingpage categories
-        if (isset($values['category'])) {
+        if (isset($values['category']) && !empty($values['category'])) {
             $categories = [$values['category']];
 
             if (isset($values['subcategory']) && !empty($values['subcategory'])) {

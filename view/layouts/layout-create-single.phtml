@@ -130,13 +130,12 @@ $lang = $this->params('lang');
                         child.prop("disabled", true);
                         var _this = this;
                         $.getJSON(url.replace(':parentId:', $(this).val()), function(items) {
-                            var newOptions = '<option value="">-- Select --</option>';
                             for(var id in items) {
-                                newOptions += '<option value="'+ id +'">'+ items[id] +'</option>';
+                                var option = new Option(items[id], id, false, false);
+                                child.append(option).trigger('change');
                             }
 
-                            child.select2('destroy').html(newOptions).prop("disabled", false)
-                                .select2(options);
+                            child.prop("disabled", false).select2(options);
 
                             afterActions.forEach(function (callback) {
                                 callback(parent, child, items);
@@ -150,7 +149,8 @@ $lang = $this->params('lang');
             })( window, $);
 
             var select2Options = {
-                theme: 'bootstrap'
+                theme: 'bootstrap',
+                minimumResultsForSearch: 1
             };
             var apiUrl =  '/' + lang + '/landingpage/:parentId:/childs';
 

@@ -59,17 +59,15 @@ class Job extends BaseJobForm
                     };
                     
                     parent.on("change", function (e) {
-                        console.log('CAHNGED')
                         child.prop("disabled", true);
                         var _this = this;
                         $.getJSON(url.replace(':parentId:', $(this).val()), function(items) {
-                            var newOptions = '<option value="">-- Select --</option>';
                             for(var id in items) {
-                                newOptions += '<option value="'+ id +'">'+ items[id] +'</option>';
+                                var option = new Option(items[id], id, false, false);
+                                child.append(option).trigger('change');
                             }
 
-                            child.select2('destroy').html(newOptions).prop("disabled", false)
-                                .select2(options);
+                            child.prop("disabled", false).select2(options);
 
                             afterActions.forEach(function (callback) {
                                 callback(parent, child, items);
@@ -83,20 +81,16 @@ class Job extends BaseJobForm
             })( window, $);
 
             var select2Options = { 
-                theme: 'bootstrap' 
+                theme: 'bootstrap',
+                minimumResultsForSearch: 1
             };
             var apiUrl =  '/' + lang + '/landingpage/:parentId:/childs';
-
             var cascadLoading = new Select2Cascade($('#category'), $('#subcategory'), apiUrl, select2Options);
-            cascadLoading.then( function(parent, child, items) {
-                // Dump response data
-                console.debug(items);
-            });
 
             console.log('attached yk.forms.done to ', \$('form'));
 
              \$('form').on('yk.forms.done', function(event, data) {
-                //if (typeof data != 'undefined' && typeof data['data'] != 'undefined') {}
+                 //if (typeof data != 'undefined' && typeof data['data'] != 'undefined') {}
                 if (typeof data != 'undefined' && typeof data['data'] != 'undefined') {
                     if (typeof data['data']['jobvalid'] != 'undefined' && data['data']['jobvalid'] === true) {
                         $('#job_incomplete').hide();
@@ -114,6 +108,7 @@ class Job extends BaseJobForm
                 }
                 console.debug('job-form-inline', event, data);
              });
+             
              \$('.wizard-container').on('wizard:tabShow.jobcontainer', function(e, \$tab, \$nav, index) {
                 var \$link = \$tab.find('a');
                 var href = \$link.attr('href');

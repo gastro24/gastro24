@@ -103,20 +103,20 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
         ]);
         $this->get('classifications')->get('employmentTypes')->setAttribute('required', true);
 
-        //$parentCategories = $this->landingPageOptions->getParentCategories();
-        $parentCategories = $this->landingPageOptions->getCategoryValues();
-        ksort($parentCategories);
-        $options = array_merge(['' => '-- keine Auswahl --'], $parentCategories);
+        $categories = $this->landingPageOptions->getCategoryValues();
+        ksort($categories);
         $this->add([
             'type' => Select::class,
             'name' => 'category',
             'options' => [
                 'label' => 'Kategorie',
-                'value_options' => $options
+                'value_options' => $categories,
+                'empty_option' => '-- keine Auswahl --'
             ],
             'attributes' => [
                 'id' => 'category',
                 'data-width' => '100%',
+                'data-searchbox'   => 1,
                 'multiple' => false,
             ]
         ]);
@@ -127,11 +127,13 @@ class SingleJobForm extends Form implements InputFilterProviderInterface
             'options' => [
                 'label' => 'Unterkategorie',
                 'value_options' => [],
-                'disable_inarray_validator' => true
+                'disable_inarray_validator' => true,
+                'empty_option' => '-- keine Auswahl --'
             ],
             'attributes' => [
                 'id' => 'subcategory',
                 'data-width' => '100%',
+                'data-searchbox'   => 1,
                 'multiple' => false,
             ]
         ]);
