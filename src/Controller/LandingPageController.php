@@ -27,6 +27,7 @@ class LandingPageController extends AbstractActionController
         foreach ($childs as $childData) {
             $results[$childData['child']] = $childData['spec']['query']['q'];
         }
+        ksort($results);
 
         $response->getHeaders()->addHeaderLine( 'Content-Type', 'application/json' );
         $response->setContent(json_encode($results));

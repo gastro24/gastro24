@@ -60,13 +60,15 @@ class Job extends BaseJobForm
                     
                     parent.on("change", function (e) {
                         child.prop("disabled", true);
+                        child.empty();
                         var _this = this;
                         $.getJSON(url.replace(':parentId:', $(this).val()), function(items) {
+                            var option = new Option('-- keine Auswahl --', null, false, false);
+                            child.append(option);
                             for(var id in items) {
                                 var option = new Option(items[id], id, false, false);
                                 child.append(option).trigger('change');
                             }
-
                             child.prop("disabled", false).select2(options);
 
                             afterActions.forEach(function (callback) {
@@ -85,7 +87,7 @@ class Job extends BaseJobForm
                 minimumResultsForSearch: 1
             };
             var apiUrl =  '/' + lang + '/landingpage/:parentId:/childs';
-            var cascadLoading = new Select2Cascade($('#category'), $('#subcategory'), apiUrl, select2Options);
+            new Select2Cascade($('#category'), $('#subcategory'), apiUrl, select2Options);
 
             console.log('attached yk.forms.done to ', \$('form'));
 

@@ -37,7 +37,6 @@ class JobCategoryHydrator implements HydratorInterface
 
         if (isset($data['subcategory']) && !empty($data['subcategory'])) {
             $categories[] = $data['subcategory'];
-            //$object->getTemplateValues()->subcategory = $data['category'];
         }
         $object->getTemplateValues()->categories = $categories;
 
