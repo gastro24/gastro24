@@ -89,7 +89,7 @@ $options = [
     
       'kreuzfahrtschiff' => [
           'id' => 1727,
-		  'query' => [ 'q' => 'kreuzfahrt'],
+		  'query' => [ 'q' => 'Kreuzfahrt'],
 		  'tab' => '',
 		  'panel' => '',
           'text' => 'Kreuzfahrtschiff Jobs',
