@@ -49,12 +49,14 @@ class CategoriesFieldset extends Fieldset implements InputFilterProviderInterfac
             ],
         ]);
 
+        $categories = $this->landingPageOptions->getCategoryValues();
+        ksort($categories);
         $this->add([
             'type' => 'Core/Select',
             'name' => 'subcategory',
             'options' => [
                 'label' => 'Unterkategorie',
-                'value_options' => [],
+                'value_options' => $categories,
                 'disable_inarray_validator' => true,
                 'empty_option' => '-- keine Auswahl --'
             ],

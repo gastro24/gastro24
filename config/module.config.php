@@ -471,6 +471,17 @@ return [
                         ],
                         'may_terminate' => true
                     ],
+                    'landingpage-categories' => [
+                        'type' => 'Segment',
+                        'options' => [
+                            'route' => '/landingpage/categories',
+                            'defaults' => [
+                                'controller' => LandingPageController::class,
+                                'action'     => 'categories',
+                            ]
+                        ],
+                        'may_terminate' => true
+                    ],
                     'forgot-password-startpage' => [
                         'type' => 'Literal',
                         'options' => [

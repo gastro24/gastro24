@@ -59,14 +59,36 @@ class Job extends BaseJobForm
                     };
                     
                     parent.on("change", function (e) {
+                        var oldSubCat = child.val();
                         child.prop("disabled", true);
                         child.empty();
                         var _this = this;
-                        $.getJSON(url.replace(':parentId:', $(this).val()), function(items) {
-                            var option = new Option('-- keine Auswahl --', null, false, false);
+                        var parentId = $(this).val();
+                        var childUrl = url.replace(':parentId:', parentId);
+                        var selected = false;
+                        
+                        console.debug(oldSubCat);
+                        
+                        if (!parentId) {
+                            var option = new Option('-- keine Auswahl --', '', false, false);
+                            child.append(option);
+                            
+                            child.prop("disabled", false).select2(options);
+
+                            afterActions.forEach(function (callback) {
+                                callback(parent, child, items);
+                            });
+                        }
+                        else {
+                            $.getJSON(childUrl, function(items) {
+                            var option = new Option('-- keine Auswahl --', '', false, false);
                             child.append(option);
                             for(var id in items) {
-                                var option = new Option(items[id], id, false, false);
+                                selected = false;
+                                if (id == oldSubCat) {
+                                    selected = true;
+                                }
+                                var option = new Option(items[id], id, false, selected);
                                 child.append(option).trigger('change');
                             }
                             child.prop("disabled", false).select2(options);
@@ -75,6 +97,7 @@ class Job extends BaseJobForm
                                 callback(parent, child, items);
                             });
                         });
+                        }
                     });
                 }
 
@@ -90,7 +113,17 @@ class Job extends BaseJobForm
             new Select2Cascade($('#category'), $('#subcategory'), apiUrl, select2Options);
 
             console.log('attached yk.forms.done to ', \$('form'));
-
+            
+            \$('#sf-general-categoryForm .sf-edit').on('click', function(event, data) {
+                /*var subCat = $('#subcategory').val();
+                $('#category').trigger('change');
+                $('#subcategory').val(subCat)
+                if (!$('#subcategory').val()) {
+                    $('#category').trigger('change');
+                }*/
+                $('#category').trigger('change');
+            });
+            
              \$('form').on('yk.forms.done', function(event, data) {
                  //if (typeof data != 'undefined' && typeof data['data'] != 'undefined') {}
                 if (typeof data != 'undefined' && typeof data['data'] != 'undefined') {

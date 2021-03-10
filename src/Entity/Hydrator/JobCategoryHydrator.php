@@ -18,10 +18,13 @@ class JobCategoryHydrator implements HydratorInterface
         $templateValues = $object->getTemplateValues();
         $categories = $templateValues->get('categories');
 
+        $category = $categories[0] ?? null;
+        $subCcategory = $categories[1] ?? null;
+
         /* @var \Jobs\Entity\Job $object */
         return [
-            'category' => $categories[0] ?? null,
-            'subcategory' => $categories[1] ?? null,
+            'category' => $category,
+            'subcategory' => $subCcategory,
         ];
     }
 
@@ -35,7 +38,7 @@ class JobCategoryHydrator implements HydratorInterface
             $categories[] = $data['category'];
         }
 
-        if (isset($data['subcategory']) && !empty($data['subcategory'])) {
+        if (isset($data['subcategory']) && !empty($data['subcategory']) && $data['subcategory']) {
             $categories[] = $data['subcategory'];
         }
         $object->getTemplateValues()->categories = $categories;

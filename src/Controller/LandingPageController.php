@@ -23,6 +23,7 @@ class LandingPageController extends AbstractActionController
         $parentCategory = $this->params()->fromRoute('parent');
         // load child cats as json
         $childs = $this->landingPageOptions->getChildCategories($parentCategory);
+
         $results = [];
         foreach ($childs as $childData) {
             $results[$childData['child']] = $childData['spec']['query']['q'];
@@ -34,6 +35,19 @@ class LandingPageController extends AbstractActionController
 
         return $response;
 
+    }
+
+    public function categoriesAction()
+    {
+        /* @var \Laminas\Http\PhpEnvironment\Response $response */
+        $response = $this->getResponse();
+        $categories = $this->landingPageOptions->getCategoryValues();
+        ksort($categories);
+
+        $response->getHeaders()->addHeaderLine( 'Content-Type', 'application/json' );
+        $response->setContent(json_encode($categories));
+
+        return $response;
     }
 
 }
