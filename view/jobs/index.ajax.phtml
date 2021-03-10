@@ -472,15 +472,8 @@ if (count($jobs)): ?>
                 <!-- pagination -->
                    <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
                 <!-- end pagination -->
-       <?php  $canonicalUri = $this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true); ?>
- <?php if ($this->params()->fromRoute('isLandingPage') && !$canonicalUri): ?>
-  
-      
-           1
+ 
 
-      
-       
-<?php endif ?>
                 <?php $parts=preg_split('~<!--more-->~' , $description);?>
                 <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
 							<div class="row">
