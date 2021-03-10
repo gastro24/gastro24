@@ -472,8 +472,8 @@ if (count($jobs)): ?>
                 <!-- pagination -->
                    <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
                 <!-- end pagination -->
-       <?php   $currentPage = (isset($query['page']) && $query['page']>0) ? $query['page'] : '1';        ?>
- <?php if ($this->params()->fromRoute('isLandingPage') && $currentPage == 1 ): ?>
+       <?php  $canonicalUri = $this->url('lang/landingPage', ['q' => $this->params()->fromRoute('term'), 'format' => 'html'], true); ?>
+ <?php if ($this->params()->fromRoute('isLandingPage') && !$canonicalUri): ?>
   
       
            1
