@@ -473,7 +473,7 @@ if (count($jobs)): ?>
                    <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
                 <!-- end pagination -->
                 
- <?php if ($this->params()->fromRoute('isLandingPage') && $currentPage == 1): ?>
+ <?php if ($this->params()->fromRoute('isLandingPage') ): ?>
   
       
            1
