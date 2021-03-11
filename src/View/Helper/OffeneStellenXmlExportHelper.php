@@ -81,6 +81,7 @@ class OffeneStellenXmlExportHelper
             $job->addChild('aktivid', 1); // active = 1, inactive = 2
 
             // main job values
+            $job->addChild('link', '<![CDATA[' . htmlspecialchars($this->jobUrl($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
             $job->addChild('StelleTitel', '<![CDATA[' . htmlspecialchars($jobObject->getTitle()) . ']]>');
             $job->addChild('LandRegionID', self::getLandRegionId($jobObject));
             $job->addChild('levelid', self::getLevelId($jobObject));
