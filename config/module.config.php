@@ -315,7 +315,6 @@ return [
              'gastro24/jobs/view-intern' => __DIR__ . '/../view/jobs/view-intern.phtml',
              'gastro24/job/dashboard' => __DIR__ . '/../view/jobs/index/dashboard.phtml',
              'gastro24/create-single-job/index' => __DIR__ . '/../view/jobs/create-single-job.phtml',
-             'gastro24/create-single-job/free' => __DIR__ . '/../view/jobs/create-single-job-free.phtml',
              'gastro24/create-single-job/payment' => __DIR__ . '/../view/jobs/create-single-job-payment.phtml',
              'gastro24/create-single-job/success' => __DIR__ . '/../view/jobs/create-single-job-success.phtml',
              'gastro24/create-single-job/failed' => __DIR__ . '/../view/jobs/create-single-job-failed.phtml',
@@ -557,20 +556,7 @@ return [
                                     'may_terminate' => true,
                                 ],
                             ],
-                            'free' => [
-                                'type' => 'Literal',
-                                'options' => [
-                                    'route' => '/free',
-                                    'defaults' => [
-                                        'controller' => Controller\CreateSingleJobController::class,
-                                        'action' => 'index',
-                                    ],
-                                    'may_terminate' => true,
-                                ],
-                            ],
-
-
-
+                            
                             'single-payment' => [
                                 'type' => 'Segment',
                                 'options' => [
