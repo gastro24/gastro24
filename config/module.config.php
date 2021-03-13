@@ -557,13 +557,13 @@ return [
                                     'may_terminate' => true,
                                 ],
                             ],
-                            'single' => [
+                            'free' => [
                                 'type' => 'Literal',
                                 'options' => [
-                                    'route' => '/single',
+                                    'route' => '/free',
                                     'defaults' => [
                                         'controller' => Controller\CreateSingleJobController::class,
-                                        'action' => 'free',
+                                        'action' => 'index',
                                     ],
                                     'may_terminate' => true,
                                 ],
