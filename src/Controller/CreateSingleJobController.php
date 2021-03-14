@@ -116,6 +116,96 @@ class CreateSingleJobController extends AbstractActionController
         ];
     }
 
+
+
+ public function freeAction()
+    {
+        /* @var \Laminas\Http\PhpEnvironment\Request $request */
+        $request = $this->getRequest();
+        $session = new Container('Gastro24_SingleJobData');
+        $this->layout()->setTemplate('layouts/layout-create-single-free');
+
+        if ($request->isPost()) {
+            $data = array_merge_recursive($this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray());
+
+            $data['classifications'] = [
+                'employmentTypes' => $data['employmentTypes'],
+            ];
+            if (isset($data['industries'])) {
+                $data['classifications']['industries'] = $data['industries'];
+            }
+            if (isset($data['professions'])) {
+                $data['classifications']['professions'] = $data['professions'];
+            }
+
+            $this->form->setData($data);
+            // !!! WORKAROUND: can be removed if datepicker only allows future dates
+            if(isset($data['publishDate']) && !empty($data['publishDate'])) {
+                list($day, $month, $year) = explode('/', $data['publishDate']);
+                $tmpDate = new \DateTime($year . '-' . $month . '-' . $day);
+                $today = new \DateTime();
+                if ($tmpDate < $today) {
+                    return [
+                        'valid' => false,
+                        'form' => $this->form,
+                        'publishDateError' => true,
+                    ];
+                }
+            }
+            if (!$this->form->isValid()) {
+                return [
+                    'valid' => false,
+                    'form' => $this->form,
+                ];
+            }
+
+            $values = $this->form->getData();
+            $values['classifications'] = $data['classifications'];
+
+            $session = new Container('Gastro24_SingleJobData');
+            $session->data = serialize($data);
+            $session->values = serialize($values);
+
+            if (isset($data['addons']) && count($data['addons'])) {
+                return $this->redirect()->toRoute('lang/jobs/single-payment', ['show' => 'options']);
+            }
+
+            //kostenlos --> return $this->redirect()->toRoute('lang/jobs/single-payment');
+            return $this->redirect()->toRoute('lang/jobs/single-payment', ['show' => 'options']);
+        }
+
+        // prefill form
+        if (isset($session->values)) {
+            $values = unserialize($session->values);
+            //$values = array_merge_recursive($values, $this->getRequest()->getFiles()->toArray());
+            $values['logo'] = isset($values['logo_url']) ? $values['logo_url'] : null;
+            $values['image'] = isset($values['image_url']) ? $values['image_url'] : null;
+            $values['classifications'] = [
+                'employmentTypes' => $values['classifications']['employmentTypes'],
+                'industries' => $values['classifications']['industries'] ?? [],
+                'professions' => $values['classifications']['professions'] ?? []
+            ];
+            $this->form->setData($values);
+        }
+
+        return [
+            'locations' => [],
+            'employmentTypes' => [],
+            'form' => $this->form,
+        ];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function paymentAction()
     {
         /* @var \Laminas\Http\PhpEnvironment\Request $request */
