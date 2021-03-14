@@ -1,0 +1,381 @@
+<?php
+// set default page title
+//$this->headTitle($this->translate('Gastrojob24'))->setSeparator(' - ')->setAutoEscape(false);
+
+
+// set default keywords
+$this->headMeta()->setCharset("utf-8");
+$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->setAutoEscape(false);
+
+$this->headLink()->setAutoEscape(false)->prependStylesheet($this->basePath($this->asset('modules/Gastro24/Gastro24.css')));
+$this->headLink()->prependStylesheet($this->basePath($this->asset('dist/css/jquery-ui-1-12.min.css')));
+   // ->prependStylesheet($this->basePath('dist/css/core.min.css'));
+
+$lang = $this->params('lang');
+?>
+
+<?php echo $this->doctype(); ?>
+<html lang="<?php echo $this->params('lang') ?>">
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Kostenlos Einzelinserat schalten</title>
+    <meta name="description" content="">
+    
+    <?php echo $this->headMeta() ?>
+    <?php echo $this->headLink()->setAutoEscape(false) ?>
+    <?php echo $this->headStyle() ?>
+    <meta name="msvalidate.01" content="2A03FA2A5360A355DD3ECEB3DF29DFA3" />
+
+    <script>
+        var lang="<?= $this->params('lang') ?>"; var basePath="<?= $this->basePath() ?>";
+    </script>
+    
+    <link rel="preconnect" href="https://www.google.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125791873-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-125791873-1');
+      gtag('config', 'AW-980688466');
+
+    </script>
+    <!-- End Google Tag Manager -->
+    
+</head>
+<body class="single-page landingpage">
+    <header id="header" role="banner">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="navbar-header hidden-xs col-md-4">
+                    <a class="logo" href="/de/job/single">
+                        <img src="https://www.gastrojob24.ch/modules/Gastro24/gastrojob24_dark_blue.svg" alt="Gastrojob24">
+                    </a>
+                </div>
+
+                <a class="visible-xs navbar-brand" href="/de/job/single">
+                        <img src="/modules/Gastro24/gastrojob24_dark_blue.svg" alt="Gastrojob24" class="menu-logo">
+                </a>
+               
+
+            </div>
+        </div>
+    </header>
+
+
+    <main id="content">
+        <div class="container">
+            <!-- dynamic content -->
+            <?php echo $this->content; ?>
+            <!-- end dynamic content -->
+        </div>
+    </main>
+
+     <?php echo $this->partial("footer") ?>
+
+    <?php
+        $this->headScript()->appendFile($this->basePath($this->asset('modules/Gastro24/js/create-single-job.js')))
+            ->appendFile($this->basePath('dist/js/blueimp-file-upload.min.js'))
+            ->appendFile($this->basePath('dist/js/tinymce.js'))
+            ->appendFile($this->basePath('modules/Gastro24/js/jobpdfupload.js'))
+            ->appendFile($this->basePath('modules/Core/js/core.forms.js'))
+            ->appendFile($this->basepath('modules/Core/js/core.spinnerbutton.js'))
+            ->appendFile($this->basepath('modules/Core/js/forms.descriptions.js'));
+
+        $langScript = 'dist/locales/' . $lang . '.js';
+        echo $this->inlineScript()->setAutoEscape(false)->appendFile($this->basepath($this->asset('dist/js/core.min.js')))
+            ->appendFile($this->basePath('/dist/js/jquery-ui-1-12.min.js'))
+            ->appendFile($this->basePath($this->asset('modules/Gastro24/js/index-main.min.js')))
+            ->appendFile($this->basePath($langScript));
+
+        echo $this->configHeadScript()->setAutoEscape(false);
+    ?>
+
+    <!-- lazy loaded javascript -->
+    <!-- TODO: check integration -->
+<!--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.1/tinymce.min.js"></script>-->
+
+    <!-- iframe resizer -->
+    <?php $this->configHeadScript()->appendScript('iFrameResize({ log: false }, "#iframeDirectLink")'); ?>
+    <!-- end iframe resizer -->
+    <script type="text/javascript">
+        (function($) {
+
+            var Select2Cascade = ( function(window, $) {
+                function Select2Cascade(parent, child, url, select2Options) {
+                    var afterActions = [];
+                    var options = select2Options || {};
+
+                    // Register functions to be called after cascading data loading done
+                    this.then = function(callback) {
+                        afterActions.push(callback);
+                        return this;
+                    };
+
+                    parent.on("change", function (e) {
+                        child.prop("disabled", true);
+                        child.empty();
+                        var _this = this;
+                        $.getJSON(url.replace(':parentId:', $(this).val()), function(items) {
+                            var option = new Option('-- keine Auswahl --', null, false, false);
+                            child.append(option);
+                            for(var id in items) {
+                                var option = new Option(items[id], id, false, false);
+                                child.append(option).trigger('change');
+                            }
+
+                            child.prop("disabled", false).select2(options);
+
+                            afterActions.forEach(function (callback) {
+                                callback(parent, child, items);
+                            });
+                        });
+                    });
+                }
+
+                return Select2Cascade;
+
+            })( window, $);
+
+            var select2Options = {
+                theme: 'bootstrap',
+                minimumResultsForSearch: 1
+            };
+            var apiUrl =  '/' + lang + '/landingpage/:parentId:/childs';
+
+            $('select').select2(select2Options);
+            var cascadLoading = new Select2Cascade($('#category'), $('#subcategory'), apiUrl, select2Options);
+            cascadLoading.then( function(parent, child, items) {
+                // Dump response data
+                console.debug(items);
+            });
+
+            $('.link--add-location').click(function() {
+                var newRow = $('.row--locations').last().clone();
+                var index = parseInt(newRow.find('.location-zip-code label').attr('for').replace("locationZipCode_", ""));
+
+                // check for empty location
+                var lastLocationValue = $('#csj-location-' + index).val();
+                var lastLocationStreetValue = $('#locationStreet_' + index).val();
+                if(!lastLocationValue || !lastLocationStreetValue) {
+                    $('.location-hint').show();
+                    return;
+                }
+                $('.location-hint').hide();
+                index += 1;
+
+                newRow.find('.location-zip-code label').attr('for', 'locationZipCode_' + index);
+                newRow.find('.location-zip-code input').attr('name', 'locationZipCode_' + index)
+                    .attr('id', 'locationZipCode_' + index).val('');
+                newRow.find('.location-street label').attr('for', 'locationStreet_' + index);
+                newRow.find('.location-street input').attr('name', 'locationStreet_' + index)
+                    .attr('id', 'locationStreet_' + index).val('');
+
+                newRow.find('.location-select label').attr('for', 'csj-location-' + index).addClass('csj-location-' + index);
+
+                var geoSelect = $('<select>').attr('data-autoinit', '').attr('data-placeholder', '').attr('data-clear-on-reset', 1).attr('data-language', 'de')
+                    .attr('class', 'geoselect').attr('name', 'location_' + index).attr('id', 'csj-location-' + index)
+                    .attr('data-width', '100%').attr('required', true);
+                newRow.find('.location-select select').remove();
+                newRow.find('.location-select span').remove();
+                geoSelect.insertAfter(newRow.find('.location-select label'));
+                newRow.find('.location-select select').geoSelect();
+                newRow.find('.location-select label').append('<span class="required-mark">*</span>');
+
+                newRow.insertAfter('.row--locations:last');
+            });
+
+            $('.add_box').find('input').click(function() {
+                var total = 95;
+                $('.add_box').find('input:checked').each(function(index, item) {
+                    total += parseFloat($(item).attr('data-value'));
+                });
+                $('.total').text(total);
+                $('#single-job-form input[name="totalPrice"]').val(total);
+            });
+
+            $('.pdf-link').click(function(e) {
+                e.preventDefault();
+                $('.pdf-link-text').hide('fast');
+                $('.positionTextarea').hide('fast');
+                $('.pdf-upload').show('fast');
+                $('.textarea-link-text').show('fast');
+                $('#single-job-form input[name="pdf_uri"]').attr('required', 'required');
+                $('#single-job-form div[name="position"]').removeAttr("required");
+
+            });
+
+            $('.textarea-link').click(function(e) {
+                e.preventDefault();
+                $('.pdf-link-text').show('fast');
+                $('.positionTextarea').show('fast');
+                $('.pdf-upload').hide('fast');
+                $('.textarea-link-text').hide('fast');
+                $('#single-job-form input[name="pdf_uri"]').removeAttr("required");
+                $('#single-job-form div[name="position"]').attr('required', 'required');
+            });
+
+            $('div#pdf-span').on('gastroUploadFailed', function(e) {
+                console.log('pdf errors');
+                $('.pdf-upload').show('fast');
+                $('.pdf-upload #pdf').show('fast');
+            });
+
+
+            $('#single-job-address-form .toggle-address-checkbox').click(function(e) {
+                $('#single-job-address-form .otherAddressForm').toggle('fast');
+            });
+
+            $('#single-job-form input[name="jobTitle"]').on('change', function() {
+                $("#single-job-preview-modal .panel-body h1").text($(this).val())
+            });
+
+            $('#single-job-form .employmentTypesSelect select').on( 'select2:close', function(event) {
+                $("#single-job-preview-modal .job-short-info .type").html('');
+
+                $(this).parent().find('.select2-container .select2-selection__choice').each(function(index, elem) {
+                    var spanTitle = $(this).attr('title');
+                    if (index > 0) {
+                        spanTitle = ', ' + spanTitle;
+                    }
+                    var typeOfContractSpan = $('<span>').addClass('yk-contract yk-vollzeit').text(spanTitle);
+
+                    $("#single-job-preview-modal .job-short-info .type").append(typeOfContractSpan);
+                });
+            });
+
+            $('#single-job-form input[name="bannerImage"]').on('change', function() {
+                var inputElem = $(this);
+                if ((inputElem.length > 0) && inputElem[0].files && inputElem[0].files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#single-job-preview-modal .banner").css('background-image', 'url(' + e.target.result + ')');
+                    }
+                    reader.readAsDataURL(inputElem[0].files[0]);
+                }
+            });
+
+            $('#single-job-form input[name="logo"]').on('change', function() {
+                var inputElem = $(this);
+                if ((inputElem.length > 0) && inputElem[0].files && inputElem[0].files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#single-job-preview-modal .wrapper__logo img").attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(inputElem[0].files[0]);
+                }
+            });
+
+            $('#single-job-form input[name="company"]').on('change', function() {
+                $("#single-job-preview-modal .job-short-info .company strong").text($(this).val())
+            });
+
+            $('#single-job-form input[name="publishDate"]').on('change', function() {
+                var dateValue = $(this).val().split('/');
+                var formattedDate;
+
+                if (dateValue) {
+                    formattedDate = new Date(dateValue[2] + '-' + dateValue[1] + '-' + dateValue[0]);
+                }
+                else {
+                    formattedDate = new Date();
+                }
+
+                var month =  formattedDate.getMonth();
+                month += 1;  // JavaScript months are 0-11
+                var dateString = ('0' + formattedDate.getDate()).substr(-2,2) + '.' +
+                    ('0' + month).substr(-2,2) + '.' + formattedDate.getFullYear();
+                $("#single-job-preview-modal .job-short-info .date span").text(dateString)
+            });
+
+            $('#single-job-form textarea[name="companyDescription"]').on('change', function() {
+                $("#single-job-preview-modal .companyDescription").text($(this).val())
+            });
+
+            $('#single-job-address-form button[type="submit"]').on('click', function(e) {
+                //e.preventDefault();
+                var otherAddressCheckbox = $('#single-job-address-form .toggle-address-checkbox');
+
+                if (!otherAddressCheckbox.attr('checked')) {
+                    $('.otherAddressForm input').each(function() {
+                        $(this).removeAttr("required");
+                    })
+                }
+                $('#single-job-address-form').submit();
+            })
+
+            $('.single-job-preview-modal-button').on('click', function (e) {
+                e.preventDefault();
+
+                // set text
+                $("#single-job-preview-modal .position").html($('#single-job-form input[name="position"]').val());
+
+                var bannerInfo = $('.bannerImage-field .file-info'),
+                    logoInfo = $('.logo-field .file-info');
+
+                // workaround because click event for file-delete is prevented in jobpdfupload.js
+                if (bannerInfo.length > 0) {
+                    //has banner
+                    $("#single-job-preview-modal .banner").show();
+                    $("#single-job-preview-modal .teaser__job-detail").show();
+                    $("#single-job-preview-modal h1.no-banner").hide();
+                    $("#single-job-preview-modal .wrapper__right").hide();
+                }
+                else {
+                    // no banner
+                    $("#single-job-preview-modal .banner").hide();
+                    $("#single-job-preview-modal .teaser__job-detail").hide();
+                    $("#single-job-preview-modal h1.no-banner").show();
+                    $("#single-job-preview-modal .wrapper__right").show();
+                }
+
+                // check for logo
+                if (logoInfo.length < 1) {
+                    $("#single-job-preview-modal .wrapper__logo img").attr('src', '/modules/Gastro24/images/no-company-logo.png');
+                }
+
+
+                // set locations
+                $("#single-job-preview-modal .job-short-info .location").html('');
+                var locations = $('select[id^="csj-location-"]');
+                var cityString = '';
+                $.each(locations, function (key, locationObject) {
+                    var valuesObj = jQuery.parseJSON($(locationObject).val());
+                    var city = valuesObj.city;
+                    cityString += ', ' + city
+                })
+                var finalCityString = cityString.substring( cityString.indexOf( ", " ) +1, cityString.length );
+                $("#single-job-preview-modal .job-short-info .location").append(finalCityString);
+
+                var pdfFileLink = $('.pdf-upload input[name="pdf_uri"]');
+                var positionTextarea = $("#single-job-form .positionTextarea");
+                if (pdfFileLink.length > 0 && !positionTextarea.is(":visible")) {
+                    $("#single-job-preview-modal .embed-container #iframePdf").attr('src', pdfFileLink.val());
+                    $("#single-job-preview-modal .embed-container").show();
+                    $("#single-job-preview-modal .embed-container #iframePdf").show();
+                    $("#single-job-preview-modal .html-container").hide();
+                }
+                else if (positionTextarea.is(":visible")) {
+                    $("#single-job-preview-modal .embed-container").hide();
+                    $("#single-job-preview-modal .html-container").show();
+                }
+            });
+        })(jQuery);
+    </script>
+
+</body>
+</html>
