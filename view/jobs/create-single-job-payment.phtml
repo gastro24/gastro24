@@ -72,7 +72,7 @@ $sessionData = unserialize($session->data);
             echo $sessionData['totalPrice'];
         }
         else {
-            echo '95';
+            echo ($isFreeSingle) ? '0' : '95';
         }
      ?>.-</span></h3></div>
 
@@ -259,7 +259,7 @@ $sessionData = unserialize($session->data);
         <div class="row">
             <div class="col-sm-12">
                 <div class="btn-toolbar">
-                    <a type="button" href="<?= $this->url('lang/jobs/single') ?>" class="cam-btn-reset"
+                    <a type="button" href="<?= ($isFreeSingle) ? $this->url('lang/jobs/free-single') : $this->url('lang/jobs/single') ?>" class="cam-btn-reset"
                             title="Zurück">&laquo; Zurück und Inserat überarbeiten
                     </a>
                     <?= $this->formButton()->openTag($this->invoiceAddressForm->get('submit')); ?>

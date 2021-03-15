@@ -200,7 +200,9 @@ $lang = $this->params('lang');
             });
 
             $('.add_box').find('input').click(function() {
-                var total = 95;
+                var isFreeSingle = $('#single-job-form input[name="isFreeSingle"]').val();
+                var total = (isFreeSingle) ? 0 : 95;
+
                 $('.add_box').find('input:checked').each(function(index, item) {
                     total += parseFloat($(item).attr('data-value'));
                 });

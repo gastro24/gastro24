@@ -447,8 +447,9 @@ $sessionData = unserialize($session->data);
     <!-- end section publication -->
 
     <?= $this->formHidden($this->form->get('totalPrice')); ?>
+    <input type="hidden" id="isFreeSingle" name="isFreeSingle" value="<?= $isFreeSingle ?>">
 
-    <!-- section buttons -->
+        <!-- section buttons -->
     <div class="section-body">
         <div class="row">
             <div class="col-sm-12">
