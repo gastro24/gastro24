@@ -7,7 +7,18 @@
  * @copyright  2013 - 2018 Cross Solution <http://cross-solution.de>
  */
 
-$this->headTitle('Jetzt Einzelinserat schalten');
+$isFreeSingle = $this->isFreeSingle;
+
+// define headline by single type
+$headline = ' Einzelinserat schalten';
+if ($isFreeSingle) {
+    $headline = 'Gratis' . $headline;
+}
+else {
+    $headline = 'Jetzt' . $headline;
+}
+$this->headTitle($headline);
+
 $publishDate = $this->dateFormat(new DateTime(), 'medium', 'none');
 $image = isset($this->details['image']['entity']) ? $this->details['image']['entity'] : null;
 
@@ -143,7 +154,7 @@ $sessionData = unserialize($session->data);
                         echo $sessionData['totalPrice'];
                     }
                     else {
-                        echo '95';
+                        echo $isFreeSingle ? '0' : '95';
                     }
                 ?></span>.-</h3>
         </div>
@@ -277,11 +288,14 @@ $sessionData = unserialize($session->data);
                 </label>
             </div>
         </div>
-        <div class="row form-group pdf-link-text">
-            <div class="col-md-12">
-                <p>oder <a style="text-decoration:underline;" class="pdf-link" href="#">PDF-Inserat erfassen</a></p>
+        <!-- no PDF for free -->
+        <?php if(!$isFreeSingle): ?>
+            <div class="row form-group pdf-link-text">
+                <div class="col-md-12">
+                    <p>oder <a style="text-decoration:underline;" class="pdf-link" href="#">PDF-Inserat erfassen</a></p>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
         <div class="row form-group pdf-upload" id="pdf-span">
             <div class="col-md-12">
                 <?= $this->formLabel($this->form->get('pdf'), 'Stellenbeschreibung als PDF<span class="required-mark">*</span>'); ?>
@@ -410,7 +424,9 @@ $sessionData = unserialize($session->data);
 
     <!-- section publication and addons -->
     <hr />
-     
+
+    <!-- not for free -->
+    <?php if(!$isFreeSingle): ?>
         <div class="row form-group">
             <div class="col-md-12">
                     <?= $this->formLabel($this->form->get('publishDate'), 'Gewünschtes Aufschaltdatum (Leer lassen = heute)'); ?>
@@ -425,9 +441,8 @@ $sessionData = unserialize($session->data);
                     <span>Nach unserer persönlichen Kontrolle geht Ihre Anzeige innert 24h oder zu dem von Ihnen definierten Zeitpunkt online.</span>
                 </label>
             </div>
-  
-
-      </div>
+        </div>
+    <?php endif ?>
 
     <!-- end section publication -->
 

@@ -315,9 +315,7 @@ return [
              'gastro24/jobs/view-intern' => __DIR__ . '/../view/jobs/view-intern.phtml',
              'gastro24/job/dashboard' => __DIR__ . '/../view/jobs/index/dashboard.phtml',
              'gastro24/create-single-job/index' => __DIR__ . '/../view/jobs/create-single-job.phtml',
-             'gastro24/create-single-job/free' => __DIR__ . '/../view/jobs/create-single-job-free.phtml',
              'gastro24/create-single-job/payment' => __DIR__ . '/../view/jobs/create-single-job-payment.phtml',
-             'gastro24/create-single-job/payment-free' => __DIR__ . '/../view/jobs/create-single-job-payment-free.phtml',
              'gastro24/create-single-job/success' => __DIR__ . '/../view/jobs/create-single-job-success.phtml',
              'gastro24/create-single-job/failed' => __DIR__ . '/../view/jobs/create-single-job-failed.phtml',
              'gastro24/form/create-single-job' => __DIR__ . '/../view/jobs/create-single-job-form.phtml',
@@ -554,31 +552,21 @@ return [
                                     'defaults' => [
                                         'controller' => Controller\CreateSingleJobController::class,
                                         'action' => 'index',
+                                        'isFree' => false
                                     ],
                                     'may_terminate' => true,
                                 ],
                             ],
 
 
-                            'free' => [
+                            'free-single' => [
                                 'type' => 'Literal',
                                 'options' => [
                                     'route' => '/free',
                                     'defaults' => [
                                         'controller' => Controller\CreateSingleJobController::class,
-                                        'action' => 'free',
-                                    ],
-                                    'may_terminate' => true,
-                                ],
-                            ],
-
-                          'payment-free' => [
-                                'type' => 'Segment',
-                                'options' => [
-                                    'route' => '/single-free[/:show]',
-                                    'defaults' => [
-                                        'controller' => Controller\CreateSingleJobController::class,
-                                        'action' => 'payment-free',
+                                        'action' => 'index',
+                                        'isFree' => true
                                     ],
                                     'may_terminate' => true,
                                 ],
@@ -587,17 +575,15 @@ return [
                             'single-payment' => [
                                 'type' => 'Segment',
                                 'options' => [
-                                    'route' => '/single-payment[/:show]',
+                                    'route' => '/single-payment[/:show][/:isFree]',
                                     'defaults' => [
                                         'controller' => Controller\CreateSingleJobController::class,
                                         'action' => 'payment',
+                                        'isFree' => false
                                     ],
                                     'may_terminate' => true,
                                 ],
                             ],
-
-
-
 
                             'single-success' => [
                                 'type' => 'Literal',
@@ -660,19 +646,19 @@ return [
                         ],
                     ],
                     'organizations-profiles' => [
-                                'type' => 'Regex',
-                                'options' => [
-                                    'regex' => '/profile-(?<name>.*?)-(?<id>[a-f0-9]+)$',
-                                    'spec' => '/profile-%name%-%id%',
-                                    'route' => '/',
-                                    'constraints' => [
-                                        'id' => '\w+',
-                                    ],
-                                    'defaults' => [
-                                        'action' => 'detail',
-                                        'controller' => 'Organizations/Profile'
-                                    ],
-                                ],
+                        'type' => 'Regex',
+                        'options' => [
+                            'regex' => '/profile-(?<name>.*?)-(?<id>[a-f0-9]+)$',
+                            'spec' => '/profile-%name%-%id%',
+                            'route' => '/',
+                            'constraints' => [
+                                'id' => '\w+',
+                            ],
+                            'defaults' => [
+                                'action' => 'detail',
+                                'controller' => 'Organizations/Profile'
+                            ],
+                        ],
                     ],
 
                     'order-job-activation' => [

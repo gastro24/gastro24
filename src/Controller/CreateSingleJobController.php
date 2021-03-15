@@ -45,9 +45,13 @@ class CreateSingleJobController extends AbstractActionController
         $request = $this->getRequest();
         $session = new Container('Gastro24_SingleJobData');
         $this->layout()->setTemplate('layouts/layout-create-single');
+        $isFreeSingle = $this->params()->fromRoute('isFree');
 
         if ($request->isPost()) {
-            $data = array_merge_recursive($this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray());
+            $data = array_merge_recursive(
+                $this->getRequest()->getPost()->toArray(),
+                $this->getRequest()->getFiles()->toArray()
+            );
 
             $data['classifications'] = [
                 'employmentTypes' => $data['employmentTypes'],
@@ -70,6 +74,7 @@ class CreateSingleJobController extends AbstractActionController
                         'valid' => false,
                         'form' => $this->form,
                         'publishDateError' => true,
+                        'isFreeSingle' => $isFreeSingle
                     ];
                 }
             }
@@ -77,6 +82,7 @@ class CreateSingleJobController extends AbstractActionController
                 return [
                     'valid' => false,
                     'form' => $this->form,
+                    'isFreeSingle' => $isFreeSingle
                 ];
             }
 
@@ -84,15 +90,23 @@ class CreateSingleJobController extends AbstractActionController
             $values['classifications'] = $data['classifications'];
 
             $session = new Container('Gastro24_SingleJobData');
+            //add type of single for cretae plugin later
+            $data['isFreeSingle'] = $isFreeSingle;
             $session->data = serialize($data);
             $session->values = serialize($values);
 
             if (isset($data['addons']) && count($data['addons'])) {
-                return $this->redirect()->toRoute('lang/jobs/single-payment', ['show' => 'options']);
+                return $this->redirect()->toRoute('lang/jobs/single-payment', [
+                    'show' => 'options',
+                    'isFree' => $isFreeSingle,
+                ]);
             }
 
             //kostenlos --> return $this->redirect()->toRoute('lang/jobs/single-payment');
-            return $this->redirect()->toRoute('lang/jobs/single-payment', ['show' => 'options']);
+            return $this->redirect()->toRoute('lang/jobs/single-payment', [
+                'show' => 'options',
+                'isFree' => $isFreeSingle
+            ]);
         }
 
         // prefill form
@@ -112,199 +126,16 @@ class CreateSingleJobController extends AbstractActionController
         return [
             'locations' => [],
             'employmentTypes' => [],
+            'isFreeSingle' => $isFreeSingle,
             'form' => $this->form,
         ];
     }
-
-
-
- public function freeAction()
-    {
-        /* @var \Laminas\Http\PhpEnvironment\Request $request */
-        $request = $this->getRequest();
-        $session = new Container('Gastro24_SingleJobData');
-        $this->layout()->setTemplate('layouts/layout-create-single-free');
-
-        if ($request->isPost()) {
-            $data = array_merge_recursive($this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray());
-
-            $data['classifications'] = [
-                'employmentTypes' => $data['employmentTypes'],
-            ];
-            if (isset($data['industries'])) {
-                $data['classifications']['industries'] = $data['industries'];
-            }
-            if (isset($data['professions'])) {
-                $data['classifications']['professions'] = $data['professions'];
-            }
-
-            $this->form->setData($data);
-            // !!! WORKAROUND: can be removed if datepicker only allows future dates
-            if(isset($data['publishDate']) && !empty($data['publishDate'])) {
-                list($day, $month, $year) = explode('/', $data['publishDate']);
-                $tmpDate = new \DateTime($year . '-' . $month . '-' . $day);
-                $today = new \DateTime();
-                if ($tmpDate < $today) {
-                    return [
-                        'valid' => false,
-                        'form' => $this->form,
-                        'publishDateError' => true,
-                    ];
-                }
-            }
-            if (!$this->form->isValid()) {
-                return [
-                    'valid' => false,
-                    'form' => $this->form,
-                ];
-            }
-
-            $values = $this->form->getData();
-            $values['classifications'] = $data['classifications'];
-
-            $session = new Container('Gastro24_SingleJobData');
-            $session->data = serialize($data);
-            $session->values = serialize($values);
-
-            if (isset($data['addons']) && count($data['addons'])) {
-                return $this->redirect()->toRoute('lang/jobs/payment-free', ['show' => 'options']);
-            }
-
-            //kostenlos --> return $this->redirect()->toRoute('lang/jobs/single-payment');
-            return $this->redirect()->toRoute('lang/jobs/payment-free', ['show' => 'options']);
-        }
-
-        // prefill form
-        if (isset($session->values)) {
-            $values = unserialize($session->values);
-            //$values = array_merge_recursive($values, $this->getRequest()->getFiles()->toArray());
-            $values['logo'] = isset($values['logo_url']) ? $values['logo_url'] : null;
-            $values['image'] = isset($values['image_url']) ? $values['image_url'] : null;
-            $values['classifications'] = [
-                'employmentTypes' => $values['classifications']['employmentTypes'],
-                'industries' => $values['classifications']['industries'] ?? [],
-                'professions' => $values['classifications']['professions'] ?? []
-            ];
-            $this->form->setData($values);
-        }
-
-        return [
-            'locations' => [],
-            'employmentTypes' => [],
-            'form' => $this->form,
-        ];
-    }
-
-
-   public function paymentfreeAction()
-    {
-        /* @var \Laminas\Http\PhpEnvironment\Request $request */
-        $request = $this->getRequest();
-        $this->layout()->setTerminal(true)->setTemplate('layouts/layout-create-single');
-        $session = new Container('Gastro24_SingleJobData');
-        $mainValues = unserialize($session->values);
-        $mainData = unserialize($session->data);
-        // prefill company name from first step
-        $firstLocation = json_decode($mainValues['location_1'], true);
-        $this->invoiceAddressForm->setData(['invoiceAddress' => [
-            'company' => $mainValues['company'],
-            'street' => $mainValues['locationStreet_1'],
-            'zipCode' => $mainValues['locationZipCode_1'],
-            'city' => $firstLocation['city'],
-            'email' => $mainValues['applicationEmail'] ?? '',
-        ]]);
-
-        $hasAddons = $this->params()->fromRoute('show');
-
-        if ($request->isPost()) {
-            $data = array_merge_recursive($this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray());
-            $data['name'] = $data['firstname'] . ' ' . $data['lastname'];
-            $data['invoiceAddress']['name'] = $data['firstname'] . ' ' . $data['lastname'];
-            $this->invoiceAddressForm->setData($data);
-
-            // remove validation for other address if not checked
-            if (!isset($data['toggleOtherAddress'])) {
-                $this->invoiceAddressForm->remove('gender-other-address');
-                $this->invoiceAddressForm->remove('toggleOtherAddress');
-                $this->invoiceAddressForm->remove('otherAddress');
-            }
-
-            if (!$this->invoiceAddressForm->isValid()) {
-                if ($hasAddons == 'options') {
-                    return [
-                        'payment' => true,
-                        'valid' => false,
-                        'invoiceAddressForm' => $this->invoiceAddressForm,
-                    ];
-                }
-                return [
-                    'valid' => false,
-                    'invoiceAddressForm' => $this->invoiceAddressForm,
-                ];
-            }
-
-            $session->data = serialize(array_merge_recursive($mainValues, $data));
-            $session->values = serialize(array_merge_recursive($mainData, $this->invoiceAddressForm->getData()));
-
-            $session = new Container('Gastro24_SingleJobData');
-            if (!$session->values) {
-                return $this->redirect()->toRoute('lang/jobs/single');
-            }
-
-            $sessionValues = unserialize($session->values);
-
-            $plugin = $this->plugin(Plugin\CreateSingleJob::class);
-
-            $classifications = new Classifications();
-            $classificationsHydrator = $this->form->get('classifications')->getHydrator();
-            $classifications->setEmploymentTypes($classificationsHydrator->hydrateValue('employmentTypes', $mainData['employmentTypes']));
-            if (isset($mainData['industries'])) {
-                $classifications->setIndustries($classificationsHydrator->hydrateValue('industries', $mainData['industries']));
-            }
-            if (isset($mainData['professions'])) {
-                $classifications->setProfessions($classificationsHydrator->hydrateValue('professions', $mainData['professions']));
-            }
-            $sessionValues['classifications'] = $classifications;
-
-            try {
-                $plugin($sessionValues);
-            } catch (\Exception $e) {
-                return $this->redirect()->toRoute('lang/jobs/single-failed');
-            }
-
-            // clear session
-            $session->exchangeArray([]);
-
-            return $this->redirect()->toRoute('lang/jobs/single-success');
-        }
-
-        if ($hasAddons == 'options') {
-            return [
-                'formattedAddons' => $this->getFormattedAddons($mainData['addons'] ?? []),
-                'payment' => true,
-                'invoiceAddressForm' => $this->invoiceAddressForm,
-                'totalPrice' => $mainValues['totalPrice']
-            ];
-        }
-
-        return [
-            'invoiceAddressForm' => $this->invoiceAddressForm,
-            'totalPrice' => $mainValues['totalPrice']
-        ];
-    }
-
-
-
-
-
-
-
-
 
     public function paymentAction()
     {
         /* @var \Laminas\Http\PhpEnvironment\Request $request */
         $request = $this->getRequest();
+        $isFreeSingle = boolval($this->params()->fromRoute('isFree'));
         $this->layout()->setTerminal(true)->setTemplate('layouts/layout-create-single');
         $session = new Container('Gastro24_SingleJobData');
         $mainValues = unserialize($session->values);
@@ -340,11 +171,13 @@ class CreateSingleJobController extends AbstractActionController
                         'payment' => true,
                         'valid' => false,
                         'invoiceAddressForm' => $this->invoiceAddressForm,
+                        'isFreeSingle' => $isFreeSingle,
                     ];
                 }
                 return [
                     'valid' => false,
                     'invoiceAddressForm' => $this->invoiceAddressForm,
+                    'isFreeSingle' => $isFreeSingle,
                 ];
             }
 
@@ -353,7 +186,8 @@ class CreateSingleJobController extends AbstractActionController
 
             $session = new Container('Gastro24_SingleJobData');
             if (!$session->values) {
-                return $this->redirect()->toRoute('lang/jobs/single');
+                return ($isFreeSingle) ? $this->redirect()->toRoute('lang/jobs/free') :
+                    $this->redirect()->toRoute('lang/jobs/single');
             }
 
             $sessionValues = unserialize($session->values);
@@ -388,13 +222,15 @@ class CreateSingleJobController extends AbstractActionController
                 'formattedAddons' => $this->getFormattedAddons($mainData['addons'] ?? []),
                 'payment' => true,
                 'invoiceAddressForm' => $this->invoiceAddressForm,
-                'totalPrice' => $mainValues['totalPrice']
+                'totalPrice' => $mainValues['totalPrice'],
+                'isFreeSingle' => $isFreeSingle,
             ];
         }
 
         return [
             'invoiceAddressForm' => $this->invoiceAddressForm,
-            'totalPrice' => $mainValues['totalPrice']
+            'totalPrice' => $mainValues['totalPrice'],
+            'isFreeSingle' => $isFreeSingle,
         ];
     }
 

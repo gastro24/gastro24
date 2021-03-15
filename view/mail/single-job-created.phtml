@@ -67,6 +67,10 @@ include(__DIR__ . '/' . 'vars.inc.phtml');
                                                                                         <td><?= $job->getTitle() ?></td>
                                                                                     </tr>
                                                                                     <tr>
+                                                                                        <td>Free Single Anzeige: </td>
+                                                                                        <td><?= ($this->isFreeSingle) ? 'Ja' : 'Nein' ?></td>
+                                                                                    </tr>
+                                                                                    <tr>
                                                                                         <td><?= $this->translate("Location") ?></td>
                                                                                         <td><?= $job->getLocation() ?></td>
                                                                                     </tr>

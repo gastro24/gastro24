@@ -146,6 +146,7 @@ class CreateSingleJob extends AbstractPlugin
     private function sendMails($job, $order, $values)
     {
         $applicationOptionData = [];
+
         switch ($values['enableOnlineApplication']) {
             case 'applicationMail':
                 $applicationOption = 'E-Mail Adresse für Bewerbungen';
@@ -191,7 +192,8 @@ class CreateSingleJob extends AbstractPlugin
             'applicationOption' => $applicationOption,
             'applicationOptionData' => $applicationOptionData,
             'companyWebsite' => $values['companyWebsite'] ?? '',
-            'companyDescription' => $values['companyDescription']
+            'companyDescription' => $values['companyDescription'],
+            'isFreeSingle' => $values['isFreeSingle']
         ];
 
         if (isset($values['otherAddress'])) {

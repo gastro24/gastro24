@@ -1,9 +1,8 @@
 <?php
-    $session = new \Laminas\Session\Container('Gastro24_SingleJobData');
-    $sessionData = unserialize($session->data);
+    $isFreeSingle = $this->isFreeSingle;
+$session = new \Laminas\Session\Container('Gastro24_SingleJobData');
+$sessionData = unserialize($session->data);
 ?>
-
-
     <!-- breadcrumbs -->
    <div class="sub-navigation-wrapper"></div>
     <!-- end breadcrumbs -->
@@ -41,7 +40,7 @@
                         <input type="checkbox" disabled="disabled" checked="checked">
                     </div>
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
-                        <span>Einzelinserat Standard 1 Monat: CHF 95.-</span>
+                        <span>Einzelinserat Basic 1 Monat: CHF <?= ($isFreeSingle) ? '0' : '95'?>.-</span>
                     </div>
                 </div>
 
