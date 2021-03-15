@@ -10,4 +10,6 @@ Disallow: */apply
 #Special parameters
 Disallow: *q=*
 Disallow: */xml
+Disallow: /de/job/free
+Disallow: /de/auth/register
 Sitemap: https://www.gastrojob24.ch/pro-sitemaps-4112318.php
