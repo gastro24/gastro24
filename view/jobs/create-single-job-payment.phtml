@@ -43,7 +43,7 @@ $sessionData = unserialize($session->data);
                         <span>Einzelinserat <?= ($isFreeSingle) ? 'Free' : 'Pro'?> 1 Monat: CHF <?= ($isFreeSingle) ? '0' : '95'?>.-</span>
                     </div>
                 </div>
-               <?php if (!$isFreeSingle): >
+               <?php if (!$isFreeSingle): ?>
                 <div class="row form-group">
                     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
                         <input type="checkbox" disabled="disabled" checked="checked">
