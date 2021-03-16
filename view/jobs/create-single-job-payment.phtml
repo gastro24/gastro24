@@ -40,10 +40,10 @@ $sessionData = unserialize($session->data);
                         <input type="checkbox" disabled="disabled" checked="checked">
                     </div>
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
-                        <span>Einzelinserat Basic 1 Monat: CHF <?= ($isFreeSingle) ? '0' : '95'?>.-</span>
+                        <span>Einzelinserat <?= ($isFreeSingle) ? 'Free' : 'Pro'?> 1 Monat: CHF <?= ($isFreeSingle) ? '0' : '95'?>.-</span>
                     </div>
                 </div>
-
+               <?php if (!$isFreeSingle): >
                 <div class="row form-group">
                     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
                         <input type="checkbox" disabled="disabled" checked="checked">
@@ -61,6 +61,7 @@ $sessionData = unserialize($session->data);
                         <span>Schaltung im Publikationsnetzwerk: <em>inklusiv</em> </span>
                     </div>
                 </div>
+                <?php endif; ?>
 
            <hr />
            <p> <a href="<?= $this->url('lang/jobs/single') ?>">&laquo; Job-Boostings ändern / hinzufügen</a></p>
