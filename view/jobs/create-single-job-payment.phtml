@@ -21,20 +21,21 @@ $sessionData = unserialize($session->data);
     </div>
     <div class="stand-alone-card" style="margin-top:15px;">
        <div class="extra-content info-card">
-    
-        <?php if ($this->payment) : ?>
-     
             <h2>Ihre Bestellübersicht</h2>
-            <?php foreach ($this->formattedAddons as $addon ) : ?>
-                <div class="row form-group">
-                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
-                        <input type="checkbox" disabled="disabled" checked="checked">
+
+           <?php if ($this->payment) : ?>
+                <?php foreach ($this->formattedAddons as $addon ) : ?>
+                    <div class="row form-group">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
+                            <input type="checkbox" disabled="disabled" checked="checked">
+                        </div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
+                            <span><?= $addon['name'] . ': CHF ' . $addon['price'] . '.-' ?></span>
+                        </div>
                     </div>
-                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 summary-options-values">
-                        <span><?= $addon['name'] . ': CHF ' . $addon['price'] . '.-' ?></span>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+           <?php endif; ?>
+
             <div class="row form-group">
                     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 summary-options">
                         <input type="checkbox" disabled="disabled" checked="checked">
@@ -64,7 +65,7 @@ $sessionData = unserialize($session->data);
                 <?php endif; ?>
 
            <hr />
-           <p> <a href="<?= $this->url('lang/jobs/single') ?>">&laquo; Job-Boostings ändern / hinzufügen</a></p>
+           <p> <a href="<?= ($isFreeSingle) ? $this->url('lang/jobs/free-single') : $this->url('lang/jobs/single') ?>">&laquo; Job-Boostings ändern / hinzufügen</a></p>
 
         <div class="post">
         <h3>Total: <span class="total">CHF 
@@ -78,7 +79,7 @@ $sessionData = unserialize($session->data);
      ?>.-</span></h3></div>
 
        
-    <?php endif; ?>
+
 
 
       </div>
@@ -184,11 +185,10 @@ $sessionData = unserialize($session->data);
             </div>
         </div>
 
-<hr />
+
    <?php if ($this->payment) : ?>
-        <?php
-            $otherAddressFieldset = $this->invoiceAddressForm->get('otherAddress');
-        ?>
+        <hr />
+        <?php $otherAddressFieldset = $this->invoiceAddressForm->get('otherAddress'); ?>
  
             <h1>Abweichende Rechnungsadresse?</h1>
             <div class="row form-group">
