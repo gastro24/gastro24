@@ -479,6 +479,7 @@ if (count($jobs)): ?>
 							<div class="row">
                               <div class="col-md-12" id="infobox-<?=$this->params()->fromRoute('term') ?>">
                                 <div class="card similarjob extra-content">
+                                <?php echo $this->landingpages(); ?>
                                    <?= $parts[1] ?>
                                     <?php if (51 == $query): echo $this->landingpages(); endif; ?>
                                     
