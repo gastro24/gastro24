@@ -256,11 +256,11 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
         </div>
       </div>
     </div>
-    <div class="stand-alone-card">
+    <div class="stand-alone-card extra-shadow">
       <?php if ($hasBanner): ?>
       <img class="job-top-image" alt="<?=$this->job->getTitle()?>" data-src="https://gastrojob24.gumlet.net<?= $imageServerUrl ?>?mode=crop&amp;width=845&amp;quality=75);" />
       <?php endif; ?>
-      <div class="info-card">
+      <div class="info-card info-card-job-body">
         <?php if ($this->html): ?>
         <div class="position">
           <?=$this->html?>
