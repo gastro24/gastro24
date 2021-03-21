@@ -37,7 +37,7 @@ class JobboardApplyUrl extends AbstractHelper
             $pdflink = null;
             $class = "no-apply-link";
             if (strpos($url,"http") !== false) {
-               $text = '.pdf' == substr($url, -4) ? 'PDF downloaden' : 'Jetzt online bewerben';
+               $text = '.pdf' == substr($url, -4) ? 'Originalinserat öffnen' : 'Jetzt online bewerben';
             } else {
                 $url = null;
             }
