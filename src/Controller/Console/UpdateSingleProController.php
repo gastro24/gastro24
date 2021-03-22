@@ -46,8 +46,6 @@ class UpdateSingleProController extends AbstractActionController
     {
         /** @var \Orders\Repository\Orders $ordersRepo */
         $ordersRepo = $this->repositories->get('Orders');
-        /* @var \Jobs\Repository\Job $jobsRepo */
-        $jobsRepo = $this->repositories->get('Jobs/Job');
         $todayDateString = date('Y-m-d');
 
         $singleOrders = $ordersRepo->findBy([
@@ -88,10 +86,10 @@ class UpdateSingleProController extends AbstractActionController
                 $this->logger->info("Update publish date of job. ID: " . $job->getId());
                 echo "Update publish date of job. ID: " . $job->getId() . PHP_EOL;
 
-                $job->setDatePublishStart();
-                $jobsRepo->store($job);
+//                $job->setDatePublishStart();
+//                $this->repositories->store($job);
             }
         }
-        $jobsRepo->flush();
+//        $this->repositories->flush();
     }
 }
