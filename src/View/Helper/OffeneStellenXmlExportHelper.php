@@ -15,7 +15,7 @@ use Orders\Entity\Order;
 class OffeneStellenXmlExportHelper
 {
 
-    static public function getOffeneStellenXml($jobsPaginator, $ordersRepo)
+    static public function getOffeneStellenXml($jobsPaginator, $ordersRepo, $jobUrlHelper)
     {
         $xmlStr='<?xml version="1.0" encoding="ISO-8859-1" ?><content></content>';
         $xml = simplexml_load_string($xmlStr);
@@ -83,6 +83,7 @@ class OffeneStellenXmlExportHelper
             // main job values
       
             $job->addChild('StelleTitel', '<![CDATA[' . htmlspecialchars($jobObject->getTitle()) . ']]>');
+            $job->addChild('link', '<![CDATA[' . htmlspecialchars($jobUrlHelper($jobObject,['linkOnly'=>true, 'absolute' => true])) . ']]>');
             $job->addChild('LandRegionID', self::getLandRegionId($jobObject));
             $job->addChild('levelid', self::getLevelId($jobObject));
             $job->addChild('KategorieRubrikID', 34); // Hotellerie / Gastronomie / Hotellerie / Gastronomie

@@ -23,6 +23,7 @@ $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager'
  * @see https://www.offene-stellen.ch/XMLInfo/
  */
 if ($this->channel == 'offene-stellen' || $this->channel == 'offene-stellen.xml') {
+    $jobUrlHelper = $this->plugin('jobUrl');
     $ordersRepo = $this->services('repositories')->get('Orders');
     $paginators = $this->services('Core/PaginatorService');
     $params = [
@@ -31,7 +32,7 @@ if ($this->channel == 'offene-stellen' || $this->channel == 'offene-stellen.xml'
     /* @var \Laminas\Paginator\Paginator $paginator */
     $jobsPaginator = $paginators->get('Jobs/Job', $params);
     $jobsPaginator->setItemCountPerPage(1000);
-    $xml = \Gastro24\View\Helper\OffeneStellenXmlExportHelper::getOffeneStellenXml($jobsPaginator, $ordersRepo);
+    $xml = \Gastro24\View\Helper\OffeneStellenXmlExportHelper::getOffeneStellenXml($jobsPaginator, $ordersRepo, $jobUrlHelper);
 
     echo html_entity_decode($xml->saveXML());
 }
