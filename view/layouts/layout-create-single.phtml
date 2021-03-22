@@ -131,7 +131,7 @@ $lang = $this->params('lang');
                         child.empty();
                         var _this = this;
                         $.getJSON(url.replace(':parentId:', $(this).val()), function(items) {
-                            var option = new Option('-- keine Auswahl --', null, false, false);
+                            var option = new Option('-- keine Auswahl --', '', false, false);
                             child.append(option);
                             for(var id in items) {
                                 var option = new Option(items[id], id, false, false);
