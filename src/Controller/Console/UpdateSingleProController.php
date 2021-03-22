@@ -66,6 +66,10 @@ class UpdateSingleProController extends AbstractActionController
             /* @var \Jobs\Entity\Job $job */
             $job = $order->getEntity()->getEntity();
 
+            if (!$job) {
+                continue;
+            }
+
             //TODO: skip jobs not active
             if ($job->getStatus()->getName() !== StatusInterface::ACTIVE) {
                 $this->logger->info("Skip Job, status not active. ID: " . $job->getId());
