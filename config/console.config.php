@@ -22,6 +22,15 @@ return [
                         ],
                     ],
                 ],
+                'single-pro-update' => [
+                    'options' => [
+                        'route'    => 'single-jobs update',
+                        'defaults' => [
+                            'controller' => 'Gastro24/Jobs/Console/UpdateSinglePro',
+                            'action'     => 'updateSinglePro',
+                        ],
+                    ],
+                ],
                 'jobs-clear'    => [
                     'options' => [
                         'route'    => 'jobs clear [--onlyDebug=]',

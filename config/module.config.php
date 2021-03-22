@@ -127,6 +127,7 @@ return [
             'Gastro24/Jobs/Console' => [Controller\Console\JobsConsoleController::class,'factory'],
             'Gastro24/Jobs/Console/DeleteJobs' => [Controller\Console\DeleteJobsController::class,'factory'],
             'Gastro24/Jobs/Console/GoogleIndex' => [Controller\Console\GoogleIndexController::class,'factory'],
+            'Gastro24/Jobs/Console/UpdateSinglePro' => [Controller\Console\UpdateSingleProController::class,'factory'],
             'Core/File'    => Factory\Controller\FileControllerFactory::class,
             Controller\JobController::class => [Controller\JobController::class,'factory'],
             Controller\ForgotPasswordPopupController::class => Factory\Controller\ForgotPasswordPopupControllerFactory::class,

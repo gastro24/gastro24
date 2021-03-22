@@ -278,6 +278,8 @@ class CreateSingleJob extends AbstractPlugin
         $snapshot->setOrganizationName($values['company']);
         $products = new ArrayCollection();
 
+        // TODO: distinguish between free and pro single
+        //$isFreeSingleProduct = $values['isFreeSingle'];
         $product = new Product();
         $product->setName('Einzelinserat')
                 ->setProductNumber(1)
