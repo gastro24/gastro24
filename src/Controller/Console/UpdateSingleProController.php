@@ -78,18 +78,16 @@ class UpdateSingleProController extends AbstractActionController
 
             $jobDate = $job->getDatePublishStart() ?? $job->getDateCreated();
             $jobDateString = $jobDate->modify('+15 days')->format('Y-m-d');
-//            echo "Job Date: " .$jobDateString . PHP_EOL;
-//            echo "Today: " . $todayDateString . PHP_EOL;
 
             // update publish start date after 15 days
             if ($jobDateString == $todayDateString) {
                 $this->logger->info("Update publish date of job. ID: " . $job->getId());
                 echo "Update publish date of job. ID: " . $job->getId() . PHP_EOL;
 
-//                $job->setDatePublishStart();
-//                $this->repositories->store($job);
+                $job->setDatePublishStart();
+                $this->repositories->store($job);
             }
         }
-//        $this->repositories->flush();
+        $this->repositories->flush();
     }
 }
