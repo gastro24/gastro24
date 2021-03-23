@@ -49,6 +49,16 @@ return [
                             'action'     => 'googleIndexJobs',
                         ],
                     ],
+                ],
+                'solr-update-job'    => [
+                    'options' => [
+                        'route'    => 'job solr-update [--jobId=]',
+                        'defaults' => [
+                            'controller' => 'Gastro24/Jobs/Console/UpdateSolrJob',
+                            'action'     => 'updateJobInSolr',
+                            'jobId'  => '0',
+                        ],
+                    ],
                 ]
             ]
         ]
