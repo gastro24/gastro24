@@ -105,6 +105,13 @@ class UpdateSingleProController extends AbstractActionController
                 $this->logger->info("Update publish date of job. ID: " . $job->getId());
                 echo "Update publish date of job. ID: " . $job->getId() . PHP_EOL;
 
+                // HINT: set publishEnd for JsonLD - validThrough
+                $oldDateStart = $job->getDatePublishStart();
+                $dateEnd = new \DateTime($oldDateStart);
+                $dateEnd->add(new \DateInterval("P30D"));
+                $job->setDatePublishEnd($dateEnd);
+
+                // update publish start date
                 $job->setDatePublishStart();
                 $this->repositories->store($job);
 
