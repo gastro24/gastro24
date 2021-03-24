@@ -31,6 +31,7 @@ class JobboardApplyUrl extends AbstractHelper
     public function __invoke(JobInterface $job)
     {
         $ats = $job->getAtsMode();
+        $pdflink = null;
 
         if ($ats->isDisabled()) {
             $url = $job->getLink();
