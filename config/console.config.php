@@ -31,6 +31,15 @@ return [
                         ],
                     ],
                 ],
+                'migration' => [
+                    'options' => [
+                        'route'    => 'migration',
+                        'defaults' => [
+                            'controller' => \Gastro24\Controller\Console\MigrationConsoleController::class,
+                            'action'     => 'migrate',
+                        ],
+                    ],
+                ],
                 'jobs-clear'    => [
                     'options' => [
                         'route'    => 'jobs clear [--onlyDebug=]',

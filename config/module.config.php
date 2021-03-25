@@ -128,6 +128,7 @@ return [
             'Gastro24/Jobs/Console/DeleteJobs' => [Controller\Console\DeleteJobsController::class,'factory'],
             'Gastro24/Jobs/Console/GoogleIndex' => [Controller\Console\GoogleIndexController::class,'factory'],
             'Gastro24/Jobs/Console/UpdateSinglePro' => [Controller\Console\UpdateSingleProController::class,'factory'],
+            Controller\Console\MigrationConsoleController::class => [Controller\Console\MigrationConsoleController::class,'factory'],
             'Gastro24/Jobs/Console/UpdateSolrJob' => [Controller\Console\UpdateSolrJobController::class,'factory'],
             'Core/File'    => Factory\Controller\FileControllerFactory::class,
             Controller\JobController::class => [Controller\JobController::class,'factory'],

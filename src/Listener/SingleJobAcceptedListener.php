@@ -43,11 +43,22 @@ class SingleJobAcceptedListener
 
         if (!$order) { return; }
 
+        //set Publish End Date - single jobs are only available for 30 days
+        // HINT: datePublishStart is set in Yawik ManageContoller
+        $dateEnd = $job->getDatePublishStart() ?? new \DateTime();
+        $dateEnd->add(new \DateInterval("P30D"));
+        $job->setDatePublishEnd($dateEnd);
+        $this->jobsRepository->store($job);
+
         // check for publishDat in future
         if ($job->getTemplateValues()->get('publishDate')) {
             // convert to valid date format
             list($day, $month, $year) = explode('/', $job->getTemplateValues()->get('publishDate'));
-            $job->setDatePublishStart(new \DateTime($year . '-' . $month . '-' . $day));
+            //set Publish End Date - single jobs are only available for 30 days
+            $datePublishStart = new \DateTime($year . '-' . $month . '-' . $day);
+            $job->setDatePublishStart($datePublishStart);
+            $datePublishStart->add(new \DateInterval("P30D"));
+            $job->setDatePublishEnd($datePublishStart);
             $job->changeStatus(Status::ACTIVE, 'single job was activated.');
             $this->jobsRepository->store($job);
         }

@@ -11,11 +11,11 @@ use Orders\Entity\Order;
 use Solr\Filter\EntityToDocument\JobEntityToSolrDocument as EntityToDocumentFilter;
 
 /**
- * Console Controller which updated publishedDate of Single Pro Jobs
+ * Console Controller for migrations
  *
  * @author Stefanie Drost <contact@stefaniedrost.com>
  */
-class UpdateSingleProController extends AbstractActionController
+class MigrationConsoleController extends AbstractActionController
 {
     /**
      * @var RepositoryService
@@ -63,12 +63,15 @@ class UpdateSingleProController extends AbstractActionController
         );
     }
 
-    public function updateSingleProAction()
+    public function migrateAction()
     {
+        echo 'Start migration' . PHP_EOL;
+
         /** @var \Orders\Repository\Orders $ordersRepo */
         $ordersRepo = $this->repositories->get('Orders');
         $todayDateString = date('Y-m-d');
 
+        // fetch single jobs
         $singleOrders = $ordersRepo->findBy([
             '$and' => [
                 ['type' => 'job'],
@@ -92,33 +95,13 @@ class UpdateSingleProController extends AbstractActionController
             //skip jobs not active
             if ($job->getStatus()->getName() !== StatusInterface::ACTIVE) {
                 $this->logger->info("Skip Job, status not active. ID: " . $job->getId());
-                //echo "Skip Job, status not active. ID: " . $job->getId() . PHP_EOL;
+               // echo "Skip Job, status not active. ID: " . $job->getId() . PHP_EOL;
 
                 continue;
             }
 
-            $jobDate = $job->getDatePublishEnd();
-            $jobDate->sub(new \DateInterval("P15D"));
-            $jobDateString = $jobDate->format('Y-m-d');
-
-            // update publish start date after 15 days
-            if ($jobDateString == $todayDateString) {
-                $this->logger->info("Update publish date of job. ID: " . $job->getId());
-                echo "Update publish date of job. ID: " . $job->getId() . PHP_EOL;
-
-                // update publish start date
-                $job->setDatePublishStart();
-                $job->getTemplateValues()->set('singlePublishDateUpdate', true);
-                $this->repositories->store($job);
-
-                $document = $this->entityToDocumentFilter->filter($job);
-                $this->solrClient->addDocument($document);
-
-                // commit to index & optimize it
-                $this->solrClient->commit(true, false);
-                $this->solrClient->optimize(1, true, false);
-            }
+            $this->logger->info("Active single job. ID: " . $job->getId());
+            echo "Active single job. ID: " . $job->getId() . PHP_EOL;
         }
-        $this->repositories->flush();
     }
 }
