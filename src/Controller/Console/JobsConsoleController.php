@@ -12,6 +12,7 @@ use Laminas\Log\LoggerInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\ProgressBar\Adapter\Console as ConsoleAdapter;
 use Laminas\ProgressBar\ProgressBar;
+use Orders\Entity\Order;
 
 /**
  * JobsConsoleController.php
@@ -101,10 +102,7 @@ class JobsConsoleController extends AbstractActionController
 
         // mark single jobs as expired
         echo "Expire single jobs ...\n";
-        $date = new \DateTime('today');
-        $date->sub(new \DateInterval('P' . $days . 'D'));
-        $singleQuery = $this->getSingleJobsQuery($date, $orgKeys);
-        $jobs = $jobsRepo->findBy($singleQuery, null, (int) $limit, (int) $offset);
+        $jobs = $this->getSingleJobsForUpdate();
         $count = count($jobs);
         $this->markAsExpired($repositories, $jobs);
         $this->logger->info("Cron: Expire jobs: Mark " . $count . " single jobs as expired.");
@@ -127,6 +125,53 @@ class JobsConsoleController extends AbstractActionController
         $this->markAsExpired($repositories, $jobs);
 
         return PHP_EOL;
+    }
+
+    private function getSingleJobsForUpdate()
+    {
+        $jobsForUpdate = [];
+
+        $endDate = new \DateTime('tomorrow midnight');
+        /** @var \Orders\Repository\Orders $ordersRepo */
+        $ordersRepo = $this->repositories->get('Orders');
+        $singleOrders = $ordersRepo->findBy([
+            '$and' => [
+                ['type' => 'job'],
+                ['products' => [
+                    '$elemMatch' => [
+                        'name' => 'Einzelinserat'
+                    ]
+                ]]
+            ]
+        ]);
+
+        /** @var Order $order */
+        foreach ($singleOrders as $order) {
+            /* @var \Jobs\Entity\Job $job */
+            $job = $order->getEntity()->getEntity();
+
+            if (!$job) {
+                continue;
+            }
+
+            //skip jobs not active
+            if ($job->getStatus()->getName() !== StatusInterface::ACTIVE) {
+                $this->logger->info("Skip Job, status not active. ID: " . $job->getId());
+                //echo "Skip Job, status not active. ID: " . $job->getId() . PHP_EOL;
+
+                continue;
+            }
+
+            if ($job->isDeleted()) {
+                continue;
+            }
+
+            if ($job->getDatePublishEnd() && ($job->getDatePublishEnd() < $endDate)) {
+                $jobsForUpdate[] = $job;
+            }
+        }
+
+        return $jobsForUpdate;
     }
 
     private function printInfo($info, $offset, $jobs)
@@ -183,25 +228,6 @@ class JobsConsoleController extends AbstractActionController
         $repositories->flush();
         $progress->update($i, 'Done');
         $progress->finish();
-    }
-
-    private function getSingleJobsQuery($date, $orgKeys)
-    {
-        return [
-            '$and' => [
-                ['status.name' => StatusInterface::ACTIVE],
-                ['$or' => [
-                    ['datePublishStart.date' => ['$lt' => $date]],
-                    ['datePublishEnd.date' => ['$lt' => new \DateTime('today midnight')]],
-                ]],
-                ['$or' => [
-                    ['isDeleted' => ['$exists' => false]],
-                    ['isDeleted' => false],
-                ]],
-                ['user' => ['$exists' => false]], // fetch only Einzelinserate
-                ['organization' => ['$nin' => $orgKeys]],
-            ]
-        ];
     }
 
     private function getPaidJobsQuery($date, $orgId)

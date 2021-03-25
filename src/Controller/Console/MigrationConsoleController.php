@@ -117,10 +117,12 @@ class MigrationConsoleController extends AbstractActionController
                 // commit to index & optimize it
                 $this->solrClient->commit(true, false);
                 $this->solrClient->optimize(1, true, false);
+
+                echo "Update single job. ID: " . $job->getId() . PHP_EOL;
             }
 
-            $this->logger->info("Active single job. ID: " . $job->getId());
-            echo "Active single job. ID: " . $job->getId() . PHP_EOL;
+            //$this->logger->info("Active single job. ID: " . $job->getId());
+            //echo "Active single job. ID: " . $job->getId() . PHP_EOL;
         }
 
         $this->repositories->flush();
