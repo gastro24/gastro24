@@ -100,8 +100,30 @@ class MigrationConsoleController extends AbstractActionController
                 continue;
             }
 
+            if ($job->isDeleted()) {
+                continue;
+            }
+
+            if(!$job->getDatePublishEnd()) {
+                $publishEndDate = $job->getDatePublishStart();
+                $publishEndDate->add(new \DateInterval("P30D"));
+
+                $job->setDatePublishEnd($publishEndDate);
+                $this->repositories->store($job);
+
+                $document = $this->entityToDocumentFilter->filter($job);
+                $this->solrClient->addDocument($document);
+
+                // commit to index & optimize it
+                $this->solrClient->commit(true, false);
+                $this->solrClient->optimize(1, true, false);
+            }
+
             $this->logger->info("Active single job. ID: " . $job->getId());
             echo "Active single job. ID: " . $job->getId() . PHP_EOL;
         }
+
+        $this->repositories->flush();
+        echo "Migration done" . PHP_EOL;
     }
 }

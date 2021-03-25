@@ -97,6 +97,10 @@ class UpdateSingleProController extends AbstractActionController
                 continue;
             }
 
+            if ($job->isDeleted()) {
+                continue;
+            }
+
             $jobDate = $job->getDatePublishEnd();
             $jobDate->sub(new \DateInterval("P15D"));
             $jobDateString = $jobDate->format('Y-m-d');
