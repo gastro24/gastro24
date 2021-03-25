@@ -104,22 +104,29 @@ class MigrationConsoleController extends AbstractActionController
                 continue;
             }
 
-            if(!$job->getDatePublishEnd()) {
-                $publishEndDate = $job->getDatePublishStart();
-                $publishEndDate->add(new \DateInterval("P30D"));
+            $document = $this->entityToDocumentFilter->filter($job);
+            $this->solrClient->addDocument($document);
 
-                $job->setDatePublishEnd($publishEndDate);
-                $this->repositories->store($job);
+            // commit to index & optimize it
+            $this->solrClient->commit(true, false);
+            $this->solrClient->optimize(1, true, false);
 
-                $document = $this->entityToDocumentFilter->filter($job);
-                $this->solrClient->addDocument($document);
-
-                // commit to index & optimize it
-                $this->solrClient->commit(true, false);
-                $this->solrClient->optimize(1, true, false);
-
-                echo "Update single job. ID: " . $job->getId() . PHP_EOL;
-            }
+//            if(!$job->getDatePublishEnd()) {
+//                $publishEndDate = $job->getDatePublishStart();
+//                $publishEndDate->add(new \DateInterval("P30D"));
+//
+//                $job->setDatePublishEnd($publishEndDate);
+//                $this->repositories->store($job);
+//
+//                $document = $this->entityToDocumentFilter->filter($job);
+//                $this->solrClient->addDocument($document);
+//
+//                // commit to index & optimize it
+//                $this->solrClient->commit(true, false);
+//                $this->solrClient->optimize(1, true, false);
+//
+//                echo "Update single job. ID: " . $job->getId() . PHP_EOL;
+//            }
 
             //$this->logger->info("Active single job. ID: " . $job->getId());
             //echo "Active single job. ID: " . $job->getId() . PHP_EOL;
