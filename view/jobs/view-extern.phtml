@@ -134,6 +134,7 @@ if ($dayDiff->days < 1) {
 }
 
 $link = $this->job->getLink();
+$pdfcompressLink = str_replace("https://www.gastrojob24.ch", "https://gastrojob24.gumlet.net",$link");
 $industries = $job->getClassifications()->getIndustries();
 $qualifications = $this->job->getClassifications()->getProfessions();
 
@@ -354,6 +355,8 @@ endif;
                 }
               
             </style>
+
+            <?=pdfcompressLink?>
                 
                    <canvas style="width:100%" id="my_canvas"></canvas>
                    	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js"></script>
