@@ -356,58 +356,26 @@ endif;
               
             </style>
 
-            <?=$pdfcompressLink?>
-                
-                   <canvas style="width:100%" id="my_canvas"></canvas>
-                   	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js"></script>
-                    <script>
-                    
-                        pdfjsLib.getDocument("<?=$link?>").then(doc => {
-                            //console.log("This file has " + doc._pdfInfo.numPages + " pages");
-                    
-                            doc.getPage(1).then(page => {
-                                
-                        
-                                var myCanvas = document.getElementById("my_canvas");
-                                var context = myCanvas.getContext("2d");
-                                var viewport = page.getViewport(1.4);
-                                 myCanvas.width = viewport.width;
-                                 myCanvas.height = viewport.height;
-                    
-                                page.render({
-                                    canvasContext: context,
-                                    viewport: viewport
+            <img 
+            alt="PDF-Stellenbeschreibung von <?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?>" 
+            title="<?= (!empty($this->organizationName)) ? $this->organizationName : $orgName ?> sucht 
+            <?=ucfirst($this->job->getTitle())?> in <?php
+                    $location = $job->getLocations()->current();
+                    if ($location == '') {
+                        echo $this->translate('Swiss');
+                    }
+                    elseif ($location) {
+                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    else {
+                        echo preg_replace('~\(.*?\)$~', '', (string) $job->getLocation());
+                    }
+                    ?>
+            " class="img-responsive" src="<?=$pdfcompressLink?>?page=1&quality=75&width=845" />
+           
 
-                                });
-                    
-                                var renderTask = page.render(renderContext);
-                                renderTask.promise.then(function() {
-                                    //console.log('Page rendered');
-                                });
-                    
-                    
-                            });
-                    
-                    
-                        });
-                    
-                    </script>
-             
-
-              <div class="info-card hidden">
-
-                  <i class="fa fa-file-pdf-o"></i> 
-                     <a href="<?=$link?>" class="text-center pdf-link-original" target="_blank" rel="noopener" 
-                  title="Originalinserat öffnen">Originalinserat öffnen</a>
-
-       
-             </div>
-
-                
-                
-        
           
-                  <?php else: ?>
+              <?php else: ?>
                     
                     <iframe style="height:1500px;width:100%;background-color:#fff;" src="" data-src="<?=$link?>"></iframe>
 
