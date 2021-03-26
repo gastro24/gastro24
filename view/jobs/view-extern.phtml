@@ -134,7 +134,7 @@ if ($dayDiff->days < 1) {
 }
 
 $link = $this->job->getLink();
-$pdfcompressLink = str_replace("https://www.gastrojob24.ch", "https://gastrojob24.gumlet.net",$link");
+$pdfcompressLink = str_replace("https://www.gastrojob24.ch", "https://gastrojob24.gumlet.net",$link);
 $industries = $job->getClassifications()->getIndustries();
 $qualifications = $this->job->getClassifications()->getProfessions();
 
