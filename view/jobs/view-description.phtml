@@ -36,8 +36,7 @@ $defaultLogoUrl = $this->basePath('modules/Gastro24/images/no-company-logo.png')
 $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
 $org = $this->job->getOrganization();
 $orgIsDisabled = false;
-//$orgName = $this->jobOrganizationName($this->job);
-$orgName = $this->job->jobOrganizationName;
+$orgName = $this->jobOrganizationName($this->job);
 if ($org && (Organizations\Entity\Organization::PROFILE_DISABLED == $org->getProfileSetting() || is_null($org->getProfileSetting()) )) {
     $orgIsDisabled = true;
 }
