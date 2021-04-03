@@ -85,10 +85,7 @@
 
     <?php endif ?>
 
-    <div class="meta-adress">
-     <a class="fa fa-car" style="display:inline;" target="_blank" rel="noopener nofollow"
-            href="https://www.google.com/maps/dir//<?= $googleMapsString ?>/"><span>Anfahrtsweg berechnen</span></a>
-    </div>
+    
   <!-- end visible-xs -->
   </div>
 <!-- end info-card -->
@@ -101,6 +98,11 @@
         <img style="position:absolute;" width="300" data-src="https://maps.googleapis.com/maps/api/staticmap?center=<?= $googleMapsString ?>&language=de&zoom=15&scale=2&size=300x150&maptype=roadmap&key=AIzaSyCoY42r_qqmRmnKdikLHnh3kPcAQePc-0w&format=jpg&visual_refresh=true&markers=size:mid%7Ccolor:0xd9534f%7Clabel:%7C<?= $googleMapsString ?>" alt="Google Map von <?= $googleMapsString ?>">
     
      <!-- end visible-xs -->
+    </div>
+
+    <div class="meta-adress info-card" style="margin-top:0px;">
+     <a class="fa fa-car" style="display:inline;" target="_blank" rel="noopener nofollow"
+            href="https://www.google.com/maps/dir//<?= $googleMapsString ?>/"><span>Anfahrtsweg berechnen</span></a>
     </div>
   <!-- end iframe-container -->
 </div>
