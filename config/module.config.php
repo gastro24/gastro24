@@ -312,6 +312,7 @@ return [
              'templates/classic/index' => __DIR__ . '/../view/templates/classic/index.phtml',
              'templates/modern/index' => __DIR__ . '/../view/templates/modern/index.phtml',
              'iframe/iFrame.phtml' => __DIR__ . '/../view/jobs/iframe/iFrame.phtml',
+             'gastro24/jobs/view-description' => __DIR__ . '/../view/jobs/view-description.phtml',
              'gastro24/jobs/view-extern' => __DIR__ . '/../view/jobs/view-extern.phtml',
              'gastro24/jobs/view-mcdonalds' => __DIR__ . '/../view/jobs/view-mcdonalds.phtml',
              'gastro24/jobs/view-zfv' => __DIR__ . '/../view/jobs/view-zfv.phtml',
@@ -758,13 +759,13 @@ return [
                 '6066fdd2c407d03fd6089143' => 145,
                 '605dd8b87392641e1003e513' => 144,
                 '6055ceee1f00166b65501038' => 103,
-                       '605252333f88c814c866c8d9' => 102,
-                   '6052508a3f88c814c866c8d3' => 101,
-                 '60467054292128229c46dcf6' => 100,
-                   '604672079ef39e1af7663793' => 99,
-                 '6044dc523a098655965a6367' => 98,
-                 '6046757f292128229c46dcff' => 94,
-                 '6044daad10833a4f86588556' => 93,
+                '605252333f88c814c866c8d9' => 102,
+                '6052508a3f88c814c866c8d3' => 101,
+                '60467054292128229c46dcf6' => 100,
+                '604672079ef39e1af7663793' => 99,
+                '6044dc523a098655965a6367' => 98,
+                '6046757f292128229c46dcff' => 94,
+                '6044daad10833a4f86588556' => 93,
                 '6043c75ad772bb6f83379299' => 96,
                 '60421c4fd927b419b96207a6' => 95,
                 '6055f582b71740202931e60e' => 89,
@@ -782,13 +783,12 @@ return [
         Options\CompanyTemplatesMap::class => [[
             /* Firmen-Id => View-Template-Name */
             'map' => [
-               //'5dc6bc273c050f120b421aa2' => 'gastro24/jobs/view-zfv',
                 // McDonald's Suisse Restaurants
                 '5bcf612fb6428b0b1008db60' => 'gastro24/jobs/view-mcdonalds',
                 // zfv
                 '5aa7e1d77bb2b57b5d3c03e4' => 'gastro24/jobs/view-zfv',
-                 // sv group
-                 '59e4b53e7bb2b553412f9be9' => 'gastro24/jobs/view-zfv',
+                // sv group
+                '59e4b53e7bb2b553412f9be9' => 'gastro24/jobs/view-zfv',
                 // buergenstock
                 '5bcdfda2b6428ba17c5c9048' => 'gastro24/jobs/view-zfv',
                 // adecco
@@ -801,6 +801,8 @@ return [
                 '5a970fea7bb2b5a578812d52' => 'gastro24/jobs/view-zfv',
                 //gastronet.ch
                 '5db7f6bb3c050f1326103fc2' => 'gastro24/jobs/view-zfv',
+                //offene-stellen (only description is displayed)
+                '5dc6bc273c050f120b421aa2' => 'gastro24/jobs/view-description',
             ],
         ]],
     ],
