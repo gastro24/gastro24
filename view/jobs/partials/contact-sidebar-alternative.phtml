@@ -70,12 +70,12 @@
 
     <?php if (!$this->preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
     <div class="meta-adress">
-1
+
         <a class="fa fa-angle-right" rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>"><span>zur Firmenwebsite</span></a>
     </div>
 
     <?php elseif ($useCompanyAddress && $this->job->getOrganization()) : ?>
-
+<!-- -->
     <div class="meta-adress">
         <a href="tel:<?= $orgAddress->getPhone() ?>" rel="nofollow"><?= $orgAddress->getPhone() ?></a>
         <a class="fa fa-angle-right" href="<?= $orgAddress->getWebsite() ?>" rel="nofollow"><span>zur Firmenwebsite</span></a>
