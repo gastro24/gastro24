@@ -68,13 +68,13 @@
         ?>
     </address>
 
-    <?php if ( !$this->preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
+    <?php if (!$this->preview && $this->job->getTemplateValues()->get('companyWebsite')) : ?>
     <div class="meta-adress">
 
         <a class="fa fa-angle-right" rel="nofollow" title="<?= $this->organizationName ?>" href="<?= $this->job->getTemplateValues()->get('companyWebsite') ?>"><span>zur Firmenwebsite</span></a>
     </div>
 
-    <?php elseif ($org$useCompanyAddress && !$orgIsDisabled && $this->job->getOrganization()) : ?>
+    <?php elseif ($org$useCompanyAddress && $this->job->getOrganization()) : ?>
     1
     <div class="meta-adress">
         <a href="tel:<?= $orgAddress->getPhone() ?>" rel="nofollow"><?= $orgAddress->getPhone() ?></a>
