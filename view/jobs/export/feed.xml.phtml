@@ -31,7 +31,7 @@ if ($this->channel == 'offene-stellen' || $this->channel == 'offene-stellen.xml'
     ];
     /* @var \Laminas\Paginator\Paginator $paginator */
     $jobsPaginator = $paginators->get('Jobs/Job', $params);
-    $jobsPaginator->setItemCountPerPage(1000);
+    $jobsPaginator->setItemCountPerPage(3000);
     $xml = \Gastro24\View\Helper\OffeneStellenXmlExportHelper::getOffeneStellenXml($jobsPaginator, $ordersRepo, $jobUrlHelper);
 
     echo html_entity_decode($xml->saveXML());
@@ -39,7 +39,7 @@ if ($this->channel == 'offene-stellen' || $this->channel == 'offene-stellen.xml'
 else {
     /* @var \Laminas\Paginator\Paginator $paginator */
     $paginator = $this->jobs;
-    $paginator->setItemCountPerPage(1000);
+    $paginator->setItemCountPerPage(3000);
     $basePathHelper = $this->plugin('basePath');
     $organizationImageCache = $this->services('Organizations\ImageFileCache\Manager');
 
