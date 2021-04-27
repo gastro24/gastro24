@@ -56,9 +56,11 @@ class SingleJobAcceptedListener
             list($day, $month, $year) = explode('/', $job->getTemplateValues()->get('publishDate'));
             //set Publish End Date - single jobs are only available for 30 days
             $datePublishStart = new \DateTime($year . '-' . $month . '-' . $day);
+            $datePublishEnd = new \DateTime($year . '-' . $month . '-' . $day);
             $job->setDatePublishStart($datePublishStart);
-            $datePublishStart->add(new \DateInterval("P30D"));
-            $job->setDatePublishEnd($datePublishStart);
+
+            $datePublishEnd->add(new \DateInterval("P30D"));
+            $job->setDatePublishEnd($datePublishEnd);
             $job->changeStatus(Status::ACTIVE, 'single job was activated.');
             $this->jobsRepository->store($job);
         }
