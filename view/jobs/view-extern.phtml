@@ -42,9 +42,11 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
 }
 
 $isNEC = false;
-if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'New Economy GmbH') {
+if ($job->getOrganization()->getOrganizationName()->getName() == 'New Economy GmbH') {
     $isNEC = true;
 }
+
+
 
 
 
