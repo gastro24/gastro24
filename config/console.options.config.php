@@ -11,6 +11,11 @@ $options = [
 
     'crawler' => [
         'organizations' => [
+
+            '5dc6bc273c050f120b421aa2' => [
+                'name' => 'New Economy GmbH',
+                'days' => 30
+            ],
             '5a0809397bb2b582267c7a97' => [
                 'name' => 'Adecco',
                 'days' => 30
