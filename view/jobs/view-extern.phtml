@@ -61,6 +61,12 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
     $isSVG = true;
 }
 
+$isZFV = false;
+if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'ZFV-Unternehmungen') {
+    $isZFV = true;
+}
+
+
 
 
 
@@ -80,7 +86,7 @@ elseif($isSpruengli):
 endif;
 
 //other TEMPLATE
-if($isAdecco || $isJam || $isNec || $isSVG):
+if($isAdecco || $isJam || $isNec || $isSVG || $isZFV):
     $this->headMeta()->setName('robots', 'noindex,follow');
 endif;
 
