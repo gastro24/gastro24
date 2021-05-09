@@ -41,9 +41,9 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
     $isSpruengli = true;
 }
 
-$isNEC = false;
+$isNec = false;
 if ($job->getOrganization()->getOrganizationName()->getName() == 'New Economy GmbH') {
-    $isNEC = true;
+    $isNec = true;
 }
 
 
@@ -52,7 +52,7 @@ if ($job->getOrganization()->getOrganizationName()->getName() == 'New Economy Gm
 
 
 
-if ($this->isIntern):
+if ($this->isIntern && !$isNec):
      $this->headMeta()->setName('robots', 'index, follow, noarchive, noodp, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
      // intern HTML
 elseif(!$this->isIntern && !$this->isEmbeddable):
@@ -62,7 +62,7 @@ elseif($isCoopJobWithWrongLink):
     $this->headMeta()->setName('robots', 'noindex,follow');
 elseif($isSpruengli):
     $this->headMeta()->setName('robots', 'noindex,follow');
-elseif($isNEC):
+elseif($isNec):
     $this->headMeta()->setName('robots', 'noindex,follow');
 endif;
 
