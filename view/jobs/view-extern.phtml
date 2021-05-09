@@ -40,11 +40,6 @@ if ($job->getOrganization()->getOrganizationName()->getName() == 'Confiserie Spr
  $this->headMeta()->setName('robots', 'noindex,follow');
 } 
 
-if ($job->getOrganization()->getOrganizationName()->getName() == 'New Economy GmbH') {
- $this->headMeta()->setName('robots', 'noindex,follow');
-}
-
-
 
 
 
@@ -53,6 +48,11 @@ if ($job->getOrganization()->getOrganizationName()->getName() == 'New Economy Gm
 if ($this->isIntern):
      $this->headMeta()->setName('robots', 'index, follow, noarchive, noodp, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
      // intern HTML
+
+elseif  ($job->getOrganization()->getOrganizationName()->getName() == 'New Economy GmbH'):
+
+$this->headMeta()->setName('robots', 'noindex,follow');
+
 elseif(!$this->isIntern && !$this->isEmbeddable):
       $this->headMeta()->setName('robots', 'noindex,follow');
      // External Redirects
