@@ -41,6 +41,12 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
     $isSpruengli = true;
 }
 
+$isNEC = false;
+if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'New Economy GmbH') {
+    $isNEC = true;
+}
+
+
 
 
 
@@ -54,7 +60,8 @@ elseif($isCoopJobWithWrongLink):
     $this->headMeta()->setName('robots', 'noindex,follow');
 elseif($isSpruengli):
     $this->headMeta()->setName('robots', 'noindex,follow');
-
+elseif($isNEC):
+    $this->headMeta()->setName('robots', 'noindex,follow');
 endif;
 
 
