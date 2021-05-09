@@ -32,10 +32,15 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
 
 // WORKAROUND for coop crawler -> wrong link
 $isCoopJobWithWrongLink = false;
-if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'Coop' && strpos($job->getLink(), 'https://www.jobs.ch') !== false || $job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'Sprüngli' ) {
+if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'Coop' && strpos($job->getLink(), 'https://www.jobs.ch') !== false ) {
     $isCoopJobWithWrongLink = true;
 }
 
+if ($job->getOrganization()->getOrganizationName()->getName() == 'Sprüngli' ) {
+
+ $this->headMeta()->setName('robots', 'noindex,follow');
+
+}
 
 if ($this->isIntern):
      $this->headMeta()->setName('robots', 'index, follow, noarchive, noodp, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
