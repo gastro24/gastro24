@@ -43,7 +43,7 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
 
 
 $isJam = false;
-if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'Jobs And More') {
+if ($job->getOrganization()->getOrganizationName()->getName() == 'Jobs And More') {
     $isJam = true;
 }
 
