@@ -51,8 +51,15 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
     $isJam = true;
 }
 
+$isNec = false;
+if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'New Economy GmbH') {
+    $isNec = true;
+}
 
-
+$isSVG = false;
+if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'SV Group') {
+    $isSVG = true;
+}
 
 
 
@@ -72,8 +79,8 @@ elseif($isSpruengli):
 
 endif;
 
-//zfv TEMPLATE
-if($isAdecco || $isJam):
+//other TEMPLATE
+if($isAdecco || $isJam || $isNec || $isSVG):
     $this->headMeta()->setName('robots', 'noindex,follow');
 endif;
 
