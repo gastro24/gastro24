@@ -48,7 +48,7 @@ elseif(!$this->isIntern && !$this->isEmbeddable):
 elseif($isCoopJobWithWrongLink):
     $this->headMeta()->setName('robots', 'noindex,follow');
 
-else:
+elseif($this->isIntern):
 
 $this->headMeta()->setName('robots', 'index, follow, noarchive, noodp, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
 
