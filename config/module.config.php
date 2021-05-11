@@ -521,8 +521,8 @@ return [
                     'job-view-extern' => [
                         'type' => 'regex',
                         'options' => [
-                            'regex' => '/(?<title>.*?)-(?<id>[a-f0-9]+)\.html',
-                            'spec' => '/jobs/%title%-%id%.html',
+                            'regex' => '/(?<name>.*?)-(?<id>[a-f0-9]+)\.html',
+                            'spec' => '/jobs/%name%-%id%.html',
                             //'route' => '/jobs/',
                             'defaults' => [
                                 'controller' => Controller\RedirectExternalJobs::class,
