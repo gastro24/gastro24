@@ -90,7 +90,7 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
   gtag('config', 'AW-980688466');
 
 </script>
-<?php if ($isLandingPage): ?>
+<?php if ($isLandingPage || $isJobboardPage): ?>
      <script data-ad-client="ca-pub-7494685726823151" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <?php endif ?>
     <!-- End Google Tag Manager -->
