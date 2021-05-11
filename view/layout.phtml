@@ -90,7 +90,9 @@ if (isset($routeParams['isPreview']) && $routeParams['isPreview']) {
   gtag('config', 'AW-980688466');
 
 </script>
-  
+<?php if ($isLandingPage): ?>
+     <script data-ad-client="ca-pub-7494685726823151" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <?php endif ?>
     <!-- End Google Tag Manager -->
     
 <?php if ($this->auth()->isLoggedIn() && !$preview):?>
