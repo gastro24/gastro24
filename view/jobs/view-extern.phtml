@@ -80,6 +80,13 @@ if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->g
    $isKohlmanns = true;
 }
 
+$isKramer = false;
+if ($job->getOrganization() && $job->getOrganization()->getOrganizationName()->getName() == 'Kramer Gastronomie') {
+   $isKramer = true;
+
+
+
+
 
 if ($this->isIntern):
      $this->headMeta()->setName('robots', 'index, follow, noarchive, noodp, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
@@ -93,7 +100,8 @@ elseif($isSpruengli):
     $this->headMeta()->setName('robots', 'noindex,follow');
 elseif($isKohlmanns):
     $this->headMeta()->setName('robots', 'noindex,follow');
-
+elseif($isKramer):
+    $this->headMeta()->setName('robots', 'noindex,follow');
 endif;
 
 //other TEMPLATE
