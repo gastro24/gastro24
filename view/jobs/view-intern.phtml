@@ -357,6 +357,14 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
       <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
       <?php endif; ?>
 
+<?php
+/** @var \Gastro24\Options\Landingpages $landingpagesOptions */
+$landingpagesOptions = $this->services(\Gastro24\Options\Landingpages::class);
+$landingPageCategories = $this->job->getTemplateValues()->get('categories');
+$contentProperty = 3;
+$locationString = ' ' . \Gastro24\View\Helper\Jobs\JobLocationHelper::getLocationStringForBreadcrumb($this->job);
+?>
+
        <?php if ($landingPageCategories) : ?>
             
             <h2 style="font-weight:700;margin-bottom:15px;">1</h2>
