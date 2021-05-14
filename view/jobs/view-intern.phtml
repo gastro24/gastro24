@@ -357,7 +357,7 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
       <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
       <?php endif; ?>
 
-       <?php if ($landingPageCategories && !$preview) : ?>
+       <?php if ($landingPageCategories) : ?>
             
             <h2 style="font-weight:700;margin-bottom:15px;">1</h2>
 
