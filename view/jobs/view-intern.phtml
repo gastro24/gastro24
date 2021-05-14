@@ -356,6 +356,13 @@ echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
       <?php if (!$preview && !$isExpired): ?>
       <?php echo $this->partial('jobs/partials/similar-jobs.phtml', ['job' => $this->job]); ?>
       <?php endif; ?>
+
+       <?php if ($landingPageCategories && !$preview) : ?>
+            
+            <h2 style="font-weight:700;margin-bottom:15px;">1</h2>
+
+
+      <?php endif; ?>
       <!-- end col-md-9 -->
     </div>
     <!-- sidebar contact and map -->
