@@ -227,8 +227,8 @@ class RedirectExternalJobs extends AbstractActionController
         //$title = $job->getTitle() .' bei ' . $orgName . ' in ' . $city ;
         //$title = $job->getTitle() .' in ' . $city . ' bei ' . $orgName ;
         
-        $title = ''.  $job->getTitle().' in ' . $city . ' bei ' . $orgName;
-
+        //$title = ''.  $job->getTitle().' in ' . $city . ' bei ' . $orgName;
+        $title = ''.  $job->getTitle().' - Job in ' . $city;
         return $title;
     }
 
