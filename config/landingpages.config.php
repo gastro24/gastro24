@@ -764,6 +764,15 @@ $options = [
           'text' => 'Küchenchef Jobs',
           'parent' => 'kueche'
      ],
+
+     'kantine' => [
+          'id' => 1977,
+		  'query' => [ 'q' => 'Kantine'],
+		   'tab' => 'Jobs von A - Z',
+          'panel' => '',
+          'text' => 'Kantine Jobs',
+          'parent' => 'kueche'
+     ],
      
      'sous-chef' => [
           'id' => 163,
