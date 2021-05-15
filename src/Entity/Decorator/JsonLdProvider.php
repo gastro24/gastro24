@@ -136,7 +136,8 @@ class JsonLdProvider implements JsonLdProviderInterface
 
         if (is_null($organizationLogo) && $this->job->getAttachedEntity('gastro24-template') && $this->job->getAttachedEntity('gastro24-template')->getLogo()) {
             // TODO: read server url dynamically
-            $organizationLogo = 'https://www.gastrojob24.ch/' . $this->job->getAttachedEntity('gastro24-template')->getLogo()->getUri();
+           // $organizationLogo = 'https://www.gastrojob24.ch/' . $this->job->getAttachedEntity('gastro24-template')->getLogo()->getUri();
+           $organizationLogo = 'https://gastrojob24.gumlet.net' . $this->job->getAttachedEntity('gastro24-template')->getLogo()->getUri() . '?width=140&height=140&quality=75&mode=fill&fill=solid&fill-color=ffffff';
         }
 
         return $organizationLogo;
