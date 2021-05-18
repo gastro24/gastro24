@@ -27,6 +27,7 @@ class OffeneStellenXmlExportHelper
             // skip jobs from crawler orgs
             $skipOrgIds = [
                 '602bd1ebdd454724e4444042', //offene-stellen.ch
+                '5bd21420b6428bfb4523562e',
             ];
 
             if($org && (in_array($org->getId(), $skipOrgIds) !== false)) {
