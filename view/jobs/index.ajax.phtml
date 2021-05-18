@@ -522,6 +522,8 @@ if (count($jobs)): ?>
                 <!-- end pagination -->
  
 
+<?php if ($isLandingPage: ?>
+
                 <?php $parts=preg_split('~<!--more-->~' , $description);?>
                 <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
 							<div class="row">
@@ -536,6 +538,8 @@ if (count($jobs)): ?>
 								</div>
                  <?php endif ?>
                 
+<?php endif ?>
+
 
 
             </div>
