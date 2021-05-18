@@ -523,7 +523,6 @@ if (count($jobs)): ?>
                 <!-- end pagination -->
 
      
-<?php if ($currentPage = (isset($query['page']) && $query['page']>0) ? $query['page'] : '1' == 1): ?>
 
      <?php $parts=preg_split('~<!--more-->~' , $description);?>
                 <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
@@ -539,7 +538,6 @@ if (count($jobs)): ?>
 								</div>
                  <?php endif ?>
                 
-<?php endif; ?>
 
 
 
