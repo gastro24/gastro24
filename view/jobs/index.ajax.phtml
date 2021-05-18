@@ -520,8 +520,7 @@ if (count($jobs)): ?>
                 <!-- pagination -->
                    <?= $this->paginationControl($jobs, 'Sliding', 'pagination-control', ['lang' => $this->params('lang'), 'route' => 'lang/jobboard']); ?>
                 <!-- end pagination -->
- 
-<?php if ($this->pageCount <= 1): ?>
+
                 <?php $parts=preg_split('~<!--more-->~' , $description);?>
                 <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
 							<div class="row">
@@ -536,7 +535,7 @@ if (count($jobs)): ?>
 								</div>
                  <?php endif ?>
                 
-   <?php endif ?>
+
 
 
 
