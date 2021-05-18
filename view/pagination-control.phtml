@@ -93,6 +93,14 @@ data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 1
         </div>
     </div>
 <?php endif; ?>
+
+<?php if ($currentPage == 1): ?>
+
+1
+<?php endif; ?>
+
+
+
 <?php if ($this->params()->fromRoute('isLandingPage')):?>
     <span id="pagination-rel-links"
     data-prev="<?=$previousUri?>"
