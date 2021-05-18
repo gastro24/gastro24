@@ -522,7 +522,7 @@ if (count($jobs)): ?>
                 <!-- end pagination -->
  
 
-<?php if ($isLandingPage): ?>
+<?php if ($isLandingPage || $isJobboardPage): ?>
 
                 <?php $parts=preg_split('~<!--more-->~' , $description);?>
                 <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
