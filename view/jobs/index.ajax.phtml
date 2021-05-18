@@ -21,6 +21,7 @@ if (count($jobs)): ?>
 
         $hasFacets = $jobs instanceof \Solr\FacetsProviderInterface;
         $queryGet = $this->params()->fromQuery();
+        $currentPage = (isset($query['page']) && $query['page']>0) ? $query['page'] : '1';
         unset($queryGet['clear']);
         $query = $this->params()->fromRoute('wpId') ?: (count($queryGet) ? 0 : 304);
         $wordpress = $this->proxy('wordpress');
@@ -522,7 +523,23 @@ if (count($jobs)): ?>
                 <!-- end pagination -->
 
 
+<?php if ($currentPage == 1): ?>
 
+     <?php $parts=preg_split('~<!--more-->~' , $description);?>
+                <?php if (isset($parts[1]) && "" != trim($parts[1])): ?>
+							<div class="row">
+                              <div class="col-md-12" id="infobox-<?=$this->params()->fromRoute('term') ?>">
+                                <div class="card similarjob extra-content">
+                                <?php echo $this->landingpages(); ?>
+                                   <?= $parts[1] ?>
+                                    <?php if (51 == $query): echo $this->landingpages(); endif; ?>
+                                    
+                                    </div>
+                                 </div>
+								</div>
+                 <?php endif ?>
+                
+<?php endif; ?>
 
             </div>
             <?=$hasFacets ? '</div>' : '' ?>
