@@ -150,7 +150,18 @@ else {
         $jobType = array_pop($jobTypes);
         $job->addChild('jobtype', '<![CDATA[' . ($jobType ?: 'vollzeit') . ']]>');
 
-        $job->addChild('pubdate', $jobObject->getDatePublishStart()?date_format($jobObject->getDatePublishStart(),$dateFormat):"");
+        if (strtolower($this->channel) == 'neuvoo') {
+            $publishStartDateOrigin = $jobObject->getTemplateValues()->get('singlePublishDateOrigin');
+            $dateStart = $publishStartDateOrigin ? new \DateTime($publishStartDateOrigin['date']) :  $jobObject->getDatePublishStart();
+            $pubDate = $dateStart ? date_format($dateStart, $dateFormat) : "";
+        }
+        else {
+            $pubDate = $jobObject->getDatePublishStart() ? date_format($jobObject->getDatePublishStart(),$dateFormat) : "";
+        }
+
+        $job->addChild('pubdate', $pubDate);
+
+
         if ($jobObject->getDatePublishEnd()) {
             $job->addChild('expire', date_format($jobObject->getDatePublishEnd(),$dateFormat));
         }
