@@ -47,7 +47,8 @@ class JsonLdProvider implements JsonLdProviderInterface
         $hiringOrganizationName = $organization ? $organization->getOrganizationName()->getName() :
             (($this->invoiceAddress) ? $this->invoiceAddress->getCompany() : '');
 
-        $dateStart = $this->job->getDatePublishStart();
+        $publishStartDateOrigin = $this->job->getTemplateValues()->get('singlePublishDateOrigin');
+        $dateStart = $publishStartDateOrigin ? new \DateTime($publishStartDateOrigin['date']):  $this->job->getDatePublishStart();
         $dateStart = $dateStart ? $dateStart->format('Y-m-d H:i:s') : null;
         $dateEnd = $this->job->getDatePublishEnd();
         $dateEnd = $dateEnd ? $dateEnd->format('Y-m-d H:i:s') : null;
