@@ -199,17 +199,17 @@ $wrapperLogoUrl = $defaultLogoUrl;
                   </span>
                   <span class="value">
                     <?php
-$location = $this->job->getLocations()->current();
-if ($location == '') {
-echo $this->translate('Swiss');
-}
-elseif ($location) {
-echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
-}
-else {
-echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
-}
-?>
+                        $location = $this->job->getLocations()->current();
+                        if ($location == '') {
+                        echo $this->translate('Swiss');
+                        }
+                        elseif ($location) {
+                        echo $location->getCity() ? $location->getCity() : preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
+                        }
+                        else {
+                        echo preg_replace('~\(.*?\)$~', '', (string) $this->job->getLocation());
+                        }
+                    ?>
                   </span>
                 </div>
               </li>

@@ -189,7 +189,7 @@ else {
         $countries = [];
         foreach ($jobObject->getLocations() as $locationObject) {
             /* @var \Jobs\Entity\Location $locationObject */
-            $regions[] =  $locationObject->getRegion();
+            $regions[] =  $locationObject->getRegion() ?? $locationObject->getCity();
             $countries[] =  $locationObject->getCountry();
         }
 
