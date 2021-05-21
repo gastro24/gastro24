@@ -192,8 +192,12 @@ else {
             $regions[] =  $locationObject->getRegion();
             $countries[] =  $locationObject->getCountry();
         }
-        $job->addChild('region', '<![CDATA[' . implode(',', $regions) . ']]>');
-        $job->addChild('country', '<![CDATA[' . implode(',', $countries) . ']]>');
+
+        $regionsString = (isset($regions[0])) ? implode(',', $regions) : 'Schweiz';
+        $countries = (isset($countries[0])) ? implode(',', $countries) : 'Schweiz';
+
+        $job->addChild('region', '<![CDATA[' . $regionsString . ']]>');
+        $job->addChild('country', '<![CDATA[' . $countries . ']]>');
 
         if (strtolower($this->channel) == 'neuvoo') {
             $logoUri = $this->basePath('modules/Gastro24/images/no-company-logo.png');
