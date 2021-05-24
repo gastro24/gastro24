@@ -522,7 +522,7 @@ return [
                         'type' => 'regex',
                         'options' => [
                             'regex' => '/(?<title>.*?)-(?<id>[a-f0-9]+)\.html',
-                            'spec' => '/jobs/i/%title%-%id%.html',
+                            'spec' => '/jobs/%title%-%id%.html',
                             //'route' => '/jobs/',
                             'defaults' => [
                                 'controller' => Controller\RedirectExternalJobs::class,
