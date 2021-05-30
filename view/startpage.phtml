@@ -475,6 +475,62 @@ $this->headTitle($this->translate('Home'));
             <div class="center">
 <!-- begin carousel -->
 
+<div class="item ">
+   <div class="">
+      <div class="stand-alone-card recommended-box">
+         <div class="recommended-box-inner">
+            <div class="recommended-box-jobtitle">
+               <a title="Servicemitarbeiter (m/w)" href="https://www.gastrojob24.ch/de/jobs/servicemitarbeiter--m-w--60b31bc75f06c24bce02b986.html">
+               <span class="block-ellipsis">
+               Servicemitarbeiter (m/w)
+               </span>
+               </a>
+            </div>
+            <div class="row">
+               <div class="col-md-8 col-lg-9 col-xs-8 ">
+                  <ul class="short-details">
+                     <li class="location">
+                        <span>8953 Dietikon</span>
+                     </li>
+                     <li class="company">
+                        <span class="">Marcello Gastro GmbH / Valentina Pasta e Pizza Dietikon.</span>
+                     </li>
+                  </ul>
+               </div>
+               <div class="recommended-box-company-logo-container ">
+                  <img src="https://www.gastrojob24.ch/modules/Gastro24/images/no-company-logo.png">
+               </div>
+            </div>
+            <div class="row">
+               <div class="recommended-hero " style="background-image: url("https://www.gastrojob24.ch/modules/Gastro24/images/bg_placeholder_gray.svg"></div>
+            </div>
+         </div>
+         <div class="recommended-box-actions clearfix">
+            <div class="col-xs-4 pull-left">
+               <a href="https://www.gastrojob24.ch/de/jobs/servicemitarbeiter--m-w--60b31bc75f06c24bce02b986.html" class="view-btn btn">
+               Bewerben
+               </a>
+            </div>
+            <div class="col-xs-4 save-job pull-right">
+               <!-- favorite button -->
+               <?php if (isset($savedJobsContainer->jobs['60b31bc75f06c24bce02b986'])) : ?>
+               <button type="button" class="btn btn-default saved"
+                  data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="60b31bc75f06c24bce02b986">
+               <span><?=$this->translate('Marked')?></span>
+               </button>
+               <?php else : ?>
+               <button type="button" class="btn btn-default"
+                  data-text-saved="<?=$this->translate('Marked')?>" data-text-save="<?=$this->translate('Mark')?>" data-job="60b31bc75f06c24bce02b986">
+               <span><?=$this->translate('Mark')?></span>
+               </button>
+               <?php endif ?>
+               <!-- end favorite button -->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
 
 <div class="item ">
    <div class="">
@@ -557,7 +613,7 @@ $this->headTitle($this->translate('Home'));
                   </ul>
                </div>
                <div class="recommended-box-company-logo-container ">
-                  <img rel="preload" as="image" src="">
+                  <img rel="preload" as="image" src="https://www.gastrojob24.ch/modules/Gastro24/images/no-company-logo.png">
                </div>
             </div>
             <div class="row">
