@@ -1,15 +1,8 @@
-#
-# robots.txt Gastrojob24 Schweiz
-#
-# V4.0.0, 20.02.2020
-#
 User-agent: *
 # Exclude Special Areas
 Disallow: */view
 Disallow: */apply
 #Special parameters
 Disallow: *q=*
-Disallow: */xml
 Disallow: /de/job/free
-Disallow: /de/auth/register
 Sitemap: https://www.gastrojob24.ch/pro-sitemaps-4112318.php
