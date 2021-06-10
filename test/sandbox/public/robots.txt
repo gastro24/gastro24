@@ -5,4 +5,4 @@ Disallow: */apply
 #Special parameters
 Disallow: *q=*
 Disallow: /de/job/free
-Sitemap: https://www.gastrojob24.ch/pro-sitemaps-4112318.php
+# Sitemap: https://www.gastrojob24.ch/pro-sitemaps-4112318.php
