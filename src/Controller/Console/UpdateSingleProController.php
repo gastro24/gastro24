@@ -111,15 +111,10 @@ class UpdateSingleProController extends AbstractActionController
                 $this->logger->info("Update publish date of job. ID: " . $job->getId());
                 echo "Update publish date of job. ID: " . $job->getId() . PHP_EOL;
 
-                $this->logger->info("Origin publish start date: " . $job->getId(), [
-                    'datePublishStart' => $job->getDatePublishStart(),
-                    'originDate' => $jobDatePublishStartOrigin
-                ]);
-
                 // update publish start date
                 $job->setDatePublishStart();
                 $job->getTemplateValues()->set('singlePublishDateUpdate', true);
-                $job->getTemplateValues()->set('singlePublishDateOrigin', $jobDatePublishStartOrigin);
+                $job->getTemplateValues()->set('singlePublishDateOrigin', $jobDatePublishStartOrigin->format('y-m-d H:i:s'));
                 $this->repositories->store($job);
 
                 $document = $this->entityToDocumentFilter->filter($job);
