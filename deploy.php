@@ -2,7 +2,6 @@
 namespace Deployer;
 
 require 'recipe/zend_framework.php';
-require 'recipe/cachetool.php';
 
 
 // Project name
@@ -48,8 +47,12 @@ host('staging.gastrojob24.ch')
     ->set('deploy_path', '/var/www/production');
 
 
-after('deploy:symlink', 'cachetool:clear:opcache');
+after('deploy:symlink', 'restart');
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
+task('restart', '  
+    sudo /bin/systemctl restart php7.4-fpm.service;
+');
+    
